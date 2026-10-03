@@ -1,0 +1,138 @@
+{
+  "$defs": {
+    "AppPreferences": {
+      "additionalProperties": false,
+      "properties": {
+        "cache_budget_bytes": {
+          "default": 21474836480,
+          "minimum": 0,
+          "title": "Cache Budget Bytes",
+          "type": "integer"
+        },
+        "document_type": {
+          "const": "app_preferences",
+          "default": "app_preferences",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "encoder": {
+          "default": "libx264",
+          "enum": [
+            "libx264",
+            "h264_videotoolbox"
+          ],
+          "title": "Encoder",
+          "type": "string"
+        },
+        "export_preset": {
+          "default": "1080p",
+          "enum": [
+            "proxy",
+            "1080p",
+            "4k"
+          ],
+          "title": "Export Preset",
+          "type": "string"
+        },
+        "id": {
+          "const": "local",
+          "default": "local",
+          "title": "Id",
+          "type": "string"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "theme": {
+          "default": "dusk",
+          "enum": [
+            "dusk",
+            "contrast"
+          ],
+          "title": "Theme",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version"
+      ],
+      "title": "AppPreferences",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:web:1:web_settings",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cache_root": {
+      "minLength": 1,
+      "title": "Cache Root",
+      "type": "string"
+    },
+    "config_file": {
+      "minLength": 1,
+      "title": "Config File",
+      "type": "string"
+    },
+    "config_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Config Sha256"
+    },
+    "document_type": {
+      "const": "web_settings",
+      "default": "web_settings",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "ffmpeg": {
+      "minLength": 1,
+      "title": "Ffmpeg",
+      "type": "string"
+    },
+    "ffprobe": {
+      "minLength": 1,
+      "title": "Ffprobe",
+      "type": "string"
+    },
+    "preferences": {
+      "$ref": "#/$defs/AppPreferences"
+    },
+    "preferences_saved": {
+      "title": "Preferences Saved",
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "config_file",
+    "config_sha256",
+    "ffmpeg",
+    "ffprobe",
+    "cache_root",
+    "preferences",
+    "preferences_saved"
+  ],
+  "title": "WebSettings",
+  "type": "object"
+}

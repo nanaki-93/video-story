@@ -187,3 +187,9 @@ class Runtime:
         if job.state == "running" and job.owner != item.jobs.owner:
             raise HTTPException(409, "Another worker owns this job; cancel it from its owner")
         return item.jobs.cancel(identity)
+
+    def pause(self, item, identity):
+        job = item.jobs.ledger.get(identity)
+        if job.state == "running" and job.owner != item.jobs.owner:
+            raise HTTPException(409, "Another worker owns this job; pause it from its owner")
+        return item.jobs.pause(identity)

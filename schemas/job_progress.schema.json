@@ -523,22 +523,47 @@
       "type": "object"
     }
   },
-  "$id": "urn:tabi:web:1:web_jobs",
+  "$id": "urn:tabi:schema:1.0:job_progress",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
     "document_type": {
-      "const": "web_jobs",
-      "default": "web_jobs",
+      "const": "job_progress",
+      "default": "job_progress",
       "title": "Document Type",
       "type": "string"
     },
-    "jobs": {
-      "items": {
-        "$ref": "#/$defs/RenderJob"
-      },
-      "title": "Jobs",
-      "type": "array"
+    "elapsed_running_seconds": {
+      "minimum": 0,
+      "title": "Elapsed Running Seconds",
+      "type": "number"
+    },
+    "eta_seconds": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Eta Seconds"
+    },
+    "job": {
+      "$ref": "#/$defs/RenderJob"
+    },
+    "measured_fps": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Measured Fps"
     },
     "schema_version": {
       "const": "1.0",
@@ -548,8 +573,11 @@
   },
   "required": [
     "schema_version",
-    "jobs"
+    "job",
+    "elapsed_running_seconds",
+    "measured_fps",
+    "eta_seconds"
   ],
-  "title": "WebJobs",
+  "title": "JobProgress",
   "type": "object"
 }

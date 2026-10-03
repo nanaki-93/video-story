@@ -1,0 +1,69 @@
+{
+  "$id": "urn:tabi:schema:1.0:app_preferences",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cache_budget_bytes": {
+      "default": 21474836480,
+      "minimum": 0,
+      "title": "Cache Budget Bytes",
+      "type": "integer"
+    },
+    "document_type": {
+      "const": "app_preferences",
+      "default": "app_preferences",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "encoder": {
+      "default": "libx264",
+      "enum": [
+        "libx264",
+        "h264_videotoolbox"
+      ],
+      "title": "Encoder",
+      "type": "string"
+    },
+    "export_preset": {
+      "default": "1080p",
+      "enum": [
+        "proxy",
+        "1080p",
+        "4k"
+      ],
+      "title": "Export Preset",
+      "type": "string"
+    },
+    "id": {
+      "const": "local",
+      "default": "local",
+      "title": "Id",
+      "type": "string"
+    },
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "theme": {
+      "default": "dusk",
+      "enum": [
+        "dusk",
+        "contrast"
+      ],
+      "title": "Theme",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "AppPreferences",
+  "type": "object"
+}

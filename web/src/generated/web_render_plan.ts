@@ -1,6 +1,6 @@
 /* Generated from schemas/ by scripts/contracts.mjs. Do not edit. */
 
-export type DocumentType = "web_jobs";
+export type DocumentType = "web_render_plan";
 export type Name = string;
 export type Sha256 = string;
 export type Version = string;
@@ -50,16 +50,29 @@ export type Revision = number;
 export type SchemaVersion = "1.0";
 export type SnapshotSha256 = string;
 export type State1 = "queued" | "running" | "paused" | "interrupted" | "cancelled" | "failed" | "verified";
-export type Jobs = RenderJob[];
 export type SchemaVersion1 = "1.0";
+export type Assumptions = string[];
+export type AudioBytes = number;
+export type AvailableBytes = number;
+export type DocumentType2 = "storage_estimate";
+export type FirstFrame2 = number;
+export type FrameCount1 = number;
+export type NormalizationBytes = number;
+export type RequiredAdditionalBytes = number;
+export type ReserveBytes = number;
+export type SchemaVersion2 = "1.0";
+export type SnapshotSha2561 = string;
+export type Sufficient = boolean;
+export type VideoBytes = number;
 
-export interface WebJobs {
+export interface WebRenderPlan {
   document_type?: DocumentType;
-  jobs: Jobs;
+  job: RenderJob;
   schema_version: SchemaVersion1;
+  storage: StorageEstimate;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "RenderJob".
  */
 export interface RenderJob {
@@ -85,7 +98,7 @@ export interface RenderJob {
   state: State1;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "Fingerprint".
  */
 export interface Fingerprint {
@@ -94,7 +107,7 @@ export interface Fingerprint {
   version: Version;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "ChunkRecord".
  */
 export interface ChunkRecord {
@@ -106,7 +119,7 @@ export interface ChunkRecord {
   state: State;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "HashedFile".
  */
 export interface HashedFile {
@@ -115,7 +128,7 @@ export interface HashedFile {
   size_bytes: SizeBytes;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "MediaPath".
  */
 export interface MediaPath {
@@ -123,7 +136,7 @@ export interface MediaPath {
   root_id?: RootId;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "JobError".
  */
 export interface JobError {
@@ -132,7 +145,7 @@ export interface JobError {
   message: Message;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "ChunkPlan".
  */
 export interface ChunkPlan {
@@ -144,7 +157,7 @@ export interface ChunkPlan {
   version?: Version1;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "OutputProfile".
  */
 export interface OutputProfile {
@@ -162,7 +175,7 @@ export interface OutputProfile {
   video_codec: VideoCodec;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "Canvas".
  */
 export interface Canvas {
@@ -170,10 +183,30 @@ export interface Canvas {
   width: Width;
 }
 /**
- * This interface was referenced by `WebJobs`'s JSON-Schema
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
  * via the `definition` "FrameRate".
  */
 export interface FrameRate {
   den: Den;
   num: Num;
+}
+/**
+ * This interface was referenced by `WebRenderPlan`'s JSON-Schema
+ * via the `definition` "StorageEstimate".
+ */
+export interface StorageEstimate {
+  assumptions: Assumptions;
+  audio_bytes: AudioBytes;
+  available_bytes: AvailableBytes;
+  document_type?: DocumentType2;
+  first_frame: FirstFrame2;
+  frame_count: FrameCount1;
+  normalization_bytes: NormalizationBytes;
+  profile: OutputProfile;
+  required_additional_bytes: RequiredAdditionalBytes;
+  reserve_bytes: ReserveBytes;
+  schema_version: SchemaVersion2;
+  snapshot_sha256: SnapshotSha2561;
+  sufficient: Sufficient;
+  video_bytes: VideoBytes;
 }

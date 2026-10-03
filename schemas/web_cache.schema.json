@@ -1,0 +1,163 @@
+{
+  "$defs": {
+    "CacheInventory": {
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {
+          "const": "cache_inventory",
+          "default": "cache_inventory",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "entries": {
+          "items": {
+            "$ref": "#/$defs/CacheSummary"
+          },
+          "title": "Entries",
+          "type": "array"
+        },
+        "entry_bytes": {
+          "minimum": 0,
+          "title": "Entry Bytes",
+          "type": "integer"
+        },
+        "inventory_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Inventory Sha256",
+          "type": "string"
+        },
+        "root": {
+          "title": "Root",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "root",
+        "inventory_sha256",
+        "entries",
+        "entry_bytes"
+      ],
+      "title": "CacheInventory",
+      "type": "object"
+    },
+    "CacheSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "key": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "normalized_image",
+            "video_chunk"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message"
+        },
+        "protected": {
+          "default": false,
+          "title": "Protected",
+          "type": "boolean"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        },
+        "valid": {
+          "title": "Valid",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind",
+        "key",
+        "size_bytes",
+        "sha256",
+        "created_at",
+        "valid"
+      ],
+      "title": "CacheSummary",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:web:1:web_cache",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "budget_bytes": {
+      "minimum": 0,
+      "title": "Budget Bytes",
+      "type": "integer"
+    },
+    "document_type": {
+      "const": "web_cache",
+      "default": "web_cache",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "inventory": {
+      "$ref": "#/$defs/CacheInventory"
+    },
+    "proposed_keys": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "title": "Proposed Keys",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "inventory",
+    "budget_bytes",
+    "proposed_keys"
+  ],
+  "title": "WebCache",
+  "type": "object"
+}

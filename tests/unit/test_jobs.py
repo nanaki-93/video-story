@@ -4,6 +4,7 @@ import subprocess
 import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -80,6 +81,42 @@ def test_queue_is_fifo_and_cancelled_work_never_starts(queue, monkeypatch):
     ).read_text() == "injected owned process failure"
     assert not list((service.store.root / "exports").iterdir())
     assert service.cancel(two.id) == result[0]
+
+
+def test_pause_boundary_and_progress_exclude_paused_wall_time(queue, monkeypatch):
+    service, digest, profile = queue
+    now = [datetime(2026, 10, 4, tzinfo=UTC)]
+
+    class Clock:
+        @staticmethod
+        def now(zone):
+            return now[0]
+
+    monkeypatch.setattr("tabi.core.jobs.ledger.datetime", Clock)
+    monkeypatch.setattr("tabi.core.jobs.service.datetime", Clock)
+    job = service.submit(digest, profile, "exports/paused.mp4")
+    assert service.pause(job.id).state == "paused"
+    assert service.work() == []
+    assert service.progress(job.id)["elapsed_running_seconds"] == 0
+    service.ledger.update(
+        job.id, "started", lambda j: revised(j, state="running", owner=service.owner)
+    )
+    now[0] += timedelta(seconds=10)
+    assert service._pause_at_boundary(job.id).state == "paused"
+    now[0] += timedelta(hours=2)
+    assert service.progress(job.id)["elapsed_running_seconds"] == 10
+    service.ledger.update(
+        job.id,
+        "started",
+        lambda j: revised(j, state="running", owner=service.owner, pause_requested=False),
+    )
+    now[0] += timedelta(seconds=5)
+    assert service.progress(job.id)["elapsed_running_seconds"] == 15
+    assert service.progress(job.id)["eta_seconds"] is None
+    assert service._pause_at_boundary(job.id) is None
+    service.cancel(job.id)
+    with pytest.raises(OperationCancelled):
+        service._pause_at_boundary(job.id)
 
 
 def test_event_commit_survives_failed_checkpoint_and_recovery_is_idempotent(queue, monkeypatch):

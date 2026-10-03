@@ -1,6 +1,7 @@
 import type { Action } from "./action";
 import type { ActionPack } from "./action_pack";
 import type { ActionRequest } from "./action_request";
+import type { AppPreferences } from "./app_preferences";
 import type { Asset } from "./asset";
 import type { AssetHealth } from "./asset_health";
 import type { AudioEditPlan } from "./audio_edit_plan";
@@ -18,6 +19,7 @@ import type { ExportVerification } from "./export_verification";
 import type { FixtureManifest } from "./fixture_manifest";
 import type { ImportRequest } from "./import_request";
 import type { JobEvent } from "./job_event";
+import type { JobProgress } from "./job_progress";
 import type { PreviewSelection } from "./preview_selection";
 import type { Project } from "./project";
 import type { PublicRelease } from "./public_release";
@@ -38,6 +40,7 @@ import type { ValidationReport } from "./validation_report";
 import type { WaveformReport } from "./waveform_report";
 import type { WebAudio } from "./web_audio";
 import type { WebAudioMix } from "./web_audio_mix";
+import type { WebCache } from "./web_cache";
 import type { WebCatalog } from "./web_catalog";
 import type { WebDirectory } from "./web_directory";
 import type { WebEditor } from "./web_editor";
@@ -47,14 +50,17 @@ import type { WebPreview } from "./web_preview";
 import type { WebProject } from "./web_project";
 import type { WebProjects } from "./web_projects";
 import type { WebRecents } from "./web_recents";
+import type { WebRenderPlan } from "./web_render_plan";
 import type { WebRoots } from "./web_roots";
 import type { WebSession } from "./web_session";
+import type { WebSettings } from "./web_settings";
 import type { WebUpload } from "./web_upload";
 
 export interface Documents {
   action: Action;
   action_pack: ActionPack;
   action_request: ActionRequest;
+  app_preferences: AppPreferences;
   asset: Asset;
   asset_health: AssetHealth;
   audio_edit_plan: AudioEditPlan;
@@ -72,6 +78,7 @@ export interface Documents {
   fixture_manifest: FixtureManifest;
   import_request: ImportRequest;
   job_event: JobEvent;
+  job_progress: JobProgress;
   preview_selection: PreviewSelection;
   project: Project;
   public_release: PublicRelease;
@@ -92,6 +99,7 @@ export interface Documents {
   waveform_report: WaveformReport;
   web_audio: WebAudio;
   web_audio_mix: WebAudioMix;
+  web_cache: WebCache;
   web_catalog: WebCatalog;
   web_directory: WebDirectory;
   web_editor: WebEditor;
@@ -101,7 +109,9 @@ export interface Documents {
   web_project: WebProject;
   web_projects: WebProjects;
   web_recents: WebRecents;
+  web_render_plan: WebRenderPlan;
   web_roots: WebRoots;
   web_session: WebSession;
+  web_settings: WebSettings;
   web_upload: WebUpload;
 }

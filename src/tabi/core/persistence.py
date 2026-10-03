@@ -77,6 +77,7 @@ def document_path(document: DraftDocument) -> str:
     if kind == "project":
         return "project.json"
     folders = {
+        "app_preferences": "preferences",
         "preview_selection": "previews",
         "episode": "episodes",
         "render_job": "jobs",

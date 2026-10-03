@@ -3,12 +3,13 @@ import { element } from "./dom";
 import { layouts, wireframe } from "./wireframes";
 import type { PageId } from "./wireframes";
 import { playbackSpike } from "./playback";
-import { connect, sessionPanel } from "./session";
+import { api, connect } from "./session";
 import { projectsPage, setupPage, restoreRecents } from "./workspace";
 import { assetsPage, inspectorPage } from "./assets";
 import { editorPage } from "./editor";
 import { previewPage } from "./preview";
 import { audioPage } from "./audio";
+import { rendersPage, settingsPage } from "./production";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -86,6 +87,7 @@ function navigate() {
           "notebook",
           "preview",
           "audio",
+          "renders",
         ].includes(page)
           ? "Connected worker"
           : page === "preview" && mode === "spike"
@@ -95,6 +97,8 @@ function navigate() {
   );
   main.replaceChildren(header);
   const pages = {
+    renders: rendersPage,
+    settings: settingsPage,
     audio: audioPage,
     preview: previewPage,
     projects: projectsPage,
@@ -107,10 +111,6 @@ function navigate() {
   };
   if (mode === "connected" && Object.hasOwn(pages, page)) {
     const panel = pages[page as keyof typeof pages]();
-    cleanup = panel.dispose;
-    main.append(panel.root);
-  } else if (mode === "connected" && page === "settings") {
-    const panel = sessionPanel();
     cleanup = panel.dispose;
     main.append(panel.root);
   } else if (page === "preview" && mode === "spike") {
@@ -137,7 +137,11 @@ function connectWorkspace() {
   void connect()
     .then(async (value) => {
       if (attempt !== connectionAttempt) return;
-      if (value === "connected") await restoreRecents();
+      if (value === "connected") {
+        await restoreRecents();
+        const preferences = await api("/settings", "web_settings");
+        document.documentElement.dataset.theme = preferences.preferences.theme;
+      }
       if (attempt !== connectionAttempt) return;
       mode = value;
       navigate();

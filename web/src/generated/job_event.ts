@@ -25,6 +25,7 @@ export type Message = string;
 export type FirstFrame1 = number;
 export type Id = string;
 export type Owner = string | null;
+export type PauseRequested = boolean;
 export type MaxChunkFrames = number;
 export type ProfileSha256 = string;
 export type TemporalHandles = 0;
@@ -81,6 +82,7 @@ export interface RenderJob {
   id: Id;
   output?: HashedFile | null;
   owner?: Owner;
+  pause_requested?: PauseRequested;
   plan?: ChunkPlan | null;
   profile: OutputProfile;
   report_path?: ReportPath1;

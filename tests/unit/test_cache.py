@@ -155,6 +155,20 @@ def test_prune_is_explicit_and_preserves_unknown_files_sources_and_snapshots(
     registry.verify()
 
 
+def test_budget_selection_never_proposes_protected_sources(cached_project, tmp_path):
+    cache, _, _, _, _ = image_cache(cached_project, tmp_path)
+    inventory = cache.inventory()
+    assert inventory.entry_bytes > 0
+    assert cache.budget_selection(inventory, inventory.entry_bytes) == []
+    assert cache.budget_selection(inventory, 0) == [e.key for e in inventory.entries]
+    protected = inventory.model_copy(
+        update={"entries": [e.model_copy(update={"protected": True}) for e in inventory.entries]}
+    )
+    assert cache.budget_selection(protected, 0) == []
+    with pytest.raises(ValueError):
+        cache.budget_selection(inventory, -1)
+
+
 def test_prune_rejects_stale_inventory_and_worker_contention(cached_project, tmp_path):
     cache, descriptor, _, _, _ = image_cache(cached_project, tmp_path)
     observed = cache.inventory()

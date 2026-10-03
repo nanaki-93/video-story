@@ -167,6 +167,7 @@ class RenderJob(DraftDocument):
     destination: RelativePath | None = Field(default=None, exclude_if=lambda v: v is None)
     owner: Identifier | None = Field(default=None, exclude_if=lambda v: v is None)
     cancel_requested: bool = Field(default=False, exclude_if=lambda v: not v)
+    pause_requested: bool = Field(default=False, exclude_if=lambda v: not v)
     plan: ChunkPlan | None = Field(default=None, exclude_if=lambda v: v is None)
 
     @model_validator(mode="after")

@@ -1,7 +1,12 @@
 :root {
+  --bg: #171820;
+  --surface: #1d1e27;
+  --raised: #22232d;
+  --text: #ece8e7;
+  --muted: #b8b3c1;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #ece8e7;
-  background: #171820;
+  color: var(--text);
+  background: var(--bg);
   font-synthesis: none;
   line-height: 1.5;
   font-size: 15px;
@@ -40,7 +45,7 @@ a {
 }
 .sidebar {
   min-width: 0;
-  background: #1d1e27;
+  background: var(--surface);
   border-right: 1px solid #343640;
   padding: 30px 20px;
 }
@@ -114,7 +119,7 @@ p {
   margin: 8px 0 14px;
 }
 .muted {
-  color: #b8b3c1;
+  color: var(--muted);
   font-size: 13px;
 }
 .badge {
@@ -136,7 +141,7 @@ p {
   font-size: 12px;
 }
 .panel {
-  background: #22232d;
+  background: var(--raised);
   border: 1px solid #393a46;
   border-radius: 10px;
   padding: 22px;
@@ -427,4 +432,11 @@ pre {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 12px;
+}
+:root[data-theme="contrast"] {
+  --bg: #08080d;
+  --surface: #11121b;
+  --raised: #20212c;
+  --text: #fff;
+  --muted: #d6d2df;
 }

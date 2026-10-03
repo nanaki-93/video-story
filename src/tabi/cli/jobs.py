@@ -23,6 +23,7 @@ def add_job_commands(commands):
         "status",
         "events",
         "cancel",
+        "pause",
         "resume",
         "recover",
         "work",
@@ -32,11 +33,14 @@ def add_job_commands(commands):
         action = actions.add_parser(name)
         project_arguments(action)
         action.add_argument("--json", action="store_true", help="JSON is the default output format")
-        if name in {"status", "events", "cancel", "resume", "estimate", "verify"}:
+        if name in {"status", "events", "cancel", "pause", "resume", "estimate", "verify"}:
             action.add_argument("job_id")
         if name == "work":
             action.add_argument("--once", action="store_true", help="Run at most one queued job")
         if name == "submit":
+            action.add_argument(
+                "--dry-run", action="store_true", help="Validate and estimate without queuing"
+            )
             action.add_argument("snapshot")
             action.add_argument("--output", required=True, help="New path under project exports/")
             action.add_argument("--start", type=int, default=0)
@@ -85,7 +89,7 @@ def run_job_command(args, settings):
         if args.audio_bitrate is not None:
             changes["audio_bitrate"] = args.audio_bitrate
         profile = OutputProfile.model_validate({**profile.model_dump(), **changes})
-        result = service.submit(
+        result = (service.prepare if args.dry_run else service.submit)(
             args.snapshot,
             profile,
             args.output,
@@ -93,6 +97,8 @@ def run_job_command(args, settings):
             end_frame=args.end,
             max_chunk_frames=args.chunk_frames,
         )
+        if args.dry_run:
+            result = estimate_storage(assets, result)
     elif name == "list":
         result = service.ledger.all()
     elif name == "status":
@@ -105,6 +111,8 @@ def run_job_command(args, settings):
         result = service.ledger.events(args.job_id)
     elif name == "cancel":
         result = service.cancel(args.job_id)
+    elif name == "pause":
+        result = service.pause(args.job_id)
     elif name == "resume":
         result = service.resume(args.job_id)
     elif name == "recover":

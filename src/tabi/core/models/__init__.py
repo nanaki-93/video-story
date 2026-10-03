@@ -18,9 +18,12 @@ from .publishing import (
 from .registry import AssetHealth, ImportRequest
 from .rendering import CompilationResult, ExportVerification, RenderReport
 from .scenes import Curve, SceneInstance, SceneTemplate
+from .settings import AppPreferences, JobProgress
 from .story import StoryboardReport
 
 DOCUMENT_MODELS = {
+    "app_preferences": AppPreferences,
+    "job_progress": JobProgress,
     "audio_edit_plan": AudioEditPlan,
     "preview_selection": PreviewSelection,
     "project": Project,

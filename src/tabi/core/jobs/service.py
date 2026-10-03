@@ -5,6 +5,7 @@ import os
 import stat
 import tempfile
 import time
+from datetime import UTC, datetime
 from pathlib import Path
 from uuid import uuid4
 
@@ -39,6 +40,21 @@ class JobService:
     def submit(
         self, digest, profile, destination, *, first_frame=0, end_frame=None, max_chunk_frames=None
     ):
+        return self.ledger.create(
+            self.prepare(
+                digest,
+                profile,
+                destination,
+                first_frame=first_frame,
+                end_frame=end_frame,
+                max_chunk_frames=max_chunk_frames,
+            )
+        )
+
+    def prepare(
+        self, digest, profile, destination, *, first_frame=0, end_frame=None, max_chunk_frames=None
+    ):
+        """Validate and estimate a candidate without enqueuing it."""
         snapshot = self.store.read_snapshot(digest)
         FrozenRegistry(self.assets, snapshot)
         profile = OutputProfile.model_validate(profile)
@@ -77,7 +93,54 @@ class JobService:
             chunks=chunks,
             plan=plan,
         )
-        return self.ledger.create(job)
+        return job
+
+    def pause(self, identity):
+        def request(job):
+            if job.state == "running":
+                return revised(job, pause_requested=True)
+            if job.state == "queued":
+                return revised(job, state="paused", pause_requested=True, owner=None)
+            return job
+
+        return self.ledger.update(identity, "pause_requested", request)
+
+    def _pause_at_boundary(self, identity):
+        def pause(job):
+            self._owned(job)
+            if job.cancel_requested:
+                raise OperationCancelled("job cancelled at a verified boundary")
+            return revised(job, state="paused", owner=None) if job.pause_requested else job
+
+        job = self.ledger.update(identity, "paused_at_boundary", pause)
+        return job if job.state == "paused" else None
+
+    def progress(self, identity):
+        events = self.ledger.events(identity)
+        if not events:
+            raise ValueError("No job events")
+        elapsed, began = 0.0, None
+        for event in events:
+            if event.job.state == "running" and began is None:
+                began = event.recorded_at
+            elif event.job.state != "running" and began is not None:
+                elapsed += (event.recorded_at - began).total_seconds()
+                began = None
+        job = events[-1].job
+        if began is not None:
+            elapsed += (datetime.now(UTC) - began).total_seconds()
+        elapsed = max(0.0, elapsed)
+        rate = job.completed_frames / elapsed if elapsed and job.completed_frames else None
+        remaining = job.duration_frames - job.completed_frames
+        eta = remaining / rate if rate and remaining and job.state == "running" else None
+        return {
+            "schema_version": "1.0",
+            "document_type": "job_progress",
+            "job": job,
+            "elapsed_running_seconds": elapsed,
+            "measured_fps": rate,
+            "eta_seconds": eta,
+        }
 
     def cancel(self, identity):
         def request(job):
@@ -236,6 +299,7 @@ class JobService:
                     state="queued",
                     owner=None,
                     cancel_requested=False,
+                    pause_requested=False,
                     plan=current.plan.model_copy(update={"toolchain_fingerprint": fingerprint}),
                     chunks=chunks,
                     completed_frames=sum(c.frame_count for c in chunks if c.state == "verified"),
@@ -286,6 +350,8 @@ class JobService:
             pass
         for chunk in job.chunks:
             checkpoint(force=True)
+            if paused := self._pause_at_boundary(identity):
+                return paused
             if chunk.state == "verified":
                 try:
                     self._verified_chunk(job, chunk)
@@ -349,6 +415,8 @@ class JobService:
                     )
                 ),
             )
+        if paused := self._pause_at_boundary(identity):
+            return paused
         # A crash after assembly can reuse that verified owned output as well.
         report = self._existing_assembly(job)
         if report is None:
@@ -375,6 +443,8 @@ class JobService:
                 ),
             )
         checkpoint(force=True)
+        if paused := self._pause_at_boundary(identity):
+            return paused
         FrozenRegistry(self.assets, snapshot)
         if job.plan.pipeline != pipeline_fingerprint() or report.backend != job.backend:
             raise ValueError(

@@ -299,3 +299,9 @@ Complete. Preview now queues the shared Python renderer, retains verified proxie
 Core complete; Marco's listening review remains pending. Audio now edits sample placements, trims, gain, fades and ambience loops through Python proposals, with explicit ordered music placement, visible duration conflicts, guarded save and undo/redo. Waveforms derive from the hashed masters. Auditions use the final renderer's mixer and display measured loudness, true/sample peaks and clipping without applying suggested gain. Metadata forms preserve unknown IDs and validate actual master hashes, samples and rights state.
 
 `make check`: 248 passed / 52 opt-in skipped. Two focused state/media checks pass; actual PCM verifies -6 dB, fades, immutable masters, stale edits and metadata rejection. Frontend checks/build/four tests pass. Chrome proved conflict rejection → save → undo/redo → waveform → complete edited-WAV playback → metadata save. [Guide](29-audio-editor.md), [screenshot](evidence/t30-audio-editor.jpg). No approved original music or creative judgement is implied.
+
+## T31 — render queue, settings and recovery controls
+
+Complete. Frozen export plans and conservative storage estimates feed the real queue. Measured ETA excludes paused time; pause finishes the current verified chunk while cancel stops owned work. Resume and export verification reuse the existing integrity checks. Preferences use revisions; tool configuration uses hashes and exact backups. Cache cleanup uses an observed inventory and protects source media.
+
+`make check`: 252 passed / 53 opt-in skipped, 57 schemas. Frontend checks/build/four tests pass. Two actual-media checks pass. Chrome exported 300 frames of 1080p video with 480000 audio samples, paused at 180 frames, resumed successfully and remained responsive in Settings. [Guide](30-render-queue.md), [queue evidence](evidence/t31-verified-queue.jpg).

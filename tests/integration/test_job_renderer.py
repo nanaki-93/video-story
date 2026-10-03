@@ -149,6 +149,33 @@ service.work()
     assert file_hash(artifact) == digest_before
 
 
+def test_pause_during_actual_chunk_then_resume_keeps_verified_media(tmp_path):
+    service, digest, profile = queue(tmp_path)
+    sources = {p: file_hash(p) for p in service.store.root.rglob("*.wav")}
+    job = service.submit(digest, profile, "exports/paused.mp4", end_frame=90, max_chunk_frames=30)
+    requested = []
+
+    def pause(process):
+        if "-/filter_complex" in process.args and not requested:
+            requested.append(service.pause(job.id))
+
+    service.on_process = pause
+    result = service.work(once=True)[0]
+    assert requested and result.state == "paused" and result.owner is None
+    assert result.completed_frames == 30
+    retained = result.chunks[0].output
+    assert file_hash(service.store.root / retained.location.path) == retained.sha256
+    assert not (service.store.root / result.destination).exists()
+    service.on_process = None
+    assert service.resume(job.id).completed_frames == 30
+    result = service.work(once=True)[0]
+    assert result.state == "verified", result.error
+    assert result.chunks[0].output == retained
+    assert service.store.read(result.report_path).audio_verification.intended_samples == 144000
+    assert service.progress(job.id)["measured_fps"] > 0
+    assert all(file_hash(p) == h for p, h in sources.items())
+
+
 def test_cancel_running_ffmpeg_job_preserves_other_process_and_sources(tmp_path):
     service, digest, profile = queue(tmp_path, effects=True)
     job = service.submit(digest, profile, "exports/cancelled.mp4")

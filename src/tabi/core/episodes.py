@@ -13,7 +13,7 @@ from .models.assets import Approval
 from .models.base import Canvas
 from .models.production import OutputProfile, ValidationIssue
 from .models.rendering import CompilationResult
-from .persistence import StorageError
+from .persistence import RevisionConflict, StorageError
 from .process import ToolError
 from .render.backend import FrozenRegistry
 from .render.ffmpeg import FFmpegRenderer
@@ -77,6 +77,18 @@ class EpisodeService:
         result = self._result(snapshot, digest)
         if output is not None:
             export_document(snapshot, output)
+        return result
+
+    def compile_saved(self, identity, *, expected_revision, purpose="preview"):
+        from .authoring import AuthoringService
+
+        author = AuthoringService(self.assets)
+        episode = author.episode(identity)
+        if episode.revision != expected_revision:
+            raise RevisionConflict("Episode changed; reload before freezing its snapshot")
+        result = self.compile(episode, purpose=purpose)
+        if author.episode(identity).revision != expected_revision:
+            raise RevisionConflict("Episode changed during compilation; reload and freeze again")
         return result
 
     def inspect_snapshot(self, digest: str) -> dict:

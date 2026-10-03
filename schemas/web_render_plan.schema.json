@@ -521,35 +521,129 @@
       ],
       "title": "RenderJob",
       "type": "object"
+    },
+    "StorageEstimate": {
+      "additionalProperties": false,
+      "properties": {
+        "assumptions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "audio_bytes": {
+          "minimum": 0,
+          "title": "Audio Bytes",
+          "type": "integer"
+        },
+        "available_bytes": {
+          "minimum": 0,
+          "title": "Available Bytes",
+          "type": "integer"
+        },
+        "document_type": {
+          "const": "storage_estimate",
+          "default": "storage_estimate",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "first_frame": {
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "minimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "normalization_bytes": {
+          "minimum": 0,
+          "title": "Normalization Bytes",
+          "type": "integer"
+        },
+        "profile": {
+          "$ref": "#/$defs/OutputProfile"
+        },
+        "required_additional_bytes": {
+          "minimum": 0,
+          "title": "Required Additional Bytes",
+          "type": "integer"
+        },
+        "reserve_bytes": {
+          "minimum": 0,
+          "title": "Reserve Bytes",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "sufficient": {
+          "title": "Sufficient",
+          "type": "boolean"
+        },
+        "video_bytes": {
+          "minimum": 0,
+          "title": "Video Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "snapshot_sha256",
+        "first_frame",
+        "frame_count",
+        "profile",
+        "available_bytes",
+        "normalization_bytes",
+        "video_bytes",
+        "audio_bytes",
+        "reserve_bytes",
+        "required_additional_bytes",
+        "sufficient",
+        "assumptions"
+      ],
+      "title": "StorageEstimate",
+      "type": "object"
     }
   },
-  "$id": "urn:tabi:web:1:web_jobs",
+  "$id": "urn:tabi:web:1:web_render_plan",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
     "document_type": {
-      "const": "web_jobs",
-      "default": "web_jobs",
+      "const": "web_render_plan",
+      "default": "web_render_plan",
       "title": "Document Type",
       "type": "string"
     },
-    "jobs": {
-      "items": {
-        "$ref": "#/$defs/RenderJob"
-      },
-      "title": "Jobs",
-      "type": "array"
+    "job": {
+      "$ref": "#/$defs/RenderJob"
     },
     "schema_version": {
       "const": "1.0",
       "title": "Schema Version",
       "type": "string"
+    },
+    "storage": {
+      "$ref": "#/$defs/StorageEstimate"
     }
   },
   "required": [
     "schema_version",
-    "jobs"
+    "job",
+    "storage"
   ],
-  "title": "WebJobs",
+  "title": "WebRenderPlan",
   "type": "object"
 }

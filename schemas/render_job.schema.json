@@ -449,6 +449,11 @@
       "default": null,
       "title": "Owner"
     },
+    "pause_requested": {
+      "default": false,
+      "title": "Pause Requested",
+      "type": "boolean"
+    },
     "plan": {
       "anyOf": [
         {

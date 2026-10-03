@@ -27,9 +27,11 @@ from tabi.core.models.base import (
     Text,
     Version,
 )
+from tabi.core.models.cache import CacheInventory, StorageEstimate
 from tabi.core.models.preview import PreviewSelection
 from tabi.core.models.production import OutputProfile, RenderJob
 from tabi.core.models.rendering import RenderReport
+from tabi.core.models.settings import AppPreferences
 
 PROTOCOL = "1"
 
@@ -163,6 +165,61 @@ class MusicMetadata(Model):
     expected_revision: Frame | None = None
 
 
+class CompileRequest(Model):
+    expected_revision: Frame
+    purpose: Literal["preview", "production"] = "preview"
+
+
+class RenderRequest(Model):
+    snapshot_sha256: SHA256
+    preset: Literal["proxy", "1080p", "4k"]
+    encoder: Literal["libx264", "h264_videotoolbox"]
+    destination: RelativePath
+    first_frame: Frame = 0
+    end_frame: Frame | None = None
+    max_chunk_frames: int = Field(default=900, ge=1, le=7200)
+
+
+class WebRenderPlan(Document):
+    document_type: Literal["web_render_plan"] = "web_render_plan"
+    job: RenderJob
+    storage: StorageEstimate
+
+
+class WebSettings(Document):
+    document_type: Literal["web_settings"] = "web_settings"
+    config_file: Text
+    config_sha256: SHA256 | None
+    ffmpeg: Text
+    ffprobe: Text
+    cache_root: Text
+    preferences: AppPreferences
+    preferences_saved: bool
+
+
+class SavePreferences(Model):
+    preferences: AppPreferences
+    expected_revision: Frame | None
+
+
+class SaveTools(Model):
+    ffmpeg: Text
+    ffprobe: Text
+    expected_hash: SHA256 | None
+
+
+class WebCache(Document):
+    document_type: Literal["web_cache"] = "web_cache"
+    inventory: CacheInventory
+    budget_bytes: Frame
+    proposed_keys: list[SHA256]
+
+
+class PruneCache(Model):
+    expected_inventory: SHA256
+    keys: list[SHA256]
+
+
 class InstallDocument(Model):
     document: dict
     expected_revision: Frame | None = None
@@ -287,6 +344,9 @@ class WorkerReady(Model):
 
 
 WEB_SCHEMAS = {
+    "web_render_plan": WebRenderPlan,
+    "web_settings": WebSettings,
+    "web_cache": WebCache,
     "web_audio": WebAudio,
     "web_audio_mix": WebAudioMix,
     "web_preview": WebPreview,

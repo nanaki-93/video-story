@@ -274,6 +274,19 @@ class CacheStore:
         with self.store.exclusive_lock(".tabi-cache.lock"):
             return self._inventory()
 
+    @staticmethod
+    def budget_selection(inventory, budget_bytes):
+        if type(budget_bytes) is not int or budget_bytes < 0:
+            raise ValueError("cache budget must be a nonnegative integer byte count")
+        remaining, keys = inventory.entry_bytes, []
+        for entry in sorted(inventory.entries, key=lambda e: (e.created_at, e.key)):
+            if remaining <= budget_bytes:
+                break
+            if not entry.protected:
+                keys.append(entry.key)
+                remaining -= entry.size_bytes
+        return keys
+
     def prune(self, keys, *, expected_inventory):
         keys = TypeAdapter(list[SHA256]).validate_python(keys)
         if len(keys) != len(set(keys)):
