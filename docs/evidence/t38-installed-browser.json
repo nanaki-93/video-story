@@ -1,0 +1,21 @@
+{
+  "exportPlayback": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 10,
+    "soughtSeconds": 5,
+    "endedAt": 10,
+    "error": null
+  },
+  "proxy": {
+    "duration": 10,
+    "error": null,
+    "height": 540,
+    "ready": 4,
+    "time": 5,
+    "width": 960
+  },
+  "exactFrame": 150,
+  "pngSha256": "ffab6e9c3b7d90f9142d216c99b5e98fa7f457349d32fd979d4d5e0f62ee872d",
+  "purpose": "Supplied original, silent draft; not animation or creative approval"
+}

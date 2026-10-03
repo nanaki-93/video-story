@@ -102,3 +102,10 @@ Node was unavailable and imports resolved to installed site-packages. `setup-che
 ready with verified bundled hashes. A 90-second synthetic pilot, tab-close survival,
 restart/resume and native-browser playback checks are recorded in [T33](tasks/t33.md).
 Temporary verification paths are evidence, not the recommended permanent installation.
+
+T38 repeated fresh installation for the completed application with all 17 locked runtime
+packages, Node absent from PATH and verified bundled frontend hashes. The installed CLI
+reverified the supplied-reference 1080p draft; Chrome played/sought it, rendered a new proxy
+and displayed an exact frame. See [final acceptance](38-v1-acceptance.md) and the
+[installation report](evidence/t38-installed-runtime.json). Follow the [operations guide](37-operations.md)
+for a complete authoring, recovery and backup workflow.

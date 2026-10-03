@@ -4,7 +4,7 @@
 
 Implement a local production tool for Tabi Eki: original lofi music distributed separately through DistroKid, and YouTube episodes using that music with consistent Tabi animation and visual storytelling. The application turns approved assets plus an authored episode manifest into a reproducible video and a release preparation folder.
 
-Target machine: Marco's Apple Silicon MacBook Pro M5 Pro with 48 GB unified memory. Treat its actual render performance as unmeasured. Development can run elsewhere with synthetic media, but macOS playback, hardware encoding, packaging, and final performance must be verified on that machine or equivalent Apple Silicon hardware.
+Target machine: Marco's Apple Silicon MacBook Pro M5 Pro with 48 GB unified memory. macOS playback, hardware encoding, installed packaging and synthetic performance have now been verified on this machine; see [long-form measurements](docs/36-longform.md) and [V1 acceptance](docs/38-v1-acceptance.md). Real-art performance and creative approval remain separate gates. Development can run elsewhere with synthetic media, but other hardware is not qualified by these results.
 
 The first creative milestone is a 90–120-second train pilot. The first completed episode is approximately 5–10 minutes, using enough finished music to justify its length. Longer Stories and Sessions are supported after the short episode and recovery workflow are proven. Do not stretch a short composition to an arbitrary duration.
 

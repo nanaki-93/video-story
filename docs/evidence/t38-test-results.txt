@@ -1,0 +1,42 @@
+T38 final verification — 2026-10-04 Asia/Manila
+
+Target: Apple M5 Pro / 48 GiB; macOS 27.0.1 arm64
+Python 3.11.16; FFmpeg/ffprobe 9.0.2; uv 0.11.0
+Node 25.8.2 and npm 11.14.1 for build only
+
+make check
+  Ruff check and format: passed (173 Python files)
+  Published schema drift: 64 checked
+  pytest: 296 passed, 61 opt-in media cases skipped, 1 warning, 40.25 seconds
+
+make web-check
+  Browser contract drift: 64 checked
+  TypeScript / Prettier: passed
+  Node behavioral tests: 4 passed, 0 failed
+
+make web-build
+  Production build passed
+  JS: 3072.78 kB raw / 280.38 kB gzip
+  Advisory: generated validator bundle exceeds Vite's default chunk-size warning threshold
+
+TABI_CONFIG=examples/settings.macos.toml make test-media
+  61 actual-media integration tests passed, 1 warning, 231.18 seconds
+  Complete run log retained locally at .local/t38-test-media.log
+
+make package
+  Verified bundled frontend, wheel, sdist and hashed runtime requirements generated
+  README metadata was refreshed afterward with uv build; runtime Python and frontend bytes unchanged
+
+Fresh wheel installation
+  17 locked runtime dependencies; app installed outside checkout in a Unicode path
+  Node absent from runtime PATH; Python imports resolve to installed site-packages
+  setup-check: ready, frontend packaged and verified
+  Installed CLI re-verifies 300 video frames / 480000 audio samples from supplied-reference draft
+  Installed Chrome: 1080p playback to end, seek to 5 seconds, new 300-frame proxy,
+    exact global frame 150 PNG ffab6e9c3b7d90f9142d216c99b5e98fa7f457349d32fd979d4d5e0f62ee872d
+
+Known test warning
+  Starlette's httpx TestClient integration is deprecated in favor of httpx2.
+  No test failed; this is a future dependency migration, not a production runtime dependency.
+
+No production artwork, music, rights, release, or creative approval is implied.

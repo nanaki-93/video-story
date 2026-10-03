@@ -2,7 +2,7 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** The local web app implements projects, assets, episode/story/timeline editing, audio, exact previews, resumable renders, release preparation, settings and backup/restore. Python owns the shared CLI/API services and 61 strict document schemas. Software H.264 and VideoToolbox passed proxy/1080p/4K checks on the M5 Pro. A wheel bundles the static UI; Node is only needed to build it. Real Tabi artwork, original music and creative approval remain pending. See [progress](docs/progress.md), [installation](docs/32-installation.md), [preview workflow](docs/28-preview.md) and the [asset review](docs/09-implementation-review.md).
+**Current state:** The local web app implements projects, assets and metadata approval, episode/story/timeline editing, audio, exact previews, resumable renders, release preparation, settings and backup/restore. Python owns the shared CLI/API services and 64 strict schemas. Café templates, activity/outfit packs and an optional local generation adapter are implemented. A 45-minute native 1080p export passed crash recovery and all boundary checks; native 4K passed its 60-second qualification on the M5 Pro. The wheel bundles the UI and needs no Node at runtime. Real Tabi art preparation, original music and creative approval remain pending. Start with [installation](docs/32-installation.md), [operations](docs/37-operations.md) and the [acceptance report](docs/38-v1-acceptance.md).
 
 ## Run the web app
 
@@ -44,12 +44,16 @@ Install FFmpeg externally (on macOS, `brew install ffmpeg`), then run:
 
 ```sh
 make doctor
-make test-media
+TABI_CONFIG=examples/settings.macos.toml make test-media
 .venv/bin/tabi --config examples/settings.macos.toml render-spike --output-dir .local/spikes --encoder libx264 --json
 .venv/bin/tabi --config examples/settings.macos.toml render-spike --output-dir .local/spikes --encoder h264_videotoolbox --json
 ```
 
 `doctor` checks tool identity, versions, filters, advertised encoders and writable disk space. Only `render-spike` actually renders and verifies output. It creates a unique run folder containing generated inputs, graph/command logs, decoded frames and a report; the watermarked MP4 is published only after verification. All clips stay ignored by Git. `make check` runs the unit/contract checks; `make test-media` explicitly runs the real FFmpeg checks. See [reproduction and limits](docs/10-toolchain.md).
+
+Final gates: **296 Python unit checks, 61 actual-media integration checks and four frontend tests
+passed**. The final wheel was installed outside the checkout and verified with Node absent from
+PATH. [Acceptance evidence and remaining creative inputs](docs/38-v1-acceptance.md).
 
 ## Reusable synthetic project
 
@@ -84,6 +88,12 @@ The shared Python `ProjectStore` handles revision-checked draft saves, exact-byt
 
 Use `tabi asset import`, `list`, `show`, `check`, `relink`, `proxy` and explicit `approve` commands. They invoke the shared Python service. See [requests, commands and source-preservation rules](docs/11-asset-registry.md). Rights and art review stay pending until provided.
 
+`tabi author` creates/edits episodes, installs draft templates/packs and records explicit metadata
+review. `tabi audio propose/edit/audition`, `tabi preferences` and `tabi jobs progress` expose the
+same revision/hash guards and services as the UI. The [operations guide](docs/37-operations.md)
+includes a working supplied-train-reference walkthrough using [request files](examples/workflows/).
+Its ten-second output is a silent, watermarked draft; it does not imply animation or approval.
+
 ## Local configuration
 
 `tabi --config PATH config --json` loads an explicit TOML file. Otherwise `TABI_CONFIG` selects it, then `$XDG_CONFIG_HOME/tabi/config.toml` (default `~/.config/tabi/config.toml`). A missing default file uses defaults; a missing explicit file, malformed TOML, unsupported version or unknown key fails with exit code 2. This command resolves settings without creating project/cache folders or probing tools.
@@ -100,7 +110,7 @@ ffmpeg = "ffmpeg"
 ffprobe = "ffprobe"
 ```
 
-Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_ROOT`, `TABI_FFMPEG`, `TABI_FFPROBE`. File-relative paths resolve beside the config file; environment/CLI-relative paths resolve against the working directory. Bare executable names remain PATH lookups for the future doctor. JSON command data goes to stdout, JSON diagnostic records to stderr. These developer settings are separate from T03's project/episode schemas.
+Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_ROOT`, `TABI_FFMPEG`, `TABI_FFPROBE`. File-relative paths resolve beside the config file; environment/CLI-relative paths resolve against the working directory. Bare executable names use PATH lookup. JSON command data goes to stdout, JSON diagnostic records to stderr. These tool settings are separate from project/episode schemas and saved application preferences.
 
 Rendering caches use each project's `.cache/tabi-v1`; global `cache_root` stores launcher preferences and recent project locations. See [cache inspection, pruning and disk estimates](docs/21-cache-storage.md).
 
@@ -108,7 +118,7 @@ Rendering caches use each project's `.cache/tabi-v1`; global `cache_root` stores
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 real art is awaiting review; timeline, compilation, scene rendering, previews, audio mixing, [masked effects](docs/17-effects.md), [story continuity/overlaps](docs/18-story-continuity.md), [durable jobs/recovery](docs/19-jobs.md), [chunk planning/resume/assembly](docs/20-chunk-assembly.md), [cache/storage management](docs/21-cache-storage.md) and [verified export profiles](docs/22-export-profiles.md) are implemented with fixtures. [Release preparation](docs/23-release-preparation.md) exports verified draft bundles; production release remains blocked on real inputs and review. [Browser wireframes and native playback](docs/24-browser-foundation.md) are implemented in T25; [authenticated local launch and job/media APIs](docs/25-local-service.md) are implemented in T26; production page flows follow in T27–T33.
+3. Use the [task index](docs/tasks/INDEX.md) and [acceptance report](docs/38-v1-acceptance.md) to see completed software and exact outstanding creative inputs. Every V1 page uses implemented services; the optional activity/outfit and local generation paths are also implemented. Production readiness still requires approved real art, original music and human review.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.

@@ -1,6 +1,6 @@
 # Agent implementation instructions
 
-This repository contains the Tabi Story Studio specifications, reference assets, and Python bootstrap. Read docs/progress.md for implemented behavior; the full application is not built yet.
+This repository contains the implemented Python core, CLI and local TypeScript web app for Tabi Story Studio, with specifications and reference assets. Read docs/progress.md and docs/38-v1-acceptance.md for verification and the remaining real-art/music/creative acceptance gates.
 
 ## Read and execute
 

@@ -10,8 +10,8 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T04](t04.md) | Generate synthetic fixture pack | T02, T03 | mandatory | complete |
 | [T05](t05.md) | Create asset importer and immutable registry | T03, T04 | mandatory | complete |
 | [T06](t06.md) | Prepare approved Tabi style and seated sources | T05 | mandatory | source review pending |
-| [T07](t07.md) | Author core action pack and transition graph | T06 | mandatory | planned |
-| [T08](t08.md) | Prepare train interior and Tokyo environment | T05, T06 | mandatory | planned |
+| [T07](t07.md) | Author core action pack and transition graph | T06 | mandatory | synthetic implementation complete; real animation/timing review pending |
+| [T08](t08.md) | Prepare train interior and Tokyo environment | T05, T06 | mandatory | synthetic implementation complete; separated environment art/review pending |
 | [T09](t09.md) | Implement global timeline and curves | T03, T04 | mandatory | complete |
 | [T10](t10.md) | Compile actions and persistent state | T07, T09 | mandatory | core complete; real-art review pending |
 | [T11](t11.md) | Implement scene renderer and window masking | T02, T08, T09 | mandatory | core complete; real-art review pending |
@@ -41,4 +41,8 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T35](t35.md) | Add optional activity and outfit packs | T07, T10, T34 | optional expansion | core complete; activity/outfit art review pending |
 | [T36](t36.md) | Add optional local ComfyUI asset bridge | T05, T26 | optional expansion | core complete; model/workflow validation pending |
 | [T37](t37.md) | Benchmark long form and tune resource use | T21, T23, T33, T34 | mandatory reliability | complete |
-| [T38](t38.md) | Document operations and complete V1 acceptance | T19, T24, T33, T34, T37 | mandatory | in progress; final workflow and acceptance |
+| [T38](t38.md) | Document operations and complete V1 acceptance | T19, T24, T33, T34, T37 | mandatory | implementation complete; final creative/product acceptance pending |
+
+All independently implementable software has been executed and committed. The
+[acceptance report](../38-v1-acceptance.md) records the final gates and exact remaining human
+inputs; [operations](../37-operations.md) explains how to produce the next episode.

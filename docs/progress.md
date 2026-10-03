@@ -406,7 +406,7 @@ the default; full-length native 4K and real artwork need separate qualification.
 Final T37 `make check`: 286 passed, 59 opt-in media cases skipped, 64 schemas checked. Frontend
 typecheck, four tests and production build passed after the export-review change.
 
-## T38 — operations and final acceptance (in progress)
+## T38 — operations implementation complete; final creative acceptance pending
 
 The acceptance audit found that template/action-pack approval needed an explicit operator flow.
 Assets now displays their exact metadata and Python-computed review hashes. The shared authoring
@@ -431,3 +431,18 @@ The [operations walkthrough](37-operations.md) was executed through the CLI usin
 supplied train still. The resulting silent, watermarked draft verifies 300 frames / 480000 samples
 at 1920×1080 with VideoToolbox. Source SHA-256 is unchanged; asset rights remain pending and
 approval remains draft. [Recorded commands and verification](evidence/t38-reference-walkthrough.json).
+
+The final complete media gate passes **61 tests in 231.18 seconds**, including actual rendering,
+audio, corruption/recovery, export, release, backup and web-service media flows. The final wheel
+installs with 17 locked runtime packages outside the checkout. With Node absent from PATH, its
+bundled frontend verifies and its CLI rechecks the supplied-reference export. Installed Chrome
+plays/seeks the 1080p draft, renders a new verified 300-frame proxy and displays exact frame 150
+(`ffab6e9c3b7d90f9142d216c99b5e98fa7f457349d32fd979d4d5e0f62ee872d`).
+[Preview](evidence/t38-installed-preview.jpg), [runtime evidence](evidence/t38-installed-runtime.json).
+
+The [acceptance report](38-v1-acceptance.md) covers every task and records the remaining creative
+inputs precisely. T07/T08 no longer appear as untouched planned software; their supporting
+implementation is complete while real animation/environment authoring remains pending.
+All five original MP4s remain local, zero are tracked, and the wheel contains no MP4, font or
+runtime/media binary. Unrelated staged IDE files are preserved. No supplied art, music or release
+was given an invented approval, and no external publication occurred.
