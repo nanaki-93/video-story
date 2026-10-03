@@ -348,3 +348,16 @@ Four focused checks and a real 300-frame / 480000-sample, four-chunk export pass
 successful outfit switching and rejection without data loss. `make check`: 265 passed / 56
 opt-in skipped; 61 schemas. Frontend checks/build/four tests pass. [Guide](34-activity-packs.md),
 [controls](evidence/t35-pack-controls.jpg). No new Tabi design or creative approval is implied.
+
+## T36 — optional local generation
+
+Core complete; real model/workflow validation remains pending. ComfyUI runs are explicitly
+allowlisted by versioned manifest hashes and saved with durable prompt IDs. The bridge checks
+local model/workflow bytes and node definitions, reconciles uncertain replies without resubmitting,
+and imports only verified bounded stills as drafts with rights pending. CLI and Settings share it.
+
+Eighteen focused checks pass. A real offline-generation render verifies 30 frames / 48000 samples.
+Chrome proved submission → history → explicit draft import → offline state. `make check`: 283
+passed / 57 opt-in skipped, 64 schemas; frontend checks/build/four tests pass. [Guide](35-local-generation.md),
+[evidence](evidence/t36-generation.jpg). No model download, actual inference or artistic approval
+is implied by the synthetic protocol fixture.

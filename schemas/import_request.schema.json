@@ -152,6 +152,30 @@
     "GenerationRecord": {
       "additionalProperties": false,
       "properties": {
+        "manifest_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Manifest Sha256"
+        },
+        "model_hashes": {
+          "additionalProperties": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "propertyNames": {
+            "minLength": 1
+          },
+          "title": "Model Hashes",
+          "type": "object"
+        },
         "model_name": {
           "anyOf": [
             {
@@ -190,6 +214,19 @@
           ],
           "default": null,
           "title": "Notes"
+        },
+        "prompt_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prompt Id"
         },
         "seed": {
           "anyOf": [

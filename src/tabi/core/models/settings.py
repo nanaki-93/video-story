@@ -5,6 +5,7 @@ from typing import Literal
 from pydantic import Field
 
 from .base import Document, DraftDocument, Frame, Number
+from .generation import GenerationPolicy
 from .production import RenderJob
 
 
@@ -15,6 +16,7 @@ class AppPreferences(DraftDocument):
     export_preset: Literal["proxy", "1080p", "4k"] = "1080p"
     encoder: Literal["libx264", "h264_videotoolbox"] = "libx264"
     theme: Literal["dusk", "contrast"] = "dusk"
+    generation: GenerationPolicy = Field(default_factory=GenerationPolicy)
 
 
 class JobProgress(Document):

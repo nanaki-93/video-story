@@ -11,6 +11,7 @@ from tabi.cli.audio import add_audio_commands, run_audio_command
 from tabi.cli.backup import add_backup_commands, run_backup_command
 from tabi.cli.cache import add_cache_commands, run_cache_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
+from tabi.cli.generation import add_generation_commands, run_generation_command
 from tabi.cli.jobs import add_job_commands, run_job_command
 from tabi.cli.logging import configure_logging
 from tabi.cli.publishing import add_release_commands, run_release_command
@@ -43,6 +44,7 @@ def main(argv: list[str] | None = None) -> int:
     add_episode_commands(commands)
     add_job_commands(commands)
     add_release_commands(commands)
+    add_generation_commands(commands)
     web = commands.add_parser("web", help="Launch the owned, authenticated local web workspace")
     web.add_argument("--root", action="append", default=[], metavar="ID=PATH")
     web.add_argument("--web-root", type=Path, help="Built static UI directory")
@@ -177,6 +179,12 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "generation":
+        try:
+            return run_generation_command(args, settings)
+        except (ValueError, OSError, ToolError) as error:
+            logger.error("generation_operation_failed: %s", error)
+            return 4
     if args.command == "web":
         from tabi.api.launcher import launch
         from tabi.cli.assets import trusted_roots

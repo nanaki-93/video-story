@@ -1,4 +1,39 @@
 {
+  "$defs": {
+    "GenerationPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_workflow_hashes": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Allowed Workflow Hashes",
+          "type": "array"
+        },
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "endpoint": {
+          "default": "http://127.0.0.1:8188",
+          "title": "Endpoint",
+          "type": "string"
+        },
+        "max_output_bytes": {
+          "default": 67108864,
+          "maximum": 268435456,
+          "minimum": 1024,
+          "title": "Max Output Bytes",
+          "type": "integer"
+        }
+      },
+      "title": "GenerationPolicy",
+      "type": "object"
+    }
+  },
   "$id": "urn:tabi:schema:1.0:app_preferences",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
@@ -33,6 +68,9 @@
       ],
       "title": "Export Preset",
       "type": "string"
+    },
+    "generation": {
+      "$ref": "#/$defs/GenerationPolicy"
     },
     "id": {
       "const": "local",

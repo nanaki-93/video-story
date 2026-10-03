@@ -83,10 +83,16 @@ def document_path(document: DraftDocument) -> str:
         "render_job": "jobs",
         "release_record": "releases",
         "release_preparation": "publishing",
+        "generation_run": "generation/runs",
     }
     if kind in folders:
         return f"{folders[kind]}/{document.id}.json"
-    versioned = {"asset": "assets", "scene_template": "templates", "action_pack": "actions"}
+    versioned = {
+        "asset": "assets",
+        "scene_template": "templates",
+        "action_pack": "actions",
+        "comfy_workflow": "workflows",
+    }
     if kind in versioned:
         return f"registry/{versioned[kind]}/{document.id}/{document.version}.json"
     raise ImmutableDocument("this document type is not a mutable draft")

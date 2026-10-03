@@ -70,6 +70,11 @@ class GenerationRecord(Model):
     workflow_sha256: SHA256 | None = None
     seed: Frame | None = None
     notes: Text | None = None
+    model_hashes: dict[Text, SHA256] = Field(
+        default_factory=dict, exclude_if=lambda value: not value
+    )
+    manifest_sha256: SHA256 | None = Field(default=None, exclude_if=lambda value: value is None)
+    prompt_id: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
 
 
 class Provenance(Model):

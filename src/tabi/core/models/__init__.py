@@ -6,6 +6,7 @@ from .cache import CacheEntry, CacheInventory, CachePruneReport, StorageEstimate
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
+from .generation import ComfyWorkflow, GenerationRun, GenerationStatus
 from .portability import BackupManifest, PortableRoots
 from .preview import PreviewSelection
 from .production import CompiledSnapshot, JobEvent, ReleaseRecord, RenderJob, ValidationReport
@@ -23,6 +24,9 @@ from .settings import AppPreferences, JobProgress
 from .story import StoryboardReport
 
 DOCUMENT_MODELS = {
+    "comfy_workflow": ComfyWorkflow,
+    "generation_run": GenerationRun,
+    "generation_status": GenerationStatus,
     "backup_manifest": BackupManifest,
     "portable_roots": PortableRoots,
     "app_preferences": AppPreferences,

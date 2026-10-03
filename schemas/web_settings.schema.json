@@ -34,6 +34,9 @@
           "title": "Export Preset",
           "type": "string"
         },
+        "generation": {
+          "$ref": "#/$defs/GenerationPolicy"
+        },
         "id": {
           "const": "local",
           "default": "local",
@@ -65,6 +68,39 @@
         "schema_version"
       ],
       "title": "AppPreferences",
+      "type": "object"
+    },
+    "GenerationPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_workflow_hashes": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Allowed Workflow Hashes",
+          "type": "array"
+        },
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "endpoint": {
+          "default": "http://127.0.0.1:8188",
+          "title": "Endpoint",
+          "type": "string"
+        },
+        "max_output_bytes": {
+          "default": 67108864,
+          "maximum": 268435456,
+          "minimum": 1024,
+          "title": "Max Output Bytes",
+          "type": "integer"
+        }
+      },
+      "title": "GenerationPolicy",
       "type": "object"
     }
   },

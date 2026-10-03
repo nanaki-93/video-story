@@ -42,9 +42,11 @@ export type PixelFormat = string | null;
 export type SampleRate = number | null;
 export type CommercialUse = "pending" | "confirmed" | "not-permitted";
 export type Creator = string | null;
+export type ManifestSha256 = string | null;
 export type ModelName = string | null;
 export type ModelSha256 = string | null;
 export type Notes = string | null;
+export type PromptId = string | null;
 export type Seed = number | null;
 export type WorkflowSha256 = string | null;
 export type LicenceEvidence = MediaPath[];
@@ -189,10 +191,16 @@ export interface Provenance {
  * via the `definition` "GenerationRecord".
  */
 export interface GenerationRecord {
+  manifest_sha256?: ManifestSha256;
+  model_hashes?: ModelHashes;
   model_name?: ModelName;
   model_sha256?: ModelSha256;
   notes?: Notes;
+  prompt_id?: PromptId;
   seed?: Seed;
   workflow?: MediaPath | null;
   workflow_sha256?: WorkflowSha256;
+}
+export interface ModelHashes {
+  [k: string]: string;
 }
