@@ -90,7 +90,7 @@ Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 real art is awaiting review; timeline, compilation, scene rendering, previews and audio mixing are implemented with fixtures. T17 adds masked lighting/weather effects next.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 real art is awaiting review; timeline, compilation, scene rendering, previews, audio mixing and [masked effects](docs/17-effects.md) are implemented with fixtures. T18 adds scene continuity and overlaps next.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.

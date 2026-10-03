@@ -42,7 +42,7 @@ def motion_fixture(root, *, acceleration=False):
     return service, snapshot, settings
 
 
-def reference_motion(service, snapshot, frame):
+def reference_motion(service, snapshot, frame, *, effects=False):
     def image(name, index=0):
         asset = service.load(AssetRef(id=f"fixture.{name}", version="1.0"))
         with Image.open(service.resolve(asset.files[index].location)) as source:
@@ -60,6 +60,29 @@ def reference_motion(service, snapshot, frame):
     landmark.alpha_composite(image("landmark"), (math.floor(620 - distance), 150))
     landmark.putalpha(ImageChops.multiply(landmark.getchannel("A"), mask))
     result = Image.alpha_composite(result, landmark)
+    if effects:
+        rain_amount = (
+            0
+            if frame <= 60
+            else (frame - 60) / 240
+            if frame < 120
+            else 0.25
+            if frame <= 210
+            else (300 - frame) / 360
+        )
+        reflection_amount = frame / 1000 if frame <= 150 else 0.15 - (frame - 150) / 1500
+        for name, amount, source in [
+            ("rain", rain_amount, frame % 12),
+            ("reflection", reflection_amount, 0),
+        ]:
+            layer = image(name, source)
+            layer.putalpha(
+                ImageChops.multiply(
+                    layer.getchannel("A").point(lambda value, amount=amount: int(value * amount)),
+                    mask,
+                )
+            )
+            result = Image.alpha_composite(result, layer)
     if frame < 84:
         name, source = "idle", frame % 12
     elif frame < 90:
@@ -74,7 +97,13 @@ def reference_motion(service, snapshot, frame):
     for start in [36, 270]:
         if start <= frame < start + 6:
             result.alpha_composite(image("blink", frame - start), (322, 202))
-    return Image.alpha_composite(result, image("foreground")).convert("RGB")
+    result = Image.alpha_composite(result, image("foreground"))
+    if effects:
+        amount = frame * 0.12 / 150 if frame <= 150 else 0.12 + (frame - 150) * 0.08 / 150
+        layer = Image.new("RGBA", result.size, (96, 72, 120, int(255 * amount)))
+        layer.putalpha(ImageChops.multiply(layer.getchannel("A"), image("light-mask").convert("L")))
+        result = Image.alpha_composite(result, layer)
+    return result.convert("RGB")
 
 
 @pytest.mark.parametrize("acceleration", [False, True])

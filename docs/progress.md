@@ -136,7 +136,7 @@ Video-only preview is intentional at this step; T16 supplies continuous audio. R
 
 ## Next task and pending gates
 
-**Next software task: T17 — scoped lighting and masked effects with synthetic validation.** T14 requires T07/T08 real artwork and Marco's visual review. T16's actual soundtrack/listening review remains pending. Independent software work continues while creative inputs are pending.
+**Next software task: T18 — scene transitions, continuity and story beats.** T14 requires T07/T08 real artwork and Marco's visual review; T16/T17 real soundtrack/effect review remains pending. Independent software work continues while creative inputs are pending.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 
@@ -155,3 +155,11 @@ Verification: `make schemas check` passed Ruff, **24 schemas and 174 tests**, 19
 Verification: `make schemas check` passed Ruff, **25 schemas and 177 tests**. `make test-media` passed **all 24 media tests**. New checks prove exact PCM trim/fade samples and range parity, real 44.1→48 kHz conversion, loop seam bounds, silence, failure cleanup, explicit overload handling, one AAC encode and global-range audio fidelity/timing. [Mix](evidence/t16-mix-report.json) and [preview](evidence/t16-preview-report.json) evidence records 480,000 decoded stereo samples and 300 frames at 960×540/30. Outputs remain local under `.local/t16-audio`; no MP4 is committed. [Audio documentation](16-audio.md) records limits and reproduction.
 
 No finished real music/listening approval was supplied; an asynchronous request for its local folder is pending. This completes the software pipeline against owned test signals, not the M3 creative gate.
+
+## T17 — core complete; effect review pending
+
+`T17: render bounded masked effects with global phase` adds explicit template tint/rain/reflection slots, scoped strength curves, required masks, bounds and prepared-loop validation. Temporal phase uses a retained global origin, independent of seek/range boundaries. Unknown history-dependent effects fail. A reproducible effects profile extends the synthetic fixture to 17 assets/86 files; no Tabi palette approval is inferred.
+
+Verification: `make check` passes **25 schemas and 180 tests**, Ruff clean. Three new unit cases and two new actual-media cases pass, including thirteen independent PNG comparisons (maximum three RGB levels), protected foreground/character pixels, and full/split global range checks. Existing static and motion regression checks passed. [Inspected frame](evidence/t17-effects-frame-151.png) and [reports](17-effects.md) record a 300-frame/640×360 preview with 480,000 AAC samples. Latest render/mix/mux interval: 20.097 seconds, versus an earlier 42.855 seconds before reducing expression work to alpha planes; these are development observations with concurrent tests, not controlled benchmarks.
+
+Real effect/palette approval and 1080p/4K performance remain pending. The MP4 stays ignored at `.local/t17-effects-verified.mp4`.

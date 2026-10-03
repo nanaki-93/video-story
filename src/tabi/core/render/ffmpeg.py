@@ -20,9 +20,10 @@ from ..models.rendering import RenderReport
 from ..models.scenes import LandmarkEvent
 from ..process import run_tool
 from ..timeline import Timeline, loop_frame
+from ..timeline.effects import validate_effects
 from ..toolchain import doctor, file_hash
 from .backend import FrozenRegistry, RenderError, backend_fingerprint
-from .motion import distance_expression, number
+from .motion import distance_expression, number, value_expression
 from .normalize import ImageNormalizer
 from .synthetic import label as bitmap_text
 
@@ -206,6 +207,7 @@ class GraphBuilder:
 
     def scene(self, scene, start, end):
         template = self.registry.get(scene.template, "scene_template")
+        validate_effects(scene, template, self.timeline, self.registry.get)
         width, height = template.design_canvas.width, template.design_canvas.height
         if any(
             isinstance(event, LandmarkEvent) and event.scene_id == scene.id
@@ -233,6 +235,8 @@ class GraphBuilder:
                 base = self.overlay(base, self.tile(scene, slot, start, width, height))
             elif slot.kind == "scheduled_sprite":
                 base = self.overlay(base, self.landmarks(scene, slot, start, end, width, height))
+            elif slot.kind == "effect":
+                base = self.overlay(base, self.effect(scene, slot, start, end, width, height))
             elif slot.kind == "character":
                 if scene.slot_assignments.get(slot.id) is not None or slot.asset is not None:
                     raise RenderError(
@@ -288,6 +292,42 @@ class GraphBuilder:
             f"setsar=1,trim=end_frame={end - start},setpts=PTS-STARTPTS[{out}]"
         )
         return out
+
+    def effect(self, scene, slot, start, end, width, height):
+        spec = slot.effect
+        if spec.kind == "tint":
+            path = self.root / f"tint-{self.counter}.png"
+            Image.new("RGBA", (width, height), (*spec.color, 255)).save(path)
+            raw, layer = self.input(path), self.label()
+            self.filter(f"[{raw}]format=rgba,setparams=alpha_mode=straight[{layer}]")
+        else:
+            ref = scene.slot_assignments.get(slot.id, slot.asset)
+            asset = self.registry.get(ref, "asset")
+            if spec.loop:
+                folder = self.root / f"effect-{self.counter}"
+                folder.mkdir()
+                for local, frame in enumerate(range(start, end)):
+                    source = loop_frame(frame, scene.initial_state.weather_phase_frame, spec.loop)
+                    prepared = self.normalizer.prepare(asset, source)
+                    os.link(prepared, folder / f"{local:06}.png")
+                raw, layer = self.input(folder / "%06d.png", loop=False), self.label()
+                self.filter(f"[{raw}]format=rgba,setparams=alpha_mode=straight[{layer}]")
+            else:
+                layer, _ = self.still(ref)
+        strength = value_expression(
+            self.timeline,
+            scene.id,
+            spec.strength_target,
+            f"(N+{start})",
+            default=spec.default_strength,
+        )
+        color, alpha_source, alpha, varied = [self.label() for _ in range(4)]
+        self.filter(f"[{layer}]split[{color}][{alpha_source}]")
+        self.filter(f"[{alpha_source}]alphaextract,geq=lum='lum(X,Y)*({strength})'[{alpha}]")
+        self.filter(
+            f"[{color}][{alpha}]alphamerge,format=rgba,setparams=alpha_mode=straight[{varied}]"
+        )
+        return self.mask_and_opacity(varied, slot, (width, height))
 
     def build(self, start, end, *, video):
         parts = []
@@ -417,6 +457,9 @@ class FFmpegRenderer:
             "crop",
             "tile_strip",
             "scheduled_sprite",
+            "lighting",
+            "rain",
+            "reflection",
         }
     )
 

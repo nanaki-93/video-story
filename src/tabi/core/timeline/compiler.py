@@ -13,6 +13,7 @@ from ..models.episode import ActionRequest
 from ..models.production import Fingerprint, ScheduledAction
 from ..models.scenes import LandmarkEvent, PropEvent, SceneInstance, SceneState
 from .curves import Timeline, TimelineError, contains, loop_frame
+from .effects import validate_effects
 from .random import expand_random_actions, prng_fingerprint
 
 
@@ -242,6 +243,7 @@ class ActionCompiler:
                 for asset_ref in (scene.slot_assignments.get(slot.id, slot.asset), slot.mask):
                     if asset_ref:
                         self.resolve(asset_ref, "asset")
+            validate_effects(scene, template, timeline, self.resolve)
             for curve in [*episode.curves, *scene.curves]:
                 if curve.scope not in {"episode", scene.id}:
                     continue

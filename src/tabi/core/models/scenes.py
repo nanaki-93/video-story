@@ -60,6 +60,26 @@ class Curve(Model):
         return self
 
 
+class EffectSpec(Model):
+    kind: Literal["tint", "rain", "reflection"]
+    strength_target: Identifier
+    default_strength: FractionValue = 0.0
+    color: list[Annotated[int, Field(ge=0, le=255)]] | None = Field(
+        default=None, min_length=3, max_length=3
+    )
+    loop: FrameInterval | None = None
+
+    @model_validator(mode="after")
+    def authored_effect(self) -> Self:
+        if (self.kind == "tint") != (self.color is not None):
+            raise ValueError("tint needs an explicit RGB color; prepared effects use their artwork")
+        if self.kind == "tint" and self.loop is not None:
+            raise ValueError("tint has no temporal history or source loop")
+        if self.kind == "rain" and self.loop is None:
+            raise ValueError("rain requires a prepared loop interval")
+        return self
+
+
 class LayerSlot(Model):
     id: Identifier
     z: Frame
@@ -70,6 +90,7 @@ class LayerSlot(Model):
     depth_factor: Annotated[float, Field(ge=0)] = 1.0
     tile_period: PositiveInt | None = None
     opacity: FractionValue = 1.0
+    effect: EffectSpec | None = Field(default=None, exclude_if=lambda value: value is None)
 
     @model_validator(mode="after")
     def slot_requirements(self) -> Self:
@@ -77,6 +98,12 @@ class LayerSlot(Model):
             raise ValueError("character slot requires a declared anchor")
         if self.kind == "tile_strip" and self.tile_period is None:
             raise ValueError("tile strip requires an explicit pixel period")
+        if (self.kind == "effect") != (self.effect is not None):
+            raise ValueError("effect slots require an explicit supported effect specification")
+        if self.effect and (self.mask is None or self.anchor is not None):
+            raise ValueError("effects require a scene-sized mask and no positional anchor")
+        if self.effect and self.effect.kind == "tint" and self.asset is not None:
+            raise ValueError("tint color is authored directly, not an asset override")
         return self
 
 
@@ -102,6 +129,18 @@ class SceneTemplate(ApprovableDocument):
         for slot in self.slots:
             if slot.anchor is not None and slot.anchor not in self.anchors:
                 raise ValueError(f"unknown anchor {slot.anchor}")
+            if slot.effect:
+                limit = self.parameter_limits.get(slot.effect.strength_target)
+                if (
+                    limit is None
+                    or not 0 <= limit.minimum <= slot.effect.default_strength <= limit.maximum <= 1
+                ):
+                    raise ValueError(
+                        "effect default strength needs bounded template fraction limits"
+                    )
+                capability = "lighting" if slot.effect.kind == "tint" else slot.effect.kind
+                if capability not in self.capabilities:
+                    raise ValueError("effect is not declared in template capabilities")
         for anchor in self.anchors.values():
             if not (
                 0 <= anchor.x <= self.design_canvas.width

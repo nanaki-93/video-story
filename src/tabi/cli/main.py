@@ -51,6 +51,7 @@ def main(argv: list[str] | None = None) -> int:
     spike.add_argument("--json", action="store_true")
     fixtures = commands.add_parser("fixtures", help="Generate a new reproducible synthetic project")
     fixtures.add_argument("--output", required=True, type=Path)
+    fixtures.add_argument("--profile", choices=["core", "effects"], default="core")
     fixtures.add_argument("--json", action="store_true")
     timeline = commands.add_parser("timeline", help="Evaluate global frames or expand timing")
     timeline_commands = timeline.add_subparsers(dest="timeline_command", required=True)
@@ -101,7 +102,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
     if args.command == "fixtures":
         try:
-            manifest = generate_fixtures(args.output)
+            manifest = generate_fixtures(args.output, profile=args.profile)
         except (DocumentError, StorageError, OSError) as error:
             logger.error("fixture_generation_failed: %s", error)
             return 4

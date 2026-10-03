@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "document_type": "compilation_result",
+  "snapshot_sha256": "3452ad3cc559875f77c717036d1dae94e866fe927237340e0192175f115a9911",
+  "snapshot_path": "/Users/marcoandreose/DEV/lab/video-story/.local/t17-effects/snapshots/3452ad3cc559875f77c717036d1dae94e866fe927237340e0192175f115a9911.json",
+  "review_content_sha256": "5d53adfedc6e536d7bfd9dc3efa468447c382cc22a7c88d0432f90c3bbb8d6ee",
+  "purpose": "synthetic_test",
+  "duration_frames": 300,
+  "scheduled_events": 8,
+  "locked_inputs": 18
+}

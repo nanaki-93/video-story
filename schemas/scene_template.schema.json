@@ -112,6 +112,89 @@
       "title": "Canvas",
       "type": "object"
     },
+    "EffectSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "anyOf": [
+            {
+              "items": {
+                "maximum": 255,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "maxItems": 3,
+              "minItems": 3,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Color"
+        },
+        "default_strength": {
+          "default": 0.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Default Strength",
+          "type": "number"
+        },
+        "kind": {
+          "enum": [
+            "tint",
+            "rain",
+            "reflection"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "loop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FrameInterval"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "strength_target": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Strength Target",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "strength_target"
+      ],
+      "title": "EffectSpec",
+      "type": "object"
+    },
+    "FrameInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame"
+      ],
+      "title": "FrameInterval",
+      "type": "object"
+    },
     "LayerSlot": {
       "additionalProperties": false,
       "properties": {
@@ -144,6 +227,17 @@
           "minimum": 0,
           "title": "Depth Factor",
           "type": "number"
+        },
+        "effect": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EffectSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "id": {
           "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",

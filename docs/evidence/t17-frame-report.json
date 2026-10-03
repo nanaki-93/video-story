@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_report",
+  "purpose": "synthetic_test",
+  "snapshot_sha256": "3452ad3cc559875f77c717036d1dae94e866fe927237340e0192175f115a9911",
+  "first_frame": 151,
+  "frame_count": 1,
+  "canvas": {
+    "width": 640,
+    "height": 360
+  },
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "output": "/Users/marcoandreose/DEV/lab/video-story/docs/evidence/t17-effects-frame-151.png",
+  "output_sha256": "8c035a7bd28f570077f488b426c7bd2e8510a9ed79c89e1b72c2e8e705275dc5",
+  "output_bytes": 5354,
+  "graph_sha256": "7c312e40448d51092af2e57ee7f3a3fae0a84e52079b804a56fcdb97ae7c4eef",
+  "backend": {
+    "name": "tabi-ffmpeg",
+    "version": "1",
+    "sha256": "f96ca50e21219301a0cbeb410235cab9da25b8c0579c8a0f4514e810fd4fb870"
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "render_seconds": 0.13354191700091178,
+  "full_decode_passed": true,
+  "timestamps_verified": false,
+  "normalized_images": 11,
+  "warnings": [],
+  "audio_mix": null,
+  "audio_verification": null
+}

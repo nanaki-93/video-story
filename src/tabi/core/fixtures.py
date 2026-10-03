@@ -68,7 +68,7 @@ def write_wav(path: Path, count: int, *, silence: bool = False) -> None:
         stream.writeframes(samples.tobytes())
 
 
-def _populate(root: Path) -> FixtureManifest:
+def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
     root.mkdir()
     store = ProjectStore(root)
     project = validate_data(
@@ -244,6 +244,79 @@ def _populate(root: Path) -> FixtureManifest:
             ],
         }
     )
+    if profile == "effects":
+        rain = []
+        for frame in range(12):
+            image = Image.new("RGBA", (640, 360))
+            draw = ImageDraw.Draw(image)
+            for x in range(0, 680, 48):
+                for y in range(-48, 408, 48):
+                    top = y + frame * 4
+                    draw.line((x, top, x - 5, top + 12), fill=(224, 244, 255, 180), width=2)
+            rain.append(image)
+        register("fixture.rain", rain, kind="sequence")
+        reflection = Image.new("RGBA", (640, 360))
+        draw = ImageDraw.Draw(reflection)
+        draw.polygon([(0, 0), (150, 0), (480, 360), (330, 360)], fill=(240, 208, 152, 100))
+        register("fixture.reflection", [reflection])
+        light_mask = Image.new("L", (640, 360), 255)
+        draw = ImageDraw.Draw(light_mask)
+        for rectangle in [
+            (30, 60, 609, 269),
+            (322, 202, 427, 294),
+            (280, 276, 450, 310),
+            (0, 332, 639, 359),
+        ]:
+            draw.rectangle(rectangle, fill=0)
+        register("fixture.light-mask", [light_mask], kind="mask")
+        data = template.model_dump(mode="json")
+        data["capabilities"].extend(["lighting", "rain", "reflection"])
+        data["parameter_limits"].update(
+            {
+                "dusk_mix": {"minimum": 0, "maximum": 0.22},
+                "rain_amount": {"minimum": 0, "maximum": 0.25},
+                "reflection_amount": {"minimum": 0, "maximum": 0.2},
+            }
+        )
+        for slot in data["slots"]:
+            slot["z"] *= 10
+        data["slots"].extend(
+            [
+                {
+                    "id": "rain",
+                    "z": 45,
+                    "kind": "effect",
+                    "asset": ref("fixture.rain"),
+                    "mask": ref("fixture.window"),
+                    "effect": {
+                        "kind": "rain",
+                        "strength_target": "rain_amount",
+                        "loop": {"start_frame": 0, "end_frame": 12},
+                    },
+                },
+                {
+                    "id": "reflection",
+                    "z": 46,
+                    "kind": "effect",
+                    "asset": ref("fixture.reflection"),
+                    "mask": ref("fixture.window"),
+                    "effect": {"kind": "reflection", "strength_target": "reflection_amount"},
+                },
+                {
+                    "id": "cabin-light",
+                    "z": 70,
+                    "kind": "effect",
+                    "mask": ref("fixture.light-mask"),
+                    "effect": {
+                        "kind": "tint",
+                        "strength_target": "dusk_mix",
+                        "color": [96, 72, 120],
+                    },
+                },
+            ]
+        )
+        data["slots"].sort(key=lambda slot: slot["z"])
+        template = validate_data(data)
     store.save_draft(template, expected_revision=None)
     actions = []
     for name, start, end, count, loop in [
@@ -369,6 +442,25 @@ def _populate(root: Path) -> FixtureManifest:
             "notes": "Synthetic placeholders only. Not an approved Tabi scene or music release.",
         }
     )
+    if profile == "effects":
+        data = episode.model_dump(mode="json")
+        data["title"] = "SYNTHETIC masked lighting/rain/reflection fixture"
+        for target, maximum, keys in [
+            ("dusk_mix", 0.22, [(0, 0), (150, 0.12), (300, 0.2)]),
+            ("rain_amount", 0.25, [(0, 0), (60, 0), (120, 0.25), (210, 0.25), (300, 0)]),
+            ("reflection_amount", 0.2, [(0, 0), (150, 0.15), (300, 0.05)]),
+        ]:
+            data["curves"].append(
+                {
+                    "scope": "train",
+                    "target": target,
+                    "unit": "fraction",
+                    "interpolation": "linear",
+                    "limits": {"minimum": 0, "maximum": maximum},
+                    "keys": [{"frame": frame, "value": value} for frame, value in keys],
+                }
+            )
+        episode = validate_data(data)
     store.save_draft(episode, expected_revision=None)
     files = [
         hashed(root, path)
@@ -382,15 +474,17 @@ def _populate(root: Path) -> FixtureManifest:
     return manifest
 
 
-def generate_fixtures(output: Path) -> FixtureManifest:
+def generate_fixtures(output: Path, *, profile: str = "core") -> FixtureManifest:
     """Publish a new fixture project only; never merge into or replace an existing one."""
     output = output.expanduser().resolve()
+    if profile not in {"core", "effects"}:
+        raise StorageError("unknown fixture profile")
     if output.exists():
         raise StorageError("fixture output already exists; choose a new directory")
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".tabi-fixtures-", dir=output.parent) as temporary:
         staging = Path(temporary) / "project"
-        manifest = _populate(staging)
+        manifest = _populate(staging, profile=profile)
         for entry in manifest.files:
             if file_hash(staging / entry.location.path) != entry.sha256:
                 raise StorageError("fixture hash verification failed")

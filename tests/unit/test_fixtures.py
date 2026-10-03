@@ -86,7 +86,7 @@ def test_generation_never_replaces_existing_content(tmp_path):
 def test_failed_fixture_generation_cleans_only_its_own_staging(tmp_path, monkeypatch):
     root = tmp_path / "new"
 
-    def fail(path):
+    def fail(path, **_):
         path.mkdir()
         (path / "partial").write_text("synthetic")
         raise OSError("synthetic interrupted generation")
