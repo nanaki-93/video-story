@@ -9,7 +9,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T02](t02.md) | Probe toolchain and renderer capabilities | T01 | mandatory | complete |
 | [T04](t04.md) | Generate synthetic fixture pack | T02, T03 | mandatory | complete |
 | [T05](t05.md) | Create asset importer and immutable registry | T03, T04 | mandatory | complete |
-| [T06](t06.md) | Prepare approved Tabi style and seated sources | T05 | mandatory | planned |
+| [T06](t06.md) | Prepare approved Tabi style and seated sources | T05 | mandatory | source review pending |
 | [T07](t07.md) | Author core action pack and transition graph | T06 | mandatory | planned |
 | [T08](t08.md) | Prepare train interior and Tokyo environment | T05, T06 | mandatory | planned |
 | [T09](t09.md) | Implement global timeline and curves | T03, T04 | mandatory | planned |

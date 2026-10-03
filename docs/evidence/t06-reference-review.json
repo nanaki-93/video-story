@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0",
+  "purpose": "source_review_evidence",
+  "production_approved": false,
+  "records": [
+    {
+      "schema_version": "1.0",
+      "id": "reference.tabi.profile",
+      "revision": 0,
+      "approval": {
+        "status": "draft",
+        "content_sha256": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "note": null
+      },
+      "document_type": "asset",
+      "version": "1.0",
+      "kind": "still",
+      "source": {
+        "root_id": "references",
+        "path": "tabi-character-profile.png"
+      },
+      "files": [
+        {
+          "location": {
+            "root_id": "references",
+            "path": "tabi-character-profile.png"
+          },
+          "sha256": "1c63aa8f579634eff5f8c6864e97882513feba381c1e2380ae66018800f9d238",
+          "size_bytes": 2540467
+        }
+      ],
+      "proxies": [],
+      "probe": {
+        "canvas": {
+          "width": 1086,
+          "height": 1448
+        },
+        "fps": null,
+        "frame_count": 1,
+        "sample_rate": null,
+        "duration_samples": null,
+        "channels": null,
+        "codec": "PNG",
+        "pixel_format": "RGB",
+        "color_space": "unknown",
+        "alpha_mode": "none",
+        "pixel_aspect": {
+          "num": 1,
+          "den": 1
+        }
+      },
+      "compatibility": {
+        "cameras": [],
+        "templates": [],
+        "channels": [],
+        "anchor": null,
+        "pivot": null,
+        "crop": null
+      },
+      "provenance": {
+        "origin": "user_supplied",
+        "creator": null,
+        "reference_ids": [],
+        "licence_evidence": [],
+        "commercial_use": "pending",
+        "generation": null,
+        "notes": "Supplied repository reference. Creator, rights and art approval pending."
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "id": "reference.tabi.train",
+      "revision": 0,
+      "approval": {
+        "status": "draft",
+        "content_sha256": null,
+        "reviewer": null,
+        "reviewed_at": null,
+        "note": null
+      },
+      "document_type": "asset",
+      "version": "1.0",
+      "kind": "still",
+      "source": {
+        "root_id": "references",
+        "path": "scenario/tabi-train-example.png"
+      },
+      "files": [
+        {
+          "location": {
+            "root_id": "references",
+            "path": "scenario/tabi-train-example.png"
+          },
+          "sha256": "01e4db852ceed7bc4d17708c3d181103d0699e5caed54bbc44eda1d83932473e",
+          "size_bytes": 2554183
+        }
+      ],
+      "proxies": [],
+      "probe": {
+        "canvas": {
+          "width": 1664,
+          "height": 936
+        },
+        "fps": null,
+        "frame_count": 1,
+        "sample_rate": null,
+        "duration_samples": null,
+        "channels": null,
+        "codec": "PNG",
+        "pixel_format": "RGB",
+        "color_space": "srgb",
+        "alpha_mode": "none",
+        "pixel_aspect": {
+          "num": 1,
+          "den": 1
+        }
+      },
+      "compatibility": {
+        "cameras": [],
+        "templates": [],
+        "channels": [],
+        "anchor": null,
+        "pivot": null,
+        "crop": null
+      },
+      "provenance": {
+        "origin": "user_supplied",
+        "creator": null,
+        "reference_ids": [],
+        "licence_evidence": [],
+        "commercial_use": "pending",
+        "generation": null,
+        "notes": "Supplied repository reference. Creator, rights and art approval pending."
+      }
+    }
+  ],
+  "palette_samples": [
+    {
+      "label": "lavender skin",
+      "source_center_xy": [
+        637,
+        629
+      ],
+      "sample_size": [
+        5,
+        5
+      ],
+      "mean_srgb_hex": "#d8aad4",
+      "status": "observed, not approved"
+    },
+    {
+      "label": "pink frills",
+      "source_center_xy": [
+        704,
+        629
+      ],
+      "sample_size": [
+        5,
+        5
+      ],
+      "mean_srgb_hex": "#fd8e96",
+      "status": "observed, not approved"
+    },
+    {
+      "label": "green coat",
+      "source_center_xy": [
+        773,
+        629
+      ],
+      "sample_size": [
+        5,
+        5
+      ],
+      "mean_srgb_hex": "#01785b",
+      "status": "observed, not approved"
+    },
+    {
+      "label": "gold trim base",
+      "source_center_xy": [
+        832,
+        631
+      ],
+      "sample_size": [
+        5,
+        5
+      ],
+      "mean_srgb_hex": "#c3883d",
+      "status": "observed, not approved"
+    },
+    {
+      "label": "headphone dark",
+      "source_center_xy": [
+        910,
+        629
+      ],
+      "sample_size": [
+        5,
+        5
+      ],
+      "mean_srgb_hex": "#4f2942",
+      "status": "observed, not approved"
+    },
+    {
+      "label": "cream background",
+      "source_center_xy": [
+        982,
+        629
+      ],
+      "sample_size": [
+        5,
+        5
+      ],
+      "mean_srgb_hex": "#feefd9",
+      "status": "observed, not approved"
+    }
+  ],
+  "missing": [
+    "editable seated master",
+    "separate body/head/eyes/eyelids/frills/arms/headphones",
+    "hidden-region repairs",
+    "reviewed pivots and seat anchor",
+    "creator and rights evidence",
+    "Marco source-hash approval"
+  ]
+}

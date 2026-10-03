@@ -90,6 +90,12 @@ Verification: 19 schema checks, Ruff and **137 unit/contract tests passed**; the
 
 Known limits and reproduction: [asset registry](11-asset-registry.md). Long compressed audio is intentionally not assigned guessed sample boundaries; import PCM WAV masters. Thumbnail color interpretation never changes originals. A process crash can leave an unreferenced owned copy, never a partially published registry/source overwrite.
 
+## T06 — source review prepared; art input pending
+
+`T06: prepare actual Tabi source review and palette evidence` registers two linked draft source references in `.local/pilot-asset-review` and records their exact file identities and measured palette samples. Reopened and visually compared the actual character profile and seated train composition. [Review packet](12-tabi-art-review.md) links both originals and describes the separate pieces/hidden-region repairs still required. [Evidence](evidence/t06-reference-review.json) records unapproved, rights-pending provenance. No artwork was changed, no replacement likeness was invented, and no editable master was claimed from flattened images.
+
+The source-hash choice, separated seated masters, anchors/pivots and art review remain pending; T06 is not marked complete. Independent synthetic/compiler work continues under PLAN's explicit allowance.
+
 ## Next task and pending gates
 
 **Next: T06–T08 — real asset preparation/review; then T09 timeline infrastructure.** The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
