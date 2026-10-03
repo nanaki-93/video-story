@@ -57,7 +57,7 @@ Known limits: no network-filesystem or power-loss guarantee; whole-project trans
 
 ## Next task and pending gates
 
-**Next: T02 — toolchain and renderer capabilities.** Implement the real FFmpeg capability/render spike; neither tool was on PATH during this audit. M0 remains incomplete until those gates pass. All other application tasks remain planned; this repository cannot render or launch a web UI yet.
+**Current: T02 — toolchain and renderer capabilities.** Step 1 implements `tabi doctor --json` / `make doctor`, typed machine/capability reports, executable hashes, strict tool-version compatibility and writable-storage checks. `make check`: 120 tests, lint/format and 15 schemas pass. The [machine report](evidence/t02-doctor-m5-pro.json) records this M5 Pro/48 GiB with FFmpeg/ffprobe 9.0.2 installed through Homebrew. Encoders remain explicitly `listed_only`; the real synthetic render is the next step. M0 remains incomplete until that gate passes. The web UI and episode renderer remain planned.
 
 Pending target-Mac checks: installed FFmpeg/ffprobe, mask/alpha/speed rendering, VideoToolbox quality, render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. Native decoding on this M5 Pro does not establish those capabilities.
 

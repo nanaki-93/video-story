@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test help schemas
+.PHONY: setup check test help schemas doctor
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -19,3 +19,6 @@ test:
 
 help:
 	$(UV) run --frozen tabi --help
+
+doctor:
+	$(UV) run --frozen tabi doctor --json

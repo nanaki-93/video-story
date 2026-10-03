@@ -1,6 +1,7 @@
 """Versioned contracts shared by CLI, storage, future API and schema export."""
 
 from .assets import Action, ActionPack, Asset
+from .diagnostics import CapabilityReport
 from .episode import ActionRequest, Episode, TrackPlacement
 from .production import CompiledSnapshot, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
@@ -16,6 +17,7 @@ DOCUMENT_MODELS = {
     "render_job": RenderJob,
     "release_record": ReleaseRecord,
     "validation_report": ValidationReport,
+    "capability_report": CapabilityReport,
 }
 
 SCHEMA_MODELS = {
@@ -34,6 +36,7 @@ __all__ = [
     "ActionPack",
     "ActionRequest",
     "Asset",
+    "CapabilityReport",
     "CompiledSnapshot",
     "Curve",
     "Episode",

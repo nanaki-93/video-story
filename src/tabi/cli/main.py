@@ -11,6 +11,7 @@ from tabi.core.config import ConfigError, load_settings
 from tabi.core.documents import DocumentError, read_document
 from tabi.core.models import Project, ValidationReport
 from tabi.core.persistence import ProjectStore, StorageError
+from tabi.core.toolchain import doctor
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -27,6 +28,11 @@ def main(argv: list[str] | None = None) -> int:
         "config", help="Show resolved local settings without changing files"
     )
     config.add_argument("--json", action="store_true", help="Write machine-readable JSON to stdout")
+    health = commands.add_parser("doctor", help="Probe local tools and storage; no rendering")
+    health.add_argument("--json", action="store_true")
+    health.add_argument(
+        "--output-dir", type=Path, default=Path.cwd(), help="Existing directory to check"
+    )
     project = commands.add_parser("project", help="Create or inspect a local project")
     project_commands = project.add_subparsers(dest="project_command", required=True)
     init = project_commands.add_parser("init", help="Create a project in a new or empty directory")
@@ -87,6 +93,25 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "doctor":
+        report = doctor(settings, args.output_dir)
+        if args.json:
+            print(report.model_dump_json(indent=2))
+        else:
+            print(
+                f"Toolchain {'ready' if report.ready else 'not ready'}; "
+                "encoders listed, not render-tested."
+            )
+            print(f"FFmpeg: {report.ffmpeg.path} ({report.ffmpeg.version})")
+            print(f"ffprobe: {report.ffprobe.path} ({report.ffprobe.version})")
+            print(f"Output: {report.storage.path}; free bytes: {report.storage.free_bytes}")
+            for problem in report.issues:
+                print(f"{problem.code}: {problem.message} {problem.suggested_fix}")
+        return (
+            0
+            if report.ready
+            else (4 if any(p.code.startswith("storage_") for p in report.issues) else 3)
+        )
     if args.json:
         print(json.dumps(settings.as_dict(), ensure_ascii=False, indent=2))
     else:

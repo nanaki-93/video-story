@@ -107,3 +107,17 @@ def test_document_missing_file_has_io_exit_code(tmp_path):
     result = run_cli(tmp_path, "document", "validate", "missing.json")
     assert result.returncode == 4 and result.stdout == ""
     assert "document_io_error" in json.loads(result.stderr)["event"]
+
+
+def test_doctor_missing_dependency_reports_actionable_json(tmp_path):
+    config = tmp_path / "missing-tools.toml"
+    config.write_text(
+        'schema_version = "1.0"\n[tools]\nffmpeg = "./missing ffmpeg"\n'
+        'ffprobe = "./missing ffprobe"\n'
+    )
+    result = run_cli(tmp_path, "--config", str(config), "doctor", "--json")
+    assert result.returncode == 3
+    report = json.loads(result.stdout)
+    assert report["ready"] is False and report["encoder_verification"] == "listed_only"
+    assert {p["code"] for p in report["issues"]} == {"tool_missing"}
+    assert all(p["suggested_fix"] for p in report["issues"])

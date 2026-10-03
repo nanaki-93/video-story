@@ -1,0 +1,322 @@
+{
+  "$defs": {
+    "MachineInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "title": "Architecture",
+          "type": "string"
+        },
+        "cpu": {
+          "title": "Cpu",
+          "type": "string"
+        },
+        "is_target_m5_pro": {
+          "title": "Is Target M5 Pro",
+          "type": "boolean"
+        },
+        "memory_bytes": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Memory Bytes"
+        },
+        "os": {
+          "title": "Os",
+          "type": "string"
+        },
+        "os_version": {
+          "title": "Os Version",
+          "type": "string"
+        },
+        "python_executable": {
+          "title": "Python Executable",
+          "type": "string"
+        },
+        "python_version": {
+          "title": "Python Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "os",
+        "os_version",
+        "architecture",
+        "cpu",
+        "python_version",
+        "python_executable",
+        "is_target_m5_pro"
+      ],
+      "title": "MachineInfo",
+      "type": "object"
+    },
+    "StorageInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "free_bytes": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Free Bytes"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "required_free_bytes": {
+          "minimum": 0,
+          "title": "Required Free Bytes",
+          "type": "integer"
+        },
+        "writable": {
+          "title": "Writable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "path",
+        "writable",
+        "required_free_bytes"
+      ],
+      "title": "StorageInfo",
+      "type": "object"
+    },
+    "ToolInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "requested": {
+          "title": "Requested",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "version_output": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version Output"
+        }
+      },
+      "required": [
+        "requested"
+      ],
+      "title": "ToolInfo",
+      "type": "object"
+    },
+    "ValidationIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "location": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "title": "Location",
+          "type": "array"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "suggested_fix": {
+          "minLength": 1,
+          "title": "Suggested Fix",
+          "type": "string"
+        }
+      },
+      "required": [
+        "severity",
+        "code",
+        "location",
+        "message",
+        "suggested_fix"
+      ],
+      "title": "ValidationIssue",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:capability_report",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "capability_report",
+      "default": "capability_report",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "encoder_verification": {
+      "const": "listed_only",
+      "default": "listed_only",
+      "title": "Encoder Verification",
+      "type": "string"
+    },
+    "encoders": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Encoders",
+      "type": "array"
+    },
+    "ffmpeg": {
+      "$ref": "#/$defs/ToolInfo"
+    },
+    "ffprobe": {
+      "$ref": "#/$defs/ToolInfo"
+    },
+    "filters": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Filters",
+      "type": "array"
+    },
+    "fingerprint": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Fingerprint",
+      "type": "string"
+    },
+    "hardware_accelerators": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Hardware Accelerators",
+      "type": "array"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/ValidationIssue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "machine": {
+      "$ref": "#/$defs/MachineInfo"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "title": "Observed At",
+      "type": "string"
+    },
+    "ready": {
+      "title": "Ready",
+      "type": "boolean"
+    },
+    "required_encoders": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Encoders",
+      "type": "array"
+    },
+    "required_filters": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Filters",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "storage": {
+      "$ref": "#/$defs/StorageInfo"
+    }
+  },
+  "required": [
+    "schema_version",
+    "observed_at",
+    "machine",
+    "ffmpeg",
+    "ffprobe",
+    "filters",
+    "encoders",
+    "hardware_accelerators",
+    "required_filters",
+    "required_encoders",
+    "storage",
+    "fingerprint",
+    "ready",
+    "issues"
+  ],
+  "title": "CapabilityReport",
+  "type": "object"
+}
