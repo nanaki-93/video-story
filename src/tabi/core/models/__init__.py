@@ -6,6 +6,7 @@ from .cache import CacheEntry, CacheInventory, CachePruneReport, StorageEstimate
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
+from .preview import PreviewSelection
 from .production import CompiledSnapshot, JobEvent, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
 from .publishing import (
@@ -20,6 +21,7 @@ from .scenes import Curve, SceneInstance, SceneTemplate
 from .story import StoryboardReport
 
 DOCUMENT_MODELS = {
+    "preview_selection": PreviewSelection,
     "project": Project,
     "asset": Asset,
     "action_pack": ActionPack,

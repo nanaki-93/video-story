@@ -1,0 +1,1769 @@
+{
+  "$defs": {
+    "ActionRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Action Id",
+          "type": "string"
+        },
+        "channel": {
+          "enum": [
+            "body",
+            "face"
+          ],
+          "title": "Channel",
+          "type": "string"
+        },
+        "conflict_behavior": {
+          "const": "error",
+          "default": "error",
+          "title": "Conflict Behavior",
+          "type": "string"
+        },
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "pack": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "repeat": {
+          "enum": [
+            "once",
+            "loop_to_fill"
+          ],
+          "title": "Repeat",
+          "type": "string"
+        },
+        "return_pose": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Return Pose"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame",
+        "id",
+        "scene_id",
+        "pack",
+        "action_id",
+        "version",
+        "channel",
+        "repeat"
+      ],
+      "title": "ActionRequest",
+      "type": "object"
+    },
+    "AssetLock": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetLock",
+      "type": "object"
+    },
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "title": "Canvas",
+      "type": "object"
+    },
+    "ChunkPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "max_chunk_frames": {
+          "exclusiveMinimum": 0,
+          "maximum": 7200,
+          "title": "Max Chunk Frames",
+          "type": "integer"
+        },
+        "pipeline": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "profile_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        },
+        "temporal_handles": {
+          "const": 0,
+          "default": 0,
+          "title": "Temporal Handles",
+          "type": "integer"
+        },
+        "toolchain_fingerprint": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Toolchain Fingerprint"
+        },
+        "version": {
+          "const": "1",
+          "default": "1",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pipeline",
+        "profile_sha256",
+        "max_chunk_frames"
+      ],
+      "title": "ChunkPlan",
+      "type": "object"
+    },
+    "ChunkRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "first_frame": {
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "index": {
+          "minimum": 0,
+          "title": "Index",
+          "type": "integer"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HashedFile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "report_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report Path"
+        },
+        "state": {
+          "enum": [
+            "pending",
+            "rendering",
+            "verified",
+            "failed"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "index",
+        "first_frame",
+        "frame_count",
+        "state"
+      ],
+      "title": "ChunkRecord",
+      "type": "object"
+    },
+    "Continuity": {
+      "additionalProperties": false,
+      "properties": {
+        "notes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "object_notes": {
+          "patternProperties": {
+            "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "title": "Object Notes",
+          "type": "object"
+        },
+        "objects": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+            "type": "string"
+          },
+          "title": "Objects",
+          "type": "array"
+        },
+        "previous_episode_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Episode Id"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        }
+      },
+      "title": "Continuity",
+      "type": "object"
+    },
+    "Curve": {
+      "additionalProperties": false,
+      "properties": {
+        "interpolation": {
+          "enum": [
+            "constant",
+            "linear"
+          ],
+          "title": "Interpolation",
+          "type": "string"
+        },
+        "keys": {
+          "items": {
+            "$ref": "#/$defs/CurveKey"
+          },
+          "minItems": 1,
+          "title": "Keys",
+          "type": "array"
+        },
+        "limits": {
+          "$ref": "#/$defs/ParameterLimit"
+        },
+        "outside": {
+          "default": "clamp",
+          "enum": [
+            "clamp",
+            "zero"
+          ],
+          "title": "Outside",
+          "type": "string"
+        },
+        "scope": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scope",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Target",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "design_px_per_second",
+            "fraction",
+            "degrees",
+            "design_px",
+            "db"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "target",
+        "unit",
+        "interpolation",
+        "limits",
+        "keys"
+      ],
+      "title": "Curve",
+      "type": "object"
+    },
+    "CurveKey": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "minimum": 0,
+          "title": "Frame",
+          "type": "integer"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "frame",
+        "value"
+      ],
+      "title": "CurveKey",
+      "type": "object"
+    },
+    "Episode": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "$ref": "#/$defs/ActionRequest"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "asset_locks": {
+          "items": {
+            "$ref": "#/$defs/AssetLock"
+          },
+          "title": "Asset Locks",
+          "type": "array"
+        },
+        "beats": {
+          "items": {
+            "$ref": "#/$defs/StoryBeat"
+          },
+          "title": "Beats",
+          "type": "array"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "continuity": {
+          "$ref": "#/$defs/Continuity"
+        },
+        "curves": {
+          "items": {
+            "$ref": "#/$defs/Curve"
+          },
+          "title": "Curves",
+          "type": "array"
+        },
+        "document_type": {
+          "const": "episode",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "duration_frames": {
+          "exclusiveMinimum": 0,
+          "minimum": 0,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "landmark": "#/$defs/LandmarkEvent",
+                "prop": "#/$defs/PropEvent"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/LandmarkEvent"
+              },
+              {
+                "$ref": "#/$defs/PropEvent"
+              }
+            ]
+          },
+          "title": "Events",
+          "type": "array"
+        },
+        "format": {
+          "enum": [
+            "story",
+            "session",
+            "track"
+          ],
+          "title": "Format",
+          "type": "string"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "random_actions": {
+          "items": {
+            "$ref": "#/$defs/RandomActionTiming"
+          },
+          "title": "Random Actions",
+          "type": "array"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "scenes": {
+          "items": {
+            "$ref": "#/$defs/SceneInstance"
+          },
+          "minItems": 1,
+          "title": "Scenes",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "seed": {
+          "minimum": 0,
+          "title": "Seed",
+          "type": "integer"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "tracks": {
+          "items": {
+            "$ref": "#/$defs/TrackPlacement"
+          },
+          "title": "Tracks",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "document_type",
+        "title",
+        "format",
+        "fps",
+        "canvas",
+        "duration_frames",
+        "seed",
+        "scenes"
+      ],
+      "title": "Episode",
+      "type": "object"
+    },
+    "Fingerprint": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "sha256"
+      ],
+      "title": "Fingerprint",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "HashedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "location",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "HashedFile",
+      "type": "object"
+    },
+    "JobError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "log_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Log Path"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "JobError",
+      "type": "object"
+    },
+    "LandmarkEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "repeat": {
+          "const": false,
+          "default": false,
+          "title": "Repeat",
+          "type": "boolean"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "slot_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Slot Id"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "type": {
+          "const": "landmark",
+          "title": "Type",
+          "type": "string"
+        },
+        "world_x": {
+          "default": 0.0,
+          "title": "World X",
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame",
+        "type",
+        "id",
+        "scene_id",
+        "asset"
+      ],
+      "title": "LandmarkEvent",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    },
+    "OutputProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "audio_bitrate": {
+          "default": 192000,
+          "maximum": 512000,
+          "minimum": 64000,
+          "title": "Audio Bitrate",
+          "type": "integer"
+        },
+        "audio_codec": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audio Codec"
+        },
+        "audio_gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Audio Gain Db",
+          "type": "number"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "color_space": {
+          "const": "bt709",
+          "title": "Color Space",
+          "type": "string"
+        },
+        "container": {
+          "enum": [
+            "mp4",
+            "mkv"
+          ],
+          "title": "Container",
+          "type": "string"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "pixel_format": {
+          "minLength": 1,
+          "title": "Pixel Format",
+          "type": "string"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "video_bitrate": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Video Bitrate"
+        },
+        "video_codec": {
+          "minLength": 1,
+          "title": "Video Codec",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "canvas",
+        "fps",
+        "container",
+        "video_codec",
+        "pixel_format",
+        "color_space"
+      ],
+      "title": "OutputProfile",
+      "type": "object"
+    },
+    "ParameterLimit": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum": {
+          "title": "Maximum",
+          "type": "number"
+        },
+        "minimum": {
+          "title": "Minimum",
+          "type": "number"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ],
+      "title": "ParameterLimit",
+      "type": "object"
+    },
+    "PreviewMarker": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "minimum": 0,
+          "title": "Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Note",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "snapshot_sha256",
+        "frame",
+        "note"
+      ],
+      "title": "PreviewMarker",
+      "type": "object"
+    },
+    "PreviewSelection": {
+      "additionalProperties": false,
+      "properties": {
+        "document_type": {
+          "const": "preview_selection",
+          "default": "preview_selection",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "job_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Job Id",
+          "type": "string"
+        },
+        "markers": {
+          "items": {
+            "$ref": "#/$defs/PreviewMarker"
+          },
+          "maxItems": 10000,
+          "title": "Markers",
+          "type": "array"
+        },
+        "pipeline": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "previous_job_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Job Id"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "snapshot_sha256",
+        "pipeline",
+        "job_id"
+      ],
+      "title": "PreviewSelection",
+      "type": "object"
+    },
+    "PropEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "minimum": 0,
+          "title": "Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "location": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Location",
+          "type": "string"
+        },
+        "object_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Object Id",
+          "type": "string"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "prop",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "scene_id",
+        "frame",
+        "object_id",
+        "location"
+      ],
+      "title": "PropEvent",
+      "type": "object"
+    },
+    "RandomActionTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Action Id",
+          "type": "string"
+        },
+        "channel": {
+          "enum": [
+            "body",
+            "face"
+          ],
+          "title": "Channel",
+          "type": "string"
+        },
+        "duration_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "maximum_gap_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Maximum Gap Frames",
+          "type": "integer"
+        },
+        "minimum_gap_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Minimum Gap Frames",
+          "type": "integer"
+        },
+        "pack": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "repeat": {
+          "default": "once",
+          "enum": [
+            "once",
+            "loop_to_fill"
+          ],
+          "title": "Repeat",
+          "type": "string"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame",
+        "id",
+        "scene_id",
+        "pack",
+        "action_id",
+        "version",
+        "channel",
+        "duration_frames",
+        "minimum_gap_frames",
+        "maximum_gap_frames"
+      ],
+      "title": "RandomActionTiming",
+      "type": "object"
+    },
+    "RenderJob": {
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "cancel_requested": {
+          "default": false,
+          "title": "Cancel Requested",
+          "type": "boolean"
+        },
+        "chunks": {
+          "items": {
+            "$ref": "#/$defs/ChunkRecord"
+          },
+          "title": "Chunks",
+          "type": "array"
+        },
+        "completed_frames": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Completed Frames",
+          "type": "integer"
+        },
+        "destination": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination"
+        },
+        "document_type": {
+          "const": "render_job",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "duration_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/JobError"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "first_frame": {
+          "default": 0,
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HashedFile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Owner"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ChunkPlan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "profile": {
+          "$ref": "#/$defs/OutputProfile"
+        },
+        "report_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report Path"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "queued",
+            "running",
+            "paused",
+            "interrupted",
+            "cancelled",
+            "failed",
+            "verified"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "document_type",
+        "snapshot_sha256",
+        "profile",
+        "backend",
+        "state",
+        "duration_frames",
+        "chunks"
+      ],
+      "title": "RenderJob",
+      "type": "object"
+    },
+    "SceneInstance": {
+      "additionalProperties": false,
+      "properties": {
+        "anchor": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Anchor"
+        },
+        "continuity": {
+          "default": "preserve",
+          "enum": [
+            "preserve",
+            "deliberate_reset"
+          ],
+          "title": "Continuity",
+          "type": "string"
+        },
+        "curves": {
+          "items": {
+            "$ref": "#/$defs/Curve"
+          },
+          "title": "Curves",
+          "type": "array"
+        },
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "landmark": "#/$defs/LandmarkEvent",
+                "prop": "#/$defs/PropEvent"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/LandmarkEvent"
+              },
+              {
+                "$ref": "#/$defs/PropEvent"
+              }
+            ]
+          },
+          "title": "Events",
+          "type": "array"
+        },
+        "final_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SceneState"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "initial_state": {
+          "$ref": "#/$defs/SceneState"
+        },
+        "purpose": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Purpose"
+        },
+        "slot_assignments": {
+          "patternProperties": {
+            "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
+              "$ref": "#/$defs/AssetRef"
+            }
+          },
+          "title": "Slot Assignments",
+          "type": "object"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "template": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "transition_in": {
+          "$ref": "#/$defs/Transition"
+        },
+        "transition_out": {
+          "$ref": "#/$defs/Transition"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame",
+        "id",
+        "template",
+        "initial_state"
+      ],
+      "title": "SceneInstance",
+      "type": "object"
+    },
+    "SceneState": {
+      "additionalProperties": false,
+      "properties": {
+        "body_pose": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Body Pose",
+          "type": "string"
+        },
+        "cabin_light": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cabin Light"
+        },
+        "facial_overlay": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Facial Overlay"
+        },
+        "props": {
+          "patternProperties": {
+            "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            }
+          },
+          "title": "Props",
+          "type": "object"
+        },
+        "travel_distance_px": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Travel Distance Px",
+          "type": "number"
+        },
+        "weather_phase_frame": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Weather Phase Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "body_pose"
+      ],
+      "title": "SceneState",
+      "type": "object"
+    },
+    "StoryBeat": {
+      "additionalProperties": false,
+      "properties": {
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "music_placements": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+            "type": "string"
+          },
+          "title": "Music Placements",
+          "type": "array"
+        },
+        "purpose": {
+          "minLength": 1,
+          "title": "Purpose",
+          "type": "string"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "summary": {
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame",
+        "id",
+        "scene_id",
+        "summary",
+        "purpose"
+      ],
+      "title": "StoryBeat",
+      "type": "object"
+    },
+    "TrackPlacement": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "fade_in_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fade In Samples",
+          "type": "integer"
+        },
+        "fade_out_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fade Out Samples",
+          "type": "integer"
+        },
+        "gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Gain Db",
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "loop_crossfade_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Loop Crossfade Samples",
+          "type": "integer"
+        },
+        "loop_duration_samples": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Loop Duration Samples"
+        },
+        "release_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Release Id"
+        },
+        "role": {
+          "default": "music",
+          "enum": [
+            "music",
+            "ambience"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "start_sample": {
+          "minimum": 0,
+          "title": "Start Sample",
+          "type": "integer"
+        },
+        "trim_end_sample": {
+          "minimum": 0,
+          "title": "Trim End Sample",
+          "type": "integer"
+        },
+        "trim_start_sample": {
+          "minimum": 0,
+          "title": "Trim Start Sample",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "asset",
+        "start_sample",
+        "trim_start_sample",
+        "trim_end_sample"
+      ],
+      "title": "TrackPlacement",
+      "type": "object"
+    },
+    "Transition": {
+      "additionalProperties": false,
+      "properties": {
+        "character_policy": {
+          "default": "cut",
+          "enum": [
+            "cut",
+            "single_visible",
+            "matched"
+          ],
+          "title": "Character Policy",
+          "type": "string"
+        },
+        "kind": {
+          "default": "cut",
+          "enum": [
+            "cut",
+            "overlap"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "match_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "overlap_frames": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Overlap Frames",
+          "type": "integer"
+        }
+      },
+      "title": "Transition",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:web:1:web_preview",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "web_preview",
+      "default": "web_preview",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "episode": {
+      "$ref": "#/$defs/Episode"
+    },
+    "issue": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Issue"
+    },
+    "job": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RenderJob"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "previous_job": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RenderJob"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "selection": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PreviewSelection"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "snapshot_episode": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Episode"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stale": {
+      "title": "Stale",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "episode",
+    "snapshot_episode",
+    "selection",
+    "stale",
+    "issue",
+    "job",
+    "previous_job"
+  ],
+  "title": "WebPreview",
+  "type": "object"
+}

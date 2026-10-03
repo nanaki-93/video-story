@@ -412,3 +412,14 @@ pre {
     scroll-behavior: auto;
   }
 }
+/* Renderer artifacts retain their aspect ratio on small and scaled displays. */
+.preview-media {
+  display: block;
+  width: 100%;
+  max-height: 540px;
+  object-fit: contain;
+  background: #111;
+}
+.preview-media[hidden] {
+  display: none;
+}

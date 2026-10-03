@@ -181,6 +181,10 @@ export function editorPage(mode: "story" | "timeline" | "notebook") {
         cursor.min = "0";
         cursor.max = String(episode.duration_frames - 1);
         cursor.step = "1";
+        // Native ranges clamp values to 100 until their maximum is assigned.
+        cursor.value = String(
+          Math.min(selectedFrame, episode.duration_frames - 1),
+        );
         const cursorText = element("p", {
           text: `Selected frame ${cursor.value}`,
           className: "mono",

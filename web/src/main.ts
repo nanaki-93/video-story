@@ -7,6 +7,7 @@ import { connect, sessionPanel } from "./session";
 import { projectsPage, setupPage, restoreRecents } from "./workspace";
 import { assetsPage, inspectorPage } from "./assets";
 import { editorPage } from "./editor";
+import { previewPage } from "./preview";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -82,6 +83,7 @@ function navigate() {
           "story",
           "timeline",
           "notebook",
+          "preview",
         ].includes(page)
           ? "Connected worker"
           : page === "preview" && mode === "spike"
@@ -91,6 +93,7 @@ function navigate() {
   );
   main.replaceChildren(header);
   const pages = {
+    preview: previewPage,
     projects: projectsPage,
     setup: setupPage,
     assets: assetsPage,

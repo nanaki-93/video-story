@@ -26,7 +26,9 @@ from tabi.core.models.base import (
     Text,
     Version,
 )
+from tabi.core.models.preview import PreviewSelection
 from tabi.core.models.production import OutputProfile, RenderJob
+from tabi.core.models.rendering import RenderReport
 
 PROTOCOL = "1"
 
@@ -97,6 +99,38 @@ class WebEditor(Document):
     episode: Episode
     lanes: list[TimelineLane]
     validation: ValidationReport
+
+
+class WebPreview(Document):
+    document_type: Literal["web_preview"] = "web_preview"
+    episode: Episode
+    snapshot_episode: Episode | None
+    selection: PreviewSelection | None
+    stale: bool
+    issue: Text | None
+    job: RenderJob | None
+    previous_job: RenderJob | None
+
+
+class PreviewRequest(Model):
+    expected_revision: Frame
+    first_frame: Frame
+    end_frame: Frame
+
+
+class FrameRequest(Model):
+    snapshot_sha256: SHA256
+    frame: Frame
+
+
+class MarkerRequest(FrameRequest):
+    note: Text = Field(max_length=4000)
+
+
+class WebFrame(Document):
+    document_type: Literal["web_frame"] = "web_frame"
+    id: Identifier
+    report: RenderReport
 
 
 class InstallDocument(Model):
@@ -223,6 +257,8 @@ class WorkerReady(Model):
 
 
 WEB_SCHEMAS = {
+    "web_preview": WebPreview,
+    "web_frame": WebFrame,
     "web_editor": WebEditor,
     "web_recents": WebRecents,
     "web_catalog": WebCatalog,
