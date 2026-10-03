@@ -34,19 +34,31 @@ the 38-task dependency graph is acyclic and index/task statuses agree;
 and a final SHA-256 pass matched all 322 original inventory entries. All five
 local MP4 files remain present.
 
-## T03 — step 1 complete; persistence in progress
+## T03 — complete
 
 Bootstrap committed as `e5ae06b` (`T01: bootstrap Python core and plan local web app`).
-The contracts step is committed separately as `T03: define strict contracts and publish JSON schemas`.
+The contracts step is committed as `8551cf2` (`T03: define strict contracts and publish JSON schemas`). Persistence is committed separately as `T03: persist projects atomically with revision and migration guards`.
 
 Implemented all required nested model families, nine root document types and 14 generated JSON Schemas. Added strict scalar/version/field checks, canonical JSON, safe YAML with duplicate/alias/tag rejection, hash-bound approvals, rational frame/sample boundaries and structural scene/action/audio/snapshot validation. All five example documents now validate; the two-pixel fixture is synthetic and has a real recorded hash. Media existence, compiler behavior and artistic approval remain separate future gates.
 
-`make schemas && make check`: 14 schemas generated/checked; Ruff passed; **81 tests passed**. Runtime dependencies added and locked: Pydantic 2.13.5 and PyYAML 6.0.3; jsonschema 4.26.0 is a development verification dependency. Atomic saves, locks, revisions and migration backup acceptance remain outstanding for the next step of T03.
+Step 1 verification: `make schemas && make check` generated/checked 14 schemas; Ruff passed; **81 tests passed**. Runtime dependencies added and locked: Pydantic 2.13.5 and PyYAML 6.0.3; jsonschema 4.26.0 is a development verification dependency.
+
+Step 2 implements `ProjectStore`: safe initialization and strict reopening, revision-checked atomic draft saves, exact-byte backups, a persistent POSIX writer lock, symlink/path containment, hash-addressed immutable snapshots and explicit migration infrastructure. Approved versions require a new version to edit; migrations back up before transformation and cannot alter approved documents/snapshots in place. CLI creation, inspection and structural validation use those same services.
+
+Final verification:
+
+- `make check`: Ruff lint/format and all 14 schema drift checks passed; **108 tests passed** on the same M5 Pro/Mac/Python environment recorded above.
+- Failure-injection tests preserve original documents and backups after transform, validation, rename, flush or verification errors. A spawned writer terminated immediately before publication leaves the old project readable; a subsequent writer succeeds. A separate process-lock test verifies contention and kernel lock release after exit.
+- Snapshot tests verify idempotent saves, changed-content identities, tamper detection and immutable-version guards. Storage tests reject traversal and symlink escapes without touching outside targets.
+- Installed CLI smoke: project initialization and reopening produced identical JSON; validation returned `valid: true`, `scope: structure`. Reports live locally in `.local/t03-cli-smoke-ebp0oi21/`; the project path contains spaces, an apostrophe and Japanese characters. CLI tests also cover safe repeated initialization, missing files and useful nested-field errors.
+- Repository checks: all 58 Markdown files have valid local links; all 38 task statuses match the index; `git diff --check` passed. No MP4 is tracked, all five local clips remain present and all four tested extension capitalization variants are ignored. Unrelated staged IDE files remain excluded from implementation commits.
+
+Known limits: no network-filesystem or power-loss guarantee; whole-project transactions, backup restoration UI and automatic backup/temp pruning remain later work. A killed writer may leave an unused `.tmp` file. Schema 1.0 is the first production format, so no historical migration is registered; test-only 1.1 contracts exercise the migration infrastructure. These storage checks do not establish rendering or art approval.
 
 ## Next task and pending gates
 
-**Current: T03 — safe project persistence.** T02 follows with a real FFmpeg capability/render spike; neither tool was on PATH during this audit. M0 remains incomplete until those gates pass. All other application tasks remain planned; this repository cannot render or launch a web UI yet.
+**Next: T02 — toolchain and renderer capabilities.** Implement the real FFmpeg capability/render spike; neither tool was on PATH during this audit. M0 remains incomplete until those gates pass. All other application tasks remain planned; this repository cannot render or launch a web UI yet.
 
-Pending target-Mac checks: installed FFmpeg/ffprobe, mask/alpha/speed rendering, VideoToolbox quality, render time/memory, browser seeking/audio/authentication, local packaged launch, cancellation/resume and backup recovery. Native decoding on this M5 Pro does not establish those capabilities.
+Pending target-Mac checks: installed FFmpeg/ffprobe, mask/alpha/speed rendering, VideoToolbox quality, render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. Native decoding on this M5 Pro does not establish those capabilities.
 
 Pending creative inputs: selected reference/hash approval, editable separated art and masks/depth layers, sequence timing/anchors/loop ranges/transition poses, provenance and rights records, and finished original music. Continue independent synthetic infrastructure work while these remain pending.

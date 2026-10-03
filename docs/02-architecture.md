@@ -13,6 +13,7 @@ Logical flow: approved assets + music + episode document → validation → comp
 | `AGENTS.md`, `README.md`, `Makefile` | Agent rules, setup and development entry points |
 | `pyproject.toml`, lockfile | Python dependency and tool versions |
 | `src/tabi/core/models/` | Versioned asset, scene, episode, job and release models |
+| `src/tabi/core/documents.py`, `src/tabi/core/persistence.py` | Strict document loading, atomic local storage, revisions, locks, snapshots and migration backups (T03) |
 | `src/tabi/core/assets/` | Import, probing, normalization, approval, registry |
 | `src/tabi/core/timeline/` | Curves, scheduling, transitions, state evaluation |
 | `src/tabi/core/render/` | Renderer interface, FFmpeg backend, graph compiler, cache |
@@ -33,6 +34,8 @@ Application source goes in git; expensive personal artwork and recordings live i
 Each project folder contains `project.json`, `episodes/`, `registry/`, `assets/`, `audio/`, `rights/`, `sources/`, `snapshots/`, `exports/`, and a disposable `.cache/`. Episode drafts reference project-relative media or registered external roots. On portable-project export, copy referenced approved media and rewrite references, verify checksums, and report omitted editable sources.
 
 Use atomic writes and a single-writer project lock. Readers can inspect snapshots while editing occurs. Maintain an append-only job event journal and periodically compact to a job document. Recover unfinished jobs as interrupted, not successful. A schema migration produces a backup first and is explicit when destructive conversions would be necessary.
+
+T03 implements the document storage foundation with `.tabi.lock`, `.backups/`, revision guards and hash-addressed snapshots. Job journals/recovery remain T20. See the [persistence contract](03-contracts.md#implemented-project-persistence-t03) for implemented behavior and failure boundaries.
 
 ## Core services
 
@@ -67,6 +70,6 @@ T33 builds frontend assets into the Python distribution and provides a local lau
 
 ## Development commands to implement
 
-Implemented by T01: `make setup`, `make help`, `make check`, `make test`. Later tasks add `make doctor`, `make fixtures`, `make test-media`, `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
+Implemented by T01: `make setup`, `make help`, `make check`, `make test`. T03 adds `make schemas` and schema drift checking to `make check`. Later tasks add `make doctor`, `make fixtures`, `make test-media`, `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
 
 Each target delegates to documented scripts. `clean-cache` requires a project/cache root and only deletes disposable cache entries. A fresh checkout must render the synthetic pilot without ComfyUI or real music.

@@ -50,7 +50,9 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 | `tabi --version`, `tabi config --json` | T01: application version and resolved local developer settings; no media probing |
 | `tabi web` | T26: launch authenticated local web app, register configured roots, verify worker readiness and open browser |
 | `tabi doctor --json` | Probe runtime, tools, codecs, storage, target features |
-| `tabi project init PATH` | Create safe local project folder with versioned defaults |
+| `tabi project init PATH --title TITLE [--json]` | T03: create a safe local project folder with versioned defaults |
+| `tabi project show PATH [--json]` | T03: reopen and inspect the saved project index |
+| `tabi document validate FILE` | T03: validate JSON/YAML structure and print a JSON report; no media probing |
 | `tabi assets import --project PATH --file FILE --kind KIND` | Register original, probe, copy or link explicitly |
 | `tabi assets approve --project PATH --id ID --version VERSION` | Record user-reviewed approval with hashes |
 | `tabi validate EPISODE --report FILE` | Structured validation; no rendering |
@@ -66,7 +68,7 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 
 Frame ranges use the same half-open convention. CLI exit codes: 0 success, 2 validation/usage, 3 missing dependency, 4 render/I/O failure, 5 cancellation. JSON output goes to stdout; logs to stderr. Avoid embedding secrets or private licence files in logs.
 
-Except for the T01 commands noted above, this table describes planned behavior. Implement the schema layer before media/domain services; do not expose placeholder commands.
+Except for the T01 and T03 commands noted above, this table describes planned behavior. Implement the schema layer before media/domain services; do not expose placeholder commands.
 
 ## Local service API
 
@@ -91,10 +93,26 @@ Python models in `src/tabi/core/models/` are the source of truth. `make schemas`
 
 Every nested model forbids unknown fields. Scalar time values are strict integers (booleans, strings and fractions are rejected); fps is a reduced positive rational. Curve keys use global frames and may include an end boundary for interpolation. Audio placements and fades use samples; the frame/sample conversion uses exact rational arithmetic with ties-to-even.
 
-Media locations have `root_id` (default `project`) and a normalized relative POSIX `path`. Traversal, absolute/URL/drive paths, backslashes and control characters are rejected. Project `root` is `.` for portability; separately registered media roots are absolute local paths. The runtime must additionally enforce filesystem/symlink containment. Scene slots, clips, actions and tracks use typed ID/version references rather than embedding renderer commands or uncontrolled paths.
+Media locations have `root_id` (default `project`) and a normalized relative POSIX `path`. Traversal, absolute/URL/drive paths, backslashes and control characters are rejected. Project `root` is `.` for portability; separately registered media roots are absolute local paths. The persistence layer additionally enforces filesystem/symlink containment. Scene slots, clips, actions and tracks use typed ID/version references rather than embedding renderer commands or uncontrolled paths.
 
 Asset approval binds `content_sha256` to canonical document content excluding only `approval` and the draft `revision`; file hashes and metadata are part of that content. Edits invalidate the approval. Synthetic assets/snapshots cannot gain production approval. Unknown rights and release identifiers remain pending/null; structural validation cannot establish real rights or human review.
 
-Canonical JSON v1 uses the validated model's JSON values, explicit defaults/nulls, sorted object keys, compact separators, UTF-8 and finite numbers. It is a project encoding rule, not a claim of RFC 8785 conformance. YAML is decoded safely, rejects duplicate/non-string keys, tags, anchors/aliases and non-finite values, and passes through the same JSON validation. Limits are 16 MiB and 64 nesting levels. In-memory models are field-frozen; persistence must revalidate nested collections before writing.
+Canonical JSON v1 uses the validated model's JSON values, explicit defaults/nulls, sorted object keys, compact separators, UTF-8 and finite numbers. It is a project encoding rule, not a claim of RFC 8785 conformance. YAML is decoded safely, rejects duplicate/non-string keys, unsafe tags, anchors/aliases and non-finite values, and passes through the same JSON validation. Limits are 16 MiB and 64 nesting levels. In-memory models are field-frozen; persistence revalidates nested collections before writing.
 
 Generated JSON Schema describes structural fields and nested types; Python additionally checks cross-field intervals, references, path normalization and approval hashes. A frontend must use the Python validation result for these semantics. Validation reports explicitly identify their scope as `structure`; file probes, media compatibility, action-graph compilation, final playback and creative review remain later-task responsibilities.
+
+## Implemented project persistence (T03)
+
+`src/tabi/core/persistence.py` is shared by CLI and future services. `ProjectStore.initialize` creates a project index and standard folders only in a new/empty directory; `read` parses stored JSON through the strict contracts. Project roots remain portable (`.`). Saving an episode does not implicitly alter the project's episode index; a future service owns that coordinated operation.
+
+Draft storage is fixed by identity: `project.json`, `episodes/{id}.json`, `jobs/{id}.json`, `releases/{id}.json`, and `registry/{assets|templates|actions}/{id}/{version}.json`. Creation requires revision 0 and `expected_revision=None`. An edit requires both the submitted revision and expected revision to match the stored revision, then increments it. Project creation time is preserved and update time refreshed. An approved registry version cannot be overwritten, even by submitting a draft approval status; edits create a new version.
+
+Every writer holds a nonblocking POSIX `flock` on `.tabi.lock`; contention fails explicitly. The lock file is persistent and must not be deleted to unlock a live project. Kernel locks release when the owning process exits. Metadata reads/writes use bounded relative paths, directory descriptors and `O_NOFOLLOW`; symlinked metadata folders/files are rejected. `resolve_media_path` accepts only caller-registered media roots and checks resolved containment; paths claimed by imported documents do not grant filesystem access. This is application containment, not a sandbox against other local processes that already have permission to modify the project.
+
+Before replacing an existing draft, save its exact original bytes under `.backups/` with its relative path, revision and a unique suffix. Write the replacement to a same-directory temporary file, flush/fsync, reread/verify its bytes, then atomically replace the target and fsync its directory. New documents, backups and snapshots use atomic no-clobber hard-link publication followed by temporary-link removal. Failed writes before publication preserve the old target. Abrupt process exit can leave a hidden `.tmp` file, which is never selected as the current document; reopening uses the unchanged canonical path. No automatic backup or orphan pruning is implemented.
+
+Snapshots live at `snapshots/{sha256}.json`, where the digest covers their complete canonical bytes. A repeated identical save does not rewrite the file; changed content creates a different path. Reads verify the filename digest and contract. An altered file is an error, never silently overwritten. No in-place snapshot migration is supported.
+
+`MigrationRegistry` accepts explicit, forward, same-major transformations. `ProjectStore.migrate` checks revision, rejects approved documents, backs up exact source bytes before invoking a transformation, validates the target model/identity and publishes atomically. Transformation, validation and pre-publication I/O failures leave the source and backup intact. Production supports schema 1.0 only; a synthetic 1.1 model exercises the infrastructure in tests without claiming a historical migration exists.
+
+Verified on this Mac's local filesystem, including process termination during a save. Whole-project transactions, backup restoration UX, network-filesystem semantics and power-loss durability are not verified by T03. A directory fsync failure after atomic publication may mean the new target is already visible; callers should reread its revision before retrying. Keep source media backups separately; this layer backs up documents, not artwork or music.

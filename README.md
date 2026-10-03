@@ -2,11 +2,11 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** T01 is implemented. T03 contracts and generated schemas are available; safe project persistence is in progress. The CLI currently exposes settings/version; the web UI and renderer remain planned. See [progress](docs/progress.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** T01 and T03 are implemented: Python bootstrap, strict contracts, 14 generated schemas and safe local project persistence. The CLI exposes settings/version, project creation/inspection and structural document validation. The web UI and renderer remain planned. See [progress](docs/progress.md) and the [implementation/asset review](docs/09-implementation-review.md).
 
 ## Development setup
 
-Tested on Apple M5 Pro, macOS 27.0.1, Python 3.11.16 and uv 0.11.0. The Python version is recorded in `.python-version`; dependency versions are in `uv.lock`. FFmpeg is not needed for T01. It is not installed on PATH in the audited setup; T02 must probe an explicit installation before any rendering claims.
+Tested on Apple M5 Pro, macOS 27.0.1, Python 3.11.16 and uv 0.11.0. The Python version is recorded in `.python-version`; dependency versions are in `uv.lock`. FFmpeg is not needed for T01/T03. It is not installed on PATH in the audited setup; T02 must probe an explicit installation before any rendering claims.
 
 With uv already installed, run `make setup`. Otherwise bootstrap uv locally:
 
@@ -21,6 +21,21 @@ make help
 ```
 
 `make setup` installs the locked development and image-audit dependencies. It uses `.tools/bin/uv` if present, or `uv` on PATH; override with `make setup UV=/path/to/uv`. Pydantic and PyYAML provide the shared document contracts and loading. Node/frontend tooling enters in T25, and is planned as a build dependency only.
+
+## Projects and document validation
+
+Create a local project in a new or empty directory, then reopen its saved index:
+
+```sh
+.venv/bin/tabi project init ".local/My Tabi project" --title "My Tabi project" --json
+.venv/bin/tabi project show ".local/My Tabi project" --json
+.venv/bin/tabi document validate ".local/My Tabi project/project.json"
+.venv/bin/tabi document validate examples/episode.pilot.json
+```
+
+Initialization preserves existing files and refuses occupied directories. JSON/YAML validation reports have scope `structure`: a valid example does not imply that its media exists, is approved or can render. Exit codes are 0 for success, 2 for validation/usage errors and 4 for I/O errors.
+
+The shared Python `ProjectStore` handles revision-checked draft saves, exact-byte backups in `.backups/`, a single-writer POSIX lock, and immutable snapshots addressed by SHA-256. It verifies temporary bytes before atomic publication and rejects metadata symlinks. Approved versions require a new version to edit. Explicit migration infrastructure is available; schema 1.0 is the first production version, so no legacy migration is registered. See the [persistence contract](docs/03-contracts.md#implemented-project-persistence-t03) for layout and recovery limits.
 
 ## Local configuration
 
@@ -44,7 +59,7 @@ Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T03 persistence is in progress; T02 then proves the actual media toolchain.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T02 is next and proves the actual media toolchain.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.
