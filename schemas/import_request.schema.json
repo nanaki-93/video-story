@@ -1,0 +1,416 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Compatibility": {
+      "additionalProperties": false,
+      "properties": {
+        "anchor": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cameras": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+            "type": "string"
+          },
+          "title": "Cameras",
+          "type": "array"
+        },
+        "channels": {
+          "items": {
+            "enum": [
+              "body",
+              "face"
+            ],
+            "type": "string"
+          },
+          "title": "Channels",
+          "type": "array"
+        },
+        "crop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Crop"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "pivot": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Point"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "templates": {
+          "items": {
+            "$ref": "#/$defs/AssetRef"
+          },
+          "title": "Templates",
+          "type": "array"
+        }
+      },
+      "title": "Compatibility",
+      "type": "object"
+    },
+    "Crop": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        },
+        "x": {
+          "minimum": 0,
+          "title": "X",
+          "type": "integer"
+        },
+        "y": {
+          "minimum": 0,
+          "title": "Y",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "width",
+        "height"
+      ],
+      "title": "Crop",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "GenerationRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "model_name": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Name"
+        },
+        "model_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Sha256"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "seed": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Seed"
+        },
+        "workflow": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MediaPath"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "workflow_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Workflow Sha256"
+        }
+      },
+      "title": "GenerationRecord",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Point",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "commercial_use": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "confirmed",
+            "not-permitted"
+          ],
+          "title": "Commercial Use",
+          "type": "string"
+        },
+        "creator": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Creator"
+        },
+        "generation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GenerationRecord"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "licence_evidence": {
+          "items": {
+            "$ref": "#/$defs/MediaPath"
+          },
+          "title": "Licence Evidence",
+          "type": "array"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        },
+        "origin": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "user_supplied",
+            "synthetic",
+            "generated"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "reference_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+            "type": "string"
+          },
+          "title": "Reference Ids",
+          "type": "array"
+        }
+      },
+      "title": "Provenance",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:import_request",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compatibility": {
+      "$ref": "#/$defs/Compatibility"
+    },
+    "fps": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FrameRate"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "still",
+        "mask",
+        "sequence",
+        "video",
+        "audio",
+        "font"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "mode": {
+      "default": "copy",
+      "enum": [
+        "copy",
+        "link"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "paths": {
+      "items": {
+        "$ref": "#/$defs/MediaPath"
+      },
+      "minItems": 1,
+      "title": "Paths",
+      "type": "array"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "version": {
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "kind",
+    "paths"
+  ],
+  "title": "ImportRequest",
+  "type": "object"
+}

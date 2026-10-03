@@ -82,9 +82,17 @@ Verification: `make schemas && make check` passed Ruff and schema drift with **1
 
 This completes reusable fixtures, not episode rendering or art approval. No MP4 is added. Unrelated staged IDE files remain excluded.
 
+## T05 — complete
+
+`T05: import and verify immutable asset versions` adds the shared asset registry and CLI import/list/show/check/relink/proxy/approve commands. Copy import preserves exact originals; linked files use explicitly trusted roots. Pillow, PCM WAV reads and ffprobe plus strict full FFmpeg decode inspect real inputs. Ordered sequences require an explicit rational fps and consistent frames. New proxy/relink versions start as drafts. Hash checking makes changed or missing media unusable and invalidates effective approval while retaining the immutable historical review record. Rights remain pending unless supplied; no actual artwork or music was approved.
+
+Verification: 19 schema checks, Ruff and **137 unit/contract tests passed**; the new actual-media integration test also passed at 30000/1001 fps and rejected a truncated MP4. Tests exercise source preservation, missing roots/files, Unicode paths, stale review hashes, relinking exact bytes, transparent PNG proxies, inconsistent sequence frames and disk-full injection. Installed CLI import/proxy/check succeeded in `.local/t05-registry-check/Marco 東京 project`; [health evidence](evidence/t05-asset-health.json) records valid source/proxy hashes, pending rights and no publication approval. No MP4 is tracked; staged IDE files remain excluded.
+
+Known limits and reproduction: [asset registry](11-asset-registry.md). Long compressed audio is intentionally not assigned guessed sample boundaries; import PCM WAV masters. Thumbnail color interpretation never changes originals. A process crash can leave an unreferenced owned copy, never a partially published registry/source overwrite.
+
 ## Next task and pending gates
 
-**Next: T05 — asset importer and immutable registry.** The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
+**Next: T06–T08 — real asset preparation/review; then T09 timeline infrastructure.** The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 

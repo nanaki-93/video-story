@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "document_type": "asset_health",
+  "asset": {
+    "id": "import.synthetic.cabin",
+    "version": "1.1"
+  },
+  "content_sha256": "966ca8a1097281dfb0e07d7eabc0317b4b9e970fb961029d28e6647f4c128cb7",
+  "files": [
+    {
+      "location": {
+        "root_id": "project",
+        "path": "sources/import.synthetic.cabin/1.0-e307dfc3f31a4d08bda63106ec8857a9/000000-image.png"
+      },
+      "expected_sha256": "075651480215d82622ab79ad4508933d7cd7db44f70052e33dda7684b1411a86",
+      "observed_sha256": "075651480215d82622ab79ad4508933d7cd7db44f70052e33dda7684b1411a86",
+      "status": "ok",
+      "message": null
+    }
+  ],
+  "proxies": [
+    {
+      "location": {
+        "root_id": "project",
+        "path": "assets/import.synthetic.cabin/proxies-1.1-8d74c768f7ed4e48b5b6f3bfeb0edb1e/000000.png"
+      },
+      "expected_sha256": "c8f2392d37884c23494171a3e99f24c672671281cf61cef8bc5b752d724b1c58",
+      "observed_sha256": "c8f2392d37884c23494171a3e99f24c672671281cf61cef8bc5b752d724b1c58",
+      "status": "ok",
+      "message": null
+    }
+  ],
+  "source_available": true,
+  "media_valid": true,
+  "approval_valid": false,
+  "rights": "pending",
+  "publication_ready": false
+}

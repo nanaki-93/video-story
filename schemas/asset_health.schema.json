@@ -1,0 +1,177 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "FileHealth": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Expected Sha256",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message"
+        },
+        "observed_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Observed Sha256"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "missing",
+            "changed",
+            "inaccessible"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "location",
+        "expected_sha256",
+        "status"
+      ],
+      "title": "FileHealth",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:asset_health",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approval_valid": {
+      "title": "Approval Valid",
+      "type": "boolean"
+    },
+    "asset": {
+      "$ref": "#/$defs/AssetRef"
+    },
+    "content_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Content Sha256",
+      "type": "string"
+    },
+    "document_type": {
+      "const": "asset_health",
+      "default": "asset_health",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "files": {
+      "items": {
+        "$ref": "#/$defs/FileHealth"
+      },
+      "title": "Files",
+      "type": "array"
+    },
+    "media_valid": {
+      "title": "Media Valid",
+      "type": "boolean"
+    },
+    "proxies": {
+      "items": {
+        "$ref": "#/$defs/FileHealth"
+      },
+      "title": "Proxies",
+      "type": "array"
+    },
+    "publication_ready": {
+      "title": "Publication Ready",
+      "type": "boolean"
+    },
+    "rights": {
+      "enum": [
+        "pending",
+        "confirmed",
+        "not-permitted"
+      ],
+      "title": "Rights",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_available": {
+      "title": "Source Available",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "asset",
+    "content_sha256",
+    "files",
+    "proxies",
+    "source_available",
+    "media_valid",
+    "approval_valid",
+    "rights",
+    "publication_ready"
+  ],
+  "title": "AssetHealth",
+  "type": "object"
+}

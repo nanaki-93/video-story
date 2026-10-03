@@ -6,6 +6,7 @@ from .episode import ActionRequest, Episode, TrackPlacement
 from .fixtures import FixtureManifest
 from .production import CompiledSnapshot, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
+from .registry import AssetHealth, ImportRequest
 from .scenes import Curve, SceneInstance, SceneTemplate
 
 DOCUMENT_MODELS = {
@@ -21,6 +22,7 @@ DOCUMENT_MODELS = {
     "capability_report": CapabilityReport,
     "render_spike_report": RenderSpikeReport,
     "fixture_manifest": FixtureManifest,
+    "asset_health": AssetHealth,
 }
 
 SCHEMA_MODELS = {
@@ -30,6 +32,7 @@ SCHEMA_MODELS = {
     "track_placement": TrackPlacement,
     "action_request": ActionRequest,
     "curve": Curve,
+    "import_request": ImportRequest,
 }
 
 __all__ = [

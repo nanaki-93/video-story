@@ -2,7 +2,7 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 17 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. T04 adds reproducible fixture projects. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI and episode renderer remain planned. See [progress](docs/progress.md), [toolchain checks](docs/10-toolchain.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 19 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. T04 adds reproducible fixture projects; T05 adds a hash-verified asset importer and registry. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI and episode renderer remain planned. See [progress](docs/progress.md), [toolchain checks](docs/10-toolchain.md) and the [implementation/asset review](docs/09-implementation-review.md).
 
 ## Development setup
 
@@ -60,6 +60,10 @@ Initialization preserves existing files and refuses occupied directories. JSON/Y
 
 The shared Python `ProjectStore` handles revision-checked draft saves, exact-byte backups in `.backups/`, a single-writer POSIX lock, and immutable snapshots addressed by SHA-256. It verifies temporary bytes before atomic publication and rejects metadata symlinks. Approved versions require a new version to edit. Explicit migration infrastructure is available; schema 1.0 is the first production version, so no legacy migration is registered. See the [persistence contract](docs/03-contracts.md#implemented-project-persistence-t03) for layout and recovery limits.
 
+## Asset registry
+
+Use `tabi asset import`, `list`, `show`, `check`, `relink`, `proxy` and explicit `approve` commands. They invoke the shared Python service. See [requests, commands and source-preservation rules](docs/11-asset-registry.md). Rights and art review stay pending until provided.
+
 ## Local configuration
 
 `tabi --config PATH config --json` loads an explicit TOML file. Otherwise `TABI_CONFIG` selects it, then `$XDG_CONFIG_HOME/tabi/config.toml` (default `~/.config/tabi/config.toml`). A missing default file uses defaults; a missing explicit file, malformed TOML, unsupported version or unknown key fails with exit code 2. This command resolves settings without creating project/cache folders or probing tools.
@@ -82,7 +86,7 @@ Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T05 is next: the asset importer and immutable registry.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 cover real asset preparation and review; independent timeline work follows in T09.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.

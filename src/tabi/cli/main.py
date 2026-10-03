@@ -6,12 +6,14 @@ import os
 from pathlib import Path
 
 from tabi import __version__
+from tabi.cli.assets import add_asset_commands, run_asset_command
 from tabi.cli.logging import configure_logging
 from tabi.core.config import ConfigError, load_settings
 from tabi.core.documents import DocumentError, read_document
 from tabi.core.fixtures import generate_fixtures
 from tabi.core.models import Project, ValidationReport
 from tabi.core.persistence import ProjectStore, StorageError
+from tabi.core.process import ToolError
 from tabi.core.render.spike import ENCODERS, SpikeDependencyError, SpikeError, render_spike
 from tabi.core.toolchain import doctor
 
@@ -26,6 +28,7 @@ def main(argv: list[str] | None = None) -> int:
         "--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR"], default="INFO", type=str.upper
     )
     commands = parser.add_subparsers(dest="command", required=True)
+    add_asset_commands(commands)
     config = commands.add_parser(
         "config", help="Show resolved local settings without changing files"
     )
@@ -116,6 +119,12 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "asset":
+        try:
+            return run_asset_command(args, settings)
+        except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
+            logger.error("asset_operation_failed: %s", error)
+            return 4
     if args.command == "render-spike":
         try:
             report_path = render_spike(settings, args.output_dir, args.encoder)
