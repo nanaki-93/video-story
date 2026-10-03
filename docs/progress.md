@@ -311,3 +311,18 @@ Complete. Frozen export plans and conservative storage estimates feed the real q
 Core complete; production rights/disclosure review remains pending. Release now saves public metadata and private manual notes, checks actual exports and rights, records hash-bound human reviews and exports a verified public/private folder. Browser links expose only public manifest entries. Backup/restore streams independent checked copies, preserves reviewed documents and snapshots, embeds linked media beneath bounded local roots and publishes only complete new folders.
 
 `make check`: 255 passed / 54 opt-in skipped; 61 schemas. Frontend checks/build/four tests pass. Four backup checks and an actual-media HTTP release/restore check pass after final copy verification. The restored renderer produces the same frame hash and saved export bytes. Chrome backed up 186 files and opened a new Unicode-path copy with the same six release blockers. [Guide](31-release-and-backups.md), [release evidence](evidence/t32-release-bundle.jpg).
+
+## T33 — installed local web app
+
+Complete. The Python wheel/sdist includes a verified static UI and exact dependency notices.
+Build guards detect stale inputs, changed output and prohibited media/runtime binaries.
+`setup-check` reports actionable Python, frontend and FFmpeg diagnostics. The default project
+folder is created on launch; Node/JDK are unnecessary at runtime.
+
+`make check`: 259 passed / 54 opt-in skipped, 61 schemas. Frontend checks/build/four tests
+pass. Installed outside the checkout in a fresh Unicode-path environment without Node on PATH;
+setup check verified bundled hashes. Chrome queued a 90-second synthetic pilot, tab closure left
+it running, and a new worker resumed 1,800 retained frames to 2,700 frames / 4,320,000 samples.
+Chrome and Safari played/sought it and measured nonzero audio. Three actual installed process
+crash/recovery cases passed. [Installation](32-installation.md), [evidence](tasks/t33.md),
+[installed preview](evidence/t33-installed-chrome.jpg). Real creative approval remains pending.

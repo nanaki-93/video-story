@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test test-media help schemas doctor fixtures clean-cache web-check web-build run-web run-worker
+.PHONY: setup check test test-media help schemas doctor fixtures clean-cache web-check web-build run-web run-worker package
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -37,6 +37,9 @@ run-web:
 
 run-worker:
 	$(UV) run --frozen tabi web --no-open
+
+package:
+	$(UV) run --frozen python scripts/build_distribution.py --uv "$(UV)"
 
 FIXTURE_OUTPUT ?= .local/fixtures-v1
 fixtures:

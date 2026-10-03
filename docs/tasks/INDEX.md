@@ -36,7 +36,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T30](t30.md) | Implement audio page and release metadata forms | T15, T16, T27 | mandatory | core complete; listening review pending |
 | [T31](t31.md) | Implement render queue settings and recovery UI | T22, T23, T26 | mandatory | complete |
 | [T32](t32.md) | Implement release page and project portability | T24, T30, T31 | mandatory | core complete; rights/disclosure review pending |
-| [T33](t33.md) | Package and verify local web app launch | T26, T29, T31, T32 | mandatory | planned |
+| [T33](t33.md) | Package and verify local web app launch | T26, T29, T31, T32 | mandatory | complete |
 | [T34](t34.md) | Add café scene template and prove extensibility | T11, T28 | mandatory | planned |
 | [T35](t35.md) | Add optional activity and outfit packs | T07, T10, T34 | optional expansion | planned |
 | [T36](t36.md) | Add optional local ComfyUI asset bridge | T05, T26 | optional expansion | planned |

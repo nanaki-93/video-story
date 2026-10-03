@@ -32,8 +32,11 @@ audit = ["pillow>=11,<13"]
 [tool.hatch.build.targets.wheel]
 packages = ["src/tabi"]
 
+[tool.hatch.build.hooks.custom]
+path = "scripts/build_hook.py"
+
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/scripts", "/pyproject.toml", "/README.md", "/uv.lock", "/Makefile", "/.python-version"]
+include = ["/src", "/tests", "/scripts", "/schemas", "/web/src", "/web/scripts", "/web/tests", "/web/index.html", "/web/package.json", "/web/package-lock.json", "/web/vite.config.ts", "/web/tsconfig.json", "/web/.prettierignore", "/web/.npmrc", "/pyproject.toml", "/README.md", "/THIRD-PARTY.md", "/uv.lock", "/Makefile", "/.python-version"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

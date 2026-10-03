@@ -60,6 +60,11 @@ def main(argv: list[str] | None = None) -> int:
     health.add_argument(
         "--output-dir", type=Path, default=Path.cwd(), help="Existing directory to check"
     )
+    setup = commands.add_parser(
+        "setup-check", help="Check the installed frontend, Python and FFmpeg"
+    )
+    setup.add_argument("--output-dir", type=Path, default=Path.cwd())
+    setup.add_argument("--json", action="store_true")
     spike = commands.add_parser(
         "render-spike", help="Render and verify a synthetic ten-second test"
     )
@@ -175,11 +180,32 @@ def main(argv: list[str] | None = None) -> int:
         from tabi.cli.assets import trusted_roots
 
         try:
+            if not args.root:
+                settings.project_root.mkdir(parents=True, exist_ok=True)
             roots = trusted_roots(args.root) if args.root else {"projects": settings.project_root}
             return launch(settings, roots, web_root=args.web_root, no_open=args.no_open)
         except (ValueError, OSError) as error:
             logger.error("local_workspace_failed: %s", error)
             return 4
+    if args.command == "setup-check":
+        from tabi.api.installation import setup_check
+
+        report = setup_check(settings, args.output_dir)
+        if args.json:
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+        else:
+            print(f"Tabi {report['version']} · Python {report['python']}")
+            print(f"Frontend: {report['frontend']}")
+            for problem in report["problems"]:
+                print(problem)
+            for issue in report["media"]["issues"]:
+                print(f"{issue['message']} — {issue['suggested_fix']}")
+            print(
+                "Ready for a synthetic render check."
+                if report["ready"]
+                else "Resolve these setup issues."
+            )
+        return 0 if report["ready"] else 2
     if args.command == "profiles":
         try:
             print(

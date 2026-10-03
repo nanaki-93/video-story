@@ -2,7 +2,23 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 36 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. Reproducible fixtures, the asset registry, timeline/action compilation, masked scene rendering, global-range previews, continuous PCM/AAC audio, resumable jobs, verified caches, final export profiles and release preparation are implemented. Software H.264 and VideoToolbox passed proxy/1080p/4K checks on the M5 Pro. The web UI remains planned. See [progress](docs/progress.md), [preview workflow](docs/15-preview-workflow.md), [audio workflow](docs/16-audio.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** The local web app implements projects, assets, episode/story/timeline editing, audio, exact previews, resumable renders, release preparation, settings and backup/restore. Python owns the shared CLI/API services and 61 strict document schemas. Software H.264 and VideoToolbox passed proxy/1080p/4K checks on the M5 Pro. A wheel bundles the static UI; Node is only needed to build it. Real Tabi artwork, original music and creative approval remain pending. See [progress](docs/progress.md), [installation](docs/32-installation.md), [preview workflow](docs/28-preview.md) and the [asset review](docs/09-implementation-review.md).
+
+## Run the web app
+
+For an installed wheel, follow [installation and dependency checks](docs/32-installation.md). In a development checkout with Python, Node/npm and FFmpeg installed:
+
+```sh
+make setup
+cd web
+npm ci --ignore-scripts --no-audit --no-fund
+cd ..
+make web-build
+.venv/bin/tabi --config examples/settings.macos.toml setup-check
+.venv/bin/tabi --config examples/settings.macos.toml web
+```
+
+The launcher opens a private authenticated loopback session. Keep its terminal open while rendering; closing the browser leaves jobs running. Enter `open` to reopen or `stop` to finish the current job and exit. Ctrl-C cancels owned work and preserves verified chunks. Use Renders → Resume after relaunch. The default project folder is created on first launch; `--root library="/path/to/existing/library"` restricts the browser to another existing folder.
 
 ## Development setup
 
@@ -20,7 +36,7 @@ make help
 .venv/bin/tabi config --json
 ```
 
-`make setup` installs the locked development and image-audit dependencies. It uses `.tools/bin/uv` if present, or `uv` on PATH; override with `make setup UV=/path/to/uv`. Pydantic and PyYAML provide the shared document contracts and loading. Node/frontend tooling enters in T25, and is planned as a build dependency only.
+`make setup` installs the locked development and image-audit dependencies. It uses `.tools/bin/uv` if present, or `uv` on PATH; override with `make setup UV=/path/to/uv`. Pydantic and PyYAML provide the shared document contracts and loading. Node/npm are development/build dependencies only.
 
 ## Media toolchain check
 
@@ -86,7 +102,7 @@ ffprobe = "ffprobe"
 
 Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_ROOT`, `TABI_FFMPEG`, `TABI_FFPROBE`. File-relative paths resolve beside the config file; environment/CLI-relative paths resolve against the working directory. Bare executable names remain PATH lookups for the future doctor. JSON command data goes to stdout, JSON diagnostic records to stderr. These developer settings are separate from T03's project/episode schemas.
 
-Rendering caches use each project's `.cache/tabi-v1`; the early global `cache_root` setting is reserved. See [cache inspection, pruning and disk estimates](docs/21-cache-storage.md).
+Rendering caches use each project's `.cache/tabi-v1`; global `cache_root` stores launcher preferences and recent project locations. See [cache inspection, pruning and disk estimates](docs/21-cache-storage.md).
 
 ## Plans and implementation order
 
