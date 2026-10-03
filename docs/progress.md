@@ -102,9 +102,17 @@ The source-hash choice, separated seated masters, anchors/pivots and art review 
 
 Verification: `make schemas && make check` passed Ruff, **20 schemas and 148 tests**, eight media tests skipped. Eleven new cases cover analytic acceleration/stop/restart, all interval splits, out-of-order queries, rational fps/sample rounding, curve bounds/scopes, reproducible whole actions and conflict errors. An OpenSSL check independently confirms the pinned random reference vector. CLI inspection/expansion passed; [evidence](evidence/t09-timeline.json) records the fixture stop at 180 px, restart frame 151 at 184 px/sample 241600, final distance 780 px and four seeded blink requests. This is semantic evidence, not rendered/art-approved output.
 
+## T10 — core complete; real-art review pending
+
+`T10: compile pose transitions and persistent scene state` adds deterministic action compilation and frame inspection. It resolves transitive asset identities, expands compatible entry/hold/exit routes, preserves authored one-shots/whole loops, checks props and channel/camera/fps/alpha compatibility, and enforces declared continuity or explicit resets at cuts. Facial overlays leave the body's global phase intact. Production compilation rejects unapproved packs and invalid media.
+
+Verification: `make schemas && make check` passed Ruff, 20 schema checks and **160 tests** (eight media tests skipped). Twelve new compiler cases verify missing transitions/props, fixed one-shot duration, action conflicts, blink independence, exact prop boundaries, cuts/resets, changed source rejection and deterministic snapshot reopening. Fresh `.local/t10-compiler-fixtures` compiles to eight events with 15 resolved locks; [state evidence](evidence/t10-compiled-state.json) records frames around each blink/transition and the 780 px final travel state. This caught and corrected the fixture generator's previous default-zero final travel metadata; previous T04 evidence remains a historical record of that earlier generator.
+
+Core implementation is complete against fixtures. Real Tabi motion approval remains pending; scene overlaps are explicitly unsupported until T18. No real artwork or publication status was approved.
+
 ## Next task and pending gates
 
-**Next: T10 — action compilation and persistent state using the fixture graph.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
+**Next: T11 — reusable scene rendering and masks using synthetic assets.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 

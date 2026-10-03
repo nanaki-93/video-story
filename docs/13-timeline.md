@@ -20,3 +20,17 @@ Optional `random_actions` describe a scene, pack/action version, channel, interv
 Manual/random channel collisions are errors. Random expansion never silently drops conflicts or invents compatible poses; the action compiler validates those. Expanded IDs are deterministic and schedules are sorted canonically. The frozen snapshot records both the PRNG fingerprint and the expanded schedule; rendering never rerolls it. Compilation caps expansion at 100,000 actions.
 
 Verification: [T09 task](tasks/t09.md) and [measured synthetic frame/schedule report](evidence/t09-timeline.json). Tests cover exact area through acceleration/stop/restart, out-of-order queries, interval additivity at every split, a noninteger frame rate, ties-to-even samples, scope precedence, duplicate rejection and a fixed random reference vector independently checked with OpenSSL.
+
+## Action compiler (T10)
+
+`ActionCompiler(AssetService(store), purpose="synthetic_test").compile(episode)` resolves registry media and returns a strict `CompiledSnapshot`. `state_at(snapshot, scene_id, frame)` returns active clip/source frames, body pose, props and travel. The compiler records every transitive template/pack/clip/media hash plus its implementation and PRNG fingerprints. Preview/production CLI adapters enter with the renderer in T13.
+
+A loop request describes a complete window. If its start pose differs from current state, the compiler searches that pack's directed one-shot graph for a route with satisfied prop requirements, inserts the entry clips, fills the hold with whole loop cycles, and returns to the prior pose. `return_pose` can explicitly choose another final pose. A one-shot defaults to its authored end pose and must fit exactly once; it cannot be silently stretched. Transition search uses fewest clips, ordered by action ID for deterministic ties. Inserting explicit transition requests gives the author direct control when several routes exist.
+
+Body requests cover the entire character scene. Whole loops end at reviewed pose boundaries; an incompatible window fails with the remaining frame count. Prepared clip frame count, fps, canvas, alpha, camera, declared channel and optional anchor/template restrictions must match the pack and scene. Face overlays declare compatible held body poses and cannot overlap a body clip occupying the face channel. They cannot move props. A blink never restarts the body loop.
+
+Prop results apply at an action's exclusive end boundary. Explicit prop events at the same frame apply after completed action results and before new action precondition checks. Independent frame inspection replays only these finite scheduled state changes. The body pose during a transition remains its start-pose label until the end; the active prepared clip supplies the actual moving pixels.
+
+For cuts with `continuity: preserve`, the next declared initial state must match the previous compiled final state, including distance, props and weather phase origin. A deliberate change needs `deliberate_reset`. Declared final states are checked against compiled results. The compiler currently rejects scene overlaps; T18 supplies their explicit semantics. Historical snapshots stay unchanged when a draft is edited.
+
+Production compilation requires actual hash-bound asset/pack/template approval and rights. `synthetic_test` requires synthetic source media and never permits production approval. [T10 evidence](evidence/t10-compiled-state.json) is a synthetic semantic verification only; actual Tabi motion/transition approval remains T07/T14.

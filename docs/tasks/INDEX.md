@@ -13,7 +13,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T07](t07.md) | Author core action pack and transition graph | T06 | mandatory | planned |
 | [T08](t08.md) | Prepare train interior and Tokyo environment | T05, T06 | mandatory | planned |
 | [T09](t09.md) | Implement global timeline and curves | T03, T04 | mandatory | complete |
-| [T10](t10.md) | Compile actions and persistent state | T07, T09 | mandatory | planned |
+| [T10](t10.md) | Compile actions and persistent state | T07, T09 | mandatory | core complete; real-art review pending |
 | [T11](t11.md) | Implement scene renderer and window masking | T02, T08, T09 | mandatory | planned |
 | [T12](t12.md) | Add parallax and scheduled landmarks | T09, T11 | mandatory | planned |
 | [T13](t13.md) | Add preview CLI and frozen snapshots | T05, T10, T11, T12 | mandatory | planned |

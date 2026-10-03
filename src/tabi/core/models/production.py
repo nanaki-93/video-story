@@ -38,6 +38,7 @@ class ScheduledAction(FrameInterval):
     type: Literal["action"]
     id: Identifier
     scene_id: Identifier
+    pack: AssetRef
     action_id: Identifier
     clip: AssetRef
     channel: Channel
@@ -73,6 +74,7 @@ class CompiledSnapshot(ApprovableDocument):
         references = self.episode.references()
         for event in self.schedule:
             if isinstance(event, ScheduledAction):
+                references.add((event.pack.id, event.pack.version))
                 references.add((event.clip.id, event.clip.version))
             if isinstance(event, LandmarkEvent):
                 references.add((event.asset.id, event.asset.version))

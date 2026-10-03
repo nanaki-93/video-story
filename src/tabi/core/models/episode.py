@@ -59,6 +59,13 @@ class ActionRequest(FrameInterval):
     channel: Channel
     repeat: Literal["once", "loop_to_fill"]
     conflict_behavior: Literal["error"] = "error"
+    return_pose: Identifier | None = None
+
+    @model_validator(mode="after")
+    def return_channel(self) -> Self:
+        if self.channel == "face" and self.return_pose is not None:
+            raise ValueError("facial overlays cannot request a body return pose")
+        return self
 
 
 class RandomActionTiming(FrameInterval):

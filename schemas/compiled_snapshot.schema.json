@@ -43,6 +43,19 @@
           "title": "Repeat",
           "type": "string"
         },
+        "return_pose": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Return Pose"
+        },
         "scene_id": {
           "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
           "title": "Scene Id",
@@ -1021,6 +1034,9 @@
           ],
           "default": null
         },
+        "pack": {
+          "$ref": "#/$defs/AssetRef"
+        },
         "phase_origin_frame": {
           "minimum": 0,
           "title": "Phase Origin Frame",
@@ -1068,6 +1084,7 @@
         "type",
         "id",
         "scene_id",
+        "pack",
         "action_id",
         "clip",
         "channel",

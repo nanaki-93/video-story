@@ -1,0 +1,553 @@
+{
+  "synthetic": true,
+  "production_approved": false,
+  "project": "/Users/marcoandreose/DEV/lab/video-story/.local/t10-compiler-fixtures",
+  "snapshot_sha256": "7918e4895e38a8913938a216b91fc62650e4b78d19aca72dcfb54e4e88642521",
+  "compiler": {
+    "name": "tabi-timeline",
+    "version": "1",
+    "sha256": "642181183294ed77a5f28bf28ee6a9cfe360af7994311d91747232d2e92301e5"
+  },
+  "prng": {
+    "name": "tabi-sha256-counter",
+    "version": "1",
+    "sha256": "d9ea6aae79944764f807f4dc97882c7aede84c1ea3725fc133c48086856826ed"
+  },
+  "schedule": [
+    {
+      "start_frame": 0,
+      "end_frame": 84,
+      "type": "action",
+      "id": "action.90bb56f9854b756a668b0230",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.idle",
+      "clip": {
+        "id": "fixture.idle",
+        "version": "1.0"
+      },
+      "channel": "body",
+      "source_start_frame": 0,
+      "phase_origin_frame": 0,
+      "loop": {
+        "start_frame": 0,
+        "end_frame": 12
+      },
+      "start_pose": "idle",
+      "end_pose": "idle",
+      "resulting_props": {}
+    },
+    {
+      "start_frame": 0,
+      "end_frame": 300,
+      "type": "landmark",
+      "id": "landmark.once",
+      "scene_id": "train",
+      "asset": {
+        "id": "fixture.landmark",
+        "version": "1.0"
+      },
+      "repeat": false,
+      "world_x": 620.0
+    },
+    {
+      "start_frame": 36,
+      "end_frame": 42,
+      "type": "action",
+      "id": "action.b10c6d851e1e2c91a15b1e44",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.blink",
+      "clip": {
+        "id": "fixture.blink",
+        "version": "1.0"
+      },
+      "channel": "face",
+      "source_start_frame": 0,
+      "phase_origin_frame": 36,
+      "loop": null,
+      "start_pose": "eyes-open",
+      "end_pose": "eyes-open",
+      "resulting_props": {}
+    },
+    {
+      "start_frame": 84,
+      "end_frame": 90,
+      "type": "action",
+      "id": "action.4c2072a31ba0a00410b57baf",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.entry",
+      "clip": {
+        "id": "fixture.entry",
+        "version": "1.0"
+      },
+      "channel": "body",
+      "source_start_frame": 0,
+      "phase_origin_frame": 84,
+      "loop": null,
+      "start_pose": "idle",
+      "end_pose": "observing",
+      "resulting_props": {}
+    },
+    {
+      "start_frame": 90,
+      "end_frame": 210,
+      "type": "action",
+      "id": "action.869cc6d3e2b0104f67c2ba92",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.observe",
+      "clip": {
+        "id": "fixture.observe",
+        "version": "1.0"
+      },
+      "channel": "body",
+      "source_start_frame": 0,
+      "phase_origin_frame": 90,
+      "loop": {
+        "start_frame": 0,
+        "end_frame": 12
+      },
+      "start_pose": "observing",
+      "end_pose": "observing",
+      "resulting_props": {}
+    },
+    {
+      "start_frame": 210,
+      "end_frame": 216,
+      "type": "action",
+      "id": "action.b677946053156256ebbd2d94",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.exit",
+      "clip": {
+        "id": "fixture.exit",
+        "version": "1.0"
+      },
+      "channel": "body",
+      "source_start_frame": 0,
+      "phase_origin_frame": 210,
+      "loop": null,
+      "start_pose": "observing",
+      "end_pose": "idle",
+      "resulting_props": {}
+    },
+    {
+      "start_frame": 216,
+      "end_frame": 300,
+      "type": "action",
+      "id": "action.634927d20f45e0637ebc136e",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.idle",
+      "clip": {
+        "id": "fixture.idle",
+        "version": "1.0"
+      },
+      "channel": "body",
+      "source_start_frame": 0,
+      "phase_origin_frame": 216,
+      "loop": {
+        "start_frame": 0,
+        "end_frame": 12
+      },
+      "start_pose": "idle",
+      "end_pose": "idle",
+      "resulting_props": {}
+    },
+    {
+      "start_frame": 270,
+      "end_frame": 276,
+      "type": "action",
+      "id": "action.a2e57f35b24ff9d17463b55c",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.blink",
+      "clip": {
+        "id": "fixture.blink",
+        "version": "1.0"
+      },
+      "channel": "face",
+      "source_start_frame": 0,
+      "phase_origin_frame": 270,
+      "loop": null,
+      "start_pose": "eyes-open",
+      "end_pose": "eyes-open",
+      "resulting_props": {}
+    }
+  ],
+  "locked_assets": 15,
+  "frames": [
+    {
+      "frame": 35,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 70.0,
+      "actions": [
+        {
+          "id": "action.90bb56f9854b756a668b0230",
+          "action_id": "fixture.idle",
+          "clip": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 11
+        }
+      ]
+    },
+    {
+      "frame": 36,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 72.0,
+      "actions": [
+        {
+          "id": "action.90bb56f9854b756a668b0230",
+          "action_id": "fixture.idle",
+          "clip": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 0
+        },
+        {
+          "id": "action.b10c6d851e1e2c91a15b1e44",
+          "action_id": "fixture.blink",
+          "clip": {
+            "id": "fixture.blink",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "face",
+          "source_frame": 0
+        }
+      ]
+    },
+    {
+      "frame": 37,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 74.0,
+      "actions": [
+        {
+          "id": "action.90bb56f9854b756a668b0230",
+          "action_id": "fixture.idle",
+          "clip": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 1
+        },
+        {
+          "id": "action.b10c6d851e1e2c91a15b1e44",
+          "action_id": "fixture.blink",
+          "clip": {
+            "id": "fixture.blink",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "face",
+          "source_frame": 1
+        }
+      ]
+    },
+    {
+      "frame": 41,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 82.0,
+      "actions": [
+        {
+          "id": "action.90bb56f9854b756a668b0230",
+          "action_id": "fixture.idle",
+          "clip": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 5
+        },
+        {
+          "id": "action.b10c6d851e1e2c91a15b1e44",
+          "action_id": "fixture.blink",
+          "clip": {
+            "id": "fixture.blink",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "face",
+          "source_frame": 5
+        }
+      ]
+    },
+    {
+      "frame": 42,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 84.0,
+      "actions": [
+        {
+          "id": "action.90bb56f9854b756a668b0230",
+          "action_id": "fixture.idle",
+          "clip": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 6
+        }
+      ]
+    },
+    {
+      "frame": 84,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 168.0,
+      "actions": [
+        {
+          "id": "action.4c2072a31ba0a00410b57baf",
+          "action_id": "fixture.entry",
+          "clip": {
+            "id": "fixture.entry",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 0
+        }
+      ]
+    },
+    {
+      "frame": 89,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 178.0,
+      "actions": [
+        {
+          "id": "action.4c2072a31ba0a00410b57baf",
+          "action_id": "fixture.entry",
+          "clip": {
+            "id": "fixture.entry",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 5
+        }
+      ]
+    },
+    {
+      "frame": 90,
+      "scene_id": "train",
+      "body_pose": "observing",
+      "props": {},
+      "travel_distance_px": 180.0,
+      "actions": [
+        {
+          "id": "action.869cc6d3e2b0104f67c2ba92",
+          "action_id": "fixture.observe",
+          "clip": {
+            "id": "fixture.observe",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 0
+        }
+      ]
+    },
+    {
+      "frame": 209,
+      "scene_id": "train",
+      "body_pose": "observing",
+      "props": {},
+      "travel_distance_px": 416.0,
+      "actions": [
+        {
+          "id": "action.869cc6d3e2b0104f67c2ba92",
+          "action_id": "fixture.observe",
+          "clip": {
+            "id": "fixture.observe",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 11
+        }
+      ]
+    },
+    {
+      "frame": 210,
+      "scene_id": "train",
+      "body_pose": "observing",
+      "props": {},
+      "travel_distance_px": 420.0,
+      "actions": [
+        {
+          "id": "action.b677946053156256ebbd2d94",
+          "action_id": "fixture.exit",
+          "clip": {
+            "id": "fixture.exit",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 0
+        }
+      ]
+    },
+    {
+      "frame": 215,
+      "scene_id": "train",
+      "body_pose": "observing",
+      "props": {},
+      "travel_distance_px": 440.0,
+      "actions": [
+        {
+          "id": "action.b677946053156256ebbd2d94",
+          "action_id": "fixture.exit",
+          "clip": {
+            "id": "fixture.exit",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 5
+        }
+      ]
+    },
+    {
+      "frame": 216,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 444.0,
+      "actions": [
+        {
+          "id": "action.634927d20f45e0637ebc136e",
+          "action_id": "fixture.idle",
+          "clip": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 0
+        }
+      ]
+    },
+    {
+      "frame": 299,
+      "scene_id": "train",
+      "body_pose": "idle",
+      "props": {},
+      "travel_distance_px": 776.0,
+      "actions": [
+        {
+          "id": "action.634927d20f45e0637ebc136e",
+          "action_id": "fixture.idle",
+          "clip": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "pack": {
+            "id": "pack.synthetic",
+            "version": "1.0"
+          },
+          "channel": "body",
+          "source_frame": 11
+        }
+      ]
+    }
+  ],
+  "final_state": {
+    "body_pose": "idle",
+    "facial_overlay": null,
+    "props": {},
+    "cabin_light": null,
+    "weather_phase_frame": 0,
+    "travel_distance_px": 780.0
+  }
+}

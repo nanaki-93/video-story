@@ -43,6 +43,19 @@
           "title": "Repeat",
           "type": "string"
         },
+        "return_pose": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Return Pose"
+        },
         "scene_id": {
           "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
           "title": "Scene Id",

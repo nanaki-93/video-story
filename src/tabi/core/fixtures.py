@@ -324,7 +324,7 @@ def _populate(root: Path) -> FixtureManifest:
                     "end_frame": 300,
                     "anchor": "seated",
                     "initial_state": {"body_pose": "idle"},
-                    "final_state": {"body_pose": "idle"},
+                    "final_state": {"body_pose": "idle", "travel_distance_px": 780},
                 }
             ],
             "actions": requests,
