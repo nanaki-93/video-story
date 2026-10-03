@@ -4,6 +4,8 @@ import { layouts, wireframe } from "./wireframes";
 import type { PageId } from "./wireframes";
 import { playbackSpike } from "./playback";
 import { connect, sessionPanel } from "./session";
+import { projectsPage, setupPage, restoreRecents } from "./workspace";
+import { assetsPage, inspectorPage } from "./assets";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -25,7 +27,7 @@ sidebar.append(
   navigation,
   element("p", {
     className: "sidebar-note",
-    text: "Design study · T25\nLocal files stay on this Mac.",
+    text: "Local files stay on this Mac.",
   }),
 );
 const main = element("main", { id: "workspace" });
@@ -48,7 +50,7 @@ function navigate() {
     ? (requested as PageId)
     : mode === "spike"
       ? "preview"
-      : "settings";
+      : "projects";
   for (const [id, link] of links) {
     if (id === page) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
@@ -59,7 +61,7 @@ function navigate() {
   text.append(
     element("p", {
       className: "eyebrow",
-      text: "TABI STORY STUDIO / INTERFACE STUDY",
+      text: "TABI STORY STUDIO / LOCAL WORKSPACE",
     }),
     element("h1", { text: layout.title }),
     element("p", { className: "muted", text: layout.subtitle }),
@@ -69,7 +71,8 @@ function navigate() {
     element("span", {
       className: "badge",
       text:
-        mode === "connected" && page === "settings"
+        mode === "connected" &&
+        ["settings", "projects", "assets", "inspector", "setup"].includes(page)
           ? "Connected worker"
           : page === "preview" && mode === "spike"
             ? "Working playback spike"
@@ -77,7 +80,17 @@ function navigate() {
     }),
   );
   main.replaceChildren(header);
-  if (mode === "connected" && page === "settings") {
+  const pages = {
+    projects: projectsPage,
+    setup: setupPage,
+    assets: assetsPage,
+    inspector: inspectorPage,
+  };
+  if (mode === "connected" && Object.hasOwn(pages, page)) {
+    const panel = pages[page as keyof typeof pages]();
+    cleanup = panel.dispose;
+    main.append(panel.root);
+  } else if (mode === "connected" && page === "settings") {
     const panel = sessionPanel();
     cleanup = panel.dispose;
     main.append(panel.root);
@@ -103,7 +116,9 @@ function connectWorkspace() {
     }),
   );
   void connect()
-    .then((value) => {
+    .then(async (value) => {
+      if (attempt !== connectionAttempt) return;
+      if (value === "connected") await restoreRecents();
       if (attempt !== connectionAttempt) return;
       mode = value;
       navigate();

@@ -7,10 +7,10 @@ from fastapi import HTTPException
 
 from tabi.core.assets import AssetService
 from tabi.core.jobs import JobService
-from tabi.core.models.base import content_hash
+from tabi.core.models.base import canonical_bytes, content_hash
 from tabi.core.persistence import ProjectBusy, ProjectStore
 
-from .contracts import WebProject, WebProjects
+from .contracts import RecentProject, WebProject, WebProjects, WebRecents
 from .files import Artifacts, RootRegistry
 from .security import Sessions
 
@@ -49,12 +49,50 @@ class Runtime:
         self.failure = None
         self.on_stopped = lambda: None
 
-    def open(self, root_id, path):
+    def recent_store(self):
+        folder = self.settings.cache_root / "launcher"
+        folder.mkdir(parents=True, exist_ok=True, mode=0o700)
+        return ProjectStore(folder)
+
+    def recents(self):
+        try:
+            return WebRecents.model_validate_json(self.recent_store()._read_bytes("projects.json"))
+        except FileNotFoundError:
+            return WebRecents(schema_version="1.0", projects=[])
+
+    def remember(self, item):
+        info = item.info()
+        record = RecentProject(
+            root_id=item.root_id,
+            path=item.path,
+            root_path=str(self.roots.root(item.root_id)),
+            id=info.project.id,
+            title=info.project.title,
+        )
+        store = self.recent_store()
+        with store.writer_lock():
+            records = [record, *(r for r in self.recents().projects if r.id != record.id)][:30]
+            store._atomic_write(
+                "projects.json",
+                canonical_bytes(WebRecents(schema_version="1.0", projects=records)),
+                overwrite=True,
+            )
+
+    def open(self, root_id, path, expected_project_id=None):
         folder = self.roots.directory(root_id, path)
+        if (
+            expected_project_id is not None
+            and ProjectStore(folder).read().id != expected_project_id
+        ):
+            raise ValueError(
+                "This is a different project; select the folder with the original project ID"
+            )
         handle = "project-" + content_hash({"root": str(folder)})[:32]
         with self.lock:
             if handle in self.projects:
-                return self.projects[handle]
+                result = self.projects[handle]
+                self.remember(result)
+                return result
             store = ProjectStore(folder)
             if store.root != folder:
                 raise ValueError("project folder changed during opening")
@@ -72,6 +110,7 @@ class Runtime:
                 pass  # Another genuine lease may own this project; never adopt it.
             result = OpenProject(handle, root_id, path, assets, jobs)
             self.projects[handle] = result
+            self.remember(result)
             self.wake.set()
             return result
 

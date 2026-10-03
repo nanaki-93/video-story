@@ -34,12 +34,15 @@ import type { StoryboardReport } from "./storyboard_report";
 import type { TrackPlacement } from "./track_placement";
 import type { ValidationReport } from "./validation_report";
 import type { WaveformReport } from "./waveform_report";
+import type { WebCatalog } from "./web_catalog";
 import type { WebDirectory } from "./web_directory";
 import type { WebJobs } from "./web_jobs";
 import type { WebProject } from "./web_project";
 import type { WebProjects } from "./web_projects";
+import type { WebRecents } from "./web_recents";
 import type { WebRoots } from "./web_roots";
 import type { WebSession } from "./web_session";
+import type { WebUpload } from "./web_upload";
 
 export interface Documents {
   action: Action;
@@ -78,10 +81,13 @@ export interface Documents {
   track_placement: TrackPlacement;
   validation_report: ValidationReport;
   waveform_report: WaveformReport;
+  web_catalog: WebCatalog;
   web_directory: WebDirectory;
   web_jobs: WebJobs;
   web_project: WebProject;
   web_projects: WebProjects;
+  web_recents: WebRecents;
   web_roots: WebRoots;
   web_session: WebSession;
+  web_upload: WebUpload;
 }

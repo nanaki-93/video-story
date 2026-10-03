@@ -51,6 +51,15 @@ export async function api<K extends keyof Documents>(
   method = body === undefined ? "GET" : "POST",
   signal?: AbortSignal,
 ): Promise<Documents[K]> {
+  return checked(kind, await request(path, body, method, signal));
+}
+
+export async function request(
+  path: string,
+  body?: unknown,
+  method = body === undefined ? "GET" : "POST",
+  signal?: AbortSignal,
+): Promise<unknown> {
   if (!current) throw new Error("No authenticated local session");
   const response = await fetch(`/api/v1${path}`, {
     method,
@@ -59,8 +68,19 @@ export async function api<K extends keyof Documents>(
     headers:
       body === undefined
         ? {}
-        : { "Content-Type": "application/json", "X-Tabi-CSRF": current.csrf },
-    body: body === undefined ? undefined : JSON.stringify(body),
+        : {
+            "Content-Type":
+              body instanceof Blob
+                ? "application/octet-stream"
+                : "application/json",
+            "X-Tabi-CSRF": current.csrf,
+          },
+    body:
+      body === undefined
+        ? undefined
+        : body instanceof Blob
+          ? body
+          : JSON.stringify(body),
     signal,
   });
   if (response.status === 401)
@@ -77,7 +97,7 @@ export async function api<K extends keyof Documents>(
         : JSON.stringify(detail),
     );
   }
-  return checked(kind, await response.json());
+  return response.json();
 }
 
 export function sessionPanel() {

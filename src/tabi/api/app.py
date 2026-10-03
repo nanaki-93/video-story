@@ -102,7 +102,7 @@ def create_app(runtime, origin, web_root, *, drive_jobs=True):
 
     @app.post("/api/v1/projects/open")
     def open_project(body: FileSelection):
-        return runtime.open(body.root_id, body.path).info()
+        return runtime.open(body.root_id, body.path, body.expected_project_id).info()
 
     @app.get("/api/v1/projects/{handle}")
     def project(handle: str):
@@ -188,6 +188,10 @@ def create_app(runtime, origin, web_root, *, drive_jobs=True):
         return runtime.artifacts.response(
             item.assets.store, job.destination, job.output.sha256, request
         )
+
+    from .workspace import routes as workspace_routes
+
+    app.include_router(workspace_routes(runtime))
 
     @app.api_route("/{path:path}", methods=["GET", "HEAD"])
     def static(path: str, request: Request):

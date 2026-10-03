@@ -275,3 +275,9 @@ reopen without replacing the worker or duplicating jobs. Reopening an existing t
 a fresh fragment ticket. The public shell accepts initial navigation while API origin checks
 remain strict. Settings shows real worker/project state; other pages remain wireframes for
 T27–T32. Installation packaging remains T33. No MP4 or session secret enters Git.
+
+## T27 — project, asset and episode setup workflows
+
+Completed real project create/open/relink, durable recent locations, asset import and inspection, immutable versions, image proxies, hash-checked relinking and explicit approval forms. Uploads stream bounded chunks, persist receipts across reconnects, compare retried bytes and stay outside the registry until verified. Episode setup invokes shared Python authoring services; it never trims music to fit. All imports retain actual provenance and rights state.
+
+Evidence: `make check` 242 passed / 50 opt-in skipped; focused HTTP checks 13 passed; frontend checks/tests/build passed. Chrome created a Unicode-path project and Safari completed file selection → upload → asset inspection → still template → episode creation. [Import screenshot](evidence/t27-safari-import.png), [saved episode](evidence/t27-safari-episode.png). See [workflow guide](26-project-workflows.md).

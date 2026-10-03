@@ -2,6 +2,7 @@
 
 import hashlib
 import os
+import re
 import secrets
 import threading
 import time
@@ -142,10 +143,15 @@ class SecurityBoundary:
                     size = int(headers.get("content-length", "-1"))
                 except ValueError:
                     size = -1
-                if not 0 <= size <= 16 * 1024 * 1024:
+                binary = scope["method"] == "PUT" and re.fullmatch(
+                    r"/api/v1/projects/[A-Za-z0-9._-]+/uploads/[0-9a-f]{32}/chunk", path
+                )
+                maximum = 4 * 1024 * 1024 if binary else 16 * 1024 * 1024
+                if not 0 <= size <= maximum:
                     await reject(413, "JSON request needs a bounded Content-Length")
                     return
-                if headers.get("content-type", "").split(";")[0] != "application/json":
-                    await reject(415, "application/json required")
+                required_type = "application/octet-stream" if binary else "application/json"
+                if headers.get("content-type", "").split(";")[0] != required_type:
+                    await reject(415, f"{required_type} required")
                     return
         await self.app(scope, receive, guarded_send)
