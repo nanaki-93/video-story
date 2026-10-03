@@ -136,7 +136,7 @@ Video-only preview is intentional at this step; T16 supplies continuous audio. R
 
 ## Next task and pending gates
 
-**Next software task: T20 — persistent jobs and cancellation.** T14 requires T07/T08 real artwork and Marco's visual review; T16–T19 real soundtrack/effect/story review remains pending. Independent software work continues while creative inputs are pending.
+**Next software task: T21 — chunk planning, resume and assembly.** T14 requires T07/T08 real artwork and Marco's visual review; T16–T19 real soundtrack/effect/story review remains pending. Independent software work continues while creative inputs are pending.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 
@@ -175,3 +175,11 @@ The outline, original music, approved artwork and Marco's creative review remain
 ## T19 — production input gate pending
 
 `T19: record short-story production input gate` records the missing approved separated art/action/environment pack, finished original music masters and credits, real story outline and full-duration Marco review. T18's working synthetic demonstration cannot satisfy the 5–10-minute publishable-story acceptance. Reference selection and music-folder requests remain unanswered; no permissions, release identifiers or creative approvals are inferred. Independent engineering continues with T20.
+
+## T20 — complete
+
+`T20: persist owned jobs and recover verified progress` implements a durable FIFO queue, append-only hash-linked events, atomic current-state checkpoints and replay, a single-worker project lease, scoped subprocess cancellation, verified chunk publication and failure diagnostics. CLI queue operations invoke the same service intended for the web API. Original sources and other live processes are preserved.
+
+Verification: `make schemas check` passes **27 schemas and 201 unit checks**, Ruff clean; `make test-media` passes **all 31 actual-media checks**. Eight new unit cases cover durable state and ownership; three new actual-media cases pass, including an actual worker exit with a verified 46-frame chunk retained and cancellation of a live FFmpeg graph without touching another process. [Evidence and operations](19-jobs.md) retain completed, process-failed, cancelled and interrupted runs, with an unchanged WAV source hash. The verified 300-frame preview has 480,000 AAC samples. All MP4s remain ignored.
+
+One bounded chunk is the T20 execution unit. T21 adds planning/resume/assembly; T26/T33 add background service and packaged lifecycle. An OS-killed worker's leftover temporary work is never claimed as success or adopted by PID.

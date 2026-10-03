@@ -1,0 +1,1340 @@
+{
+  "project": "/Users/marcoandreose/DEV/lab/video-story/.local/t20-jobs/Marco 東京 project",
+  "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+  "source_sha256_before": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+  "source_sha256_after": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+  "worker_injected_exit": 29,
+  "jobs": [
+    {
+      "schema_version": "1.0",
+      "id": "job-81d3caaf8b264f0cbcf3ba62898da923",
+      "revision": 4,
+      "document_type": "render_job",
+      "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+      "profile": {
+        "id": "t20-proxy",
+        "canvas": {
+          "width": 640,
+          "height": 360
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "container": "mp4",
+        "video_codec": "libx264",
+        "pixel_format": "yuv420p",
+        "color_space": "bt709",
+        "audio_codec": "aac",
+        "sample_rate": 48000,
+        "video_bitrate": null
+      },
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+      },
+      "state": "verified",
+      "duration_frames": 300,
+      "chunks": [
+        {
+          "index": 0,
+          "first_frame": 0,
+          "frame_count": 300,
+          "state": "verified",
+          "output": {
+            "location": {
+              "root_id": "project",
+              "path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/chunk-000000.mp4"
+            },
+            "sha256": "e28b72e323f1bcb70b0c389c52043bf22993dc281a119bde00118b84ae09ae0f",
+            "size_bytes": 400947
+          },
+          "report_path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/chunk-000000-report.json"
+        }
+      ],
+      "completed_frames": 300,
+      "output": {
+        "location": {
+          "root_id": "project",
+          "path": "exports/verified-story.mp4"
+        },
+        "sha256": "e28b72e323f1bcb70b0c389c52043bf22993dc281a119bde00118b84ae09ae0f",
+        "size_bytes": 400947
+      },
+      "report_path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/final-report.json",
+      "error": null,
+      "destination": "exports/verified-story.mp4"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "job-b341f9044636482a9ce54f5be4cf8b00",
+      "revision": 3,
+      "document_type": "render_job",
+      "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+      "profile": {
+        "id": "t20-proxy",
+        "canvas": {
+          "width": 640,
+          "height": 360
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "container": "mp4",
+        "video_codec": "libx264",
+        "pixel_format": "yuv420p",
+        "color_space": "bt709",
+        "audio_codec": "aac",
+        "sample_rate": 48000,
+        "video_bitrate": null
+      },
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+      },
+      "state": "failed",
+      "duration_frames": 46,
+      "chunks": [
+        {
+          "index": 0,
+          "first_frame": 0,
+          "frame_count": 46,
+          "state": "failed",
+          "output": null
+        }
+      ],
+      "completed_frames": 0,
+      "output": null,
+      "report_path": null,
+      "error": {
+        "code": "process_failed",
+        "message": "ffmpeg exited -15:",
+        "log_path": "jobs/artifacts/job-b341f9044636482a9ce54f5be4cf8b00/error-00000002.log"
+      },
+      "first_frame": 140,
+      "destination": "exports/injected-failure.mp4"
+    },
+    {
+      "schema_version": "1.0",
+      "id": "job-6b7c3726ddea4e73860bfaddcaffdb48",
+      "revision": 4,
+      "document_type": "render_job",
+      "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+      "profile": {
+        "id": "t20-proxy",
+        "canvas": {
+          "width": 640,
+          "height": 360
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "container": "mp4",
+        "video_codec": "libx264",
+        "pixel_format": "yuv420p",
+        "color_space": "bt709",
+        "audio_codec": "aac",
+        "sample_rate": 48000,
+        "video_bitrate": null
+      },
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+      },
+      "state": "cancelled",
+      "duration_frames": 300,
+      "chunks": [
+        {
+          "index": 0,
+          "first_frame": 0,
+          "frame_count": 300,
+          "state": "pending",
+          "output": null
+        }
+      ],
+      "completed_frames": 0,
+      "output": null,
+      "report_path": null,
+      "error": {
+        "code": "cancelled",
+        "message": "the owned job was cancelled",
+        "log_path": "jobs/artifacts/job-6b7c3726ddea4e73860bfaddcaffdb48/error-00000003.log"
+      },
+      "destination": "exports/cancelled.mp4",
+      "cancel_requested": true
+    },
+    {
+      "schema_version": "1.0",
+      "id": "job-6002cb569a7f44f88c7bf3671046f6a7",
+      "revision": 4,
+      "document_type": "render_job",
+      "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+      "profile": {
+        "id": "t20-proxy",
+        "canvas": {
+          "width": 640,
+          "height": 360
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "container": "mp4",
+        "video_codec": "libx264",
+        "pixel_format": "yuv420p",
+        "color_space": "bt709",
+        "audio_codec": "aac",
+        "sample_rate": 48000,
+        "video_bitrate": null
+      },
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+      },
+      "state": "interrupted",
+      "duration_frames": 46,
+      "chunks": [
+        {
+          "index": 0,
+          "first_frame": 0,
+          "frame_count": 46,
+          "state": "verified",
+          "output": {
+            "location": {
+              "root_id": "project",
+              "path": "jobs/artifacts/job-6002cb569a7f44f88c7bf3671046f6a7/chunk-000000.mp4"
+            },
+            "sha256": "d81b07ff8453cca44681d3eaa01eb67d0fbe24795f59670c29afe6a0255a3955",
+            "size_bytes": 89708
+          },
+          "report_path": "jobs/artifacts/job-6002cb569a7f44f88c7bf3671046f6a7/chunk-000000-report.json"
+        }
+      ],
+      "completed_frames": 46,
+      "output": null,
+      "report_path": null,
+      "error": {
+        "code": "worker_interrupted",
+        "message": "The previous worker ended before completion. Verified chunks are retained; no saved PID was adopted or signalled.",
+        "log_path": null
+      },
+      "first_frame": 140,
+      "destination": "exports/interrupted.mp4"
+    }
+  ],
+  "events": {
+    "job-81d3caaf8b264f0cbcf3ba62898da923": [
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 0,
+        "previous_sha256": null,
+        "recorded_at": "2026-10-03T16:26:08.550080Z",
+        "kind": "queued",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-81d3caaf8b264f0cbcf3ba62898da923",
+          "revision": 0,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "queued",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/verified-story.mp4"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 1,
+        "previous_sha256": "1224be5c681ed54e8e776c774a02f0802ab774015b9a1b5a8c0c27f8724bb942",
+        "recorded_at": "2026-10-03T16:26:08.553072Z",
+        "kind": "started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-81d3caaf8b264f0cbcf3ba62898da923",
+          "revision": 1,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/verified-story.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 2,
+        "previous_sha256": "4834295940b3c95e2dc14de454dc36a6a66257627b9b27ffa6e561cc14179a98",
+        "recorded_at": "2026-10-03T16:26:08.569806Z",
+        "kind": "chunk_started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-81d3caaf8b264f0cbcf3ba62898da923",
+          "revision": 2,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "rendering",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/verified-story.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 3,
+        "previous_sha256": "cd4af3b5c76d61323b3cf2282fd640c2218d1a8e527a2a785b34c8b2ca8797a1",
+        "recorded_at": "2026-10-03T16:26:14.010853Z",
+        "kind": "chunk_verified",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-81d3caaf8b264f0cbcf3ba62898da923",
+          "revision": 3,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "verified",
+              "output": {
+                "location": {
+                  "root_id": "project",
+                  "path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/chunk-000000.mp4"
+                },
+                "sha256": "e28b72e323f1bcb70b0c389c52043bf22993dc281a119bde00118b84ae09ae0f",
+                "size_bytes": 400947
+              },
+              "report_path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/chunk-000000-report.json"
+            }
+          ],
+          "completed_frames": 300,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/verified-story.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 4,
+        "previous_sha256": "d9ac7034a4b110359d78ce2c4e15f492d411b8558d541fad821a5405cf42b843",
+        "recorded_at": "2026-10-03T16:26:14.014065Z",
+        "kind": "verified",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-81d3caaf8b264f0cbcf3ba62898da923",
+          "revision": 4,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "verified",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "verified",
+              "output": {
+                "location": {
+                  "root_id": "project",
+                  "path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/chunk-000000.mp4"
+                },
+                "sha256": "e28b72e323f1bcb70b0c389c52043bf22993dc281a119bde00118b84ae09ae0f",
+                "size_bytes": 400947
+              },
+              "report_path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/chunk-000000-report.json"
+            }
+          ],
+          "completed_frames": 300,
+          "output": {
+            "location": {
+              "root_id": "project",
+              "path": "exports/verified-story.mp4"
+            },
+            "sha256": "e28b72e323f1bcb70b0c389c52043bf22993dc281a119bde00118b84ae09ae0f",
+            "size_bytes": 400947
+          },
+          "report_path": "jobs/artifacts/job-81d3caaf8b264f0cbcf3ba62898da923/final-report.json",
+          "error": null,
+          "destination": "exports/verified-story.mp4"
+        }
+      }
+    ],
+    "job-b341f9044636482a9ce54f5be4cf8b00": [
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 0,
+        "previous_sha256": null,
+        "recorded_at": "2026-10-03T16:26:14.031369Z",
+        "kind": "queued",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-b341f9044636482a9ce54f5be4cf8b00",
+          "revision": 0,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "queued",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "first_frame": 140,
+          "destination": "exports/injected-failure.mp4"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 1,
+        "previous_sha256": "3f452244c399672e820268f60f23cd04984c577a2106b918d39e3aea66d90dab",
+        "recorded_at": "2026-10-03T16:26:14.035970Z",
+        "kind": "started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-b341f9044636482a9ce54f5be4cf8b00",
+          "revision": 1,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "first_frame": 140,
+          "destination": "exports/injected-failure.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 2,
+        "previous_sha256": "77c1b60d277d456e5598d2dd53619c5325b090c9ce4476e43861685a8f266535",
+        "recorded_at": "2026-10-03T16:26:14.058757Z",
+        "kind": "chunk_started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-b341f9044636482a9ce54f5be4cf8b00",
+          "revision": 2,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "rendering",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "first_frame": 140,
+          "destination": "exports/injected-failure.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 3,
+        "previous_sha256": "32e64fb7c29d3fa18c8dd44d8973519ec97df2af44a0123bc063137815aecf5b",
+        "recorded_at": "2026-10-03T16:26:14.361776Z",
+        "kind": "failed",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-b341f9044636482a9ce54f5be4cf8b00",
+          "revision": 3,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "failed",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "failed",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": {
+            "code": "process_failed",
+            "message": "ffmpeg exited -15:",
+            "log_path": "jobs/artifacts/job-b341f9044636482a9ce54f5be4cf8b00/error-00000002.log"
+          },
+          "first_frame": 140,
+          "destination": "exports/injected-failure.mp4"
+        }
+      }
+    ],
+    "job-6b7c3726ddea4e73860bfaddcaffdb48": [
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 0,
+        "previous_sha256": null,
+        "recorded_at": "2026-10-03T16:26:14.377960Z",
+        "kind": "queued",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6b7c3726ddea4e73860bfaddcaffdb48",
+          "revision": 0,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "queued",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/cancelled.mp4"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 1,
+        "previous_sha256": "3f8a0bbdf822c6e5d73952c033699f7af2465ded3edb9ae651f15d631c9c5972",
+        "recorded_at": "2026-10-03T16:26:14.384967Z",
+        "kind": "started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6b7c3726ddea4e73860bfaddcaffdb48",
+          "revision": 1,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/cancelled.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 2,
+        "previous_sha256": "1973e42d4f0b3d909a035c97ffaae3150227a96ef575809fc4ae33a906ad19d1",
+        "recorded_at": "2026-10-03T16:26:14.400764Z",
+        "kind": "chunk_started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6b7c3726ddea4e73860bfaddcaffdb48",
+          "revision": 2,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "rendering",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/cancelled.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 3,
+        "previous_sha256": "e7e399df692458781c4f4fa7ad8fa8315c196ffc3a3be94f7e28c7b895d0f803",
+        "recorded_at": "2026-10-03T16:26:14.749517Z",
+        "kind": "cancel_requested",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6b7c3726ddea4e73860bfaddcaffdb48",
+          "revision": 3,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "rendering",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "destination": "exports/cancelled.mp4",
+          "owner": "worker-a623da331feb42f290663e44d0e9c914",
+          "cancel_requested": true
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 4,
+        "previous_sha256": "b4e7f2ceaa1cfd355563a29ae3be27c87fe3fb027372d948c84b8a1ad1827b81",
+        "recorded_at": "2026-10-03T16:26:15.967812Z",
+        "kind": "cancelled",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6b7c3726ddea4e73860bfaddcaffdb48",
+          "revision": 4,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "cancelled",
+          "duration_frames": 300,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 300,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": {
+            "code": "cancelled",
+            "message": "the owned job was cancelled",
+            "log_path": "jobs/artifacts/job-6b7c3726ddea4e73860bfaddcaffdb48/error-00000003.log"
+          },
+          "destination": "exports/cancelled.mp4",
+          "cancel_requested": true
+        }
+      }
+    ],
+    "job-6002cb569a7f44f88c7bf3671046f6a7": [
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 0,
+        "previous_sha256": null,
+        "recorded_at": "2026-10-03T16:26:15.983364Z",
+        "kind": "queued",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6002cb569a7f44f88c7bf3671046f6a7",
+          "revision": 0,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "queued",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "first_frame": 140,
+          "destination": "exports/interrupted.mp4"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 1,
+        "previous_sha256": "95807803c50c4d7bbadb94f26640d583298d2b72115ba92b53395be9eced8989",
+        "recorded_at": "2026-10-03T16:26:16.139782Z",
+        "kind": "started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6002cb569a7f44f88c7bf3671046f6a7",
+          "revision": 1,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "pending",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "first_frame": 140,
+          "destination": "exports/interrupted.mp4",
+          "owner": "worker-1e3f963c98f44a37a399ca02894da57c"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 2,
+        "previous_sha256": "295bba3c55198562b059979d0fb5d173b01f5f23f1cef288afc74d54c03d7999",
+        "recorded_at": "2026-10-03T16:26:16.155889Z",
+        "kind": "chunk_started",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6002cb569a7f44f88c7bf3671046f6a7",
+          "revision": 2,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "rendering",
+              "output": null
+            }
+          ],
+          "completed_frames": 0,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "first_frame": 140,
+          "destination": "exports/interrupted.mp4",
+          "owner": "worker-1e3f963c98f44a37a399ca02894da57c"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 3,
+        "previous_sha256": "6f079a86df2364f113d6eff6f157018cbd4af899ea7f3ecee7a8f0a03e3e1236",
+        "recorded_at": "2026-10-03T16:26:20.282771Z",
+        "kind": "chunk_verified",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6002cb569a7f44f88c7bf3671046f6a7",
+          "revision": 3,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "running",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "verified",
+              "output": {
+                "location": {
+                  "root_id": "project",
+                  "path": "jobs/artifacts/job-6002cb569a7f44f88c7bf3671046f6a7/chunk-000000.mp4"
+                },
+                "sha256": "d81b07ff8453cca44681d3eaa01eb67d0fbe24795f59670c29afe6a0255a3955",
+                "size_bytes": 89708
+              },
+              "report_path": "jobs/artifacts/job-6002cb569a7f44f88c7bf3671046f6a7/chunk-000000-report.json"
+            }
+          ],
+          "completed_frames": 46,
+          "output": null,
+          "report_path": null,
+          "error": null,
+          "first_frame": 140,
+          "destination": "exports/interrupted.mp4",
+          "owner": "worker-1e3f963c98f44a37a399ca02894da57c"
+        }
+      },
+      {
+        "schema_version": "1.0",
+        "document_type": "job_event",
+        "sequence": 4,
+        "previous_sha256": "795c8e1d046e71eb2b361a5a3ea40e0b47c979ad0ef7a336754530fc719cd1da",
+        "recorded_at": "2026-10-03T16:26:20.339559Z",
+        "kind": "interrupted",
+        "job": {
+          "schema_version": "1.0",
+          "id": "job-6002cb569a7f44f88c7bf3671046f6a7",
+          "revision": 4,
+          "document_type": "render_job",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "profile": {
+            "id": "t20-proxy",
+            "canvas": {
+              "width": 640,
+              "height": 360
+            },
+            "fps": {
+              "num": 30,
+              "den": 1
+            },
+            "container": "mp4",
+            "video_codec": "libx264",
+            "pixel_format": "yuv420p",
+            "color_space": "bt709",
+            "audio_codec": "aac",
+            "sample_rate": 48000,
+            "video_bitrate": null
+          },
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "63640abe2d09912bd5608a07d57c8e58cec707b8454cfbd7d3bb2103fbd4fff3"
+          },
+          "state": "interrupted",
+          "duration_frames": 46,
+          "chunks": [
+            {
+              "index": 0,
+              "first_frame": 0,
+              "frame_count": 46,
+              "state": "verified",
+              "output": {
+                "location": {
+                  "root_id": "project",
+                  "path": "jobs/artifacts/job-6002cb569a7f44f88c7bf3671046f6a7/chunk-000000.mp4"
+                },
+                "sha256": "d81b07ff8453cca44681d3eaa01eb67d0fbe24795f59670c29afe6a0255a3955",
+                "size_bytes": 89708
+              },
+              "report_path": "jobs/artifacts/job-6002cb569a7f44f88c7bf3671046f6a7/chunk-000000-report.json"
+            }
+          ],
+          "completed_frames": 46,
+          "output": null,
+          "report_path": null,
+          "error": {
+            "code": "worker_interrupted",
+            "message": "The previous worker ended before completion. Verified chunks are retained; no saved PID was adopted or signalled.",
+            "log_path": null
+          },
+          "first_frame": 140,
+          "destination": "exports/interrupted.mp4"
+        }
+      }
+    ]
+  }
+}

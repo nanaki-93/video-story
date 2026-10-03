@@ -152,9 +152,16 @@ class ProjectStore:
 
     @contextmanager
     def writer_lock(self) -> Iterator[None]:
-        with self._directory(()) as directory:
+        with self.exclusive_lock(".tabi.lock"):
+            yield
+
+    @contextmanager
+    def exclusive_lock(self, relative: str) -> Iterator[None]:
+        """Nonblocking process lease; the inode remains in place after release."""
+        parts = self._parts(relative)
+        with self._directory(parts[:-1], create=True) as directory:
             descriptor = os.open(
-                ".tabi.lock", os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600, dir_fd=directory
+                parts[-1], os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600, dir_fd=directory
             )
         try:
             if not stat.S_ISREG(os.fstat(descriptor).st_mode) or os.fstat(descriptor).st_nlink != 1:

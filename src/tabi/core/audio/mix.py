@@ -17,7 +17,7 @@ from ..assets.service import digest_file
 from ..models.audio import AudioMixReport, AudioPreparation, AudioVerification
 from ..models.base import AssetRef, content_hash
 from ..models.production import Fingerprint
-from ..process import run_tool
+from ..process import checkpoint, run_tool
 from ..render.backend import FrozenRegistry
 from ..toolchain import doctor
 from .pcm import BLOCK_SAMPLES, PCMReader, placement_block
@@ -194,6 +194,7 @@ class AudioMixer:
             placements = sorted(snapshot.audio_placements, key=lambda t: (t.start_sample, t.id))
             with raw.open("xb") as stream:
                 for start in range(start_sample, end_sample, BLOCK_SAMPLES):
+                    checkpoint()
                     count = min(BLOCK_SAMPLES, end_sample - start)
                     mixed = np.zeros((count, 2), dtype=np.float64)
                     for track in placements:

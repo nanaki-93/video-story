@@ -7,6 +7,7 @@ from PIL import Image, ImageCms
 
 from ..models import Asset
 from ..models.base import content_hash
+from ..process import checkpoint
 from .backend import FrozenRegistry, RenderError
 
 
@@ -19,6 +20,7 @@ class ImageNormalizer:
         self.warnings: set[str] = set()
 
     def prepare(self, asset: Asset, frame: int = 0) -> Path:
+        checkpoint()
         if asset.kind not in {"still", "mask", "sequence"}:
             raise RenderError(
                 "this backend needs prepared PNG stills/sequences; "

@@ -5,7 +5,7 @@ from .audio import AudioMixReport, AudioTimelineReport, WaveformReport
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
-from .production import CompiledSnapshot, ReleaseRecord, RenderJob, ValidationReport
+from .production import CompiledSnapshot, JobEvent, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
 from .registry import AssetHealth, ImportRequest
 from .rendering import CompilationResult, RenderReport
@@ -20,6 +20,7 @@ DOCUMENT_MODELS = {
     "episode": Episode,
     "compiled_snapshot": CompiledSnapshot,
     "render_job": RenderJob,
+    "job_event": JobEvent,
     "release_record": ReleaseRecord,
     "validation_report": ValidationReport,
     "capability_report": CapabilityReport,

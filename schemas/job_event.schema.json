@@ -296,157 +296,213 @@
       ],
       "title": "OutputProfile",
       "type": "object"
+    },
+    "RenderJob": {
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "cancel_requested": {
+          "default": false,
+          "title": "Cancel Requested",
+          "type": "boolean"
+        },
+        "chunks": {
+          "items": {
+            "$ref": "#/$defs/ChunkRecord"
+          },
+          "title": "Chunks",
+          "type": "array"
+        },
+        "completed_frames": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Completed Frames",
+          "type": "integer"
+        },
+        "destination": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination"
+        },
+        "document_type": {
+          "const": "render_job",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "duration_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/JobError"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "first_frame": {
+          "default": 0,
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HashedFile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Owner"
+        },
+        "profile": {
+          "$ref": "#/$defs/OutputProfile"
+        },
+        "report_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report Path"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "queued",
+            "running",
+            "paused",
+            "interrupted",
+            "cancelled",
+            "failed",
+            "verified"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "document_type",
+        "snapshot_sha256",
+        "profile",
+        "backend",
+        "state",
+        "duration_frames",
+        "chunks"
+      ],
+      "title": "RenderJob",
+      "type": "object"
     }
   },
-  "$id": "urn:tabi:schema:1.0:render_job",
+  "$id": "urn:tabi:schema:1.0:job_event",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "backend": {
-      "$ref": "#/$defs/Fingerprint"
-    },
-    "cancel_requested": {
-      "default": false,
-      "title": "Cancel Requested",
-      "type": "boolean"
-    },
-    "chunks": {
-      "items": {
-        "$ref": "#/$defs/ChunkRecord"
-      },
-      "title": "Chunks",
-      "type": "array"
-    },
-    "completed_frames": {
-      "default": 0,
-      "minimum": 0,
-      "title": "Completed Frames",
-      "type": "integer"
-    },
-    "destination": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "title": "Destination"
-    },
     "document_type": {
-      "const": "render_job",
+      "const": "job_event",
+      "default": "job_event",
       "title": "Document Type",
       "type": "string"
     },
-    "duration_frames": {
-      "exclusiveMinimum": 0,
-      "title": "Duration Frames",
-      "type": "integer"
+    "job": {
+      "$ref": "#/$defs/RenderJob"
     },
-    "error": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/JobError"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
-    },
-    "first_frame": {
-      "default": 0,
-      "minimum": 0,
-      "title": "First Frame",
-      "type": "integer"
-    },
-    "id": {
+    "kind": {
       "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-      "title": "Id",
+      "title": "Kind",
       "type": "string"
     },
-    "output": {
+    "previous_sha256": {
       "anyOf": [
         {
-          "$ref": "#/$defs/HashedFile"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
-    },
-    "owner": {
-      "anyOf": [
-        {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "pattern": "^[0-9a-f]{64}$",
           "type": "string"
         },
         {
           "type": "null"
         }
       ],
-      "default": null,
-      "title": "Owner"
+      "title": "Previous Sha256"
     },
-    "profile": {
-      "$ref": "#/$defs/OutputProfile"
-    },
-    "report_path": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "title": "Report Path"
-    },
-    "revision": {
-      "default": 0,
-      "minimum": 0,
-      "title": "Revision",
-      "type": "integer"
+    "recorded_at": {
+      "format": "date-time",
+      "title": "Recorded At",
+      "type": "string"
     },
     "schema_version": {
       "const": "1.0",
       "title": "Schema Version",
       "type": "string"
     },
-    "snapshot_sha256": {
-      "pattern": "^[0-9a-f]{64}$",
-      "title": "Snapshot Sha256",
-      "type": "string"
-    },
-    "state": {
-      "enum": [
-        "queued",
-        "running",
-        "paused",
-        "interrupted",
-        "cancelled",
-        "failed",
-        "verified"
-      ],
-      "title": "State",
-      "type": "string"
+    "sequence": {
+      "minimum": 0,
+      "title": "Sequence",
+      "type": "integer"
     }
   },
   "required": [
     "schema_version",
-    "id",
-    "document_type",
-    "snapshot_sha256",
-    "profile",
-    "backend",
-    "state",
-    "duration_frames",
-    "chunks"
+    "sequence",
+    "previous_sha256",
+    "recorded_at",
+    "kind",
+    "job"
   ],
-  "title": "RenderJob",
+  "title": "JobEvent",
   "type": "object"
 }

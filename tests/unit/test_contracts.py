@@ -295,6 +295,7 @@ def test_root_registry_is_complete(project_data, snapshot_data):
         "action_pack",
         "compiled_snapshot",
         "render_job",
+        "job_event",
         "release_record",
         "validation_report",
         "capability_report",

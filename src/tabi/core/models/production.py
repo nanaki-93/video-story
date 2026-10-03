@@ -124,6 +124,7 @@ class ChunkRecord(Model):
     frame_count: PositiveInt
     state: Literal["pending", "rendering", "verified", "failed"]
     output: HashedFile | None = None
+    report_path: RelativePath | None = Field(default=None, exclude_if=lambda v: v is None)
 
     @model_validator(mode="after")
     def verified_output(self) -> Self:
@@ -150,6 +151,10 @@ class RenderJob(DraftDocument):
     output: HashedFile | None = None
     report_path: RelativePath | None = None
     error: JobError | None = None
+    first_frame: Frame = Field(default=0, exclude_if=lambda v: v == 0)
+    destination: RelativePath | None = Field(default=None, exclude_if=lambda v: v is None)
+    owner: Identifier | None = Field(default=None, exclude_if=lambda v: v is None)
+    cancel_requested: bool = Field(default=False, exclude_if=lambda v: not v)
 
     @model_validator(mode="after")
     def ledger(self) -> Self:
@@ -169,6 +174,23 @@ class RenderJob(DraftDocument):
             raise ValueError("verified jobs require all chunks, output and verification report")
         if self.state == "failed" and self.error is None:
             raise ValueError("failed job requires a diagnostic")
+        return self
+
+
+class JobEvent(Document):
+    document_type: Literal["job_event"] = "job_event"
+    sequence: Frame
+    previous_sha256: SHA256 | None
+    recorded_at: AwareDatetime
+    kind: Identifier
+    job: RenderJob
+
+    @model_validator(mode="after")
+    def event_revision(self) -> Self:
+        if self.sequence != self.job.revision or (self.sequence == 0) != (
+            self.previous_sha256 is None
+        ):
+            raise ValueError("journal sequence, revision and previous event must agree")
         return self
 
 

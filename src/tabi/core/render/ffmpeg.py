@@ -18,7 +18,7 @@ from ..models.base import Canvas, content_hash
 from ..models.production import OutputProfile, ScheduledAction
 from ..models.rendering import RenderReport
 from ..models.scenes import LandmarkEvent
-from ..process import run_tool
+from ..process import checkpoint, run_tool
 from ..timeline import Timeline, loop_frame
 from ..timeline.effects import validate_effects
 from ..timeline.transitions import validate_transitions
@@ -110,6 +110,7 @@ class GraphBuilder:
         folder = self.root / f"clip-{self.counter}-{len(self.inputs)}"
         folder.mkdir()
         for local, frame in enumerate(range(left, right)):
+            checkpoint()
             source_frame = (
                 loop_frame(frame, event.phase_origin_frame, event.loop)
                 if event.loop
@@ -308,6 +309,7 @@ class GraphBuilder:
                 folder = self.root / f"effect-{self.counter}"
                 folder.mkdir()
                 for local, frame in enumerate(range(start, end)):
+                    checkpoint()
                     source = loop_frame(frame, scene.initial_state.weather_phase_frame, spec.loop)
                     prepared = self.normalizer.prepare(asset, source)
                     os.link(prepared, folder / f"{local:06}.png")
@@ -665,6 +667,7 @@ class FFmpegRenderer:
             )
             with temporary.open("rb") as source:
                 os.fsync(source.fileno())
+            checkpoint(force=True)
             os.link(temporary, output)
             descriptor = os.open(output.parent, os.O_RDONLY | os.O_DIRECTORY)
             try:

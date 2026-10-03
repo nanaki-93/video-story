@@ -9,6 +9,7 @@ from tabi import __version__
 from tabi.cli.assets import add_asset_commands, run_asset_command
 from tabi.cli.audio import add_audio_commands, run_audio_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
+from tabi.cli.jobs import add_job_commands, run_job_command
 from tabi.cli.logging import configure_logging
 from tabi.core.config import ConfigError, load_settings
 from tabi.core.documents import DocumentError, read_document
@@ -34,6 +35,7 @@ def main(argv: list[str] | None = None) -> int:
     add_asset_commands(commands)
     add_audio_commands(commands)
     add_episode_commands(commands)
+    add_job_commands(commands)
     config = commands.add_parser(
         "config", help="Show resolved local settings without changing files"
     )
@@ -167,6 +169,15 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         except (ValueError, OSError, ToolError) as error:
             logger.error("episode_operation_failed: %s", error)
+            return 4
+    if args.command == "jobs":
+        try:
+            return run_job_command(args, settings)
+        except KeyboardInterrupt:
+            logger.error("worker_interrupted: owned work retained for recovery")
+            return 130
+        except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
+            logger.error("job_operation_failed: %s", error)
             return 4
     if args.command == "asset":
         try:
