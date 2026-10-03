@@ -47,6 +47,12 @@ class MoveAction(Model):
     start_frame: Frame
 
 
+class ChangePack(Model):
+    kind: Literal["change_pack"]
+    scene_id: Identifier
+    pack: AssetRef
+
+
 class PutAction(Model):
     kind: Literal["put_action"]
     action: ActionRequest
@@ -89,6 +95,7 @@ EditCommand = Annotated[
     | AppendScene
     | MoveCut
     | MoveAction
+    | ChangePack
     | PutAction
     | RemoveAction
     | PutCurve
@@ -227,6 +234,7 @@ class EditorService(AuthoringService):
                 action = next((a for a in pack.actions if a.id == command.action_id), None)
                 if action is None:
                     raise ValueError("choose a registered action in this pack")
+                data["scenes"][-1]["character_outfit_id"] = pack.outfit_id
                 data["actions"].append(
                     ActionRequest(
                         id=f"{command.id}-body",
@@ -254,6 +262,27 @@ class EditorService(AuthoringService):
                 raise ValueError("unknown action")
             length = action["end_frame"] - action["start_frame"]
             action.update(start_frame=command.start_frame, end_frame=command.start_frame + length)
+        elif isinstance(command, ChangePack):
+            scene = next((s for s in data["scenes"] if s["id"] == command.scene_id), None)
+            if scene is None:
+                raise ValueError("unknown scene")
+            pack = self.store.read(
+                f"registry/actions/{command.pack.id}/{command.pack.version}.json"
+            )
+            scene["character_outfit_id"] = pack.outfit_id
+            actions = {a.id: a for a in pack.actions}
+            for request in data["actions"]:
+                if request["scene_id"] != command.scene_id:
+                    continue
+                if request["action_id"] not in actions:
+                    raise ValueError(f"replacement pack lacks action {request['action_id']}")
+                request.update(
+                    pack=command.pack.model_dump(mode="json"),
+                    version=actions[request["action_id"]].version,
+                )
+            for timing in data.get("random_actions", []):
+                if timing["scene_id"] == command.scene_id:
+                    raise ValueError("edit seeded actions atomically when changing their pack")
         elif isinstance(command, PutAction):
             data["actions"] = [a for a in data["actions"] if a["id"] != command.action.id]
             data["actions"].append(command.action.model_dump(mode="json"))

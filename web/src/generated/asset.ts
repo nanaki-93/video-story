@@ -13,6 +13,7 @@ export type Height = number;
 export type Width = number;
 export type X1 = number;
 export type Y1 = number;
+export type Outfits = string[];
 export type Id = string;
 export type Version = string;
 export type Templates = AssetRef[];
@@ -90,6 +91,7 @@ export interface Compatibility {
   cameras?: Cameras;
   channels?: Channels;
   crop?: Crop | null;
+  outfits?: Outfits;
   pivot?: Point | null;
   templates?: Templates;
 }

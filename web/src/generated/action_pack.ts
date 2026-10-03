@@ -32,6 +32,7 @@ export type DocumentType = "action_pack";
 export type Den = number;
 export type Num = number;
 export type Id2 = string;
+export type OutfitId = string | null;
 export type Revision = number;
 export type SchemaVersion = "1.0";
 export type Version2 = string;
@@ -46,6 +47,7 @@ export interface ActionPack {
   document_type: DocumentType;
   fps: FrameRate;
   id: Id2;
+  outfit_id?: OutfitId;
   revision?: Revision;
   schema_version: SchemaVersion;
   template: AssetRef;

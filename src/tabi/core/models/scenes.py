@@ -215,6 +215,9 @@ Event = Annotated[LandmarkEvent | PropEvent, Field(discriminator="type")]
 class SceneInstance(FrameInterval):
     id: Identifier
     template: AssetRef
+    character_outfit_id: Identifier | None = Field(
+        default=None, exclude_if=lambda value: value is None
+    )
     slot_assignments: dict[Identifier, AssetRef] = Field(default_factory=dict)
     anchor: Identifier | None = None
     initial_state: SceneState

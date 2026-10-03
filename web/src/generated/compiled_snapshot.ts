@@ -107,6 +107,7 @@ export type Revision = number;
  */
 export type Scenes = [SceneInstance, ...SceneInstance[]];
 export type Anchor = string | null;
+export type CharacterOutfitId = string | null;
 export type Continuity1 = "preserve" | "deliberate_reset";
 export type Curves1 = Curve[];
 export type EndFrame4 = number;
@@ -393,6 +394,7 @@ export interface RandomActionTiming {
  */
 export interface SceneInstance {
   anchor?: Anchor;
+  character_outfit_id?: CharacterOutfitId;
   continuity?: Continuity1;
   curves?: Curves1;
   end_frame: EndFrame4;

@@ -86,6 +86,7 @@ export type Revision = number;
  */
 export type Scenes = [SceneInstance, ...SceneInstance[]];
 export type Anchor = string | null;
+export type CharacterOutfitId = string | null;
 export type Continuity1 = "preserve" | "deliberate_reset";
 export type Curves1 = Curve[];
 export type EndFrame4 = number;
@@ -132,6 +133,7 @@ export type Height1 = number;
 export type Width1 = number;
 export type X1 = number;
 export type Y1 = number;
+export type Outfits = string[];
 export type Templates = AssetRef[];
 export type DocumentType2 = "asset";
 /**
@@ -381,6 +383,7 @@ export interface RandomActionTiming {
  */
 export interface SceneInstance {
   anchor?: Anchor;
+  character_outfit_id?: CharacterOutfitId;
   continuity?: Continuity1;
   curves?: Curves1;
   end_frame: EndFrame4;
@@ -494,6 +497,7 @@ export interface Compatibility {
   cameras?: Cameras;
   channels?: Channels;
   crop?: Crop | null;
+  outfits?: Outfits;
   pivot?: Point | null;
   templates?: Templates;
 }

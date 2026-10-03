@@ -86,7 +86,14 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
     store.save_draft(project, expected_revision=None)
 
     def register(
-        name, images=None, *, kind="still", audio_count=None, silence=False, channels=None
+        name,
+        images=None,
+        *,
+        kind="still",
+        audio_count=None,
+        silence=False,
+        channels=None,
+        outfits=None,
     ):
         paths = []
         if audio_count is not None:
@@ -125,7 +132,11 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
                 "source": {"path": paths[0].relative_to(root).as_posix()},
                 "files": [hashed(root, path).model_dump(mode="json") for path in paths],
                 "probe": probe,
-                "compatibility": {"cameras": ["fixture.camera"], "channels": channels or []},
+                "compatibility": {
+                    "cameras": ["fixture.camera"],
+                    "channels": channels or [],
+                    "outfits": outfits or [],
+                },
                 "provenance": {
                     "origin": "synthetic",
                     "creator": "tabi-fixtures-v1",
@@ -545,10 +556,14 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
             },
         }
         episode = validate_data(data)
-    if profile == "cafe":
+    if profile in {"cafe", "activities"}:
         from .fixture_cafe import populate_cafe
 
         episode = populate_cafe(store, register, pack, episode)
+        if profile == "activities":
+            from .fixture_activity import populate_activities
+
+            episode = populate_activities(store, register, episode)
     store.save_draft(episode, expected_revision=None)
     files = [
         hashed(root, path)
@@ -565,7 +580,7 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
 def generate_fixtures(output: Path, *, profile: str = "core") -> FixtureManifest:
     """Publish a new fixture project only; never merge into or replace an existing one."""
     output = output.expanduser().resolve()
-    if profile not in {"core", "effects", "story", "cafe"}:
+    if profile not in {"core", "effects", "story", "cafe", "activities"}:
         raise StorageError("unknown fixture profile")
     if output.exists():
         raise StorageError("fixture output already exists; choose a new directory")

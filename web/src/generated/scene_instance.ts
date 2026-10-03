@@ -1,6 +1,7 @@
 /* Generated from schemas/ by scripts/contracts.mjs. Do not edit. */
 
 export type Anchor = string | null;
+export type CharacterOutfitId = string | null;
 export type Continuity = "preserve" | "deliberate_reset";
 export type Interpolation = "constant" | "linear";
 /**
@@ -49,6 +50,7 @@ export type OverlapFrames = number;
 
 export interface SceneInstance {
   anchor?: Anchor;
+  character_outfit_id?: CharacterOutfitId;
   continuity?: Continuity;
   curves?: Curves;
   end_frame: EndFrame;

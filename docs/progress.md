@@ -336,3 +336,15 @@ was needed. Two unit checks and one actual-media check pass, including fixed arc
 masked motion, anchor/occlusion and a 300-frame / 480000-sample export. `make check`: 261
 passed / 55 opt-in skipped, 61 schemas. [Guide](33-cafe-template.md),
 [synthetic frame](evidence/t34-cafe-frame.png).
+
+## T35 — activities and outfit compatibility
+
+Core complete; real animation/outfit review remains pending. Scene/pack/clip outfit declarations
+join camera/template/version checks. Story offers atomic scene pack switching and a compatibility
+inventory. Synthetic sipping, reading and sleeping have explicit entry/loop/exit clips and props;
+sleep owns the face channel. Source assets and legacy hashes are preserved.
+
+Four focused checks and a real 300-frame / 480000-sample, four-chunk export pass. Chrome proved
+successful outfit switching and rejection without data loss. `make check`: 265 passed / 56
+opt-in skipped; 61 schemas. Frontend checks/build/four tests pass. [Guide](34-activity-packs.md),
+[controls](evidence/t35-pack-controls.jpg). No new Tabi design or creative approval is implied.

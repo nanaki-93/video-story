@@ -98,6 +98,7 @@ class ProbeData(Model):
 
 class Compatibility(Model):
     cameras: list[Identifier] = Field(default_factory=list)
+    outfits: list[Identifier] = Field(default_factory=list, exclude_if=lambda value: not value)
     templates: list[AssetRef] = Field(default_factory=list)
     channels: list[Channel] = Field(default_factory=list)
     anchor: Point | None = None
@@ -173,6 +174,7 @@ class ActionPack(ApprovableDocument):
     document_type: Literal["action_pack"]
     version: Version
     camera_id: Identifier
+    outfit_id: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
     template: AssetRef
     canvas: Canvas
     anchor: Point

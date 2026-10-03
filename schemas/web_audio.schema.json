@@ -437,6 +437,14 @@
           ],
           "default": null
         },
+        "outfits": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+            "type": "string"
+          },
+          "title": "Outfits",
+          "type": "array"
+        },
         "pivot": {
           "anyOf": [
             {
@@ -1425,6 +1433,19 @@
           ],
           "default": null,
           "title": "Anchor"
+        },
+        "character_outfit_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Character Outfit Id"
         },
         "continuity": {
           "default": "preserve",

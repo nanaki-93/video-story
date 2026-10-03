@@ -25,6 +25,7 @@ export type Purposes = string[];
 export type Sample = number;
 export type MusicBoundaries = MusicBoundary[];
 export type Anchor = string | null;
+export type CharacterOutfitId = string | null;
 export type Continuity1 = "preserve" | "deliberate_reset";
 export type Interpolation = "constant" | "linear";
 /**
@@ -142,6 +143,7 @@ export interface MusicBoundary {
  */
 export interface SceneInstance {
   anchor?: Anchor;
+  character_outfit_id?: CharacterOutfitId;
   continuity?: Continuity1;
   curves?: Curves;
   end_frame: EndFrame1;

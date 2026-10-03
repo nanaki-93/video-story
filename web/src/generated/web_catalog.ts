@@ -13,6 +13,7 @@ export type Height = number;
 export type Width = number;
 export type X1 = number;
 export type Y1 = number;
+export type Outfits = string[];
 export type Id = string;
 export type Version = string;
 export type Templates = AssetRef[];
@@ -135,6 +136,7 @@ export type Revision1 = number;
  */
 export type Scenes = [SceneInstance, ...SceneInstance[]];
 export type Anchor = string | null;
+export type CharacterOutfitId = string | null;
 export type Continuity1 = "preserve" | "deliberate_reset";
 export type Curves1 = Curve[];
 export type EndFrame4 = number;
@@ -187,6 +189,7 @@ export type AlphaMode1 = "straight" | "premultiplied";
 export type CameraId = string;
 export type DocumentType3 = "action_pack";
 export type Id12 = string;
+export type OutfitId = string | null;
 export type Revision2 = number;
 export type SchemaVersion2 = "1.0";
 export type Version6 = string;
@@ -309,6 +312,7 @@ export interface Compatibility {
   cameras?: Cameras;
   channels?: Channels;
   crop?: Crop | null;
+  outfits?: Outfits;
   pivot?: Point | null;
   templates?: Templates;
 }
@@ -585,6 +589,7 @@ export interface RandomActionTiming {
  */
 export interface SceneInstance {
   anchor?: Anchor;
+  character_outfit_id?: CharacterOutfitId;
   continuity?: Continuity1;
   curves?: Curves1;
   end_frame: EndFrame4;
@@ -665,6 +670,7 @@ export interface ActionPack {
   document_type: DocumentType3;
   fps: FrameRate;
   id: Id12;
+  outfit_id?: OutfitId;
   revision?: Revision2;
   schema_version: SchemaVersion2;
   template: AssetRef;

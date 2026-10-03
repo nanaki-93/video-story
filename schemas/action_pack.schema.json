@@ -332,6 +332,19 @@
       "title": "Id",
       "type": "string"
     },
+    "outfit_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outfit Id"
+    },
     "revision": {
       "default": 0,
       "minimum": 0,

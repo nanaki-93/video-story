@@ -109,6 +109,10 @@ class ActionCompiler:
         template = self.resolve(scene.template, "scene_template")
         if pack.template != scene.template or pack.camera_id != template.camera_id:
             raise CompileError("action pack camera/template is incompatible with the scene")
+        if pack.outfit_id != scene.character_outfit_id:
+            raise CompileError(
+                "action pack outfit is incompatible with the scene's declared outfit"
+            )
         if pack.fps != episode.fps:
             raise CompileError(
                 "action pack fps differs from episode; explicitly normalize and review"
@@ -133,6 +137,10 @@ class ActionCompiler:
                 raise CompileError(f"{action.id} does not declare its compatible channel")
             if pack.camera_id not in clip.compatibility.cameras:
                 raise CompileError(f"{action.id} has no matching camera declaration")
+            if (pack.outfit_id is not None or clip.compatibility.outfits) and (
+                pack.outfit_id not in clip.compatibility.outfits
+            ):
+                raise CompileError(f"{action.id} has no matching outfit declaration")
             if clip.compatibility.templates and scene.template not in clip.compatibility.templates:
                 raise CompileError(f"{action.id} clip excludes this template version")
             if clip.compatibility.anchor is not None and clip.compatibility.anchor != pack.anchor:
@@ -267,6 +275,9 @@ class ActionCompiler:
                         f"curve {target} exceeds or lacks template capability limits"
                     )
             initial = scene.initial_state
+            if scenes and scene.character_outfit_id != scenes[-1].character_outfit_id:
+                if scene.continuity != "deliberate_reset" or scene.transition_in.kind != "cut":
+                    raise CompileError("outfit changes require a deliberate_reset at a scene cut")
             if scenes:
                 previous_state = scene_state(
                     scenes[-1], schedule, events, timeline, scene.start_frame

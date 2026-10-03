@@ -16,6 +16,8 @@ import {
 } from "./workspace";
 
 type Episode = Documents["episode"];
+const packLabel = (pack: Documents["action_pack"]) =>
+  `${pack.id}@${pack.version} · ${pack.camera_id} · ${pack.outfit_id || "outfit unspecified"} · ${pack.approval?.status || "draft"}`;
 const editors = new Map<string, EditHistory<Episode>>();
 const unsaved = new Set<HTMLInputElement>();
 window.addEventListener("beforeunload", (event) => {
@@ -289,6 +291,43 @@ export function editorPage(mode: "story" | "timeline" | "notebook") {
             };
           });
           card.append(field("Scene purpose — autosaves on change", purpose));
+          const compatible = catalog.packs.filter(
+            (pack) =>
+              pack.template.id === scene.template.id &&
+              pack.template.version === scene.template.version,
+          );
+          if (
+            compatible.length &&
+            episode.actions?.some((a) => a.scene_id === scene.id)
+          ) {
+            const current = episode.actions.find(
+              (a) => a.scene_id === scene.id,
+            )!.pack;
+            const selectedPack = choice(
+              compatible.map((pack) => [
+                `${pack.id}@${pack.version}`,
+                packLabel(pack),
+              ]),
+              `${current.id}@${current.version}`,
+            );
+            card.append(
+              element("p", {
+                text: `Declared outfit: ${scene.character_outfit_id || "none"}. Changing packs preserves action IDs and timing; Python rejects missing actions, incompatible poses or props.`,
+              }),
+              actionForm(
+                `Apply pack to ${scene.id}`,
+                [field(`${scene.id} action pack / outfit`, selectedPack)],
+                async () => {
+                  const [id, version] = selectedPack.value.split("@");
+                  await run({
+                    kind: "change_pack",
+                    scene_id: scene.id,
+                    pack: { id, version },
+                  });
+                },
+              ),
+            );
+          }
           const details = element("details");
           details.append(
             element("summary", {
@@ -344,7 +383,7 @@ export function editorPage(mode: "story" | "timeline" | "notebook") {
           ["", "No character action (environment-only scene)"],
           ...actions.map((v): [string, string] => [
             `${v.pack.id}@${v.pack.version}/${v.action.id}`,
-            `${v.pack.id} / ${v.action.id}`,
+            `${packLabel(v.pack)} / ${v.action.id}`,
           ]),
         ]);
         append.append(
@@ -384,6 +423,28 @@ export function editorPage(mode: "story" | "timeline" | "notebook") {
           "Actions",
           "Only registered action packs are selectable. Python checks poses, channels, frame rate, transitions, props and whole loops.",
         );
+        const inventory = element("details");
+        inventory.append(
+          element("summary", {
+            text: "Registered pack versions and compatibility",
+          }),
+        );
+        for (const pack of catalog.packs) {
+          inventory.append(
+            element("p", {
+              text: `${packLabel(pack)} · template ${pack.template.id}@${pack.template.version}`,
+            }),
+          );
+          for (const action of pack.actions) {
+            inventory.append(
+              element("p", {
+                className: "muted",
+                text: `${action.id}@${action.version}: ${action.start_pose} → ${action.end_pose}; ${action.kind}; props ${JSON.stringify(action.requires_props || {})} → ${JSON.stringify(action.resulting_props || {})}`,
+              }),
+            );
+          }
+        }
+        actionBox.append(inventory);
         for (const action of episode.actions || []) {
           const start = input(String(action.start_frame), "number");
           actionBox.append(
@@ -412,7 +473,7 @@ export function editorPage(mode: "story" | "timeline" | "notebook") {
           const source = choice(
             prepared.map((v, i) => [
               String(i),
-              `${v.pack.id} / ${v.action.id} · ${v.action.channel} · ${v.action.kind}`,
+              `${packLabel(v.pack)} / ${v.action.id}@${v.action.version} · ${v.action.channel} · ${v.action.kind}`,
             ]),
           );
           const scene = choice(episode.scenes.map((s) => [s.id, s.id]));
