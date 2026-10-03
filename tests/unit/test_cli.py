@@ -121,3 +121,9 @@ def test_doctor_missing_dependency_reports_actionable_json(tmp_path):
     assert report["ready"] is False and report["encoder_verification"] == "listed_only"
     assert {p["code"] for p in report["issues"]} == {"tool_missing"}
     assert all(p["suggested_fix"] for p in report["issues"])
+    render = run_cli(
+        tmp_path, "--config", str(config), "render-spike", "--output-dir", str(tmp_path), "--json"
+    )
+    assert render.returncode == 3 and render.stdout == ""
+    assert "TABI_FFMPEG" in json.loads(render.stderr.splitlines()[-1])["event"]
+    assert not list(tmp_path.rglob("*.mp4"))

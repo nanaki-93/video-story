@@ -14,6 +14,7 @@ Logical flow: approved assets + music + episode document → validation → comp
 | `pyproject.toml`, lockfile | Python dependency and tool versions |
 | `src/tabi/core/models/` | Versioned asset, scene, episode, job and release models |
 | `src/tabi/core/documents.py`, `src/tabi/core/persistence.py` | Strict document loading, atomic local storage, revisions, locks, snapshots and migration backups (T03) |
+| `src/tabi/core/toolchain.py`, `src/tabi/core/process.py` | Tool identity/capability/storage checks and bounded subprocess execution (T02) |
 | `src/tabi/core/assets/` | Import, probing, normalization, approval, registry |
 | `src/tabi/core/timeline/` | Curves, scheduling, transitions, state evaluation |
 | `src/tabi/core/render/` | Renderer interface, FFmpeg backend, graph compiler, cache |
@@ -70,6 +71,6 @@ T33 builds frontend assets into the Python distribution and provides a local lau
 
 ## Development commands to implement
 
-Implemented by T01: `make setup`, `make help`, `make check`, `make test`. T03 adds `make schemas` and schema drift checking to `make check`. Later tasks add `make doctor`, `make fixtures`, `make test-media`, `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
+Implemented by T01: `make setup`, `make help`, `make check`, `make test`. T03 adds `make schemas` and schema drift checking to `make check`. T02 adds `make doctor` and opt-in `make test-media`; its fixed render experiment lives in `src/tabi/core/render/spike.py`. Later tasks add `make fixtures`, `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
 
 Each target delegates to documented scripts. `clean-cache` requires a project/cache root and only deletes disposable cache entries. A fresh checkout must render the synthetic pilot without ComfyUI or real music.

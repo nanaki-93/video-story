@@ -24,6 +24,7 @@ REQUIRED_FILTERS = {
     "scale",
     "fps",
     "setpts",
+    "setparams",
     "trim",
     "atrim",
     "aresample",

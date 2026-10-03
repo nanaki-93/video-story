@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test help schemas doctor
+.PHONY: setup check test test-media help schemas doctor
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -22,3 +22,6 @@ help:
 
 doctor:
 	$(UV) run --frozen tabi doctor --json
+
+test-media:
+	$(UV) run --frozen pytest --run-media tests/integration

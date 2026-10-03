@@ -1,0 +1,8 @@
+# Tested T02 tool versions on Apple Silicon. Explicit Cellar paths prevent a
+# changed Homebrew symlink from silently selecting a different FFmpeg build.
+# Install externally; no media binaries are bundled in this repository.
+schema_version = "1.0"
+
+[tools]
+ffmpeg = "/opt/homebrew/Cellar/ffmpeg/9.0.2/bin/ffmpeg"
+ffprobe = "/opt/homebrew/Cellar/ffmpeg/9.0.2/bin/ffprobe"

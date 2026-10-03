@@ -4,7 +4,9 @@ Technical and policy references retrieved 3 October 2026. Implementation specifi
 
 | Source | Supports | Status |
 | --- | --- | --- |
-| [FFmpeg filters](https://ffmpeg.org/ffmpeg-filters.html) | Overlay, masks, crop, scrolling, audio fades/mixing and related filters | Retrieved; exact installed build still needs capability tests |
+| [FFmpeg filters](https://ffmpeg.org/ffmpeg-filters.html) | Overlay, masks, crop, scrolling, audio fades/mixing and related filters | T02 verified the bounded mask/alpha/scroll spike on 9.0.2; later effects/mixing remain unverified |
+| [FFprobe](https://ffmpeg.org/ffprobe.html) | Stream metadata and decoded frame/timestamp counts | Used in T02's actual media checks |
+| [Homebrew FFmpeg](https://formulae.brew.sh/formula/ffmpeg) | External macOS installation | 9.0.2 installed and tested on this M5 Pro; no binaries bundled |
 | [ComfyUI server routes](https://docs.comfy.org/development/comfyui-server/comms_routes) | `/prompt`, `/ws`, history and queue routes for optional local workflow integration | Retrieved; adapter must follow installed version |
 | [Compose native distribution](https://kotlinlang.org/docs/multiplatform/compose-native-distribution.html) | Original native-client alternative | Historical reference; Kotlin/Compose packaging is deferred by the local web app decision |
 | [FastAPI static files](https://fastapi.tiangolo.com/tutorial/static-files/) | Serving the built UI from the local Python service | Checked 3 October 2026; application integration remains T25/T26 |

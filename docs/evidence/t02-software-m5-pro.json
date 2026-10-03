@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_spike_report",
+  "fixture_version": "t02-v1",
+  "synthetic": true,
+  "production_approved": false,
+  "observed_at": "2026-10-03T14:41:06.326947Z",
+  "machine": {
+    "os": "Darwin",
+    "os_version": "27.0.1",
+    "architecture": "arm64",
+    "cpu": "Apple M5 Pro",
+    "memory_bytes": 51539607552,
+    "python_version": "3.11.16",
+    "python_executable": "/Users/marcoandreose/DEV/lab/video-story/.venv/bin/python3",
+    "is_target_m5_pro": true
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "ffmpeg_version": "9.0.2",
+  "encoder": "libx264",
+  "hardware_required": false,
+  "render_seconds": 0.5148527500005002,
+  "render_fps": 582.690876177137,
+  "output": "/Users/marcoandreose/DEV/lab/video-story/.local/T02 Marco's 東京 renders/synthetic-libx264-hu9kuyhl/synthetic-test.mp4",
+  "output_sha256": "9bf18bb16cfa8f6ad6fee964ce96fa0ae1cfcf1b317aa7a68a9161bb3b575786",
+  "output_bytes": 366665,
+  "input_hashes": {
+    "cabin.png": "6058128d33cce5d484acd35b703de237d88cb04ced431cdee66fa22881b57679",
+    "exterior.png": "bea1867b3227796d8f448a8e8b2fec3c40f2f455bc056bf8e3d1c8c55adb9470",
+    "window mask.png": "0cd442dbde19d2740a0a6da49f0938d4e7c3b1619a40895c8293a0f968ac3518",
+    "transparent actor.png": "b8f51c758f178f08d3fe5d585b5c0826b7f475730218dc79c8af4aaffa1a53b0",
+    "foreground.png": "c33b990aee4876efb8ef03070662721ff75007de9edb2722ee46df77f3eddc2e",
+    "synthetic tone.wav": "dc1cb99ecb642884ebb6fec81c7353ca602ceb7bb76307c7d6b1ec031bc052ba"
+  },
+  "graph_sha256": "ac3c2fef6245f673818b7b26f3ae805d868cbc1e92fd0979df5c7cf9a0966057",
+  "verification": {
+    "decoded_frames": 300,
+    "sampled_frames": [
+      0,
+      59,
+      60,
+      89,
+      90,
+      179,
+      180,
+      181,
+      239,
+      240,
+      299
+    ],
+    "pixel_checks": 110,
+    "max_rgb_error": 2,
+    "motion_boundary_checks": 97,
+    "max_boundary_error_pixels": 0,
+    "rgb_tolerance": 12,
+    "decoded_audio_samples": 480000,
+    "audio_rms": [
+      0.08828753469389017,
+      0.08828757991645267
+    ],
+    "tone_energy_ratio": [
+      0.9997604386154523,
+      0.9997604461293249
+    ],
+    "continuous_timestamps": true,
+    "full_decode_passed": true
+  }
+}

@@ -112,3 +112,4 @@ An original finished Tabi episode must be viewed and heard by Marco. No amount o
 - [Official references and verification status](docs/08-sources.md)
 - [Implementation review and supplied asset audit](docs/09-implementation-review.md)
 - [Implementation progress](docs/progress.md)
+- [Implemented toolchain and synthetic media checks](docs/10-toolchain.md)

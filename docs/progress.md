@@ -55,10 +55,29 @@ Final verification:
 
 Known limits: no network-filesystem or power-loss guarantee; whole-project transactions, backup restoration UI and automatic backup/temp pruning remain later work. A killed writer may leave an unused `.tmp` file. Schema 1.0 is the first production format, so no historical migration is registered; test-only 1.1 contracts exercise the migration infrastructure. These storage checks do not establish rendering or art approval.
 
+## T02 — complete; M0 acceptance passed
+
+Step 1 (`5d48ed2`, `T02: add local toolchain doctor and capability reports`) implements `tabi doctor --json` / `make doctor`, typed machine/capability reports, executable hashes, matching tool versions and writable-storage checks. Its 120 tests passed. FFmpeg/ffprobe 9.0.2 were installed externally through Homebrew; the [Mac settings example](../examples/settings.macos.toml) selects those exact Cellar paths. The [machine report](evidence/t02-doctor-m5-pro.json) records this M5 Pro/48 GiB and explicitly distinguishes listed encoders from verified renders.
+
+Step 2 (`T02: verify synthetic rendering with software and VideoToolbox`) adds the fixed ten-second render experiment, explicit color/alpha handling, output verification and `tabi render-spike`. It checks a moving numbered exterior through a window mask, straight-alpha rectangle entry/exit, foreground occlusion and an owned stereo tone. Inputs and preview are visibly synthetic; no supplied artwork or music is used. MP4 publication occurs only after media verification, without clobbering existing exports.
+
+Final evidence:
+
+- `make check`: lint/format and 16 schemas passed; **122 tests passed**, seven opt-in media tests skipped. `make test-media`: **seven passed**, no skips on this Mac. Together these cover 129 tests.
+- Both libx264 and H.264 VideoToolbox (software fallback disabled) fully decode: 300 frames at 30/1 fps, ten seconds, 960×540, tagged BT.709 YUV420P, stereo 48 kHz AAC and 480,000 decoded audio samples.
+- Eleven sampled frames verify 110 pixel positions and 97 scrolling boundaries. Maximum RGB-channel errors are 2 (software) and 3 (hardware), within 12; motion displacement error is zero pixels. Audio RMS/tone-energy checks pass in both channels.
+- Real negative renders with inverted mask, incorrect alpha metadata, early clip entry or wrong restart speed fail verification. Truncation fails; injected verification failure never publishes a final file or overwrites an existing export.
+- Pinned-config CLI renders succeeded through paths containing spaces, an apostrophe and Japanese characters. Reports retain machine, executable/input/graph/output identities. Software and hardware frame 90 were visually inspected; masks, translucent borders, occlusion and permanent synthetic labels are clear.
+- Final repository audit: all 59 Markdown files have valid local links; all 38 task statuses match. Three machine reports pass Python/JSON Schema validation; both media hashes match disk and both encoders used identical input/graph hashes. `git diff --check` passes, no MP4 is tracked and the five original local clips remain present. Unrelated staged IDE files remain excluded.
+
+Reproduction, reports and committed PNG evidence: [T02 toolchain checks](10-toolchain.md). Local MP4 paths are recorded in the [software](evidence/t02-software-m5-pro.json) and [hardware](evidence/t02-hardware-m5-pro.json) reports. Measured render subprocess times are 0.515/0.613 seconds for this simple proxy only, excluding generation/verification. These do not establish real-scene 1080p/4K performance or hardware filtering.
+
+M0 now meets its gate: pinned Python dependencies and tested external media build, CLI, strict schemas/persistence, actual tool capabilities and synthetic media verification. No production/art approval follows.
+
 ## Next task and pending gates
 
-**Current: T02 — toolchain and renderer capabilities.** Step 1 implements `tabi doctor --json` / `make doctor`, typed machine/capability reports, executable hashes, strict tool-version compatibility and writable-storage checks. `make check`: 120 tests, lint/format and 15 schemas pass. The [machine report](evidence/t02-doctor-m5-pro.json) records this M5 Pro/48 GiB with FFmpeg/ffprobe 9.0.2 installed through Homebrew. Encoders remain explicitly `listed_only`; the real synthetic render is the next step. M0 remains incomplete until that gate passes. The web UI and episode renderer remain planned.
+**Next: T04 — reusable synthetic fixture pack.** The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
 
-Pending target-Mac checks: installed FFmpeg/ffprobe, mask/alpha/speed rendering, VideoToolbox quality, render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. Native decoding on this M5 Pro does not establish those capabilities.
+Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 
 Pending creative inputs: selected reference/hash approval, editable separated art and masks/depth layers, sequence timing/anchors/loop ranges/transition poses, provenance and rights records, and finished original music. Continue independent synthetic infrastructure work while these remain pending.

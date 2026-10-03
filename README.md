@@ -2,11 +2,11 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** T01 and T03 are implemented: Python bootstrap, strict contracts, 14 generated schemas and safe local project persistence. The CLI exposes settings/version, project creation/inspection and structural document validation. The web UI and renderer remain planned. See [progress](docs/progress.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 16 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI and episode renderer remain planned. See [progress](docs/progress.md), [toolchain checks](docs/10-toolchain.md) and the [implementation/asset review](docs/09-implementation-review.md).
 
 ## Development setup
 
-Tested on Apple M5 Pro, macOS 27.0.1, Python 3.11.16 and uv 0.11.0. The Python version is recorded in `.python-version`; dependency versions are in `uv.lock`. FFmpeg is not needed for T01/T03. It is not installed on PATH in the audited setup; T02 must probe an explicit installation before any rendering claims.
+Tested on Apple M5 Pro/48 GiB, macOS 27.0.1, Python 3.11.16, uv 0.11.0 and FFmpeg/ffprobe 9.0.2. Python is recorded in `.python-version`; Python dependencies are locked in `uv.lock`. FFmpeg is an external installation. The [Mac settings example](examples/settings.macos.toml) selects the exact tested Homebrew Cellar paths; it fails clearly if that installation is missing.
 
 With uv already installed, run `make setup`. Otherwise bootstrap uv locally:
 
@@ -21,6 +21,19 @@ make help
 ```
 
 `make setup` installs the locked development and image-audit dependencies. It uses `.tools/bin/uv` if present, or `uv` on PATH; override with `make setup UV=/path/to/uv`. Pydantic and PyYAML provide the shared document contracts and loading. Node/frontend tooling enters in T25, and is planned as a build dependency only.
+
+## Media toolchain check
+
+Install FFmpeg externally (on macOS, `brew install ffmpeg`), then run:
+
+```sh
+make doctor
+make test-media
+.venv/bin/tabi --config examples/settings.macos.toml render-spike --output-dir .local/spikes --encoder libx264 --json
+.venv/bin/tabi --config examples/settings.macos.toml render-spike --output-dir .local/spikes --encoder h264_videotoolbox --json
+```
+
+`doctor` checks tool identity, versions, filters, advertised encoders and writable disk space. Only `render-spike` actually renders and verifies output. It creates a unique run folder containing generated inputs, graph/command logs, decoded frames and a report; the watermarked MP4 is published only after verification. All clips stay ignored by Git. `make check` runs the unit/contract checks; `make test-media` explicitly runs the real FFmpeg checks. See [reproduction and limits](docs/10-toolchain.md).
 
 ## Projects and document validation
 
@@ -59,7 +72,7 @@ Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T02 is next and proves the actual media toolchain.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T04 is next: the reusable synthetic fixture pack.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.

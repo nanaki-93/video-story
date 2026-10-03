@@ -9,6 +9,19 @@ from tabi.core.models.base import content_hash
 REPOSITORY = Path(__file__).resolve().parents[1]
 
 
+def pytest_addoption(parser):
+    parser.addoption("--run-media", action="store_true", help="Run actual FFmpeg render checks")
+
+
+def pytest_collection_modifyitems(config, items):
+    if not config.getoption("--run-media"):
+        for item in items:
+            if "media" in item.keywords:
+                item.add_marker(
+                    pytest.mark.skip(reason="Run make test-media for actual FFmpeg checks")
+                )
+
+
 @pytest.fixture
 def episode_data():
     return json.loads((REPOSITORY / "examples/episode.pilot.json").read_text())

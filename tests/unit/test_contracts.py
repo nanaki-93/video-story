@@ -293,6 +293,7 @@ def test_root_registry_is_complete(project_data, snapshot_data):
         "release_record",
         "validation_report",
         "capability_report",
+        "render_spike_report",
     } == set(DOCUMENT_MODELS)
     for data in [project_data, snapshot_data]:
         document = validate_data(data)

@@ -1,0 +1,266 @@
+{
+  "$defs": {
+    "MachineInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "title": "Architecture",
+          "type": "string"
+        },
+        "cpu": {
+          "title": "Cpu",
+          "type": "string"
+        },
+        "is_target_m5_pro": {
+          "title": "Is Target M5 Pro",
+          "type": "boolean"
+        },
+        "memory_bytes": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Memory Bytes"
+        },
+        "os": {
+          "title": "Os",
+          "type": "string"
+        },
+        "os_version": {
+          "title": "Os Version",
+          "type": "string"
+        },
+        "python_executable": {
+          "title": "Python Executable",
+          "type": "string"
+        },
+        "python_version": {
+          "title": "Python Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "os",
+        "os_version",
+        "architecture",
+        "cpu",
+        "python_version",
+        "python_executable",
+        "is_target_m5_pro"
+      ],
+      "title": "MachineInfo",
+      "type": "object"
+    },
+    "SpikeVerification": {
+      "additionalProperties": false,
+      "properties": {
+        "audio_rms": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Audio Rms",
+          "type": "array"
+        },
+        "continuous_timestamps": {
+          "title": "Continuous Timestamps",
+          "type": "boolean"
+        },
+        "decoded_audio_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Decoded Audio Samples",
+          "type": "integer"
+        },
+        "decoded_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Decoded Frames",
+          "type": "integer"
+        },
+        "full_decode_passed": {
+          "title": "Full Decode Passed",
+          "type": "boolean"
+        },
+        "max_boundary_error_pixels": {
+          "minimum": 0,
+          "title": "Max Boundary Error Pixels",
+          "type": "integer"
+        },
+        "max_rgb_error": {
+          "minimum": 0,
+          "title": "Max Rgb Error",
+          "type": "integer"
+        },
+        "motion_boundary_checks": {
+          "exclusiveMinimum": 0,
+          "title": "Motion Boundary Checks",
+          "type": "integer"
+        },
+        "pixel_checks": {
+          "exclusiveMinimum": 0,
+          "title": "Pixel Checks",
+          "type": "integer"
+        },
+        "rgb_tolerance": {
+          "minimum": 0,
+          "title": "Rgb Tolerance",
+          "type": "integer"
+        },
+        "sampled_frames": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Sampled Frames",
+          "type": "array"
+        },
+        "tone_energy_ratio": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Tone Energy Ratio",
+          "type": "array"
+        }
+      },
+      "required": [
+        "decoded_frames",
+        "sampled_frames",
+        "pixel_checks",
+        "max_rgb_error",
+        "motion_boundary_checks",
+        "max_boundary_error_pixels",
+        "rgb_tolerance",
+        "decoded_audio_samples",
+        "audio_rms",
+        "tone_energy_ratio",
+        "continuous_timestamps",
+        "full_decode_passed"
+      ],
+      "title": "SpikeVerification",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:render_spike_report",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "render_spike_report",
+      "default": "render_spike_report",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "encoder": {
+      "enum": [
+        "libx264",
+        "h264_videotoolbox"
+      ],
+      "title": "Encoder",
+      "type": "string"
+    },
+    "ffmpeg_version": {
+      "title": "Ffmpeg Version",
+      "type": "string"
+    },
+    "fixture_version": {
+      "const": "t02-v1",
+      "default": "t02-v1",
+      "title": "Fixture Version",
+      "type": "string"
+    },
+    "graph_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Graph Sha256",
+      "type": "string"
+    },
+    "hardware_required": {
+      "title": "Hardware Required",
+      "type": "boolean"
+    },
+    "input_hashes": {
+      "additionalProperties": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "title": "Input Hashes",
+      "type": "object"
+    },
+    "machine": {
+      "$ref": "#/$defs/MachineInfo"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "title": "Observed At",
+      "type": "string"
+    },
+    "output": {
+      "title": "Output",
+      "type": "string"
+    },
+    "output_bytes": {
+      "exclusiveMinimum": 0,
+      "title": "Output Bytes",
+      "type": "integer"
+    },
+    "output_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Output Sha256",
+      "type": "string"
+    },
+    "production_approved": {
+      "default": false,
+      "title": "Production Approved",
+      "type": "boolean"
+    },
+    "render_fps": {
+      "exclusiveMinimum": 0,
+      "title": "Render Fps",
+      "type": "number"
+    },
+    "render_seconds": {
+      "exclusiveMinimum": 0,
+      "title": "Render Seconds",
+      "type": "number"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "synthetic": {
+      "default": true,
+      "title": "Synthetic",
+      "type": "boolean"
+    },
+    "toolchain_fingerprint": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Toolchain Fingerprint",
+      "type": "string"
+    },
+    "verification": {
+      "$ref": "#/$defs/SpikeVerification"
+    }
+  },
+  "required": [
+    "schema_version",
+    "observed_at",
+    "machine",
+    "toolchain_fingerprint",
+    "ffmpeg_version",
+    "encoder",
+    "hardware_required",
+    "render_seconds",
+    "render_fps",
+    "output",
+    "output_sha256",
+    "output_bytes",
+    "input_hashes",
+    "graph_sha256",
+    "verification"
+  ],
+  "title": "RenderSpikeReport",
+  "type": "object"
+}

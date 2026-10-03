@@ -49,7 +49,8 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 | --- | --- |
 | `tabi --version`, `tabi config --json` | T01: application version and resolved local developer settings; no media probing |
 | `tabi web` | T26: launch authenticated local web app, register configured roots, verify worker readiness and open browser |
-| `tabi doctor --json` | Probe runtime, tools, codecs, storage, target features |
+| `tabi doctor --json [--output-dir PATH]` | T02: probe runtime/tools, listed filters/encoders and writable storage; no rendering |
+| `tabi render-spike --output-dir PATH [--encoder ENCODER] [--json]` | T02: render/verify a fixed synthetic ten-second scene and save per-run evidence |
 | `tabi project init PATH --title TITLE [--json]` | T03: create a safe local project folder with versioned defaults |
 | `tabi project show PATH [--json]` | T03: reopen and inspect the saved project index |
 | `tabi document validate FILE` | T03: validate JSON/YAML structure and print a JSON report; no media probing |
@@ -68,7 +69,7 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 
 Frame ranges use the same half-open convention. CLI exit codes: 0 success, 2 validation/usage, 3 missing dependency, 4 render/I/O failure, 5 cancellation. JSON output goes to stdout; logs to stderr. Avoid embedding secrets or private licence files in logs.
 
-Except for the T01 and T03 commands noted above, this table describes planned behavior. Implement the schema layer before media/domain services; do not expose placeholder commands.
+Except for the T01, T03 and T02 commands noted above, this table describes planned behavior. Implement the schema layer before media/domain services; do not expose placeholder commands. `render-spike` is a bounded capability test; it cannot render an episode manifest.
 
 ## Local service API
 
@@ -89,7 +90,7 @@ Requests use typed bodies; long jobs return immediately. Job errors include stab
 
 ## Implemented version-1 contract details (T03)
 
-Python models in `src/tabi/core/models/` are the source of truth. `make schemas` exports 14 Draft 2020-12 schemas under `schemas/`; `make check` detects drift. Nine root document types require `schema_version: "1.0"` and `document_type`: project, asset, action_pack, scene_template, episode, compiled_snapshot, render_job and release_record, plus validation_report. The remaining five schemas describe nested action, scene_instance, track_placement, action_request and curve values.
+Python models in `src/tabi/core/models/` are the source of truth. T03 introduced 14 Draft 2020-12 schemas under `schemas/`. Nine domain root types require `schema_version: "1.0"` and `document_type`: project, asset, action_pack, scene_template, episode, compiled_snapshot, render_job and release_record, plus validation_report. Five schemas describe nested action, scene_instance, track_placement, action_request and curve values. T02 adds `capability_report` and `render_spike_report`, for 16 schemas in total; `make schemas` publishes them and `make check` detects drift. Diagnostic reports are observations, not mutable project drafts or approved snapshots.
 
 Every nested model forbids unknown fields. Scalar time values are strict integers (booleans, strings and fractions are rejected); fps is a reduced positive rational. Curve keys use global frames and may include an end boundary for interpolation. Audio placements and fades use samples; the frame/sample conversion uses exact rational arithmetic with ties-to-even.
 

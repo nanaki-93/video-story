@@ -1,4 +1,4 @@
-"""Only implemented commands are exposed; media commands arrive in later tasks."""
+"""Adapters for implemented core services and bounded media diagnostics."""
 
 import argparse
 import json
@@ -11,6 +11,7 @@ from tabi.core.config import ConfigError, load_settings
 from tabi.core.documents import DocumentError, read_document
 from tabi.core.models import Project, ValidationReport
 from tabi.core.persistence import ProjectStore, StorageError
+from tabi.core.render.spike import ENCODERS, SpikeDependencyError, SpikeError, render_spike
 from tabi.core.toolchain import doctor
 
 
@@ -33,6 +34,12 @@ def main(argv: list[str] | None = None) -> int:
     health.add_argument(
         "--output-dir", type=Path, default=Path.cwd(), help="Existing directory to check"
     )
+    spike = commands.add_parser(
+        "render-spike", help="Render and verify a synthetic ten-second test"
+    )
+    spike.add_argument("--output-dir", required=True, type=Path)
+    spike.add_argument("--encoder", choices=ENCODERS, default="libx264")
+    spike.add_argument("--json", action="store_true")
     project = commands.add_parser("project", help="Create or inspect a local project")
     project_commands = project.add_subparsers(dest="project_command", required=True)
     init = project_commands.add_parser("init", help="Create a project in a new or empty directory")
@@ -93,6 +100,20 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "render-spike":
+        try:
+            report_path = render_spike(settings, args.output_dir, args.encoder)
+        except SpikeDependencyError as error:
+            logger.error("spike_dependency_missing: %s", error)
+            return 3
+        except (SpikeError, OSError) as error:
+            logger.error("spike_failed: %s", error)
+            return 4
+        if args.json:
+            print(report_path.read_text(encoding="utf-8"), end="")
+        else:
+            print(f"Verified synthetic test; report: {report_path}")
+        return 0
     if args.command == "doctor":
         report = doctor(settings, args.output_dir)
         if args.json:
