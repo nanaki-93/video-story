@@ -70,7 +70,7 @@ stress timeline repeats authored test cycles containing three moving depth layer
 body transitions, blinks, rain, reflections and lighting. It creates a full-duration synthetic
 triangle signal; no real music is stretched. The default design scale is three, producing a
 1920×1080 compositing canvas from the geometric fixture. 4K output from that workload scales
-the composition; use `--design-scale 6` to measure a native 3840×2160 design in T37.
+the composition. T37 also measured a native 3840×2160 design with `--design-scale 6`.
 
 ```sh
 .venv/bin/python scripts/benchmark_exports.py \
@@ -118,5 +118,6 @@ is not a constant bitrate or a promise of quality for real art. Measurements inc
 assembly, audio and their verification; the later independent quality sampling is outside the
 reported export wall time. These two different profiles do not establish an encoder speed comparison.
 
-Long-form stability, native 4K design scaling and resource tuning remain T37. MP4s and generated
-project media are never committed.
+T37 subsequently passed a full 45-minute native 1080p run with crash/recovery and 184 boundary
+comparisons, plus a 60-second native 4K run (305.75 seconds, 5.89 fps, 11.29 GiB sampled RSS).
+See [long-form evidence and limits](36-longform.md). MP4s and generated project media are never committed.

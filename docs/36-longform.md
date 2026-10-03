@@ -126,6 +126,25 @@ pass. This is a decoding/seeking check, not musical listening approval.
 
 ## Native 4K gate
 
-T23 tested 4K output from a 1920×1080 design. A separate native 3840×2160, 60-second effects
-workload is running for T37 with `--design-scale 6`. Its measurements and six reference-frame
-comparisons will be recorded before completing this task.
+T23 tested 4K output from a 1920×1080 design. T37 separately completed a native 3840×2160,
+60-second effects workload with `--design-scale 6` on the same M5 Pro and FFmpeg installation:
+
+```sh
+.tools/bin/uv run python scripts/benchmark_exports.py \
+  --config examples/settings.macos.toml --output-root .local/t37-native4k \
+  --preset 4k --encoder h264_videotoolbox --design-scale 6 --seconds 60
+```
+
+The [native 4K report](evidence/t37-native4k-report.json) records 305.746 seconds for rendering,
+assembly and delivery verification (5.887 fps overall). Peak sampled worker + live-tool RSS
+was 12118556672 bytes, or 11.29 GiB. The export contains exactly 1800 frames and 2880000 decoded
+48 kHz stereo audio samples, without padding. Fast start, full decoding and presentation times
+passed. All six independent reference-frame comparisons passed: mean RGB error 0.451–0.823,
+p99 error 2–5. A [decoded frame](evidence/t37-native4k-frame.png) was visually inspected.
+
+The ignored local output is `.local/t37-native4k/exports/stress.mp4`, 11816399 bytes, SHA-256
+`4ab84c2382613ca03252ad140ac240416be463c46ff1ddd6d91b104424a19c69`.
+The small synthetic geometry compresses far below the requested 40 Mbit/s target; this is not
+a compression-size prediction for real artwork. Native 4K used substantially more memory than
+the earlier upscaled design, reinforcing the single-export default. The full Session test is
+1080p; a full 45-minute native 4K Session is not qualified by this 60-second run.

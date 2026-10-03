@@ -1,0 +1,315 @@
+{
+  "observed_at": "2026-10-03T21:32:14.867431+00:00",
+  "purpose": "synthetic_test",
+  "machine": {
+    "os": "Darwin",
+    "os_version": "27.0.1",
+    "architecture": "arm64",
+    "cpu": "Apple M5 Pro",
+    "memory_bytes": 51539607552,
+    "python_version": "3.11.16",
+    "python_executable": "/Users/marcoandreose/DEV/lab/video-story/.venv/bin/python3",
+    "is_target_m5_pro": true
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "ffmpeg": "9.0.2",
+  "profile": {
+    "id": "4k-h264_videotoolbox",
+    "canvas": {
+      "width": 3840,
+      "height": 2160
+    },
+    "fps": {
+      "num": 30,
+      "den": 1
+    },
+    "container": "mp4",
+    "video_codec": "h264_videotoolbox",
+    "pixel_format": "yuv420p",
+    "color_space": "bt709",
+    "audio_codec": "aac",
+    "audio_bitrate": 384000,
+    "sample_rate": 48000,
+    "video_bitrate": 40000000
+  },
+  "source_canvas": {
+    "width": 3840,
+    "height": 2160
+  },
+  "workload": "Synthetic geometric stress workload with a newly generated full-duration triangle signal. Repeated authored test cycles exercise rain, reflection, lighting, landmarks, body transitions and depth layers; no approved Tabi art or original music is represented.",
+  "job_id": "job-bd1a0e41919a4a57b2b7ec7187ae0b24",
+  "snapshot_sha256": "04bcc837511f980a8abd7d1cdbfc963f93aebe4d18b7af45080d4db950738595",
+  "state": "verified",
+  "error": null,
+  "wall_seconds": 305.74640933299816,
+  "rendered_frames": 1800,
+  "effective_frames_per_second": 5.887231853112501,
+  "cpu_seconds": 544.1275360000001,
+  "sampled_process_rss_peak_bytes": 12118556672,
+  "rss_samples": 1103,
+  "rss_interval_seconds": 0.25,
+  "worker_peak_rss_bytes": 552484864,
+  "largest_child_peak_rss_bytes": 11976409088,
+  "memory_scope": "Worker and retained live tools; sampled RSS excludes other apps, kernel and unreported GPU allocations. rusage peaks are per process, not summed.",
+  "free_disk_before_bytes": 222469144576,
+  "free_disk_after_bytes": 222432985088,
+  "output": {
+    "location": {
+      "root_id": "project",
+      "path": "exports/stress.mp4"
+    },
+    "sha256": "4ab84c2382613ca03252ad140ac240416be463c46ff1ddd6d91b104424a19c69",
+    "size_bytes": 11816399
+  },
+  "chunk_reports": [
+    {
+      "schema_version": "1.0",
+      "document_type": "render_report",
+      "purpose": "synthetic_test",
+      "snapshot_sha256": "04bcc837511f980a8abd7d1cdbfc963f93aebe4d18b7af45080d4db950738595",
+      "first_frame": 0,
+      "frame_count": 900,
+      "canvas": {
+        "width": 3840,
+        "height": 2160
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/jobs/artifacts/job-bd1a0e41919a4a57b2b7ec7187ae0b24/chunk-000000-afb356385b1d49c2bb78df8f80599dcc.mp4",
+      "output_sha256": "a0bed3a0a0116a28aefdd09c6d1dbd4d048cd37fe7bce5fde34c3ecbdab4c424",
+      "output_bytes": 5026496,
+      "graph_sha256": "e33b9ecb203ffed6c1f47c65d3b626d49440f21a091c6bea8dbf29f1f86db23e",
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "4b0d787c87394571138c47e0034d498a4504d73d598c118ef436b7400a856395"
+      },
+      "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+      "render_seconds": 134.96356658399964,
+      "full_decode_passed": true,
+      "timestamps_verified": true,
+      "normalized_images": 63,
+      "warnings": [],
+      "audio_mix": null,
+      "audio_verification": null,
+      "video_verification": {
+        "codec": "h264",
+        "profile": "High",
+        "level": 51,
+        "pixel_format": "yuv420p",
+        "canvas": {
+          "width": 3840,
+          "height": 2160
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "frame_count": 900,
+        "duration_seconds": 30.0,
+        "container_duration_seconds": 30.0,
+        "bit_rate": 1339128,
+        "color_space": "bt709",
+        "color_range": "tv",
+        "progressive": true,
+        "timestamps_verified": true,
+        "full_decode_passed": true,
+        "mp4": {
+          "moov_offset": 32,
+          "first_mdat_offset": 4758,
+          "fast_start": true
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "render_report",
+      "purpose": "synthetic_test",
+      "snapshot_sha256": "04bcc837511f980a8abd7d1cdbfc963f93aebe4d18b7af45080d4db950738595",
+      "first_frame": 900,
+      "frame_count": 900,
+      "canvas": {
+        "width": 3840,
+        "height": 2160
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/jobs/artifacts/job-bd1a0e41919a4a57b2b7ec7187ae0b24/chunk-000001-d32ef1b2d38f4c20b899cb2b38ec0cb3.mp4",
+      "output_sha256": "dfdae9604a17f9d2901442fd39fc12dd14773948d3bd440732260fb05ec8ecd8",
+      "output_bytes": 5013286,
+      "graph_sha256": "5bd44d40f57fa166533ed2b4541705a6c8c4bfa98218edd51e251463ff679367",
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "4b0d787c87394571138c47e0034d498a4504d73d598c118ef436b7400a856395"
+      },
+      "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+      "render_seconds": 135.39877337500002,
+      "full_decode_passed": true,
+      "timestamps_verified": true,
+      "normalized_images": 63,
+      "warnings": [],
+      "audio_mix": null,
+      "audio_verification": null,
+      "normalized_cache_hits": 63,
+      "video_verification": {
+        "codec": "h264",
+        "profile": "High",
+        "level": 51,
+        "pixel_format": "yuv420p",
+        "canvas": {
+          "width": 3840,
+          "height": 2160
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "frame_count": 900,
+        "duration_seconds": 30.0,
+        "container_duration_seconds": 30.0,
+        "bit_rate": 1335605,
+        "color_space": "bt709",
+        "color_range": "tv",
+        "progressive": true,
+        "timestamps_verified": true,
+        "full_decode_passed": true,
+        "mp4": {
+          "moov_offset": 32,
+          "first_mdat_offset": 4758,
+          "fast_start": true
+        }
+      }
+    }
+  ],
+  "verification": {
+    "schema_version": "1.0",
+    "document_type": "export_verification",
+    "job_id": "job-bd1a0e41919a4a57b2b7ec7187ae0b24",
+    "snapshot_sha256": "04bcc837511f980a8abd7d1cdbfc963f93aebe4d18b7af45080d4db950738595",
+    "output": {
+      "location": {
+        "root_id": "project",
+        "path": "exports/stress.mp4"
+      },
+      "sha256": "4ab84c2382613ca03252ad140ac240416be463c46ff1ddd6d91b104424a19c69",
+      "size_bytes": 11816399
+    },
+    "profile": {
+      "id": "4k-h264_videotoolbox",
+      "canvas": {
+        "width": 3840,
+        "height": 2160
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "container": "mp4",
+      "video_codec": "h264_videotoolbox",
+      "pixel_format": "yuv420p",
+      "color_space": "bt709",
+      "audio_codec": "aac",
+      "audio_bitrate": 384000,
+      "sample_rate": 48000,
+      "video_bitrate": 40000000
+    },
+    "video": {
+      "codec": "h264",
+      "profile": "High",
+      "level": 51,
+      "pixel_format": "yuv420p",
+      "canvas": {
+        "width": 3840,
+        "height": 2160
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "frame_count": 1800,
+      "duration_seconds": 60.0,
+      "container_duration_seconds": 60.0,
+      "bit_rate": 1337814,
+      "color_space": "bt709",
+      "color_range": "tv",
+      "progressive": true,
+      "timestamps_verified": true,
+      "full_decode_passed": true,
+      "mp4": {
+        "moov_offset": 32,
+        "first_mdat_offset": 53655,
+        "fast_start": true
+      }
+    },
+    "audio": {
+      "intended_samples": 2880000,
+      "decoded_samples": 2880000,
+      "padding_samples": 0,
+      "codec": "aac",
+      "sample_rate": 48000,
+      "channels": 2
+    }
+  },
+  "quality": [
+    {
+      "frame": 0,
+      "mean_absolute_rgb_error": 0.7810149788856506,
+      "p99_rgb_error": 5.0,
+      "psnr_db": 46.63380135440243,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/decoded-01.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/reference-0.png"
+    },
+    {
+      "frame": 89,
+      "mean_absolute_rgb_error": 0.6053965091705322,
+      "p99_rgb_error": 2.0,
+      "psnr_db": 47.830360353574406,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/decoded-02.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/reference-89.png"
+    },
+    {
+      "frame": 151,
+      "mean_absolute_rgb_error": 0.5161870121955872,
+      "p99_rgb_error": 2.0,
+      "psnr_db": 48.63906322131439,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/decoded-03.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/reference-151.png"
+    },
+    {
+      "frame": 215,
+      "mean_absolute_rgb_error": 0.4507811963558197,
+      "p99_rgb_error": 2.0,
+      "psnr_db": 50.30402316831308,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/decoded-04.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/reference-215.png"
+    },
+    {
+      "frame": 900,
+      "mean_absolute_rgb_error": 0.8229284882545471,
+      "p99_rgb_error": 4.0,
+      "psnr_db": 46.384929579463694,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/decoded-05.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/reference-900.png"
+    },
+    {
+      "frame": 1799,
+      "mean_absolute_rgb_error": 0.7589001655578613,
+      "p99_rgb_error": 2.0,
+      "psnr_db": 47.325480880669275,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/decoded-06.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t37-native4k/quality/reference-1799.png"
+    }
+  ],
+  "all_quality_checks_pass": true
+}

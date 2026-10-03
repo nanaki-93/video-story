@@ -362,7 +362,7 @@ passed / 57 opt-in skipped, 64 schemas; frontend checks/build/four tests pass. [
 [evidence](evidence/t36-generation.jpg). No model download, actual inference or artistic approval
 is implied by the synthetic protocol fixture.
 
-## T37 — sustained resource use (in progress)
+## T37 — sustained resource use (complete)
 
 Preflight measured 87.75 ms per journal read with 90 chunks / 181 events. Incremental verified
 replay reduced hot reads to 0.83 ms on this Mac. Every event's inode/size/mtime/ctime is rechecked;
@@ -373,8 +373,8 @@ Long curve graphs now keep global integral prefixes while selecting only branche
 the rendered interval, with balanced conditions for dense keys. Thirteen actual-media checks
 pass, including 2400-key curves, exact global integrals, opacity at fractional frame rates and
 chunk assembly. `make check`: 285 passed / 59 opt-in skipped; 64 schemas. A 45-minute native
-1080p synthetic Session has passed its full delivery and all-boundary checks. The remaining
-native 4K gate will be recorded before T37 is marked complete.
+1080p synthetic Session has passed its full delivery and all-boundary checks. The native 4K
+gate also passed, completing this task's engineering acceptance.
 
 The SSE transport now checks the incremental journal tail before replaying history. Ten local
 service checks pass, including a real HTTP stream that emits idle heartbeats at an up-to-date
@@ -397,3 +397,11 @@ worker + tool RSS was 3.05 GiB; worker medians across steady thirds were 151.22 
 with at most one retained live tool and ten descriptors. All 3916 resource samples succeeded.
 The benchmark's post-render selector needed balanced expressions to fit FFmpeg's parser; the
 verified video was preserved and review resumed successfully. See [complete evidence and limits](36-longform.md).
+
+Native 4K also passed its full 60-second workload: 1800 frames, 2880000 decoded audio samples,
+all six reference comparisons, full decode, exact presentation times and fast start. Whole-export
+time was 305.746 seconds (5.887 fps); peak sampled worker + tools RSS was 11.29 GiB. The full
+report and representative frame are linked in the long-form guide. One active export remains
+the default; full-length native 4K and real artwork need separate qualification.
+Final T37 `make check`: 286 passed, 59 opt-in media cases skipped, 64 schemas checked. Frontend
+typecheck, four tests and production build passed after the export-review change.
