@@ -305,3 +305,9 @@ Core complete; Marco's listening review remains pending. Audio now edits sample 
 Complete. Frozen export plans and conservative storage estimates feed the real queue. Measured ETA excludes paused time; pause finishes the current verified chunk while cancel stops owned work. Resume and export verification reuse the existing integrity checks. Preferences use revisions; tool configuration uses hashes and exact backups. Cache cleanup uses an observed inventory and protects source media.
 
 `make check`: 252 passed / 53 opt-in skipped, 57 schemas. Frontend checks/build/four tests pass. Two actual-media checks pass. Chrome exported 300 frames of 1080p video with 480000 audio samples, paused at 180 frames, resumed successfully and remained responsive in Settings. [Guide](30-render-queue.md), [queue evidence](evidence/t31-verified-queue.jpg).
+
+## T32 — release page and private portability
+
+Core complete; production rights/disclosure review remains pending. Release now saves public metadata and private manual notes, checks actual exports and rights, records hash-bound human reviews and exports a verified public/private folder. Browser links expose only public manifest entries. Backup/restore streams independent checked copies, preserves reviewed documents and snapshots, embeds linked media beneath bounded local roots and publishes only complete new folders.
+
+`make check`: 255 passed / 54 opt-in skipped; 61 schemas. Frontend checks/build/four tests pass. Four backup checks and an actual-media HTTP release/restore check pass after final copy verification. The restored renderer produces the same frame hash and saved export bytes. Chrome backed up 186 files and opened a new Unicode-path copy with the same six release blockers. [Guide](31-release-and-backups.md), [release evidence](evidence/t32-release-bundle.jpg).

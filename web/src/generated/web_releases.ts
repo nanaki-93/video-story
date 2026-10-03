@@ -1,5 +1,6 @@
 /* Generated from schemas/ by scripts/contracts.mjs. Do not edit. */
 
+export type DocumentType = "web_releases";
 export type StartFrame = number;
 export type Title = string;
 export type Chapters = Chapter[];
@@ -10,7 +11,7 @@ export type ReviewedAt = string;
 export type Reviewer = string;
 export type Description = string;
 export type DisclosureNotes = string;
-export type DocumentType = "release_preparation";
+export type DocumentType1 = "release_preparation";
 export type Id = string;
 export type JobId = string;
 export type ManualLinks = string[];
@@ -19,14 +20,25 @@ export type SchemaVersion = "1.0";
 export type Id1 = string;
 export type Version = string;
 export type Title1 = string;
+export type Preparations = ReleasePreparation[];
+export type SchemaVersion1 = "1.0";
 
+export interface WebReleases {
+  document_type?: DocumentType;
+  preparations: Preparations;
+  schema_version: SchemaVersion1;
+}
+/**
+ * This interface was referenced by `WebReleases`'s JSON-Schema
+ * via the `definition` "ReleasePreparation".
+ */
 export interface ReleasePreparation {
   chapters?: Chapters;
   claim_notes?: ClaimNotes;
   creative_review?: ReviewRecord | null;
   description?: Description;
   disclosure_notes?: DisclosureNotes;
-  document_type?: DocumentType;
+  document_type?: DocumentType1;
   id: Id;
   job_id: JobId;
   manual_links?: ManualLinks;
@@ -37,7 +49,7 @@ export interface ReleasePreparation {
   title: Title1;
 }
 /**
- * This interface was referenced by `ReleasePreparation`'s JSON-Schema
+ * This interface was referenced by `WebReleases`'s JSON-Schema
  * via the `definition` "Chapter".
  */
 export interface Chapter {
@@ -45,7 +57,7 @@ export interface Chapter {
   title: Title;
 }
 /**
- * This interface was referenced by `ReleasePreparation`'s JSON-Schema
+ * This interface was referenced by `WebReleases`'s JSON-Schema
  * via the `definition` "ReviewRecord".
  */
 export interface ReviewRecord {
@@ -55,7 +67,7 @@ export interface ReviewRecord {
   reviewer: Reviewer;
 }
 /**
- * This interface was referenced by `ReleasePreparation`'s JSON-Schema
+ * This interface was referenced by `WebReleases`'s JSON-Schema
  * via the `definition` "AssetRef".
  */
 export interface AssetRef {

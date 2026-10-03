@@ -1,0 +1,142 @@
+{
+  "$defs": {
+    "BackupManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "document_type": {
+          "const": "backup_manifest",
+          "default": "backup_manifest",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "files": {
+          "items": {
+            "$ref": "#/$defs/HashedFile"
+          },
+          "maxItems": 100000,
+          "minItems": 1,
+          "title": "Files",
+          "type": "array"
+        },
+        "project_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "total_bytes": {
+          "minimum": 0,
+          "title": "Total Bytes",
+          "type": "integer"
+        },
+        "warnings": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "project_id",
+        "created_at",
+        "files",
+        "total_bytes"
+      ],
+      "title": "BackupManifest",
+      "type": "object"
+    },
+    "HashedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "location",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "HashedFile",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:web:1:web_backup",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "web_backup",
+      "default": "web_backup",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "manifest": {
+      "$ref": "#/$defs/BackupManifest"
+    },
+    "path": {
+      "title": "Path",
+      "type": "string"
+    },
+    "root_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Root Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "root_id",
+    "path",
+    "manifest"
+  ],
+  "title": "WebBackup",
+  "type": "object"
+}

@@ -39,6 +39,8 @@ class ReleasePreparation(DraftDocument):
     thumbnail: AssetRef | None = None
     creative_review: ReviewRecord | None = None
     metadata_review: ReviewRecord | None = None
+    manual_links: list[HttpUrl] = Field(default_factory=list, exclude_if=lambda value: not value)
+    claim_notes: str = Field(default="", exclude_if=lambda value: not value)
 
 
 class PublicTrack(Model):

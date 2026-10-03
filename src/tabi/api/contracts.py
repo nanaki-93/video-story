@@ -2,7 +2,7 @@
 
 from typing import Literal
 
-from pydantic import Field
+from pydantic import Field, field_validator
 
 from tabi.core.models import (
     ActionPack,
@@ -28,8 +28,10 @@ from tabi.core.models.base import (
     Version,
 )
 from tabi.core.models.cache import CacheInventory, StorageEstimate
+from tabi.core.models.portability import BackupManifest
 from tabi.core.models.preview import PreviewSelection
 from tabi.core.models.production import OutputProfile, RenderJob
+from tabi.core.models.publishing import ReleasePreparation
 from tabi.core.models.rendering import RenderReport
 from tabi.core.models.settings import AppPreferences
 
@@ -184,6 +186,54 @@ class WebRenderPlan(Document):
     document_type: Literal["web_render_plan"] = "web_render_plan"
     job: RenderJob
     storage: StorageEstimate
+
+
+class WebReleases(Document):
+    document_type: Literal["web_releases"] = "web_releases"
+    preparations: list[ReleasePreparation]
+
+
+class SaveRelease(Model):
+    preparation: ReleasePreparation
+    expected_revision: Frame | None = None
+
+
+class ReleaseReview(Model):
+    kind: Literal["creative", "metadata"]
+    expected_hash: SHA256
+    expected_revision: Frame
+    reviewer: Text
+    note: Text
+
+
+class ExportRelease(Model):
+    bundle_id: Identifier
+    require_ready: bool = False
+
+
+class BackupTarget(Model):
+    root_id: Identifier
+    parent: str = ""
+    folder: RelativePath
+
+    @field_validator("folder")
+    @classmethod
+    def single_folder(cls, value):
+        if "/" in value:
+            raise ValueError("choose one new folder name inside the selected parent")
+        return value
+
+
+class RestoreBackup(BackupTarget):
+    source_root_id: Identifier
+    source_path: RelativePath
+
+
+class WebBackup(Document):
+    document_type: Literal["web_backup"] = "web_backup"
+    root_id: Identifier
+    path: RelativePath
+    manifest: BackupManifest
 
 
 class WebSettings(Document):
@@ -344,6 +394,8 @@ class WorkerReady(Model):
 
 
 WEB_SCHEMAS = {
+    "web_releases": WebReleases,
+    "web_backup": WebBackup,
     "web_render_plan": WebRenderPlan,
     "web_settings": WebSettings,
     "web_cache": WebCache,

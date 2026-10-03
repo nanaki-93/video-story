@@ -162,7 +162,7 @@ def routes(runtime):
         root = (
             item.assets.store
             if record.location.root_id == "project"
-            else ProjectStore(runtime.roots.root(record.location.root_id))
+            else ProjectStore(item.assets.roots[record.location.root_id])
         )
         return runtime.artifacts.response(
             root,

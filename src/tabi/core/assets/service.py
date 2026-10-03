@@ -16,6 +16,7 @@ from ..documents import validate_data
 from ..models import Asset, Project
 from ..models.assets import Approval
 from ..models.base import AssetRef, HashedFile, MediaPath, canonical_bytes, version_tuple
+from ..models.portability import PortableRoots
 from ..models.registry import AssetHealth, FileHealth, ImportRequest
 from ..persistence import ProjectStore, StorageError, document_path, resolve_media_path
 from .probe import image_probe, probe_media
@@ -54,6 +55,14 @@ class AssetService:
         self.roots = dict(roots or {})
         if "project" in self.roots:
             raise AssetError("project root cannot be overridden")
+        try:
+            portable = PortableRoots.model_validate_json(store._read_bytes(".portable-roots.json"))
+        except FileNotFoundError:
+            pass
+        else:
+            for identity in portable.roots:
+                with store._directory((".portable-media", identity)):
+                    self.roots[identity] = store.root / ".portable-media" / identity
         self.ffprobe, self.ffmpeg = ffprobe, ffmpeg
 
     def resolve(self, location: MediaPath) -> Path:

@@ -94,6 +94,11 @@
       "title": "Chapters",
       "type": "array"
     },
+    "claim_notes": {
+      "default": "",
+      "title": "Claim Notes",
+      "type": "string"
+    },
     "creative_review": {
       "anyOf": [
         {
@@ -130,6 +135,16 @@
       "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
       "title": "Job Id",
       "type": "string"
+    },
+    "manual_links": {
+      "items": {
+        "format": "uri",
+        "maxLength": 2083,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Manual Links",
+      "type": "array"
     },
     "metadata_review": {
       "anyOf": [

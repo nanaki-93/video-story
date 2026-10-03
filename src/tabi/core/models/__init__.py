@@ -6,6 +6,7 @@ from .cache import CacheEntry, CacheInventory, CachePruneReport, StorageEstimate
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
+from .portability import BackupManifest, PortableRoots
 from .preview import PreviewSelection
 from .production import CompiledSnapshot, JobEvent, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
@@ -22,6 +23,8 @@ from .settings import AppPreferences, JobProgress
 from .story import StoryboardReport
 
 DOCUMENT_MODELS = {
+    "backup_manifest": BackupManifest,
+    "portable_roots": PortableRoots,
     "app_preferences": AppPreferences,
     "job_progress": JobProgress,
     "audio_edit_plan": AudioEditPlan,

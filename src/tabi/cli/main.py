@@ -8,6 +8,7 @@ from pathlib import Path
 from tabi import __version__
 from tabi.cli.assets import add_asset_commands, run_asset_command
 from tabi.cli.audio import add_audio_commands, run_audio_command
+from tabi.cli.backup import add_backup_commands, run_backup_command
 from tabi.cli.cache import add_cache_commands, run_cache_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
 from tabi.cli.jobs import add_job_commands, run_job_command
@@ -37,6 +38,7 @@ def main(argv: list[str] | None = None) -> int:
     commands = parser.add_subparsers(dest="command", required=True)
     add_asset_commands(commands)
     add_audio_commands(commands)
+    add_backup_commands(commands)
     add_cache_commands(commands)
     add_episode_commands(commands)
     add_job_commands(commands)
@@ -202,6 +204,12 @@ def main(argv: list[str] | None = None) -> int:
             return run_cache_command(args)
         except (ValueError, DocumentError, StorageError, OSError) as error:
             logger.error("cache_operation_failed: %s", error)
+            return 4
+    if args.command == "backup":
+        try:
+            return run_backup_command(args)
+        except (ValueError, DocumentError, StorageError, OSError) as error:
+            logger.error("backup_operation_failed: %s", error)
             return 4
     if args.command == "release":
         try:

@@ -1,0 +1,33 @@
+{
+  "$id": "urn:tabi:schema:1.0:portable_roots",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "portable_roots",
+      "default": "portable_roots",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "roots": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "title": "Roots",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "roots"
+  ],
+  "title": "PortableRoots",
+  "type": "object"
+}

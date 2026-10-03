@@ -10,6 +10,7 @@ import { editorPage } from "./editor";
 import { previewPage } from "./preview";
 import { audioPage } from "./audio";
 import { rendersPage, settingsPage } from "./production";
+import { releasePage } from "./release";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -88,6 +89,7 @@ function navigate() {
           "preview",
           "audio",
           "renders",
+          "release",
         ].includes(page)
           ? "Connected worker"
           : page === "preview" && mode === "spike"
@@ -97,6 +99,7 @@ function navigate() {
   );
   main.replaceChildren(header);
   const pages = {
+    release: releasePage,
     renders: rendersPage,
     settings: settingsPage,
     audio: audioPage,
