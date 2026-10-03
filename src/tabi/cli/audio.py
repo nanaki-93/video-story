@@ -4,8 +4,9 @@ from pathlib import Path
 
 from tabi.core.assets import AssetService
 from tabi.core.audio import AudioService
+from tabi.core.audio.editor import AudioEdit, AudioEditor
 from tabi.core.audio.mix import AudioMixer
-from tabi.core.documents import read_document
+from tabi.core.documents import read_data, read_document
 from tabi.core.export import export_document
 from tabi.core.models import Episode, ReleaseRecord
 from tabi.core.models.base import AssetRef
@@ -40,6 +41,16 @@ def add_audio_commands(commands):
             required=name == "mix",
             help="New WAV for mix, otherwise optional new JSON report",
         )
+    for name in ("propose", "edit", "audition"):
+        action = actions.add_parser(name)
+        project_arguments(action)
+        action.add_argument("episode", help="Saved episode ID")
+        if name == "audition":
+            action.add_argument("--expected-revision", type=int, required=True)
+            action.add_argument("--start-sample", type=int, default=0)
+            action.add_argument("--end-sample", type=int, required=True)
+        else:
+            action.add_argument("request", type=Path, help="Strict JSON/YAML AudioEdit request")
 
 
 def run_audio_command(args, settings):
@@ -51,6 +62,33 @@ def run_audio_command(args, settings):
             ffprobe=settings.ffprobe,
         )
     )
+    if args.audio_command in {"propose", "edit", "audition"}:
+        editor = AudioEditor(service.assets, settings)
+        if args.audio_command == "audition":
+            identity, report = editor.audition(
+                args.episode, args.expected_revision, args.start_sample, args.end_sample
+            )
+            import json
+
+            print(
+                json.dumps(
+                    {
+                        "audition_id": identity,
+                        "path": str(service.store.root / f"audio/previews/{identity}.wav"),
+                        "report": report.model_dump(mode="json"),
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                )
+            )
+            return 0
+        request = AudioEdit.model_validate(read_data(args.request))
+        if args.audio_command == "edit":
+            result = editor.apply(args.episode, request)
+        else:
+            result, _ = editor.propose(args.episode, request)
+        print(result.model_dump_json(indent=2))
+        return 2 if args.audio_command == "propose" and not result.can_apply else 0
     if args.audio_command == "mix":
         snapshot = service.store.read_snapshot(args.snapshot)
         result = AudioMixer(service.assets, settings).render(

@@ -164,10 +164,15 @@ def parse_document(payload: bytes | str, *, format: str = "json") -> Document:
     return validate_data(decode_data(payload, format=format))
 
 
-def read_document(path: Path) -> Document:
+def read_data(path: Path) -> dict:
+    """Bounded JSON/YAML reading for documents and shared service requests."""
     with path.open("rb") as source:
         payload = source.read(MAX_DOCUMENT_BYTES + 1)
-    return parse_document(payload, format=path.suffix.lower().removeprefix("."))
+    return decode_data(payload, format=path.suffix.lower().removeprefix("."))
+
+
+def read_document(path: Path) -> Document:
+    return validate_data(read_data(path))
 
 
 def schema_documents() -> dict[str, dict]:

@@ -1,0 +1,11 @@
+{
+  "id": "tabi-train-reference",
+  "version": "1.0",
+  "kind": "still",
+  "paths": [{"root_id": "references", "path": "scenario/tabi-train-example.png"}],
+  "provenance": {
+    "origin": "user_supplied",
+    "commercial_use": "pending",
+    "notes": "Supplied flattened composition reference. Source selection, rights and production approval remain pending; no animation or separated layers are implied."
+  }
+}

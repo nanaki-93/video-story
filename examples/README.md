@@ -1,6 +1,11 @@
 # Example contracts
 
-These JSON files now pass the strict Python models and published JSON Schemas. `make check` validates them and checks schema drift. They remain illustrative drafts with unresolved media/approvals; successful structural validation does not make them renderable or production-approved.
+The top-level JSON documents pass the strict Python models and published JSON Schemas. `make check` validates them and checks schema drift. They remain illustrative drafts with unresolved media/approvals; successful structural validation does not make them renderable or production-approved.
+
+`workflows/` contains service requests rather than versioned documents. The [operations guide](../docs/37-operations.md)
+uses them to import the actual supplied train still with rights pending and create a silent draft.
+They are consumed by `asset import` and `author` commands, not `document validate`. No animation,
+music or approval is fabricated by that walkthrough.
 
 All root documents explicitly declare `schema_version` and `document_type`. Scene/action/track references use stable asset IDs and versions. Draft hashes may remain null; a compiled snapshot requires resolved hashes for its direct references. T05/T13 must resolve media, transitive dependencies and compatibility before rendering.
 

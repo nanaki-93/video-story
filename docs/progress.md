@@ -417,3 +417,17 @@ geometry, freezes and separately reviews a snapshot, then verifies a three-chunk
 30 frames and 48000 audio samples. No supplied Tabi artwork was approved. Python lint/format and
 the frontend contract/type/build checks pass. Chrome rejected a synthetic template without changing
 its draft status; [UI evidence](evidence/t38-metadata-review.jpg). Final broad gates follow.
+
+CLI parity now includes guarded episode creation/editing, timeline lanes, draft metadata install,
+template/pack inspection and review, asset metadata versions, audio proposals/edits/auditions,
+preferences/tool settings and measured job progress. Request models are shared with the API;
+bounded JSON/YAML reading also fixes the asset import command's advertised YAML support.
+Five subprocess round-trip tests cover stale edits, immutable approvals, versioning, unknown and
+duplicate fields, oversized files, audio conflicts and settings backups. An actual-media CLI
+round trip verifies a 48000-sample audition and a 30-frame / 48000-sample three-chunk video.
+`make check`: 296 passed / 61 opt-in media cases skipped, 64 schemas; frontend checks/four tests pass.
+
+The [operations walkthrough](37-operations.md) was executed through the CLI using the unchanged
+supplied train still. The resulting silent, watermarked draft verifies 300 frames / 480000 samples
+at 1920×1080 with VideoToolbox. Source SHA-256 is unchanged; asset rights remain pending and
+approval remains draft. [Recorded commands and verification](evidence/t38-reference-walkthrough.json).

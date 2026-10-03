@@ -1,0 +1,10 @@
+{
+  "id": "train-reference-draft",
+  "title": "Train reference — draft composition",
+  "format": "track",
+  "fps": {"num": 30, "den": 1},
+  "canvas": {"width": 1664, "height": 936},
+  "duration_frames": 300,
+  "template": {"id": "train-reference-still", "version": "1.0"},
+  "music": []
+}

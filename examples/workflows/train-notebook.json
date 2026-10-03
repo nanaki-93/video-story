@@ -1,0 +1,10 @@
+{
+  "expected_revision": 0,
+  "command": {
+    "kind": "continuity",
+    "continuity": {
+      "summary": "Unchanged supplied train composition shown as a silent draft still.",
+      "notes": ["No new character design, animation, original music, rights or creative approval is implied."]
+    }
+  }
+}

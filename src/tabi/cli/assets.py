@@ -5,7 +5,7 @@ from pathlib import Path
 
 from tabi.core.assets import AssetService
 from tabi.core.config import Settings
-from tabi.core.documents import decode_data
+from tabi.core.documents import read_data
 from tabi.core.models.base import AssetRef, MediaPath
 from tabi.core.models.registry import ImportRequest
 from tabi.core.persistence import ProjectStore
@@ -63,9 +63,7 @@ def run_asset_command(args, settings: Settings) -> int:
     )
     command = args.asset_command
     if command == "import":
-        result = service.import_asset(
-            ImportRequest.model_validate(decode_data(args.request.read_bytes()))
-        )
+        result = service.import_asset(ImportRequest.model_validate(read_data(args.request)))
     elif command == "list":
         print(
             json.dumps(

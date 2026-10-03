@@ -6,7 +6,13 @@ import os
 from fastapi import APIRouter, HTTPException, Query, Request
 from starlette.concurrency import run_in_threadpool
 
-from tabi.core.authoring import AuthoringService, MetadataKind, NewEpisode
+from tabi.core.authoring import (
+    AssetRevision,
+    AuthoringService,
+    MetadataKind,
+    NewEpisode,
+    StillTemplate,
+)
 from tabi.core.editor import EditorService, EditRequest
 from tabi.core.episodes import EpisodeService
 from tabi.core.models import ActionPack, ImportRequest, ReleaseRecord
@@ -15,14 +21,12 @@ from tabi.core.persistence import ProjectStore
 
 from .contracts import (
     AssetRelink,
-    AssetRevision,
     BeginUpload,
     CreateProject,
     ImportUploads,
     InstallDocument,
     ProxyVersion,
     Review,
-    StillTemplate,
     WebCatalog,
     WebEditor,
 )

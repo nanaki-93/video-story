@@ -7,6 +7,7 @@ from tabi.core.cache.storage import estimate_storage
 from tabi.core.jobs import JobService
 from tabi.core.models.base import Canvas
 from tabi.core.models.production import OutputProfile
+from tabi.core.models.settings import JobProgress
 from tabi.core.persistence import ProjectStore
 from tabi.core.render.profiles import PRESETS, preset_profile
 
@@ -21,6 +22,7 @@ def add_job_commands(commands):
         "submit",
         "list",
         "status",
+        "progress",
         "events",
         "cancel",
         "pause",
@@ -33,7 +35,16 @@ def add_job_commands(commands):
         action = actions.add_parser(name)
         project_arguments(action)
         action.add_argument("--json", action="store_true", help="JSON is the default output format")
-        if name in {"status", "events", "cancel", "pause", "resume", "estimate", "verify"}:
+        if name in {
+            "status",
+            "progress",
+            "events",
+            "cancel",
+            "pause",
+            "resume",
+            "estimate",
+            "verify",
+        }:
             action.add_argument("job_id")
         if name == "work":
             action.add_argument("--once", action="store_true", help="Run at most one queued job")
@@ -103,6 +114,8 @@ def run_job_command(args, settings):
         result = service.ledger.all()
     elif name == "status":
         result = service.ledger.get(args.job_id)
+    elif name == "progress":
+        result = JobProgress.model_validate(service.progress(args.job_id))
     elif name == "estimate":
         result = estimate_storage(assets, service.ledger.get(args.job_id))
     elif name == "verify":
@@ -123,6 +136,8 @@ def run_job_command(args, settings):
         json.dumps(
             [item.model_dump(mode="json") for item in result]
             if isinstance(result, list)
+            else result
+            if isinstance(result, dict)
             else result.model_dump(mode="json"),
             ensure_ascii=False,
             indent=2,

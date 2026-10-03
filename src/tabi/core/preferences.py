@@ -6,8 +6,20 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from .config import load_settings
+from .models.base import SHA256, Frame, Model, Text
 from .models.settings import AppPreferences
 from .persistence import ProjectStore, RevisionConflict
+
+
+class SavePreferences(Model):
+    preferences: AppPreferences
+    expected_revision: Frame | None
+
+
+class SaveTools(Model):
+    ffmpeg: Text
+    ffprobe: Text
+    expected_hash: SHA256 | None
 
 
 class PreferencesService:

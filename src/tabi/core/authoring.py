@@ -10,10 +10,33 @@ from .audio.timeline import prepared_samples
 from .documents import validate_data
 from .models import ActionPack, Asset, Episode, ReleaseRecord, SceneTemplate, TrackPlacement
 from .models.assets import Approval, Compatibility, Provenance
-from .models.base import AssetRef, Canvas, Frame, FrameRate, Identifier, Model, Text, version_tuple
+from .models.base import (
+    AssetRef,
+    Canvas,
+    Frame,
+    FrameRate,
+    Identifier,
+    Model,
+    Text,
+    Version,
+    version_tuple,
+)
 from .persistence import RevisionConflict, StorageError, document_path
 
 MetadataKind = Literal["scene_template", "action_pack"]
+
+
+class StillTemplate(Model):
+    asset: AssetRef
+    id: Identifier
+    version: Version = "1.0"
+    camera_id: Identifier = "still"
+
+
+class AssetRevision(Model):
+    version: Version
+    provenance: Provenance
+    compatibility: Compatibility
 
 
 class NewEpisode(Model):

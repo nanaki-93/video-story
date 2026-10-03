@@ -1,0 +1,6 @@
+{
+  "asset": {"id": "tabi-train-reference", "version": "1.0"},
+  "id": "train-reference-still",
+  "version": "1.0",
+  "camera_id": "supplied-train-still"
+}

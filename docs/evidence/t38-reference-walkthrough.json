@@ -1,0 +1,345 @@
+{
+  "purpose": "Unchanged supplied reference, silent draft; no animation or production approval",
+  "project": ".local/Train reference draft",
+  "source_sha256": "01e4db852ceed7bc4d17708c3d181103d0699e5caed54bbc44eda1d83932473e",
+  "asset": {
+    "schema_version": "1.0",
+    "id": "tabi-train-reference",
+    "revision": 0,
+    "approval": {
+      "status": "draft",
+      "content_sha256": null,
+      "reviewer": null,
+      "reviewed_at": null,
+      "note": null
+    },
+    "document_type": "asset",
+    "version": "1.0",
+    "kind": "still",
+    "source": {
+      "root_id": "references",
+      "path": "scenario/tabi-train-example.png"
+    },
+    "files": [
+      {
+        "location": {
+          "root_id": "project",
+          "path": "sources/tabi-train-reference/1.0-d43d09fb55424b23a55680529ca3e360/000000-tabi-train-example.png"
+        },
+        "sha256": "01e4db852ceed7bc4d17708c3d181103d0699e5caed54bbc44eda1d83932473e",
+        "size_bytes": 2554183
+      }
+    ],
+    "proxies": [],
+    "probe": {
+      "canvas": {
+        "width": 1664,
+        "height": 936
+      },
+      "fps": null,
+      "frame_count": 1,
+      "sample_rate": null,
+      "duration_samples": null,
+      "channels": null,
+      "codec": "PNG",
+      "pixel_format": "RGB",
+      "color_space": "srgb",
+      "alpha_mode": "none",
+      "pixel_aspect": {
+        "num": 1,
+        "den": 1
+      }
+    },
+    "compatibility": {
+      "cameras": [],
+      "templates": [],
+      "channels": [],
+      "anchor": null,
+      "pivot": null,
+      "crop": null
+    },
+    "provenance": {
+      "origin": "user_supplied",
+      "creator": null,
+      "reference_ids": [],
+      "licence_evidence": [],
+      "commercial_use": "pending",
+      "generation": null,
+      "notes": "Supplied flattened composition reference. Source selection, rights and production approval remain pending; no animation or separated layers are implied."
+    }
+  },
+  "compilation": {
+    "schema_version": "1.0",
+    "document_type": "compilation_result",
+    "snapshot_sha256": "2f19d5fe6d16016d5ec822247a6c5620d4c6ae22a1b7fc16f70e9fe0aee38c99",
+    "snapshot_path": "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft/snapshots/2f19d5fe6d16016d5ec822247a6c5620d4c6ae22a1b7fc16f70e9fe0aee38c99.json",
+    "review_content_sha256": "a2b085c48fcf647cea1a47593f384f7824ed753b9eb4df58285f69168c024d62",
+    "purpose": "preview",
+    "duration_frames": 300,
+    "scheduled_events": 0,
+    "locked_inputs": 2
+  },
+  "job_id": "job-59189311ede64604bafd83f1502949da",
+  "progress": {
+    "schema_version": "1.0",
+    "document_type": "job_progress",
+    "job": {
+      "schema_version": "1.0",
+      "id": "job-59189311ede64604bafd83f1502949da",
+      "revision": 6,
+      "document_type": "render_job",
+      "snapshot_sha256": "2f19d5fe6d16016d5ec822247a6c5620d4c6ae22a1b7fc16f70e9fe0aee38c99",
+      "profile": {
+        "id": "1080p-h264_videotoolbox",
+        "canvas": {
+          "width": 1920,
+          "height": 1080
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "container": "mp4",
+        "video_codec": "h264_videotoolbox",
+        "pixel_format": "yuv420p",
+        "color_space": "bt709",
+        "audio_codec": "aac",
+        "audio_bitrate": 384000,
+        "sample_rate": 48000,
+        "video_bitrate": 8000000
+      },
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "4b0d787c87394571138c47e0034d498a4504d73d598c118ef436b7400a856395"
+      },
+      "state": "verified",
+      "duration_frames": 300,
+      "chunks": [
+        {
+          "index": 0,
+          "first_frame": 0,
+          "frame_count": 300,
+          "state": "verified",
+          "output": {
+            "location": {
+              "root_id": "project",
+              "path": "jobs/artifacts/job-59189311ede64604bafd83f1502949da/chunk-000000-84b7903270b34a0c92088831ea00b262.mp4"
+            },
+            "sha256": "f6fa8392e1aa508de265c61d64c6b682095b9ac8f7b0878ce77a75606e46c801",
+            "size_bytes": 8860099
+          },
+          "report_path": "jobs/artifacts/job-59189311ede64604bafd83f1502949da/chunk-000000-84b7903270b34a0c92088831ea00b262-report.json"
+        }
+      ],
+      "completed_frames": 300,
+      "output": {
+        "location": {
+          "root_id": "project",
+          "path": "exports/train-reference.mp4"
+        },
+        "sha256": "687d785a3c9f2d404638aa544a87a0f806eedae67b5437df6d79e1d2b345d014",
+        "size_bytes": 8871462
+      },
+      "report_path": "jobs/artifacts/job-59189311ede64604bafd83f1502949da/final-98f4b75f4efb4c10a15569ba508aced5-report.json",
+      "error": null,
+      "destination": "exports/train-reference.mp4",
+      "plan": {
+        "version": "1",
+        "pipeline": {
+          "name": "tabi-core-pipeline",
+          "version": "1",
+          "sha256": "4f33a46df884595647a46567e3cf4fa504bb020a55d265c1a82e2b2b321a2e81"
+        },
+        "profile_sha256": "2a45c461f130437b96b7e125d046db4d7856b14540c8afc78b18fafa86362732",
+        "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+        "max_chunk_frames": 900,
+        "temporal_handles": 0
+      }
+    },
+    "elapsed_running_seconds": 13.920298,
+    "measured_fps": 21.551262767506845,
+    "eta_seconds": null
+  },
+  "verification": {
+    "schema_version": "1.0",
+    "document_type": "export_verification",
+    "job_id": "job-59189311ede64604bafd83f1502949da",
+    "snapshot_sha256": "2f19d5fe6d16016d5ec822247a6c5620d4c6ae22a1b7fc16f70e9fe0aee38c99",
+    "output": {
+      "location": {
+        "root_id": "project",
+        "path": "exports/train-reference.mp4"
+      },
+      "sha256": "687d785a3c9f2d404638aa544a87a0f806eedae67b5437df6d79e1d2b345d014",
+      "size_bytes": 8871462
+    },
+    "profile": {
+      "id": "1080p-h264_videotoolbox",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "container": "mp4",
+      "video_codec": "h264_videotoolbox",
+      "pixel_format": "yuv420p",
+      "color_space": "bt709",
+      "audio_codec": "aac",
+      "audio_bitrate": 384000,
+      "sample_rate": 48000,
+      "video_bitrate": 8000000
+    },
+    "video": {
+      "codec": "h264",
+      "profile": "High",
+      "level": 40,
+      "pixel_format": "yuv420p",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "frame_count": 300,
+      "duration_seconds": 10.0,
+      "container_duration_seconds": 10.0,
+      "bit_rate": 7086784,
+      "color_space": "bt709",
+      "color_range": "tv",
+      "progressive": true,
+      "timestamps_verified": true,
+      "full_decode_passed": true,
+      "mp4": {
+        "moov_offset": 32,
+        "first_mdat_offset": 10123,
+        "fast_start": true
+      }
+    },
+    "audio": {
+      "intended_samples": 480000,
+      "decoded_samples": 480000,
+      "padding_samples": 0,
+      "codec": "aac",
+      "sample_rate": 48000,
+      "channels": 2
+    }
+  },
+  "steps": [
+    {
+      "arguments": [
+        "project",
+        "init",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft",
+        "--title",
+        "Tabi supplied reference draft",
+        "--json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "asset",
+        "import",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft",
+        "examples/workflows/train-import.json",
+        "--root",
+        "references=/Users/marcoandreose/DEV/lab/video-story/docs/assets"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "author",
+        "still-template",
+        "examples/workflows/train-template.json",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "author",
+        "create-episode",
+        "examples/workflows/train-episode.json",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "author",
+        "edit",
+        "train-reference-draft",
+        "examples/workflows/train-notebook.json",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "compile",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft/episodes/train-reference-draft.json",
+        "--purpose",
+        "preview",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "jobs",
+        "submit",
+        "2f19d5fe6d16016d5ec822247a6c5620d4c6ae22a1b7fc16f70e9fe0aee38c99",
+        "--preset",
+        "1080p",
+        "--encoder",
+        "h264_videotoolbox",
+        "--output",
+        "exports/train-reference.mp4",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "jobs",
+        "work",
+        "--once",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "jobs",
+        "progress",
+        "job-59189311ede64604bafd83f1502949da",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    },
+    {
+      "arguments": [
+        "jobs",
+        "verify",
+        "job-59189311ede64604bafd83f1502949da",
+        "--project",
+        "/Users/marcoandreose/DEV/lab/video-story/.local/Train reference draft"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

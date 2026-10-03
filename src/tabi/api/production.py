@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, Query
 from tabi.core.cache.storage import estimate_storage
 from tabi.core.cache.store import CacheStore
 from tabi.core.episodes import EpisodeService
-from tabi.core.preferences import PreferencesService
+from tabi.core.preferences import PreferencesService, SavePreferences, SaveTools
 from tabi.core.render.profiles import preset_profile
 from tabi.core.toolchain import doctor
 
@@ -14,8 +14,6 @@ from .contracts import (
     PruneCache,
     RenderRequest,
     Review,
-    SavePreferences,
-    SaveTools,
     WebCache,
     WebRenderPlan,
     WebSettings,

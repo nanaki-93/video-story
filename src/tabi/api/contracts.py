@@ -13,11 +13,9 @@ from tabi.core.models import (
     SceneTemplate,
     ValidationReport,
 )
-from tabi.core.models.assets import Compatibility, Provenance
 from tabi.core.models.audio import AudioMixReport, AudioTimelineReport
 from tabi.core.models.base import (
     SHA256,
-    AssetRef,
     Document,
     Frame,
     Identifier,
@@ -248,17 +246,6 @@ class WebSettings(Document):
     preferences_saved: bool
 
 
-class SavePreferences(Model):
-    preferences: AppPreferences
-    expected_revision: Frame | None
-
-
-class SaveTools(Model):
-    ffmpeg: Text
-    ffprobe: Text
-    expected_hash: SHA256 | None
-
-
 class WebCache(Document):
     document_type: Literal["web_cache"] = "web_cache"
     inventory: CacheInventory
@@ -274,19 +261,6 @@ class PruneCache(Model):
 class InstallDocument(Model):
     document: dict
     expected_revision: Frame | None = None
-
-
-class StillTemplate(Model):
-    asset: AssetRef
-    id: Identifier
-    version: Version = "1.0"
-    camera_id: Identifier = "still"
-
-
-class AssetRevision(Model):
-    version: Version
-    provenance: Provenance
-    compatibility: Compatibility
 
 
 class AssetRelink(Model):
