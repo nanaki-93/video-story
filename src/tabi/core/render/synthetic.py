@@ -22,6 +22,9 @@ PALETTE = [
 ]
 # Original 5x7 bitmap lettering: no system or commercial font dependency.
 LETTERS = {
+    "D": [30, 17, 17, 17, 17, 17, 30],
+    "V": [17, 17, 17, 17, 17, 10, 4],
+    "W": [17, 17, 17, 21, 21, 21, 10],
     "S": [15, 16, 16, 14, 1, 1, 30],
     "Y": [17, 17, 10, 4, 4, 4, 4],
     "N": [17, 25, 25, 21, 19, 19, 17],

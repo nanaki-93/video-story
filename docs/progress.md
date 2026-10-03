@@ -110,9 +110,17 @@ Verification: `make schemas && make check` passed Ruff, 20 schema checks and **1
 
 Core implementation is complete against fixtures. Real Tabi motion approval remains pending; scene overlaps are explicitly unsupported until T18. No real artwork or publication status was approved.
 
+## T11 — core complete; real-art review pending
+
+`T11: render locked scene layers with verified masks and alpha` implements a renderer interface and shared FFmpeg still/clip backend. Frozen records/files are verified before and after rendering. Owned PNG copies normalize straight/premultiplied alpha and tagged color without editing originals; masks retain raw coverage. Ordered template slots control masks, opacity, prepared body/face clips, foreground occlusion, framing and cuts. Synthetic/draft labels are always visible. Verified outputs publish without overwriting existing files; failure cleans only owned temporary work.
+
+Verification: `make check`: Ruff, **21 schemas and 163 tests passed**, 14 media tests skipped. `make test-media`: **all 14 actual-media tests passed**, including prior software/VideoToolbox checks. Six new media cases passed, including 12 frame comparisons against independent Pillow composition (maximum two RGB levels) with both binary and partial mask/alpha, and a look-transition video checked against six sampled global frames (15-level tolerance). Changed locks, invalid masks and injected output-verification rejection preserve originals and publish nothing. The separate ten-second/300-frame/640×360 clip fully decodes with rational timestamps and BT.709 H.264 tags; measured FFmpeg subprocess time is 0.601 seconds, excluding preparation/verification. [Still](evidence/t11-synthetic-frame-37.png) was visually inspected; [still report](evidence/t11-still-report.json) and [clip report](evidence/t11-clip-report.json) retain identities and timings. MP4 stays local under `.local/t11-renderer/`.
+
+This completes static/masked scene rendering against synthetic assets. Moving strips/landmarks, effects, audio and real Tabi artwork remain their respective tasks. PNG sequences are the supported prepared alpha interchange; unknown production color, unsupported effects and unapproved production snapshots fail explicitly. No final-art or 4K readiness is claimed.
+
 ## Next task and pending gates
 
-**Next: T11 — reusable scene rendering and masks using synthetic assets.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
+**Next: T12 — continuous parallax and one-time landmarks.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 

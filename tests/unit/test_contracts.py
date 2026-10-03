@@ -296,6 +296,7 @@ def test_root_registry_is_complete(project_data, snapshot_data):
         "render_spike_report",
         "fixture_manifest",
         "asset_health",
+        "render_report",
     } == set(DOCUMENT_MODELS)
     for data in [project_data, snapshot_data]:
         document = validate_data(data)

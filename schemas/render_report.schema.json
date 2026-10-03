@@ -1,0 +1,192 @@
+{
+  "$defs": {
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "title": "Canvas",
+      "type": "object"
+    },
+    "Fingerprint": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "sha256"
+      ],
+      "title": "Fingerprint",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:render_report",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "backend": {
+      "$ref": "#/$defs/Fingerprint"
+    },
+    "canvas": {
+      "$ref": "#/$defs/Canvas"
+    },
+    "document_type": {
+      "const": "render_report",
+      "default": "render_report",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "first_frame": {
+      "minimum": 0,
+      "title": "First Frame",
+      "type": "integer"
+    },
+    "fps": {
+      "$ref": "#/$defs/FrameRate"
+    },
+    "frame_count": {
+      "exclusiveMinimum": 0,
+      "title": "Frame Count",
+      "type": "integer"
+    },
+    "full_decode_passed": {
+      "title": "Full Decode Passed",
+      "type": "boolean"
+    },
+    "graph_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Graph Sha256",
+      "type": "string"
+    },
+    "normalized_images": {
+      "minimum": 0,
+      "title": "Normalized Images",
+      "type": "integer"
+    },
+    "output": {
+      "title": "Output",
+      "type": "string"
+    },
+    "output_bytes": {
+      "exclusiveMinimum": 0,
+      "title": "Output Bytes",
+      "type": "integer"
+    },
+    "output_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Output Sha256",
+      "type": "string"
+    },
+    "purpose": {
+      "enum": [
+        "preview",
+        "production",
+        "synthetic_test"
+      ],
+      "title": "Purpose",
+      "type": "string"
+    },
+    "render_seconds": {
+      "exclusiveMinimum": 0,
+      "title": "Render Seconds",
+      "type": "number"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "timestamps_verified": {
+      "title": "Timestamps Verified",
+      "type": "boolean"
+    },
+    "toolchain_fingerprint": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Toolchain Fingerprint",
+      "type": "string"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "purpose",
+    "snapshot_sha256",
+    "first_frame",
+    "frame_count",
+    "canvas",
+    "fps",
+    "output",
+    "output_sha256",
+    "output_bytes",
+    "graph_sha256",
+    "backend",
+    "toolchain_fingerprint",
+    "render_seconds",
+    "full_decode_passed",
+    "timestamps_verified",
+    "normalized_images"
+  ],
+  "title": "RenderReport",
+  "type": "object"
+}

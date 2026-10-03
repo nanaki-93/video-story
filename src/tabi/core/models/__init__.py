@@ -7,6 +7,7 @@ from .fixtures import FixtureManifest
 from .production import CompiledSnapshot, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
 from .registry import AssetHealth, ImportRequest
+from .rendering import RenderReport
 from .scenes import Curve, SceneInstance, SceneTemplate
 
 DOCUMENT_MODELS = {
@@ -23,6 +24,7 @@ DOCUMENT_MODELS = {
     "render_spike_report": RenderSpikeReport,
     "fixture_manifest": FixtureManifest,
     "asset_health": AssetHealth,
+    "render_report": RenderReport,
 }
 
 SCHEMA_MODELS = {
