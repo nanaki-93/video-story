@@ -545,6 +545,10 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
             },
         }
         episode = validate_data(data)
+    if profile == "cafe":
+        from .fixture_cafe import populate_cafe
+
+        episode = populate_cafe(store, register, pack, episode)
     store.save_draft(episode, expected_revision=None)
     files = [
         hashed(root, path)
@@ -561,7 +565,7 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
 def generate_fixtures(output: Path, *, profile: str = "core") -> FixtureManifest:
     """Publish a new fixture project only; never merge into or replace an existing one."""
     output = output.expanduser().resolve()
-    if profile not in {"core", "effects", "story"}:
+    if profile not in {"core", "effects", "story", "cafe"}:
         raise StorageError("unknown fixture profile")
     if output.exists():
         raise StorageError("fixture output already exists; choose a new directory")

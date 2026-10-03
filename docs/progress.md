@@ -326,3 +326,13 @@ it running, and a new worker resumed 1,800 retained frames to 2,700 frames / 4,3
 Chrome and Safari played/sought it and measured nonzero audio. Three actual installed process
 crash/recovery cases passed. [Installation](32-installation.md), [evidence](tasks/t33.md),
 [installed preview](evidence/t33-installed-chrome.jpg). Real creative approval remains pending.
+
+## T34 — café template
+
+Core complete; café art review remains pending. `fixtures --profile cafe` adds a stationary
+room/street, new window geometry and table anchor, slow clouds and one passing pedestrian.
+The explicit café-compatible pack reuses geometric clips. No compiler/renderer/editor branch
+was needed. Two unit checks and one actual-media check pass, including fixed architecture,
+masked motion, anchor/occlusion and a 300-frame / 480000-sample export. `make check`: 261
+passed / 55 opt-in skipped, 61 schemas. [Guide](33-cafe-template.md),
+[synthetic frame](evidence/t34-cafe-frame.png).
