@@ -107,13 +107,19 @@ class ActionCompiler:
     def pack(self, ref: AssetRef, scene: SceneInstance, episode: Episode) -> ActionPack:
         pack = self.resolve(ref, "action_pack")
         template = self.resolve(scene.template, "scene_template")
-        if pack.template != scene.template or pack.camera_id != template.camera_id:
+        self.validate_pack(pack, template, episode.fps, scene.character_outfit_id)
+        return pack
+
+    def validate_pack(self, pack, template, fps, outfit):
+        """The same media/camera compatibility checks apply during review and compilation."""
+        reference = AssetRef(id=template.id, version=template.version)
+        if pack.template != reference or pack.camera_id != template.camera_id:
             raise CompileError("action pack camera/template is incompatible with the scene")
-        if pack.outfit_id != scene.character_outfit_id:
+        if pack.outfit_id != outfit:
             raise CompileError(
                 "action pack outfit is incompatible with the scene's declared outfit"
             )
-        if pack.fps != episode.fps:
+        if pack.fps != fps:
             raise CompileError(
                 "action pack fps differs from episode; explicitly normalize and review"
             )
@@ -141,7 +147,7 @@ class ActionCompiler:
                 pack.outfit_id not in clip.compatibility.outfits
             ):
                 raise CompileError(f"{action.id} has no matching outfit declaration")
-            if clip.compatibility.templates and scene.template not in clip.compatibility.templates:
+            if clip.compatibility.templates and reference not in clip.compatibility.templates:
                 raise CompileError(f"{action.id} clip excludes this template version")
             if clip.compatibility.anchor is not None and clip.compatibility.anchor != pack.anchor:
                 raise CompileError(f"{action.id} anchor differs from its pack")
@@ -149,7 +155,6 @@ class ActionCompiler:
                 not action.compatible_body_poses or action.resulting_props
             ):
                 raise CompileError("face overlays need compatible body poses and cannot move props")
-        return pack
 
     def _emit(
         self, request: ActionRequest, action: Action, start: int, duration: int, index: int

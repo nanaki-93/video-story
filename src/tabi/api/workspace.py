@@ -6,7 +6,7 @@ import os
 from fastapi import APIRouter, HTTPException, Query, Request
 from starlette.concurrency import run_in_threadpool
 
-from tabi.core.authoring import AuthoringService, NewEpisode
+from tabi.core.authoring import AuthoringService, MetadataKind, NewEpisode
 from tabi.core.editor import EditorService, EditRequest
 from tabi.core.episodes import EpisodeService
 from tabi.core.models import ActionPack, ImportRequest, ReleaseRecord
@@ -54,13 +54,25 @@ def routes(runtime):
     @router.get("/projects/{handle}/catalog", response_model=WebCatalog)
     def catalog(handle: str):
         author = service(handle)
+        templates = author.templates()
+        packs = author.documents("registry/actions", ActionPack)
         return WebCatalog(
             schema_version="1.0",
             assets=author.assets.list_assets(),
-            templates=author.templates(),
-            packs=author.documents("registry/actions", ActionPack),
+            templates=templates,
+            packs=packs,
             episodes=author.episodes(),
             releases=author.documents("releases", ReleaseRecord),
+            metadata_hashes={
+                f"{doc.document_type}:{doc.id}@{doc.version}": doc.approval_hash
+                for doc in [*templates, *packs]
+            },
+        )
+
+    @router.post("/projects/{handle}/registry/{kind}/{identity}/{version}/review")
+    def metadata_review(handle: str, kind: MetadataKind, identity: str, version: str, body: Review):
+        return service(handle).review_metadata(
+            kind, AssetRef(id=identity, version=version), **body.model_dump()
         )
 
     @router.post("/projects/{handle}/documents")

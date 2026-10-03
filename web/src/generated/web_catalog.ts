@@ -270,6 +270,7 @@ export interface WebCatalog {
   assets: Assets;
   document_type?: DocumentType1;
   episodes: Episodes;
+  metadata_hashes: MetadataHashes;
   packs: Packs;
   releases: Releases;
   schema_version: SchemaVersion4;
@@ -663,6 +664,9 @@ export interface TrackPlacement {
   start_sample: StartSample;
   trim_end_sample: TrimEndSample;
   trim_start_sample: TrimStartSample;
+}
+export interface MetadataHashes {
+  [k: string]: string;
 }
 /**
  * This interface was referenced by `WebCatalog`'s JSON-Schema

@@ -405,3 +405,15 @@ report and representative frame are linked in the long-form guide. One active ex
 the default; full-length native 4K and real artwork need separate qualification.
 Final T37 `make check`: 286 passed, 59 opt-in media cases skipped, 64 schemas checked. Frontend
 typecheck, four tests and production build passed after the export-review change.
+
+## T38 — operations and final acceptance (in progress)
+
+The acceptance audit found that template/action-pack approval needed an explicit operator flow.
+Assets now displays their exact metadata and Python-computed review hashes. The shared authoring
+service records review only after production dependency checks and a final revision guard; pack
+compatibility uses the same validation as episode compilation. Approved versions remain immutable.
+Twenty-two focused unit/API checks pass. A real test-only production flow approves temporary owned
+geometry, freezes and separately reviews a snapshot, then verifies a three-chunk export with exactly
+30 frames and 48000 audio samples. No supplied Tabi artwork was approved. Python lint/format and
+the frontend contract/type/build checks pass. Chrome rejected a synthetic template without changing
+its draft status; [UI evidence](evidence/t38-metadata-review.jpg). Final broad gates follow.

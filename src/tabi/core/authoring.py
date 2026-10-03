@@ -1,5 +1,6 @@
 """Small shared authoring operations; browser and CLI use portable core documents."""
 
+from datetime import UTC, datetime
 from typing import Literal
 
 from pydantic import Field
@@ -8,9 +9,11 @@ from .assets import AssetService
 from .audio.timeline import prepared_samples
 from .documents import validate_data
 from .models import ActionPack, Asset, Episode, ReleaseRecord, SceneTemplate, TrackPlacement
-from .models.assets import Compatibility, Provenance
+from .models.assets import Approval, Compatibility, Provenance
 from .models.base import AssetRef, Canvas, Frame, FrameRate, Identifier, Model, Text, version_tuple
-from .persistence import document_path
+from .persistence import RevisionConflict, StorageError, document_path
+
+MetadataKind = Literal["scene_template", "action_pack"]
 
 
 class NewEpisode(Model):
@@ -44,6 +47,53 @@ class AuthoringService:
 
     def templates(self):
         return self.documents("registry/templates", SceneTemplate)
+
+    def metadata(self, kind: MetadataKind, reference: AssetRef):
+        reference = AssetRef.model_validate(reference)
+        folders = {"scene_template": "templates", "action_pack": "actions"}
+        if kind not in folders:
+            raise ValueError("review a scene template or action pack")
+        path = f"registry/{folders[kind]}/{reference.id}/{reference.version}.json"
+        doc = self.store.read(path)
+        if doc.document_type != kind or document_path(doc) != path:
+            raise ValueError("metadata identity does not match its registry path")
+        return doc
+
+    def review_metadata(self, kind, reference, *, expected_hash, reviewer, note):
+        """Record explicit content review only after approved dependencies validate."""
+        from .timeline.compiler import ActionCompiler
+
+        doc = self.metadata(kind, reference)
+        if doc.approval.status == "approved":
+            raise StorageError("metadata is already approved; create a new version to edit")
+        if doc.approval_hash != expected_hash:
+            raise RevisionConflict("reviewed metadata changed; reload and inspect its current hash")
+        compiler = ActionCompiler(self.assets, purpose="production")
+        # Only this exact reviewed candidate is exempt from prior approval. All
+        # dependencies still resolve under production rules, including ID collisions.
+        compiler.resolved[(doc.id, doc.version)] = doc
+        template = (
+            doc
+            if isinstance(doc, SceneTemplate)
+            else compiler.resolve(doc.template, "scene_template")
+        )
+        for slot in template.slots:
+            for dependency in (slot.asset, slot.mask):
+                if dependency:
+                    compiler.resolve(dependency, "asset")
+        if isinstance(doc, ActionPack):
+            compiler.validate_pack(doc, template, doc.fps, doc.outfit_id)
+        approval = Approval(
+            status="approved",
+            content_sha256=expected_hash,
+            reviewer=reviewer,
+            reviewed_at=datetime.now(UTC),
+            note=note,
+        )
+        reviewed = validate_data(
+            {**doc.model_dump(mode="json"), "approval": approval.model_dump(mode="json")}
+        )
+        return self.store.save_draft(reviewed, expected_revision=doc.revision)
 
     def episodes(self):
         return self.documents("episodes", Episode)

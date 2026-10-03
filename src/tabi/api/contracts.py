@@ -83,6 +83,7 @@ class WebCatalog(Document):
     packs: list[ActionPack]
     episodes: list[Episode]
     releases: list[ReleaseRecord]
+    metadata_hashes: dict[str, SHA256]
 
 
 class TimelineItem(Model):

@@ -41,4 +41,4 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T35](t35.md) | Add optional activity and outfit packs | T07, T10, T34 | optional expansion | core complete; activity/outfit art review pending |
 | [T36](t36.md) | Add optional local ComfyUI asset bridge | T05, T26 | optional expansion | core complete; model/workflow validation pending |
 | [T37](t37.md) | Benchmark long form and tune resource use | T21, T23, T33, T34 | mandatory reliability | complete |
-| [T38](t38.md) | Document operations and complete V1 acceptance | T19, T24, T33, T34, T37 | mandatory | planned |
+| [T38](t38.md) | Document operations and complete V1 acceptance | T19, T24, T33, T34, T37 | mandatory | in progress; final workflow and acceptance |

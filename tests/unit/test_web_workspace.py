@@ -1,5 +1,6 @@
 import hashlib
 import io
+import shutil
 
 from PIL import Image
 from test_web_service import connect
@@ -12,6 +13,61 @@ from tabi.core.fixtures import generate_fixtures
 from tabi.core.models.base import AssetRef
 
 workspace = _workspace
+
+
+def test_metadata_review_http_requires_auth_current_hash_and_approved_dependencies(
+    workspace, review_project
+):
+    runtime, client, origin, _ = workspace
+    author, template, pack, _ = review_project
+    shutil.copytree(author.store.root, runtime.roots.root("work") / "Review")
+    _, headers, _ = connect(runtime, client, origin)
+    opened = client.post(
+        "/api/v1/projects/open", headers=headers, json={"root_id": "work", "path": "Review"}
+    )
+    assert opened.status_code == 200, opened.text
+    base = f"/api/v1/projects/{opened.json()['handle']}"
+    catalog = client.get(base + "/catalog").json()
+    route = f"{base}/registry/scene_template/{template.id}/{template.version}/review"
+    body = {
+        "expected_hash": catalog["metadata_hashes"][
+            f"scene_template:{template.id}@{template.version}"
+        ],
+        "reviewer": "Temporary automated test",
+        "note": "Test-only policy fixture; no real creative approval",
+    }
+    assert client.post(route, json=body).status_code == 403
+    assert client.post(route, headers=headers, json=body).status_code == 400
+    assert (
+        client.post(route, headers=headers, json={**body, "expected_hash": "0" * 64}).status_code
+        == 409
+    )
+    assert (
+        client.post(
+            route.replace("scene_template", "episode"), headers=headers, json=body
+        ).status_code
+        == 422
+    )
+    for asset in author.assets.list_assets():
+        result = client.post(
+            f"{base}/assets/{asset.id}/{asset.version}/approve",
+            headers=headers,
+            json={**body, "expected_hash": asset.approval_hash},
+        )
+        assert result.status_code == 200, result.text
+    pack_route = f"{base}/registry/action_pack/{pack.id}/{pack.version}/review"
+    pack_body = {**body, "expected_hash": pack.approval_hash}
+    assert client.post(pack_route, headers=headers, json=pack_body).status_code == 400
+    assert client.post(route, headers=headers, json=body).status_code == 200
+    result = client.post(pack_route, headers=headers, json=pack_body)
+    assert result.status_code == 200, result.text
+    assert result.json()["approval"]["content_sha256"] == pack.approval_hash
+    assert client.post(pack_route, headers=headers, json=pack_body).status_code == 400
+    current = client.get(base + "/catalog").json()
+    assert current["metadata_hashes"] == catalog["metadata_hashes"]
+    assert all(
+        doc["approval"]["status"] == "approved" for doc in current["templates"] + current["packs"]
+    )
 
 
 def test_editor_http_roundtrip_validation_and_stale_client(workspace):

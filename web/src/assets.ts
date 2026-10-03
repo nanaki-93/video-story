@@ -116,6 +116,83 @@ export function assetsPage() {
     library.append(field("Filter assets", filter), list);
     draw();
     root.append(library);
+    const metadataReview = section(
+      "Review templates and action packs",
+      "Inspect the composition or animation against its sources before recording your review. Referenced media must already be approved; action packs also require an approved template. Edits to approved metadata need a new version.",
+    );
+    const metadata = [...catalog.templates, ...catalog.packs];
+    const metadataKey = (doc: (typeof metadata)[number]) =>
+      `${doc.document_type}:${doc.id}@${doc.version}`;
+    if (!metadata.length) {
+      metadataReview.append(
+        element("p", {
+          text: "Create a still template or import authored metadata to review it here.",
+        }),
+      );
+    } else {
+      const selected = choice(
+        metadata.map((doc) => [
+          metadataKey(doc),
+          `${doc.id}@${doc.version} · ${doc.document_type} · ${doc.approval?.status || "draft"}`,
+        ]),
+      );
+      const content = element("div");
+      function inspectMetadata() {
+        content.replaceChildren();
+        const doc = metadata.find(
+          (value) => metadataKey(value) === selected.value,
+        );
+        if (!doc) return;
+        const hash = catalog.metadata_hashes[metadataKey(doc)];
+        content.append(
+          element("p", { className: "mono", text: `Content SHA-256: ${hash}` }),
+        );
+        const details = element("details");
+        details.append(
+          element("summary", { text: "Inspect template or pack JSON" }),
+          element("pre", { text: JSON.stringify(doc, null, 2) }),
+        );
+        content.append(details);
+        if (doc.approval?.status === "approved") {
+          content.append(
+            element("p", {
+              text: `Approved by ${doc.approval.reviewer}. This version is immutable.`,
+            }),
+          );
+          return;
+        }
+        const reviewer = input(""),
+          note = input("");
+        content.append(
+          actionForm(
+            "Record my metadata approval",
+            [
+              field("Metadata reviewer", reviewer),
+              field("Metadata review note", note),
+            ],
+            async () => {
+              await api(
+                `${base}/registry/${doc.document_type}/${doc.id}/${doc.version}/review`,
+                doc.document_type,
+                {
+                  expected_hash: hash,
+                  reviewer: reviewer.value,
+                  note: note.value,
+                },
+              );
+              refreshPage();
+            },
+          ),
+        );
+      }
+      selected.addEventListener("change", inspectMetadata);
+      metadataReview.append(
+        field("Template or action pack", selected),
+        content,
+      );
+      inspectMetadata();
+    }
+    root.append(metadataReview);
     const importing = section(
       "Import media",
       "Files are copied to this Mac in 4 MiB chunks. Choose the same files again to resume an interrupted import; verified source copies remain untouched.",

@@ -2670,6 +2670,14 @@
       "title": "Episodes",
       "type": "array"
     },
+    "metadata_hashes": {
+      "additionalProperties": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "title": "Metadata Hashes",
+      "type": "object"
+    },
     "packs": {
       "items": {
         "$ref": "#/$defs/ActionPack"
@@ -2703,7 +2711,8 @@
     "templates",
     "packs",
     "episodes",
-    "releases"
+    "releases",
+    "metadata_hashes"
   ],
   "title": "WebCatalog",
   "type": "object"
