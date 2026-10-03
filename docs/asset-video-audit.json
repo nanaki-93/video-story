@@ -1,0 +1,93 @@
+{
+  "audit_date": "2026-10-03",
+  "method": "macOS AVFoundation full decoded video scan; separate from FFmpeg renderer tests",
+  "machine": "Apple M5 Pro, macOS 27.0.1 arm64",
+  "approval": "not_assessed",
+  "clips": [
+    {
+      "duration_seconds": 5.16,
+      "path": "tabi-drink-comfy-1080p.mp4",
+      "tracks": [
+        {
+          "codecs": [
+            "avc1"
+          ],
+          "decode_complete": true,
+          "decoded_frames": 129,
+          "height": 1080,
+          "nominal_fps": 25,
+          "type": "vide",
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "duration_seconds": 5.16,
+      "path": "tabi-head-watch-comfy-1080p.mp4",
+      "tracks": [
+        {
+          "codecs": [
+            "avc1"
+          ],
+          "decode_complete": true,
+          "decoded_frames": 129,
+          "height": 1080,
+          "nominal_fps": 25,
+          "type": "vide",
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "duration_seconds": 5.16,
+      "path": "tabi-read-comfy-1080p.mp4",
+      "tracks": [
+        {
+          "codecs": [
+            "avc1"
+          ],
+          "decode_complete": true,
+          "decoded_frames": 129,
+          "height": 1080,
+          "nominal_fps": 25,
+          "type": "vide",
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "duration_seconds": 20,
+      "path": "tabi-tokyo-blink-parallax-20s-1080p.mp4",
+      "tracks": [
+        {
+          "codecs": [
+            "avc1"
+          ],
+          "decode_complete": true,
+          "decoded_frames": 600,
+          "height": 1080,
+          "nominal_fps": 30,
+          "type": "vide",
+          "width": 1920
+        }
+      ]
+    },
+    {
+      "duration_seconds": 30,
+      "path": "tabi-tokyo-continuity-30s-1080p.mp4",
+      "tracks": [
+        {
+          "codecs": [
+            "avc1"
+          ],
+          "decode_complete": true,
+          "decoded_frames": 900,
+          "height": 1080,
+          "nominal_fps": 30,
+          "type": "vide",
+          "width": 1920
+        }
+      ]
+    }
+  ]
+}

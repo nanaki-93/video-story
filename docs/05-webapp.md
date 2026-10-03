@@ -1,4 +1,6 @@
-# Desktop pages and interaction specification
+# Local web app pages and interaction specification
+
+The interface runs in Safari or Chromium on the same Mac as the Python worker. FastAPI serves the built TypeScript frontend and API from one loopback origin. It controls local production; no cloud upload, account or browser-side FFmpeg is required. See [architecture](02-architecture.md) for session authentication, lifecycle and filesystem boundaries.
 
 ## Visual treatment
 
@@ -25,7 +27,7 @@ Navigation: Projects, Assets, Story, Audio, Preview, Renders, Release. Settings 
 | Settings | Tool paths, worker status, media roots, cache budget, theme, export defaults | Unsupported FFmpeg, offline generation, no disk space |
 | Continuity notebook | Episode summaries and carried objects, manual add/edit/link | Unresolved object, deliberately discontinuous story |
 
-Each page needs a concrete implementation task, UI screenshots and functional verification. Wireframe mockups are not included as finished image assets in this package; T25 requires all page wireframes before desktop implementation.
+Each page needs a concrete implementation task, UI screenshots and functional verification. Wireframe mockups are not included as finished image assets in this package; T25 requires all page wireframes before UI implementation. Begin with forms, ordered scene cards and numeric frame edits; the authored timeline is a later interaction over those same contracts.
 
 ## Editor behavior
 
@@ -39,14 +41,20 @@ Set musical markers manually or from imported metadata, rather than claiming aut
 
 Proxy playback displays snapshot/hash and stale status. Edits invalidate affected preview ranges; keep the old proxy playable as explicitly stale. Render still-frame requests for precise scrubbing, debounce rapid requests, and cancel only superseded preview jobs. Proxy and final use identical compiler semantics and media versions.
 
-Local media player selection requires a macOS technical spike. Embed playback if the tested player can seek and package reliably; keep a system-player fallback and clear limitations. Waveforms are derived proxy data, not the source audio. The timeline cursor maps to global frames regardless of proxy timestamp rounding.
+Use native HTML `<video>` for continuous proxy playback, served from a cookie-authenticated artifact endpoint supporting byte ranges. T25/T26 must prove seeking and audio on Safari and Chromium, including session expiry and refresh. Do not put bearer secrets in media URLs. Exact frame stepping/scrubbing requests a renderer-produced still by integer frame; browser `currentTime` alone does not establish frame accuracy. Waveforms are derived proxy data, not the source audio. The timeline cursor maps to global frames regardless of proxy timestamp rounding.
 
 ## Job interactions
 
 Render approval captures a snapshot; edits afterward create a new version and do not mutate the running job. Progress combines completed frame counts with current chunk progress. ETA is measured and labeled approximate. Cancel terminates the owned subprocess safely and keeps verified chunks. A pause-after-chunk option completes the current chunk before stopping; do not advertise instant pause if unavailable.
 
-If the worker dies, show interrupted state, offer diagnostics and restart/recover. Desktop handles worker version mismatch explicitly. UI must remain responsive during probing, hashing, waveforms and renders; run I/O work outside the UI thread.
+If the worker dies, show interrupted state, offer diagnostics and launcher restart/recover instructions. The UI handles worker version mismatch explicitly. UI must remain responsive during probing, hashing, waveforms and renders; Python performs heavy work off request handlers. Browser refresh or tab closure does not cancel a render. On reconnect, restore the latest persisted document and owned job state without resubmitting jobs.
+
+## Local files and browser navigation
+
+Create/open projects through a server-backed folder chooser bounded to launcher-registered roots. File selection and drag/drop stream copies to the local worker; large media is not buffered wholly in JavaScript memory. Relinking existing media uses a registered root and relative path, checked by hash. Show the actual local export path and offer a registered-artifact download. Saving and autosave write atomic project documents through revision-guarded Python services; browser storage holds only disposable UI preferences.
+
+Handle unavailable external drives, denied paths, upload cancellation, session expiry and two tabs editing the same revision. Warn about genuinely unsaved edits where browser lifecycle APIs permit, while relying on autosave/recovery rather than guaranteed unload prompts. Preserve scene/frame selection through navigation. Do not add a PWA service worker that can conceal an API/frontend version mismatch in V1.
 
 ## Accessibility and completion
 
-Support keyboard navigation, visible focus, space for play/pause, frame-step keys, undo/redo, standard macOS file dialogs, descriptive errors and readable tooltips. Do not depend on color alone for draft/approved/error badges. Test on scaled displays and smaller laptop windows. Add no fake analytics or invented platform status.
+Support keyboard navigation, visible focus, space for play/pause, frame-step keys, undo/redo, browser file selection and accessible local folder browsing, descriptive errors and readable tooltips. Do not hijack shortcuts while typing in a form. Do not depend on color alone for draft/approved/error badges. Test on scaled displays and smaller laptop windows. Add no fake analytics or invented platform status.

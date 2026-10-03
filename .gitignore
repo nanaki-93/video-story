@@ -1,2 +1,19 @@
-.mp4
+# Source clips and rendered videos stay local; never commit MP4 files.
+*.[mM][pP]4
+
 .idea/
+.DS_Store
+
+# Local development, audit artifacts, and disposable build outputs.
+.venv/
+.tools/
+.local/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+node_modules/
+assets-source/

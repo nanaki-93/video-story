@@ -1,0 +1,7047 @@
+{
+  "audit_version": 1,
+  "source_root": "docs/assets",
+  "approval": "not_assessed",
+  "counts": {
+    ".jpg": 2,
+    ".mp4": 5,
+    ".png": 315
+  },
+  "total_bytes": 966442926,
+  "image_decode_errors": [],
+  "ignored_os_metadata": [
+    ".DS_Store",
+    "clip-tests/.DS_Store",
+    "scenario/.DS_Store",
+    "tabi-assets/.DS_Store",
+    "tabi-assets/outfits/.DS_Store",
+    "tabi-assets/train-actions/.DS_Store"
+  ],
+  "duplicate_files": [],
+  "sequences": [
+    {
+      "path": "tabi-assets/train-actions/breath",
+      "count": 97,
+      "first": 1,
+      "last": 97,
+      "missing_indices": [],
+      "fps": null,
+      "timing_note": "No authoritative sequence timing metadata supplied; do not infer fps."
+    },
+    {
+      "path": "tabi-assets/train-actions/drink",
+      "count": 129,
+      "first": 1,
+      "last": 129,
+      "missing_indices": [],
+      "fps": null,
+      "timing_note": "No authoritative sequence timing metadata supplied; do not infer fps."
+    }
+  ],
+  "files": [
+    {
+      "path": "clip-tests/tabi-drink-comfy-1080p.mp4",
+      "bytes": 6467507,
+      "sha256": "e2d88ceec6a229e4c0a955ebfe5d070bc65cd1416cd78b5b3e94ff79163cd1d4",
+      "extension": ".mp4"
+    },
+    {
+      "path": "clip-tests/tabi-head-watch-comfy-1080p.mp4",
+      "bytes": 10802013,
+      "sha256": "fb91ba066b4f4eaee8975f344670d3be575268b64a4f9115a21882b2e0e25e4b",
+      "extension": ".mp4"
+    },
+    {
+      "path": "clip-tests/tabi-read-comfy-1080p.mp4",
+      "bytes": 6099541,
+      "sha256": "33ff22fa164a696a65d3c71db0d50d3b145ff2007704d6741979ac50978a5db6",
+      "extension": ".mp4"
+    },
+    {
+      "path": "clip-tests/tabi-tokyo-blink-parallax-20s-1080p.mp4",
+      "bytes": 35498073,
+      "sha256": "7136e45800aebc577e4529a36cc3007b05117199db611e6a3a76a7edb686970f",
+      "extension": ".mp4"
+    },
+    {
+      "path": "clip-tests/tabi-tokyo-continuity-30s-1080p.mp4",
+      "bytes": 53215523,
+      "sha256": "abb990dab8542e30113fc0fe9ee89de5275e5c7c79167916f2f5ae4d755c81ea",
+      "extension": ".mp4"
+    },
+    {
+      "path": "scenario/tabi-train-example.png",
+      "bytes": 2554183,
+      "sha256": "01e4db852ceed7bc4d17708c3d181103d0699e5caed54bbc44eda1d83932473e",
+      "extension": ".png",
+      "image": {
+        "width": 1664,
+        "height": 936,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1664,
+          936
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "scenario/tokyo-scenario/01-asakusa-sensoji-panorama.png",
+      "bytes": 2702053,
+      "sha256": "fc39b3d0bdc632ac2cfbea90a68f148507745f9f71a0dc1d13c5d18e0b7420f8",
+      "extension": ".png",
+      "image": {
+        "width": 2170,
+        "height": 725,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2170,
+          725
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "scenario/tokyo-scenario/02-sumida-river-skytree-panorama.png",
+      "bytes": 2439262,
+      "sha256": "1f627d73e2448447b731219564c76b4edfa239dc366aa0e9eda110ebb22c1d20",
+      "extension": ".png",
+      "image": {
+        "width": 2172,
+        "height": 724,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2172,
+          724
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "scenario/tokyo-scenario/03-ueno-shinobazu-pond-panorama.png",
+      "bytes": 2592770,
+      "sha256": "41bd4ad859c62e83ff802422a2479431954cc98e0cb91122ce04a84265e149a2",
+      "extension": ".png",
+      "image": {
+        "width": 2172,
+        "height": 724,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2172,
+          724
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "scenario/tokyo-scenario/04-yanaka-residential-rooftops-panorama.png",
+      "bytes": 2719261,
+      "sha256": "bde1a4827cc8716292dcb3ea0bfac44951f0e1ce2c6621d7b23c558b86803182",
+      "extension": ".png",
+      "image": {
+        "width": 2172,
+        "height": 724,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2172,
+          724
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "scenario/tokyo-scenario/05-shinjuku-skyline-panorama.png",
+      "bytes": 2410530,
+      "sha256": "54940a967372d259cb3661997b152ffb410156d1d8ad58e82c900fcbbba0fe67",
+      "extension": ".png",
+      "image": {
+        "width": 2171,
+        "height": 724,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2171,
+          724
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "scenario/tokyo-scenario/06-tokyo-bay-rainbow-bridge-panorama.png",
+      "bytes": 2438089,
+      "sha256": "54850c937d59c1023c95996c1c73d9ac43b11913e507dca13dee400f8bf3bd60",
+      "extension": ".png",
+      "image": {
+        "width": 2172,
+        "height": 724,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2172,
+          724
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/01-joy.png",
+      "bytes": 1867378,
+      "sha256": "375be0ae23ff2408dd9ad50638a0323b0ca00d1ea944e137128d960d5b18e753",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/02-curiosity.png",
+      "bytes": 1845257,
+      "sha256": "7b8d6288231d1f6af9813da1696101fc38c4d0c0d09a73a3cf079cc7196f1e30",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/03-surprise.png",
+      "bytes": 1822142,
+      "sha256": "f5e7e86bb5db34acaf69ecc6afa19b7e9281d77ef9ec336812f1a01192f78156",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/04-sadness.png",
+      "bytes": 1817902,
+      "sha256": "1a5e02e659513b3b111ebc9e6bcddba200ca5a4ada2e7de1a654a14cd2b49da6",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/05-worry.png",
+      "bytes": 1848144,
+      "sha256": "b7e6993eeb23fd63dee87eeaff3c74dd9af796590ab1a985eefbec9e0724583c",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/06-determination.png",
+      "bytes": 1828647,
+      "sha256": "7f62cb0decce2002d5c02334bff3d4ba21fb47c37ad69877ed353b4acbc354fe",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/07-sleepiness.png",
+      "bytes": 1788647,
+      "sha256": "781e1ceec6ad12ce240c7e13a4d80ac96c3ed33acde94d8ced18702120b1760c",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/emotions/08-affection.png",
+      "bytes": 1859322,
+      "sha256": "945df9b8600f92e209646d9a7f3bc868e062504025e335048a90360560d95ab5",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/china/01-shanghai-deco-disco.png",
+      "bytes": 1929795,
+      "sha256": "3a23a19ce67bd4b021f55dc804391aa9302b2b43afb7ba17b2c2166e6bd33140",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/china/02-chengdu-bamboo-pop.png",
+      "bytes": 1909649,
+      "sha256": "5038eadb32903f495a4c1df93ba92976b7a0a9803fa5636121a0dc666a11a314",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/china/03-chongqing-night-transit.png",
+      "bytes": 1784177,
+      "sha256": "d51897bf709674585a6eb0eda9068b2177136e14dd797479ac845df05318d33c",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/china/tabi-china-character.png",
+      "bytes": 1854049,
+      "sha256": "974f90fc90ab87ca2b0c125ed00525685e242830a1f4a24280e0acc6dc215638",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/china/tabi-china-scene.png",
+      "bytes": 2608392,
+      "sha256": "606bf19607450c9f6e16974433cc44649fe64b5fd0ce544b6adccf51360cc6d9",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-01-retro-track.png",
+      "bytes": 1862832,
+      "sha256": "df488f1ce21dbe9322a503e83658e9b075bf05238c960af67762afd24aac1b81",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-02-cable-knit.png",
+      "bytes": 2038984,
+      "sha256": "818b4990bb46680a6179767bfbaa1da765e1f73e45811e88f20b3658357ddd56",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-03-leopard-prep.png",
+      "bytes": 1949356,
+      "sha256": "336573b666ab9175fb8d5688cb800acb6e251607385ca0aa8e77f3cbec8cd4c4",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-04-denim-tartan.png",
+      "bytes": 1893712,
+      "sha256": "2c86629473cc23998a873ee4cf8404f28aecdfb6c73b544b9c76d5e74cfb5f92",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-05-orange-workwear.png",
+      "bytes": 1871563,
+      "sha256": "89f0dec5c51a956c92fc8a4ab8e543fd62eac1d3bed36bbda599b973513cb19e",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-06-pin-bomber.png",
+      "bytes": 1909451,
+      "sha256": "20fa971af75de8f3b12cb438b3e5e0d0d530193076dbae998f6bdbd9ffd6dc5a",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-07-campus-layers.png",
+      "bytes": 1892005,
+      "sha256": "b27f33aa9ae15e8ddea270273e916b2b7e9f1ee98f683642e3f489f43f17007d",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-08-western-fringe.png",
+      "bytes": 2064759,
+      "sha256": "8c125e7965ab2a24ff750b5ff3f93a870656039286fac7d3aa7fbab2c2eaa54a",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-09-vintage-commuter.png",
+      "bytes": 2046973,
+      "sha256": "8c572f2b86297fae1ed0da64d2890514e381637d3e41d2231c726aaf3376d9e8",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/fits/tabi-fit-10-orange-rugby.png",
+      "bytes": 2036302,
+      "sha256": "5bae7e4ae2431cdfaf2eda45b00ef6bcdf288cf744c27a96f3f39397e27b739f",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/india/01-mumbai-sunburst-funk.png",
+      "bytes": 1903598,
+      "sha256": "4adcada1b3c02d0ffc388aac0c8f272f14a94e848a5c2fb80f606b99312fb269",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/india/02-jaipur-pink-city-pop.png",
+      "bytes": 1894219,
+      "sha256": "20fcff301c4b92b9f17c8cb43870c3e472f8484206ab920de2e28722cdef5fc0",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/india/03-goa-tropical-psychedelia.png",
+      "bytes": 1822957,
+      "sha256": "49cc4906c2e1f5072121e98c2806fd5101d5a01db1918b96c5c165e870bb1373",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/india/tabi-india-character.png",
+      "bytes": 1841956,
+      "sha256": "03ae9b5464fd2a9911b20a90581cc53ea02af42f9143301e0b2100c5494d0a75",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/india/tabi-india-scene.png",
+      "bytes": 2687390,
+      "sha256": "0988ba5c189c32f6088f4856a5576b5f083f30ffa5fb80e59d692ffc006382ed",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/indonesia/01-jakarta-mural-mix.png",
+      "bytes": 1872244,
+      "sha256": "2532467ed215e021bec29b90d411c47c0edadec8d6afd36cefca6d58ac051842",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/indonesia/02-bandung-volcano-knit.png",
+      "bytes": 1854638,
+      "sha256": "4542ef1a99aaf544f59cdb7df7b81ae6c0b653c78a0a08363a4d3f7434df3dc5",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/indonesia/03-bali-sunset-pop.png",
+      "bytes": 1863223,
+      "sha256": "f7e001d5f3844658fdc0b2b5a8364c8a99abeb782cf701e6b950eb3b5740ef2c",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/indonesia/tabi-indonesia-character.png",
+      "bytes": 1925666,
+      "sha256": "7e63b39424aad773910694eeb122a221dd41fb0f5477992be23d15a40ceece4c",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/indonesia/tabi-indonesia-scene.png",
+      "bytes": 2756553,
+      "sha256": "c74191ebad4c588d9242d5c07d9f9dfecece871a99f95fad13aa77e6d8dcb2f2",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/japan/01-tokyo-neon-patchwork.png",
+      "bytes": 1899353,
+      "sha256": "e65c23ed4414e6ed105c20df1fa37cd2480ff68e89c31d9884257901ec1d9fa1",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/japan/02-osaka-retro-pop.png",
+      "bytes": 1882144,
+      "sha256": "91ee213ab3467b184084758c736ade8d09c953dd9d07e7e1b302bc15e3aa2265",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/japan/03-tokyo-silver-night.png",
+      "bytes": 1923050,
+      "sha256": "8b6cdc01be6f2fd115c5d4c049908d63e77c1cefed45556724e00f6b5e703bcb",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/japan/tabi-japan-character.png",
+      "bytes": 1886252,
+      "sha256": "c4201d08794cc4a1bc46d37d0299be99116b15172cf5aaf0c3d3d6b933eee59d",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/japan/tabi-japan-scene.png",
+      "bytes": 2566389,
+      "sha256": "a45301d1154b6ce57dcd311781aa5249c33e19ade6c4e64f9e02d32e8ef7f816",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/philippines/01-manila-jeepney-pop.png",
+      "bytes": 1920948,
+      "sha256": "f31680527eb283825b18df6b4f4daa17c43a7db2c1c5f014ce9f4988bb840a43",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/philippines/02-siargao-surf-disco.png",
+      "bytes": 1800489,
+      "sha256": "9fd8c7aee980c74ef06fce70478357f8efe38933cbf07979fe74d2985c4a7046",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/philippines/03-mango-groove.png",
+      "bytes": 1850515,
+      "sha256": "8910ce7a615dcf212f63a639187b5a4ddcaaf3e1277d18af2ebc489211b1d8d9",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/philippines/tabi-philippines-character.png",
+      "bytes": 1934430,
+      "sha256": "2a068a04ffd8df5974477932c370180b83da5d020fc41b5545ae89942fd86c72",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/philippines/tabi-philippines-scene.png",
+      "bytes": 2664708,
+      "sha256": "e6b057e6c87e715326edb998d0ec17d5f32aaf9c49dbabf9e2142202d71f0824",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/singapore/01-orchid-art-pop.png",
+      "bytes": 1865795,
+      "sha256": "8c98d98c394e2a3a1f966bea6fa3182b87ac8a7dc02dbaa0384fd7b497b2a4eb",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/singapore/02-marina-chrome-groove.png",
+      "bytes": 1918210,
+      "sha256": "4bb860b103f0d46a6a348b85c768106cd42c351f7b733e12655fc825e3919ae1",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/singapore/03-garden-rain-pop.png",
+      "bytes": 1936441,
+      "sha256": "e60d655b420ff220db1cab4eac3ea278f40f9b5feda4c6e4d6e2d51e05c7f189",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/singapore/tabi-singapore-character.png",
+      "bytes": 1890773,
+      "sha256": "8c6cb2bb11d1ff9a05ec0349f2e459f3d65719455eb054274b9111552cc9d783",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/singapore/tabi-singapore-scene.png",
+      "bytes": 2591815,
+      "sha256": "b04e7c4d2d1c535ff20513fcb93aa89f51a8a0d1a4702e623875da83e379fe49",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/street-style/01-skate-denim.png",
+      "bytes": 2062373,
+      "sha256": "61e2df8182a405f50c3d48779aedd700801da76f51bc671a9a93e6f5b83e5e8c",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/street-style/02-retro-varsity.png",
+      "bytes": 1960551,
+      "sha256": "38b959c363e429de9616bff3630298772443809bc17822ae5dd90b0cbadb9597",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/street-style/03-mono-techwear.png",
+      "bytes": 1935257,
+      "sha256": "7731908acdc4eeb99c6608d2ece2071375a288e374e111195797fdd84a37af14",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/street-style/04-neo-grunge.png",
+      "bytes": 2001611,
+      "sha256": "1c01fcb71a08a407a96e4986cf3dacefd38897fb8ee067eddcc9cd50714776e2",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/street-style/05-art-school-pop.png",
+      "bytes": 2042869,
+      "sha256": "e113d4d68510e6376e02a2df3b6ff4ea86fc43597246a67956e2cd1d479e65d7",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/thailand/01-bangkok-neon-market.png",
+      "bytes": 1922785,
+      "sha256": "df0c81cfe139fc6772dcdb935ada59a95bf9b1a0988b83fb9dfbd201ebfbc294",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/thailand/02-chiang-mai-coffee-club.png",
+      "bytes": 1945548,
+      "sha256": "c2d9583d5f7272dc9f6d4d7714e0088e28bb7473dbe6f859a88a3c2b21ccf688",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/thailand/03-phuket-wave-rave.png",
+      "bytes": 1813156,
+      "sha256": "f8b32cd4d797608c22aae4addf45d0046dd423f27cba113bef9f633963d7aa23",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/thailand/tabi-thailand-character.png",
+      "bytes": 1934441,
+      "sha256": "76b1a49955270cea5ed1039caa8cbe07ac18c5b745efa40ae476aefbe85d0eb5",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/outfits/thailand/tabi-thailand-scene.png",
+      "bytes": 2708198,
+      "sha256": "aa1a35c2b3a4a7cdc5527235821ee670b7a56271ae4bbbe66b64d3fb4555d369",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/01-drinking-coffee.png",
+      "bytes": 1819123,
+      "sha256": "f8ac8dcfcb1635a8913ea6a1eb2a8a52af428458203ec1770a3bd68d3ef09235",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/02-reading-book.png",
+      "bytes": 1829233,
+      "sha256": "e2ad419d6122a43a405257e81e3a4bfb1c77b35eea06bc9c6bbde88fc55641a5",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/03-listening-to-music.png",
+      "bytes": 1798930,
+      "sha256": "f4fcbf3e467ceaaf8eeca1e6302ccb0035fb29803d5ddb3c8c8970414d10fcbf",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/04-talking-on-phone.png",
+      "bytes": 1864295,
+      "sha256": "fda986b58770e3045fc5fd0fd2ab8a4caa9578cfcc16f1b3f9e87be3666fa08f",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/05-eating-sandwich.png",
+      "bytes": 1802400,
+      "sha256": "b375a8625a8f7df547e75f312a102d5490940acc2c7934b996f9b7833a9c0f0d",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/06-looking-out-window.png",
+      "bytes": 1805319,
+      "sha256": "2aec9990ae32442588e9b620d8033483d80f7e7cd24e2cd67c43981090d96fbb",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/07-writing-in-journal.png",
+      "bytes": 1860995,
+      "sha256": "cdb19b1960214f64ea25719bebded2f7343430bf6b6798d19e88a08c2728445a",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/08-sleeping.png",
+      "bytes": 1795107,
+      "sha256": "94e8539933949b94c3ff46cb4e1c10fefc73aa9dbe433000c7b8af509be12ae2",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/09-stretching-and-yawning.png",
+      "bytes": 1914829,
+      "sha256": "4b40b191238e3bacac4d6b0d8b6e851e1c2e9e2fc3a5943d4ffc1a0d219ea143",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/10-waving-hello.png",
+      "bytes": 1883978,
+      "sha256": "3429a363598b58c93477075eda366aa6602239f97a485eb6896b9d142e1c79b7",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/11-delighted-surprise.png",
+      "bytes": 1863972,
+      "sha256": "3171a58c455214a6971fb1327e12973c769bb29371ade638d1d4f23b9e50b052",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/12-standing-with-suitcase.png",
+      "bytes": 1922694,
+      "sha256": "2778d0c014c25ba71e02c33596055b55190334357f26343b54ae076108d83a05",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0001.png",
+      "bytes": 2722384,
+      "sha256": "7940b763d3984374cdbd7cf285cb005c6ec702bbbee80282332210f4cb558c5a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0002.png",
+      "bytes": 2804666,
+      "sha256": "30e2484b468da0aee99d41c81a17b39e10a84cf9a430fe198e00270228496fa4",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0003.png",
+      "bytes": 2853480,
+      "sha256": "a272d1edf7bcd295623455ca16a998cde7ea964285a861fac2cf2675e3891108",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0004.png",
+      "bytes": 2870873,
+      "sha256": "486627ce08e8b5f81720a0aba78e3c3109e0024b07fdf9a978b724c1c36c7631",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0005.png",
+      "bytes": 2875072,
+      "sha256": "7b8a5e19f7641c119f4117fe12d306c64c5e55738963a3cea6c71143da4f3dc7",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0006.png",
+      "bytes": 2881446,
+      "sha256": "8f3fda08f7f8a60759f5a4bd2bcceaaa44462d3e26608ad73f086063c7ad1d2e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0007.png",
+      "bytes": 2887190,
+      "sha256": "86efaa9f3c5dc9aa282062b44e3a6dc5b8a3583e90cd9737a4a3d0689eb0bc90",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0008.png",
+      "bytes": 2891426,
+      "sha256": "7fa4fa5f7eb538e5578787e1c7f3740b128409ccf1b57a41b11590051d45a319",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0009.png",
+      "bytes": 2909656,
+      "sha256": "03553f20bc8549563fba81deb528cf375a79a22267c42ce4fe3e32a257731e5f",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0010.png",
+      "bytes": 2904156,
+      "sha256": "0873b28744e219ff1050fe837c481125234689f727f1bff176379a8163fa83ad",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0011.png",
+      "bytes": 2913280,
+      "sha256": "27d0f69893429f35cc18d9de55ec82443b1ba8b30b62c7dffa669ea4104602d3",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0012.png",
+      "bytes": 2917977,
+      "sha256": "9502075e627b0bcc827e9353aa13c0813de0067b18980816cdfcd592a51d2517",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0013.png",
+      "bytes": 2932223,
+      "sha256": "ac2fedf1a4fb0bae57b4f9410f73dfe61a93bf570806b81d7d5b16dda221a185",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0014.png",
+      "bytes": 2921054,
+      "sha256": "50b057be3bccda951867fcb68606bdacfe9d874fb1508d51d07d78687a3ef26d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0015.png",
+      "bytes": 2928399,
+      "sha256": "15e775c687295f24b31483ef61ca6c6a99d34d1fcb21b39e9e1d667b15371f4a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0016.png",
+      "bytes": 2923897,
+      "sha256": "517f90c5d7511193e9cc5d12c854add9ca425d6c1a3a417b98eaede6abfeb666",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0017.png",
+      "bytes": 2937928,
+      "sha256": "b66ab63970248f821cbfe8738e6fa1950b7bf0697c5a67780f53d9b22bcd8eb7",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0018.png",
+      "bytes": 2922683,
+      "sha256": "befaae623aded1c68aea9b30a5d170584cffda70682299edc0bc37f79136aac0",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0019.png",
+      "bytes": 2932423,
+      "sha256": "c779b527824bcbface6f8b9efd7beef95c6af4988d52b6a1e72ab03323ac8c9b",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0020.png",
+      "bytes": 2926899,
+      "sha256": "0d3766471bc03e52a93f61124d2b29c9e1b8eeac06aa2daa564b939542cd81c7",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0021.png",
+      "bytes": 2945188,
+      "sha256": "f33de3ce371fc8c740ec07867ae3f7939a474815e9e0fefba29375083e7b7d57",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0022.png",
+      "bytes": 2928358,
+      "sha256": "12af7ac4604603c8c1b05a597adec57fe0484cd1e6ae00e704fbc2c3cfd92a69",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0023.png",
+      "bytes": 2933207,
+      "sha256": "c69ef4b251eb8a53719552765cfb662f15fd9a4e9af481cbee5775a9deac1f9b",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0024.png",
+      "bytes": 2938117,
+      "sha256": "3db0ce5be8c68cde810f89efbfc04e6616d8868a12f6e830c2f6f3d977c5ba9b",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0025.png",
+      "bytes": 2970076,
+      "sha256": "182edadd5550fed7b1e101772530330e2c80973c069bc8cbf74eaf1075e75c08",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0026.png",
+      "bytes": 2997540,
+      "sha256": "5963ce62b05fb2adb07de6e8d67b7860d9fc20784278be1fd391997b9871d956",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0027.png",
+      "bytes": 3012529,
+      "sha256": "234af2beb7dcd763cb4f188e3a032975d301d79a57f05b005591c2643a48f04c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0028.png",
+      "bytes": 3005348,
+      "sha256": "c125a5cfb5370deae785e43c62434207239678c9fd0e53012561d72e9c62a571",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0029.png",
+      "bytes": 3038709,
+      "sha256": "77b5305b2777dbbc9ff9ed9f094712b42ac584c6748e845458deec8b66a9914d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0030.png",
+      "bytes": 3001494,
+      "sha256": "2cec5e03ca937c89a2c3c1bb833ff15cd0820b0299e84bdc7d96dcaa00a94399",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0031.png",
+      "bytes": 3001495,
+      "sha256": "75356fcdcc6935d923df267dfb152df2fb3762df735c501e412a9f6009d21332",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0032.png",
+      "bytes": 3005564,
+      "sha256": "600228277582809be47b831389139b4bb0c02e43838e44ec65ed5b27580eed8c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0033.png",
+      "bytes": 3031463,
+      "sha256": "08abd029a9b8a8be7dd94beaa4fcc18d697a208856ae90f5700bce1caf7b4f84",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0034.png",
+      "bytes": 3004874,
+      "sha256": "4ca715c20de6b7425186b68d8472e37f6f71e453b7bdc35f8b54f2213c0674e0",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0035.png",
+      "bytes": 3003746,
+      "sha256": "2c48a2b54d04e6e75252842e7773b30eaafbb40cf5441af517030cda3f4caf76",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0036.png",
+      "bytes": 3001195,
+      "sha256": "2b93ddd9b2207ab398bac059c6d5346c5224cd5ee266007f9244dab461338f6c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0037.png",
+      "bytes": 3024307,
+      "sha256": "f8f42e83b644b377ce2b4de8694ff439bdad7bc4ac4e848f071fcd41ebfc95f6",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          890,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0038.png",
+      "bytes": 2993858,
+      "sha256": "1d7a7da889a2efe35e32e3ad3414cb28e56fc3417395e17656ec78fe0c77eb20",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          200,
+          893,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0039.png",
+      "bytes": 3004005,
+      "sha256": "cffb5ac1329dbad873df22a1a2e5611b44c6860974c5427790f9c4b8d8fe5c47",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          204,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0040.png",
+      "bytes": 2991982,
+      "sha256": "65cb4776fab64b2659c7d0eec8caeca920734961d1d040263c4f5f5ab3efb319",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          169,
+          204,
+          888,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0041.png",
+      "bytes": 3017732,
+      "sha256": "4f3b39dc9dcb78a4c39f1c327357a2532c9e0b8b2b88211c763026bf57b916d3",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          169,
+          204,
+          888,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0042.png",
+      "bytes": 2982607,
+      "sha256": "f53c1d16262e790762231404f55a91c7f024578c0e593530b7738885448e69ca",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          170,
+          210,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0043.png",
+      "bytes": 2984573,
+      "sha256": "b7461ed448f1862fbc4645ae1145384a14bb8741e7449ae9cdba0c09b359620c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          171,
+          211,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0044.png",
+      "bytes": 2978742,
+      "sha256": "baefe178bed23fddcc05c332be78ad374c196fd54ed1673263284c1d65684d05",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          171,
+          211,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0045.png",
+      "bytes": 3003296,
+      "sha256": "79cf15d06d4077fad93e76d349628cc9494f732a9f66cb137be230c3f73441c9",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          173,
+          219,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0046.png",
+      "bytes": 2975156,
+      "sha256": "3769df773f9f2f2341732e1c5b634245f9f1b6759dbe5d868ddf2aba6bf5b246",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          173,
+          218,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0047.png",
+      "bytes": 2985352,
+      "sha256": "94b66b518756e7caf3a841bf70f620f09d33321983e080854f4f8adef68cd2af",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          173,
+          218,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0048.png",
+      "bytes": 2983731,
+      "sha256": "3777838d184fca424f09fd0c138e4d5cfa72bc24e2710bad49926451ca04b062",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          221,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0049.png",
+      "bytes": 2977328,
+      "sha256": "0a2d34b56d521be08920c9dcc627c8c014d93ff621773500ec1614b6b6e52cdf",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          173,
+          221,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0050.png",
+      "bytes": 2984918,
+      "sha256": "d42ed20e60f51fb12c32588398a47cbe0aa23dbb3dad27c2d4e50f2bf93a1199",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          172,
+          224,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0051.png",
+      "bytes": 3009060,
+      "sha256": "6fc2443ebdd140c1b482f39612398801204881ef7bbf50bc62dddd138a03b180",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          229,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0052.png",
+      "bytes": 2991891,
+      "sha256": "66adf3f50b85f2321445fd3f8f4004e5b452d9793ce5cb37f8317cedd4efbaf3",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          229,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0053.png",
+      "bytes": 3017781,
+      "sha256": "5b9aa931bc5fd57170e1f896e23521b152ff5e7818b99763916d64eb007de89a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          229,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0054.png",
+      "bytes": 2977365,
+      "sha256": "12a5a7efec5d1677b0d0f5bbe6d023cf8303b95afed24ed0c4648d2ae590f549",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          175,
+          230,
+          885,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0055.png",
+      "bytes": 2994065,
+      "sha256": "4c003340b868e953a0faa2eba9cb5316606c25c0c0e6724dd13cc632ac75d333",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          175,
+          230,
+          885,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0056.png",
+      "bytes": 2988425,
+      "sha256": "ffc121c34cd68b8b2712c80b12722954600866d1a4ce70253b77e47a342b1ea0",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          175,
+          230,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0057.png",
+      "bytes": 3029743,
+      "sha256": "7eda1fae9e8a7be246627d7f1ba7cb0f32bd0b6ac2809726345236c1eceb575e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          231,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0058.png",
+      "bytes": 2990884,
+      "sha256": "539f09ed773c1fafb47502b5b0d42e34333309854eb328a676461f6a54fd16cc",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          230,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0059.png",
+      "bytes": 3005763,
+      "sha256": "05dcf1dc5174f782cdecf87a0fa565719a379f49a9949c7ec42d1e7da24473c9",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          230,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0060.png",
+      "bytes": 2996385,
+      "sha256": "3f7724a8f6bf32dfae126e08ed3bbc4091ba0aaa51839099a1f548a0db65d432",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          230,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0061.png",
+      "bytes": 3030253,
+      "sha256": "4cf5fa65d2dfd21611266b6136822650eb021b07878436c555aa5b1d19917ed2",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          230,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0062.png",
+      "bytes": 2994192,
+      "sha256": "0aed116997e05a963ad107f39cf5b1499f734f74e1fae7e8681b7e38d8b94991",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          230,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0063.png",
+      "bytes": 3002188,
+      "sha256": "c275835c1fc281e4d85c3ca6d8b9380790ee9819c422a552a5a41ecd0730720c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          230,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0064.png",
+      "bytes": 2997564,
+      "sha256": "cc94862174fc8e6877ae605a8a5b2e6c5b02b041a308aa51a51142ed98da96a6",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          230,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0065.png",
+      "bytes": 3027885,
+      "sha256": "a247ff89811d07f60b14f6b9578ff47eb435a098d9e349300c3a221f7df9674e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          229,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0066.png",
+      "bytes": 2994934,
+      "sha256": "429cd2fab9f3b4f3097010dac6a22465f89f731370ccde7c52f26cef5e38b4a0",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          176,
+          229,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0067.png",
+      "bytes": 3004983,
+      "sha256": "425a5da96c8e8db9c8f52d725402182c12cd7a61738ec6effc55c709ed4b8b6f",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          175,
+          228,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0068.png",
+      "bytes": 3001520,
+      "sha256": "ecf90b6e0076b8833c117f5576ce79963a7a0365635d7b118e229248a53e7c41",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          175,
+          228,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0069.png",
+      "bytes": 3029219,
+      "sha256": "28395cc048f4423a1fcac1a2e835f13261ef00489f4a94aa97405a768594cfd2",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          175,
+          225,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0070.png",
+      "bytes": 3003955,
+      "sha256": "d4128b2821271c1421177ee423ea5d52cf6cbfe9a4ed5884a97606234de9f2d9",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          175,
+          225,
+          884,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0071.png",
+      "bytes": 3017042,
+      "sha256": "88d35f7cd289d826a9a53e921cdf01f74d502599c0527eefa8198426a68515e2",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          225,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0072.png",
+      "bytes": 3011386,
+      "sha256": "870dafd3adc9aeb1f5bb9095c15e3940adc51a2b0adac3b45dbcdfafbf5a6c03",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          220,
+          888,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0073.png",
+      "bytes": 3005809,
+      "sha256": "d465cf5f3855d662959eff355cd1a11e4aaf111b9c222032a72f1e5891c0f52e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          221,
+          887,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0074.png",
+      "bytes": 3026680,
+      "sha256": "03cf6e76fbe7deacb96e89f110867a482dc7372839cec24fce6a672c3401f42b",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          224,
+          885,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0075.png",
+      "bytes": 3027749,
+      "sha256": "6768e62f454a543126eef38821d2e90c150b83ae1d557305152ec92e91f0ddd5",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          223,
+          885,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0076.png",
+      "bytes": 3020528,
+      "sha256": "f53602609ebec51f9219f14d07afc3bad5d7e6591a50cc4f131c8996568e707d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          174,
+          222,
+          885,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0077.png",
+      "bytes": 3047458,
+      "sha256": "3202699d1c741704ee8b8c4779091777e61d4e2dccb083a6c4b690f8ce74f46d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          173,
+          222,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0078.png",
+      "bytes": 3011240,
+      "sha256": "a613df1622ab86d72b79f216c59586429262c169e29ad970adaa7f6d8a8bfdd9",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          173,
+          221,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0079.png",
+      "bytes": 3018644,
+      "sha256": "b686c212c1fe05800b687922bc2a0039d97b6a54c67d7f11e20955e84a7a2f16",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          172,
+          220,
+          886,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0080.png",
+      "bytes": 3006847,
+      "sha256": "19fffd8c83d5f1ac779a9d0d5e0dba6f6a045cc7fdb63f9ed9cbd48a5a60f1e7",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          171,
+          210,
+          888,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0081.png",
+      "bytes": 3040051,
+      "sha256": "5188f0cc2b8291e8ac8a1150dacbc5af7b229068c57e17779c4a82564aedc4ae",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          170,
+          208,
+          889,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0082.png",
+      "bytes": 3015230,
+      "sha256": "ea351194d23dc1b0e5b213ea47c2211da13720ec3911d1261f59e3921cc59f35",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          169,
+          206,
+          889,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0083.png",
+      "bytes": 3025705,
+      "sha256": "50b28c67af968634e0805795b71a277ce488589c694add41ce08643b2eaf1546",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          169,
+          205,
+          889,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0084.png",
+      "bytes": 3014343,
+      "sha256": "1867c594a5caefc8cda7466fdd23a10124716b4840c7f9e14d1b8bec3a725532",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          169,
+          205,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0085.png",
+      "bytes": 3044430,
+      "sha256": "b7b47f1e73112789def3d1bd05f5e74c9674117e4f7e626d706f623360a81432",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          203,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0086.png",
+      "bytes": 3010760,
+      "sha256": "4f20a1c7e7f3eb2ffc40f9a7f0455e3ddc243335d941bfeb4c49b8155f35d014",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          202,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0087.png",
+      "bytes": 3021107,
+      "sha256": "2f461713fbef2e703aa46ae3af5d74a06c1a3acc5209977a5914e26335184389",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          202,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0088.png",
+      "bytes": 3010991,
+      "sha256": "3c97beb90124f2e1e90169af55ef0b7175a4cdb708015bcffcc592a58f19cb6d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          202,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0089.png",
+      "bytes": 3041730,
+      "sha256": "3953f049bbee81ac67c2f307999bfce88837c1bb5d68b8116623fbc2d1455d0b",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0090.png",
+      "bytes": 3009468,
+      "sha256": "3b7877d8017ff8b2c36c0e36e00cbac717eeba680a346a3136d817105cce8b3a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0091.png",
+      "bytes": 3014641,
+      "sha256": "eef0cb777a456efcbe60a4ed7f402c7df275a838cb596bea8de0a3938c0b5318",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0092.png",
+      "bytes": 3009666,
+      "sha256": "812b143a697d5847b7e654bc11e46327c78adfe71701a1651c80401b56fda3bc",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0093.png",
+      "bytes": 3029075,
+      "sha256": "489047bb56f918c5dc182be6a89650c9121074c6b36f0d0f31cb4f85b934fa53",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0094.png",
+      "bytes": 3004339,
+      "sha256": "e9427b91fc66f15687d73e1b36be5f9f4c5fcb6f6de52b33d9efc60a2d6aab0a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0095.png",
+      "bytes": 3003342,
+      "sha256": "49dc3f7b09f5ac03a9a5822e00c2881c1a2853aa5f46f499cec923c17caacce4",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0096.png",
+      "bytes": 2996241,
+      "sha256": "5c77a62f0a671d11e5cabf13b67d8cf60c2a2e6b3b14bcec53104e2e9ade9fd2",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/breath/frame-0097.png",
+      "bytes": 3009735,
+      "sha256": "9158a4fa45d5a5de76e0cfe90e06a369d70bb061c15c5230b7966764f458dff6",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          167,
+          201,
+          892,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0001.png",
+      "bytes": 2736228,
+      "sha256": "1822dada3f623ad868ce6e8875e58458a6a98bf0cebe6454c28147563a779b1d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0002.png",
+      "bytes": 2809000,
+      "sha256": "d178606f69a9b27fcf0a8c8c5c8cb3f4e292cedf33d573755888313d4734645d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0003.png",
+      "bytes": 2858305,
+      "sha256": "9b759cf1cabbe4fde56dfc1d5f8a064d57eadafc6c8912f713fd0952e68ac962",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0004.png",
+      "bytes": 2872503,
+      "sha256": "edd02dea837da45b6ebce48443ffec688c7bfacca4b7127deab55c31fa350e18",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0005.png",
+      "bytes": 2875939,
+      "sha256": "04ff60adab5737ba99453c905e4b9aed4dff825e377edac05ce972fe2273a9b4",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0006.png",
+      "bytes": 2895882,
+      "sha256": "1a118e69462d65cd8dcdffa9127fb8938e2f8c6e56c256aab52be1948a74065c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0007.png",
+      "bytes": 2902113,
+      "sha256": "603123ccf0e568b895ec4d4373ce00116c8f68850e916680b8b2dc84b55c7c15",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0008.png",
+      "bytes": 2905748,
+      "sha256": "b14f23f3290f97e435dd902e1dfa73f87ef30509e8e94b63b8bdeb732c0f143e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0009.png",
+      "bytes": 2925923,
+      "sha256": "892b0aaec15b2d8ff45e713f750239019ad1fcb77bc7dba7e23ea2ac01a12cbf",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0010.png",
+      "bytes": 2926947,
+      "sha256": "45cc7fa1a5b2cef098388578d9c2eef0f1e4894310447655220ffa09aa1e34a1",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0011.png",
+      "bytes": 2938868,
+      "sha256": "05bd2e9eadee990ddffd557bf58a48c989512807a4db91008eeb9881fbab2ae6",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0012.png",
+      "bytes": 2935160,
+      "sha256": "663c2830398dac11cff23fe4f7d29aa06175cfba5af0a170a9ce62070ceb4c67",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          194,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0013.png",
+      "bytes": 2946379,
+      "sha256": "ad778a7db237e0727a952a03f51d519d4372d895cc6744cb9a1151b4a81d24f3",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0014.png",
+      "bytes": 2939955,
+      "sha256": "417f23c36d41d765117181bd707615d9ad63ac4df27f98a2c9c6da0877b1e861",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0015.png",
+      "bytes": 2931145,
+      "sha256": "9b7718945544897d15deb0354d2a32f0d1cadbab5e929cd32ec743d9a1b77288",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0016.png",
+      "bytes": 2932790,
+      "sha256": "da3ac3bf8f220c54d222d4280934e23736c72525a6696e3cf39e3550a49312f3",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0017.png",
+      "bytes": 2938116,
+      "sha256": "e5cf9c5815110fbf5b15a8f469a5ab691edd2530ac3de24b64a38e528e33af57",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0018.png",
+      "bytes": 2927494,
+      "sha256": "6a999c6020f736d66ecfeb5324d58aaff2f153dc5fba507d188ca3bfc4c8d54b",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0019.png",
+      "bytes": 2927592,
+      "sha256": "aa585d54bc4df85b0be9d7ec62fc81406e0e19b3be5bf2d506828b4cc4adc486",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0020.png",
+      "bytes": 2925436,
+      "sha256": "fbcb5af297ada3957beff77299708e2d553661ccaf902cb9f92613c940e46e51",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0021.png",
+      "bytes": 2939017,
+      "sha256": "0b419558fb5808f2245e64e81e2027aae150cd99acb43c25e18d398f0c0e7bf0",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0022.png",
+      "bytes": 2921890,
+      "sha256": "9c1623bcb3286214966207ae4db2d2a7939987540c918ce83db86583f2cd4be5",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0023.png",
+      "bytes": 2925085,
+      "sha256": "8361005598baf2fc6e8e9999423a5183f532449768ef97c19c37b474d4350a7e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0024.png",
+      "bytes": 2924414,
+      "sha256": "697c9bb4c0e8f3a93ce48b443033c04760eb1025d951785fc2049461657ed22d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0025.png",
+      "bytes": 2953074,
+      "sha256": "e9d55b8850a01c993c240f7a62421d262cbb51c9a49b5f68583a8cefc02c42a9",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1066,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0026.png",
+      "bytes": 2933386,
+      "sha256": "f33f72643e7aa594f4b5b0b585ee3ee5bb18908a71c1e744426a5e8ddf8aad3c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1067,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0027.png",
+      "bytes": 2940142,
+      "sha256": "eefa26fb884d4bcb5b5637da9ce8812a297e3c5626efb18f0b88485eac4d8dbd",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1067,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0028.png",
+      "bytes": 2940430,
+      "sha256": "75eab187332c7c24ce17fb7542594341cee5eff053d9ca80b48e812e55e1d06f",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          194,
+          1067,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0029.png",
+      "bytes": 2965905,
+      "sha256": "49c12366e2b4dd25acaad2290a1aa26d08c54a1288169157fe2029b8e07e8814",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          193,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0030.png",
+      "bytes": 2954354,
+      "sha256": "29f79e4f418bd2f5dba0f5ff8845ea09aec7a8509e6240400507e642198093ae",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          193,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0031.png",
+      "bytes": 2957721,
+      "sha256": "4a09c8366821abd528a41568829bb0165b62b1b55fd9cad6ff4004032720b982",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          193,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0032.png",
+      "bytes": 2957704,
+      "sha256": "0045574736715f27402bb68c1fab26d7ceb052e938e13a2710da6f85b98f9833",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          193,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0033.png",
+      "bytes": 2983103,
+      "sha256": "4f36ff195af9eb059427c15d6551be3ece7a7cf0f3dfd6ba40783bff27dfc5b9",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          191,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0034.png",
+      "bytes": 2966691,
+      "sha256": "6de9c92bdb0959120671a6034f169973a0523dfc2c7b19948a0e339cb7a1c7e8",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          191,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0035.png",
+      "bytes": 2983125,
+      "sha256": "1a4b88f104d87c7f0d26193dfe53c07d830c2967b6b3e155ec0568e5ff325b36",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          190,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0036.png",
+      "bytes": 2977517,
+      "sha256": "213c151780273d2649198d1cdb1015a563d731b45e633679bdc9a51cc025f0e2",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          190,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0037.png",
+      "bytes": 2998621,
+      "sha256": "02c8cb6e38bfd344f560cf861520d3598309e44d5088ba80bad52e2f8f55ad0a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          190,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0038.png",
+      "bytes": 2977328,
+      "sha256": "47fb5d8f14a6771845761fbd14efdf56e063a6e5dc1c4951c60dde1b186900d6",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          190,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0039.png",
+      "bytes": 2982044,
+      "sha256": "2865374dce80a997039a4885f1f3ad5d4086a9b60634702fbbc87c34c0f59366",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          191,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0040.png",
+      "bytes": 2979339,
+      "sha256": "1d8e98ee799b5b76f9433e941ec0185adf9f6a604ea6d4bcfe002f7e9dfd5e17",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          191,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0041.png",
+      "bytes": 3007632,
+      "sha256": "db4cab4fc22f79f9b5443f4ed54d9e9836a99954fb12107765ad41ce90347c00",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          193,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0042.png",
+      "bytes": 2981680,
+      "sha256": "048cc482fd403a541b223b1caf5703c7d4dc3a1f3f06fa550da9762f926f6927",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          194,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0043.png",
+      "bytes": 2991763,
+      "sha256": "e7fa46d203ba1730186a50957fb624c47efc7b86a95c7b563d2017df7cc848fe",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0044.png",
+      "bytes": 2982708,
+      "sha256": "bf298d21bc9c7ddfc60349c5aafd43ee7a17822d83ee9bf440c7889dbf07003d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0045.png",
+      "bytes": 3015632,
+      "sha256": "1de1e40e45b9efba9e38c29264ab8a05fb6c2dcc15d5b29343758e7b811ce584",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0046.png",
+      "bytes": 2985982,
+      "sha256": "7395889f4d7280213b2ec90f5c144f0150bc871d3f8873510ca3167647bf8cff",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0047.png",
+      "bytes": 2993011,
+      "sha256": "430a8639575e6e4ef0c3b41b04ec38a1e2081a9880a116013ecc6efb1a72e799",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0048.png",
+      "bytes": 2990209,
+      "sha256": "d5785273721b79dab8809b74a5737c491fb55c2db65007c8ca1beab24f8babd1",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0049.png",
+      "bytes": 3017212,
+      "sha256": "aad1868bceb37ba510ec7857af4ac6168768b7b9c806b677d2f334ee68d37770",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0050.png",
+      "bytes": 2990891,
+      "sha256": "c6f924c7b8c34bc2577fef8e407c51fe6050964fb21f1363f9c00dc0ae0d9947",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0051.png",
+      "bytes": 2997350,
+      "sha256": "34c9ffdd30f0b4c60239b504a384a5ddcc7ababb64a5e21681dfea8dcece1069",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0052.png",
+      "bytes": 3001515,
+      "sha256": "500620fee5da1595d440f8edb429ae06377df2bcc4161dbfcf006e9ce86d7a47",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0053.png",
+      "bytes": 3026796,
+      "sha256": "2f19c29b116de40f0abcdcec1e0956999c1937e5845299bc56d7e2b0c11aa871",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0054.png",
+      "bytes": 2993814,
+      "sha256": "8649caa8d979f0c36ee10fcf3d74d616c82dc1ee7b5ca82e9ba3a6b76d58f469",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0055.png",
+      "bytes": 2997590,
+      "sha256": "5b3a95d76ec0818131f0678e846a3051a00e09d7b446ed978a52c345576a7cf1",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0056.png",
+      "bytes": 3002990,
+      "sha256": "caaa243eefc58136e95535afe364fc5991cb15d74ded9aa38b2042708c89a523",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0057.png",
+      "bytes": 3028982,
+      "sha256": "733dd851751d563659b590f4db4571efdf361783dbe909c3ad352343a576b03c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0058.png",
+      "bytes": 2999646,
+      "sha256": "5f4e1fb6a11757b58d81066057e905d61e49fb8ab74070615eb38a9a424ee64d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0059.png",
+      "bytes": 3003946,
+      "sha256": "2559090569b3dc91594b1d92d5c608ac9fa719aaca68392f942a9695f391c8bb",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0060.png",
+      "bytes": 3002823,
+      "sha256": "21b7197778fe03dab9187892c0e7215e250ddd588cffd2be3e71852575054991",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0061.png",
+      "bytes": 3027118,
+      "sha256": "eaac9b3853f17879c64d9839c76b66ebb8cc56ba4d8be8200a6d868d7022b36f",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0062.png",
+      "bytes": 2999160,
+      "sha256": "b970d61058030c16330bf653dbd1bedfc23e94b78de1954979dbeec64ae7c1ec",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0063.png",
+      "bytes": 3000085,
+      "sha256": "4dc8166c12d22b813fa284d6414d8a185c998dc989bf401ba133feb793cdaf86",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0064.png",
+      "bytes": 3002737,
+      "sha256": "3ac14d37e783704e0ecb68c154f089061081d175288b1ce9ddab615b7250d679",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0065.png",
+      "bytes": 3027037,
+      "sha256": "3f857d7ef234b09ad4a1454c4c8d3732f17bea5906f2122f9b20a88b5ff90990",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1058,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0066.png",
+      "bytes": 3003751,
+      "sha256": "5421b8a88c0c187a87456ada6a6e8ce177d6f1df17fc12e758aa371760671bcb",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1052,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0067.png",
+      "bytes": 3005463,
+      "sha256": "bc6349aa98e5741706395507e6b2798470a1202cba8a8bc2113e04751c01aedd",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1052,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0068.png",
+      "bytes": 3005383,
+      "sha256": "db8accc249ab20499d087423794c83a12c7188fb0e6833eb60322e48ff8b4946",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1052,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0069.png",
+      "bytes": 3027212,
+      "sha256": "098aee340d68bf9f652b5acf369eaa5b946e686c0f352327d7d4e5a8cf05cf7e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1052,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0070.png",
+      "bytes": 3001245,
+      "sha256": "08af267ef53ebecbeb968a09c12f12e996b051cc1a05b76f05ea698f13b66068",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1052,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0071.png",
+      "bytes": 3000518,
+      "sha256": "4d7714f349fa508a9362c0381109fdde82f4065a934065d1b30999215e9e77e0",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1052,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0072.png",
+      "bytes": 2999816,
+      "sha256": "95e400545718a4f5fceef6966db8504b37c06130c74a968aed8b46f7a595fe7a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1052,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0073.png",
+      "bytes": 3025196,
+      "sha256": "01e9d5f78331dd06dbcd64e79f6542d24a4659f14eba29e3871cae208e6e4610",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0074.png",
+      "bytes": 2993765,
+      "sha256": "a73e4412e1bbda7fb777bd4d2768cbed468a73cc7e4e98674cbbcc31bdaf53fc",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0075.png",
+      "bytes": 2994261,
+      "sha256": "de17394b8f616ea8a76267a67a7054259d2415c4eec9f71bbf4dda61b6abc03e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0076.png",
+      "bytes": 2997098,
+      "sha256": "076450c1919639a7d6e9129eb13476069a93b2f5dfa9b9780624144ef439168c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0077.png",
+      "bytes": 3019381,
+      "sha256": "76677c0dd43e1d0cefadd0c49868804903bc0ba1020826d9a68c4658f2e84243",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0078.png",
+      "bytes": 2989396,
+      "sha256": "b087fc1b5a63a71f50a379e506c22650f90d3318899b39a1f0bba9a1fd950943",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0079.png",
+      "bytes": 2993036,
+      "sha256": "c15fc399283e1d9be358a041c9d1d38939d10f0fb2a9dfd84908366e051c7e18",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0080.png",
+      "bytes": 2994577,
+      "sha256": "dea26e07806aa7edfb85069ba0551565fe858e50097963e9151f02b92c68c425",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0081.png",
+      "bytes": 3020770,
+      "sha256": "d2642d78e6014d32aa8013d05cd661d1db357baeb725ecd6f6e9faa44e4ddd9a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0082.png",
+      "bytes": 2988436,
+      "sha256": "d28e72375b642f2a187ad079aed719e121a3ec14e2f4ba874d43de64030a1fcb",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0083.png",
+      "bytes": 2993518,
+      "sha256": "5e58e486c844cd5ff91a53642098c22abeeef624bbf72823c704e21d450a4b07",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          196,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0084.png",
+      "bytes": 2992194,
+      "sha256": "97d30d8db547cfec0deb20a60d7b1a69fc603ba0753deb69536af1422de3ca34",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0085.png",
+      "bytes": 3012854,
+      "sha256": "282469aaed835bddc7bfe0272e25336ee17778abe0f8bd5fd378f73feda4ca21",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1051,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0086.png",
+      "bytes": 2981457,
+      "sha256": "85f463d1f127d3c3e15b97dd8afa1eb84ea855eb111ec834980f91d4a9a2cc5a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          198,
+          1068,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0087.png",
+      "bytes": 2978291,
+      "sha256": "91c811c406cbe7e1fd67503b0cbacbb7a34925423b8836b8b8a9a04c2b1d2405",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          198,
+          1068,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0088.png",
+      "bytes": 2984174,
+      "sha256": "e1ec2079f43c9ae1126fd38cfffb1fc3686910c39503a3b66b862e3246ae6cef",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          199,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0089.png",
+      "bytes": 3010868,
+      "sha256": "8eb15b0caf2cefae641f7bc716b3c41bfe401ffa5bced0a271b98fffe09ce01c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          199,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0090.png",
+      "bytes": 2979901,
+      "sha256": "b71f7c7e3a343477f0aa3691a08c47219f3186c6cb2b2a44246026b7137fab5e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          199,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0091.png",
+      "bytes": 2984602,
+      "sha256": "941d71825cec0ed2014f47d89aafe758d252407ab59339caa1ceb4f008b9284e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          200,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0092.png",
+      "bytes": 2984342,
+      "sha256": "98c98f95917be61bf0b7da3e53585e51a75326be05b8cb7e48b7f4846cbe778d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          200,
+          1073,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0093.png",
+      "bytes": 3011047,
+      "sha256": "e120c4d5a834a7f26620a6f247119d63c5bf556f281d87d237e7d9b959afcd35",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          200,
+          1073,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0094.png",
+      "bytes": 2979084,
+      "sha256": "fd8bca4b4bef359141864c5d03104a2fc102a3c1259cda47ce5008d57cd3d28f",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          201,
+          1073,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0095.png",
+      "bytes": 2983140,
+      "sha256": "ca343b060a33ef2f6132cb54824c3a2744836e25c1ad5a90315a5b72b1a32f50",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          201,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0096.png",
+      "bytes": 2998069,
+      "sha256": "dda7b2c62579d7aa25d0ebdfc63770c2a892b2e81de7eb6628f654ced6b51486",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          203,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0097.png",
+      "bytes": 3021495,
+      "sha256": "83b0306e84dfdd073583eec0731a5b7a07e8fb07f3a21a8e8728e8188837036a",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          203,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0098.png",
+      "bytes": 2998790,
+      "sha256": "b3e8be3dc6abcf6daaadf26d4904ffc55f303e09d0d0a98936bcdec12246dc9e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          204,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0099.png",
+      "bytes": 3006066,
+      "sha256": "aee933db55497a049e4df16a89dd3fb88212edd6d4fc6e12071ae88202f0ee1e",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          204,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0100.png",
+      "bytes": 3013089,
+      "sha256": "bf3c3042fd5185fc77faf40726f5fe26e5fc06fd024646a2863b8d1cce9872c4",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0101.png",
+      "bytes": 3037954,
+      "sha256": "c91b3c6afbde6f460f2c4178697654cd964c366abdc9707fc0a03ed74832b5fd",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0102.png",
+      "bytes": 3018291,
+      "sha256": "01ccd30fdb6794db961d38c7671e66ba539f5f1a7f726246198d8789ce20aae6",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          206,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0103.png",
+      "bytes": 3025126,
+      "sha256": "0ba73c70cb47243223a9706a4ff7020f57d72f6142b1169e2411617f5297b552",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          206,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0104.png",
+      "bytes": 3023138,
+      "sha256": "c67b16a4147886a0cb8dec03713a22cc1cbec1c02d3ef6011f9a32fe0bfb3929",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0105.png",
+      "bytes": 3056953,
+      "sha256": "d9803d1b677302f54fee2791f3cac3ec51595ac1f2c9b67bba428204a4c8ecbf",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0106.png",
+      "bytes": 3034334,
+      "sha256": "dcca1e67ac35c15ef1e1819dde29476196fc0e9bf1360401aa075693d2539dff",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1071,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0107.png",
+      "bytes": 3037121,
+      "sha256": "be663e489f5330a2cf1a6eae5f812fee2f3f56cc63b8043f440b614da626a4e1",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0108.png",
+      "bytes": 3033602,
+      "sha256": "02a7b98de6e577778362c8171acc90f9945ddc77015af8693c76d352aa85da61",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0109.png",
+      "bytes": 3062123,
+      "sha256": "947cde39a2542b88ce6d1fff5b6bd7631199b687f729c568f866854fe2a00034",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0110.png",
+      "bytes": 3036074,
+      "sha256": "d6412765f6d95998e373395bf224427d7263a7dab359ac18e5c8aab93963bc2b",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0111.png",
+      "bytes": 3040793,
+      "sha256": "f7773499e4ebbfffb2da9af7b4de719baaea97a0b5fd4edbc94fc89a2d258da8",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0112.png",
+      "bytes": 3038103,
+      "sha256": "4435622e992fd14f1c5196fca7e9a438d37213bdada311e31adaed64c855a281",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          205,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0113.png",
+      "bytes": 3048171,
+      "sha256": "ee0b02215965e5607d659f261b94f2bc7aff5dc075f279b21eea534b314f9ff5",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          204,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0114.png",
+      "bytes": 3021484,
+      "sha256": "ff00c5bd2c15bf8ab9afa329870de637d3697df97dceea10c4e2a34ec22fda2d",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          204,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0115.png",
+      "bytes": 3021872,
+      "sha256": "e940e31c6fff1585e321b01904761195bfa88fadc51f96fd4042d1fac1640c9c",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0116.png",
+      "bytes": 3019199,
+      "sha256": "ce84635604202cb1095511460b5e341db9ecbe860fb2d39ec5ac1158456d1b95",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          197,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0117.png",
+      "bytes": 3035741,
+      "sha256": "d1e57b808b193fedf1d19fc53d3d3b62b9dd5d416b1b83dbcd1e3522aa0c8d6f",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0118.png",
+      "bytes": 3013325,
+      "sha256": "a2a5f03c02cd0a72794531f56928ce105605596aa8256f2ea526fafdf701d934",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0119.png",
+      "bytes": 3016493,
+      "sha256": "7bd12ecc3ff2923e548015d94d861341a66776d63e59d7db8858fc884e2738aa",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0120.png",
+      "bytes": 3015304,
+      "sha256": "b19de7ff7c4d4e533807329d04b799eb39612b5f4dfa3282bbf3bcf1f54e8e29",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0121.png",
+      "bytes": 3039182,
+      "sha256": "37b2cde98fcc616894e2251527837d546be615b90d678c3ab18bed6ac1a7fc71",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0122.png",
+      "bytes": 3011344,
+      "sha256": "256553e24f07d4efb01ca0e9c86a4d79ae0a57800da3acb16fc0242f0ba758eb",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0123.png",
+      "bytes": 3019628,
+      "sha256": "463a1a514f475f8eeb5c5dd63f53b188555bb6d5437ace21598c07dad8c0c649",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1070,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0124.png",
+      "bytes": 3016108,
+      "sha256": "c4befc5c74bc25b7cecfe221112b5e436c92baa9eed860ea5b11b3eeeafc9d22",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0125.png",
+      "bytes": 3035313,
+      "sha256": "f4b8cd9e04b377f5b14365563609dddd0476b5875be35e2b326f9b12e90b9cae",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0126.png",
+      "bytes": 3012593,
+      "sha256": "1b69a976f2533f3df19d9a064c71a222715a048d88ebabd15129c61c857bb428",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0127.png",
+      "bytes": 3014603,
+      "sha256": "b0b06184e3e30fb7bc35a855bb8cd78ad8f307d88cd2ea2f02363185d76a4179",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0128.png",
+      "bytes": 3008805,
+      "sha256": "4f61f940b326d9e3b1e43789fdf7102769b7f4a23166fda756ca3a9e243a7430",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/drink/frame-0129.png",
+      "bytes": 3020871,
+      "sha256": "6c5814b93fe1d68ade5f2e53646f39a29d2dbdc0404265c3f683069aba886de6",
+      "extension": ".png",
+      "image": {
+        "width": 1920,
+        "height": 1080,
+        "mode": "RGBA",
+        "alpha_range": [
+          0,
+          255
+        ],
+        "alpha_bbox": [
+          168,
+          195,
+          1069,
+          983
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/walking/01-walk-right-step-a.png",
+      "bytes": 1786926,
+      "sha256": "9796ac1fd540ea85b21abbd04a27fef96d77a8e3362b98890be588b97fecb187",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/walking/02-walk-raised-foot.png",
+      "bytes": 1901026,
+      "sha256": "b43f67ba21a5ba29c04c170f4942e6f24b0d94a214a976855befd491630e1a1f",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/walking/03-walk-left.png",
+      "bytes": 1864279,
+      "sha256": "bb26119e9aec9eaea5d01681fe6094b88c3fbe8348e362d4858143ca734adb6b",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/walking/04-walk-toward-camera.png",
+      "bytes": 1850638,
+      "sha256": "42c883e976ae36638dc29e3a25462431a93db65f2d458f39585b885b65a27c4e",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/walking/05-walk-away.png",
+      "bytes": 1638445,
+      "sha256": "4c70768ad0920fd04aa956c4410b78af054a0790739f8120da06bfc7b72b03fb",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-assets/train-actions/walking/06-walking-with-suitcase.png",
+      "bytes": 1917935,
+      "sha256": "e65d4d487a3f799bd3283c9b7f9696365045dc2e4c33a08bf21fa00859648543",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-character-profile.png",
+      "bytes": 2540467,
+      "sha256": "1c63aa8f579634eff5f8c6864e97882513feba381c1e2380ae66018800f9d238",
+      "extension": ".png",
+      "image": {
+        "width": 1086,
+        "height": 1448,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1086,
+          1448
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-eki-channel-banner-charcoal-stone-v6-master.png",
+      "bytes": 2488442,
+      "sha256": "ccb46743aefa8b78acbf6020f2132f45bf75f7c84220da936d45b3b210914e6c",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-eki-channel-banner-charcoal-stone-v6-upload.jpg",
+      "bytes": 1298771,
+      "sha256": "ff3a282b97a1ccca07d5f35a08feba5b66a8e66557a7ddda0e49bf357234f430",
+      "extension": ".jpg",
+      "image": {
+        "width": 2560,
+        "height": 1440,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2560,
+          1440
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-eki-channel-banner-stone-v5-master.png",
+      "bytes": 2348244,
+      "sha256": "1184ad16a4eaa3126d8f70c8132df33a5a7c387053185c0309eace6dbd7daf74",
+      "extension": ".png",
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1672,
+          941
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-eki-channel-banner-stone-v5-upload.jpg",
+      "bytes": 1222095,
+      "sha256": "6a7ddb99086c994e9b447405e2238dd9487baa1b62c0c6059be71372b627cd3b",
+      "extension": ".jpg",
+      "image": {
+        "width": 2560,
+        "height": 1440,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          2560,
+          1440
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-eki-signature.png",
+      "bytes": 1638983,
+      "sha256": "acef0e6618dc5a838e32b6b658317b734f18556727d5b073c11660ad2117daf4",
+      "extension": ".png",
+      "image": {
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1536,
+          1024
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-face-icon-side.png",
+      "bytes": 1001923,
+      "sha256": "88bf5361233c3513b27fa0f990ff1a5f1e001f7260ba4b03510bb216ab047b94",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    },
+    {
+      "path": "tabi-face-icon.png",
+      "bytes": 1022540,
+      "sha256": "b1c6b0cd52735a08622673b8bf35a72648626084e80a3dae4dd8b6460fe5694c",
+      "extension": ".png",
+      "image": {
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "alpha_range": [
+          255,
+          255
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          1254,
+          1254
+        ],
+        "icc_profile_present": false
+      }
+    }
+  ]
+}

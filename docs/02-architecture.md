@@ -2,7 +2,7 @@
 
 ## Module ownership
 
-The Python core owns schemas, asset registry, timeline compiler, state evaluation, rendering, audio scheduling, job persistence and release preparation. CLI and API are adapters. Kotlin owns UI state, forms, timeline interaction, proxy playback, file selection and worker lifecycle. Resolve/Fusion is an optional source-authoring tool; it is not required by the runtime.
+The Python core owns schemas, asset registry, timeline compiler, state evaluation, rendering, audio scheduling, job persistence and release preparation. CLI and API are adapters. TypeScript owns browser UI state, forms, timeline interaction and proxy playback. A Python launcher owns the local server and worker lifecycle. Resolve/Fusion is an optional source-authoring tool; it is not required by the runtime.
 
 Logical flow: approved assets + music + episode document → validation → compiled immutable snapshot → render plan → chunk jobs → assembled video and continuous audio → export verification → release preparation.
 
@@ -20,13 +20,13 @@ Logical flow: approved assets + music + episode document → validation → comp
 | `src/tabi/core/jobs/` | Journal, process runner, cancellation, recovery |
 | `src/tabi/core/releases/` | Metadata, rights summary, preparation bundle |
 | `src/tabi/cli/`, `src/tabi/api/` | CLI and FastAPI adapters |
-| `desktop/` | Gradle/Kotlin Compose project |
-| `schemas/` | Generated JSON Schemas, published to desktop and tests |
+| `web/` | TypeScript/Vite browser UI, bundled static assets; introduced in T25 |
+| `schemas/` | Generated JSON Schemas, checked against browser DTOs and tests |
 | `tests/unit/`, `tests/integration/`, `tests/fixtures/` | Small synthetic media and semantic tests |
 | `docs/`, `scripts/` | Decisions, setup, operations, fixture generator |
 | `assets-source/` | Optional local source art workspace, ignored by default |
 
-Application source goes in git; expensive personal artwork and recordings live in the user's project storage with backups. If large assets are intentionally versioned externally, document that mechanism. Do not commit caches, exports, commercial packs, licences containing personal details, or credentials.
+Application source goes in git; expensive personal artwork and recordings live in the user's project storage with backups. The existing reference PNG/JPG collection is preserved. Never commit MP4 files, including sources, test clips, previews and final exports; `.gitignore` covers case variants. Untrack with `git rm --cached` while keeping local files. If large assets are intentionally versioned externally, document that mechanism. Do not commit caches, exports, commercial packs, licences containing personal details, or credentials.
 
 ## Local project layout
 
@@ -47,26 +47,26 @@ Use atomic writes and a single-writer project lock. Readers can inspect snapshot
 
 Avoid importing HTTP or UI concerns into these services. Define storage and renderer interfaces so a later backend can replace FFmpeg without rewriting episode semantics.
 
-## Worker lifecycle
+## Local launch, browser session and worker lifecycle
 
-Desktop launches the installed Python worker using an argument array. Worker binds `127.0.0.1` on an ephemeral port, writes a one-time readiness JSON message to its dedicated startup channel, and returns protocol version, PID, session ID and bearer token. Desktop confirms health/protocol before opening projects. Application logs never include the token.
+The planned `tabi web` launcher starts the installed Python server using an argument array. Bind `127.0.0.1` on an ephemeral port and return protocol version, PID, session ID and a one-time bootstrap secret over a private readiness channel. The launcher verifies the protocol before opening the browser. No fixed-port discovery or connection to an unrelated process is allowed. These commands are introduced in T26, not the T01 bootstrap.
 
-The worker is local and single-user. It receives only project paths chosen by the user; filesystem access is bounded to configured project/media roots where practical. Validate imported archive paths to prevent extraction outside the project. Reject URL media sources in V1. Do not expose the worker on LAN or rely on a guessed fixed port.
+Serve the built frontend and `/api/v1` on the same origin. The launcher opens a URL with the one-time secret in its fragment; the frontend removes the fragment immediately and exchanges the secret through a same-origin request for an HttpOnly, SameSite=Strict session cookie. Reject replay/expired secrets. Give each worker session a distinct cookie name; validate the exact Host and Origin, and require a per-session CSRF header on mutations. Cookie-authenticated GETs allow native `<video>` range requests and SSE without credentials in URLs. An authenticated same-origin session endpoint supports refresh/reconnect and reports protocol compatibility. CLI API callers can use the ephemeral bearer token through a private channel. Never log, persist in browser storage, or put these secrets in query strings. Test this flow in Safari and Chromium.
 
-One render job active by default; queued jobs store frozen input snapshots. Desktop crash does not destroy completed chunks. Explicit shutdown offers cancel or leave worker running where supported; stale session recovery reconnects only after verifying recorded process/session ownership. Never kill an arbitrary process by PID alone.
+The worker is local and single-user. Register allowed project/media roots through launcher arguments or explicit local configuration. The UI chooses existing paths through a server-backed browser scoped to those roots, or streams user-selected files to a local import staging directory. Resolve symlinks and reject traversal/root escapes before filesystem operations. Browser file pickers do not supply unrestricted absolute paths. Do not require the File System Access API for V1. Validate imported archive paths; reject URL media sources. Do not expose the worker on LAN. Production requires no CORS; any development proxy/origin exception is explicit and local only.
+
+One render job is active by default; queued jobs store frozen input snapshots. Closing or refreshing a browser tab leaves the server and jobs running. Reopening reconnects to owned work with session/protocol verification. Explicit shutdown is a separate authenticated operation that describes active-job consequences. Server failure marks jobs interrupted and preserves verified chunks. Never kill a process by PID alone. Project files live in local folders, not browser storage; asset approval and jobs cannot depend on a tab staying open.
 
 ## Dependency and packaging choices
 
 Use typed Python validation (Pydantic or equivalent), Typer or argparse for CLI, FastAPI for service, YAML parsing in safe mode, and pytest for meaningful checks. Use NumPy/Pillow only for needed fixture/image operations. FFmpeg/ffprobe are external tools whose version, filters, encoders and alpha capabilities are probed by `doctor`.
 
-Use Kotlin coroutines and serializable DTOs generated from or checked against schemas. Select the exact desktop media player only after a macOS spike proves MP4 playback, seeking, audio and distribution work. V1 may open proxies in the system player while an embedded player remains pending, but full desktop completion requires the documented preview behavior.
+Use TypeScript DTOs generated from or checked against schemas. Start with Vite, HTML/CSS, forms and scene cards; no general editor framework is required. Pin tooling in T25. The browser plays renderer-generated H.264/AAC proxies with native `<video>`; exact frame inspection asks Python for a still. Test seeking, audio, stale-proxy handling and authenticated range serving on Safari and Chromium before declaring preview complete. Browser playback is not the frame-accurate renderer.
 
-Create a macOS application/DMG using the supported Compose distribution tooling on macOS. Initially use a configured external FFmpeg and Python environment for development. For the packaged personal app, bundle a tested Python runtime/worker and either a licensed compatible FFmpeg build or a clearly documented first-run dependency check. Test packaging paths and runtime dylibs on a machine without developer tooling.
-
-Signing/notarization is conditional on credentials and distribution needs. An unsigned personal build is a valid documented intermediate, not equivalent to a verified signed distribution. Record binary redistribution obligations for every bundled dependency.
+T33 builds frontend assets into the Python distribution and provides a local launcher/install workflow. No Node server is required at runtime. Initially use a configured external Python and FFmpeg installation with an actionable dependency check. Test installed launch outside the development checkout and document external-drive permissions. Bundled runtimes or FFmpeg require a licence review first; do not commit binaries. Kotlin/Compose, native DMG and signing/notarization are deferred.
 
 ## Development commands to implement
 
-`make setup`, `make doctor`, `make fixtures`, `make check`, `make test-media`, `make run-worker`, `make run-desktop`, `make pilot`, `make package-macos`, and `make clean-cache`.
+Implemented by T01: `make setup`, `make help`, `make check`, `make test`. Later tasks add `make doctor`, `make fixtures`, `make test-media`, `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
 
 Each target delegates to documented scripts. `clean-cache` requires a project/cache root and only deletes disposable cache entries. A fresh checkout must render the synthetic pilot without ComfyUI or real music.

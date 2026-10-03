@@ -47,6 +47,8 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 
 | Command | Behavior |
 | --- | --- |
+| `tabi --version`, `tabi config --json` | T01: application version and resolved local developer settings; no media probing |
+| `tabi web` | T26: launch authenticated local web app, register configured roots, verify worker readiness and open browser |
 | `tabi doctor --json` | Probe runtime, tools, codecs, storage, target features |
 | `tabi project init PATH` | Create safe local project folder with versioned defaults |
 | `tabi assets import --project PATH --file FILE --kind KIND` | Register original, probe, copy or link explicitly |
@@ -64,10 +66,14 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 
 Frame ranges use the same half-open convention. CLI exit codes: 0 success, 2 validation/usage, 3 missing dependency, 4 render/I/O failure, 5 cancellation. JSON output goes to stdout; logs to stderr. Avoid embedding secrets or private licence files in logs.
 
+Except for the T01 commands noted above, this table describes planned behavior. Implement the schema layer before media/domain services; do not expose placeholder commands.
+
 ## Local service API
 
 Proposed routes, versioned under `/api/v1`:
 
+- `POST /session`: exchange one-time browser bootstrap secret; authenticated `GET /session` returns protocol and CSRF context for reconnect.
+- `GET /roots`, `GET /roots/{id}/entries`: browse only launcher-registered local roots, with normalized relative paths and traversal/symlink checks.
 - `GET /health`, `GET /capabilities`: protocol/runtime state and tool support.
 - `POST /projects/open`, `GET /projects/{id}`, `PUT /projects/{id}`: opened projects with revision guard.
 - `GET /projects/{id}/assets`, `POST /projects/{id}/assets/import`, `POST /assets/{id}/normalize`, `POST /assets/{id}/approve`.
@@ -77,4 +83,4 @@ Proposed routes, versioned under `/api/v1`:
 - `GET /artifacts/{id}` serves only registered job artifacts within approved roots, supports range requests for proxy playback.
 - `POST /releases/prepare`: return folder and validation report.
 
-Requests use typed bodies; long jobs return immediately. Job errors include stable code, user message and diagnostic log reference. Every edit uses a project/episode revision to prevent lost updates. API payloads refer to registered asset IDs, not arbitrary shell arguments. The worker token is required even on loopback.
+Requests use typed bodies; long jobs return immediately. Job errors include stable code, user message and diagnostic log reference. Every edit uses a project/episode revision to prevent lost updates. API payloads refer to registered asset IDs, not arbitrary shell arguments. Authentication is required even on loopback: ephemeral bearer tokens for CLI clients, or the verified session cookie for browsers, including video range and SSE requests. Browser mutations also require exact Origin/Host validation and a CSRF header. No credentials in artifact URLs. The full bootstrap and root-access policy is specified in [architecture](02-architecture.md).

@@ -17,15 +17,17 @@ The first creative milestone is a 90–120-second train pilot. The first complet
 | Core implementation | Python package, typed contracts, CLI | Direct access to media tooling and simple headless operation |
 | Renderer | FFmpeg behind a replaceable renderer interface | Suitable for prepared layers and clips |
 | Art authoring | Editable layered artwork and authored cutout animation; Fusion optional | Preserves character identity and deliberate motion |
-| Desktop | Kotlin/JVM with Compose Multiplatform desktop | Fits the user's Kotlin experience |
-| Local service | Python FastAPI, launched and owned by desktop | Same core as CLI, no separate business logic |
+| Interface | Local browser web app; TypeScript with Vite, ordinary HTML/CSS controls initially | Removes the Kotlin/JVM and embedded-player packaging work |
+| Local service | Python FastAPI, launched by a Python CLI launcher; serves built UI and API from one loopback origin | Same core as CLI; media and project files stay on the Mac |
 | Data | Versioned JSON/YAML documents and local project folders | No account, cloud backend, or database required |
 | Generation | Optional local ComfyUI adapter after V1 core | Rendering approved episodes must work offline |
 | Scene system | Reusable template capabilities; train first, café second | Supports Tabi beyond travel |
 | Preview | Renderer-generated proxy video and still frames | Avoids a second compositor with subtly different output |
 | Publishing | Export checklist and release folder; manual upload | Keeps final creative and rights review with Marco |
 
-These are implementation choices, not claims that one stack is universally optimal. Pin compatible Python, JDK, Kotlin, Compose, and FFmpeg versions during the bootstrap spike and record them. Do not hardcode guessed current versions into this plan.
+These are implementation choices, not claims that one stack is universally optimal. The local web app replaces the original Kotlin/Compose proposal following Marco's 3 October 2026 request. It still needs a local Python/FFmpeg service; a static hosted page cannot replace the renderer or local project storage. See the [implementation and asset review](docs/09-implementation-review.md).
+
+Pin compatible Python, frontend tooling, and FFmpeg versions as each layer is introduced. T01 pins the tested Python environment and dependency lock; T02 measures media tools; T25 pins frontend tooling. Node is a development/build dependency, not a required runtime for the packaged static frontend. Do not hardcode guessed current versions into this plan.
 
 ## Scope by release
 
@@ -33,11 +35,11 @@ These are implementation choices, not claims that one stack is universally optim
 
 **Core beta:** robust asset registry; schema migration; scene and action compilation; deterministic event schedules; full audio timeline; weather/reflections; resumable chunks; cache invalidation; release bundle; automated integration checks; complete short episode.
 
-**V1 desktop:** project browser, asset import/approval, episode setup, story/timeline editor, preview, audio editor, render queue, publishing preparation, settings, basic continuity notebook, macOS installer, backup/recovery, CLI parity. Add a café template as an architectural acceptance test before declaring the engine scene-independent.
+**V1 local web app:** project browser, asset import/approval, episode setup, story/timeline editor, preview, audio editor, render queue, publishing preparation, settings, basic continuity notebook, local launcher and install instructions, backup/recovery, CLI parity. Start with forms and scene cards; introduce timeline interaction only over working core services. Add a café template as an architectural acceptance test before declaring the engine scene-independent.
 
 **Expansion:** additional outfits and camera packs; sipping, reading and sleeping; more environment packs; richer continuity; local ComfyUI workflow execution; longer Sessions; reusable episode templates; more sophisticated compositor if measured limitations warrant it.
 
-**Deferred:** 3D scenes, general-purpose rig editor, fully automatic depth separation, lip-sync/dialogue, cloud rendering, collaborative editing, accounts, automatic DistroKid uploads, automatic YouTube publishing, social analytics, a browser game, and a reimplementation of Melotrail. These are not needed to complete V1.
+**Deferred:** native Kotlin/Compose client and DMG, 3D scenes, general-purpose rig editor, fully automatic depth separation, lip-sync/dialogue, cloud rendering, collaborative editing, accounts, automatic DistroKid uploads, automatic YouTube publishing, social analytics, a browser game, and a reimplementation of Melotrail. These are not needed to complete V1.
 
 ## Asset to episode workflow
 
@@ -61,10 +63,10 @@ These are implementation choices, not claims that one stack is universally optim
 | M2 Visual pilot | T09–T14 | 90–120-second preview with correct masks, actions and parallax; user art approval |
 | M3 Complete episode | T15–T19 | 5–10-minute authored episode, audio integrated, no discontinuities |
 | M4 Reliable headless production | T20–T24 | Resume/cancel/cache tests and final release folder pass |
-| M5 Desktop product | T25–T33 | All V1 screens use the same core; packaged application works on Apple Silicon |
+| M5 Local web product | T25–T33 | All V1 screens use the same core; local launch, browser playback and recovery work on Apple Silicon |
 | M6 Extension and production readiness | T34–T38 | Café template, optional generation bridge, long-form benchmark, recovery drill |
 
-Tasks marked optional are not required for V1. M2 artistic approval and M3 finished music cannot be claimed through synthetic fixtures. Agents should continue independent infrastructure work while waiting for those inputs.
+Tasks marked optional are not required for V1. M2 artistic approval and M3 finished music cannot be claimed through synthetic fixtures. Agents should continue independent infrastructure work while waiting for those inputs. Start T01 → T03 → T02 → T04 so contracts precede media/domain implementation. Stable task IDs are retained; use the index order and each task's dependencies, not numeric order alone.
 
 ## Proposed first episode
 
@@ -81,13 +83,13 @@ Use stylized Tokyo-inspired artwork without asserting that impossible combinatio
 
 ## Dependency and collaboration policy
 
-Work in order until interfaces are stable. Parallel work is optional only when explicitly authorized in a future implementation session. Suitable independent lanes after M0 are asset preparation, core/compiler, and desktop wireframes. Every lane uses shared schemas and task ownership. Do not have two agents edit the same contract without coordination.
+Work in order until interfaces are stable. Parallel work is optional only when explicitly authorized in a future implementation session. Suitable independent lanes after M0 are asset preparation, core/compiler, and web UI wireframes. Every lane uses shared schemas and task ownership. Do not have two agents edit the same contract without coordination.
 
-Suggested review units: bootstrap, asset registry, timeline/compiler, rendering, audio, recovery, desktop, release, second scene. Each change must name its task, behavior, evidence, and unresolved limitations. No task is done solely because the UI contains a button.
+Suggested review units: bootstrap, asset registry, timeline/compiler, rendering, audio, recovery, web UI, release, second scene. Each change must name its task, behavior, evidence, and unresolved limitations. No task is done solely because the UI contains a button.
 
 ## Effort and cost planning
 
-Do not budget this as a one-prompt build. The critical path is art cleanup and animation transitions, followed by renderer correctness and desktop packaging. Asset approval and target-Mac benchmarking determine the schedule. For each milestone, the implementing agent should report actual effort, remaining art inputs, and measured render speed; only then revise delivery estimates.
+Do not budget this as a one-prompt build. The critical path is art cleanup and animation transitions, followed by renderer correctness, browser integration and local distribution. Asset approval and target-Mac benchmarking determine the schedule. For each milestone, the implementing agent should report actual effort, remaining art inputs, and measured render speed; only then revise delivery estimates.
 
 Use local approved assets and local rendering by default. Track generation model downloads, commercial asset licences, optional Resolve Studio, optional signing/notarization credentials, disk space, and backups as explicit choices. No paid service or licence purchase is implied by the plan.
 
@@ -103,8 +105,10 @@ An original finished Tabi episode must be viewed and heard by Marco. No amount o
 - [Project architecture](docs/02-architecture.md)
 - [Data contracts and interfaces](docs/03-contracts.md)
 - [Timeline and rendering implementation](docs/04-rendering.md)
-- [Desktop pages and interactions](docs/05-desktop.md)
+- [Web app pages and interactions](docs/05-webapp.md)
 - [Music and publishing handoff](docs/06-publishing.md)
 - [Verification and acceptance](docs/07-qa.md)
 - [Ordered task backlog](docs/tasks/INDEX.md)
 - [Official references and verification status](docs/08-sources.md)
+- [Implementation review and supplied asset audit](docs/09-implementation-review.md)
+- [Implementation progress](docs/progress.md)

@@ -2,9 +2,11 @@
 
 ## Reference and style foundation
 
+The supplied collection has now been inventoried: see [implementation/asset review](09-implementation-review.md) and the per-file [hash inventory](asset-inventory.json). `assets/tabi-character-profile.png` is an actual reference candidate with turnaround, palette and proportions; `assets/scenario/tabi-train-example.png` supplies the seated scene. Their presence does not establish approval. Reuse these originals for comparison and record the selected approved hash in T06. No replacement Tabi design is needed for technical development.
+
 Obtain the actual approved Tabi reference and channel artwork from Marco or the existing asset collection. Do not assume the channel banner is a layered character master. Preserve an original copy and document its source. Create a contact sheet containing front/side/three-quarter views, approved seated silhouette, head-to-body proportions, frill shapes, headphone design, face states, outline treatment, and palette swatches sampled from the approved art.
 
-Style: quiet, pastel, soft contrast, simple recognizable shapes, restrained lavender/peach or the currently approved zen palette. Tabi should remain less human in proportion and appearance, following the reference. Avoid extra musical notes and unnecessary text. Do not add a new outfit or anatomy without art review. Country-influenced casual outfits are later packs, not traditional clothing by default.
+Style: preserve the selected reference. The supplied profile depicts a lavender/pink axolotl, pink frills, forehead star, large headphones, a green coat and gold patterned trim. These observed details take precedence over the earlier generic lavender/peach palette brief; approval is still pending. Tabi should remain less human in proportion and appearance, following the reference. Avoid extra musical notes and unnecessary text. Do not add a new outfit or anatomy without art review. Country-influenced casual outfits are later packs, not traditional clothing by default.
 
 Create a style guide with approved and rejected examples. Lock camera, light direction, line weight, texture density, shadow softness and proportions before animation. Hand-drawn/AI-assisted source artwork is allowed; every output still needs cleanup and review.
 

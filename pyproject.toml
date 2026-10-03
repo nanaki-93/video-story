@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tabi-story-studio"
+version = "0.1.0"
+description = "Local production tools for authored Tabi music stories"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = []
+
+[project.scripts]
+tabi = "tabi.cli.main:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+audit = ["pillow>=11,<13"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tabi"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/scripts", "/pyproject.toml", "/README.md", "/uv.lock", "/Makefile", "/.python-version"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
