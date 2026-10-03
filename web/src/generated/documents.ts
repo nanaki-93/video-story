@@ -36,6 +36,7 @@ import type { ValidationReport } from "./validation_report";
 import type { WaveformReport } from "./waveform_report";
 import type { WebCatalog } from "./web_catalog";
 import type { WebDirectory } from "./web_directory";
+import type { WebEditor } from "./web_editor";
 import type { WebJobs } from "./web_jobs";
 import type { WebProject } from "./web_project";
 import type { WebProjects } from "./web_projects";
@@ -83,6 +84,7 @@ export interface Documents {
   waveform_report: WaveformReport;
   web_catalog: WebCatalog;
   web_directory: WebDirectory;
+  web_editor: WebEditor;
   web_jobs: WebJobs;
   web_project: WebProject;
   web_projects: WebProjects;

@@ -174,6 +174,7 @@ export function projectPage(
           ]),
           chosenEpisode,
         );
+        select.dataset.episodeSelector = "true";
         select.addEventListener("change", () => {
           selectEpisode(select.value);
           refreshPage();

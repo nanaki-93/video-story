@@ -7,6 +7,8 @@ from fastapi import APIRouter, HTTPException, Query, Request
 from starlette.concurrency import run_in_threadpool
 
 from tabi.core.authoring import AuthoringService, NewEpisode
+from tabi.core.editor import EditorService, EditRequest
+from tabi.core.episodes import EpisodeService
 from tabi.core.models import ActionPack, ImportRequest, ReleaseRecord
 from tabi.core.models.base import AssetRef
 from tabi.core.persistence import ProjectStore
@@ -22,6 +24,7 @@ from .contracts import (
     Review,
     StillTemplate,
     WebCatalog,
+    WebEditor,
 )
 from .files import open_local
 from .uploads import CHUNK_BYTES, Uploads
@@ -77,6 +80,22 @@ def routes(runtime):
     @router.get("/projects/{handle}/episodes/{identity}")
     def episode(handle: str, identity: str):
         return service(handle).episode(identity)
+
+    @router.get("/projects/{handle}/episodes/{identity}/editor", response_model=WebEditor)
+    def editor(handle: str, identity: str):
+        item = runtime.get(handle)
+        author = EditorService(item.assets)
+        episode = author.episode(identity)
+        return WebEditor(
+            schema_version="1.0",
+            episode=episode,
+            lanes=author.lanes(episode),
+            validation=EpisodeService(item.assets, runtime.settings).validate(episode),
+        )
+
+    @router.post("/projects/{handle}/episodes/{identity}/edit")
+    def edit(handle: str, identity: str, body: EditRequest):
+        return EditorService(runtime.get(handle).assets).edit(identity, body)
 
     @router.post("/projects/{handle}/assets/import")
     def asset_import(handle: str, body: ImportRequest):

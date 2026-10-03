@@ -91,6 +91,24 @@ export async function request(
     const detail = await response
       .json()
       .catch(() => ({ detail: "Local service unavailable" }));
+    if (Array.isArray(detail.issues))
+      throw new Error(
+        detail.issues
+          .map(
+            (issue: { message: string; suggested_fix?: string }) =>
+              `${issue.message} ${issue.suggested_fix || ""}`,
+          )
+          .join("\n"),
+      );
+    if (Array.isArray(detail.detail))
+      throw new Error(
+        detail.detail
+          .map(
+            (issue: { location: unknown[]; message: string }) =>
+              `${issue.location.join(".")}: ${issue.message}`,
+          )
+          .join("\n"),
+      );
     throw new Error(
       typeof detail.detail === "string"
         ? detail.detail

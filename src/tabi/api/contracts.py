@@ -4,7 +4,15 @@ from typing import Literal
 
 from pydantic import Field
 
-from tabi.core.models import ActionPack, Asset, Episode, Project, ReleaseRecord, SceneTemplate
+from tabi.core.models import (
+    ActionPack,
+    Asset,
+    Episode,
+    Project,
+    ReleaseRecord,
+    SceneTemplate,
+    ValidationReport,
+)
 from tabi.core.models.assets import Compatibility, Provenance
 from tabi.core.models.base import (
     SHA256,
@@ -68,6 +76,27 @@ class WebCatalog(Document):
     packs: list[ActionPack]
     episodes: list[Episode]
     releases: list[ReleaseRecord]
+
+
+class TimelineItem(Model):
+    id: Text
+    label: Text
+    start_frame: Frame
+    end_frame: Frame
+    action_id: Identifier | None = None
+
+
+class TimelineLane(Model):
+    id: Identifier
+    title: Text
+    items: list[TimelineItem]
+
+
+class WebEditor(Document):
+    document_type: Literal["web_editor"] = "web_editor"
+    episode: Episode
+    lanes: list[TimelineLane]
+    validation: ValidationReport
 
 
 class InstallDocument(Model):
@@ -194,6 +223,7 @@ class WorkerReady(Model):
 
 
 WEB_SCHEMAS = {
+    "web_editor": WebEditor,
     "web_recents": WebRecents,
     "web_catalog": WebCatalog,
     "web_upload": WebUpload,

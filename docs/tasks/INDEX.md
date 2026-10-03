@@ -31,7 +31,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T25](t25.md) | Design web app pages and browser playback spike | T03, T13 | mandatory | complete |
 | [T26](t26.md) | Implement authenticated local service and worker lifecycle | T20, T25 | mandatory | complete |
 | [T27](t27.md) | Implement projects assets and episode setup pages | T05, T25, T26 | mandatory | complete |
-| [T28](t28.md) | Implement story editor and timeline | T09, T10, T18, T27 | mandatory | planned |
+| [T28](t28.md) | Implement story editor and timeline | T09, T10, T18, T27 | mandatory | complete |
 | [T29](t29.md) | Implement preview and frame inspection page | T13, T26, T28 | mandatory | planned |
 | [T30](t30.md) | Implement audio page and release metadata forms | T15, T16, T27 | mandatory | planned |
 | [T31](t31.md) | Implement render queue settings and recovery UI | T22, T23, T26 | mandatory | planned |

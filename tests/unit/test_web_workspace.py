@@ -8,9 +8,43 @@ from test_web_service import workspace as _workspace
 from tabi.api.runtime import Runtime
 from tabi.api.uploads import Uploads
 from tabi.core.authoring import AuthoringService
+from tabi.core.fixtures import generate_fixtures
 from tabi.core.models.base import AssetRef
 
 workspace = _workspace
+
+
+def test_editor_http_roundtrip_validation_and_stale_client(workspace):
+    runtime, client, origin, _ = workspace
+    generate_fixtures(runtime.roots.root("work") / "Editor")
+    _, headers, _ = connect(runtime, client, origin)
+    project = client.post(
+        "/api/v1/projects/open", headers=headers, json={"root_id": "work", "path": "Editor"}
+    ).json()
+    base = f"/api/v1/projects/{project['handle']}/episodes/episode.synthetic"
+    view = client.get(base + "/editor")
+    assert view.status_code == 200, view.text
+    assert view.json()["validation"]["valid"]
+    assert len(view.json()["lanes"]) == 7
+    result = client.post(
+        base + "/edit",
+        headers=headers,
+        json={"expected_revision": 0, "command": {"kind": "title", "title": "HTTP edited"}},
+    )
+    assert result.status_code == 200 and result.json()["revision"] == 1
+    stale = client.post(
+        base + "/edit",
+        headers=headers,
+        json={"expected_revision": 0, "command": {"kind": "title", "title": "Stale"}},
+    )
+    assert stale.status_code == 409
+    original = view.json()["episode"]
+    restored = client.post(
+        base + "/edit",
+        headers=headers,
+        json={"expected_revision": 1, "command": {"kind": "replace", "episode": original}},
+    )
+    assert restored.status_code == 200 and restored.json()["title"] == original["title"]
 
 
 def opened(workspace):

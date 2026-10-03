@@ -281,3 +281,9 @@ T27–T32. Installation packaging remains T33. No MP4 or session secret enters G
 Completed real project create/open/relink, durable recent locations, asset import and inspection, immutable versions, image proxies, hash-checked relinking and explicit approval forms. Uploads stream bounded chunks, persist receipts across reconnects, compare retried bytes and stay outside the registry until verified. Episode setup invokes shared Python authoring services; it never trims music to fit. All imports retain actual provenance and rights state.
 
 Evidence: `make check` 242 passed / 50 opt-in skipped; focused HTTP checks 13 passed; frontend checks/tests/build passed. Chrome created a Unicode-path project and Safari completed file selection → upload → asset inspection → still template → episode creation. [Import screenshot](evidence/t27-safari-import.png), [saved episode](evidence/t27-safari-episode.png). See [workflow guide](26-project-workflows.md).
+
+## T28 — story, timeline and continuity editor
+
+Complete. Python now owns semantic editing commands and the timeline display intervals. The browser offers scene cards, appended scenes, cut boundaries, action selection/movement, declared keyframe parameters, story beats and a continuity notebook. It preserves frame selection/zoom across views. All changes save atomically with revision guards; title/purpose autosave after a short typing pause, while structured inspectors apply one coherent edit. Serialized undo/redo creates new guarded revisions and preserves media imports/jobs.
+
+`make check`: 246 passed / 50 opt-in skipped. Focused editor/workspace checks: 8 passed. Frontend checks/build and four contract/history tests passed. Chrome proved autosave → undo → redo → append → worker restart → stale second-tab rejection → reload → notebook save. [Timeline](evidence/t28-timeline.jpg), [conflict](evidence/t28-conflict.jpg), [notebook](evidence/t28-notebook.jpg). [Editor guide](27-editor.md).

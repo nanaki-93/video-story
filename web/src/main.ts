@@ -6,6 +6,7 @@ import { playbackSpike } from "./playback";
 import { connect, sessionPanel } from "./session";
 import { projectsPage, setupPage, restoreRecents } from "./workspace";
 import { assetsPage, inspectorPage } from "./assets";
+import { editorPage } from "./editor";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -72,7 +73,16 @@ function navigate() {
       className: "badge",
       text:
         mode === "connected" &&
-        ["settings", "projects", "assets", "inspector", "setup"].includes(page)
+        [
+          "settings",
+          "projects",
+          "assets",
+          "inspector",
+          "setup",
+          "story",
+          "timeline",
+          "notebook",
+        ].includes(page)
           ? "Connected worker"
           : page === "preview" && mode === "spike"
             ? "Working playback spike"
@@ -85,6 +95,9 @@ function navigate() {
     setup: setupPage,
     assets: assetsPage,
     inspector: inspectorPage,
+    story: () => editorPage("story"),
+    timeline: () => editorPage("timeline"),
+    notebook: () => editorPage("notebook"),
   };
   if (mode === "connected" && Object.hasOwn(pages, page)) {
     const panel = pages[page as keyof typeof pages]();
