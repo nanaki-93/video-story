@@ -373,8 +373,8 @@ Long curve graphs now keep global integral prefixes while selecting only branche
 the rendered interval, with balanced conditions for dense keys. Thirteen actual-media checks
 pass, including 2400-key curves, exact global integrals, opacity at fractional frame rates and
 chunk assembly. `make check`: 285 passed / 59 opt-in skipped; 64 schemas. A 45-minute native
-1080p synthetic Session is running; completion, sustained-resource and boundary evidence are
-still pending and will be recorded before T37 is marked complete.
+1080p synthetic Session has passed its full delivery and all-boundary checks. The remaining
+native 4K gate will be recorded before T37 is marked complete.
 
 The SSE transport now checks the incremental journal tail before replaying history. Ten local
 service checks pass, including a real HTTP stream that emits idle heartbeats at an up-to-date
@@ -388,4 +388,12 @@ loaded at readyState 4; seeking to 2650 seconds played through 2665.71 without a
 and the final build sought to 2695 seconds. Navigation removed the player. See
 [browser evidence](evidence/t37-browser-seek.json) and [screenshot](evidence/t37-longform-seek.jpg).
 Frontend typecheck, formatting, four tests and production build pass. The long-form worker
-finished verified; independent comparisons at every chunk boundary are still running.
+finished verified; all 184 independent comparisons at every chunk boundary subsequently passed.
+
+The full 45-minute run completed 81000 frames and exactly 129600000 decoded audio samples.
+Two chunks (1774 frames) survived the injected worker crash unchanged. The recorded start-to-
+verification interval, including recovery, was 4022.756 seconds (20.135 fps overall). Peak measured
+worker + tool RSS was 3.05 GiB; worker medians across steady thirds were 151.22 / 157.89 / 158.30 MiB,
+with at most one retained live tool and ten descriptors. All 3916 resource samples succeeded.
+The benchmark's post-render selector needed balanced expressions to fit FFmpeg's parser; the
+verified video was preserved and review resumed successfully. See [complete evidence and limits](36-longform.md).

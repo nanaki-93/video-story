@@ -1,0 +1,23 @@
+{
+  "scope": "Project bytes at verified chunk progress points; manual assembly observation; final tree includes boundary PNG evidence. These are observations, not a continuous disk-space peak.",
+  "progress_start": {
+    "frames": 0,
+    "logical_project_bytes": 521028980,
+    "allocated_project_bytes": 521318400,
+    "project_inodes": 115
+  },
+  "progress_last": {
+    "frames": 81000,
+    "logical_project_bytes": 1222385967,
+    "allocated_project_bytes": 1265262592,
+    "project_inodes": 801
+  },
+  "after_review": {
+    "logical_project_bytes": 2085586842,
+    "allocated_project_bytes": 1720438784,
+    "project_inodes": 1180
+  },
+  "max_boundary_mean_rgb_error": 1.431542992591858,
+  "max_boundary_p99_rgb_error": 9.0,
+  "sampling_errors": 0
+}

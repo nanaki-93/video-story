@@ -1,0 +1,154 @@
+{
+  "observed_at": "2026-10-03T21:26:58.970610+00:00",
+  "run": {
+    "job_id": "job-c1d2abd3a59d43ab9911f44f15f5afe5",
+    "snapshot_sha256": "38de4a7aa19881a07c19af8b6b08ae95b3bbb1b3c77722449d816350d5de886a",
+    "purpose": "synthetic_test",
+    "seconds": 2700,
+    "source_canvas": {
+      "width": 1920,
+      "height": 1080
+    },
+    "machine": {
+      "os": "Darwin",
+      "os_version": "27.0.1",
+      "architecture": "arm64",
+      "cpu": "Apple M5 Pro",
+      "memory_bytes": 51539607552,
+      "python_version": "3.11.16",
+      "python_executable": "/Users/marcoandreose/DEV/lab/video-story/.venv/bin/python3",
+      "is_target_m5_pro": true
+    },
+    "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+    "profile": {
+      "id": "1080p-h264_videotoolbox",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "container": "mp4",
+      "video_codec": "h264_videotoolbox",
+      "pixel_format": "yuv420p",
+      "color_space": "bt709",
+      "audio_codec": "aac",
+      "audio_bitrate": 384000,
+      "sample_rate": 48000,
+      "video_bitrate": 8000000
+    }
+  },
+  "state": "verified",
+  "render_wall_seconds_including_recovery": 4022.756004,
+  "render_timing_source": "Recovered from durable first started / final verified UTC events; includes crash/recovery but excludes parent startup before first started.",
+  "frames_per_second_including_recovery": 20.135449408181408,
+  "chunk_count": 92,
+  "retained_frames": 1774,
+  "retained_chunks_unchanged": true,
+  "output": {
+    "location": {
+      "root_id": "project",
+      "path": "exports/session.mp4"
+    },
+    "sha256": "c422cf5351d85aea3f7fd387fe402a3e2602b0a09578bd6f026f60965389c38c",
+    "size_bytes": 422776362
+  },
+  "verification": {
+    "schema_version": "1.0",
+    "document_type": "export_verification",
+    "job_id": "job-c1d2abd3a59d43ab9911f44f15f5afe5",
+    "snapshot_sha256": "38de4a7aa19881a07c19af8b6b08ae95b3bbb1b3c77722449d816350d5de886a",
+    "output": {
+      "location": {
+        "root_id": "project",
+        "path": "exports/session.mp4"
+      },
+      "sha256": "c422cf5351d85aea3f7fd387fe402a3e2602b0a09578bd6f026f60965389c38c",
+      "size_bytes": 422776362
+    },
+    "profile": {
+      "id": "1080p-h264_videotoolbox",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "container": "mp4",
+      "video_codec": "h264_videotoolbox",
+      "pixel_format": "yuv420p",
+      "color_space": "bt709",
+      "audio_codec": "aac",
+      "audio_bitrate": 384000,
+      "sample_rate": 48000,
+      "video_bitrate": 8000000
+    },
+    "video": {
+      "codec": "h264",
+      "profile": "High",
+      "level": 40,
+      "pixel_format": "yuv420p",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "frame_count": 81000,
+      "duration_seconds": 2700.0,
+      "container_duration_seconds": 2700.0,
+      "bit_rate": 1015293,
+      "color_space": "bt709",
+      "color_range": "tv",
+      "progressive": true,
+      "timestamps_verified": true,
+      "full_decode_passed": true,
+      "mp4": {
+        "moov_offset": 32,
+        "first_mdat_offset": 2352091,
+        "fast_start": true
+      }
+    },
+    "audio": {
+      "intended_samples": 129600000,
+      "decoded_samples": 129600000,
+      "padding_samples": 0,
+      "codec": "aac",
+      "sample_rate": 48000,
+      "channels": 2
+    }
+  },
+  "all_boundary_checks_pass": true,
+  "boundary_checks": 184,
+  "sample_count": 3916,
+  "sampling_errors": [],
+  "maximum_live_owned_tools": 1,
+  "maximum_python_open_fds": 10,
+  "peak_combined_rss_bytes": 3273080832,
+  "steady_thirds": [
+    {
+      "samples": 1081,
+      "python_median_rss_bytes": 158564352.0,
+      "tools_peak_rss_bytes": 3143237632
+    },
+    {
+      "samples": 1081,
+      "python_median_rss_bytes": 165560320.0,
+      "tools_peak_rss_bytes": 3128426496
+    },
+    {
+      "samples": 1081,
+      "python_median_rss_bytes": 165986304.0,
+      "tools_peak_rss_bytes": 3120332800
+    }
+  ],
+  "free_disk_before_bytes": null,
+  "free_disk_after_bytes": 222481842176,
+  "memory_scope": "Owned worker plus retained live media tools at 1-second intervals. Excludes other apps, kernel and unreported GPU memory. Samples stream to disk. Fixture preparation and post-render boundary review are outside render timing."
+}
