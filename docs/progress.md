@@ -379,3 +379,13 @@ still pending and will be recorded before T37 is marked complete.
 The SSE transport now checks the incremental journal tail before replaying history. Ten local
 service checks pass, including a real HTTP stream that emits idle heartbeats at an up-to-date
 cursor and then delivers the next committed cancellation event without rendering any media.
+
+T37 export review now plays verified media inside the Renders page, with explicit approximate
+second-based seeking. Switching exports or leaving the page pauses and releases the old media.
+Settings links select the matching project and open its render queue. This addresses the target
+Chrome session blocking raw-MP4 page navigation. The actual 2700-second, 1920×1080 export
+loaded at readyState 4; seeking to 2650 seconds played through 2665.71 without a media error,
+and the final build sought to 2695 seconds. Navigation removed the player. See
+[browser evidence](evidence/t37-browser-seek.json) and [screenshot](evidence/t37-longform-seek.jpg).
+Frontend typecheck, formatting, four tests and production build pass. The long-form worker
+finished verified; independent comparisons at every chunk boundary are still running.

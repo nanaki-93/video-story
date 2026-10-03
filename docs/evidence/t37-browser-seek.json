@@ -1,0 +1,23 @@
+{
+  "requested_seconds": 2650,
+  "initial_seconds": 2650.020463,
+  "observed": {
+    "duration": 2700,
+    "error": null,
+    "height": 1080,
+    "paused": false,
+    "ready": 4,
+    "time": 2665.70698,
+    "width": 1920
+  },
+  "surface": "Chrome embedded authenticated video; native space-key playback",
+  "screenshot": "docs/evidence/t37-longform-seek.jpg",
+  "final_build_seek": {
+    "time": 2695,
+    "duration": 2700,
+    "ready": 4,
+    "error": null
+  },
+  "navigation_cleanup_remaining_video_elements": 0,
+  "video_sha256": "c422cf5351d85aea3f7fd387fe402a3e2602b0a09578bd6f026f60965389c38c"
+}

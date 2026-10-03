@@ -12,10 +12,12 @@ import {
   prefix,
   projectPage,
   refreshPage,
+  remember,
 } from "./workspace";
 
 export function rendersPage() {
   let timer = 0;
+  const players: HTMLVideoElement[] = [];
   const page = projectPage(async (root, project, catalog, active) => {
     const base = prefix(project),
       settings = await api("/settings", "web_settings");
@@ -192,7 +194,7 @@ export function rendersPage() {
       cancel: HTMLButtonElement;
       resume: HTMLButtonElement;
       verify: HTMLButtonElement;
-      link: HTMLAnchorElement;
+      link: HTMLButtonElement;
       revision: number;
     };
     const rows = new Map<string, Row>();
@@ -226,12 +228,71 @@ export function rendersPage() {
         cancel = button("Cancel owned job", () => run("cancel")),
         resume = button("Resume verified progress", () => run("resume")),
         verify = button("Verify export again", () => run("verify"));
-      const link = element("a", { text: "Open verified export" });
-      link.href = `/api/v1${base}/jobs/${job.id}/video`;
-      link.target = "_blank";
-      link.rel = "noopener";
+      const link = button("Open verified export", () => {});
+      const source = `/api/v1${base}/jobs/${job.id}/video`;
       link.hidden = true;
-      card.append(status, pause, cancel, resume, verify, link, diagnostic);
+      const playback = element("div");
+      playback.hidden = true;
+      const video = element("video", { className: "preview-media" });
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      players.push(video);
+      const seconds = input("0", "number");
+      seconds.min = "0";
+      seconds.step = "0.1";
+      const clock = element("p", { className: "mono" });
+      video.addEventListener("timeupdate", () => {
+        clock.textContent = `Playback ${video.currentTime.toFixed(2)} / ${video.duration.toFixed(2)} seconds (approximate)`;
+      });
+      video.addEventListener("error", () => {
+        clock.textContent =
+          "Export playback failed. Check the worker connection and verify the saved export.";
+      });
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        for (const other of players) {
+          if (other === video) continue;
+          other.pause();
+          other.removeAttribute("src");
+          other.load();
+          if (other.parentElement) other.parentElement.hidden = true;
+        }
+        if (!video.getAttribute("src")) video.src = source;
+        playback.hidden = false;
+      });
+      playback.append(
+        video,
+        actionForm(
+          "Seek export",
+          [field("Playback seconds", seconds)],
+          async () => {
+            const value = Number(seconds.value);
+            if (
+              !Number.isFinite(video.duration) ||
+              !Number.isFinite(value) ||
+              value < 0 ||
+              value >= video.duration
+            )
+              throw new Error(
+                "Choose a playback time within the loaded export.",
+              );
+            video.currentTime = value;
+            return "Seek requested. Browser time is approximate; use Preview for exact renderer frames.";
+          },
+        ),
+        clock,
+      );
+      card.append(
+        status,
+        pause,
+        cancel,
+        resume,
+        verify,
+        link,
+        playback,
+        diagnostic,
+      );
       list.append(card);
       const result = {
         root: card,
@@ -311,12 +372,17 @@ export function rendersPage() {
     dispose: () => {
       page.dispose();
       clearTimeout(timer);
+      for (const video of players) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+      }
     },
   };
 }
 
 export function settingsPage() {
-  const session = sessionPanel(),
+  const session = sessionPanel(remember),
     root = element("div");
   root.append(session.root);
   let active = true;

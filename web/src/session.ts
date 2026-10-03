@@ -118,7 +118,9 @@ export async function request(
   return response.json();
 }
 
-export function sessionPanel() {
+export function sessionPanel(
+  openProject: (project: Documents["web_project"]) => void,
+) {
   const root = section(
     "Local worker",
     "This browser uses the same Python services as the CLI.",
@@ -164,10 +166,9 @@ export function sessionPanel() {
             text: `${job.id} · ${job.state} · ${job.completed_frames}/${job.duration_frames} verified frames `,
           });
           if (job.state === "verified") {
-            const link = element("a", { text: "Open verified video" });
-            link.href = `/api/v1/projects/${project.handle}/jobs/${job.id}/video`;
-            link.target = "_blank";
-            link.rel = "noopener";
+            const link = element("a", { text: "Review verified exports" });
+            link.href = "#renders";
+            link.addEventListener("click", () => openProject(project));
             row.append(link);
           }
           root.append(row);
