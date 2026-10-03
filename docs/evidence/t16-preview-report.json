@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_report",
+  "purpose": "synthetic_test",
+  "snapshot_sha256": "a16976c1351e83ed08ef36a9ba3d3178bfa99dd43bb57e6695e8be94dc98c3ff",
+  "first_frame": 0,
+  "frame_count": 300,
+  "canvas": {
+    "width": 960,
+    "height": 540
+  },
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t16-audio/synthetic-audio-preview.mp4",
+  "output_sha256": "aeb3a531667d32978359e9a5631bd7bd240d4fd334214abfc8fb9525ba1a826b",
+  "output_bytes": 547407,
+  "graph_sha256": "b0cbbaa3402e152681c573246270ba82bdb7f39d1a207b544f2602764c54f50d",
+  "backend": {
+    "name": "tabi-ffmpeg",
+    "version": "1",
+    "sha256": "58c80250cd7cafa77da20124fed75edd0f62590c320559530c4406c63d094b60"
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "render_seconds": 2.8623822910012677,
+  "full_decode_passed": true,
+  "timestamps_verified": true,
+  "normalized_images": 49,
+  "warnings": [],
+  "audio_mix": {
+    "schema_version": "1.0",
+    "document_type": "audio_mix_report",
+    "snapshot_sha256": "a16976c1351e83ed08ef36a9ba3d3178bfa99dd43bb57e6695e8be94dc98c3ff",
+    "purpose": "synthetic_test",
+    "first_sample": 0,
+    "sample_count": 480000,
+    "sample_rate": 48000,
+    "channels": 2,
+    "sample_format": "float32",
+    "output": null,
+    "output_sha256": "a4d55b4d5d8d00a420330d56e5e88ae63873d125bc787b5b8c1cf9f5a8b0b03a",
+    "backend": {
+      "name": "tabi-audio",
+      "version": "1",
+      "sha256": "5a114c4499c2efcfdb21b6c4978cfbccd9a2f1fbffa168934782151b2265f7ba"
+    },
+    "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+    "preparations": [
+      {
+        "asset": {
+          "id": "fixture.tone",
+          "version": "1.0"
+        },
+        "source_sha256": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+        "source_sample_rate": 48000,
+        "source_samples": 480000,
+        "prepared_samples": 480000,
+        "resampled": false
+      }
+    ],
+    "gain_db": 0.0,
+    "sample_peak_dbfs": -18.62237421184374,
+    "true_peak_dbtp": -18.62,
+    "integrated_lufs": -21.05,
+    "loudness_range_lu": 0.0,
+    "over_full_scale_samples": 0,
+    "suggested_gain_db": 7.050000000000001,
+    "warnings": [],
+    "verified_samples": true
+  },
+  "audio_verification": {
+    "intended_samples": 480000,
+    "decoded_samples": 480000,
+    "padding_samples": 0,
+    "codec": "aac",
+    "sample_rate": 48000,
+    "channels": 2
+  }
+}

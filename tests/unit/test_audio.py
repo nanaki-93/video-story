@@ -113,6 +113,106 @@ def test_trim_uses_distinct_source_samples_and_single_sample_fades(tmp_path):
             placement_block(reader, placement.model_copy(update={"trim_end_sample": 13}), 0, 5)
 
 
+def test_ambience_loop_crossfades_keep_phase_across_every_split(tmp_path):
+    path = tmp_path / "loop.wav"
+    write_pcm(path, [100, 200, 300, 400, 500, 600, 700, 800])
+    placement = TrackPlacement(
+        id="rain",
+        asset=AssetRef(id="rain", version="1.0"),
+        start_sample=2,
+        trim_start_sample=0,
+        trim_end_sample=8,
+        role="ambience",
+        loop_duration_samples=20,
+        loop_crossfade_samples=3,
+    )
+    # Period = 8-3 = 5. First pass starts normally; later tails overlap their heads.
+    reference = (
+        np.array(
+            [
+                0,
+                0,
+                100,
+                200,
+                300,
+                400,
+                500,
+                600,
+                450,
+                300,
+                400,
+                500,
+                600,
+                450,
+                300,
+                400,
+                500,
+                600,
+                450,
+                300,
+                400,
+                500,
+                0,
+            ]
+        )
+        / 32768
+    )
+    with PCMReader(path) as reader:
+        result = placement_block(reader, placement, 0, 23)
+        np.testing.assert_array_equal(result[:, 0], reference)
+        for split in range(24):
+            np.testing.assert_array_equal(
+                np.concatenate(
+                    [
+                        placement_block(reader, placement, 0, split),
+                        placement_block(reader, placement, split, 23 - split),
+                    ]
+                ),
+                result,
+            )
+    with pytest.raises(ValueError, match="only ambience"):
+        TrackPlacement.model_validate({**placement.model_dump(), "role": "music"})
+    with pytest.raises(ValueError, match="crossfade"):
+        TrackPlacement.model_validate({**placement.model_dump(), "loop_crossfade_samples": 5})
+
+
+def test_float_wav_and_extensible_headers_reject_corruption(tmp_path):
+    samples = np.array([0, 1.5, -2.0, 0.25], dtype="<f4")
+    payload = samples.tobytes()
+    ordinary = struct.pack("<HHIIHH", 3, 1, 48000, 192000, 4, 32)
+    extensible = struct.pack("<HHIIHHHHI", 65534, 1, 48000, 192000, 4, 32, 22, 32, 4)
+    extensible += bytes.fromhex("0300000000001000800000aa00389b71")
+    for fmt in [ordinary, extensible]:
+        body = (
+            b"WAVEfmt "
+            + struct.pack("<I", len(fmt))
+            + fmt
+            + b"data"
+            + struct.pack("<I", len(payload))
+            + payload
+        )
+        path = tmp_path / f"float-{len(fmt)}.wav"
+        path.write_bytes(b"RIFF" + struct.pack("<I", len(body)) + body)
+        with PCMReader(path) as reader:
+            assert reader.codec == "pcm_f32le" and reader.samples == 4
+            np.testing.assert_array_equal(reader.read(0, 4)[:, 0], samples)
+        path.write_bytes(path.read_bytes()[:-1])
+        with pytest.raises(ValueError, match="truncated"):
+            PCMReader(path)
+
+
+def test_new_inactive_audio_options_preserve_existing_canonical_snapshot_bytes():
+    from tabi.core.models.base import canonical_bytes
+
+    # Exact pre-T16 canonical placement bytes; new inactive options must not change identity.
+    original = (
+        b'{"asset":{"id":"a","version":"1.0"},"fade_in_samples":0,"fade_out_samples":0,'
+        b'"gain_db":0.0,"id":"test","release_id":null,"role":"music","sample_rate":48000,'
+        b'"start_sample":0,"trim_end_sample":1,"trim_start_sample":0}'
+    )
+    assert canonical_bytes(TrackPlacement.model_validate_json(original)) == original
+
+
 def test_waveform_matches_independent_bins_and_original_master(audio):
     service, _ = audio
     ref = AssetRef(id="fixture.tone", version="1.0")

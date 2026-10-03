@@ -136,7 +136,7 @@ Video-only preview is intentional at this step; T16 supplies continuous audio. R
 
 ## Next task and pending gates
 
-**Next unblocked task: T16 — continuous audio mixing and ambience.** T14 requires T07/T08 real artwork and Marco's visual review. Shared compilation and scene rendering are implemented; the web UI remains planned. Independent software work continues while creative inputs are pending.
+**Next software task: T17 — scoped lighting and masked effects with synthetic validation.** T14 requires T07/T08 real artwork and Marco's visual review. T16's actual soundtrack/listening review remains pending. Independent software work continues while creative inputs are pending.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 
@@ -147,3 +147,11 @@ Pending creative inputs: selected reference/hash approval, editable separated ar
 `T15: preserve music masters and validate sample timelines` extends exact WAV import with bounded PCM reading, explicit sample envelopes, source waveform proxies, timeline gap/overlap/silence warnings and strict draft release-metadata import. CLI and episode validation share the same rules. Metadata cannot substitute a different master or invent identifiers; original and copied WAV bytes remain unchanged.
 
 Verification: `make schemas check` passed Ruff, **24 schemas and 174 tests**, 19 opt-in FFmpeg checks skipped. Six new audio cases cover independent PCM values and every split boundary, signed 24-bit decoding, source waveform statistics, silence, invalid trims/hashes and preserved metadata/master bytes. [Audio documentation/evidence](16-audio.md) records the ten-second/480,000-sample fixture and waveform. NumPy 2.4.6 is locked. Current interchange is integer mono/stereo PCM WAV; technical conversion and continuous mixing follow in T16. Real music/listening review remain pending.
+
+## T16 — core complete; listening review pending
+
+`T16: mix continuous PCM and encode preview audio once` implements source-preserving technical preparation, continuous stereo float PCM, authored ambience loop/crossfade phases, explicit gain, peak/loudness measurement and one AAC encode during preview mux. WAV import/read now supports float, extensible and RF64 containers. Byte/sample verification precedes atomic publication; overload is reported without clipping the float mix and prevents AAC export until explicitly adjusted.
+
+Verification: `make schemas check` passed Ruff, **25 schemas and 177 tests**. `make test-media` passed **all 24 media tests**. New checks prove exact PCM trim/fade samples and range parity, real 44.1→48 kHz conversion, loop seam bounds, silence, failure cleanup, explicit overload handling, one AAC encode and global-range audio fidelity/timing. [Mix](evidence/t16-mix-report.json) and [preview](evidence/t16-preview-report.json) evidence records 480,000 decoded stereo samples and 300 frames at 960×540/30. Outputs remain local under `.local/t16-audio`; no MP4 is committed. [Audio documentation](16-audio.md) records limits and reproduction.
+
+No finished real music/listening approval was supplied; an asynchronous request for its local folder is pending. This completes the software pipeline against owned test signals, not the M3 creative gate.

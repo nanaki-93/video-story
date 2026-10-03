@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "document_type": "audio_mix_report",
+  "snapshot_sha256": "a16976c1351e83ed08ef36a9ba3d3178bfa99dd43bb57e6695e8be94dc98c3ff",
+  "purpose": "synthetic_test",
+  "first_sample": 0,
+  "sample_count": 480000,
+  "sample_rate": 48000,
+  "channels": 2,
+  "sample_format": "float32",
+  "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t16-audio/synthetic-mix.wav",
+  "output_sha256": "a4d55b4d5d8d00a420330d56e5e88ae63873d125bc787b5b8c1cf9f5a8b0b03a",
+  "backend": {
+    "name": "tabi-audio",
+    "version": "1",
+    "sha256": "5a114c4499c2efcfdb21b6c4978cfbccd9a2f1fbffa168934782151b2265f7ba"
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "preparations": [
+    {
+      "asset": {
+        "id": "fixture.tone",
+        "version": "1.0"
+      },
+      "source_sha256": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+      "source_sample_rate": 48000,
+      "source_samples": 480000,
+      "prepared_samples": 480000,
+      "resampled": false
+    }
+  ],
+  "gain_db": 0.0,
+  "sample_peak_dbfs": -18.62237421184374,
+  "true_peak_dbtp": -18.62,
+  "integrated_lufs": -21.05,
+  "loudness_range_lu": 0.0,
+  "over_full_scale_samples": 0,
+  "suggested_gain_db": 7.050000000000001,
+  "warnings": [],
+  "verified_samples": true
+}

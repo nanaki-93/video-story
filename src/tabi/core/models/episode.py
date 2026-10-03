@@ -36,15 +36,31 @@ class TrackPlacement(Model):
     fade_out_samples: Frame = 0
     role: Literal["music", "ambience"] = "music"
     release_id: Identifier | None = None
+    loop_duration_samples: PositiveInt | None = Field(default=None, exclude_if=lambda v: v is None)
+    loop_crossfade_samples: Frame = Field(default=0, exclude_if=lambda v: v == 0)
+
+    @property
+    def source_samples(self) -> int:
+        return self.trim_end_sample - self.trim_start_sample
 
     @property
     def duration_samples(self) -> int:
-        return self.trim_end_sample - self.trim_start_sample
+        return self.loop_duration_samples or self.source_samples
 
     @model_validator(mode="after")
     def trims_and_fades(self) -> Self:
-        if self.duration_samples <= 0:
+        if self.source_samples <= 0:
             raise ValueError("audio trim must be nonempty")
+        if self.loop_duration_samples is not None and self.role != "ambience":
+            raise ValueError("only ambience may loop; music needs an authored master")
+        if self.loop_crossfade_samples and (
+            self.loop_duration_samples is None
+            or self.loop_crossfade_samples < 2
+            or self.loop_crossfade_samples * 2 > self.source_samples
+        ):
+            raise ValueError(
+                "ambience crossfade needs 2..half the source samples and a loop duration"
+            )
         if self.fade_in_samples + self.fade_out_samples > self.duration_samples:
             raise ValueError("fades exceed trimmed audio duration")
         return self

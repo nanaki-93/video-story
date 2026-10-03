@@ -212,6 +212,13 @@
           "default": null,
           "title": "Audio Codec"
         },
+        "audio_gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Audio Gain Db",
+          "type": "number"
+        },
         "canvas": {
           "$ref": "#/$defs/Canvas"
         },

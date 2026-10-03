@@ -64,7 +64,8 @@ class AudioService:
             for index in range(bins):
                 first = index * reader.samples // bins
                 end = (index + 1) * reader.samples // bins
-                minimum, maximum = np.ones(reader.channels), -np.ones(reader.channels)
+                minimum = np.full(reader.channels, np.inf)
+                maximum = np.full(reader.channels, -np.inf)
                 squared = np.zeros(reader.channels)
                 for start in range(first, end, BLOCK_SAMPLES):
                     samples = reader.read(start, min(BLOCK_SAMPLES, end - start))

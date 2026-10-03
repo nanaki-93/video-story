@@ -9,7 +9,13 @@ class ToolError(RuntimeError):
     pass
 
 
-def run_tool(args: list[str], *, timeout: float = 15, max_bytes: int = 2 * 1024 * 1024) -> bytes:
+def run_tool(
+    args: list[str],
+    *,
+    timeout: float = 15,
+    max_bytes: int = 2 * 1024 * 1024,
+    capture_stderr: bool = False,
+) -> bytes:
     """Keep tool output off the Python heap until its size has been checked.
 
     subprocess.run kills and waits for its own child on timeout. This does not
@@ -31,7 +37,8 @@ def run_tool(args: list[str], *, timeout: float = 15, max_bytes: int = 2 * 1024 
             errors.seek(max(0, errors.tell() - 4096))
             message = errors.read().decode("utf-8", errors="replace").strip()
             raise ToolError(f"{Path(args[0]).name} exited {result.returncode}: {message}")
-        if output.tell() > max_bytes:
+        if output.tell() + (errors.tell() if capture_stderr else 0) > max_bytes:
             raise ToolError(f"{Path(args[0]).name}: output exceeds {max_bytes} bytes")
         output.seek(0)
-        return output.read()
+        errors.seek(0)
+        return output.read() + (errors.read() if capture_stderr else b"")

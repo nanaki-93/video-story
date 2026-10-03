@@ -124,6 +124,7 @@ class EpisodeService:
         *,
         canvas: Canvas | None = None,
         encoder: str = "libx264",
+        audio_gain_db: float = 0.0,
     ):
         snapshot = self.store.read_snapshot(digest)
         profile = OutputProfile(
@@ -134,6 +135,8 @@ class EpisodeService:
             video_codec=encoder,
             pixel_format="yuv420p",
             color_space="bt709",
+            audio_codec="aac",
+            audio_gain_db=audio_gain_db,
         )
         return FFmpegRenderer(self.assets, self.settings).clip(
             snapshot, start, end, output, profile

@@ -4,9 +4,9 @@ from typing import Literal, Self
 
 from pydantic import Field, model_validator
 
-from .base import SHA256, AssetRef, Document, Frame, Model, Number, PositiveInt
+from .base import SHA256, AbsolutePath, AssetRef, Document, Frame, Model, Number, PositiveInt
 from .episode import TrackPlacement
-from .production import ValidationIssue
+from .production import Fingerprint, ValidationIssue
 
 
 class SampleRange(Model):
@@ -49,10 +49,10 @@ class WaveformReport(Document):
             if any(len(v) != self.channels for v in (item.minimum, item.maximum, item.rms)):
                 raise ValueError("waveform channel count differs from source")
             if any(
-                low < -1 or high > 1 or low > high or rms < 0 or rms > 1
+                low > high or rms < 0
                 for low, high, rms in zip(item.minimum, item.maximum, item.rms, strict=True)
             ):
-                raise ValueError("waveform values must describe normalized PCM")
+                raise ValueError("waveform values must describe finite PCM levels")
             cursor = item.end_sample
         if cursor != self.duration_samples:
             raise ValueError("waveform bins must cover the source")
@@ -68,3 +68,46 @@ class AudioTimelineReport(Document):
     placements: list[TrackPlacement]
     music_gaps: list[SampleRange]
     issues: list[ValidationIssue]
+
+
+class AudioPreparation(Model):
+    asset: AssetRef
+    source_sha256: SHA256
+    source_sample_rate: PositiveInt
+    source_samples: PositiveInt
+    prepared_samples: PositiveInt
+    resampled: bool
+
+
+class AudioMixReport(Document):
+    document_type: Literal["audio_mix_report"] = "audio_mix_report"
+    snapshot_sha256: SHA256
+    purpose: Literal["preview", "production", "synthetic_test"]
+    first_sample: Frame
+    sample_count: PositiveInt
+    sample_rate: Literal[48000] = 48000
+    channels: Literal[2] = 2
+    sample_format: Literal["float32"] = "float32"
+    output: AbsolutePath | None = None
+    output_sha256: SHA256
+    backend: Fingerprint
+    toolchain_fingerprint: SHA256
+    preparations: list[AudioPreparation]
+    gain_db: Number = Field(ge=-120, le=24)
+    sample_peak_dbfs: Number | None
+    true_peak_dbtp: Number | None
+    integrated_lufs: Number | None
+    loudness_range_lu: Number | None
+    over_full_scale_samples: Frame
+    suggested_gain_db: Number | None
+    warnings: list[str]
+    verified_samples: bool
+
+
+class AudioVerification(Model):
+    intended_samples: PositiveInt
+    decoded_samples: PositiveInt
+    padding_samples: Frame
+    codec: Literal["aac"] = "aac"
+    sample_rate: Literal[48000] = 48000
+    channels: Literal[2] = 2

@@ -11,6 +11,7 @@ from pathlib import Path
 from PIL import Image
 
 from ..assets import AssetService
+from ..audio.mix import AudioMixer, mux_aac
 from ..config import Settings
 from ..models import CompiledSnapshot
 from ..models.base import Canvas, content_hash
@@ -346,9 +347,11 @@ def verify_video(settings, path, profile, frames):
             timeout=300,
         )
     )
-    if len(probe.get("streams", [])) != 1:
-        raise RenderError("video-only render has unexpected streams")
-    stream = probe["streams"][0]
+    streams = probe.get("streams", [])
+    videos = [stream for stream in streams if stream.get("codec_type") == "video"]
+    if len(videos) != 1 or len(streams) != (2 if profile.audio_codec else 1):
+        raise RenderError("render has unexpected video/audio streams")
+    stream = videos[0]
     if (
         stream.get("codec_name"),
         stream.get("pix_fmt"),
@@ -432,11 +435,10 @@ class FFmpegRenderer:
             or profile.container != "mp4"
             or profile.pixel_format != "yuv420p"
             or profile.video_codec not in {"libx264", "h264_videotoolbox"}
-            or profile.audio_codec is not None
+            or profile.audio_codec not in {None, "aac"}
         ):
             raise RenderError(
-                "backend requires matching fps and video-only H.264/YUV420P MP4; "
-                "audio mixing follows in T16"
+                "backend requires matching fps and H.264/YUV420P MP4 with optional AAC audio"
             )
         if profile.canvas.width % 2 or profile.canvas.height % 2:
             raise RenderError("H.264 YUV420P needs even output dimensions")
@@ -473,7 +475,7 @@ class FFmpegRenderer:
             graph = builder.build(start, end, video=profile is not None)
             graph_path = root / "graph.txt"
             graph_path.write_text(graph)
-            temporary = root / output.name
+            temporary = root / ("video-only.mp4" if profile else "frame.png")
             args = [
                 self.settings.ffmpeg,
                 "-v",
@@ -540,6 +542,31 @@ class FFmpegRenderer:
             args.append(str(temporary))
             began = time.monotonic()
             run_tool(args, timeout=600)
+            audio_mix, audio_verification = None, None
+            if profile and profile.audio_codec:
+                audio_path = root / "continuous.wav"
+                audio_mix = AudioMixer(self.assets, self.settings).render(
+                    snapshot,
+                    audio_path,
+                    start_sample=snapshot.episode.fps.sample_at(start),
+                    end_sample=snapshot.episode.fps.sample_at(end),
+                    gain_db=profile.audio_gain_db,
+                )
+                if audio_mix.over_full_scale_samples:
+                    raise RenderError(
+                        "mix exceeds full scale; reduce explicit audio gain before encoding"
+                    )
+                muxed = root / "muxed.mp4"
+                audio_verification = mux_aac(
+                    self.settings,
+                    temporary,
+                    audio_path,
+                    muxed,
+                    expected_samples=audio_mix.sample_count,
+                    scratch=root,
+                )
+                temporary = muxed
+                audio_mix = audio_mix.model_copy(update={"output": None})
             elapsed = time.monotonic() - began
             if profile:
                 verify_video(self.settings, temporary, profile, end - start)
@@ -568,6 +595,8 @@ class FFmpegRenderer:
                 timestamps_verified=bool(profile),
                 normalized_images=len(builder.normalizer.prepared),
                 warnings=sorted(builder.normalizer.warnings),
+                audio_mix=audio_mix,
+                audio_verification=audio_verification,
             )
             with temporary.open("rb") as source:
                 os.fsync(source.fileno())

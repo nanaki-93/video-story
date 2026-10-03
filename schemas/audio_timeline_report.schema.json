@@ -72,6 +72,25 @@
           "title": "Id",
           "type": "string"
         },
+        "loop_crossfade_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Loop Crossfade Samples",
+          "type": "integer"
+        },
+        "loop_duration_samples": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Loop Duration Samples"
+        },
         "release_id": {
           "anyOf": [
             {

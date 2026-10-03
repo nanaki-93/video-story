@@ -2,7 +2,6 @@
 
 import json
 import warnings
-import wave
 from fractions import Fraction
 from pathlib import Path
 
@@ -67,22 +66,17 @@ def probe_media(
         font.getmask("Tabi")
         return ProbeData(codec="font")
     if kind == "audio" and paths[0].suffix.lower() == ".wav":
+        from ..audio.pcm import BLOCK_SAMPLES, PCMReader
+
         # PCM WAV gives an exact integer sample count without duration rounding.
-        with wave.open(str(paths[0]), "rb") as audio:
-            frames = audio.getnframes()
-            expected = frames * audio.getnchannels() * audio.getsampwidth()
-            actual = 0
-            while block := audio.readframes(65536):
-                actual += len(block)
-            if actual != expected:
-                raise ValueError("truncated WAV: decoded samples do not match its header")
+        with PCMReader(paths[0]) as audio:
+            for start in range(0, audio.samples, BLOCK_SAMPLES):
+                audio.read(start, min(BLOCK_SAMPLES, audio.samples - start))
             return ProbeData(
-                sample_rate=audio.getframerate(),
-                duration_samples=frames,
-                channels=audio.getnchannels(),
-                codec="pcm_u8"
-                if audio.getsampwidth() == 1
-                else f"pcm_s{audio.getsampwidth() * 8}le",
+                sample_rate=audio.rate,
+                duration_samples=audio.samples,
+                channels=audio.channels,
+                codec=audio.codec,
             )
     stream_type = "v:0" if kind == "video" else "a:0"
     payload = json.loads(

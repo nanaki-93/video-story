@@ -44,6 +44,7 @@ def add_episode_commands(commands):
         else:
             parser.add_argument("--start", type=int, default=0)
             parser.add_argument("--end", type=int, required=True)
+            parser.add_argument("--audio-gain-db", type=float, default=0.0)
             parser.add_argument(
                 "--encoder", choices=["libx264", "h264_videotoolbox"], default="libx264"
             )
@@ -99,6 +100,7 @@ def run_episode_command(args, settings):
                 args.output,
                 canvas=canvas,
                 encoder=args.encoder,
+                audio_gain_db=args.audio_gain_db,
             )
         )
     print(result.model_dump_json(indent=2))

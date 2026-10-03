@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "document_type": "compilation_result",
+  "snapshot_sha256": "a16976c1351e83ed08ef36a9ba3d3178bfa99dd43bb57e6695e8be94dc98c3ff",
+  "snapshot_path": "/Users/marcoandreose/DEV/lab/video-story/.local/t16-audio/Marco's \u6771\u4eac project/snapshots/a16976c1351e83ed08ef36a9ba3d3178bfa99dd43bb57e6695e8be94dc98c3ff.json",
+  "review_content_sha256": "503f3c9b36dff3d4ecb6c17712117e1c7fa0597a037303b8dc47f68f91152c7d",
+  "purpose": "synthetic_test",
+  "duration_frames": 300,
+  "scheduled_events": 8,
+  "locked_inputs": 15
+}

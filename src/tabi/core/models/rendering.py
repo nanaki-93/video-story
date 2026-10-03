@@ -4,6 +4,7 @@ from typing import Literal
 
 from pydantic import Field
 
+from .audio import AudioMixReport, AudioVerification
 from .base import SHA256, AbsolutePath, Canvas, Document, Frame, FrameRate, PositiveInt
 from .production import Fingerprint
 
@@ -27,6 +28,8 @@ class RenderReport(Document):
     timestamps_verified: bool
     normalized_images: Frame
     warnings: list[str] = Field(default_factory=list)
+    audio_mix: AudioMixReport | None = None
+    audio_verification: AudioVerification | None = None
 
 
 class CompilationResult(Document):

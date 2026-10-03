@@ -19,7 +19,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T13](t13.md) | Add preview CLI and frozen snapshots | T05, T10, T11, T12 | mandatory | complete |
 | [T14](t14.md) | Approve 90 to 120 second visual pilot | T07, T08, T13 | mandatory | real-art inputs and review pending |
 | [T15](t15.md) | Implement music import and audio timeline | T03, T05 | mandatory | complete |
-| [T16](t16.md) | Mix continuous audio and ambience | T15 | mandatory | planned |
+| [T16](t16.md) | Mix continuous audio and ambience | T15 | mandatory | core complete; listening review pending |
 | [T17](t17.md) | Add restrained lighting rain and reflections | T11, T14 | mandatory | planned |
 | [T18](t18.md) | Author episode continuity and scene transitions | T10, T13, T16, T17 | mandatory | planned |
 | [T19](t19.md) | Complete first short music story | T18 | mandatory | planned |

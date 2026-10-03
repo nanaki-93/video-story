@@ -1,5 +1,302 @@
 {
   "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "AudioMixReport": {
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "channels": {
+          "const": 2,
+          "default": 2,
+          "title": "Channels",
+          "type": "integer"
+        },
+        "document_type": {
+          "const": "audio_mix_report",
+          "default": "audio_mix_report",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "first_sample": {
+          "minimum": 0,
+          "title": "First Sample",
+          "type": "integer"
+        },
+        "gain_db": {
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Gain Db",
+          "type": "number"
+        },
+        "integrated_lufs": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Integrated Lufs"
+        },
+        "loudness_range_lu": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Loudness Range Lu"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output"
+        },
+        "output_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Output Sha256",
+          "type": "string"
+        },
+        "over_full_scale_samples": {
+          "minimum": 0,
+          "title": "Over Full Scale Samples",
+          "type": "integer"
+        },
+        "preparations": {
+          "items": {
+            "$ref": "#/$defs/AudioPreparation"
+          },
+          "title": "Preparations",
+          "type": "array"
+        },
+        "purpose": {
+          "enum": [
+            "preview",
+            "production",
+            "synthetic_test"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        },
+        "sample_count": {
+          "exclusiveMinimum": 0,
+          "title": "Sample Count",
+          "type": "integer"
+        },
+        "sample_format": {
+          "const": "float32",
+          "default": "float32",
+          "title": "Sample Format",
+          "type": "string"
+        },
+        "sample_peak_dbfs": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sample Peak Dbfs"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "suggested_gain_db": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Suggested Gain Db"
+        },
+        "toolchain_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Toolchain Fingerprint",
+          "type": "string"
+        },
+        "true_peak_dbtp": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "True Peak Dbtp"
+        },
+        "verified_samples": {
+          "title": "Verified Samples",
+          "type": "boolean"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "snapshot_sha256",
+        "purpose",
+        "first_sample",
+        "sample_count",
+        "output_sha256",
+        "backend",
+        "toolchain_fingerprint",
+        "preparations",
+        "gain_db",
+        "sample_peak_dbfs",
+        "true_peak_dbtp",
+        "integrated_lufs",
+        "loudness_range_lu",
+        "over_full_scale_samples",
+        "suggested_gain_db",
+        "warnings",
+        "verified_samples"
+      ],
+      "title": "AudioMixReport",
+      "type": "object"
+    },
+    "AudioPreparation": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "prepared_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Prepared Samples",
+          "type": "integer"
+        },
+        "resampled": {
+          "title": "Resampled",
+          "type": "boolean"
+        },
+        "source_sample_rate": {
+          "exclusiveMinimum": 0,
+          "title": "Source Sample Rate",
+          "type": "integer"
+        },
+        "source_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Source Samples",
+          "type": "integer"
+        },
+        "source_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset",
+        "source_sha256",
+        "source_sample_rate",
+        "source_samples",
+        "prepared_samples",
+        "resampled"
+      ],
+      "title": "AudioPreparation",
+      "type": "object"
+    },
+    "AudioVerification": {
+      "additionalProperties": false,
+      "properties": {
+        "channels": {
+          "const": 2,
+          "default": 2,
+          "title": "Channels",
+          "type": "integer"
+        },
+        "codec": {
+          "const": "aac",
+          "default": "aac",
+          "title": "Codec",
+          "type": "string"
+        },
+        "decoded_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Decoded Samples",
+          "type": "integer"
+        },
+        "intended_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Intended Samples",
+          "type": "integer"
+        },
+        "padding_samples": {
+          "minimum": 0,
+          "title": "Padding Samples",
+          "type": "integer"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "intended_samples",
+        "decoded_samples",
+        "padding_samples"
+      ],
+      "title": "AudioVerification",
+      "type": "object"
+    },
     "Canvas": {
       "additionalProperties": false,
       "properties": {
@@ -74,6 +371,28 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "audio_mix": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AudioMixReport"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "audio_verification": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AudioVerification"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
     "backend": {
       "$ref": "#/$defs/Fingerprint"
     },
