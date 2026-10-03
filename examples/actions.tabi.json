@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "pack_id": "character.tabi.seated",
+  "version": "1.0",
+  "camera_id": "train.three-quarter.v1",
+  "canvas": {
+    "width": 1024,
+    "height": 1024
+  },
+  "anchor": {
+    "x": 512,
+    "y": 900
+  },
+  "alpha_mode": "straight",
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "approval": "draft",
+  "actions": [
+    {
+      "id": "tabi.idle",
+      "channel": "body",
+      "start_pose": "idle",
+      "end_pose": "idle",
+      "kind": "loop",
+      "frame_count": 300,
+      "path": "assets/tabi/idle/%05d.png",
+      "requires_props": {
+        "headphones": "worn"
+      }
+    },
+    {
+      "id": "tabi.look-entry",
+      "channel": "body",
+      "start_pose": "idle",
+      "end_pose": "observing",
+      "kind": "one_shot",
+      "frame_count": 45,
+      "path": "assets/tabi/look-entry/%05d.png"
+    },
+    {
+      "id": "tabi.observe",
+      "channel": "body",
+      "start_pose": "observing",
+      "end_pose": "observing",
+      "kind": "loop",
+      "frame_count": 300,
+      "path": "assets/tabi/observe/%05d.png"
+    },
+    {
+      "id": "tabi.look-exit",
+      "channel": "body",
+      "start_pose": "observing",
+      "end_pose": "idle",
+      "kind": "one_shot",
+      "frame_count": 45,
+      "path": "assets/tabi/look-exit/%05d.png"
+    },
+    {
+      "id": "tabi.blink",
+      "channel": "face",
+      "start_pose": "eyes-open",
+      "end_pose": "eyes-open",
+      "kind": "one_shot",
+      "frame_count": 6,
+      "path": "assets/tabi/blink/%05d.png",
+      "compatible_body_poses": [
+        "idle"
+      ]
+    }
+  ]
+}

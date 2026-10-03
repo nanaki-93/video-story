@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "scene.train.tokyo",
+  "version": "1.0",
+  "design_canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "capabilities": [
+    "masked_exterior",
+    "parallax",
+    "body_actions",
+    "blink",
+    "lighting"
+  ],
+  "anchors": {
+    "seat-left": {
+      "x": 540,
+      "y": 850
+    }
+  },
+  "slots": [
+    {
+      "id": "cabin",
+      "z": 0,
+      "kind": "still",
+      "path": "assets/train/cabin.png"
+    },
+    {
+      "id": "far",
+      "z": 10,
+      "kind": "tile_strip",
+      "path": "assets/tokyo/far.png",
+      "mask": "assets/train/window-mask.png",
+      "depth_factor": 0.2
+    },
+    {
+      "id": "mid",
+      "z": 11,
+      "kind": "tile_strip",
+      "path": "assets/tokyo/mid.png",
+      "mask": "assets/train/window-mask.png",
+      "depth_factor": 1.0
+    },
+    {
+      "id": "near",
+      "z": 12,
+      "kind": "tile_strip",
+      "path": "assets/tokyo/near.png",
+      "mask": "assets/train/window-mask.png",
+      "depth_factor": 3.5
+    },
+    {
+      "id": "landmark",
+      "z": 13,
+      "kind": "scheduled_sprite",
+      "mask": "assets/train/window-mask.png"
+    },
+    {
+      "id": "character",
+      "z": 30,
+      "kind": "character",
+      "anchor": "seat-left"
+    },
+    {
+      "id": "foreground",
+      "z": 40,
+      "kind": "still",
+      "path": "assets/train/table.png"
+    }
+  ],
+  "mask_semantics": "white_visible_black_hidden",
+  "approval": "draft"
+}

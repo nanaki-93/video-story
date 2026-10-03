@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "id": "ep001-pilot",
+  "title": "The Last Train Home pilot",
+  "format": "story",
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "duration_frames": 3600,
+  "seed": 1111,
+  "asset_locks": [
+    {
+      "id": "scene.train.tokyo",
+      "version": "1.0"
+    },
+    {
+      "id": "character.tabi.seated",
+      "version": "1.0"
+    },
+    {
+      "id": "music.pilot",
+      "version": "1.0"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "train-01",
+      "template": {
+        "id": "scene.train.tokyo",
+        "version": "1.0"
+      },
+      "start_frame": 0,
+      "end_frame": 3600,
+      "anchor": "seat-left",
+      "initial_state": {
+        "body_pose": "idle",
+        "props": {
+          "headphones": "worn"
+        }
+      },
+      "transition_in": "cut",
+      "transition_out": "cut"
+    }
+  ],
+  "actions": [
+    {
+      "scene_id": "train-01",
+      "action_id": "tabi.idle",
+      "version": "1.0",
+      "start_frame": 0,
+      "end_frame": 900,
+      "channel": "body"
+    },
+    {
+      "scene_id": "train-01",
+      "action_id": "tabi.look-entry",
+      "version": "1.0",
+      "start_frame": 900,
+      "end_frame": 945,
+      "channel": "body"
+    },
+    {
+      "scene_id": "train-01",
+      "action_id": "tabi.observe",
+      "version": "1.0",
+      "start_frame": 945,
+      "end_frame": 1755,
+      "channel": "body"
+    },
+    {
+      "scene_id": "train-01",
+      "action_id": "tabi.look-exit",
+      "version": "1.0",
+      "start_frame": 1755,
+      "end_frame": 1800,
+      "channel": "body"
+    },
+    {
+      "scene_id": "train-01",
+      "action_id": "tabi.idle",
+      "version": "1.0",
+      "start_frame": 1800,
+      "end_frame": 3600,
+      "channel": "body"
+    }
+  ],
+  "curves": [
+    {
+      "scope": "train-01",
+      "target": "travel_speed",
+      "unit": "design_px_per_second",
+      "interpolation": "linear",
+      "keys": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 300,
+          "value": 80
+        },
+        {
+          "frame": 2700,
+          "value": 80
+        },
+        {
+          "frame": 3450,
+          "value": 0
+        },
+        {
+          "frame": 3600,
+          "value": 0
+        }
+      ]
+    },
+    {
+      "scope": "train-01",
+      "target": "dusk_mix",
+      "unit": "fraction",
+      "interpolation": "linear",
+      "keys": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 1800,
+          "value": 0
+        },
+        {
+          "frame": 3600,
+          "value": 1
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "scene_id": "train-01",
+      "type": "landmark",
+      "asset_id": "landmark.tokyo.demo",
+      "start_frame": 1200,
+      "end_frame": 1650,
+      "repeat": false
+    }
+  ],
+  "tracks": [
+    {
+      "asset_id": "music.pilot",
+      "version": "1.0",
+      "start_sample": 0,
+      "trim_start_sample": 0,
+      "trim_end_sample": 5760000,
+      "gain_db": 0,
+      "fade_in_samples": 48000,
+      "fade_out_samples": 96000
+    }
+  ],
+  "continuity": {
+    "summary": "Quiet ride home with a look outside and gradual dusk.",
+    "objects": [
+      "headphones"
+    ]
+  },
+  "example_status": "illustrative_paths_require_generated_or_approved_media"
+}

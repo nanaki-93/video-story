@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "artist": "Tabi Eki",
+  "release_title": "Working title — Tokyo Nights",
+  "tracks": [
+    {
+      "asset_id": "music.pilot",
+      "version": "1.0",
+      "title": "Last Train",
+      "master_path": "audio/last-train.wav",
+      "sample_rate": 48000,
+      "channels": 2,
+      "duration_samples": 5760000,
+      "writers": [],
+      "isrc": null,
+      "commercial_use_status": "pending",
+      "ai_use_notes": "Fill in actual generation/editing history; do not infer it."
+    }
+  ],
+  "upc": null,
+  "release_links": {}
+}
