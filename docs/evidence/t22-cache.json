@@ -1,0 +1,1534 @@
+{
+  "purpose": "synthetic_test",
+  "runs": [
+    {
+      "name": "initial",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-78bf91e959434acfa41885eb7e04c8db",
+        "revision": 12,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "cache-evidence",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+        },
+        "state": "verified",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000000-172adf586e6c45a0a5a86ddb3e9b2f75.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000000-172adf586e6c45a0a5a86ddb3e9b2f75-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000001-29277f743c1b42f1a2ecae4d1c3dfe70.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000001-29277f743c1b42f1a2ecae4d1c3dfe70-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000002-456797f6af714eb3bf5f7dd070fb963e.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000002-456797f6af714eb3bf5f7dd070fb963e-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000003-05a6c2a9b93b4f1daf378ecd6f9afacd.mp4"
+              },
+              "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+              "size_bytes": 29746
+            },
+            "report_path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000003-05a6c2a9b93b4f1daf378ecd6f9afacd-report.json"
+          }
+        ],
+        "completed_frames": 300,
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "exports/initial.mp4"
+          },
+          "sha256": "2081df20f0450568dc9f67a820b13d48583481bba7e040476f4768db51835e1e",
+          "size_bytes": 418097
+        },
+        "report_path": "jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/final-6edbd9809bba442c8c9361d7014e9ad4-report.json",
+        "error": null,
+        "destination": "exports/initial.mp4",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "6572b4c68d9541afffb848b87bde29488f59fdd4bf54e7b00609c21bd7f273f9"
+          },
+          "profile_sha256": "ad6f6985a2a167e8fc329b5f5da6a734966050cabfd91fc325fc68eebe50c9eb",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      },
+      "estimate": {
+        "schema_version": "1.0",
+        "document_type": "storage_estimate",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "first_frame": 0,
+        "frame_count": 300,
+        "profile": {
+          "id": "cache-evidence",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "available_bytes": 212942180352,
+        "normalization_bytes": 17131376,
+        "video_bytes": 30638596,
+        "audio_bytes": 13865580,
+        "reserve_bytes": 268435456,
+        "required_additional_bytes": 330071008,
+        "sufficient": true,
+        "assumptions": [
+          "Additional bytes on the project volume; original media, snapshots and existing jobs are retained.",
+          "Video uses target bitrate or 0.5 bits/pixel/frame (minimum 2 Mbit/s), plus 50% headroom; encoded size is an estimate, not a bound.",
+          "Includes video chunks/cache copies, assembly/fallback and mux; normalized scratch links share verified cache bytes on this volume.",
+          "Audio includes master copies, resampled float64 sources, continuous PCM and decode buffers; output AAC is encoded once.",
+          "Reserve is at least 256 MiB or 10% of the estimate. Other processes can consume space after this check."
+        ]
+      },
+      "video_graphs": 4,
+      "aac_encodes": 1,
+      "chunks": [
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "first_frame": 0,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000000-172adf586e6c45a0a5a86ddb3e9b2f75.mp4",
+          "output_sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+          "output_bytes": 53025,
+          "graph_sha256": "45f9c95e3f82b329f76f9fcb943d40f2b36304df2341a88a5adcb13ea904c36c",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.2500543750011275,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 25,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "first_frame": 77,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000001-29277f743c1b42f1a2ecae4d1c3dfe70.mp4",
+          "output_sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+          "output_bytes": 32017,
+          "graph_sha256": "30bd0c6fcccc64c94ae688d3ca14af847d8a1c2ba84962f28793c5397462ffe0",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 1.1350579580011981,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 19,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "normalized_cache_hits": 19
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "first_frame": 154,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000002-456797f6af714eb3bf5f7dd070fb963e.mp4",
+          "output_sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+          "output_bytes": 57342,
+          "graph_sha256": "cc1334cb9ece10d637903ef111e369f79f0799d8e3dd722922d1d3d008507640",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 2.4055331250001473,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 18,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "normalized_cache_hits": 18
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "first_frame": 231,
+          "frame_count": 69,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-78bf91e959434acfa41885eb7e04c8db/chunk-000003-05a6c2a9b93b4f1daf378ecd6f9afacd.mp4",
+          "output_sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+          "output_bytes": 29746,
+          "graph_sha256": "c518845dca804db8cbff7411c44f31f2ccf5c628899c7b478be3b706c672311e",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.21638370899927395,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 23,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "normalized_cache_hits": 23
+        }
+      ],
+      "final_report": {
+        "schema_version": "1.0",
+        "document_type": "render_report",
+        "purpose": "synthetic_test",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "first_frame": 0,
+        "frame_count": 300,
+        "canvas": {
+          "width": 640,
+          "height": 360
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/exports/initial.mp4",
+        "output_sha256": "2081df20f0450568dc9f67a820b13d48583481bba7e040476f4768db51835e1e",
+        "output_bytes": 418097,
+        "graph_sha256": "ca410029d00dd290d43cd9cd1f89d5d4a7efd76097fa1d63a199ab6e6665fc5b",
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+        },
+        "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+        "render_seconds": 1.8381112089991802,
+        "full_decode_passed": true,
+        "timestamps_verified": true,
+        "normalized_images": 0,
+        "warnings": [],
+        "audio_mix": {
+          "schema_version": "1.0",
+          "document_type": "audio_mix_report",
+          "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+          "purpose": "synthetic_test",
+          "first_sample": 0,
+          "sample_count": 480000,
+          "sample_rate": 48000,
+          "channels": 2,
+          "sample_format": "float32",
+          "output": null,
+          "output_sha256": "a4d55b4d5d8d00a420330d56e5e88ae63873d125bc787b5b8c1cf9f5a8b0b03a",
+          "backend": {
+            "name": "tabi-audio",
+            "version": "1",
+            "sha256": "16bdc26ecda7758769527446e9b44cf5dc49be0185af1baa183e215ebc166aeb"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "preparations": [
+            {
+              "asset": {
+                "id": "fixture.tone",
+                "version": "1.0"
+              },
+              "source_sha256": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+              "source_sample_rate": 48000,
+              "source_samples": 480000,
+              "prepared_samples": 480000,
+              "resampled": false
+            }
+          ],
+          "gain_db": 0.0,
+          "sample_peak_dbfs": -18.62237421184374,
+          "true_peak_dbtp": -18.62,
+          "integrated_lufs": -21.05,
+          "loudness_range_lu": 0.0,
+          "over_full_scale_samples": 0,
+          "suggested_gain_db": 7.050000000000001,
+          "warnings": [],
+          "verified_samples": true
+        },
+        "audio_verification": {
+          "intended_samples": 480000,
+          "decoded_samples": 480000,
+          "padding_samples": 0,
+          "codec": "aac",
+          "sample_rate": 48000,
+          "channels": 2
+        },
+        "assembly": {
+          "mode": "stream_copy",
+          "chunk_sha256": [
+            "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+            "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+            "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+            "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843"
+          ],
+          "fallback_reason": null
+        }
+      }
+    },
+    {
+      "name": "quieter",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-3d5256a661184255b7d5a7fb3a6eec8b",
+        "revision": 12,
+        "document_type": "render_job",
+        "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+        "profile": {
+          "id": "cache-evidence",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+        },
+        "state": "verified",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000000-fb3de9b5f92743d9b0e27abd9bd74cab.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000000-fb3de9b5f92743d9b0e27abd9bd74cab-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000001-85c23badd453427aa531da2c59d7ac7e.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000001-85c23badd453427aa531da2c59d7ac7e-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000002-29114815bcbe4ae98fa4efe1db280c71.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000002-29114815bcbe4ae98fa4efe1db280c71-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000003-d9cca0a2ae7747198ca81efcd6a5548f.mp4"
+              },
+              "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+              "size_bytes": 29746
+            },
+            "report_path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000003-d9cca0a2ae7747198ca81efcd6a5548f-report.json"
+          }
+        ],
+        "completed_frames": 300,
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "exports/quieter.mp4"
+          },
+          "sha256": "02ac05a92bab7dca1d984750cb48380e63470e7cfee117dcfc6bb266c8a11cc0",
+          "size_bytes": 418033
+        },
+        "report_path": "jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/final-4b019d81f9204df495370d5aa3a3b3ed-report.json",
+        "error": null,
+        "destination": "exports/quieter.mp4",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "6572b4c68d9541afffb848b87bde29488f59fdd4bf54e7b00609c21bd7f273f9"
+          },
+          "profile_sha256": "ad6f6985a2a167e8fc329b5f5da6a734966050cabfd91fc325fc68eebe50c9eb",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      },
+      "estimate": {
+        "schema_version": "1.0",
+        "document_type": "storage_estimate",
+        "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+        "first_frame": 0,
+        "frame_count": 300,
+        "profile": {
+          "id": "cache-evidence",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "available_bytes": 212837949440,
+        "normalization_bytes": 0,
+        "video_bytes": 30638596,
+        "audio_bytes": 13865580,
+        "reserve_bytes": 268435456,
+        "required_additional_bytes": 312939632,
+        "sufficient": true,
+        "assumptions": [
+          "Additional bytes on the project volume; original media, snapshots and existing jobs are retained.",
+          "Video uses target bitrate or 0.5 bits/pixel/frame (minimum 2 Mbit/s), plus 50% headroom; encoded size is an estimate, not a bound.",
+          "Includes video chunks/cache copies, assembly/fallback and mux; normalized scratch links share verified cache bytes on this volume.",
+          "Audio includes master copies, resampled float64 sources, continuous PCM and decode buffers; output AAC is encoded once.",
+          "Reserve is at least 256 MiB or 10% of the estimate. Other processes can consume space after this check."
+        ]
+      },
+      "video_graphs": 0,
+      "aac_encodes": 1,
+      "chunks": [
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 0,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000000-fb3de9b5f92743d9b0e27abd9bd74cab.mp4",
+          "output_sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+          "output_bytes": 53025,
+          "graph_sha256": "45f9c95e3f82b329f76f9fcb943d40f2b36304df2341a88a5adcb13ea904c36c",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.12792691700087744,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 0,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "cache_reuse": {
+            "key": "4d4429198b5c271b652473d07787900093c3577ccb0fc77315d116184a5ad217",
+            "origin_snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4"
+          }
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 77,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000001-85c23badd453427aa531da2c59d7ac7e.mp4",
+          "output_sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+          "output_bytes": 32017,
+          "graph_sha256": "30bd0c6fcccc64c94ae688d3ca14af847d8a1c2ba84962f28793c5397462ffe0",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.1299364999995305,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 0,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "cache_reuse": {
+            "key": "a414c19ec803de5bc365616db91771c9005ee18c7571177f9aed491b23096abe",
+            "origin_snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4"
+          }
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 154,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000002-29114815bcbe4ae98fa4efe1db280c71.mp4",
+          "output_sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+          "output_bytes": 57342,
+          "graph_sha256": "cc1334cb9ece10d637903ef111e369f79f0799d8e3dd722922d1d3d008507640",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.13050187500084576,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 0,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "cache_reuse": {
+            "key": "5039c611ce7532e7f2171c06e988bb0f3f39c6c490682345f0b512a8dfefd20b",
+            "origin_snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4"
+          }
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 231,
+          "frame_count": 69,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-3d5256a661184255b7d5a7fb3a6eec8b/chunk-000003-d9cca0a2ae7747198ca81efcd6a5548f.mp4",
+          "output_sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+          "output_bytes": 29746,
+          "graph_sha256": "c518845dca804db8cbff7411c44f31f2ccf5c628899c7b478be3b706c672311e",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.13276608300111548,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 0,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "cache_reuse": {
+            "key": "9025a439e852c3cd7e08d810c49dbfd7ca5783fb3eba43371906cdcc31c1b34c",
+            "origin_snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4"
+          }
+        }
+      ],
+      "final_report": {
+        "schema_version": "1.0",
+        "document_type": "render_report",
+        "purpose": "synthetic_test",
+        "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+        "first_frame": 0,
+        "frame_count": 300,
+        "canvas": {
+          "width": 640,
+          "height": 360
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/exports/quieter.mp4",
+        "output_sha256": "02ac05a92bab7dca1d984750cb48380e63470e7cfee117dcfc6bb266c8a11cc0",
+        "output_bytes": 418033,
+        "graph_sha256": "ca410029d00dd290d43cd9cd1f89d5d4a7efd76097fa1d63a199ab6e6665fc5b",
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+        },
+        "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+        "render_seconds": 1.888649542001076,
+        "full_decode_passed": true,
+        "timestamps_verified": true,
+        "normalized_images": 0,
+        "warnings": [],
+        "audio_mix": {
+          "schema_version": "1.0",
+          "document_type": "audio_mix_report",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "purpose": "synthetic_test",
+          "first_sample": 0,
+          "sample_count": 480000,
+          "sample_rate": 48000,
+          "channels": 2,
+          "sample_format": "float32",
+          "output": null,
+          "output_sha256": "b710a83b6ed4fe5524d39425d0ab34d8914f322441745779ae3f48b9dfdc1c5a",
+          "backend": {
+            "name": "tabi-audio",
+            "version": "1",
+            "sha256": "16bdc26ecda7758769527446e9b44cf5dc49be0185af1baa183e215ebc166aeb"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "preparations": [
+            {
+              "asset": {
+                "id": "fixture.tone",
+                "version": "1.0"
+              },
+              "source_sha256": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+              "source_sample_rate": 48000,
+              "source_samples": 480000,
+              "prepared_samples": 480000,
+              "resampled": false
+            }
+          ],
+          "gain_db": 0.0,
+          "sample_peak_dbfs": -24.622374211843745,
+          "true_peak_dbtp": -24.62,
+          "integrated_lufs": -27.05,
+          "loudness_range_lu": 0.0,
+          "over_full_scale_samples": 0,
+          "suggested_gain_db": 13.05,
+          "warnings": [],
+          "verified_samples": true
+        },
+        "audio_verification": {
+          "intended_samples": 480000,
+          "decoded_samples": 480000,
+          "padding_samples": 0,
+          "codec": "aac",
+          "sample_rate": 48000,
+          "channels": 2
+        },
+        "assembly": {
+          "mode": "stream_copy",
+          "chunk_sha256": [
+            "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+            "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+            "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+            "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843"
+          ],
+          "fallback_reason": null
+        }
+      }
+    },
+    {
+      "name": "repaired",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-b690e63ca68640468447f3d74914c2ae",
+        "revision": 12,
+        "document_type": "render_job",
+        "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+        "profile": {
+          "id": "cache-evidence",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+        },
+        "state": "verified",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000000-d870dc5350954f52877bb181c11f42c0.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000000-d870dc5350954f52877bb181c11f42c0-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000001-ab3ee3455ef94f598b63906717bff1ab.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000001-ab3ee3455ef94f598b63906717bff1ab-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000002-fd759bbed8fd47449324e41e0430f571.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000002-fd759bbed8fd47449324e41e0430f571-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000003-f93b465720c14215868867e3e6a1a645.mp4"
+              },
+              "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+              "size_bytes": 29746
+            },
+            "report_path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000003-f93b465720c14215868867e3e6a1a645-report.json"
+          }
+        ],
+        "completed_frames": 300,
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "exports/repaired.mp4"
+          },
+          "sha256": "02ac05a92bab7dca1d984750cb48380e63470e7cfee117dcfc6bb266c8a11cc0",
+          "size_bytes": 418033
+        },
+        "report_path": "jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/final-998a491293b04096920c17da47b00937-report.json",
+        "error": null,
+        "destination": "exports/repaired.mp4",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "6572b4c68d9541afffb848b87bde29488f59fdd4bf54e7b00609c21bd7f273f9"
+          },
+          "profile_sha256": "ad6f6985a2a167e8fc329b5f5da6a734966050cabfd91fc325fc68eebe50c9eb",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      },
+      "estimate": {
+        "schema_version": "1.0",
+        "document_type": "storage_estimate",
+        "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+        "first_frame": 0,
+        "frame_count": 300,
+        "profile": {
+          "id": "cache-evidence",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "available_bytes": 212846800896,
+        "normalization_bytes": 0,
+        "video_bytes": 30638596,
+        "audio_bytes": 13865580,
+        "reserve_bytes": 268435456,
+        "required_additional_bytes": 312939632,
+        "sufficient": true,
+        "assumptions": [
+          "Additional bytes on the project volume; original media, snapshots and existing jobs are retained.",
+          "Video uses target bitrate or 0.5 bits/pixel/frame (minimum 2 Mbit/s), plus 50% headroom; encoded size is an estimate, not a bound.",
+          "Includes video chunks/cache copies, assembly/fallback and mux; normalized scratch links share verified cache bytes on this volume.",
+          "Audio includes master copies, resampled float64 sources, continuous PCM and decode buffers; output AAC is encoded once.",
+          "Reserve is at least 256 MiB or 10% of the estimate. Other processes can consume space after this check."
+        ]
+      },
+      "video_graphs": 1,
+      "aac_encodes": 1,
+      "chunks": [
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 0,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000000-d870dc5350954f52877bb181c11f42c0.mp4",
+          "output_sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+          "output_bytes": 53025,
+          "graph_sha256": "45f9c95e3f82b329f76f9fcb943d40f2b36304df2341a88a5adcb13ea904c36c",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.2499940419984341,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 25,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "normalized_cache_hits": 25
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 77,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000001-ab3ee3455ef94f598b63906717bff1ab.mp4",
+          "output_sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+          "output_bytes": 32017,
+          "graph_sha256": "30bd0c6fcccc64c94ae688d3ca14af847d8a1c2ba84962f28793c5397462ffe0",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.12857258300027752,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 0,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "cache_reuse": {
+            "key": "a414c19ec803de5bc365616db91771c9005ee18c7571177f9aed491b23096abe",
+            "origin_snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4"
+          }
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 154,
+          "frame_count": 77,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000002-fd759bbed8fd47449324e41e0430f571.mp4",
+          "output_sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+          "output_bytes": 57342,
+          "graph_sha256": "cc1334cb9ece10d637903ef111e369f79f0799d8e3dd722922d1d3d008507640",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.12815908400079934,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 0,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "cache_reuse": {
+            "key": "5039c611ce7532e7f2171c06e988bb0f3f39c6c490682345f0b512a8dfefd20b",
+            "origin_snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4"
+          }
+        },
+        {
+          "schema_version": "1.0",
+          "document_type": "render_report",
+          "purpose": "synthetic_test",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "first_frame": 231,
+          "frame_count": 69,
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/jobs/artifacts/job-b690e63ca68640468447f3d74914c2ae/chunk-000003-f93b465720c14215868867e3e6a1a645.mp4",
+          "output_sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+          "output_bytes": 29746,
+          "graph_sha256": "c518845dca804db8cbff7411c44f31f2ccf5c628899c7b478be3b706c672311e",
+          "backend": {
+            "name": "tabi-ffmpeg",
+            "version": "1",
+            "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "render_seconds": 0.1306004590005614,
+          "full_decode_passed": true,
+          "timestamps_verified": true,
+          "normalized_images": 0,
+          "warnings": [],
+          "audio_mix": null,
+          "audio_verification": null,
+          "cache_reuse": {
+            "key": "9025a439e852c3cd7e08d810c49dbfd7ca5783fb3eba43371906cdcc31c1b34c",
+            "origin_snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4"
+          }
+        }
+      ],
+      "final_report": {
+        "schema_version": "1.0",
+        "document_type": "render_report",
+        "purpose": "synthetic_test",
+        "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+        "first_frame": 0,
+        "frame_count": 300,
+        "canvas": {
+          "width": 640,
+          "height": 360
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/exports/repaired.mp4",
+        "output_sha256": "02ac05a92bab7dca1d984750cb48380e63470e7cfee117dcfc6bb266c8a11cc0",
+        "output_bytes": 418033,
+        "graph_sha256": "ca410029d00dd290d43cd9cd1f89d5d4a7efd76097fa1d63a199ab6e6665fc5b",
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "26deb60d032a9d30b9f3e0fd72dac033e705823abd1d41185886ac4149202fce"
+        },
+        "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+        "render_seconds": 1.839888541999244,
+        "full_decode_passed": true,
+        "timestamps_verified": true,
+        "normalized_images": 0,
+        "warnings": [],
+        "audio_mix": {
+          "schema_version": "1.0",
+          "document_type": "audio_mix_report",
+          "snapshot_sha256": "9ff1b4b967231425c3adabfa89fc2891fe6058ccbc9fff51736aaf0720c16e9a",
+          "purpose": "synthetic_test",
+          "first_sample": 0,
+          "sample_count": 480000,
+          "sample_rate": 48000,
+          "channels": 2,
+          "sample_format": "float32",
+          "output": null,
+          "output_sha256": "b710a83b6ed4fe5524d39425d0ab34d8914f322441745779ae3f48b9dfdc1c5a",
+          "backend": {
+            "name": "tabi-audio",
+            "version": "1",
+            "sha256": "16bdc26ecda7758769527446e9b44cf5dc49be0185af1baa183e215ebc166aeb"
+          },
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "preparations": [
+            {
+              "asset": {
+                "id": "fixture.tone",
+                "version": "1.0"
+              },
+              "source_sha256": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+              "source_sample_rate": 48000,
+              "source_samples": 480000,
+              "prepared_samples": 480000,
+              "resampled": false
+            }
+          ],
+          "gain_db": 0.0,
+          "sample_peak_dbfs": -24.622374211843745,
+          "true_peak_dbtp": -24.62,
+          "integrated_lufs": -27.05,
+          "loudness_range_lu": 0.0,
+          "over_full_scale_samples": 0,
+          "suggested_gain_db": 13.05,
+          "warnings": [],
+          "verified_samples": true
+        },
+        "audio_verification": {
+          "intended_samples": 480000,
+          "decoded_samples": 480000,
+          "padding_samples": 0,
+          "codec": "aac",
+          "sample_rate": 48000,
+          "channels": 2
+        },
+        "assembly": {
+          "mode": "stream_copy",
+          "chunk_sha256": [
+            "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+            "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+            "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+            "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843"
+          ],
+          "fallback_reason": null
+        }
+      }
+    }
+  ],
+  "inventory": {
+    "schema_version": "1.0",
+    "document_type": "cache_inventory",
+    "root": "/Users/marcoandreose/DEV/lab/video-story/.local/t22-cache/Marco \u6771\u4eac project/.cache/tabi-v1",
+    "inventory_sha256": "11f405dea14b2460d8e48edd37b49093813d08b9cad3f9632c6c154b9ab5f723",
+    "entries": [
+      {
+        "kind": "normalized_image",
+        "key": "00da5aef56ef22e6434bad4cc118f67095c4fbb2cdcf01e04659ce954adc6f3b",
+        "size_bytes": 457,
+        "sha256": "38d7ac09be89c8673772f3bbe22e7d6db0f8c044d64de829632f06bbd08391a3",
+        "created_at": "2026-10-03T17:06:24.765793Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "107bfdeb89cd41585b7f6160f8f84908c4d586f3b91a32b93904870cb24c64c2",
+        "size_bytes": 2149,
+        "sha256": "d3bcc5a62f92343fe4d0099bf64a7bfea351d27bf06cb1b071c603527fc07522",
+        "created_at": "2026-10-03T17:06:24.743772Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "1af6088cc50d7d42479a293b918d777ad43b73cafd899c09054bdcb80958041b",
+        "size_bytes": 3205,
+        "sha256": "04d78dd667e0e508a3b91a4d00f2a7bec36837cfa2225a837c5c8b6bc4c5503e",
+        "created_at": "2026-10-03T17:06:24.748316Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "2075500ef4d40fc4411ff02125334a1e3b0b53f1dfaa143eef5df6ad1a4f5d9d",
+        "size_bytes": 457,
+        "sha256": "bf45bf4751e688ec1520b586cc229c795e0e7d9a8fa32bb3d2d53aed54c5ebc5",
+        "created_at": "2026-10-03T17:06:24.778161Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "35f4a8699a084c2a44a10e956f9196cc29525e8eb0eced64fe49e84a33c67590",
+        "size_bytes": 457,
+        "sha256": "38d7ac09be89c8673772f3bbe22e7d6db0f8c044d64de829632f06bbd08391a3",
+        "created_at": "2026-10-03T17:06:24.770306Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "3b16e28e86ef6ebbe204dff1d79fbe80c3e58341f7b967134c8fb38f99f8f5d0",
+        "size_bytes": 175,
+        "sha256": "61ddb18f8fd782e328a398f9d11d6235c40ad9075ef53cdc45cbb74c1cc6c58a",
+        "created_at": "2026-10-03T17:06:24.802139Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "3c8dbef624cfe6f6fd4bcb1fc15b3a52a8f0a6e0584e3064d50f7269017d12b5",
+        "size_bytes": 175,
+        "sha256": "61ddb18f8fd782e328a398f9d11d6235c40ad9075ef53cdc45cbb74c1cc6c58a",
+        "created_at": "2026-10-03T17:06:24.805609Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "667fe1f3829e07167313144d281bdd9ad5ca7d8921a3daa493f42f159a059b9a",
+        "size_bytes": 716,
+        "sha256": "ab66d83dc249796b98c543f28085d7feb4469f08543c5533de39c0777a526292",
+        "created_at": "2026-10-03T17:06:24.751018Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "74c07fcd0af3642ecf22418109ca467ae64d9563528c17a12655d80b9b50d3a3",
+        "size_bytes": 1082,
+        "sha256": "94e54393760d561471deb4947450deb5babdbe78bd9b5368ae095f2b88038060",
+        "created_at": "2026-10-03T17:06:24.809439Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "7596af34bdccf7100fd34fe381d744daafccce7869e85d5713e276c980c85489",
+        "size_bytes": 457,
+        "sha256": "bf45bf4751e688ec1520b586cc229c795e0e7d9a8fa32bb3d2d53aed54c5ebc5",
+        "created_at": "2026-10-03T17:06:24.773235Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "84dfde59e1060b623bcdc68393a68f804e7ed26d0814b38ea574e0b82fb3f588",
+        "size_bytes": 439,
+        "sha256": "553ee5e57d3e65bf84753ad7737efbe8785d607d7225c04a5f2aab2a787c2310",
+        "created_at": "2026-10-03T17:06:24.761269Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "86443a73fc34a4d6f1323087bf1a9b1465db8f93452df19bdc56e8fcd4c5dc53",
+        "size_bytes": 457,
+        "sha256": "bf45bf4751e688ec1520b586cc229c795e0e7d9a8fa32bb3d2d53aed54c5ebc5",
+        "created_at": "2026-10-03T17:06:24.779780Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "8d121261b3bf25360c083e2f1a2ecc0187130db10d19ba461ba3fdb7e91bd876",
+        "size_bytes": 175,
+        "sha256": "61ddb18f8fd782e328a398f9d11d6235c40ad9075ef53cdc45cbb74c1cc6c58a",
+        "created_at": "2026-10-03T17:06:24.800535Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "8d43745df30bf4a1ceb13fc9b47bcd8295672ad543ceb6556033f14f07114fcb",
+        "size_bytes": 457,
+        "sha256": "bf45bf4751e688ec1520b586cc229c795e0e7d9a8fa32bb3d2d53aed54c5ebc5",
+        "created_at": "2026-10-03T17:06:24.762891Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "91433a3927648ad94882036bfa52f44982ae7e8313b7981de51fa6118fa0ab2d",
+        "size_bytes": 457,
+        "sha256": "38d7ac09be89c8673772f3bbe22e7d6db0f8c044d64de829632f06bbd08391a3",
+        "created_at": "2026-10-03T17:06:24.771838Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "92069ba4f6ca81fac6744bd3a89ec9b04dcfc9f76c42d1476c25c0a21463a3d1",
+        "size_bytes": 457,
+        "sha256": "d610f3609a51f9d208576ff9c4d554e37174fbf8242318503cf985894fc11123",
+        "created_at": "2026-10-03T17:06:24.768535Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "95d489e93bea746522cc028bcb86e05a34944e4e8c14225587ff1f2c440ded18",
+        "size_bytes": 2718,
+        "sha256": "c64b44aa50293bd2c7eca31e79ca49c0050fa745510fc2d5ac76eacc664e97a4",
+        "created_at": "2026-10-03T17:06:24.758432Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "a591592f6332ac13895bc1bd8102d82bae099bf0fc0b45490f8b0772e441f545",
+        "size_bytes": 457,
+        "sha256": "2d64d074511e8eb94b785694ec01f1a7f8c8f92b520f58afd570f18523e959eb",
+        "created_at": "2026-10-03T17:06:24.776581Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "caee9faca1c57832cbda48aaef00fcc2a3b2d4740658e9242014951f0a558d62",
+        "size_bytes": 457,
+        "sha256": "38d7ac09be89c8673772f3bbe22e7d6db0f8c044d64de829632f06bbd08391a3",
+        "created_at": "2026-10-03T17:06:24.764345Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "d1e95fd280407b2888470f147864c889abb34ed209ea4d4748e1d1a3ace5e58c",
+        "size_bytes": 116,
+        "sha256": "e93cf7cf69e59a49eaaa011e5f0ec7b6e385408ba1b4025b9231832d7c87ec46",
+        "created_at": "2026-10-03T17:06:24.807236Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "d55230347e0ee7c93edce20fb874c903db7db2e068d100f4322f4c5adb24859e",
+        "size_bytes": 457,
+        "sha256": "d610f3609a51f9d208576ff9c4d554e37174fbf8242318503cf985894fc11123",
+        "created_at": "2026-10-03T17:06:24.767138Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "d855e00a8debd47b5720142b3923922282758d4072d36d43b4e918947abbe98c",
+        "size_bytes": 175,
+        "sha256": "61ddb18f8fd782e328a398f9d11d6235c40ad9075ef53cdc45cbb74c1cc6c58a",
+        "created_at": "2026-10-03T17:06:24.803793Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "eabae3d4f76da8dcaf04305c3f4dadfc3aadadbbc033df72a5cfba331a3c6642",
+        "size_bytes": 116,
+        "sha256": "e93cf7cf69e59a49eaaa011e5f0ec7b6e385408ba1b4025b9231832d7c87ec46",
+        "created_at": "2026-10-03T17:06:24.798656Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "f3b3714993459e6809b0a6febf149e084157d6a6946cc1ff1c7a92063f7e5ea4",
+        "size_bytes": 457,
+        "sha256": "2d64d074511e8eb94b785694ec01f1a7f8c8f92b520f58afd570f18523e959eb",
+        "created_at": "2026-10-03T17:06:24.774918Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "normalized_image",
+        "key": "f439b0b4cb9ed0d2fcda2c595fb680585d330db7cb2f8b3681138ce898154fda",
+        "size_bytes": 2873,
+        "sha256": "6fe98468dd82fdb526db9e341a5a8bb7faef0b4305c83d564e98271ae3b25a9d",
+        "created_at": "2026-10-03T17:06:24.754599Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "video_chunk",
+        "key": "4d4429198b5c271b652473d07787900093c3577ccb0fc77315d116184a5ad217",
+        "size_bytes": 53025,
+        "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+        "created_at": "2026-10-03T17:06:36.239943Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "video_chunk",
+        "key": "5039c611ce7532e7f2171c06e988bb0f3f39c6c490682345f0b512a8dfefd20b",
+        "size_bytes": 57342,
+        "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+        "created_at": "2026-10-03T17:06:29.631753Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "video_chunk",
+        "key": "9025a439e852c3cd7e08d810c49dbfd7ca5783fb3eba43371906cdcc31c1b34c",
+        "size_bytes": 29746,
+        "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+        "created_at": "2026-10-03T17:06:30.248950Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      },
+      {
+        "kind": "video_chunk",
+        "key": "a414c19ec803de5bc365616db91771c9005ee18c7571177f9aed491b23096abe",
+        "size_bytes": 32017,
+        "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+        "created_at": "2026-10-03T17:06:26.765332Z",
+        "valid": true,
+        "protected": false,
+        "message": null
+      }
+    ],
+    "entry_bytes": 191728,
+    "warnings": []
+  },
+  "prune": {
+    "schema_version": "1.0",
+    "document_type": "cache_prune_report",
+    "removed": [
+      "00da5aef56ef22e6434bad4cc118f67095c4fbb2cdcf01e04659ce954adc6f3b",
+      "107bfdeb89cd41585b7f6160f8f84908c4d586f3b91a32b93904870cb24c64c2",
+      "1af6088cc50d7d42479a293b918d777ad43b73cafd899c09054bdcb80958041b",
+      "2075500ef4d40fc4411ff02125334a1e3b0b53f1dfaa143eef5df6ad1a4f5d9d",
+      "35f4a8699a084c2a44a10e956f9196cc29525e8eb0eced64fe49e84a33c67590",
+      "3b16e28e86ef6ebbe204dff1d79fbe80c3e58341f7b967134c8fb38f99f8f5d0",
+      "3c8dbef624cfe6f6fd4bcb1fc15b3a52a8f0a6e0584e3064d50f7269017d12b5",
+      "667fe1f3829e07167313144d281bdd9ad5ca7d8921a3daa493f42f159a059b9a",
+      "74c07fcd0af3642ecf22418109ca467ae64d9563528c17a12655d80b9b50d3a3",
+      "7596af34bdccf7100fd34fe381d744daafccce7869e85d5713e276c980c85489",
+      "84dfde59e1060b623bcdc68393a68f804e7ed26d0814b38ea574e0b82fb3f588",
+      "86443a73fc34a4d6f1323087bf1a9b1465db8f93452df19bdc56e8fcd4c5dc53",
+      "8d121261b3bf25360c083e2f1a2ecc0187130db10d19ba461ba3fdb7e91bd876",
+      "8d43745df30bf4a1ceb13fc9b47bcd8295672ad543ceb6556033f14f07114fcb",
+      "91433a3927648ad94882036bfa52f44982ae7e8313b7981de51fa6118fa0ab2d",
+      "92069ba4f6ca81fac6744bd3a89ec9b04dcfc9f76c42d1476c25c0a21463a3d1",
+      "95d489e93bea746522cc028bcb86e05a34944e4e8c14225587ff1f2c440ded18",
+      "a591592f6332ac13895bc1bd8102d82bae099bf0fc0b45490f8b0772e441f545",
+      "caee9faca1c57832cbda48aaef00fcc2a3b2d4740658e9242014951f0a558d62",
+      "d1e95fd280407b2888470f147864c889abb34ed209ea4d4748e1d1a3ace5e58c",
+      "d55230347e0ee7c93edce20fb874c903db7db2e068d100f4322f4c5adb24859e",
+      "d855e00a8debd47b5720142b3923922282758d4072d36d43b4e918947abbe98c",
+      "eabae3d4f76da8dcaf04305c3f4dadfc3aadadbbc033df72a5cfba331a3c6642",
+      "f3b3714993459e6809b0a6febf149e084157d6a6946cc1ff1c7a92063f7e5ea4",
+      "f439b0b4cb9ed0d2fcda2c595fb680585d330db7cb2f8b3681138ce898154fda",
+      "4d4429198b5c271b652473d07787900093c3577ccb0fc77315d116184a5ad217",
+      "5039c611ce7532e7f2171c06e988bb0f3f39c6c490682345f0b512a8dfefd20b",
+      "9025a439e852c3cd7e08d810c49dbfd7ca5783fb3eba43371906cdcc31c1b34c",
+      "a414c19ec803de5bc365616db91771c9005ee18c7571177f9aed491b23096abe"
+    ],
+    "removed_entry_bytes": 191728,
+    "remaining_entry_bytes": 0
+  },
+  "protected_files_unchanged": 54,
+  "remaining_cache_entries": 0
+}

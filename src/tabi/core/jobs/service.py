@@ -4,13 +4,17 @@ import hashlib
 import os
 import stat
 import tempfile
+import time
 from pathlib import Path
 from uuid import uuid4
 
 from ..audio.mix import verify_aac
+from ..cache.keys import video_descriptor
+from ..cache.storage import estimate_storage
+from ..cache.store import CacheStore
 from ..models.base import HashedFile, MediaPath, canonical_bytes, content_hash, relative_path
 from ..models.production import JobError, OutputProfile, RenderJob
-from ..models.rendering import RenderReport
+from ..models.rendering import CacheReuse, RenderReport
 from ..process import ExecutionScope, OperationCancelled, ToolError, checkpoint, execution_scope
 from ..render.assembly import VideoAssembler
 from ..render.backend import FrozenRegistry, backend_fingerprint
@@ -266,6 +270,15 @@ class JobService:
                     plan=current.plan.model_copy(update={"toolchain_fingerprint": fingerprint}),
                 ),
             )
+        estimate = estimate_storage(self.assets, job)
+        if not estimate.sufficient:
+            raise ValueError(
+                f"insufficient project storage: estimate {estimate.required_additional_bytes} "
+                f"additional bytes, {estimate.available_bytes} available; inspect/prune caches "
+                "or free space before resuming"
+            )
+        registry = FrozenRegistry(self.assets, snapshot)
+        cache = CacheStore(self.store)
         folder = f"jobs/artifacts/{identity}"
         with self.store._directory(self.store._parts(folder), create=True):
             pass
@@ -294,13 +307,16 @@ class JobService:
             attempt = f"{folder}/chunk-{index:06}-{uuid4().hex}"
             chunk_path, report_path = f"{attempt}.mp4", f"{attempt}-report.json"
             first = job.first_frame + chunk.first_frame
-            report = FFmpegRenderer(self.assets, self.settings).clip(
-                snapshot,
-                first,
-                first + chunk.frame_count,
-                self.store.root / chunk_path,
-                video_profile(job.profile),
-            )
+            descriptor = video_descriptor(snapshot, registry, job, chunk)
+            report = self._cached_chunk(cache, descriptor, job, chunk, chunk_path)
+            if report is None:
+                report = FFmpegRenderer(self.assets, self.settings).clip(
+                    snapshot,
+                    first,
+                    first + chunk.frame_count,
+                    self.store.root / chunk_path,
+                    video_profile(job.profile),
+                )
             if report.toolchain_fingerprint != fingerprint or report.backend != job.backend:
                 raise ValueError("renderer/toolchain changed during chunk execution")
             self.store._atomic_write(report_path, canonical_bytes(report), overwrite=False)
@@ -310,6 +326,14 @@ class JobService:
                 report.output_bytes,
             ):
                 raise ValueError("chunk changed after verification")
+            if report.cache_reuse is None:
+                cache.put(
+                    "video_chunk",
+                    descriptor,
+                    self.store.root / chunk_path,
+                    report=report,
+                    refresh=True,
+                )
             job = self.ledger.update(
                 identity,
                 "chunk_verified",
@@ -384,6 +408,50 @@ class JobService:
             )
 
         return self.ledger.update(identity, "verified", finish)
+
+    def _cached_chunk(self, cache, descriptor, job, chunk, path):
+        started = time.monotonic()
+        output = self.store.root / path
+        entry = cache.lookup("video_chunk", descriptor, destination=output)
+        if entry is None:
+            return None
+        previous = entry.report
+        try:
+            if (
+                previous.purpose != descriptor["purpose"]
+                or previous.first_frame != descriptor["first_frame"]
+                or previous.frame_count != chunk.frame_count
+                or previous.canvas != job.profile.canvas
+                or previous.fps != job.profile.fps
+                or previous.backend != job.backend
+                or previous.toolchain_fingerprint != job.plan.toolchain_fingerprint
+                or not previous.full_decode_passed
+                or not previous.timestamps_verified
+                or previous.audio_mix is not None
+                or previous.audio_verification is not None
+                or previous.assembly is not None
+            ):
+                raise ValueError("cached report is incompatible with this chunk")
+            verify_video(self.settings, output, video_profile(job.profile), chunk.frame_count)
+            return RenderReport.model_validate(
+                {
+                    **previous.model_dump(),
+                    "snapshot_sha256": job.snapshot_sha256,
+                    "output": str(output),
+                    "render_seconds": time.monotonic() - started,
+                    "normalized_images": 0,
+                    "normalized_cache_hits": 0,
+                    "cache_reuse": CacheReuse(
+                        key=entry.key,
+                        origin_snapshot_sha256=previous.snapshot_sha256,
+                    ),
+                }
+            )
+        except OperationCancelled:
+            raise
+        except (ValueError, OSError, ToolError):
+            output.unlink(missing_ok=True)  # Only this new, independent job copy.
+            return None
 
     def _existing_assembly(self, job):
         if job.output is None or job.report_path is None:

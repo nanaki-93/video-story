@@ -2,6 +2,7 @@
 
 from .assets import Action, ActionPack, Asset
 from .audio import AudioMixReport, AudioTimelineReport, WaveformReport
+from .cache import CacheEntry, CacheInventory, CachePruneReport, StorageEstimate
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
@@ -33,6 +34,10 @@ DOCUMENT_MODELS = {
     "waveform_report": WaveformReport,
     "audio_mix_report": AudioMixReport,
     "storyboard_report": StoryboardReport,
+    "cache_entry": CacheEntry,
+    "cache_inventory": CacheInventory,
+    "cache_prune_report": CachePruneReport,
+    "storage_estimate": StorageEstimate,
 }
 
 SCHEMA_MODELS = {

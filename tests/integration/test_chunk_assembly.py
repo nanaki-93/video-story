@@ -183,7 +183,7 @@ def test_chunked_frames_and_one_aac_encode_match_monolithic_global_range(tmp_pat
     assert job.snapshot_sha256 == report.snapshot_sha256
 
 
-def test_resume_rerenders_corrupt_chunk_and_reuses_only_verified_compatible_media(tmp_path):
+def test_resume_restores_corrupt_job_chunk_from_independent_verified_cache(tmp_path):
     service, _, digest, profile = setup(tmp_path)
     job = service.submit(digest, profile, "exports/resumed.mp4", max_chunk_frames=77)
     graph_count = []
@@ -213,7 +213,8 @@ def test_resume_rerenders_corrupt_chunk_and_reuses_only_verified_compatible_medi
     )
     completed = service.work()[0]
     assert completed.state == "verified" and completed.completed_frames == 300, completed.error
-    assert len(graph_count) == 3
+    assert len(graph_count) == 2
+    assert service.store.read(completed.chunks[0].report_path).cache_reuse is not None
     assert retained.stat().st_mtime_ns == retained_mtime
     assert file_hash(retained) == second.output.sha256
     assert corrupt.stat().st_size == corrupt_size

@@ -15,6 +15,11 @@ class AssemblyInfo(Model):
     fallback_reason: str | None = None
 
 
+class CacheReuse(Model):
+    key: SHA256
+    origin_snapshot_sha256: SHA256
+
+
 class RenderReport(Document):
     document_type: Literal["render_report"] = "render_report"
     purpose: Literal["preview", "production", "synthetic_test"]
@@ -37,6 +42,8 @@ class RenderReport(Document):
     audio_mix: AudioMixReport | None = None
     audio_verification: AudioVerification | None = None
     assembly: AssemblyInfo | None = Field(default=None, exclude_if=lambda v: v is None)
+    cache_reuse: CacheReuse | None = Field(default=None, exclude_if=lambda v: v is None)
+    normalized_cache_hits: Frame = Field(default=0, exclude_if=lambda v: v == 0)
 
 
 class CompilationResult(Document):

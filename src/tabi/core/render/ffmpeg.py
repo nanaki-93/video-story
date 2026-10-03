@@ -661,6 +661,7 @@ class FFmpegRenderer:
                 full_decode_passed=True,
                 timestamps_verified=bool(profile),
                 normalized_images=len(builder.normalizer.prepared),
+                normalized_cache_hits=builder.normalizer.cache_hits,
                 warnings=sorted(builder.normalizer.warnings),
                 audio_mix=audio_mix,
                 audio_verification=audio_verification,

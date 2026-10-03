@@ -136,7 +136,7 @@ Video-only preview is intentional at this step; T16 supplies continuous audio. R
 
 ## Next task and pending gates
 
-**Next software task: T22 — cache reuse, storage estimates and safe pruning.** T14 requires T07/T08 real artwork and Marco's visual review; T16–T19 real soundtrack/effect/story review remains pending. Independent software work continues while creative inputs are pending.
+**Next software task: T23 — final export profiles and target-Mac measurements.** T14 requires T07/T08 real artwork and Marco's visual review; T16–T19 real soundtrack/effect/story review remains pending. Independent software work continues while creative inputs are pending.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch/recovery and user-facing backup restoration. Core CLI cancellation/resume is verified in T20/T21; the small synthetic pass does not establish the remaining capabilities.
 
@@ -191,3 +191,11 @@ One bounded chunk is the T20 execution unit. T21 adds planning/resume/assembly; 
 Verification: `make schemas check` passes **27 schemas and 214 unit checks**, Ruff clean; `make test-media` passes **all 38 actual-media checks**. Thirteen new unit cases and five new chunk-media cases pass. Story/effect ranges match monolithic exports within the documented lossy tolerance; rational 30000/1001 fps retains exact frame/sample intent. Worker-exit tests cover both sides of publication and external export conflicts. [Retained evidence](20-chunk-assembly.md) records cancellation at 154 verified frames, detection of a truncated chunk, reuse of the valid 77-frame neighbour and a final 300-frame / 480,000-sample export. Its decoded midpoint was visually inspected. MP4 stays ignored.
 
 Cross-job caching/storage management follows in T22. Final-resolution hardware quality and sustained long-form resource checks remain T23/T37; no artistic approval is inferred.
+
+## T22 — complete
+
+`T22: reuse verified media and guard cache pruning` adds project-local normalized PNG and video caches, content/runtime/tool fingerprints, audio-independent video reuse, independent job copies with full decode validation, disk estimates/preflight and explicit inventory-bound pruning. Sources, approved/frozen metadata, unknown files and active workers are protected. No arbitrary scratch directory is recursively deleted.
+
+Verification: `make check` passes **31 schemas and 222 unit checks**, Ruff clean. `make test-media` passes **all 39 actual-media checks**; the cache test was expanded and rerun after adding runtime-version fingerprints. Actual audio edits reuse video and change decoded gain, corrupted cache payloads rerender, and changed motion/source bytes invalidate cached output. [Retained evidence](21-cache-storage.md) records 4 initial video graphs, 0 for an audio-only edit and 1 after corrupting one cached chunk, with one AAC encode each. Explicit pruning removes 29 entries while all 54 checked source/snapshot/export files retain their hashes. All MP4s stay ignored.
+
+Disk requirements remain conservative estimates rather than reserved space. Project-local cache storage is implemented; the early global `cache_root` setting is reserved. T23/T37 still own final-resolution quality and sustained performance checks.

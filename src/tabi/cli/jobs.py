@@ -3,6 +3,7 @@
 import json
 
 from tabi.core.assets import AssetService
+from tabi.core.cache.storage import estimate_storage
 from tabi.core.jobs import JobService
 from tabi.core.models.base import Canvas
 from tabi.core.models.production import OutputProfile
@@ -15,11 +16,21 @@ from .episodes import project_arguments
 def add_job_commands(commands):
     parser = commands.add_parser("jobs", help="Submit, run, inspect or cancel durable local jobs")
     actions = parser.add_subparsers(dest="job_command", required=True)
-    for name in ("submit", "list", "status", "events", "cancel", "resume", "recover", "work"):
+    for name in (
+        "submit",
+        "list",
+        "status",
+        "events",
+        "cancel",
+        "resume",
+        "recover",
+        "work",
+        "estimate",
+    ):
         action = actions.add_parser(name)
         project_arguments(action)
         action.add_argument("--json", action="store_true", help="JSON is the default output format")
-        if name in {"status", "events", "cancel", "resume"}:
+        if name in {"status", "events", "cancel", "resume", "estimate"}:
             action.add_argument("job_id")
         if name == "work":
             action.add_argument("--once", action="store_true", help="Run at most one queued job")
@@ -75,6 +86,8 @@ def run_job_command(args, settings):
         result = service.ledger.all()
     elif name == "status":
         result = service.ledger.get(args.job_id)
+    elif name == "estimate":
+        result = estimate_storage(assets, service.ledger.get(args.job_id))
     elif name == "events":
         result = service.ledger.events(args.job_id)
     elif name == "cancel":

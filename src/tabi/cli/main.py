@@ -8,6 +8,7 @@ from pathlib import Path
 from tabi import __version__
 from tabi.cli.assets import add_asset_commands, run_asset_command
 from tabi.cli.audio import add_audio_commands, run_audio_command
+from tabi.cli.cache import add_cache_commands, run_cache_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
 from tabi.cli.jobs import add_job_commands, run_job_command
 from tabi.cli.logging import configure_logging
@@ -34,6 +35,7 @@ def main(argv: list[str] | None = None) -> int:
     commands = parser.add_subparsers(dest="command", required=True)
     add_asset_commands(commands)
     add_audio_commands(commands)
+    add_cache_commands(commands)
     add_episode_commands(commands)
     add_job_commands(commands)
     config = commands.add_parser(
@@ -155,6 +157,12 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "cache":
+        try:
+            return run_cache_command(args)
+        except (ValueError, DocumentError, StorageError, OSError) as error:
+            logger.error("cache_operation_failed: %s", error)
+            return 4
     if args.command == "audio":
         try:
             return run_audio_command(args, settings)

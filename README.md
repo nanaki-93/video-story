@@ -2,7 +2,7 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 25 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. Reproducible fixtures, the asset registry, timeline/action compilation, masked scene rendering, global-range previews and continuous PCM/AAC audio are implemented. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI remains planned. See [progress](docs/progress.md), [preview workflow](docs/15-preview-workflow.md), [audio workflow](docs/16-audio.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 31 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. Reproducible fixtures, the asset registry, timeline/action compilation, masked scene rendering, global-range previews, continuous PCM/AAC audio, resumable jobs and verified caches are implemented. Software H.264 and VideoToolbox both passed the initial spike on the M5 Pro. The web UI remains planned. See [progress](docs/progress.md), [preview workflow](docs/15-preview-workflow.md), [audio workflow](docs/16-audio.md) and the [implementation/asset review](docs/09-implementation-review.md).
 
 ## Development setup
 
@@ -86,11 +86,13 @@ ffprobe = "ffprobe"
 
 Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_ROOT`, `TABI_FFMPEG`, `TABI_FFPROBE`. File-relative paths resolve beside the config file; environment/CLI-relative paths resolve against the working directory. Bare executable names remain PATH lookups for the future doctor. JSON command data goes to stdout, JSON diagnostic records to stderr. These developer settings are separate from T03's project/episode schemas.
 
+Rendering caches use each project's `.cache/tabi-v1`; the early global `cache_root` setting is reserved. See [cache inspection, pruning and disk estimates](docs/21-cache-storage.md).
+
 ## Plans and implementation order
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 real art is awaiting review; timeline, compilation, scene rendering, previews, audio mixing, [masked effects](docs/17-effects.md), [story continuity/overlaps](docs/18-story-continuity.md), [durable jobs/recovery](docs/19-jobs.md) and [chunk planning/resume/assembly](docs/20-chunk-assembly.md) are implemented with fixtures. Cache and storage management follow in T22 while the real story/music review is pending.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 real art is awaiting review; timeline, compilation, scene rendering, previews, audio mixing, [masked effects](docs/17-effects.md), [story continuity/overlaps](docs/18-story-continuity.md), [durable jobs/recovery](docs/19-jobs.md), [chunk planning/resume/assembly](docs/20-chunk-assembly.md) and [cache/storage management](docs/21-cache-storage.md) are implemented with fixtures. Final export profiles follow in T23 while the real story/music review is pending.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.

@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test test-media help schemas doctor fixtures
+.PHONY: setup check test test-media help schemas doctor fixtures clean-cache
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -29,3 +29,8 @@ test-media:
 FIXTURE_OUTPUT ?= .local/fixtures-v1
 fixtures:
 	$(UV) run --frozen tabi fixtures --output "$(FIXTURE_OUTPUT)"
+
+# Inspect by default. Actual removal needs the observed inventory and explicit --apply.
+clean-cache:
+	@test -n "$(PROJECT)" || (echo 'Set PROJECT to the project directory'; exit 2)
+	$(UV) run --frozen tabi cache prune --project "$(PROJECT)" --all

@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "title": "Canvas",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "OutputProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "audio_codec": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audio Codec"
+        },
+        "audio_gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Audio Gain Db",
+          "type": "number"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "color_space": {
+          "const": "bt709",
+          "title": "Color Space",
+          "type": "string"
+        },
+        "container": {
+          "enum": [
+            "mp4",
+            "mkv"
+          ],
+          "title": "Container",
+          "type": "string"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "pixel_format": {
+          "minLength": 1,
+          "title": "Pixel Format",
+          "type": "string"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "video_bitrate": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Video Bitrate"
+        },
+        "video_codec": {
+          "minLength": 1,
+          "title": "Video Codec",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "canvas",
+        "fps",
+        "container",
+        "video_codec",
+        "pixel_format",
+        "color_space"
+      ],
+      "title": "OutputProfile",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:storage_estimate",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assumptions": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "audio_bytes": {
+      "minimum": 0,
+      "title": "Audio Bytes",
+      "type": "integer"
+    },
+    "available_bytes": {
+      "minimum": 0,
+      "title": "Available Bytes",
+      "type": "integer"
+    },
+    "document_type": {
+      "const": "storage_estimate",
+      "default": "storage_estimate",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "first_frame": {
+      "minimum": 0,
+      "title": "First Frame",
+      "type": "integer"
+    },
+    "frame_count": {
+      "exclusiveMinimum": 0,
+      "minimum": 0,
+      "title": "Frame Count",
+      "type": "integer"
+    },
+    "normalization_bytes": {
+      "minimum": 0,
+      "title": "Normalization Bytes",
+      "type": "integer"
+    },
+    "profile": {
+      "$ref": "#/$defs/OutputProfile"
+    },
+    "required_additional_bytes": {
+      "minimum": 0,
+      "title": "Required Additional Bytes",
+      "type": "integer"
+    },
+    "reserve_bytes": {
+      "minimum": 0,
+      "title": "Reserve Bytes",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "sufficient": {
+      "title": "Sufficient",
+      "type": "boolean"
+    },
+    "video_bytes": {
+      "minimum": 0,
+      "title": "Video Bytes",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "snapshot_sha256",
+    "first_frame",
+    "frame_count",
+    "profile",
+    "available_bytes",
+    "normalization_bytes",
+    "video_bytes",
+    "audio_bytes",
+    "reserve_bytes",
+    "required_additional_bytes",
+    "sufficient",
+    "assumptions"
+  ],
+  "title": "StorageEstimate",
+  "type": "object"
+}

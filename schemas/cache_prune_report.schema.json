@@ -1,0 +1,44 @@
+{
+  "$id": "urn:tabi:schema:1.0:cache_prune_report",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "cache_prune_report",
+      "default": "cache_prune_report",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "remaining_entry_bytes": {
+      "minimum": 0,
+      "title": "Remaining Entry Bytes",
+      "type": "integer"
+    },
+    "removed": {
+      "items": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "title": "Removed",
+      "type": "array"
+    },
+    "removed_entry_bytes": {
+      "minimum": 0,
+      "title": "Removed Entry Bytes",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "removed",
+    "removed_entry_bytes",
+    "remaining_entry_bytes"
+  ],
+  "title": "CachePruneReport",
+  "type": "object"
+}

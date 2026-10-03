@@ -5,6 +5,8 @@ from pathlib import Path
 
 from PIL import Image, ImageCms
 
+from ..cache.keys import image_descriptor
+from ..cache.store import CacheStore
 from ..models import Asset
 from ..models.base import content_hash
 from ..process import checkpoint
@@ -18,6 +20,8 @@ class ImageNormalizer:
         folder.mkdir()
         self.prepared: dict[str, Path] = {}
         self.warnings: set[str] = set()
+        self.cache = CacheStore(registry.assets.store)
+        self.cache_hits = 0
 
     def prepare(self, asset: Asset, frame: int = 0) -> Path:
         checkpoint()
@@ -31,16 +35,28 @@ class ImageNormalizer:
         if frame < 0 or frame >= len(asset.files):
             raise RenderError("source frame is outside its prepared media")
         record = asset.files[frame]
-        key = content_hash(
-            {
-                "kind": asset.kind,
-                "source": record.model_dump(),
-                "probe": asset.probe.model_dump(),
-                "crop": asset.compatibility.crop.model_dump() if asset.compatibility.crop else None,
-            }
-        )
+        descriptor = image_descriptor(asset, frame, self.registry.snapshot.purpose)
+        key = content_hash(descriptor)
         if key in self.prepared:
             return self.prepared[key]
+        output = self.folder / f"{key}.png"
+        cached = self.cache.lookup("normalized_image", descriptor, destination=output)
+        if cached:
+            try:
+                with Image.open(output) as verified:
+                    verified.load()
+                    canvas = asset.compatibility.crop or asset.probe.canvas
+                    if verified.mode != ("L" if asset.kind == "mask" else "RGBA") or (
+                        verified.size != (canvas.width, canvas.height)
+                    ):
+                        raise RenderError("cached PNG has incompatible dimensions or mode")
+                self.warnings.update(cached.warnings)
+                self.prepared[key] = output
+                self.cache_hits += 1
+                return output
+            except (ValueError, OSError):
+                output.unlink()  # New scratch link only; preserve the cache/source bytes.
+        warnings = set()
         path = self.registry.assets.resolve(record.location)
         with Image.open(path) as source:
             source.load()
@@ -70,14 +86,11 @@ class ImageNormalizer:
                         raise RenderError(
                             "untagged source color needs explicit sRGB preparation/approval"
                         )
-                    self.warnings.add(
-                        f"{asset.id}: untagged RGB interpreted as sRGB for draft preview"
-                    )
+                    warnings.add(f"{asset.id}: untagged RGB interpreted as sRGB for draft preview")
             if crop := asset.compatibility.crop:
                 image = image.crop((crop.x, crop.y, crop.x + crop.width, crop.y + crop.height))
             # Numeric mask values and straight-alpha edge colors stay unchanged.
             image.info.clear()
-            output = self.folder / f"{key}.png"
             image.save(output, format="PNG")
             with Image.open(output) as verified:
                 verified.load()
@@ -87,5 +100,9 @@ class ImageNormalizer:
                     or verified.tobytes() != image.tobytes()
                 ):
                     raise RenderError("normalized PNG failed independent decode verification")
+        self.warnings.update(warnings)
+        self.cache.put(
+            "normalized_image", descriptor, output, warnings=warnings, refresh=bool(cached)
+        )
         self.prepared[key] = output
         return output

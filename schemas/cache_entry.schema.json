@@ -426,150 +426,280 @@
       ],
       "title": "FrameRate",
       "type": "object"
+    },
+    "HashedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "location",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "HashedFile",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    },
+    "RenderReport": {
+      "additionalProperties": false,
+      "properties": {
+        "assembly": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssemblyInfo"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "audio_mix": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AudioMixReport"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "audio_verification": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AudioVerification"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "backend": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "cache_reuse": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CacheReuse"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "document_type": {
+          "const": "render_report",
+          "default": "render_report",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "first_frame": {
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "full_decode_passed": {
+          "title": "Full Decode Passed",
+          "type": "boolean"
+        },
+        "graph_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Graph Sha256",
+          "type": "string"
+        },
+        "normalized_cache_hits": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Normalized Cache Hits",
+          "type": "integer"
+        },
+        "normalized_images": {
+          "minimum": 0,
+          "title": "Normalized Images",
+          "type": "integer"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "output_bytes": {
+          "exclusiveMinimum": 0,
+          "title": "Output Bytes",
+          "type": "integer"
+        },
+        "output_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Output Sha256",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "preview",
+            "production",
+            "synthetic_test"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        },
+        "render_seconds": {
+          "exclusiveMinimum": 0,
+          "title": "Render Seconds",
+          "type": "number"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "timestamps_verified": {
+          "title": "Timestamps Verified",
+          "type": "boolean"
+        },
+        "toolchain_fingerprint": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Toolchain Fingerprint",
+          "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "purpose",
+        "snapshot_sha256",
+        "first_frame",
+        "frame_count",
+        "canvas",
+        "fps",
+        "output",
+        "output_sha256",
+        "output_bytes",
+        "graph_sha256",
+        "backend",
+        "toolchain_fingerprint",
+        "render_seconds",
+        "full_decode_passed",
+        "timestamps_verified",
+        "normalized_images"
+      ],
+      "title": "RenderReport",
+      "type": "object"
     }
   },
-  "$id": "urn:tabi:schema:1.0:render_report",
+  "$id": "urn:tabi:schema:1.0:cache_entry",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "assembly": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/AssemblyInfo"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
     },
-    "audio_mix": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/AudioMixReport"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
-    },
-    "audio_verification": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/AudioVerification"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
-    },
-    "backend": {
-      "$ref": "#/$defs/Fingerprint"
-    },
-    "cache_reuse": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/CacheReuse"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null
-    },
-    "canvas": {
-      "$ref": "#/$defs/Canvas"
+    "descriptor": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "title": "Descriptor",
+      "type": "object"
     },
     "document_type": {
-      "const": "render_report",
-      "default": "render_report",
+      "const": "cache_entry",
+      "default": "cache_entry",
       "title": "Document Type",
       "type": "string"
     },
-    "first_frame": {
-      "minimum": 0,
-      "title": "First Frame",
-      "type": "integer"
-    },
-    "fps": {
-      "$ref": "#/$defs/FrameRate"
-    },
-    "frame_count": {
-      "exclusiveMinimum": 0,
-      "title": "Frame Count",
-      "type": "integer"
-    },
-    "full_decode_passed": {
-      "title": "Full Decode Passed",
-      "type": "boolean"
-    },
-    "graph_sha256": {
+    "key": {
       "pattern": "^[0-9a-f]{64}$",
-      "title": "Graph Sha256",
+      "title": "Key",
       "type": "string"
     },
-    "normalized_cache_hits": {
-      "default": 0,
-      "minimum": 0,
-      "title": "Normalized Cache Hits",
-      "type": "integer"
-    },
-    "normalized_images": {
-      "minimum": 0,
-      "title": "Normalized Images",
-      "type": "integer"
+    "kind": {
+      "enum": [
+        "normalized_image",
+        "video_chunk"
+      ],
+      "title": "Kind",
+      "type": "string"
     },
     "output": {
-      "title": "Output",
-      "type": "string"
+      "$ref": "#/$defs/HashedFile"
     },
-    "output_bytes": {
-      "exclusiveMinimum": 0,
-      "title": "Output Bytes",
-      "type": "integer"
-    },
-    "output_sha256": {
-      "pattern": "^[0-9a-f]{64}$",
-      "title": "Output Sha256",
-      "type": "string"
-    },
-    "purpose": {
-      "enum": [
-        "preview",
-        "production",
-        "synthetic_test"
+    "report": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RenderReport"
+        },
+        {
+          "type": "null"
+        }
       ],
-      "title": "Purpose",
-      "type": "string"
-    },
-    "render_seconds": {
-      "exclusiveMinimum": 0,
-      "title": "Render Seconds",
-      "type": "number"
+      "default": null
     },
     "schema_version": {
       "const": "1.0",
       "title": "Schema Version",
       "type": "string"
     },
-    "snapshot_sha256": {
-      "pattern": "^[0-9a-f]{64}$",
-      "title": "Snapshot Sha256",
-      "type": "string"
-    },
-    "timestamps_verified": {
-      "title": "Timestamps Verified",
-      "type": "boolean"
-    },
-    "toolchain_fingerprint": {
-      "pattern": "^[0-9a-f]{64}$",
-      "title": "Toolchain Fingerprint",
-      "type": "string"
-    },
     "warnings": {
       "items": {
+        "minLength": 1,
         "type": "string"
       },
       "title": "Warnings",
@@ -578,23 +708,12 @@
   },
   "required": [
     "schema_version",
-    "purpose",
-    "snapshot_sha256",
-    "first_frame",
-    "frame_count",
-    "canvas",
-    "fps",
-    "output",
-    "output_sha256",
-    "output_bytes",
-    "graph_sha256",
-    "backend",
-    "toolchain_fingerprint",
-    "render_seconds",
-    "full_decode_passed",
-    "timestamps_verified",
-    "normalized_images"
+    "kind",
+    "key",
+    "descriptor",
+    "created_at",
+    "output"
   ],
-  "title": "RenderReport",
+  "title": "CacheEntry",
   "type": "object"
 }
