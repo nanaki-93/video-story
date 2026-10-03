@@ -1,0 +1,107 @@
+{
+  "$defs": {
+    "CurveKey": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "minimum": 0,
+          "title": "Frame",
+          "type": "integer"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "frame",
+        "value"
+      ],
+      "title": "CurveKey",
+      "type": "object"
+    },
+    "ParameterLimit": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum": {
+          "title": "Maximum",
+          "type": "number"
+        },
+        "minimum": {
+          "title": "Minimum",
+          "type": "number"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ],
+      "title": "ParameterLimit",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:curve",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "interpolation": {
+      "enum": [
+        "constant",
+        "linear"
+      ],
+      "title": "Interpolation",
+      "type": "string"
+    },
+    "keys": {
+      "items": {
+        "$ref": "#/$defs/CurveKey"
+      },
+      "minItems": 1,
+      "title": "Keys",
+      "type": "array"
+    },
+    "limits": {
+      "$ref": "#/$defs/ParameterLimit"
+    },
+    "outside": {
+      "default": "clamp",
+      "enum": [
+        "clamp",
+        "zero"
+      ],
+      "title": "Outside",
+      "type": "string"
+    },
+    "scope": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Scope",
+      "type": "string"
+    },
+    "target": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Target",
+      "type": "string"
+    },
+    "unit": {
+      "enum": [
+        "design_px_per_second",
+        "fraction",
+        "degrees",
+        "design_px",
+        "db"
+      ],
+      "title": "Unit",
+      "type": "string"
+    }
+  },
+  "required": [
+    "scope",
+    "target",
+    "unit",
+    "interpolation",
+    "limits",
+    "keys"
+  ],
+  "title": "Curve",
+  "type": "object"
+}

@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test help
+.PHONY: setup check test help schemas
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -8,7 +8,11 @@ setup:
 check:
 	$(UV) run --frozen ruff check src tests scripts
 	$(UV) run --frozen ruff format --check src tests scripts
+	$(UV) run --frozen python scripts/export_schemas.py --check
 	$(UV) run --frozen pytest
+
+schemas:
+	$(UV) run --frozen python scripts/export_schemas.py
 
 test:
 	$(UV) run --frozen pytest

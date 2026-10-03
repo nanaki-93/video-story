@@ -1,7 +1,11 @@
 # Example contracts
 
-These JSON files illustrate the proposed project contracts. They reference nonexistent media and have draft approval. Do not run them as if they were finished assets. T03 implements the final schemas and validates these files; T04 generates the corresponding small synthetic fixture pack or a schema-equivalent fixture.
+These JSON files now pass the strict Python models and published JSON Schemas. `make check` validates them and checks schema drift. They remain illustrative drafts with unresolved media/approvals; successful structural validation does not make them renderable or production-approved.
 
-Pilot length: 3600 frames at 30 fps = 120 seconds. Audio length: 5,760,000 samples at 48 kHz = 120 seconds. Body action intervals cover the entire timeline without gaps; the two transitions are 45 frames each. Observe is a loop and repeats to fill its authored interval. No arbitrary transition retiming is intended.
+All root documents explicitly declare `schema_version` and `document_type`. Scene/action/track references use stable asset IDs and versions. Draft hashes may remain null; a compiled snapshot requires resolved hashes for its direct references. T05/T13 must resolve media, transitive dependencies and compatibility before rendering.
 
-Paths use project-relative locations. All runtime fields missing from these illustrations, including complete hashes, registry provenance and approval records, must be filled by import/compile rather than fabricated.
+Pilot length: 3600 frames at 30/1 fps = 120 seconds. Audio length: 5,760,000 samples at 48 kHz. Body action intervals cover the timeline; entry and exit transitions are 45 frames each. Repeat policies, curve limits and scene transition kinds are explicit. Template layer dimensions/periods are illustrative design values, not measurements or approval of supplied artwork.
+
+`asset.synthetic.json` records the actual SHA-256 and size of `tests/fixtures/synthetic/pixel.ppm`, a two-pixel owned fixture for schema checks. It is labeled synthetic and cannot receive production approval. Other references do not imply that corresponding media files exist. No licence, approval or generation history has been fabricated.
+
+Timing, registry data and provenance for real sources must be populated by import and review; T04 will create the complete synthetic media pack.

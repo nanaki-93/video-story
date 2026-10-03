@@ -34,9 +34,18 @@ the 38-task dependency graph is acyclic and index/task statuses agree;
 and a final SHA-256 pass matched all 322 original inventory entries. All five
 local MP4 files remain present.
 
+## T03 — step 1 complete; persistence in progress
+
+Bootstrap committed as `e5ae06b` (`T01: bootstrap Python core and plan local web app`).
+The contracts step is committed separately as `T03: define strict contracts and publish JSON schemas`.
+
+Implemented all required nested model families, nine root document types and 14 generated JSON Schemas. Added strict scalar/version/field checks, canonical JSON, safe YAML with duplicate/alias/tag rejection, hash-bound approvals, rational frame/sample boundaries and structural scene/action/audio/snapshot validation. All five example documents now validate; the two-pixel fixture is synthetic and has a real recorded hash. Media existence, compiler behavior and artistic approval remain separate future gates.
+
+`make schemas && make check`: 14 schemas generated/checked; Ruff passed; **81 tests passed**. Runtime dependencies added and locked: Pydantic 2.13.5 and PyYAML 6.0.3; jsonschema 4.26.0 is a development verification dependency. Atomic saves, locks, revisions and migration backup acceptance remain outstanding for the next step of T03.
+
 ## Next task and pending gates
 
-**Next: T03 — schemas and safe project persistence.** T02 follows with a real FFmpeg capability/render spike; neither tool was on PATH during this audit. M0 remains incomplete until those gates pass. All other application tasks remain planned; this repository cannot render or launch a web UI yet.
+**Current: T03 — safe project persistence.** T02 follows with a real FFmpeg capability/render spike; neither tool was on PATH during this audit. M0 remains incomplete until those gates pass. All other application tasks remain planned; this repository cannot render or launch a web UI yet.
 
 Pending target-Mac checks: installed FFmpeg/ffprobe, mask/alpha/speed rendering, VideoToolbox quality, render time/memory, browser seeking/audio/authentication, local packaged launch, cancellation/resume and backup recovery. Native decoding on this M5 Pro does not establish those capabilities.
 

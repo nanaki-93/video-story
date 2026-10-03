@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:action_request",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "channel": {
+      "enum": [
+        "body",
+        "face"
+      ],
+      "title": "Channel",
+      "type": "string"
+    },
+    "conflict_behavior": {
+      "const": "error",
+      "default": "error",
+      "title": "Conflict Behavior",
+      "type": "string"
+    },
+    "end_frame": {
+      "minimum": 0,
+      "title": "End Frame",
+      "type": "integer"
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "pack": {
+      "$ref": "#/$defs/AssetRef"
+    },
+    "repeat": {
+      "enum": [
+        "once",
+        "loop_to_fill"
+      ],
+      "title": "Repeat",
+      "type": "string"
+    },
+    "scene_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Scene Id",
+      "type": "string"
+    },
+    "start_frame": {
+      "minimum": 0,
+      "title": "Start Frame",
+      "type": "integer"
+    },
+    "version": {
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "start_frame",
+    "end_frame",
+    "id",
+    "scene_id",
+    "pack",
+    "action_id",
+    "version",
+    "channel",
+    "repeat"
+  ],
+  "title": "ActionRequest",
+  "type": "object"
+}

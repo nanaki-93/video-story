@@ -2,7 +2,7 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** T01 is implemented: Python package, CLI settings/version, structured diagnostics, locked development dependencies and tests. The web UI, project schemas and media renderer are planned, not runnable yet. See [progress](docs/progress.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** T01 is implemented. T03 contracts and generated schemas are available; safe project persistence is in progress. The CLI currently exposes settings/version; the web UI and renderer remain planned. See [progress](docs/progress.md) and the [implementation/asset review](docs/09-implementation-review.md).
 
 ## Development setup
 
@@ -20,7 +20,7 @@ make help
 .venv/bin/tabi config --json
 ```
 
-`make setup` installs the locked development and image-audit dependencies. It uses `.tools/bin/uv` if present, or `uv` on PATH; override with `make setup UV=/path/to/uv`. No runtime Python dependencies are required by the current CLI. Node/frontend tooling enters in T25, and is planned as a build dependency only.
+`make setup` installs the locked development and image-audit dependencies. It uses `.tools/bin/uv` if present, or `uv` on PATH; override with `make setup UV=/path/to/uv`. Pydantic and PyYAML provide the shared document contracts and loading. Node/frontend tooling enters in T25, and is planned as a build dependency only.
 
 ## Local configuration
 
@@ -44,10 +44,10 @@ Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T03 (schemas/persistence) is next; T02 then proves the actual media toolchain.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T03 persistence is in progress; T02 then proves the actual media toolchain.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
-The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. T03 must adapt and validate them against complete schemas; they are not working production projects.
+The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.
 
 ## Supplied assets and Git policy
 

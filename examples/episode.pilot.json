@@ -43,8 +43,12 @@
           "headphones": "worn"
         }
       },
-      "transition_in": "cut",
-      "transition_out": "cut"
+      "transition_in": {
+        "kind": "cut"
+      },
+      "transition_out": {
+        "kind": "cut"
+      }
     }
   ],
   "actions": [
@@ -54,7 +58,13 @@
       "version": "1.0",
       "start_frame": 0,
       "end_frame": 900,
-      "channel": "body"
+      "channel": "body",
+      "id": "request-1",
+      "pack": {
+        "id": "character.tabi.seated",
+        "version": "1.0"
+      },
+      "repeat": "loop_to_fill"
     },
     {
       "scene_id": "train-01",
@@ -62,7 +72,13 @@
       "version": "1.0",
       "start_frame": 900,
       "end_frame": 945,
-      "channel": "body"
+      "channel": "body",
+      "id": "request-2",
+      "pack": {
+        "id": "character.tabi.seated",
+        "version": "1.0"
+      },
+      "repeat": "once"
     },
     {
       "scene_id": "train-01",
@@ -70,7 +86,13 @@
       "version": "1.0",
       "start_frame": 945,
       "end_frame": 1755,
-      "channel": "body"
+      "channel": "body",
+      "id": "request-3",
+      "pack": {
+        "id": "character.tabi.seated",
+        "version": "1.0"
+      },
+      "repeat": "loop_to_fill"
     },
     {
       "scene_id": "train-01",
@@ -78,7 +100,13 @@
       "version": "1.0",
       "start_frame": 1755,
       "end_frame": 1800,
-      "channel": "body"
+      "channel": "body",
+      "id": "request-4",
+      "pack": {
+        "id": "character.tabi.seated",
+        "version": "1.0"
+      },
+      "repeat": "once"
     },
     {
       "scene_id": "train-01",
@@ -86,7 +114,13 @@
       "version": "1.0",
       "start_frame": 1800,
       "end_frame": 3600,
-      "channel": "body"
+      "channel": "body",
+      "id": "request-5",
+      "pack": {
+        "id": "character.tabi.seated",
+        "version": "1.0"
+      },
+      "repeat": "loop_to_fill"
     }
   ],
   "curves": [
@@ -116,7 +150,11 @@
           "frame": 3600,
           "value": 0
         }
-      ]
+      ],
+      "limits": {
+        "minimum": 0,
+        "maximum": 80
+      }
     },
     {
       "scope": "train-01",
@@ -136,29 +174,40 @@
           "frame": 3600,
           "value": 1
         }
-      ]
+      ],
+      "limits": {
+        "minimum": 0,
+        "maximum": 1
+      }
     }
   ],
   "events": [
     {
       "scene_id": "train-01",
       "type": "landmark",
-      "asset_id": "landmark.tokyo.demo",
       "start_frame": 1200,
       "end_frame": 1650,
-      "repeat": false
+      "repeat": false,
+      "id": "event-1",
+      "asset": {
+        "id": "landmark.tokyo.demo",
+        "version": "1.0"
+      }
     }
   ],
   "tracks": [
     {
-      "asset_id": "music.pilot",
-      "version": "1.0",
       "start_sample": 0,
       "trim_start_sample": 0,
       "trim_end_sample": 5760000,
       "gain_db": 0,
       "fade_in_samples": 48000,
-      "fade_out_samples": 96000
+      "fade_out_samples": 96000,
+      "id": "track-1",
+      "asset": {
+        "id": "music.pilot",
+        "version": "1.0"
+      }
     }
   ],
   "continuity": {
@@ -167,5 +216,7 @@
       "headphones"
     ]
   },
-  "example_status": "illustrative_paths_require_generated_or_approved_media"
+  "document_type": "episode",
+  "revision": 0,
+  "notes": "Illustrative draft; media paths, source timing and approvals are unresolved."
 }

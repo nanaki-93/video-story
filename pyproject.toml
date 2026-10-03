@@ -8,13 +8,20 @@ version = "0.1.0"
 description = "Local production tools for authored Tabi music stories"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
-dependencies = []
+dependencies = [
+    "pydantic>=2.10,<3",
+    "pyyaml>=6,<7",
+]
 
 [project.scripts]
 tabi = "tabi.cli.main:main"
 
 [dependency-groups]
-dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+dev = [
+    "jsonschema>=4,<5",
+    "pytest>=8,<10",
+    "ruff>=0.11,<1",
+]
 audit = ["pillow>=11,<13"]
 
 [tool.hatch.build.targets.wheel]

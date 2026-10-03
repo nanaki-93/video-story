@@ -84,3 +84,17 @@ Proposed routes, versioned under `/api/v1`:
 - `POST /releases/prepare`: return folder and validation report.
 
 Requests use typed bodies; long jobs return immediately. Job errors include stable code, user message and diagnostic log reference. Every edit uses a project/episode revision to prevent lost updates. API payloads refer to registered asset IDs, not arbitrary shell arguments. Authentication is required even on loopback: ephemeral bearer tokens for CLI clients, or the verified session cookie for browsers, including video range and SSE requests. Browser mutations also require exact Origin/Host validation and a CSRF header. No credentials in artifact URLs. The full bootstrap and root-access policy is specified in [architecture](02-architecture.md).
+
+## Implemented version-1 contract details (T03)
+
+Python models in `src/tabi/core/models/` are the source of truth. `make schemas` exports 14 Draft 2020-12 schemas under `schemas/`; `make check` detects drift. Nine root document types require `schema_version: "1.0"` and `document_type`: project, asset, action_pack, scene_template, episode, compiled_snapshot, render_job and release_record, plus validation_report. The remaining five schemas describe nested action, scene_instance, track_placement, action_request and curve values.
+
+Every nested model forbids unknown fields. Scalar time values are strict integers (booleans, strings and fractions are rejected); fps is a reduced positive rational. Curve keys use global frames and may include an end boundary for interpolation. Audio placements and fades use samples; the frame/sample conversion uses exact rational arithmetic with ties-to-even.
+
+Media locations have `root_id` (default `project`) and a normalized relative POSIX `path`. Traversal, absolute/URL/drive paths, backslashes and control characters are rejected. Project `root` is `.` for portability; separately registered media roots are absolute local paths. The runtime must additionally enforce filesystem/symlink containment. Scene slots, clips, actions and tracks use typed ID/version references rather than embedding renderer commands or uncontrolled paths.
+
+Asset approval binds `content_sha256` to canonical document content excluding only `approval` and the draft `revision`; file hashes and metadata are part of that content. Edits invalidate the approval. Synthetic assets/snapshots cannot gain production approval. Unknown rights and release identifiers remain pending/null; structural validation cannot establish real rights or human review.
+
+Canonical JSON v1 uses the validated model's JSON values, explicit defaults/nulls, sorted object keys, compact separators, UTF-8 and finite numbers. It is a project encoding rule, not a claim of RFC 8785 conformance. YAML is decoded safely, rejects duplicate/non-string keys, tags, anchors/aliases and non-finite values, and passes through the same JSON validation. Limits are 16 MiB and 64 nesting levels. In-memory models are field-frozen; persistence must revalidate nested collections before writing.
+
+Generated JSON Schema describes structural fields and nested types; Python additionally checks cross-field intervals, references, path normalization and approval hashes. A frontend must use the Python validation result for these semantics. Validation reports explicitly identify their scope as `structure`; file probes, media compatibility, action-graph compilation, final playback and creative review remain later-task responsibilities.

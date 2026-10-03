@@ -1,0 +1,410 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Credit": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "role"
+      ],
+      "title": "Credit",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    },
+    "ReleaseTrack": {
+      "additionalProperties": false,
+      "properties": {
+        "ai_use_notes": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ai Use Notes"
+        },
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "channels": {
+          "exclusiveMinimum": 0,
+          "title": "Channels",
+          "type": "integer"
+        },
+        "commercial_use_status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "confirmed",
+            "not-permitted"
+          ],
+          "title": "Commercial Use Status",
+          "type": "string"
+        },
+        "credits": {
+          "items": {
+            "$ref": "#/$defs/Credit"
+          },
+          "title": "Credits",
+          "type": "array"
+        },
+        "duration_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Samples",
+          "type": "integer"
+        },
+        "explicit_content": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Explicit Content"
+        },
+        "isrc": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Isrc"
+        },
+        "master": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "release_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Release Url"
+        },
+        "sample_rate": {
+          "exclusiveMinimum": 0,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "source_project": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MediaPath"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "asset",
+        "title",
+        "master",
+        "sample_rate",
+        "channels",
+        "duration_samples"
+      ],
+      "title": "ReleaseTrack",
+      "type": "object"
+    },
+    "ReviewRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "content_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Content Sha256",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "reviewed_at": {
+          "format": "date-time",
+          "title": "Reviewed At",
+          "type": "string"
+        },
+        "reviewer": {
+          "minLength": 1,
+          "title": "Reviewer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reviewer",
+        "reviewed_at",
+        "content_sha256"
+      ],
+      "title": "ReviewRecord",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:release_record",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artist": {
+      "minLength": 1,
+      "title": "Artist",
+      "type": "string"
+    },
+    "claim_notes": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Claim Notes"
+    },
+    "creative_review": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewRecord"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "disclosure_notes": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Disclosure Notes"
+    },
+    "disclosure_reviewed": {
+      "default": false,
+      "title": "Disclosure Reviewed",
+      "type": "boolean"
+    },
+    "document_type": {
+      "const": "release_record",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published At"
+    },
+    "release_links": {
+      "patternProperties": {
+        "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "title": "Release Links",
+      "type": "object"
+    },
+    "release_title": {
+      "minLength": 1,
+      "title": "Release Title",
+      "type": "string"
+    },
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "rights_status": {
+      "default": "pending",
+      "enum": [
+        "pending",
+        "confirmed",
+        "not-permitted"
+      ],
+      "title": "Rights Status",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "technically_verified",
+        "creatively_reviewed",
+        "rights_reviewed",
+        "ready_for_manual_upload",
+        "uploaded",
+        "published"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "technical_report": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MediaPath"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "tracks": {
+      "items": {
+        "$ref": "#/$defs/ReleaseTrack"
+      },
+      "minItems": 1,
+      "title": "Tracks",
+      "type": "array"
+    },
+    "upc": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Upc"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "document_type",
+    "artist",
+    "release_title",
+    "tracks"
+  ],
+  "title": "ReleaseRecord",
+  "type": "object"
+}

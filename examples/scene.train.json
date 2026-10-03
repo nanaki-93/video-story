@@ -24,37 +24,64 @@
       "id": "cabin",
       "z": 0,
       "kind": "still",
-      "path": "assets/train/cabin.png"
+      "asset": {
+        "id": "train.cabin",
+        "version": "1.0"
+      }
     },
     {
       "id": "far",
       "z": 10,
       "kind": "tile_strip",
-      "path": "assets/tokyo/far.png",
-      "mask": "assets/train/window-mask.png",
-      "depth_factor": 0.2
+      "mask": {
+        "id": "train.window-mask",
+        "version": "1.0"
+      },
+      "depth_factor": 0.2,
+      "asset": {
+        "id": "tokyo.far",
+        "version": "1.0"
+      },
+      "tile_period": 3840
     },
     {
       "id": "mid",
       "z": 11,
       "kind": "tile_strip",
-      "path": "assets/tokyo/mid.png",
-      "mask": "assets/train/window-mask.png",
-      "depth_factor": 1.0
+      "mask": {
+        "id": "train.window-mask",
+        "version": "1.0"
+      },
+      "depth_factor": 1.0,
+      "asset": {
+        "id": "tokyo.mid",
+        "version": "1.0"
+      },
+      "tile_period": 3840
     },
     {
       "id": "near",
       "z": 12,
       "kind": "tile_strip",
-      "path": "assets/tokyo/near.png",
-      "mask": "assets/train/window-mask.png",
-      "depth_factor": 3.5
+      "mask": {
+        "id": "train.window-mask",
+        "version": "1.0"
+      },
+      "depth_factor": 3.5,
+      "asset": {
+        "id": "tokyo.near",
+        "version": "1.0"
+      },
+      "tile_period": 3840
     },
     {
       "id": "landmark",
       "z": 13,
       "kind": "scheduled_sprite",
-      "mask": "assets/train/window-mask.png"
+      "mask": {
+        "id": "train.window-mask",
+        "version": "1.0"
+      }
     },
     {
       "id": "character",
@@ -66,9 +93,31 @@
       "id": "foreground",
       "z": 40,
       "kind": "still",
-      "path": "assets/train/table.png"
+      "asset": {
+        "id": "train.table",
+        "version": "1.0"
+      }
     }
   ],
   "mask_semantics": "white_visible_black_hidden",
-  "approval": "draft"
+  "approval": {
+    "status": "draft"
+  },
+  "document_type": "scene_template",
+  "camera_id": "train.three-quarter.v1",
+  "revision": 0,
+  "channels": [
+    "body",
+    "face"
+  ],
+  "parameter_limits": {
+    "travel_speed": {
+      "minimum": 0,
+      "maximum": 80
+    },
+    "dusk_mix": {
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
 }

@@ -1,0 +1,107 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:track_placement",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "asset": {
+      "$ref": "#/$defs/AssetRef"
+    },
+    "fade_in_samples": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Fade In Samples",
+      "type": "integer"
+    },
+    "fade_out_samples": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Fade Out Samples",
+      "type": "integer"
+    },
+    "gain_db": {
+      "default": 0.0,
+      "title": "Gain Db",
+      "type": "number"
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "release_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Release Id"
+    },
+    "role": {
+      "default": "music",
+      "enum": [
+        "music",
+        "ambience"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "sample_rate": {
+      "const": 48000,
+      "default": 48000,
+      "title": "Sample Rate",
+      "type": "integer"
+    },
+    "start_sample": {
+      "minimum": 0,
+      "title": "Start Sample",
+      "type": "integer"
+    },
+    "trim_end_sample": {
+      "minimum": 0,
+      "title": "Trim End Sample",
+      "type": "integer"
+    },
+    "trim_start_sample": {
+      "minimum": 0,
+      "title": "Trim Start Sample",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "asset",
+    "start_sample",
+    "trim_start_sample",
+    "trim_end_sample"
+  ],
+  "title": "TrackPlacement",
+  "type": "object"
+}

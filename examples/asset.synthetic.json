@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "document_type": "asset",
+  "id": "fixture.two-pixels",
+  "version": "1.0",
+  "kind": "still",
+  "source": {
+    "path": "tests/fixtures/synthetic/pixel.ppm"
+  },
+  "files": [
+    {
+      "location": {
+        "path": "tests/fixtures/synthetic/pixel.ppm"
+      },
+      "sha256": "470a2e13d8f47b888bd80e8fb003ae8e9429e34c37b0a68b9606891dca880e94",
+      "size_bytes": 87
+    }
+  ],
+  "probe": {
+    "canvas": {
+      "width": 2,
+      "height": 1
+    },
+    "color_space": "srgb",
+    "alpha_mode": "none"
+  },
+  "provenance": {
+    "origin": "synthetic",
+    "creator": "Tabi test fixture",
+    "notes": "Two colored pixels for contract tests only; not approved for publication."
+  }
+}

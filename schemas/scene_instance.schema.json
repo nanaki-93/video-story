@@ -1,0 +1,444 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Curve": {
+      "additionalProperties": false,
+      "properties": {
+        "interpolation": {
+          "enum": [
+            "constant",
+            "linear"
+          ],
+          "title": "Interpolation",
+          "type": "string"
+        },
+        "keys": {
+          "items": {
+            "$ref": "#/$defs/CurveKey"
+          },
+          "minItems": 1,
+          "title": "Keys",
+          "type": "array"
+        },
+        "limits": {
+          "$ref": "#/$defs/ParameterLimit"
+        },
+        "outside": {
+          "default": "clamp",
+          "enum": [
+            "clamp",
+            "zero"
+          ],
+          "title": "Outside",
+          "type": "string"
+        },
+        "scope": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scope",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Target",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "design_px_per_second",
+            "fraction",
+            "degrees",
+            "design_px",
+            "db"
+          ],
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "target",
+        "unit",
+        "interpolation",
+        "limits",
+        "keys"
+      ],
+      "title": "Curve",
+      "type": "object"
+    },
+    "CurveKey": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "minimum": 0,
+          "title": "Frame",
+          "type": "integer"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "frame",
+        "value"
+      ],
+      "title": "CurveKey",
+      "type": "object"
+    },
+    "LandmarkEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "repeat": {
+          "const": false,
+          "default": false,
+          "title": "Repeat",
+          "type": "boolean"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "type": {
+          "const": "landmark",
+          "title": "Type",
+          "type": "string"
+        },
+        "world_x": {
+          "default": 0.0,
+          "title": "World X",
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame",
+        "type",
+        "id",
+        "scene_id",
+        "asset"
+      ],
+      "title": "LandmarkEvent",
+      "type": "object"
+    },
+    "ParameterLimit": {
+      "additionalProperties": false,
+      "properties": {
+        "maximum": {
+          "title": "Maximum",
+          "type": "number"
+        },
+        "minimum": {
+          "title": "Minimum",
+          "type": "number"
+        }
+      },
+      "required": [
+        "minimum",
+        "maximum"
+      ],
+      "title": "ParameterLimit",
+      "type": "object"
+    },
+    "PropEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "minimum": 0,
+          "title": "Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "location": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Location",
+          "type": "string"
+        },
+        "object_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Object Id",
+          "type": "string"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "prop",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "scene_id",
+        "frame",
+        "object_id",
+        "location"
+      ],
+      "title": "PropEvent",
+      "type": "object"
+    },
+    "SceneState": {
+      "additionalProperties": false,
+      "properties": {
+        "body_pose": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Body Pose",
+          "type": "string"
+        },
+        "cabin_light": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cabin Light"
+        },
+        "facial_overlay": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Facial Overlay"
+        },
+        "props": {
+          "patternProperties": {
+            "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            }
+          },
+          "title": "Props",
+          "type": "object"
+        },
+        "travel_distance_px": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Travel Distance Px",
+          "type": "number"
+        },
+        "weather_phase_frame": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Weather Phase Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "body_pose"
+      ],
+      "title": "SceneState",
+      "type": "object"
+    },
+    "Transition": {
+      "additionalProperties": false,
+      "properties": {
+        "character_policy": {
+          "default": "cut",
+          "enum": [
+            "cut",
+            "single_visible",
+            "matched"
+          ],
+          "title": "Character Policy",
+          "type": "string"
+        },
+        "kind": {
+          "default": "cut",
+          "enum": [
+            "cut",
+            "overlap"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "match_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "overlap_frames": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Overlap Frames",
+          "type": "integer"
+        }
+      },
+      "title": "Transition",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:scene_instance",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "anchor": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Anchor"
+    },
+    "continuity": {
+      "default": "preserve",
+      "enum": [
+        "preserve",
+        "deliberate_reset"
+      ],
+      "title": "Continuity",
+      "type": "string"
+    },
+    "curves": {
+      "items": {
+        "$ref": "#/$defs/Curve"
+      },
+      "title": "Curves",
+      "type": "array"
+    },
+    "end_frame": {
+      "minimum": 0,
+      "title": "End Frame",
+      "type": "integer"
+    },
+    "events": {
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "landmark": "#/$defs/LandmarkEvent",
+            "prop": "#/$defs/PropEvent"
+          },
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/LandmarkEvent"
+          },
+          {
+            "$ref": "#/$defs/PropEvent"
+          }
+        ]
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "final_state": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SceneState"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "initial_state": {
+      "$ref": "#/$defs/SceneState"
+    },
+    "slot_assignments": {
+      "patternProperties": {
+        "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
+          "$ref": "#/$defs/AssetRef"
+        }
+      },
+      "title": "Slot Assignments",
+      "type": "object"
+    },
+    "start_frame": {
+      "minimum": 0,
+      "title": "Start Frame",
+      "type": "integer"
+    },
+    "template": {
+      "$ref": "#/$defs/AssetRef"
+    },
+    "transition_in": {
+      "$ref": "#/$defs/Transition"
+    },
+    "transition_out": {
+      "$ref": "#/$defs/Transition"
+    }
+  },
+  "required": [
+    "start_frame",
+    "end_frame",
+    "id",
+    "template",
+    "initial_state"
+  ],
+  "title": "SceneInstance",
+  "type": "object"
+}
