@@ -199,3 +199,22 @@ Cross-job caching/storage management follows in T22. Final-resolution hardware q
 Verification: `make check` passes **31 schemas and 222 unit checks**, Ruff clean. `make test-media` passes **all 39 actual-media checks**; the cache test was expanded and rerun after adding runtime-version fingerprints. Actual audio edits reuse video and change decoded gain, corrupted cache payloads rerender, and changed motion/source bytes invalidate cached output. [Retained evidence](21-cache-storage.md) records 4 initial video graphs, 0 for an audio-only edit and 1 after corrupting one cached chunk, with one AAC encode each. Explicit pruning removes 29 entries while all 54 checked source/snapshot/export files retain their hashes. All MP4s stay ignored.
 
 Disk requirements remain conservative estimates rather than reserved space. Project-local cache storage is implemented; the early global `cache_root` setting is reserved. T23/T37 still own final-resolution quality and sustained performance checks.
+
+## T23 — complete
+
+`T23: verify final export profiles and target-Mac performance` adds explicit proxy/1080p/4K presets,
+AAC-LC rates, shared final encoder arguments, full frame/PTS/color/audio verification, Fast Start
+inspection and completed-export revalidation. A reproduced VideoToolbox short-chunk timestamp
+defect is rejected and avoided by disabling hardware B frames. Per-frame alpha LUTs replace the
+expensive per-pixel opacity expression while retaining independently tested global-frame behavior.
+
+Verification: `make check` passes **32 schemas and 224 unit checks**, Ruff clean; `make test-media`
+passes **all 48 actual-media checks** in 195.12 seconds. Both 60-second M5 Pro stress exports verify
+1,800 frames and 2,880,000 samples. Software 1080p finishes in **94.22 seconds / 19.10 fps / 3.58 GiB**
+sampled RSS; 4K VideoToolbox in **260.69 seconds / 6.90 fps / 3.15 GiB**. All twelve sampled decoded
+frame comparisons pass; frame-151 PNGs were visually inspected. [Methods and retained evidence](22-export-profiles.md)
+include the earlier cancelled run and rejected hardware packet trace. No MP4 enters Git.
+
+The benchmark uses synthetic art on a native 1080p canvas; the 4K output scales that composition.
+Native 4K design and sustained long-form resource use remain T37. Production artwork, music and
+creative approval remain pending; delivery verification does not grant publication approval.

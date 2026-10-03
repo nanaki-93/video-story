@@ -37,7 +37,9 @@ def inputs(tmp_path, monkeypatch):
     service = JobService(assets, settings)
     monkeypatch.setattr(
         "tabi.core.jobs.service.doctor",
-        lambda *args: SimpleNamespace(ready=True, fingerprint="a" * 64),
+        lambda *args: SimpleNamespace(
+            ready=True, fingerprint="a" * 64, encoders=["libx264", "aac"]
+        ),
     )
     return compiler, snapshot, profile, service
 

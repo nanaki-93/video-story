@@ -14,11 +14,12 @@ from ..cache.storage import estimate_storage
 from ..cache.store import CacheStore
 from ..models.base import HashedFile, MediaPath, canonical_bytes, content_hash, relative_path
 from ..models.production import JobError, OutputProfile, RenderJob
-from ..models.rendering import CacheReuse, RenderReport
+from ..models.rendering import CacheReuse, ExportVerification, RenderReport
 from ..process import ExecutionScope, OperationCancelled, ToolError, checkpoint, execution_scope
 from ..render.assembly import VideoAssembler
 from ..render.backend import FrozenRegistry, backend_fingerprint
 from ..render.ffmpeg import FFmpegRenderer, verify_video
+from ..render.profiles import require_encoder
 from ..toolchain import doctor
 from .ledger import JobLedger, revised
 from .planner import pipeline_fingerprint, plan_chunks, video_profile
@@ -158,6 +159,7 @@ class JobService:
         capabilities = doctor(self.settings, self.store.root)
         if not capabilities.ready:
             raise ValueError("media tools/storage are not ready; run tabi doctor")
+        require_encoder(capabilities, job.profile)
         if job.plan.toolchain_fingerprint not in {None, capabilities.fingerprint}:
             raise ValueError("media toolchain changed; create a new job")
         return capabilities.fingerprint
@@ -432,7 +434,9 @@ class JobService:
                 or previous.assembly is not None
             ):
                 raise ValueError("cached report is incompatible with this chunk")
-            verify_video(self.settings, output, video_profile(job.profile), chunk.frame_count)
+            verified = verify_video(
+                self.settings, output, video_profile(job.profile), chunk.frame_count
+            )
             return RenderReport.model_validate(
                 {
                     **previous.model_dump(),
@@ -441,6 +445,7 @@ class JobService:
                     "render_seconds": time.monotonic() - started,
                     "normalized_images": 0,
                     "normalized_cache_hits": 0,
+                    "video_verification": verified,
                     "cache_reuse": CacheReuse(
                         key=entry.key,
                         origin_snapshot_sha256=previous.snapshot_sha256,
@@ -452,6 +457,43 @@ class JobService:
         except (ValueError, OSError, ToolError):
             output.unlink(missing_ok=True)  # Only this new, independent job copy.
             return None
+
+    def verify_export(self, identity):
+        job = self.ledger.get(identity)
+        if job.state != "verified" or job.output is None or job.destination is None:
+            raise ValueError("export verification requires a completed job")
+        if job.output.location != MediaPath(path=job.destination):
+            raise JobOwnershipError("completed output differs from the job destination")
+        artifact = self._artifact(job.destination)
+        if artifact != job.output:
+            raise ValueError("export bytes differ from the verified job")
+        self.store.read_snapshot(job.snapshot_sha256)
+        video = verify_video(
+            self.settings, self.store.root / job.destination, job.profile, job.duration_frames
+        )
+        audio = None
+        if job.profile.audio_codec:
+            with tempfile.TemporaryDirectory(
+                prefix=".tabi-verify-", dir=self.store.root / "jobs"
+            ) as scratch:
+                audio = verify_aac(
+                    self.settings,
+                    self.store.root / job.destination,
+                    job.profile.fps.sample_at(job.first_frame + job.duration_frames)
+                    - job.profile.fps.sample_at(job.first_frame),
+                    Path(scratch),
+                )
+        if self._artifact(job.destination) != artifact:
+            raise ValueError("export changed during verification")
+        return ExportVerification(
+            schema_version="1.0",
+            job_id=job.id,
+            snapshot_sha256=job.snapshot_sha256,
+            output=artifact,
+            profile=job.profile,
+            video=video,
+            audio=audio,
+        )
 
     def _existing_assembly(self, job):
         if job.output is None or job.report_path is None:

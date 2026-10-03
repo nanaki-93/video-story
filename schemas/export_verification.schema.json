@@ -1,0 +1,421 @@
+{
+  "$defs": {
+    "AudioVerification": {
+      "additionalProperties": false,
+      "properties": {
+        "channels": {
+          "const": 2,
+          "default": 2,
+          "title": "Channels",
+          "type": "integer"
+        },
+        "codec": {
+          "const": "aac",
+          "default": "aac",
+          "title": "Codec",
+          "type": "string"
+        },
+        "decoded_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Decoded Samples",
+          "type": "integer"
+        },
+        "intended_samples": {
+          "exclusiveMinimum": 0,
+          "title": "Intended Samples",
+          "type": "integer"
+        },
+        "padding_samples": {
+          "minimum": 0,
+          "title": "Padding Samples",
+          "type": "integer"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "intended_samples",
+        "decoded_samples",
+        "padding_samples"
+      ],
+      "title": "AudioVerification",
+      "type": "object"
+    },
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "title": "Canvas",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "HashedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "location",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "HashedFile",
+      "type": "object"
+    },
+    "MP4Layout": {
+      "additionalProperties": false,
+      "properties": {
+        "fast_start": {
+          "const": true,
+          "default": true,
+          "title": "Fast Start",
+          "type": "boolean"
+        },
+        "first_mdat_offset": {
+          "minimum": 0,
+          "title": "First Mdat Offset",
+          "type": "integer"
+        },
+        "moov_offset": {
+          "minimum": 0,
+          "title": "Moov Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "moov_offset",
+        "first_mdat_offset"
+      ],
+      "title": "MP4Layout",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    },
+    "OutputProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "audio_bitrate": {
+          "default": 192000,
+          "maximum": 512000,
+          "minimum": 64000,
+          "title": "Audio Bitrate",
+          "type": "integer"
+        },
+        "audio_codec": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audio Codec"
+        },
+        "audio_gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Audio Gain Db",
+          "type": "number"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "color_space": {
+          "const": "bt709",
+          "title": "Color Space",
+          "type": "string"
+        },
+        "container": {
+          "enum": [
+            "mp4",
+            "mkv"
+          ],
+          "title": "Container",
+          "type": "string"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "pixel_format": {
+          "minLength": 1,
+          "title": "Pixel Format",
+          "type": "string"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "video_bitrate": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Video Bitrate"
+        },
+        "video_codec": {
+          "minLength": 1,
+          "title": "Video Codec",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "canvas",
+        "fps",
+        "container",
+        "video_codec",
+        "pixel_format",
+        "color_space"
+      ],
+      "title": "OutputProfile",
+      "type": "object"
+    },
+    "VideoVerification": {
+      "additionalProperties": false,
+      "properties": {
+        "bit_rate": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bit Rate"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "codec": {
+          "const": "h264",
+          "default": "h264",
+          "title": "Codec",
+          "type": "string"
+        },
+        "color_range": {
+          "const": "tv",
+          "default": "tv",
+          "title": "Color Range",
+          "type": "string"
+        },
+        "color_space": {
+          "const": "bt709",
+          "default": "bt709",
+          "title": "Color Space",
+          "type": "string"
+        },
+        "container_duration_seconds": {
+          "exclusiveMinimum": 0,
+          "title": "Container Duration Seconds",
+          "type": "number"
+        },
+        "duration_seconds": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Seconds",
+          "type": "number"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "full_decode_passed": {
+          "const": true,
+          "default": true,
+          "title": "Full Decode Passed",
+          "type": "boolean"
+        },
+        "level": {
+          "exclusiveMinimum": 0,
+          "title": "Level",
+          "type": "integer"
+        },
+        "mp4": {
+          "$ref": "#/$defs/MP4Layout"
+        },
+        "pixel_format": {
+          "const": "yuv420p",
+          "default": "yuv420p",
+          "title": "Pixel Format",
+          "type": "string"
+        },
+        "profile": {
+          "const": "High",
+          "default": "High",
+          "title": "Profile",
+          "type": "string"
+        },
+        "progressive": {
+          "const": true,
+          "default": true,
+          "title": "Progressive",
+          "type": "boolean"
+        },
+        "timestamps_verified": {
+          "const": true,
+          "default": true,
+          "title": "Timestamps Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "level",
+        "canvas",
+        "fps",
+        "frame_count",
+        "duration_seconds",
+        "container_duration_seconds",
+        "mp4"
+      ],
+      "title": "VideoVerification",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:export_verification",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "audio": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AudioVerification"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "document_type": {
+      "const": "export_verification",
+      "default": "export_verification",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "job_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Job Id",
+      "type": "string"
+    },
+    "output": {
+      "$ref": "#/$defs/HashedFile"
+    },
+    "profile": {
+      "$ref": "#/$defs/OutputProfile"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "video": {
+      "$ref": "#/$defs/VideoVerification"
+    }
+  },
+  "required": [
+    "schema_version",
+    "job_id",
+    "snapshot_sha256",
+    "output",
+    "profile",
+    "video"
+  ],
+  "title": "ExportVerification",
+  "type": "object"
+}

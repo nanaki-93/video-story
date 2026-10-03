@@ -232,10 +232,11 @@ def test_rational_fps_chunk_assembly_and_verified_reencode_fallback(
         calls = []
 
         def fail_first_copy(settings, path, profile, frames):
-            original(settings, path, profile, frames)
+            verified = original(settings, path, profile, frames)
             if path.name == "assembled-video.mp4" and not calls:
                 calls.append(path)
                 raise RenderError("injected stream-copy timestamp rejection")
+            return verified
 
         monkeypatch.setattr(assembly, "verify_video", fail_first_copy)
     service.submit(digest, profile, "exports/rational.mp4", max_chunk_frames=37)

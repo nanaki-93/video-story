@@ -8,6 +8,7 @@ from tabi.core.jobs import JobService
 from tabi.core.models.base import Canvas
 from tabi.core.models.production import OutputProfile
 from tabi.core.persistence import ProjectStore
+from tabi.core.render.profiles import PRESETS, preset_profile
 
 from .assets import trusted_roots
 from .episodes import project_arguments
@@ -26,11 +27,12 @@ def add_job_commands(commands):
         "recover",
         "work",
         "estimate",
+        "verify",
     ):
         action = actions.add_parser(name)
         project_arguments(action)
         action.add_argument("--json", action="store_true", help="JSON is the default output format")
-        if name in {"status", "events", "cancel", "resume", "estimate"}:
+        if name in {"status", "events", "cancel", "resume", "estimate", "verify"}:
             action.add_argument("job_id")
         if name == "work":
             action.add_argument("--once", action="store_true", help="Run at most one queued job")
@@ -44,8 +46,11 @@ def add_job_commands(commands):
                 type=int,
                 help="Maximum video chunk length; default about 30 seconds",
             )
-            action.add_argument("--width", type=int, default=960)
-            action.add_argument("--height", type=int, default=540)
+            action.add_argument("--preset", choices=PRESETS)
+            action.add_argument("--width", type=int)
+            action.add_argument("--height", type=int)
+            action.add_argument("--video-bitrate", type=int, help="Requested bits per second")
+            action.add_argument("--audio-bitrate", type=int, help="AAC bits per second")
             action.add_argument(
                 "--encoder", choices=["libx264", "h264_videotoolbox"], default="libx264"
             )
@@ -63,17 +68,23 @@ def run_job_command(args, settings):
     name = args.job_command
     if name == "submit":
         snapshot = assets.store.read_snapshot(args.snapshot)
-        profile = OutputProfile(
-            id="queued-preview",
-            canvas=Canvas(width=args.width, height=args.height),
+        if (args.width is None) != (args.height is None):
+            raise ValueError("width and height must be supplied together")
+        if args.preset and args.width is not None:
+            raise ValueError("choose a preset or custom dimensions, not both")
+        profile = preset_profile(
+            args.preset or "proxy",
             fps=snapshot.episode.fps,
-            container="mp4",
-            video_codec=args.encoder,
-            pixel_format="yuv420p",
-            color_space="bt709",
-            audio_codec="aac",
+            encoder=args.encoder,
+            video_bitrate=args.video_bitrate,
             audio_gain_db=args.audio_gain_db,
         )
+        changes = {}
+        if args.width is not None:
+            changes.update(id="custom", canvas=Canvas(width=args.width, height=args.height))
+        if args.audio_bitrate is not None:
+            changes["audio_bitrate"] = args.audio_bitrate
+        profile = OutputProfile.model_validate({**profile.model_dump(), **changes})
         result = service.submit(
             args.snapshot,
             profile,
@@ -88,6 +99,8 @@ def run_job_command(args, settings):
         result = service.ledger.get(args.job_id)
     elif name == "estimate":
         result = estimate_storage(assets, service.ledger.get(args.job_id))
+    elif name == "verify":
+        result = service.verify_export(args.job_id)
     elif name == "events":
         result = service.ledger.events(args.job_id)
     elif name == "cancel":

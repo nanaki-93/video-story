@@ -262,6 +262,13 @@
     "OutputProfile": {
       "additionalProperties": false,
       "properties": {
+        "audio_bitrate": {
+          "default": 192000,
+          "maximum": 512000,
+          "minimum": 64000,
+          "title": "Audio Bitrate",
+          "type": "integer"
+        },
         "audio_codec": {
           "anyOf": [
             {

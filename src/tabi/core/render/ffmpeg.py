@@ -16,7 +16,7 @@ from ..config import Settings
 from ..models import CompiledSnapshot
 from ..models.base import Canvas, content_hash
 from ..models.production import OutputProfile, ScheduledAction
-from ..models.rendering import RenderReport
+from ..models.rendering import RenderReport, VideoVerification
 from ..models.scenes import LandmarkEvent
 from ..process import checkpoint, run_tool
 from ..timeline import Timeline, loop_frame
@@ -25,7 +25,9 @@ from ..timeline.transitions import validate_transitions
 from ..toolchain import doctor, file_hash
 from .backend import FrozenRegistry, RenderError, backend_fingerprint
 from .motion import distance_expression, number, value_expression
+from .mp4 import verify_fast_start
 from .normalize import ImageNormalizer
+from .profiles import require_encoder, video_arguments
 from .synthetic import label as bitmap_text
 
 
@@ -317,20 +319,43 @@ class GraphBuilder:
                 self.filter(f"[{raw}]format=rgba,setparams=alpha_mode=straight[{layer}]")
             else:
                 layer, _ = self.still(ref)
-        strength = value_expression(
-            self.timeline,
-            scene.id,
-            spec.strength_target,
-            f"(N+{start})",
-            default=spec.default_strength,
-        )
         color, alpha_source, alpha, varied = [self.label() for _ in range(4)]
         self.filter(f"[{layer}]split[{color}][{alpha_source}]")
-        self.filter(f"[{alpha_source}]alphaextract,geq=lum='lum(X,Y)*({strength})'[{alpha}]")
+        opacity = self.effect_opacity(scene, spec, start, end, alpha)
+        self.filter(f"[{alpha_source}]alphaextract,{opacity}[{alpha}]")
         self.filter(
             f"[{color}][{alpha}]alphamerge,format=rgba,setparams=alpha_mode=straight[{varied}]"
         )
         return self.mask_and_opacity(varied, slot, (width, height))
+
+    def effect_opacity(self, scene, spec, start, end, name):
+        if Fraction(self.rate.num, self.rate.den) > 1000:
+            # sendcmd has microsecond timestamps. Preserve the existing exact
+            # frame-expression path for unusually high custom frame rates.
+            strength = value_expression(
+                self.timeline,
+                scene.id,
+                spec.strength_target,
+                f"(N+{start})",
+                default=spec.default_strength,
+            )
+            return f"geq=lum='lum(X,Y)*({strength})'"
+        values = [
+            self.timeline.value_at(
+                scene.id, spec.strength_target, frame, default=spec.default_strength
+            )
+            for frame in range(start, end)
+        ]
+        target = f"lut@opacity_{name}"
+        commands = []
+        for local, (previous, value) in enumerate(zip(values, values[1:], strict=False), 1):
+            if value != previous:
+                # Schedule between the previous/current frames so microsecond
+                # rounding cannot delay a command at fractional frame rates.
+                stamp = Fraction((2 * local - 1) * self.rate.den, 2 * self.rate.num)
+                commands.append(f"{float(stamp):.9f} {target} c0 val*{number(value)}")
+        lut = f"{target}=c0='val*{number(values[0])}'"
+        return (f"sendcmd=c='{';'.join(commands)}'," if commands else "") + lut
 
     def build(self, start, end, *, video):
         parts = []
@@ -401,6 +426,7 @@ def verify_video(settings, path, profile, frames):
                 "error",
                 "-count_frames",
                 "-show_streams",
+                "-show_format",
                 "-of",
                 "json",
                 str(path),
@@ -423,6 +449,27 @@ def verify_video(settings, path, profile, frames):
         raise RenderError("encoded video does not match its requested profile/frame count")
     if Fraction(stream["avg_frame_rate"]) != Fraction(profile.fps.num, profile.fps.den):
         raise RenderError("encoded frame rate differs from profile")
+    duration = Fraction(int(stream["duration_ts"])) * Fraction(stream["time_base"])
+    intended = Fraction(frames * profile.fps.den, profile.fps.num)
+    container_duration = Fraction(probe["format"]["duration"])
+    if (
+        # MP4 edit-list/movie timescales may round duration more coarsely than
+        # video ticks. Frame count and every PTS are checked exactly below;
+        # duration metadata must remain within the one-frame delivery bound.
+        abs(duration - intended) > Fraction(profile.fps.den, profile.fps.num)
+        or abs(container_duration - intended) > Fraction(profile.fps.den, profile.fps.num)
+        or abs(Fraction(stream.get("start_time", "0"))) > Fraction(stream["time_base"])
+    ):
+        raise RenderError(
+            f"encoded video/container duration differs from its frame schedule: "
+            f"video={duration}, container={container_duration}, intended={intended}, "
+            f"start={stream.get('start_time')}"
+        )
+    if stream.get("profile") != "High" or stream.get("field_order") != "progressive":
+        raise RenderError("export requires progressive H.264 High Profile")
+    if stream.get("sample_aspect_ratio") != "1:1":
+        raise RenderError("export requires square pixels")
+    layout = verify_fast_start(path)
     if (
         any(
             stream.get(key) != "bt709"
@@ -462,6 +509,16 @@ def verify_video(settings, path, profile, frames):
     run_tool(
         [settings.ffmpeg, "-v", "error", "-xerror", "-nostdin", "-i", str(path), "-f", "null", "-"],
         timeout=300,
+    )
+    return VideoVerification(
+        canvas=profile.canvas,
+        fps=profile.fps,
+        frame_count=frames,
+        level=stream["level"],
+        duration_seconds=float(duration),
+        container_duration_seconds=float(container_duration),
+        bit_rate=int(stream["bit_rate"]) if stream.get("bit_rate") else None,
+        mp4=layout,
     )
 
 
@@ -534,6 +591,8 @@ class FFmpegRenderer:
         capabilities = doctor(self.settings, output.parent)
         if not capabilities.ready:
             raise RenderError("media tools/storage are not ready; run tabi doctor")
+        if profile:
+            require_encoder(capabilities, profile)
         registry = FrozenRegistry(self.assets, snapshot)
         validate_transitions(snapshot.episode, snapshot.schedule, registry.get)
         with tempfile.TemporaryDirectory(prefix=".tabi-render-", dir=output.parent) as scratch:
@@ -568,42 +627,7 @@ class FFmpegRenderer:
                 ]
             )
             if profile:
-                args.extend(
-                    [
-                        "-fps_mode",
-                        "cfr",
-                        "-c:v",
-                        profile.video_codec,
-                        "-g",
-                        "60",
-                        "-pix_fmt",
-                        "yuv420p",
-                    ]
-                )
-                args.extend(
-                    ["-preset", "veryfast", "-flags", "+cgop", "-x264-params", "open-gop=0"]
-                    + (
-                        ["-b:v", str(profile.video_bitrate)]
-                        if profile.video_bitrate
-                        else ["-crf", "16"]
-                    )
-                    if profile.video_codec == "libx264"
-                    else ["-allow_sw", "0", "-b:v", str(profile.video_bitrate or 8000000)]
-                )
-                args.extend(
-                    [
-                        "-color_range",
-                        "tv",
-                        "-colorspace",
-                        "bt709",
-                        "-color_primaries",
-                        "bt709",
-                        "-color_trc",
-                        "bt709",
-                        "-movflags",
-                        "+faststart",
-                    ]
-                )
+                args.extend(video_arguments(profile))
             else:
                 args.extend(["-update", "1", "-c:v", "png"])
             args.append(str(temporary))
@@ -631,12 +655,13 @@ class FFmpegRenderer:
                     muxed,
                     expected_samples=audio_mix.sample_count,
                     scratch=root,
+                    bitrate=profile.audio_bitrate,
                 )
                 temporary = muxed
                 audio_mix = audio_mix.model_copy(update={"output": None})
             elapsed = time.monotonic() - began
             if profile:
-                verify_video(self.settings, temporary, profile, end - start)
+                verified_video = verify_video(self.settings, temporary, profile, end - start)
             else:
                 with Image.open(temporary) as image:
                     image.load()
@@ -662,6 +687,7 @@ class FFmpegRenderer:
                 timestamps_verified=bool(profile),
                 normalized_images=len(builder.normalizer.prepared),
                 normalized_cache_hits=builder.normalizer.cache_hits,
+                video_verification=verified_video if profile else None,
                 warnings=sorted(builder.normalizer.warnings),
                 audio_mix=audio_mix,
                 audio_verification=audio_verification,

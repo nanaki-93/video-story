@@ -114,6 +114,9 @@ class OutputProfile(Model):
     color_space: Literal["bt709"]
     audio_codec: Text | None = None
     audio_gain_db: Number = Field(default=0.0, ge=-120, le=24, exclude_if=lambda v: v == 0)
+    audio_bitrate: int = Field(
+        default=192000, ge=64000, le=512000, exclude_if=lambda v: v == 192000
+    )
     sample_rate: Literal[48000] = 48000
     video_bitrate: PositiveInt | None = None
 

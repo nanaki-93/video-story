@@ -64,5 +64,5 @@ def plan_chunks(snapshot, profile, first, end, *, max_frames=None):
 
 def video_profile(profile):
     return OutputProfile.model_validate(
-        {**profile.model_dump(), "audio_codec": None, "audio_gain_db": 0}
+        {**profile.model_dump(), "audio_codec": None, "audio_gain_db": 0, "audio_bitrate": 192000}
     )

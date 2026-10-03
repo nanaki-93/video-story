@@ -453,6 +453,33 @@
       "type": "object"
     },
     "JsonValue": {},
+    "MP4Layout": {
+      "additionalProperties": false,
+      "properties": {
+        "fast_start": {
+          "const": true,
+          "default": true,
+          "title": "Fast Start",
+          "type": "boolean"
+        },
+        "first_mdat_offset": {
+          "minimum": 0,
+          "title": "First Mdat Offset",
+          "type": "integer"
+        },
+        "moov_offset": {
+          "minimum": 0,
+          "title": "Moov Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "moov_offset",
+        "first_mdat_offset"
+      ],
+      "title": "MP4Layout",
+      "type": "object"
+    },
     "MediaPath": {
       "additionalProperties": false,
       "properties": {
@@ -612,6 +639,17 @@
           "title": "Toolchain Fingerprint",
           "type": "string"
         },
+        "video_verification": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/VideoVerification"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
         "warnings": {
           "items": {
             "type": "string"
@@ -640,6 +678,112 @@
         "normalized_images"
       ],
       "title": "RenderReport",
+      "type": "object"
+    },
+    "VideoVerification": {
+      "additionalProperties": false,
+      "properties": {
+        "bit_rate": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bit Rate"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "codec": {
+          "const": "h264",
+          "default": "h264",
+          "title": "Codec",
+          "type": "string"
+        },
+        "color_range": {
+          "const": "tv",
+          "default": "tv",
+          "title": "Color Range",
+          "type": "string"
+        },
+        "color_space": {
+          "const": "bt709",
+          "default": "bt709",
+          "title": "Color Space",
+          "type": "string"
+        },
+        "container_duration_seconds": {
+          "exclusiveMinimum": 0,
+          "title": "Container Duration Seconds",
+          "type": "number"
+        },
+        "duration_seconds": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Seconds",
+          "type": "number"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "full_decode_passed": {
+          "const": true,
+          "default": true,
+          "title": "Full Decode Passed",
+          "type": "boolean"
+        },
+        "level": {
+          "exclusiveMinimum": 0,
+          "title": "Level",
+          "type": "integer"
+        },
+        "mp4": {
+          "$ref": "#/$defs/MP4Layout"
+        },
+        "pixel_format": {
+          "const": "yuv420p",
+          "default": "yuv420p",
+          "title": "Pixel Format",
+          "type": "string"
+        },
+        "profile": {
+          "const": "High",
+          "default": "High",
+          "title": "Profile",
+          "type": "string"
+        },
+        "progressive": {
+          "const": true,
+          "default": true,
+          "title": "Progressive",
+          "type": "boolean"
+        },
+        "timestamps_verified": {
+          "const": true,
+          "default": true,
+          "title": "Timestamps Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "level",
+        "canvas",
+        "fps",
+        "frame_count",
+        "duration_seconds",
+        "container_duration_seconds",
+        "mp4"
+      ],
+      "title": "VideoVerification",
       "type": "object"
     }
   },

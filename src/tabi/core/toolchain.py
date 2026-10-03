@@ -32,6 +32,8 @@ REQUIRED_FILTERS = {
     "apad",
     "loudnorm",
     "geq",
+    "lut",
+    "sendcmd",
 }
 REQUIRED_ENCODERS = {"libx264", "aac"}
 MIN_FREE_BYTES = 256 * 1024 * 1024

@@ -9,7 +9,7 @@ from .fixtures import FixtureManifest
 from .production import CompiledSnapshot, JobEvent, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
 from .registry import AssetHealth, ImportRequest
-from .rendering import CompilationResult, RenderReport
+from .rendering import CompilationResult, ExportVerification, RenderReport
 from .scenes import Curve, SceneInstance, SceneTemplate
 from .story import StoryboardReport
 
@@ -38,6 +38,7 @@ DOCUMENT_MODELS = {
     "cache_inventory": CacheInventory,
     "cache_prune_report": CachePruneReport,
     "storage_estimate": StorageEstimate,
+    "export_verification": ExportVerification,
 }
 
 SCHEMA_MODELS = {

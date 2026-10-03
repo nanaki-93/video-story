@@ -1,0 +1,315 @@
+{
+  "observed_at": "2026-10-03T17:38:32.923736+00:00",
+  "purpose": "synthetic_test",
+  "machine": {
+    "os": "Darwin",
+    "os_version": "27.0.1",
+    "architecture": "arm64",
+    "cpu": "Apple M5 Pro",
+    "memory_bytes": 51539607552,
+    "python_version": "3.11.16",
+    "python_executable": "/Users/marcoandreose/DEV/lab/video-story/.venv/bin/python3",
+    "is_target_m5_pro": true
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "ffmpeg": "9.0.2",
+  "profile": {
+    "id": "1080p-libx264",
+    "canvas": {
+      "width": 1920,
+      "height": 1080
+    },
+    "fps": {
+      "num": 30,
+      "den": 1
+    },
+    "container": "mp4",
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "color_space": "bt709",
+    "audio_codec": "aac",
+    "audio_bitrate": 384000,
+    "sample_rate": 48000,
+    "video_bitrate": 8000000
+  },
+  "source_canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "workload": "Synthetic geometric stress workload with a newly generated full-duration triangle signal. Repeated authored test cycles exercise rain, reflection, lighting, landmarks, body transitions and depth layers; no approved Tabi art or original music is represented.",
+  "job_id": "job-6b83154f6ec6491c8ff5383b7bf1d46e",
+  "snapshot_sha256": "83d820dc5aa0c53c804dd8866bfa7be1f1217d398d428b5fd31339f358b5e1a6",
+  "state": "verified",
+  "error": null,
+  "wall_seconds": 94.2192864159988,
+  "rendered_frames": 1800,
+  "effective_frames_per_second": 19.10436884495819,
+  "cpu_seconds": 177.19130300000003,
+  "sampled_process_rss_peak_bytes": 3840655360,
+  "rss_samples": 343,
+  "rss_interval_seconds": 0.25,
+  "worker_peak_rss_bytes": 219004928,
+  "largest_child_peak_rss_bytes": 3734650880,
+  "memory_scope": "Worker and retained live tools; sampled RSS excludes other apps, kernel and unreported GPU allocations. rusage peaks are per process, not summed.",
+  "free_disk_before_bytes": 225873825792,
+  "free_disk_after_bytes": 225727188992,
+  "output": {
+    "location": {
+      "root_id": "project",
+      "path": "exports/stress.mp4"
+    },
+    "sha256": "dc4681f8b428f1106525c725595141f81c2c2a84f96390a13acbbe3532cf49cf",
+    "size_bytes": 18213092
+  },
+  "chunk_reports": [
+    {
+      "schema_version": "1.0",
+      "document_type": "render_report",
+      "purpose": "synthetic_test",
+      "snapshot_sha256": "83d820dc5aa0c53c804dd8866bfa7be1f1217d398d428b5fd31339f358b5e1a6",
+      "first_frame": 0,
+      "frame_count": 900,
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/jobs/artifacts/job-6b83154f6ec6491c8ff5383b7bf1d46e/chunk-000000-7f65a61aeed74811822f6139dfed62a0.mp4",
+      "output_sha256": "52b494dc73084e9380c7cdeb09e10a3f497c2ebb604c50d75ca70a3be98622d0",
+      "output_bytes": 8205123,
+      "graph_sha256": "25d5673e0ff799815455aa8e2af43e65a0b95539d9c9e45ca167f4f0b4b44c04",
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "05bc9b73a1f5fdd68242cbd270925c1dee3d179db9f26600d9ef9c9e8d00a589"
+      },
+      "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+      "render_seconds": 36.45666508299837,
+      "full_decode_passed": true,
+      "timestamps_verified": true,
+      "normalized_images": 63,
+      "warnings": [],
+      "audio_mix": null,
+      "audio_verification": null,
+      "video_verification": {
+        "codec": "h264",
+        "profile": "High",
+        "level": 40,
+        "pixel_format": "yuv420p",
+        "canvas": {
+          "width": 1920,
+          "height": 1080
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "frame_count": 900,
+        "duration_seconds": 30.0,
+        "container_duration_seconds": 30.0,
+        "bit_rate": 2185407,
+        "color_space": "bt709",
+        "color_range": "tv",
+        "progressive": true,
+        "timestamps_verified": true,
+        "full_decode_passed": true,
+        "mp4": {
+          "moov_offset": 32,
+          "first_mdat_offset": 9836,
+          "fast_start": true
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "render_report",
+      "purpose": "synthetic_test",
+      "snapshot_sha256": "83d820dc5aa0c53c804dd8866bfa7be1f1217d398d428b5fd31339f358b5e1a6",
+      "first_frame": 900,
+      "frame_count": 900,
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/jobs/artifacts/job-6b83154f6ec6491c8ff5383b7bf1d46e/chunk-000001-0928ba5f34df4fbfacd24957814da318.mp4",
+      "output_sha256": "2c13827b3696f60a120199e223785fde9836bd0c036b1304aba0aa301b0ab1cd",
+      "output_bytes": 8229822,
+      "graph_sha256": "daf649d5e38c64ae9d428bb3125685434e9460730ca7df8f37e34a33d6449a14",
+      "backend": {
+        "name": "tabi-ffmpeg",
+        "version": "1",
+        "sha256": "05bc9b73a1f5fdd68242cbd270925c1dee3d179db9f26600d9ef9c9e8d00a589"
+      },
+      "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+      "render_seconds": 36.09430620800049,
+      "full_decode_passed": true,
+      "timestamps_verified": true,
+      "normalized_images": 63,
+      "warnings": [],
+      "audio_mix": null,
+      "audio_verification": null,
+      "normalized_cache_hits": 63,
+      "video_verification": {
+        "codec": "h264",
+        "profile": "High",
+        "level": 40,
+        "pixel_format": "yuv420p",
+        "canvas": {
+          "width": 1920,
+          "height": 1080
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "frame_count": 900,
+        "duration_seconds": 30.0,
+        "container_duration_seconds": 30.0,
+        "bit_rate": 2191996,
+        "color_space": "bt709",
+        "color_range": "tv",
+        "progressive": true,
+        "timestamps_verified": true,
+        "full_decode_passed": true,
+        "mp4": {
+          "moov_offset": 32,
+          "first_mdat_offset": 9828,
+          "fast_start": true
+        }
+      }
+    }
+  ],
+  "verification": {
+    "schema_version": "1.0",
+    "document_type": "export_verification",
+    "job_id": "job-6b83154f6ec6491c8ff5383b7bf1d46e",
+    "snapshot_sha256": "83d820dc5aa0c53c804dd8866bfa7be1f1217d398d428b5fd31339f358b5e1a6",
+    "output": {
+      "location": {
+        "root_id": "project",
+        "path": "exports/stress.mp4"
+      },
+      "sha256": "dc4681f8b428f1106525c725595141f81c2c2a84f96390a13acbbe3532cf49cf",
+      "size_bytes": 18213092
+    },
+    "profile": {
+      "id": "1080p-libx264",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "container": "mp4",
+      "video_codec": "libx264",
+      "pixel_format": "yuv420p",
+      "color_space": "bt709",
+      "audio_codec": "aac",
+      "audio_bitrate": 384000,
+      "sample_rate": 48000,
+      "video_bitrate": 8000000
+    },
+    "video": {
+      "codec": "h264",
+      "profile": "High",
+      "level": 40,
+      "pixel_format": "yuv420p",
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "frame_count": 1800,
+      "duration_seconds": 60.0,
+      "container_duration_seconds": 60.0,
+      "bit_rate": 2189374,
+      "color_space": "bt709",
+      "color_range": "tv",
+      "progressive": true,
+      "timestamps_verified": true,
+      "full_decode_passed": true,
+      "mp4": {
+        "moov_offset": 32,
+        "first_mdat_offset": 63653,
+        "fast_start": true
+      }
+    },
+    "audio": {
+      "intended_samples": 2880000,
+      "decoded_samples": 2880000,
+      "padding_samples": 0,
+      "codec": "aac",
+      "sample_rate": 48000,
+      "channels": 2
+    }
+  },
+  "quality": [
+    {
+      "frame": 0,
+      "mean_absolute_rgb_error": 0.8137059807777405,
+      "p99_rgb_error": 5.0,
+      "psnr_db": 42.02937357480104,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/decoded-01.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/reference-0.png"
+    },
+    {
+      "frame": 89,
+      "mean_absolute_rgb_error": 0.7030766010284424,
+      "p99_rgb_error": 3.0,
+      "psnr_db": 41.880614256663605,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/decoded-02.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/reference-89.png"
+    },
+    {
+      "frame": 151,
+      "mean_absolute_rgb_error": 0.625389039516449,
+      "p99_rgb_error": 3.0,
+      "psnr_db": 41.96038915940579,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/decoded-03.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/reference-151.png"
+    },
+    {
+      "frame": 215,
+      "mean_absolute_rgb_error": 0.5620291829109192,
+      "p99_rgb_error": 3.0,
+      "psnr_db": 41.99737178103245,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/decoded-04.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/reference-215.png"
+    },
+    {
+      "frame": 900,
+      "mean_absolute_rgb_error": 0.8158410787582397,
+      "p99_rgb_error": 5.0,
+      "psnr_db": 41.915961906719296,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/decoded-05.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/reference-900.png"
+    },
+    {
+      "frame": 1799,
+      "mean_absolute_rgb_error": 0.8629193902015686,
+      "p99_rgb_error": 3.0,
+      "psnr_db": 41.97426480764519,
+      "within_test_tolerance": true,
+      "decoded": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/decoded-06.png",
+      "reference": "/Users/marcoandreose/DEV/lab/video-story/.local/t23-1080-software-lut/quality/reference-1799.png"
+    }
+  ],
+  "all_quality_checks_pass": true
+}

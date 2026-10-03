@@ -1,0 +1,62 @@
+{
+  "observed_at": "2026-10-03T17:33:34.108717+00:00",
+  "purpose": "synthetic_test",
+  "machine": {
+    "os": "Darwin",
+    "os_version": "27.0.1",
+    "architecture": "arm64",
+    "cpu": "Apple M5 Pro",
+    "memory_bytes": 51539607552,
+    "python_version": "3.11.16",
+    "python_executable": "/Users/marcoandreose/DEV/lab/video-story/.venv/bin/python3",
+    "is_target_m5_pro": true
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "ffmpeg": "9.0.2",
+  "profile": {
+    "id": "1080p-libx264",
+    "canvas": {
+      "width": 1920,
+      "height": 1080
+    },
+    "fps": {
+      "num": 30,
+      "den": 1
+    },
+    "container": "mp4",
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "color_space": "bt709",
+    "audio_codec": "aac",
+    "audio_bitrate": 384000,
+    "sample_rate": 48000,
+    "video_bitrate": 8000000
+  },
+  "source_canvas": {
+    "width": 1920,
+    "height": 1080
+  },
+  "workload": "Synthetic geometric stress workload with a newly generated full-duration triangle signal. Repeated authored test cycles exercise rain, reflection, lighting, landmarks, body transitions and depth layers; no approved Tabi art or original music is represented.",
+  "job_id": "job-8a6180d210a649a791fff091a60c9ec9",
+  "snapshot_sha256": "83d820dc5aa0c53c804dd8866bfa7be1f1217d398d428b5fd31339f358b5e1a6",
+  "state": "cancelled",
+  "error": {
+    "code": "cancelled",
+    "message": "the owned job was cancelled",
+    "log_path": "jobs/artifacts/job-8a6180d210a649a791fff091a60c9ec9/error-00000004.log"
+  },
+  "wall_seconds": 215.786212084,
+  "rendered_frames": 0,
+  "effective_frames_per_second": 0.0,
+  "cpu_seconds": 252.13832000000002,
+  "sampled_process_rss_peak_bytes": 3788570624,
+  "rss_samples": 785,
+  "rss_interval_seconds": 0.25,
+  "worker_peak_rss_bytes": 218578944,
+  "largest_child_peak_rss_bytes": 3705946112,
+  "memory_scope": "Worker and retained live tools; sampled RSS excludes other apps, kernel and unreported GPU allocations. rusage peaks are per process, not summed.",
+  "free_disk_before_bytes": 225796182016,
+  "free_disk_after_bytes": 225738690560,
+  "output": null,
+  "chunk_reports": []
+}

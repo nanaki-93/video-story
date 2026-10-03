@@ -16,6 +16,7 @@ from ..process import OperationCancelled, ToolError, checkpoint, run_tool
 from ..toolchain import doctor
 from .backend import FrozenRegistry, RenderError, backend_fingerprint
 from .ffmpeg import verify_video
+from .profiles import require_encoder, video_arguments
 
 
 def stream_signature(settings, path):
@@ -96,6 +97,7 @@ class VideoAssembler:
         capabilities = doctor(self.settings, output.parent)
         if not capabilities.ready or capabilities.fingerprint != job.plan.toolchain_fingerprint:
             raise RenderError("assembly toolchain differs from the frozen job or is unavailable")
+        require_encoder(capabilities, job.profile)
         began = time.monotonic()
         with tempfile.TemporaryDirectory(prefix=".tabi-assembly-", dir=output.parent) as scratch:
             root = Path(scratch)
@@ -157,41 +159,9 @@ class VideoAssembler:
                     f"setpts=N*{profile.fps.den}/({profile.fps.num}*TB)",
                     "-r",
                     f"{profile.fps.num}/{profile.fps.den}",
-                    "-fps_mode",
-                    "cfr",
-                    "-c:v",
-                    profile.video_codec,
-                    "-g",
-                    "60",
-                    "-pix_fmt",
-                    "yuv420p",
+                    *video_arguments(profile),
+                    str(video),
                 ]
-                if profile.video_codec == "libx264":
-                    args.extend(
-                        ["-preset", "veryfast", "-flags", "+cgop", "-x264-params", "open-gop=0"]
-                    )
-                    args.extend(
-                        ["-b:v", str(profile.video_bitrate)]
-                        if profile.video_bitrate
-                        else ["-crf", "16"]
-                    )
-                else:
-                    args.extend(["-allow_sw", "0", "-b:v", str(profile.video_bitrate or 8000000)])
-                args.extend(
-                    [
-                        "-color_range",
-                        "tv",
-                        "-colorspace",
-                        "bt709",
-                        "-color_primaries",
-                        "bt709",
-                        "-color_trc",
-                        "bt709",
-                        "-movflags",
-                        "+faststart",
-                        str(video),
-                    ]
-                )
                 run_tool(args, timeout=3600)
                 verify_video(self.settings, video, profile, job.duration_frames)
             final, audio, audio_verified = video, None, None
@@ -216,9 +186,10 @@ class VideoAssembler:
                     final,
                     expected_samples=audio.sample_count,
                     scratch=root,
+                    bitrate=job.profile.audio_bitrate,
                 )
                 audio = audio.model_copy(update={"output": None})
-            verify_video(self.settings, final, job.profile, job.duration_frames)
+            verified_video = verify_video(self.settings, final, job.profile, job.duration_frames)
             registry.verify()
             if doctor(self.settings, output.parent).fingerprint != capabilities.fingerprint:
                 raise RenderError("media toolchain changed during assembly")
@@ -244,6 +215,7 @@ class VideoAssembler:
                 full_decode_passed=True,
                 timestamps_verified=True,
                 normalized_images=0,
+                video_verification=verified_video,
                 audio_mix=audio,
                 audio_verification=audio_verified,
                 assembly=AssemblyInfo(

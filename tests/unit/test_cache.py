@@ -235,6 +235,7 @@ def test_storage_preflight_stops_before_rendering_and_accounts_for_warm_images(
         lambda *a: SimpleNamespace(
             ready=True,
             fingerprint="a" * 64,
+            encoders=["libx264", "aac"],
         ),
     )
     monkeypatch.setattr(

@@ -321,6 +321,7 @@ def verify_aac(settings, path: Path, expected_samples: int, scratch: Path):
     stream = probe_audio(settings, path)
     if (
         stream.get("codec_name") != "aac"
+        or stream.get("profile") != "LC"
         or stream.get("sample_rate") != "48000"
         or stream.get("channels") != 2
         or abs(Fraction(stream.get("start_time", "0"))) > Fraction(1, 48000)
@@ -364,8 +365,17 @@ def verify_aac(settings, path: Path, expected_samples: int, scratch: Path):
 
 
 def mux_aac(
-    settings, video: Path, mix: Path, output: Path, *, expected_samples: int, scratch: Path
+    settings,
+    video: Path,
+    mix: Path,
+    output: Path,
+    *,
+    expected_samples: int,
+    scratch: Path,
+    bitrate: int = 192000,
 ):
+    if type(bitrate) is not int or not 64000 <= bitrate <= 512000:
+        raise ValueError("AAC bitrate must be an integer between 64000 and 512000")
     run_tool(
         [
             settings.ffmpeg,
@@ -386,8 +396,10 @@ def mux_aac(
             "copy",
             "-c:a",
             "aac",
+            "-profile:a",
+            "aac_low",
             "-b:a",
-            "192k",
+            str(bitrate),
             "-ar",
             "48000",
             "-ac",

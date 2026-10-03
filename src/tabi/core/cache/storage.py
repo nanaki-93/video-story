@@ -59,7 +59,7 @@ def estimate_storage(assets, job):
     audio = 0
     if job.profile.audio_codec:
         samples = job.profile.fps.sample_at(end) - job.profile.fps.sample_at(first)
-        audio = samples * 24 + math.ceil(seconds * 192_000 / 8 * 1.5) + 65536
+        audio = samples * 24 + math.ceil(seconds * job.profile.audio_bitrate / 8 * 1.5) + 65536
         source_refs = {(p.asset.id, p.asset.version) for p in snapshot.audio_placements}
         for ref in source_refs:
             asset = registry.documents[ref]

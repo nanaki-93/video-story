@@ -43,6 +43,7 @@ def queue(tmp_path, monkeypatch):
         lambda *args: SimpleNamespace(
             ready=True,
             fingerprint="a" * 64,
+            encoders=["libx264", "aac"],
         ),
     )
     profile = OutputProfile(

@@ -18,6 +18,7 @@ from tabi.core.fixtures import generate_fixtures
 from tabi.core.models import Episode, Project, ValidationReport
 from tabi.core.persistence import ProjectStore, StorageError
 from tabi.core.process import ToolError
+from tabi.core.render.profiles import PRESETS, preset_profile
 from tabi.core.render.spike import ENCODERS, SpikeDependencyError, SpikeError, render_spike
 from tabi.core.timeline import Timeline, expand_random_actions, prng_fingerprint
 from tabi.core.toolchain import doctor
@@ -38,6 +39,10 @@ def main(argv: list[str] | None = None) -> int:
     add_cache_commands(commands)
     add_episode_commands(commands)
     add_job_commands(commands)
+    profiles = commands.add_parser("profiles", help="List explicit SDR export presets")
+    profiles.add_argument("--encoder", choices=ENCODERS, default="libx264")
+    profiles.add_argument("--fps-num", type=int, default=30)
+    profiles.add_argument("--fps-den", type=int, default=1)
     config = commands.add_parser(
         "config", help="Show resolved local settings without changing files"
     )
@@ -157,6 +162,25 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "profiles":
+        try:
+            print(
+                json.dumps(
+                    [
+                        preset_profile(
+                            name,
+                            fps={"num": args.fps_num, "den": args.fps_den},
+                            encoder=args.encoder,
+                        ).model_dump(mode="json")
+                        for name in PRESETS
+                    ],
+                    indent=2,
+                )
+            )
+            return 0
+        except ValueError as error:
+            logger.error("profile_failed: %s", error)
+            return 2
     if args.command == "cache":
         try:
             return run_cache_command(args)
