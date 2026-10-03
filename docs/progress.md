@@ -235,3 +235,22 @@ three-chapter layout. Source masters and earlier bundles survive injected failur
 
 The production-ready bundle gate remains pending on T19's real art/music/credits/licences and human
 reviews. This engineering bundle remains synthetic. No publication or asset approval was performed.
+
+## T25 — complete
+
+`T25: build browser wireframes and verify native playback` adds twelve reviewable design
+pages, schema-generated TypeScript DTOs and precompiled browser validation, real H.264/AAC
+playback and Python exact-frame requests. Eleven pages remain clearly identified wireframes.
+
+Verification: `make check` passes **36 schemas and 229 unit checks**, Ruff clean; frontend
+contract/drift/type/format checks, two tests and Vite build pass. Safari 27.0.1 and Chrome 154
+on the target Mac play and seek the actual 300-frame synthetic proxy with measured nonzero
+decoded audio. The exact-frame inspector, Space/arrow shortcuts, skip-link focus and 700-pixel
+layout were checked. Actual HTTP checks cover ranges, HEAD, MIME and request boundaries.
+[All page screenshots, browser observations and reproduction](24-browser-foundation.md) are retained.
+
+The native Safari video was visually confirmed after bringing its window to the front;
+background animation throttling no longer leaves diagnostics stale. User visual/listening
+approval remains separate. T26 adds the authenticated service; T27–T32 implement the flows.
+No MP4 is committed; Node is needed only to build. The initial validator bundle size warning
+is documented, and installed distribution remains T33.

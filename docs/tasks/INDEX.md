@@ -28,7 +28,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T22](t22.md) | Implement caches storage estimates and pruning | T05, T21 | mandatory | complete |
 | [T23](t23.md) | Verify final export profiles | T02, T21, T22 | mandatory | complete |
 | [T24](t24.md) | Build release preparation exporter | T19, T23 | mandatory | core complete; production inputs and review pending |
-| [T25](t25.md) | Design web app pages and browser playback spike | T03, T13 | mandatory | planned |
+| [T25](t25.md) | Design web app pages and browser playback spike | T03, T13 | mandatory | complete |
 | [T26](t26.md) | Implement authenticated local service and worker lifecycle | T20, T25 | mandatory | planned |
 | [T27](t27.md) | Implement projects assets and episode setup pages | T05, T25, T26 | mandatory | planned |
 | [T28](t28.md) | Implement story editor and timeline | T09, T10, T18, T27 | mandatory | planned |

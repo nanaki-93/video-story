@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test test-media help schemas doctor fixtures clean-cache
+.PHONY: setup check test test-media help schemas doctor fixtures clean-cache web-check web-build
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -25,6 +25,12 @@ doctor:
 
 test-media:
 	$(UV) run --frozen pytest --run-media tests/integration
+
+web-check:
+	cd web && npm run check && npm test
+
+web-build:
+	cd web && npm run build
 
 FIXTURE_OUTPUT ?= .local/fixtures-v1
 fixtures:

@@ -1,0 +1,58 @@
+[
+  {
+    "check": "first bytes",
+    "status": 206,
+    "bytes": 2,
+    "type": "video/mp4",
+    "range": "bytes 0-1/1424171"
+  },
+  {
+    "check": "suffix",
+    "status": 206,
+    "bytes": 32,
+    "type": "video/mp4",
+    "range": "bytes 1424139-1424170/1424171"
+  },
+  {
+    "check": "head",
+    "status": 200,
+    "bytes": 0,
+    "type": "video/mp4",
+    "range": null
+  },
+  {
+    "check": "unsatisfied",
+    "status": 416,
+    "bytes": 0,
+    "type": null,
+    "range": "bytes */1424171"
+  },
+  {
+    "check": "foreign host",
+    "status": 403,
+    "bytes": 349,
+    "type": "text/html;charset=utf-8",
+    "range": null
+  },
+  {
+    "check": "foreign origin",
+    "status": 403,
+    "bytes": 349,
+    "type": "text/html;charset=utf-8",
+    "range": null
+  },
+  {
+    "check": "traversal",
+    "status": 400,
+    "bytes": 343,
+    "type": "text/html;charset=utf-8",
+    "range": null
+  },
+  {
+    "check": "exact still",
+    "status": 200,
+    "bytes": 956,
+    "type": "application/json",
+    "range": null
+  }
+]

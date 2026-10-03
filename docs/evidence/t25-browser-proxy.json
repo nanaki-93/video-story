@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "document_type": "export_verification",
+  "job_id": "job-83c9ff1bf8f848c2b9e168a626415b69",
+  "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+  "output": {
+    "location": {
+      "root_id": "project",
+      "path": "exports/browser-proxy.mp4"
+    },
+    "sha256": "faeebfc8b741ab4e8579356ab8f3f0cfe6f47ca65ac7c1e01e2410d213c3e616",
+    "size_bytes": 1424171
+  },
+  "profile": {
+    "id": "proxy-libx264",
+    "canvas": {
+      "width": 960,
+      "height": 540
+    },
+    "fps": {
+      "num": 30,
+      "den": 1
+    },
+    "container": "mp4",
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "color_space": "bt709",
+    "audio_codec": "aac",
+    "sample_rate": 48000,
+    "video_bitrate": 3000000
+  },
+  "video": {
+    "codec": "h264",
+    "profile": "High",
+    "level": 31,
+    "pixel_format": "yuv420p",
+    "canvas": {
+      "width": 960,
+      "height": 540
+    },
+    "fps": {
+      "num": 30,
+      "den": 1
+    },
+    "frame_count": 300,
+    "duration_seconds": 10.0,
+    "container_duration_seconds": 10.0,
+    "bit_rate": 937447,
+    "color_space": "bt709",
+    "color_range": "tv",
+    "progressive": true,
+    "timestamps_verified": true,
+    "full_decode_passed": true,
+    "mp4": {
+      "moov_offset": 32,
+      "first_mdat_offset": 12009,
+      "fast_start": true
+    }
+  },
+  "audio": {
+    "intended_samples": 480000,
+    "decoded_samples": 480000,
+    "padding_samples": 0,
+    "codec": "aac",
+    "sample_rate": 48000,
+    "channels": 2
+  }
+}
