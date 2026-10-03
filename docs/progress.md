@@ -171,3 +171,7 @@ Real effect/palette approval and 1080p/4K performance remain pending. The MP4 st
 Verification: `make schemas check` passes **26 schemas and 193 unit checks**, Ruff clean; `make test-media` passes **all 28 actual-media checks**. Thirteen new unit cases cover continuity, phase, placement, face/prop divergence, metadata and scope. The new media cases verify matched and single-character overlaps, including endpoints and starts inside a transition, against independent composition and global-range comparisons. [Evidence](18-story-continuity.md) retains a 300-frame/640×360 preview with 480,000 AAC samples and an inspected midpoint PNG. MP4 stays local and ignored.
 
 The outline, original music, approved artwork and Marco's creative review remain pending. No synthetic output is considered publishable or approved.
+
+## T19 — production input gate pending
+
+`T19: record short-story production input gate` records the missing approved separated art/action/environment pack, finished original music masters and credits, real story outline and full-duration Marco review. T18's working synthetic demonstration cannot satisfy the 5–10-minute publishable-story acceptance. Reference selection and music-folder requests remain unanswered; no permissions, release identifiers or creative approvals are inferred. Independent engineering continues with T20.
