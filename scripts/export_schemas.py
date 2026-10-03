@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from tabi.api.contracts import schema_documents as web_schema_documents
 from tabi.core.documents import schema_documents
 
 
@@ -13,6 +14,7 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     expected = schema_documents()
+    expected.update(web_schema_documents())
     stale = []
     if not args.check:
         args.output.mkdir(parents=True, exist_ok=True)

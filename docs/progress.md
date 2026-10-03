@@ -254,3 +254,24 @@ background animation throttling no longer leaves diagnostics stale. User visual/
 approval remains separate. T26 adds the authenticated service; T27–T32 implement the flows.
 No MP4 is committed; Node is needed only to build. The initial validator bundle size warning
 is documented, and installed distribution remains T33.
+
+## T26 — complete
+
+`T26: authenticate local worker sessions and media` adds an owned loopback Python launcher,
+private protocol/PID/socket readiness verification, one-time browser tickets, per-worker cookies,
+bearer/CSRF/Host/Origin checks, registered-root browsing, shared-core job adapters, SSE replay
+and authenticated verified byte ranges. Tab closure does not cancel work; explicit shutdown
+keeps verified chunks, and a fresh worker resumes through the existing core.
+
+Verification: `make check` passes **42 schemas and 238 unit checks**; frontend drift/type/format
+checks, two tests and build pass. Nine focused service/lifecycle checks and an actual HTTP
+render/cancel/restart/resume case pass, producing **300 frames / 480,000 samples** with one
+verified chunk retained and WAV sources unchanged. Startup failure, independent ephemeral
+listeners, CLI SIGTERM cleanup, session replay/expiry, CSRF, missing media/SSE auth and unsafe
+filesystem paths are covered. [Evidence and operation details](25-local-service.md) are retained.
+
+Safari and Chrome both bootstrap, refresh, play/seek authenticated media, display expiry and
+reopen without replacing the worker or duplicating jobs. Reopening an existing tab processes
+a fresh fragment ticket. The public shell accepts initial navigation while API origin checks
+remain strict. Settings shows real worker/project state; other pages remain wireframes for
+T27–T32. Installation packaging remains T33. No MP4 or session secret enters Git.

@@ -1,0 +1,54 @@
+{
+  "$defs": {
+    "WebRoot": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "path"
+      ],
+      "title": "WebRoot",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:web:1:web_roots",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "web_roots",
+      "default": "web_roots",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "roots": {
+      "items": {
+        "$ref": "#/$defs/WebRoot"
+      },
+      "title": "Roots",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "roots"
+  ],
+  "title": "WebRoots",
+  "type": "object"
+}

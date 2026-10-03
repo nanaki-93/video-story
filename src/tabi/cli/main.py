@@ -41,6 +41,10 @@ def main(argv: list[str] | None = None) -> int:
     add_episode_commands(commands)
     add_job_commands(commands)
     add_release_commands(commands)
+    web = commands.add_parser("web", help="Launch the owned, authenticated local web workspace")
+    web.add_argument("--root", action="append", default=[], metavar="ID=PATH")
+    web.add_argument("--web-root", type=Path, help="Built static UI directory")
+    web.add_argument("--no-open", action="store_true", help="Start without opening a browser")
     profiles = commands.add_parser("profiles", help="List explicit SDR export presets")
     profiles.add_argument("--encoder", choices=ENCODERS, default="libx264")
     profiles.add_argument("--fps-num", type=int, default=30)
@@ -164,6 +168,16 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "web":
+        from tabi.api.launcher import launch
+        from tabi.cli.assets import trusted_roots
+
+        try:
+            roots = trusted_roots(args.root) if args.root else {"projects": settings.project_root}
+            return launch(settings, roots, web_root=args.web_root, no_open=args.no_open)
+        except (ValueError, OSError) as error:
+            logger.error("local_workspace_failed: %s", error)
+            return 4
     if args.command == "profiles":
         try:
             print(

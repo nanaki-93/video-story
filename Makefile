@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test test-media help schemas doctor fixtures clean-cache web-check web-build
+.PHONY: setup check test test-media help schemas doctor fixtures clean-cache web-check web-build run-web run-worker
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -31,6 +31,12 @@ web-check:
 
 web-build:
 	cd web && npm run build
+
+run-web:
+	$(UV) run --frozen tabi web
+
+run-worker:
+	$(UV) run --frozen tabi web --no-open
 
 FIXTURE_OUTPUT ?= .local/fixtures-v1
 fixtures:

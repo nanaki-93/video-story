@@ -1,0 +1,550 @@
+{
+  "$defs": {
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "title": "Canvas",
+      "type": "object"
+    },
+    "ChunkPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "max_chunk_frames": {
+          "exclusiveMinimum": 0,
+          "maximum": 7200,
+          "title": "Max Chunk Frames",
+          "type": "integer"
+        },
+        "pipeline": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "profile_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        },
+        "temporal_handles": {
+          "const": 0,
+          "default": 0,
+          "title": "Temporal Handles",
+          "type": "integer"
+        },
+        "toolchain_fingerprint": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Toolchain Fingerprint"
+        },
+        "version": {
+          "const": "1",
+          "default": "1",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pipeline",
+        "profile_sha256",
+        "max_chunk_frames"
+      ],
+      "title": "ChunkPlan",
+      "type": "object"
+    },
+    "ChunkRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "first_frame": {
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "index": {
+          "minimum": 0,
+          "title": "Index",
+          "type": "integer"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HashedFile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "report_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report Path"
+        },
+        "state": {
+          "enum": [
+            "pending",
+            "rendering",
+            "verified",
+            "failed"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "index",
+        "first_frame",
+        "frame_count",
+        "state"
+      ],
+      "title": "ChunkRecord",
+      "type": "object"
+    },
+    "Fingerprint": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minLength": 1,
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "sha256"
+      ],
+      "title": "Fingerprint",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "HashedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "location",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "HashedFile",
+      "type": "object"
+    },
+    "JobError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "log_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Log Path"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "JobError",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    },
+    "OutputProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "audio_bitrate": {
+          "default": 192000,
+          "maximum": 512000,
+          "minimum": 64000,
+          "title": "Audio Bitrate",
+          "type": "integer"
+        },
+        "audio_codec": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audio Codec"
+        },
+        "audio_gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Audio Gain Db",
+          "type": "number"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "color_space": {
+          "const": "bt709",
+          "title": "Color Space",
+          "type": "string"
+        },
+        "container": {
+          "enum": [
+            "mp4",
+            "mkv"
+          ],
+          "title": "Container",
+          "type": "string"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "pixel_format": {
+          "minLength": 1,
+          "title": "Pixel Format",
+          "type": "string"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "video_bitrate": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Video Bitrate"
+        },
+        "video_codec": {
+          "minLength": 1,
+          "title": "Video Codec",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "canvas",
+        "fps",
+        "container",
+        "video_codec",
+        "pixel_format",
+        "color_space"
+      ],
+      "title": "OutputProfile",
+      "type": "object"
+    },
+    "RenderJob": {
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "cancel_requested": {
+          "default": false,
+          "title": "Cancel Requested",
+          "type": "boolean"
+        },
+        "chunks": {
+          "items": {
+            "$ref": "#/$defs/ChunkRecord"
+          },
+          "title": "Chunks",
+          "type": "array"
+        },
+        "completed_frames": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Completed Frames",
+          "type": "integer"
+        },
+        "destination": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Destination"
+        },
+        "document_type": {
+          "const": "render_job",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "duration_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/JobError"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "first_frame": {
+          "default": 0,
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HashedFile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Owner"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ChunkPlan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "profile": {
+          "$ref": "#/$defs/OutputProfile"
+        },
+        "report_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Report Path"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "queued",
+            "running",
+            "paused",
+            "interrupted",
+            "cancelled",
+            "failed",
+            "verified"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "document_type",
+        "snapshot_sha256",
+        "profile",
+        "backend",
+        "state",
+        "duration_frames",
+        "chunks"
+      ],
+      "title": "RenderJob",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:web:1:web_jobs",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "web_jobs",
+      "default": "web_jobs",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "jobs": {
+      "items": {
+        "$ref": "#/$defs/RenderJob"
+      },
+      "title": "Jobs",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "jobs"
+  ],
+  "title": "WebJobs",
+  "type": "object"
+}

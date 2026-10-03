@@ -3,6 +3,7 @@ import { element } from "./dom";
 import { layouts, wireframe } from "./wireframes";
 import type { PageId } from "./wireframes";
 import { playbackSpike } from "./playback";
+import { connect, sessionPanel } from "./session";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -38,12 +39,16 @@ document
     main.focus();
   });
 let cleanup: (() => void) | undefined;
+let mode: "spike" | "connected" | undefined;
 function navigate() {
+  if (!mode) return;
   cleanup?.();
   const requested = location.hash.slice(1);
   const page: PageId = Object.hasOwn(layouts, requested)
     ? (requested as PageId)
-    : "preview";
+    : mode === "spike"
+      ? "preview"
+      : "settings";
   for (const [id, link] of links) {
     if (id === page) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
@@ -63,11 +68,20 @@ function navigate() {
     text,
     element("span", {
       className: "badge",
-      text: page === "preview" ? "Working playback spike" : "Wireframe",
+      text:
+        mode === "connected" && page === "settings"
+          ? "Connected worker"
+          : page === "preview" && mode === "spike"
+            ? "Working playback spike"
+            : "Wireframe",
     }),
   );
   main.replaceChildren(header);
-  if (page === "preview") {
+  if (mode === "connected" && page === "settings") {
+    const panel = sessionPanel();
+    cleanup = panel.dispose;
+    main.append(panel.root);
+  } else if (page === "preview" && mode === "spike") {
     const preview = playbackSpike();
     cleanup = preview.dispose;
     main.append(preview.root);
@@ -77,5 +91,33 @@ function navigate() {
   }
   document.title = `${layout.title} · Tabi Story Studio`;
 }
-window.addEventListener("hashchange", navigate);
-navigate();
+let connectionAttempt = 0;
+function connectWorkspace() {
+  const attempt = ++connectionAttempt;
+  cleanup?.();
+  mode = undefined;
+  main.replaceChildren(
+    element("p", {
+      text: "Connecting to the local worker…",
+      className: "notice",
+    }),
+  );
+  void connect()
+    .then((value) => {
+      if (attempt !== connectionAttempt) return;
+      mode = value;
+      navigate();
+    })
+    .catch((error: unknown) => {
+      if (attempt !== connectionAttempt) return;
+      main.replaceChildren(
+        element("h1", { text: "Workspace unavailable" }),
+        element("p", { text: String(error), className: "notice" }),
+      );
+    });
+}
+window.addEventListener("hashchange", () => {
+  if (location.hash.startsWith("#bootstrap=")) connectWorkspace();
+  else navigate();
+});
+connectWorkspace();

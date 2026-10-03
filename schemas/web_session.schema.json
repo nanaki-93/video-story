@@ -1,0 +1,58 @@
+{
+  "$id": "urn:tabi:web:1:web_session",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "csrf": {
+      "minLength": 32,
+      "title": "Csrf",
+      "type": "string"
+    },
+    "document_type": {
+      "const": "web_session",
+      "default": "web_session",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "expires_in": {
+      "minimum": 0,
+      "title": "Expires In",
+      "type": "integer"
+    },
+    "pid": {
+      "exclusiveMinimum": 0,
+      "title": "Pid",
+      "type": "integer"
+    },
+    "protocol": {
+      "const": "1",
+      "default": "1",
+      "title": "Protocol",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "session_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Session Id",
+      "type": "string"
+    },
+    "stopping": {
+      "title": "Stopping",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "session_id",
+    "pid",
+    "csrf",
+    "expires_in",
+    "stopping"
+  ],
+  "title": "WebSession",
+  "type": "object"
+}
