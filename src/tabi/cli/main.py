@@ -11,10 +11,11 @@ from tabi.cli.logging import configure_logging
 from tabi.core.config import ConfigError, load_settings
 from tabi.core.documents import DocumentError, read_document
 from tabi.core.fixtures import generate_fixtures
-from tabi.core.models import Project, ValidationReport
+from tabi.core.models import Episode, Project, ValidationReport
 from tabi.core.persistence import ProjectStore, StorageError
 from tabi.core.process import ToolError
 from tabi.core.render.spike import ENCODERS, SpikeDependencyError, SpikeError, render_spike
+from tabi.core.timeline import Timeline, expand_random_actions, prng_fingerprint
 from tabi.core.toolchain import doctor
 
 
@@ -47,6 +48,13 @@ def main(argv: list[str] | None = None) -> int:
     fixtures = commands.add_parser("fixtures", help="Generate a new reproducible synthetic project")
     fixtures.add_argument("--output", required=True, type=Path)
     fixtures.add_argument("--json", action="store_true")
+    timeline = commands.add_parser("timeline", help="Evaluate global frames or expand timing")
+    timeline_commands = timeline.add_subparsers(dest="timeline_command", required=True)
+    inspect_frame = timeline_commands.add_parser("inspect")
+    inspect_frame.add_argument("file", type=Path)
+    inspect_frame.add_argument("--frame", type=int, required=True)
+    expand = timeline_commands.add_parser("expand")
+    expand.add_argument("file", type=Path)
     project = commands.add_parser("project", help="Create or inspect a local project")
     project_commands = project.add_subparsers(dest="project_command", required=True)
     init = project_commands.add_parser("init", help="Create a project in a new or empty directory")
@@ -66,6 +74,27 @@ def main(argv: list[str] | None = None) -> int:
     validate.add_argument("file", type=Path)
     args = parser.parse_args(argv)
     logger = configure_logging(args.log_level)
+    if args.command == "timeline":
+        try:
+            episode = read_document(args.file)
+            if not isinstance(episode, Episode):
+                raise ValueError("timeline requires an episode document")
+            result = (
+                Timeline(episode).inspect(args.frame)
+                if args.timeline_command == "inspect"
+                else {
+                    "seed": episode.seed,
+                    "prng": prng_fingerprint().model_dump(mode="json"),
+                    "actions": [
+                        action.model_dump(mode="json") for action in expand_random_actions(episode)
+                    ],
+                }
+            )
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0
+        except (DocumentError, ValueError, OSError) as error:
+            logger.error("timeline_failed: %s", error)
+            return 2
     if args.command == "fixtures":
         try:
             manifest = generate_fixtures(args.output)

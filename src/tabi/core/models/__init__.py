@@ -2,7 +2,7 @@
 
 from .assets import Action, ActionPack, Asset
 from .diagnostics import CapabilityReport, RenderSpikeReport
-from .episode import ActionRequest, Episode, TrackPlacement
+from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
 from .production import CompiledSnapshot, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
@@ -33,6 +33,7 @@ SCHEMA_MODELS = {
     "action_request": ActionRequest,
     "curve": Curve,
     "import_request": ImportRequest,
+    "random_action_timing": RandomActionTiming,
 }
 
 __all__ = [

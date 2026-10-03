@@ -96,9 +96,15 @@ Known limits and reproduction: [asset registry](11-asset-registry.md). Long comp
 
 The source-hash choice, separated seated masters, anchors/pivots and art review remain pending; T06 is not marked complete. Independent synthetic/compiler work continues under PLAN's explicit allowance.
 
+## T09 — complete
+
+`T09: evaluate global curves and deterministic action timing` implements rational frame/sample mapping, half-open scene queries, explicit loop origins, global constant/linear curves, exact prefix integrals, scope precedence and deterministic optional action timing. Same-frame queries do not depend on playback or chunk history. Scene-state bases remain explicit for T10 continuity. Random collisions fail; no event is silently dropped.
+
+Verification: `make schemas && make check` passed Ruff, **20 schemas and 148 tests**, eight media tests skipped. Eleven new cases cover analytic acceleration/stop/restart, all interval splits, out-of-order queries, rational fps/sample rounding, curve bounds/scopes, reproducible whole actions and conflict errors. An OpenSSL check independently confirms the pinned random reference vector. CLI inspection/expansion passed; [evidence](evidence/t09-timeline.json) records the fixture stop at 180 px, restart frame 151 at 184 px/sample 241600, final distance 780 px and four seeded blink requests. This is semantic evidence, not rendered/art-approved output.
+
 ## Next task and pending gates
 
-**Next: T06–T08 — real asset preparation/review; then T09 timeline infrastructure.** The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
+**Next: T10 — action compilation and persistent state using the fixture graph.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 

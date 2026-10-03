@@ -1,0 +1,194 @@
+{
+  "synthetic": true,
+  "episode": "/Users/marcoandreose/DEV/lab/video-story/.local/t09-timeline/episode.json",
+  "prng": {
+    "name": "tabi-sha256-counter",
+    "version": "1",
+    "sha256": "d9ea6aae79944764f807f4dc97882c7aede84c1ea3725fc133c48086856826ed"
+  },
+  "frames": [
+    {
+      "frame": 0,
+      "time_seconds": {
+        "num": 0,
+        "den": 1
+      },
+      "audio_sample": 0,
+      "scenes": [
+        {
+          "id": "train",
+          "travel_distance_px": 0.0,
+          "parameters": {
+            "travel_speed": 60.0
+          }
+        }
+      ]
+    },
+    {
+      "frame": 89,
+      "time_seconds": {
+        "num": 89,
+        "den": 30
+      },
+      "audio_sample": 142400,
+      "scenes": [
+        {
+          "id": "train",
+          "travel_distance_px": 178.0,
+          "parameters": {
+            "travel_speed": 60.0
+          }
+        }
+      ]
+    },
+    {
+      "frame": 90,
+      "time_seconds": {
+        "num": 3,
+        "den": 1
+      },
+      "audio_sample": 144000,
+      "scenes": [
+        {
+          "id": "train",
+          "travel_distance_px": 180.0,
+          "parameters": {
+            "travel_speed": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "frame": 149,
+      "time_seconds": {
+        "num": 149,
+        "den": 30
+      },
+      "audio_sample": 238400,
+      "scenes": [
+        {
+          "id": "train",
+          "travel_distance_px": 180.0,
+          "parameters": {
+            "travel_speed": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "frame": 150,
+      "time_seconds": {
+        "num": 5,
+        "den": 1
+      },
+      "audio_sample": 240000,
+      "scenes": [
+        {
+          "id": "train",
+          "travel_distance_px": 180.0,
+          "parameters": {
+            "travel_speed": 120.0
+          }
+        }
+      ]
+    },
+    {
+      "frame": 151,
+      "time_seconds": {
+        "num": 151,
+        "den": 30
+      },
+      "audio_sample": 241600,
+      "scenes": [
+        {
+          "id": "train",
+          "travel_distance_px": 184.0,
+          "parameters": {
+            "travel_speed": 120.0
+          }
+        }
+      ]
+    },
+    {
+      "frame": 299,
+      "time_seconds": {
+        "num": 299,
+        "den": 30
+      },
+      "audio_sample": 478400,
+      "scenes": [
+        {
+          "id": "train",
+          "travel_distance_px": 776.0,
+          "parameters": {
+            "travel_speed": 120.0
+          }
+        }
+      ]
+    }
+  ],
+  "end_boundary_distance_px": "780",
+  "end_boundary_audio_sample": 480000,
+  "random_face_actions": [
+    {
+      "start_frame": 14,
+      "end_frame": 20,
+      "id": "random.a9da90f7d754b2fca1981cb8",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.blink",
+      "version": "1.0",
+      "channel": "face",
+      "repeat": "once",
+      "conflict_behavior": "error"
+    },
+    {
+      "start_frame": 34,
+      "end_frame": 40,
+      "id": "random.92bcacb95b6e1883b2a3d30f",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.blink",
+      "version": "1.0",
+      "channel": "face",
+      "repeat": "once",
+      "conflict_behavior": "error"
+    },
+    {
+      "start_frame": 50,
+      "end_frame": 56,
+      "id": "random.b3990ced83f81c1103c9e274",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.blink",
+      "version": "1.0",
+      "channel": "face",
+      "repeat": "once",
+      "conflict_behavior": "error"
+    },
+    {
+      "start_frame": 68,
+      "end_frame": 74,
+      "id": "random.259b7bb3894c07d744c43384",
+      "scene_id": "train",
+      "pack": {
+        "id": "pack.synthetic",
+        "version": "1.0"
+      },
+      "action_id": "fixture.blink",
+      "version": "1.0",
+      "channel": "face",
+      "repeat": "once",
+      "conflict_behavior": "error"
+    }
+  ]
+}

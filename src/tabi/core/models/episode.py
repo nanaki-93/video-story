@@ -16,6 +16,7 @@ from .base import (
     Identifier,
     Model,
     Number,
+    PositiveInt,
     Text,
     Version,
     unique,
@@ -60,6 +61,27 @@ class ActionRequest(FrameInterval):
     conflict_behavior: Literal["error"] = "error"
 
 
+class RandomActionTiming(FrameInterval):
+    id: Identifier
+    scene_id: Identifier
+    pack: AssetRef
+    action_id: Identifier
+    version: Version
+    channel: Channel
+    repeat: Literal["once", "loop_to_fill"] = "once"
+    duration_frames: PositiveInt
+    minimum_gap_frames: PositiveInt
+    maximum_gap_frames: PositiveInt
+
+    @model_validator(mode="after")
+    def timing_range(self) -> Self:
+        if self.maximum_gap_frames < self.minimum_gap_frames:
+            raise ValueError("maximum random gap must be at least the minimum")
+        if self.duration_frames > self.end_frame - self.start_frame:
+            raise ValueError("random action cannot fit in its declared interval")
+        return self
+
+
 class Continuity(Model):
     summary: Text | None = None
     objects: list[Identifier] = Field(default_factory=list)
@@ -79,6 +101,7 @@ class Episode(DraftDocument):
     scenes: list[SceneInstance] = Field(min_length=1)
     tracks: list[TrackPlacement] = Field(default_factory=list)
     actions: list[ActionRequest] = Field(default_factory=list)
+    random_actions: list[RandomActionTiming] = Field(default_factory=list)
     curves: list[Curve] = Field(default_factory=list)
     events: list[Event] = Field(default_factory=list)
     continuity: Continuity = Field(default_factory=Continuity)
@@ -94,6 +117,7 @@ class Episode(DraftDocument):
                     refs.append((transition.match_action.id, transition.match_action.version))
         refs.extend((track.asset.id, track.asset.version) for track in self.tracks)
         refs.extend((request.pack.id, request.pack.version) for request in self.actions)
+        refs.extend((request.pack.id, request.pack.version) for request in self.random_actions)
         for event in [*self.events, *(event for scene in self.scenes for event in scene.events)]:
             if isinstance(event, LandmarkEvent):
                 refs.append((event.asset.id, event.asset.version))
@@ -105,6 +129,7 @@ class Episode(DraftDocument):
         if any(scene.id == "episode" for scene in self.scenes):
             raise ValueError("scene ID 'episode' is reserved for global curve scope")
         unique([a.id for a in self.actions], "action request IDs")
+        unique([a.id for a in self.random_actions], "random timing IDs")
         unique([t.id for t in self.tracks], "track placement IDs")
         unique([lock.id for lock in self.asset_locks], "asset lock IDs")
         if self.scenes[0].start_frame != 0 or self.scenes[-1].end_frame != self.duration_frames:
@@ -155,6 +180,12 @@ class Episode(DraftDocument):
                 raise ValueError("event refers to an unknown scene")
             check_event(event, scenes[event.scene_id])
         channels: dict[tuple[str, str], list[ActionRequest]] = {}
+        for timing in self.random_actions:
+            scene = scenes.get(timing.scene_id)
+            if scene is None or not (
+                scene.start_frame <= timing.start_frame < timing.end_frame <= scene.end_frame
+            ):
+                raise ValueError("random timing is outside its scene")
         for action in self.actions:
             scene = scenes.get(action.scene_id)
             if (
