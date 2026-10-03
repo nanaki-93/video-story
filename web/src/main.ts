@@ -8,6 +8,7 @@ import { projectsPage, setupPage, restoreRecents } from "./workspace";
 import { assetsPage, inspectorPage } from "./assets";
 import { editorPage } from "./editor";
 import { previewPage } from "./preview";
+import { audioPage } from "./audio";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -84,6 +85,7 @@ function navigate() {
           "timeline",
           "notebook",
           "preview",
+          "audio",
         ].includes(page)
           ? "Connected worker"
           : page === "preview" && mode === "spike"
@@ -93,6 +95,7 @@ function navigate() {
   );
   main.replaceChildren(header);
   const pages = {
+    audio: audioPage,
     preview: previewPage,
     projects: projectsPage,
     setup: setupPage,

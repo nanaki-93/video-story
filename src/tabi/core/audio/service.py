@@ -109,6 +109,16 @@ class AudioService:
         record = ReleaseRecord.model_validate(record)
         if record.status != "draft" or record.revision != 0:
             raise ValueError("import release metadata as a new draft; reviews are separate")
+        return self.save_release(record, expected_revision=None)
+
+    def save_release(self, record: ReleaseRecord, *, expected_revision) -> ReleaseRecord:
+        record = ReleaseRecord.model_validate(record)
+        if record.status != "draft" or record.creative_review is not None:
+            raise ValueError("Music metadata editing accepts drafts without creative approval only")
+        if expected_revision is not None:
+            previous = self.store.read(f"releases/{record.id}.json")
+            if previous.status != "draft":
+                raise ValueError("Reviewed release metadata is preserved; create a new draft ID")
         tracks = []
         for track in record.tracks:
             asset = self.assets.require_valid(track.asset)
@@ -140,4 +150,4 @@ class AudioService:
                 )
             )
         saved = ReleaseRecord.model_validate({**record.model_dump(), "tracks": tracks})
-        return self.store.save_draft(saved, expected_revision=None)
+        return self.store.save_draft(saved, expected_revision=expected_revision)

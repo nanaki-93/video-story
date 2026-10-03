@@ -4,7 +4,18 @@ from typing import Literal, Self
 
 from pydantic import Field, model_validator
 
-from .base import SHA256, AbsolutePath, AssetRef, Document, Frame, Model, Number, PositiveInt
+from .base import (
+    SHA256,
+    AbsolutePath,
+    AssetRef,
+    Document,
+    Frame,
+    Identifier,
+    Model,
+    Number,
+    PositiveInt,
+    Text,
+)
 from .episode import TrackPlacement
 from .production import Fingerprint, ValidationIssue
 
@@ -68,6 +79,17 @@ class AudioTimelineReport(Document):
     placements: list[TrackPlacement]
     music_gaps: list[SampleRange]
     issues: list[ValidationIssue]
+
+
+class AudioEditPlan(Document):
+    document_type: Literal["audio_edit_plan"] = "audio_edit_plan"
+    episode_id: Identifier
+    revision: Frame
+    tracks: list[TrackPlacement]
+    effective_end_sample: Frame
+    episode_duration_samples: PositiveInt
+    can_apply: bool
+    issues: list[Text]
 
 
 class AudioPreparation(Model):

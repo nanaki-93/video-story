@@ -33,7 +33,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T27](t27.md) | Implement projects assets and episode setup pages | T05, T25, T26 | mandatory | complete |
 | [T28](t28.md) | Implement story editor and timeline | T09, T10, T18, T27 | mandatory | complete |
 | [T29](t29.md) | Implement preview and frame inspection page | T13, T26, T28 | mandatory | complete |
-| [T30](t30.md) | Implement audio page and release metadata forms | T15, T16, T27 | mandatory | planned |
+| [T30](t30.md) | Implement audio page and release metadata forms | T15, T16, T27 | mandatory | core complete; listening review pending |
 | [T31](t31.md) | Implement render queue settings and recovery UI | T22, T23, T26 | mandatory | planned |
 | [T32](t32.md) | Implement release page and project portability | T24, T30, T31 | mandatory | planned |
 | [T33](t33.md) | Package and verify local web app launch | T26, T29, T31, T32 | mandatory | planned |

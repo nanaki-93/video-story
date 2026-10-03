@@ -1,7 +1,7 @@
 """Versioned contracts shared by CLI, storage, future API and schema export."""
 
 from .assets import Action, ActionPack, Asset
-from .audio import AudioMixReport, AudioTimelineReport, WaveformReport
+from .audio import AudioEditPlan, AudioMixReport, AudioTimelineReport, WaveformReport
 from .cache import CacheEntry, CacheInventory, CachePruneReport, StorageEstimate
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
@@ -21,6 +21,7 @@ from .scenes import Curve, SceneInstance, SceneTemplate
 from .story import StoryboardReport
 
 DOCUMENT_MODELS = {
+    "audio_edit_plan": AudioEditPlan,
     "preview_selection": PreviewSelection,
     "project": Project,
     "asset": Asset,

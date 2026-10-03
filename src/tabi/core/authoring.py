@@ -62,6 +62,10 @@ class AuthoringService:
             raise ValueError("import an authored template, action pack, episode or release record")
         if isinstance(doc, (SceneTemplate, ActionPack)) and doc.approval.status != "draft":
             raise ValueError("metadata import cannot assert approval; import a draft")
+        if isinstance(doc, ReleaseRecord):
+            from .audio.service import AudioService
+
+            return AudioService(self.assets).save_release(doc, expected_revision=expected_revision)
         return self.store.save_draft(doc, expected_revision=expected_revision)
 
     def still_template(self, reference, *, identity, version, camera_id):

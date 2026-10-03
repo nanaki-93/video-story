@@ -195,6 +195,9 @@ def create_app(runtime, origin, web_root, *, drive_jobs=True):
     from .preview import routes as preview_routes
 
     app.include_router(preview_routes(runtime))
+    from .audio import routes as audio_routes
+
+    app.include_router(audio_routes(runtime))
 
     @app.api_route("/{path:path}", methods=["GET", "HEAD"])
     def static(path: str, request: Request):

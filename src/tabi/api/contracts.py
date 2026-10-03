@@ -14,6 +14,7 @@ from tabi.core.models import (
     ValidationReport,
 )
 from tabi.core.models.assets import Compatibility, Provenance
+from tabi.core.models.audio import AudioMixReport, AudioTimelineReport
 from tabi.core.models.base import (
     SHA256,
     AssetRef,
@@ -131,6 +132,35 @@ class WebFrame(Document):
     document_type: Literal["web_frame"] = "web_frame"
     id: Identifier
     report: RenderReport
+
+
+class AudioSource(Model):
+    asset: Asset
+    prepared_samples: Frame
+
+
+class WebAudio(Document):
+    document_type: Literal["web_audio"] = "web_audio"
+    episode: Episode
+    timeline: AudioTimelineReport
+    sources: list[AudioSource]
+
+
+class AudioAudition(Model):
+    expected_revision: Frame
+    first_sample: Frame
+    end_sample: Frame
+
+
+class WebAudioMix(Document):
+    document_type: Literal["web_audio_mix"] = "web_audio_mix"
+    id: Identifier
+    report: AudioMixReport
+
+
+class MusicMetadata(Model):
+    record: ReleaseRecord
+    expected_revision: Frame | None = None
 
 
 class InstallDocument(Model):
@@ -257,6 +287,8 @@ class WorkerReady(Model):
 
 
 WEB_SCHEMAS = {
+    "web_audio": WebAudio,
+    "web_audio_mix": WebAudioMix,
     "web_preview": WebPreview,
     "web_frame": WebFrame,
     "web_editor": WebEditor,

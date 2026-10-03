@@ -1,0 +1,195 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "TrackPlacement": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "fade_in_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fade In Samples",
+          "type": "integer"
+        },
+        "fade_out_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fade Out Samples",
+          "type": "integer"
+        },
+        "gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Gain Db",
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "loop_crossfade_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Loop Crossfade Samples",
+          "type": "integer"
+        },
+        "loop_duration_samples": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Loop Duration Samples"
+        },
+        "release_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Release Id"
+        },
+        "role": {
+          "default": "music",
+          "enum": [
+            "music",
+            "ambience"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "start_sample": {
+          "minimum": 0,
+          "title": "Start Sample",
+          "type": "integer"
+        },
+        "trim_end_sample": {
+          "minimum": 0,
+          "title": "Trim End Sample",
+          "type": "integer"
+        },
+        "trim_start_sample": {
+          "minimum": 0,
+          "title": "Trim Start Sample",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "asset",
+        "start_sample",
+        "trim_start_sample",
+        "trim_end_sample"
+      ],
+      "title": "TrackPlacement",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:audio_edit_plan",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "can_apply": {
+      "title": "Can Apply",
+      "type": "boolean"
+    },
+    "document_type": {
+      "const": "audio_edit_plan",
+      "default": "audio_edit_plan",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "effective_end_sample": {
+      "minimum": 0,
+      "title": "Effective End Sample",
+      "type": "integer"
+    },
+    "episode_duration_samples": {
+      "exclusiveMinimum": 0,
+      "title": "Episode Duration Samples",
+      "type": "integer"
+    },
+    "episode_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Episode Id",
+      "type": "string"
+    },
+    "issues": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "revision": {
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "tracks": {
+      "items": {
+        "$ref": "#/$defs/TrackPlacement"
+      },
+      "title": "Tracks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "episode_id",
+    "revision",
+    "tracks",
+    "effective_end_sample",
+    "episode_duration_samples",
+    "can_apply",
+    "issues"
+  ],
+  "title": "AudioEditPlan",
+  "type": "object"
+}
