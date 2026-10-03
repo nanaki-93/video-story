@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "document_type": "validation_report",
+  "scope": "compile",
+  "valid": true,
+  "issues": []
+}

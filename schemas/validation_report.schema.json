@@ -75,8 +75,11 @@
       "type": "string"
     },
     "scope": {
-      "const": "structure",
       "default": "structure",
+      "enum": [
+        "structure",
+        "compile"
+      ],
       "title": "Scope",
       "type": "string"
     },

@@ -126,9 +126,17 @@ Verification: **163 tests and 21 schema checks passed**, 18 media tests skipped;
 
 [Inspected frame 149](evidence/t12-synthetic-frame-149.png), [still report](evidence/t12-still-report.json) and [clip report](evidence/t12-clip-report.json) retain output/backend/toolchain identities. The local ten-second clip is `.local/t12-motion/synthetic-motion.mp4` (300 frames, 640×360/30, no audio); FFmpeg subprocess measured 0.815 seconds, excluding preparation/verification. No real-art or long-form performance approval follows.
 
+## T13 — complete
+
+`T13: expose frozen compilation and verified preview workflows` adds the shared episode workflow and CLI validation, immutable compilation, snapshot inspection/review, exact PNG frames and global-range MP4 previews. Inputs are locked and reverified; prior snapshots and existing output files remain unchanged. Explicit production review requires the exact content hash and creates a new snapshot. Synthetic content cannot gain production approval.
+
+Verification: `make schemas && make check` passed **22 schemas and 168 tests**, Ruff clean, 19 opt-in media tests skipped. The six focused workflow checks passed, including actual CLI encoding/decoding. Repeated compilation, draft edits, read-only validation, stale/tampered inputs, invalid frames and review gates were exercised. [Workflow/evidence](15-preview-workflow.md) records a visually inspected frame and a verified 132-frame global-range clip at 960×540/30; FFmpeg subprocess time was 0.999 seconds. MP4 remains ignored at `.local/t13-cli/look-range.mp4`.
+
+Video-only preview is intentional at this step; T16 supplies continuous audio. Real Tabi artwork and snapshot approval remain pending.
+
 ## Next task and pending gates
 
-**Next: T13 — preview CLI and frozen snapshot workflow.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
+**Next unblocked task: T15 — music import and audio timeline.** T14 requires T07/T08 real artwork and Marco's visual review. Shared compilation and scene rendering are implemented; the web UI remains planned. Independent software work continues while creative inputs are pending.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 

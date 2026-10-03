@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_report",
+  "purpose": "synthetic_test",
+  "snapshot_sha256": "dd19596312ff4add7bd2fb5d4fd3a0da2b228396e75b99c1b33fd262dcd90066",
+  "first_frame": 151,
+  "frame_count": 1,
+  "canvas": {
+    "width": 640,
+    "height": 360
+  },
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "output": "/Users/marcoandreose/DEV/lab/video-story/docs/evidence/t13-cli-frame-151.png",
+  "output_sha256": "4c86744bd2a2eb3bc67dc48a6679e78bdefb3ce69a15a1e04374af19b8c922d6",
+  "output_bytes": 2977,
+  "graph_sha256": "19f19ed37d84f7dbb27ac0afa756c435c88457ef1ad6ebf9e8eb8e1ad8573020",
+  "backend": {
+    "name": "tabi-ffmpeg",
+    "version": "1",
+    "sha256": "68fbaf998fd2d06e5ddeccc6b221b73ff114848795ba3d8b356085212b559ca6"
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "render_seconds": 0.07303779199901328,
+  "full_decode_passed": true,
+  "timestamps_verified": false,
+  "normalized_images": 8,
+  "warnings": []
+}

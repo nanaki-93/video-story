@@ -43,16 +43,23 @@ def add_asset_commands(commands):
             action.add_argument("--note", required=True)
 
 
-def run_asset_command(args, settings: Settings) -> int:
+def trusted_roots(entries: list[str]) -> dict[str, Path]:
     roots = {}
-    for entry in args.root:
+    for entry in entries:
         key, separator, value = entry.partition("=")
         if not separator or not value or key in roots:
             raise ValueError("root must be a unique ID=PATH")
         MediaPath(root_id=key, path="root-validation")
         roots[key] = Path(value).expanduser().resolve()
+    return roots
+
+
+def run_asset_command(args, settings: Settings) -> int:
     service = AssetService(
-        ProjectStore(args.project), roots=roots, ffmpeg=settings.ffmpeg, ffprobe=settings.ffprobe
+        ProjectStore(args.project),
+        roots=trusted_roots(args.root),
+        ffmpeg=settings.ffmpeg,
+        ffprobe=settings.ffprobe,
     )
     command = args.asset_command
     if command == "import":

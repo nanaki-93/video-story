@@ -16,7 +16,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T10](t10.md) | Compile actions and persistent state | T07, T09 | mandatory | core complete; real-art review pending |
 | [T11](t11.md) | Implement scene renderer and window masking | T02, T08, T09 | mandatory | core complete; real-art review pending |
 | [T12](t12.md) | Add parallax and scheduled landmarks | T09, T11 | mandatory | complete |
-| [T13](t13.md) | Add preview CLI and frozen snapshots | T05, T10, T11, T12 | mandatory | planned |
+| [T13](t13.md) | Add preview CLI and frozen snapshots | T05, T10, T11, T12 | mandatory | complete |
 | [T14](t14.md) | Approve 90 to 120 second visual pilot | T07, T08, T13 | mandatory | planned |
 | [T15](t15.md) | Implement music import and audio timeline | T03, T05 | mandatory | planned |
 | [T16](t16.md) | Mix continuous audio and ambience | T15 | mandatory | planned |

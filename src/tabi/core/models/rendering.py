@@ -27,3 +27,14 @@ class RenderReport(Document):
     timestamps_verified: bool
     normalized_images: Frame
     warnings: list[str] = Field(default_factory=list)
+
+
+class CompilationResult(Document):
+    document_type: Literal["compilation_result"] = "compilation_result"
+    snapshot_sha256: SHA256
+    snapshot_path: AbsolutePath
+    review_content_sha256: SHA256
+    purpose: Literal["preview", "production", "synthetic_test"]
+    duration_frames: PositiveInt
+    scheduled_events: Frame
+    locked_inputs: Frame

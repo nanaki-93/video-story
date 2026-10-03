@@ -33,10 +33,16 @@ class Renderer(Protocol):
 
 
 class FrozenRegistry:
-    def __init__(self, assets: AssetService, snapshot: CompiledSnapshot):
+    def __init__(
+        self, assets: AssetService, snapshot: CompiledSnapshot, *, require_approval: bool = True
+    ):
         self.assets = assets
         self.snapshot = CompiledSnapshot.model_validate(snapshot)
-        if snapshot.purpose == "production" and snapshot.approval.status != "approved":
+        if (
+            require_approval
+            and snapshot.purpose == "production"
+            and snapshot.approval.status != "approved"
+        ):
             raise RenderError("production rendering requires review of this frozen snapshot hash")
         self.documents = {}
         self.verify()

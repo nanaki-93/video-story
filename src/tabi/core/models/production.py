@@ -262,7 +262,7 @@ class ValidationIssue(Model):
 
 class ValidationReport(Document):
     document_type: Literal["validation_report"]
-    scope: Literal["structure"] = "structure"
+    scope: Literal["structure", "compile"] = "structure"
     valid: bool
     issues: list[ValidationIssue]
 

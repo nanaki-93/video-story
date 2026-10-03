@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "document_type": "compilation_result",
+  "snapshot_sha256": "dd19596312ff4add7bd2fb5d4fd3a0da2b228396e75b99c1b33fd262dcd90066",
+  "snapshot_path": "/Users/marcoandreose/DEV/lab/video-story/.local/t13-cli/Marco Tokyo project/snapshots/dd19596312ff4add7bd2fb5d4fd3a0da2b228396e75b99c1b33fd262dcd90066.json",
+  "review_content_sha256": "a1cc2fc40bd9ead80411563872562a78919be3e03858407519ace0e39e7be9ed",
+  "purpose": "synthetic_test",
+  "duration_frames": 300,
+  "scheduled_events": 8,
+  "locked_inputs": 15
+}

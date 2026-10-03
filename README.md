@@ -2,7 +2,7 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 21 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. T04 adds reproducible fixture projects; T05 adds a hash-verified asset importer and registry. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI remains planned; the shared scene renderer now supports synthetic still/clip verification. See [progress](docs/progress.md), [toolchain checks](docs/10-toolchain.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 22 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. Reproducible fixtures, the asset registry, timeline/action compilation, masked scene rendering and global-range preview CLI are implemented. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI remains planned. See [progress](docs/progress.md), [preview workflow](docs/15-preview-workflow.md) and the [implementation/asset review](docs/09-implementation-review.md).
 
 ## Development setup
 
@@ -43,7 +43,7 @@ make fixtures
 .venv/bin/tabi fixtures --output ".local/My synthetic project" --json
 ```
 
-Generation requires a new directory and preserves existing projects. It creates 14 synthetic assets, separated scenery/masks, body and blink sequences, two WAV files, a registry and a ten-second episode. The manifest hashes 69 files; repeated generation with the pinned runtime produces identical bytes. These fixtures are visibly synthetic and never approved for publication. Episode rendering follows in T11–T13. See [fixture evidence](docs/tasks/t04.md).
+Generation requires a new directory and preserves existing projects. It creates 14 synthetic assets, separated scenery/masks, body and blink sequences, two WAV files, a registry and a ten-second episode. The manifest hashes 69 files; repeated generation with the pinned runtime produces identical bytes. These fixtures are visibly synthetic and never approved for publication. Use the [preview workflow](docs/15-preview-workflow.md) to validate, compile and render them. See [fixture evidence](docs/tasks/t04.md).
 
 ## Projects and document validation
 
@@ -90,7 +90,7 @@ Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 real art is awaiting review; T09 timeline and T10 action compilation are implemented with fixtures; T11/T12 scene rendering and motion are implemented; T13 adds the preview workflow.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T06–T08 real art is awaiting review; T09–T13 timeline, compilation, scene rendering and preview workflows are implemented with fixtures. T15 adds the music timeline next.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.

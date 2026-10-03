@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_report",
+  "purpose": "synthetic_test",
+  "snapshot_sha256": "dd19596312ff4add7bd2fb5d4fd3a0da2b228396e75b99c1b33fd262dcd90066",
+  "first_frame": 84,
+  "frame_count": 132,
+  "canvas": {
+    "width": 960,
+    "height": 540
+  },
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t13-cli/look-range.mp4",
+  "output_sha256": "5b8ce773085c95e4132edb185970cdaf20c75cf161a650960137c1c253cf4891",
+  "output_bytes": 120482,
+  "graph_sha256": "eb79466cfea5576968a7898ff3362df42b14bfdf4519f98d5ea654ac6363f895",
+  "backend": {
+    "name": "tabi-ffmpeg",
+    "version": "1",
+    "sha256": "68fbaf998fd2d06e5ddeccc6b221b73ff114848795ba3d8b356085212b559ca6"
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "render_seconds": 0.9987488339993433,
+  "full_decode_passed": true,
+  "timestamps_verified": true,
+  "normalized_images": 31,
+  "warnings": []
+}

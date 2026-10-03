@@ -56,10 +56,11 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 | `tabi document validate FILE` | T03: validate JSON/YAML structure and print a JSON report; no media probing |
 | `tabi assets import --project PATH --file FILE --kind KIND` | Register original, probe, copy or link explicitly |
 | `tabi assets approve --project PATH --id ID --version VERSION` | Record user-reviewed approval with hashes |
-| `tabi validate EPISODE --report FILE` | Structured validation; no rendering |
-| `tabi compile EPISODE --output SNAPSHOT` | Resolve versions and expand schedule |
-| `tabi preview SNAPSHOT --range START:END --profile proxy` | Render global-frame range; placeholders are labeled |
-| `tabi frame SNAPSHOT --frame N --output PNG` | Exact frame inspection |
+| `tabi validate EPISODE --project PATH [--purpose PURPOSE]` | T13: structured compiler validation; no rendering |
+| `tabi compile EPISODE --project PATH [--output NEW_JSON]` | T13: resolve versions, expand schedule and save immutable snapshot |
+| `tabi preview SNAPSHOT_SHA --project PATH --start N --end N --output MP4` | T13: render global-frame range; placeholders are labeled |
+| `tabi frame SNAPSHOT_SHA --project PATH --frame N --output PNG` | T13: exact frame inspection |
+| `tabi snapshot show/review SNAPSHOT_SHA --project PATH` | T13: inspect frozen content or record an explicit hash-bound review |
 | `tabi render SNAPSHOT --profile youtube-1080 --output MP4` | Persist job and render asynchronously or wait by flag |
 | `tabi jobs status JOB_ID --json` | Return journal state and verified artifact paths |
 | `tabi jobs cancel JOB_ID` | Cancel owned job safely |
@@ -69,7 +70,7 @@ Randomization is limited to optional idle/blink timing within approved ranges. S
 
 Frame ranges use the same half-open convention. CLI exit codes: 0 success, 2 validation/usage, 3 missing dependency, 4 render/I/O failure, 5 cancellation. JSON output goes to stdout; logs to stderr. Avoid embedding secrets or private licence files in logs.
 
-Except for the T01, T03 and T02 commands noted above, this table describes planned behavior. Implement the schema layer before media/domain services; do not expose placeholder commands. `render-spike` is a bounded capability test; it cannot render an episode manifest.
+Commands with task IDs above are implemented. The T05 asset commands use singular `tabi asset`; their exact syntax is in [asset registry](11-asset-registry.md). T13 syntax, snapshot review requirements and limits are in [preview workflow](15-preview-workflow.md). The remaining commands describe planned behavior and are not exposed as placeholders. `render-spike` remains a bounded capability test.
 
 ## Local service API
 
@@ -100,7 +101,7 @@ Asset approval binds `content_sha256` to canonical document content excluding on
 
 Canonical JSON v1 uses the validated model's JSON values, explicit defaults/nulls, sorted object keys, compact separators, UTF-8 and finite numbers. It is a project encoding rule, not a claim of RFC 8785 conformance. YAML is decoded safely, rejects duplicate/non-string keys, unsafe tags, anchors/aliases and non-finite values, and passes through the same JSON validation. Limits are 16 MiB and 64 nesting levels. In-memory models are field-frozen; persistence revalidates nested collections before writing.
 
-Generated JSON Schema describes structural fields and nested types; Python additionally checks cross-field intervals, references, path normalization and approval hashes. A frontend must use the Python validation result for these semantics. Validation reports explicitly identify their scope as `structure`; file probes, media compatibility, action-graph compilation, final playback and creative review remain later-task responsibilities.
+Generated JSON Schema describes structural fields and nested types; Python additionally checks cross-field intervals, references, path normalization and approval hashes. A frontend must use the Python validation result for these semantics. Validation reports identify their scope as `structure` or, from T13, `compile`. The latter checks locked files and action compilation but does not certify final playback or creative quality. T13 adds the `compilation_result` document, bringing the current total to 22 published schemas.
 
 ## Implemented project persistence (T03)
 
