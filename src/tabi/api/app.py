@@ -162,7 +162,12 @@ def create_app(runtime, origin, web_root, *, drive_jobs=True):
                 ):
                     yield "event: session-expired\ndata: {}\n\n"
                     return
-                records = await run_in_threadpool(item.jobs.ledger.events, identity)
+                latest = await run_in_threadpool(item.jobs.ledger.get, identity)
+                records = (
+                    await run_in_threadpool(item.jobs.ledger.events, identity)
+                    if latest.revision > cursor
+                    else []
+                )
                 for record in records:
                     if record.sequence > cursor:
                         yield (

@@ -281,3 +281,56 @@ def test_cli_signal_stops_its_owned_child_and_public_output_has_no_tokens(worksp
         if process.poll() is None:
             process.terminate()
             process.wait(timeout=15)
+
+
+def test_sse_idle_cursor_heartbeats_then_delivers_new_committed_event(workspace):
+    import httpx
+
+    from tabi.core.assets import AssetService
+    from tabi.core.fixtures import generate_fixtures
+    from tabi.core.jobs import JobService
+    from tabi.core.render.profiles import preset_profile
+    from tabi.core.timeline.compiler import ActionCompiler
+
+    runtime, _, _, static = workspace
+    project = runtime.roots.root("work") / "Idle events"
+    generate_fixtures(project)
+    assets = AssetService(ProjectStore(project))
+    snapshot = ActionCompiler(assets, purpose="synthetic_test").compile(
+        assets.store.read("episodes/episode.synthetic.json")
+    )
+    jobs = JobService(assets, runtime.settings)
+    job = jobs.submit(
+        assets.store.save_snapshot(snapshot),
+        preset_profile("proxy", fps=snapshot.episode.fps),
+        "exports/never-rendered.mp4",
+    )
+    paused = jobs.pause(job.id)
+    worker = OwnedWorker(runtime.settings, runtime.roots.roots, static)
+    try:
+        opened = worker.request(
+            "POST", "/api/v1/projects/open", {"root_id": "work", "path": project.name}
+        )
+        route = f"/api/v1/projects/{opened['handle']}/jobs/{job.id}"
+        with (
+            httpx.Client(
+                base_url=worker.origin,
+                headers={"Authorization": f"Bearer {worker.ready.bearer}"},
+                timeout=5,
+            ) as client,
+            client.stream(
+                "GET", route + "/events", headers={"Last-Event-ID": str(paused.revision)}
+            ) as response,
+        ):
+            assert response.status_code == 200
+            lines = response.iter_lines()
+            for _ in range(2):
+                assert next(line for line in lines if line) == ": heartbeat"
+            cancelled = worker.request("POST", route + "/cancel")
+            event = next(line for line in lines if line.startswith("id:"))
+            assert event == f"id: {cancelled['revision']}"
+            data = next(line for line in lines if line.startswith("data:"))
+            assert json.loads(data.removeprefix("data: "))["job"]["state"] == "cancelled"
+        assert not list((project / "exports").glob("*.mp4"))
+    finally:
+        worker.stop()

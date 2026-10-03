@@ -375,3 +375,7 @@ pass, including 2400-key curves, exact global integrals, opacity at fractional f
 chunk assembly. `make check`: 285 passed / 59 opt-in skipped; 64 schemas. A 45-minute native
 1080p synthetic Session is running; completion, sustained-resource and boundary evidence are
 still pending and will be recorded before T37 is marked complete.
+
+The SSE transport now checks the incremental journal tail before replaying history. Ten local
+service checks pass, including a real HTTP stream that emits idle heartbeats at an up-to-date
+cursor and then delivers the next committed cancellation event without rendering any media.
