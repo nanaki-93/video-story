@@ -25,7 +25,7 @@ Cancellation of queued work is immediate. Cancellation of running work sets a du
 
 The media backend renders into an owned temporary directory, decodes and verifies the result, then publishes a chunk without replacing an existing file. Its report and hash are committed before verified progress advances. Final export publication and completion are serialized against cancellation. An interruption between export publication and its event can leave a valid unclaimed export; it is never overwritten. Original art/audio and previously verified exports remain untouched.
 
-Progress means **verified frames**, not an estimated encoding percentage. T20 runs one bounded chunk (up to 7,200 frames) and supports new output paths only under the project's `exports/`. T21 adds planning, resume, video-only chunks and continuous final audio assembly. An interrupted T20 job is preserved for that workflow; no successful resume is claimed here.
+Progress means **verified frames**, not an estimated encoding percentage. The T20 checkpoint ran one bounded chunk (up to 7,200 frames) and supported new output paths only under the project's `exports/`. The current [T21 workflow](20-chunk-assembly.md) adds planning, resume, video-only chunks and continuous final audio assembly. Legacy unplanned T20 jobs remain historical artifacts and require a new submission; their old journals are preserved.
 
 ## Target-Mac evidence
 

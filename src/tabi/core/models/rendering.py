@@ -5,8 +5,14 @@ from typing import Literal
 from pydantic import Field
 
 from .audio import AudioMixReport, AudioVerification
-from .base import SHA256, AbsolutePath, Canvas, Document, Frame, FrameRate, PositiveInt
+from .base import SHA256, AbsolutePath, Canvas, Document, Frame, FrameRate, Model, PositiveInt
 from .production import Fingerprint
+
+
+class AssemblyInfo(Model):
+    mode: Literal["stream_copy", "reencode"]
+    chunk_sha256: list[SHA256] = Field(min_length=1)
+    fallback_reason: str | None = None
 
 
 class RenderReport(Document):
@@ -30,6 +36,7 @@ class RenderReport(Document):
     warnings: list[str] = Field(default_factory=list)
     audio_mix: AudioMixReport | None = None
     audio_verification: AudioVerification | None = None
+    assembly: AssemblyInfo | None = Field(default=None, exclude_if=lambda v: v is None)
 
 
 class CompilationResult(Document):

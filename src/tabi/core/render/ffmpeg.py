@@ -581,7 +581,7 @@ class FFmpegRenderer:
                     ]
                 )
                 args.extend(
-                    ["-preset", "veryfast"]
+                    ["-preset", "veryfast", "-flags", "+cgop", "-x264-params", "open-gop=0"]
                     + (
                         ["-b:v", str(profile.video_bitrate)]
                         if profile.video_bitrate

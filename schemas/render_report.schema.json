@@ -1,5 +1,45 @@
 {
   "$defs": {
+    "AssemblyInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "chunk_sha256": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Chunk Sha256",
+          "type": "array"
+        },
+        "fallback_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fallback Reason"
+        },
+        "mode": {
+          "enum": [
+            "stream_copy",
+            "reencode"
+          ],
+          "title": "Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode",
+        "chunk_sha256"
+      ],
+      "title": "AssemblyInfo",
+      "type": "object"
+    },
     "AssetRef": {
       "additionalProperties": false,
       "properties": {
@@ -371,6 +411,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "assembly": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AssemblyInfo"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
     "audio_mix": {
       "anyOf": [
         {

@@ -5,6 +5,7 @@ import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -27,7 +28,7 @@ from tabi.core.timeline.compiler import ActionCompiler
 
 
 @pytest.fixture
-def queue(tmp_path):
+def queue(tmp_path, monkeypatch):
     root = tmp_path / "Queue's 東京"
     generate_fixtures(root)
     assets = AssetService(ProjectStore(root))
@@ -37,6 +38,13 @@ def queue(tmp_path):
     digest = assets.store.save_snapshot(snapshot)
     settings = load_settings(None, env=os.environ, cwd=Path.cwd(), home=Path.home())
     service = JobService(assets, settings)
+    monkeypatch.setattr(
+        "tabi.core.jobs.service.doctor",
+        lambda *args: SimpleNamespace(
+            ready=True,
+            fingerprint="a" * 64,
+        ),
+    )
     profile = OutputProfile(
         id="test",
         canvas=Canvas(width=320, height=180),

@@ -136,9 +136,9 @@ Video-only preview is intentional at this step; T16 supplies continuous audio. R
 
 ## Next task and pending gates
 
-**Next software task: T21 — chunk planning, resume and assembly.** T14 requires T07/T08 real artwork and Marco's visual review; T16–T19 real soundtrack/effect/story review remains pending. Independent software work continues while creative inputs are pending.
+**Next software task: T22 — cache reuse, storage estimates and safe pruning.** T14 requires T07/T08 real artwork and Marco's visual review; T16–T19 real soundtrack/effect/story review remains pending. Independent software work continues while creative inputs are pending.
 
-Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
+Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch/recovery and user-facing backup restoration. Core CLI cancellation/resume is verified in T20/T21; the small synthetic pass does not establish the remaining capabilities.
 
 Pending creative inputs: selected reference/hash approval, editable separated art and masks/depth layers, sequence timing/anchors/loop ranges/transition poses, provenance and rights records, and finished original music. Continue independent synthetic infrastructure work while these remain pending.
 
@@ -183,3 +183,11 @@ The outline, original music, approved artwork and Marco's creative review remain
 Verification: `make schemas check` passes **27 schemas and 201 unit checks**, Ruff clean; `make test-media` passes **all 31 actual-media checks**. Eight new unit cases cover durable state and ownership; three new actual-media cases pass, including an actual worker exit with a verified 46-frame chunk retained and cancellation of a live FFmpeg graph without touching another process. [Evidence and operations](19-jobs.md) retain completed, process-failed, cancelled and interrupted runs, with an unchanged WAV source hash. The verified 300-frame preview has 480,000 AAC samples. All MP4s remain ignored.
 
 One bounded chunk is the T20 execution unit. T21 adds planning/resume/assembly; T26/T33 add background service and packaged lifecycle. An OS-killed worker's leftover temporary work is never claimed as success or adopted by PID.
+
+## T21 — complete
+
+`T21: resume verified video chunks and assemble continuous audio` adds bounded global frame planning, preferred scene cuts, frozen profile/core/toolchain compatibility, verified chunk reuse and safe retry paths. Video-only chunks are assembled with validated stream copy or a recorded, verified re-encode fallback. Continuous PCM is mixed once and AAC encoded once at final mux. Crashes before/after export publication preserve recoverable artifacts; a conflicting existing export is never overwritten.
+
+Verification: `make schemas check` passes **27 schemas and 214 unit checks**, Ruff clean; `make test-media` passes **all 38 actual-media checks**. Thirteen new unit cases and five new chunk-media cases pass. Story/effect ranges match monolithic exports within the documented lossy tolerance; rational 30000/1001 fps retains exact frame/sample intent. Worker-exit tests cover both sides of publication and external export conflicts. [Retained evidence](20-chunk-assembly.md) records cancellation at 154 verified frames, detection of a truncated chunk, reuse of the valid 77-frame neighbour and a final 300-frame / 480,000-sample export. Its decoded midpoint was visually inspected. MP4 stays ignored.
+
+Cross-job caching/storage management follows in T22. Final-resolution hardware quality and sustained long-form resource checks remain T23/T37; no artistic approval is inferred.

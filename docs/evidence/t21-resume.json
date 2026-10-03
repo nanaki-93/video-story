@@ -1,0 +1,2196 @@
+{
+  "project": "/Users/marcoandreose/DEV/lab/video-story/.local/t21-chunks/Marco 東京 project",
+  "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+  "cancelled_verified_frames": 154,
+  "resume_verified_frames_after_corruption_check": 77,
+  "rerendered_chunks": 3,
+  "retained_before": {
+    "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+    "mtime_ns": 1791045602437908404
+  },
+  "retained_after": {
+    "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+    "mtime_ns": 1791045602437908404
+  },
+  "resume_wall_seconds": 6.831870791998881,
+  "job": {
+    "schema_version": "1.0",
+    "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+    "revision": 19,
+    "document_type": "render_job",
+    "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+    "profile": {
+      "id": "t21-proxy",
+      "canvas": {
+        "width": 640,
+        "height": 360
+      },
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "container": "mp4",
+      "video_codec": "libx264",
+      "pixel_format": "yuv420p",
+      "color_space": "bt709",
+      "audio_codec": "aac",
+      "sample_rate": 48000,
+      "video_bitrate": null
+    },
+    "backend": {
+      "name": "tabi-ffmpeg",
+      "version": "1",
+      "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+    },
+    "state": "verified",
+    "duration_frames": 300,
+    "chunks": [
+      {
+        "index": 0,
+        "first_frame": 0,
+        "frame_count": 77,
+        "state": "verified",
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+          },
+          "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+          "size_bytes": 53025
+        },
+        "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+      },
+      {
+        "index": 1,
+        "first_frame": 77,
+        "frame_count": 77,
+        "state": "verified",
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+          },
+          "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+          "size_bytes": 32017
+        },
+        "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+      },
+      {
+        "index": 2,
+        "first_frame": 154,
+        "frame_count": 77,
+        "state": "verified",
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f.mp4"
+          },
+          "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+          "size_bytes": 57342
+        },
+        "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f-report.json"
+      },
+      {
+        "index": 3,
+        "first_frame": 231,
+        "frame_count": 69,
+        "state": "verified",
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b.mp4"
+          },
+          "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+          "size_bytes": 29746
+        },
+        "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b-report.json"
+      }
+    ],
+    "completed_frames": 300,
+    "output": {
+      "location": {
+        "root_id": "project",
+        "path": "exports/resumed-story.mp4"
+      },
+      "sha256": "2081df20f0450568dc9f67a820b13d48583481bba7e040476f4768db51835e1e",
+      "size_bytes": 418097
+    },
+    "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/final-e3a274c625a0445f82561f96884a900d-report.json",
+    "error": null,
+    "destination": "exports/resumed-story.mp4",
+    "plan": {
+      "version": "1",
+      "pipeline": {
+        "name": "tabi-core-pipeline",
+        "version": "1",
+        "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+      },
+      "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+      "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+      "max_chunk_frames": 77,
+      "temporal_handles": 0
+    }
+  },
+  "events": [
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 0,
+      "previous_sha256": null,
+      "recorded_at": "2026-10-03T16:40:00.436001Z",
+      "kind": "queued",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 0,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "queued",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 0,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": null,
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 1,
+      "previous_sha256": "c27aa486145b26640710f52fd78dac6e5cde05db3cd816d4bdefe655ff8f2758",
+      "recorded_at": "2026-10-03T16:40:00.438470Z",
+      "kind": "started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 1,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 0,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": null,
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 2,
+      "previous_sha256": "ba4a662085cc6df37efea3501361fb608b14c86a003b20b8ce62bd3c371ac096",
+      "recorded_at": "2026-10-03T16:40:00.578493Z",
+      "kind": "toolchain_locked",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 2,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 0,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 3,
+      "previous_sha256": "d714d12b50740a5e72913d0d5c18baaa383cc688844181ded915960ad8597cbe",
+      "recorded_at": "2026-10-03T16:40:00.580280Z",
+      "kind": "chunk_started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 3,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "rendering",
+            "output": null
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 0,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 4,
+      "previous_sha256": "16145fda2baff84f66c10b8c259a33edaa0ae5d49598cedaadf72421733d376a",
+      "recorded_at": "2026-10-03T16:40:01.153995Z",
+      "kind": "chunk_verified",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 4,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 77,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 5,
+      "previous_sha256": "4116f2ec3550d7c3ca52007cbc91f80040ba87396b9765da2294a41c80072160",
+      "recorded_at": "2026-10-03T16:40:01.156135Z",
+      "kind": "chunk_started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 5,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "rendering",
+            "output": null
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 77,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 6,
+      "previous_sha256": "add16305eb0e690212068180be5566fd2b2ccd88dafc2ffc7121d2e17bd3b34e",
+      "recorded_at": "2026-10-03T16:40:02.611319Z",
+      "kind": "chunk_verified",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 6,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 154,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 7,
+      "previous_sha256": "2de84891ab37ef0f7b61fda40627ead102d81e4c79c5315d20c92eddc1da310e",
+      "recorded_at": "2026-10-03T16:40:02.614213Z",
+      "kind": "chunk_started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 7,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "rendering",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 154,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 8,
+      "previous_sha256": "a61c5c1e75625078979c1576ef0b511c47bf90839997357b3b4ee5935e1abf45",
+      "recorded_at": "2026-10-03T16:40:02.897731Z",
+      "kind": "cancel_requested",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 8,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "rendering",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 154,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "cancel_requested": true,
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 9,
+      "previous_sha256": "5c1dc4ba41f288034d8d85f94597779766818635c60d0f0d0e3877327a23c4a2",
+      "recorded_at": "2026-10-03T16:40:04.071931Z",
+      "kind": "cancelled",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 9,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "cancelled",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-c010f387b8e74abf84d2a0ee74e9164b-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 154,
+        "output": null,
+        "report_path": null,
+        "error": {
+          "code": "cancelled",
+          "message": "the owned job was cancelled",
+          "log_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/error-00000008.log"
+        },
+        "destination": "exports/resumed-story.mp4",
+        "cancel_requested": true,
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 10,
+      "previous_sha256": "3d584088333eefeb0ff8b170cda7e01b7f18848c2e3b157a95b2a1674a9366d4",
+      "recorded_at": "2026-10-03T16:40:04.413103Z",
+      "kind": "resume_validated",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 10,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "queued",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 77,
+        "output": null,
+        "report_path": null,
+        "error": {
+          "code": "chunk_invalidated",
+          "message": "chunk 0: chunk hash or report has changed",
+          "log_path": null
+        },
+        "destination": "exports/resumed-story.mp4",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 11,
+      "previous_sha256": "e92f3a93d28fefd306c4c0ece6e1cee0dfb0070bdc56f6cd4167e094c1872e17",
+      "recorded_at": "2026-10-03T16:40:04.420458Z",
+      "kind": "started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 11,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 77,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 12,
+      "previous_sha256": "c3dd3a92c2b8631e60bdc740f9232cdac2e941a7f18560a8288eebe4d1be694d",
+      "recorded_at": "2026-10-03T16:40:04.657304Z",
+      "kind": "chunk_started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 12,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "rendering",
+            "output": null
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 77,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 13,
+      "previous_sha256": "919cdcfc628e979e94e49fe7a847d04f4841e06665e67eb733bcf6e25c7f635d",
+      "recorded_at": "2026-10-03T16:40:05.344078Z",
+      "kind": "chunk_verified",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 13,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "pending",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 154,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 14,
+      "previous_sha256": "e29bb64c64da18619789ea5db25b7a29b14a78237da762396a041e087f77d169",
+      "recorded_at": "2026-10-03T16:40:05.484563Z",
+      "kind": "chunk_started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 14,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "rendering",
+            "output": null
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 154,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 15,
+      "previous_sha256": "ccc6672f9aa9351e512a339324fbb36866c748b0ef7a8d3efcae16d785b894a3",
+      "recorded_at": "2026-10-03T16:40:08.322328Z",
+      "kind": "chunk_verified",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 15,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "pending",
+            "output": null
+          }
+        ],
+        "completed_frames": 231,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 16,
+      "previous_sha256": "aa29a1f37ae01db97ea06829b15d68ff2b0d374030d37408f60857d744ee83e4",
+      "recorded_at": "2026-10-03T16:40:08.327466Z",
+      "kind": "chunk_started",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 16,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "rendering",
+            "output": null
+          }
+        ],
+        "completed_frames": 231,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 17,
+      "previous_sha256": "f0d5ffe8516e4c24477f5a911308b30beee3c88b77a2be09330cd8b8f16ca6b5",
+      "recorded_at": "2026-10-03T16:40:08.997926Z",
+      "kind": "chunk_verified",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 17,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b.mp4"
+              },
+              "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+              "size_bytes": 29746
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b-report.json"
+          }
+        ],
+        "completed_frames": 300,
+        "output": null,
+        "report_path": null,
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 18,
+      "previous_sha256": "359b988a189cd8f598b2f64a9f04aa088176511d0fbe1f1b41590e45327757f6",
+      "recorded_at": "2026-10-03T16:40:11.179734Z",
+      "kind": "assembly_verified",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 18,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "running",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b.mp4"
+              },
+              "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+              "size_bytes": 29746
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b-report.json"
+          }
+        ],
+        "completed_frames": 300,
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/assembly-575b1f09375743848d6ed87891a8e6cf.mp4"
+          },
+          "sha256": "2081df20f0450568dc9f67a820b13d48583481bba7e040476f4768db51835e1e",
+          "size_bytes": 418097
+        },
+        "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/assembly-575b1f09375743848d6ed87891a8e6cf-report.json",
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "owner": "worker-65c8817822754b0891a140db37459c71",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    },
+    {
+      "schema_version": "1.0",
+      "document_type": "job_event",
+      "sequence": 19,
+      "previous_sha256": "13badde1bdbdb8ba5b1eaa0e60ec0d22ca00bc9663399ccb426837cd7ebc1563",
+      "recorded_at": "2026-10-03T16:40:11.201843Z",
+      "kind": "verified",
+      "job": {
+        "schema_version": "1.0",
+        "id": "job-a582c3320a9744de8aac18a2cc15dd07",
+        "revision": 19,
+        "document_type": "render_job",
+        "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+        "profile": {
+          "id": "t21-proxy",
+          "canvas": {
+            "width": 640,
+            "height": 360
+          },
+          "fps": {
+            "num": 30,
+            "den": 1
+          },
+          "container": "mp4",
+          "video_codec": "libx264",
+          "pixel_format": "yuv420p",
+          "color_space": "bt709",
+          "audio_codec": "aac",
+          "sample_rate": 48000,
+          "video_bitrate": null
+        },
+        "backend": {
+          "name": "tabi-ffmpeg",
+          "version": "1",
+          "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+        },
+        "state": "verified",
+        "duration_frames": 300,
+        "chunks": [
+          {
+            "index": 0,
+            "first_frame": 0,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430.mp4"
+              },
+              "sha256": "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+              "size_bytes": 53025
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000000-3641d3450fe443168a736f472b005430-report.json"
+          },
+          {
+            "index": 1,
+            "first_frame": 77,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817.mp4"
+              },
+              "sha256": "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+              "size_bytes": 32017
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000001-cf76d2b3e2374a3d9ff711ce94399817-report.json"
+          },
+          {
+            "index": 2,
+            "first_frame": 154,
+            "frame_count": 77,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f.mp4"
+              },
+              "sha256": "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+              "size_bytes": 57342
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000002-aef675fc428a426db365fee647c1686f-report.json"
+          },
+          {
+            "index": 3,
+            "first_frame": 231,
+            "frame_count": 69,
+            "state": "verified",
+            "output": {
+              "location": {
+                "root_id": "project",
+                "path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b.mp4"
+              },
+              "sha256": "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843",
+              "size_bytes": 29746
+            },
+            "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/chunk-000003-d114c854c49143fab7f4a4193f81277b-report.json"
+          }
+        ],
+        "completed_frames": 300,
+        "output": {
+          "location": {
+            "root_id": "project",
+            "path": "exports/resumed-story.mp4"
+          },
+          "sha256": "2081df20f0450568dc9f67a820b13d48583481bba7e040476f4768db51835e1e",
+          "size_bytes": 418097
+        },
+        "report_path": "jobs/artifacts/job-a582c3320a9744de8aac18a2cc15dd07/final-e3a274c625a0445f82561f96884a900d-report.json",
+        "error": null,
+        "destination": "exports/resumed-story.mp4",
+        "plan": {
+          "version": "1",
+          "pipeline": {
+            "name": "tabi-core-pipeline",
+            "version": "1",
+            "sha256": "1dadb55802a6e2a55c378fc4070474bc3d34458f7bf9677f1dae54ac22be4c4d"
+          },
+          "profile_sha256": "3311a7192d20a757622f38be61b975aaf151f9823636dede9b9b0c0743f7aaff",
+          "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+          "max_chunk_frames": 77,
+          "temporal_handles": 0
+        }
+      }
+    }
+  ]
+}

@@ -21,6 +21,57 @@
       "title": "Canvas",
       "type": "object"
     },
+    "ChunkPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "max_chunk_frames": {
+          "exclusiveMinimum": 0,
+          "maximum": 7200,
+          "title": "Max Chunk Frames",
+          "type": "integer"
+        },
+        "pipeline": {
+          "$ref": "#/$defs/Fingerprint"
+        },
+        "profile_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        },
+        "temporal_handles": {
+          "const": 0,
+          "default": 0,
+          "title": "Temporal Handles",
+          "type": "integer"
+        },
+        "toolchain_fingerprint": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Toolchain Fingerprint"
+        },
+        "version": {
+          "const": "1",
+          "default": "1",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pipeline",
+        "profile_sha256",
+        "max_chunk_frames"
+      ],
+      "title": "ChunkPlan",
+      "type": "object"
+    },
     "ChunkRecord": {
       "additionalProperties": false,
       "properties": {
@@ -388,6 +439,17 @@
           ],
           "default": null,
           "title": "Owner"
+        },
+        "plan": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ChunkPlan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "profile": {
           "$ref": "#/$defs/OutputProfile"

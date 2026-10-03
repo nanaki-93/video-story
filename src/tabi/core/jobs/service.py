@@ -3,15 +3,21 @@
 import hashlib
 import os
 import stat
+import tempfile
 from pathlib import Path
 from uuid import uuid4
 
-from ..models.base import HashedFile, MediaPath, canonical_bytes, relative_path
-from ..models.production import ChunkRecord, JobError, OutputProfile, RenderJob
+from ..audio.mix import verify_aac
+from ..models.base import HashedFile, MediaPath, canonical_bytes, content_hash, relative_path
+from ..models.production import JobError, OutputProfile, RenderJob
+from ..models.rendering import RenderReport
 from ..process import ExecutionScope, OperationCancelled, ToolError, checkpoint, execution_scope
+from ..render.assembly import VideoAssembler
 from ..render.backend import FrozenRegistry, backend_fingerprint
-from ..render.ffmpeg import FFmpegRenderer
+from ..render.ffmpeg import FFmpegRenderer, verify_video
+from ..toolchain import doctor
 from .ledger import JobLedger, revised
+from .planner import pipeline_fingerprint, plan_chunks, video_profile
 
 
 class JobOwnershipError(ValueError):
@@ -25,7 +31,9 @@ class JobService:
         self.owner = f"worker-{uuid4().hex}"
         self.on_process = on_process
 
-    def submit(self, digest, profile, destination, *, first_frame=0, end_frame=None):
+    def submit(
+        self, digest, profile, destination, *, first_frame=0, end_frame=None, max_chunk_frames=None
+    ):
         snapshot = self.store.read_snapshot(digest)
         FrozenRegistry(self.assets, snapshot)
         profile = OutputProfile.model_validate(profile)
@@ -36,8 +44,6 @@ class JobService:
             or not 0 <= first_frame < end <= snapshot.episode.duration_frames
         ):
             raise ValueError("job interval must be inside its frozen episode")
-        if end - first_frame > 7200:
-            raise ValueError("this bounded job needs the long-form chunk planner")
         if profile.fps != snapshot.episode.fps:
             raise ValueError("job profile fps must match its snapshot")
         destination = relative_path(destination)
@@ -51,6 +57,7 @@ class JobService:
                 pass
             else:
                 raise ValueError("job destination already exists; select a new path")
+        plan, chunks = plan_chunks(snapshot, profile, first_frame, end, max_frames=max_chunk_frames)
         job = RenderJob(
             schema_version="1.0",
             document_type="render_job",
@@ -62,9 +69,8 @@ class JobService:
             duration_frames=end - first_frame,
             first_frame=first_frame,
             destination=destination,
-            chunks=[
-                ChunkRecord(index=0, first_frame=0, frame_count=end - first_frame, state="pending")
-            ],
+            chunks=chunks,
+            plan=plan,
         )
         return self.ledger.create(job)
 
@@ -121,6 +127,304 @@ class JobService:
     def recover(self):
         with self.store.exclusive_lock(".tabi-worker.lock"):
             return self._recover()
+
+    def _validate_plan(self, job):
+        if job.plan is None:
+            raise ValueError("legacy job has no frozen chunk plan; submit a new job")
+        if job.backend != backend_fingerprint() or job.plan.pipeline != pipeline_fingerprint():
+            raise ValueError("render pipeline changed since submission; create a new job")
+        if job.plan.profile_sha256 != content_hash(job.profile):
+            raise ValueError("job output profile differs from its frozen plan")
+        snapshot = self.store.read_snapshot(job.snapshot_sha256)
+        FrozenRegistry(self.assets, snapshot)
+        _, expected = plan_chunks(
+            snapshot,
+            job.profile,
+            job.first_frame,
+            job.first_frame + job.duration_frames,
+            max_frames=job.plan.max_chunk_frames,
+        )
+        if [(c.first_frame, c.frame_count) for c in expected] != [
+            (c.first_frame, c.frame_count) for c in job.chunks
+        ]:
+            raise ValueError("chunk ranges differ from their frozen plan")
+        return snapshot
+
+    def _tools(self, job):
+        capabilities = doctor(self.settings, self.store.root)
+        if not capabilities.ready:
+            raise ValueError("media tools/storage are not ready; run tabi doctor")
+        if job.plan.toolchain_fingerprint not in {None, capabilities.fingerprint}:
+            raise ValueError("media toolchain changed; create a new job")
+        return capabilities.fingerprint
+
+    def _owned_path(self, job, path):
+        path = relative_path(path)
+        if not path.startswith(f"jobs/artifacts/{job.id}/"):
+            raise JobOwnershipError("artifact is outside this job's owned directory")
+        return path
+
+    def _verified_chunk(self, job, chunk):
+        if (
+            chunk.output is None
+            or chunk.report_path is None
+            or chunk.output.location.root_id != "project"
+        ):
+            raise ValueError("chunk has no verified owned artifact/report")
+        relative = self._owned_path(job, chunk.output.location.path)
+        report = self.store.read(self._owned_path(job, chunk.report_path))
+        actual = self._artifact(relative)
+        if actual != chunk.output or not isinstance(report, RenderReport):
+            raise ValueError("chunk hash or report has changed")
+        if (
+            report.snapshot_sha256 != job.snapshot_sha256
+            or report.first_frame != job.first_frame + chunk.first_frame
+            or report.frame_count != chunk.frame_count
+            or report.canvas != job.profile.canvas
+            or report.fps != job.profile.fps
+            or report.backend != job.backend
+            or report.toolchain_fingerprint != job.plan.toolchain_fingerprint
+            or (report.output_sha256, report.output_bytes) != (actual.sha256, actual.size_bytes)
+            or not report.full_decode_passed
+            or not report.timestamps_verified
+            or report.audio_mix is not None
+            or report.audio_verification is not None
+        ):
+            raise ValueError("chunk report is incompatible with this frozen job")
+        verify_video(
+            self.settings, self.store.root / relative, video_profile(job.profile), chunk.frame_count
+        )
+        return actual
+
+    def resume(self, identity):
+        with self.store.exclusive_lock(".tabi-worker.lock"):
+            self._recover()
+            job = self.ledger.get(identity)
+            if job.state not in {"paused", "interrupted", "cancelled", "failed"}:
+                raise ValueError("only paused, interrupted, cancelled or failed jobs can resume")
+            self._validate_plan(job)
+            fingerprint = self._tools(job)
+            chunks, invalid = [], []
+            for chunk in job.chunks:
+                if chunk.state == "verified":
+                    try:
+                        self._verified_chunk(job, chunk)
+                        chunks.append(chunk)
+                        continue
+                    except OperationCancelled:
+                        raise
+                    except (ValueError, OSError, ToolError) as error:
+                        invalid.append(f"chunk {chunk.index}: {error}")
+                chunks.append(
+                    chunk.model_copy(
+                        update={"state": "pending", "output": None, "report_path": None}
+                    )
+                )
+            # Invalid or unfinished media stays as an old artifact. A new attempt
+            # receives new paths, so no interrupted or verified file is overwritten.
+            return self.ledger.update(
+                identity,
+                "resume_validated",
+                lambda current: revised(
+                    current,
+                    state="queued",
+                    owner=None,
+                    cancel_requested=False,
+                    plan=current.plan.model_copy(update={"toolchain_fingerprint": fingerprint}),
+                    chunks=chunks,
+                    completed_frames=sum(c.frame_count for c in chunks if c.state == "verified"),
+                    output=None if invalid else current.output,
+                    report_path=None if invalid else current.report_path,
+                    error=JobError(code="chunk_invalidated", message="; ".join(invalid)[:4096])
+                    if invalid
+                    else None,
+                ),
+            )
+
+    @staticmethod
+    def _chunk_update(job, index, **changes):
+        chunks = [
+            chunk.model_copy(update=changes) if chunk.index == index else chunk
+            for chunk in job.chunks
+        ]
+        return revised(
+            job,
+            chunks=chunks,
+            completed_frames=sum(c.frame_count for c in chunks if c.state == "verified"),
+        )
+
+    def _execute(self, job):
+        identity = job.id
+        snapshot = self._validate_plan(job)
+        fingerprint = self._tools(job)
+        if job.plan.toolchain_fingerprint is None:
+            job = self.ledger.update(
+                identity,
+                "toolchain_locked",
+                lambda current: revised(
+                    self._owned(current),
+                    plan=current.plan.model_copy(update={"toolchain_fingerprint": fingerprint}),
+                ),
+            )
+        folder = f"jobs/artifacts/{identity}"
+        with self.store._directory(self.store._parts(folder), create=True):
+            pass
+        for chunk in job.chunks:
+            checkpoint(force=True)
+            if chunk.state == "verified":
+                try:
+                    self._verified_chunk(job, chunk)
+                    continue
+                except OperationCancelled:
+                    raise
+                except (ValueError, OSError, ToolError):
+                    pass
+            index = chunk.index
+            job = self.ledger.update(
+                identity,
+                "chunk_started",
+                lambda current, index=index: self._chunk_update(
+                    self._owned(current),
+                    index,
+                    state="rendering",
+                    output=None,
+                    report_path=None,
+                ),
+            )
+            attempt = f"{folder}/chunk-{index:06}-{uuid4().hex}"
+            chunk_path, report_path = f"{attempt}.mp4", f"{attempt}-report.json"
+            first = job.first_frame + chunk.first_frame
+            report = FFmpegRenderer(self.assets, self.settings).clip(
+                snapshot,
+                first,
+                first + chunk.frame_count,
+                self.store.root / chunk_path,
+                video_profile(job.profile),
+            )
+            if report.toolchain_fingerprint != fingerprint or report.backend != job.backend:
+                raise ValueError("renderer/toolchain changed during chunk execution")
+            self.store._atomic_write(report_path, canonical_bytes(report), overwrite=False)
+            artifact = self._artifact(chunk_path)
+            if (artifact.sha256, artifact.size_bytes) != (
+                report.output_sha256,
+                report.output_bytes,
+            ):
+                raise ValueError("chunk changed after verification")
+            job = self.ledger.update(
+                identity,
+                "chunk_verified",
+                lambda current, index=index, artifact=artifact, report_path=report_path: (
+                    self._chunk_update(
+                        self._owned(current),
+                        index,
+                        state="verified",
+                        output=artifact,
+                        report_path=report_path,
+                    )
+                ),
+            )
+        # A crash after assembly can reuse that verified owned output as well.
+        report = self._existing_assembly(job)
+        if report is None:
+            assembled = f"{folder}/assembly-{uuid4().hex}"
+            report = VideoAssembler(self.assets, self.settings).render(
+                snapshot,
+                job,
+                self.store.root / f"{assembled}.mp4",
+                [
+                    (self.store.root / c.output.location.path, c.frame_count, c.output.sha256)
+                    for c in job.chunks
+                ],
+            )
+            report_path = f"{assembled}-report.json"
+            self.store._atomic_write(report_path, canonical_bytes(report), overwrite=False)
+            artifact = self._artifact(f"{assembled}.mp4")
+            job = self.ledger.update(
+                identity,
+                "assembly_verified",
+                lambda current: revised(
+                    self._owned(current),
+                    output=artifact,
+                    report_path=report_path,
+                ),
+            )
+        checkpoint(force=True)
+        FrozenRegistry(self.assets, snapshot)
+        if job.plan.pipeline != pipeline_fingerprint() or report.backend != job.backend:
+            raise ValueError(
+                "render pipeline changed during execution; verified artifacts retained"
+            )
+        final_report = report.model_copy(update={"output": str(self.store.root / job.destination)})
+        final_report_path = f"{folder}/final-{uuid4().hex}-report.json"
+        self.store._atomic_write(final_report_path, canonical_bytes(final_report), overwrite=False)
+
+        def finish(current):
+            self._owned(current)
+            if current.cancel_requested:
+                raise OperationCancelled("job cancelled before final publication")
+            try:
+                self._publish(current.output.location.path, current.destination)
+            except FileExistsError:
+                existing = self._artifact(current.destination)
+                if (existing.sha256, existing.size_bytes) != (
+                    current.output.sha256,
+                    current.output.size_bytes,
+                ):
+                    raise ValueError(
+                        "existing export differs from this verified job; it was preserved"
+                    ) from None
+            return revised(
+                current,
+                state="verified",
+                owner=None,
+                report_path=final_report_path,
+                output=current.output.model_copy(
+                    update={"location": MediaPath(path=current.destination)}
+                ),
+            )
+
+        return self.ledger.update(identity, "verified", finish)
+
+    def _existing_assembly(self, job):
+        if job.output is None or job.report_path is None:
+            return None
+        try:
+            path = self._owned_path(job, job.output.location.path)
+            if self._artifact(path) != job.output:
+                return None
+            report = self.store.read(self._owned_path(job, job.report_path))
+            if (
+                not isinstance(report, RenderReport)
+                or report.assembly is None
+                or report.snapshot_sha256 != job.snapshot_sha256
+                or report.first_frame != job.first_frame
+                or report.frame_count != job.duration_frames
+                or report.canvas != job.profile.canvas
+                or report.fps != job.profile.fps
+                or report.backend != job.backend
+                or report.toolchain_fingerprint != job.plan.toolchain_fingerprint
+                or report.output_sha256 != job.output.sha256
+                or report.output_bytes != job.output.size_bytes
+                or report.assembly.chunk_sha256 != [chunk.output.sha256 for chunk in job.chunks]
+            ):
+                return None
+            verify_video(self.settings, self.store.root / path, job.profile, job.duration_frames)
+            if job.profile.audio_codec:
+                with tempfile.TemporaryDirectory(
+                    prefix=".tabi-verify-", dir=self.store.root / "jobs"
+                ) as scratch:
+                    verify_aac(
+                        self.settings,
+                        self.store.root / path,
+                        job.profile.fps.sample_at(job.first_frame + job.duration_frames)
+                        - job.profile.fps.sample_at(job.first_frame),
+                        Path(scratch),
+                    )
+            return report
+        except OperationCancelled:
+            raise
+        except (ValueError, OSError, ToolError):
+            return None
 
     def work(self, *, once=False):
         results = []
@@ -179,85 +483,7 @@ class JobService:
             with execution_scope(
                 ExecutionScope(lambda: self._cancelled(identity), self.on_process)
             ):
-                if job.backend != backend_fingerprint():
-                    raise ValueError("renderer changed since submission; create a new job")
-                snapshot = self.store.read_snapshot(job.snapshot_sha256)
-                FrozenRegistry(self.assets, snapshot)
-                folder = f"jobs/artifacts/{identity}"
-                with self.store._directory(self.store._parts(folder), create=True):
-                    pass
-                job = self.ledger.update(
-                    identity,
-                    "chunk_started",
-                    lambda current: revised(
-                        self._owned(current),
-                        chunks=[current.chunks[0].model_copy(update={"state": "rendering"})],
-                    ),
-                )
-                chunk_path, report_path = (
-                    f"{folder}/chunk-000000.mp4",
-                    f"{folder}/chunk-000000-report.json",
-                )
-                report = FFmpegRenderer(self.assets, self.settings).clip(
-                    snapshot,
-                    job.first_frame,
-                    job.first_frame + job.duration_frames,
-                    self.store.root / chunk_path,
-                    job.profile,
-                )
-                # The backend atomically publishes media only after a full decode.
-                # A verified chunk and its report precede the ledger commit.
-                self.store._atomic_write(report_path, canonical_bytes(report), overwrite=False)
-                artifact = self._artifact(chunk_path)
-                if (artifact.sha256, artifact.size_bytes) != (
-                    report.output_sha256,
-                    report.output_bytes,
-                ):
-                    raise ValueError("chunk changed after verification")
-                job = self.ledger.update(
-                    identity,
-                    "chunk_verified",
-                    lambda current: revised(
-                        self._owned(current),
-                        completed_frames=current.duration_frames,
-                        chunks=[
-                            current.chunks[0].model_copy(
-                                update={
-                                    "state": "verified",
-                                    "output": artifact,
-                                    "report_path": report_path,
-                                }
-                            )
-                        ],
-                    ),
-                )
-                checkpoint(force=True)
-                final_report = report.model_copy(
-                    update={"output": str(self.store.root / job.destination)}
-                )
-                final_report_path = f"{folder}/final-report.json"
-                self.store._atomic_write(
-                    final_report_path, canonical_bytes(final_report), overwrite=False
-                )
-
-                # Serialize the final cancellation check, publication and ledger completion.
-                # A request after this point sees an already verified job.
-                def finish(current):
-                    self._owned(current)
-                    if current.cancel_requested:
-                        raise OperationCancelled("job cancelled before final publication")
-                    self._publish(chunk_path, current.destination)
-                    return revised(
-                        current,
-                        state="verified",
-                        owner=None,
-                        report_path=final_report_path,
-                        output=artifact.model_copy(
-                            update={"location": MediaPath(path=current.destination)}
-                        ),
-                    )
-
-                return self.ledger.update(identity, "verified", finish)
+                return self._execute(job)
         except KeyboardInterrupt:
             self.ledger.update(
                 identity,

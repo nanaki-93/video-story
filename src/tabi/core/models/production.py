@@ -133,6 +133,15 @@ class ChunkRecord(Model):
         return self
 
 
+class ChunkPlan(Model):
+    version: Literal["1"] = "1"
+    pipeline: Fingerprint
+    profile_sha256: SHA256
+    toolchain_fingerprint: SHA256 | None = None
+    max_chunk_frames: PositiveInt = Field(le=7200)
+    temporal_handles: Literal[0] = 0
+
+
 class JobError(Model):
     code: Identifier
     message: Text
@@ -155,6 +164,7 @@ class RenderJob(DraftDocument):
     destination: RelativePath | None = Field(default=None, exclude_if=lambda v: v is None)
     owner: Identifier | None = Field(default=None, exclude_if=lambda v: v is None)
     cancel_requested: bool = Field(default=False, exclude_if=lambda v: not v)
+    plan: ChunkPlan | None = Field(default=None, exclude_if=lambda v: v is None)
 
     @model_validator(mode="after")
     def ledger(self) -> Self:

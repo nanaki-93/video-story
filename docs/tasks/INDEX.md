@@ -24,7 +24,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T18](t18.md) | Author episode continuity and scene transitions | T10, T13, T16, T17 | mandatory | core complete; story review pending |
 | [T19](t19.md) | Complete first short music story | T18 | mandatory | original music, approved art and creative review pending |
 | [T20](t20.md) | Implement jobs cancellation and persistence | T13 | mandatory | complete |
-| [T21](t21.md) | Implement chunk planner and resumable assembly | T16, T18, T20 | mandatory | planned |
+| [T21](t21.md) | Implement chunk planner and resumable assembly | T16, T18, T20 | mandatory | complete |
 | [T22](t22.md) | Implement caches storage estimates and pruning | T05, T21 | mandatory | planned |
 | [T23](t23.md) | Verify final export profiles | T02, T21, T22 | mandatory | planned |
 | [T24](t24.md) | Build release preparation exporter | T19, T23 | mandatory | planned |

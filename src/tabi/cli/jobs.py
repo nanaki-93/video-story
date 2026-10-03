@@ -15,11 +15,11 @@ from .episodes import project_arguments
 def add_job_commands(commands):
     parser = commands.add_parser("jobs", help="Submit, run, inspect or cancel durable local jobs")
     actions = parser.add_subparsers(dest="job_command", required=True)
-    for name in ("submit", "list", "status", "events", "cancel", "recover", "work"):
+    for name in ("submit", "list", "status", "events", "cancel", "resume", "recover", "work"):
         action = actions.add_parser(name)
         project_arguments(action)
         action.add_argument("--json", action="store_true", help="JSON is the default output format")
-        if name in {"status", "events", "cancel"}:
+        if name in {"status", "events", "cancel", "resume"}:
             action.add_argument("job_id")
         if name == "work":
             action.add_argument("--once", action="store_true", help="Run at most one queued job")
@@ -28,6 +28,11 @@ def add_job_commands(commands):
             action.add_argument("--output", required=True, help="New path under project exports/")
             action.add_argument("--start", type=int, default=0)
             action.add_argument("--end", type=int)
+            action.add_argument(
+                "--chunk-frames",
+                type=int,
+                help="Maximum video chunk length; default about 30 seconds",
+            )
             action.add_argument("--width", type=int, default=960)
             action.add_argument("--height", type=int, default=540)
             action.add_argument(
@@ -64,6 +69,7 @@ def run_job_command(args, settings):
             args.output,
             first_frame=args.start,
             end_frame=args.end,
+            max_chunk_frames=args.chunk_frames,
         )
     elif name == "list":
         result = service.ledger.all()
@@ -73,6 +79,8 @@ def run_job_command(args, settings):
         result = service.ledger.events(args.job_id)
     elif name == "cancel":
         result = service.cancel(args.job_id)
+    elif name == "resume":
+        result = service.resume(args.job_id)
     elif name == "recover":
         result = service.recover()
     else:

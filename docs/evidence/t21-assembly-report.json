@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_report",
+  "purpose": "synthetic_test",
+  "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+  "first_frame": 0,
+  "frame_count": 300,
+  "canvas": {
+    "width": 640,
+    "height": 360
+  },
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t21-chunks/Marco 東京 project/exports/resumed-story.mp4",
+  "output_sha256": "2081df20f0450568dc9f67a820b13d48583481bba7e040476f4768db51835e1e",
+  "output_bytes": 418097,
+  "graph_sha256": "ca410029d00dd290d43cd9cd1f89d5d4a7efd76097fa1d63a199ab6e6665fc5b",
+  "backend": {
+    "name": "tabi-ffmpeg",
+    "version": "1",
+    "sha256": "d8f0beb098a17b0ca1471d9a99c59fba6c54849ed597fc7d680cea7eb6f4b0a2"
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "render_seconds": 1.9191324589992291,
+  "full_decode_passed": true,
+  "timestamps_verified": true,
+  "normalized_images": 0,
+  "warnings": [],
+  "audio_mix": {
+    "schema_version": "1.0",
+    "document_type": "audio_mix_report",
+    "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+    "purpose": "synthetic_test",
+    "first_sample": 0,
+    "sample_count": 480000,
+    "sample_rate": 48000,
+    "channels": 2,
+    "sample_format": "float32",
+    "output": null,
+    "output_sha256": "a4d55b4d5d8d00a420330d56e5e88ae63873d125bc787b5b8c1cf9f5a8b0b03a",
+    "backend": {
+      "name": "tabi-audio",
+      "version": "1",
+      "sha256": "16bdc26ecda7758769527446e9b44cf5dc49be0185af1baa183e215ebc166aeb"
+    },
+    "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+    "preparations": [
+      {
+        "asset": {
+          "id": "fixture.tone",
+          "version": "1.0"
+        },
+        "source_sha256": "f0acb6b6957870747bc7a78694f4aa117d8796c587ec1950b59098cde15d4f0a",
+        "source_sample_rate": 48000,
+        "source_samples": 480000,
+        "prepared_samples": 480000,
+        "resampled": false
+      }
+    ],
+    "gain_db": 0.0,
+    "sample_peak_dbfs": -18.62237421184374,
+    "true_peak_dbtp": -18.62,
+    "integrated_lufs": -21.05,
+    "loudness_range_lu": 0.0,
+    "over_full_scale_samples": 0,
+    "suggested_gain_db": 7.050000000000001,
+    "warnings": [],
+    "verified_samples": true
+  },
+  "audio_verification": {
+    "intended_samples": 480000,
+    "decoded_samples": 480000,
+    "padding_samples": 0,
+    "codec": "aac",
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "assembly": {
+    "mode": "stream_copy",
+    "chunk_sha256": [
+      "7c323d85a719b18f0ffbfccb7c704a59aecae9b39466a733f61d12c6d16355ea",
+      "546e9da154b12e30a4cb27a0db6378e503e5e40c3d6444c964e47f97a4ec84b7",
+      "e6b1f4da354896cf09ebe88de49400c6bd9815e58dea2cb07f18ec5c0560db3a",
+      "066834240161232ef1a36e8d7649887fc9deda06d65620edb163963502f2c843"
+    ],
+    "fallback_reason": null
+  }
+}

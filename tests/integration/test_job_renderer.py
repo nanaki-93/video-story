@@ -75,7 +75,7 @@ def test_cli_job_renders_real_global_interval_and_commits_verified_artifacts(tmp
     job = service.ledger.get(submitted["id"])
     assert completed["state"] == job.state == "verified"
     assert job.first_frame == 140 and job.completed_frames == 46
-    assert job.output.sha256 == job.chunks[0].output.sha256
+    assert service.store.read(job.chunks[0].report_path).audio_verification is None
     assert file_hash(service.store.root / job.output.location.path) == job.output.sha256
     report = service.store.read(job.report_path)
     assert report.first_frame == 140 and report.frame_count == 46
@@ -85,15 +85,18 @@ def test_cli_job_renders_real_global_interval_and_commits_verified_artifacts(tmp
     assert [event.kind for event in service.ledger.events(job.id)] == [
         "queued",
         "started",
+        "toolchain_locked",
         "chunk_started",
         "chunk_verified",
+        "assembly_verified",
         "verified",
     ]
     assert main(["jobs", "events", job.id, *project]) == 0
     assert json.loads(capsys.readouterr().out)[-1]["job"]["state"] == "verified"
 
 
-def test_actual_worker_crash_retains_verified_video_and_continuous_audio(tmp_path):
+@pytest.mark.parametrize("stage", ["before", "after", "conflict"])
+def test_actual_worker_crash_retains_verified_video_and_continuous_audio(tmp_path, stage):
     service, digest, profile = queue(tmp_path)
     job = service.submit(digest, profile, "exports/after-crash.mp4", first_frame=140, end_frame=186)
     script = """
@@ -105,11 +108,16 @@ from tabi.core.jobs import JobService
 from tabi.core.persistence import ProjectStore
 settings = load_settings(None, env=os.environ, cwd=Path.cwd(), home=Path.home())
 service = JobService(AssetService(ProjectStore(Path(sys.argv[1]))), settings)
-service._publish = lambda *args: os._exit(29)
+original = service._publish
+def crash(source, destination):
+    if sys.argv[2] != 'before':
+        original(source, destination)
+    os._exit(29)
+service._publish = crash
 service.work()
 """
     result = subprocess.run(
-        [sys.executable, "-c", script, str(service.store.root)], check=False, timeout=60
+        [sys.executable, "-c", script, str(service.store.root), stage], check=False, timeout=60
     )
     assert result.returncode == 29
     previous = service.ledger.get(job.id)
@@ -120,11 +128,25 @@ service.work()
     assert recovered.state == "interrupted" and recovered.completed_frames == 46
     assert recovered.chunks[0].state == "verified"
     assert file_hash(artifact) == digest_before == recovered.chunks[0].output.sha256
-    assert (
-        service.store.read(recovered.chunks[0].report_path).audio_verification.intended_samples
-        == 73600
+    assert service.store.read(recovered.report_path).audio_verification.intended_samples == 73600
+    destination = service.store.root / job.destination
+    assert destination.exists() == (stage != "before")
+    if stage == "conflict":
+        destination.write_bytes(b"existing user export must be preserved")
+    assert service.resume(job.id).completed_frames == 46
+    graphs = []
+    service.on_process = lambda process: (
+        graphs.append(process) if "-/filter_complex" in process.args else None
     )
-    assert not (service.store.root / job.destination).exists()
+    result = service.work()[0]
+    assert graphs == []  # Retained verified video is never rendered again.
+    if stage == "conflict":
+        assert result.state == "failed" and "preserved" in result.error.message
+        assert destination.read_bytes() == b"existing user export must be preserved"
+    else:
+        assert result.state == "verified", result.error
+        assert file_hash(destination) == result.output.sha256
+    assert file_hash(artifact) == digest_before
 
 
 def test_cancel_running_ffmpeg_job_preserves_other_process_and_sources(tmp_path):
