@@ -127,7 +127,7 @@ class GraphBuilder:
         )
         return result, left - start, right - start
 
-    def tile(self, scene, slot, start, width, height):
+    def tile(self, scene, slot, start, end, width, height):
         ref = scene.slot_assignments.get(slot.id, slot.asset)
         if ref is None:
             raise RenderError("tile slot has no asset")
@@ -143,7 +143,9 @@ class GraphBuilder:
             if first != repeated:
                 raise RenderError("strip pixels do not repeat at the declared tile period")
         source, layer = self.input(path), self.label()
-        distance = distance_expression(self.timeline, scene.id, f"(n+{start})")
+        distance = distance_expression(
+            self.timeline, scene.id, f"(n+{start})", first_frame=start, end_frame=end
+        )
         # The small epsilon handles double representation at exact integer pixel boundaries.
         x = f"floor(mod(({distance})*{number(slot.depth_factor)},{slot.tile_period})+0.0000001)"
         self.filter(
@@ -180,7 +182,9 @@ class GraphBuilder:
         self.filter(f"[{blank_input}]format=rgba,setparams=alpha_mode=straight[{base}]")
         # On the pinned FFmpeg build, overlay position n is one-based. The
         # generic enable expression and crop n are zero-based (verified in media tests).
-        distance = distance_expression(self.timeline, scene.id, f"(n-1+{start})")
+        distance = distance_expression(
+            self.timeline, scene.id, f"(n-1+{start})", first_frame=start, end_frame=end
+        )
         for event in events:
             if (
                 (event.slot_id is not None and event.slot_id != slot.id)
@@ -236,7 +240,7 @@ class GraphBuilder:
                 layer = self.mask_and_opacity(layer, slot, size)
                 base = self.overlay(base, layer)
             elif slot.kind == "tile_strip":
-                base = self.overlay(base, self.tile(scene, slot, start, width, height))
+                base = self.overlay(base, self.tile(scene, slot, start, end, width, height))
             elif slot.kind == "scheduled_sprite":
                 base = self.overlay(base, self.landmarks(scene, slot, start, end, width, height))
             elif slot.kind == "effect":
@@ -338,6 +342,8 @@ class GraphBuilder:
                 spec.strength_target,
                 f"(N+{start})",
                 default=spec.default_strength,
+                first_frame=start,
+                end_frame=end,
             )
             return f"geq=lum='lum(X,Y)*({strength})'"
         values = [

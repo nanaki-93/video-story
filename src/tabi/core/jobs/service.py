@@ -116,17 +116,7 @@ class JobService:
         return job if job.state == "paused" else None
 
     def progress(self, identity):
-        events = self.ledger.events(identity)
-        if not events:
-            raise ValueError("No job events")
-        elapsed, began = 0.0, None
-        for event in events:
-            if event.job.state == "running" and began is None:
-                began = event.recorded_at
-            elif event.job.state != "running" and began is not None:
-                elapsed += (event.recorded_at - began).total_seconds()
-                began = None
-        job = events[-1].job
+        job, elapsed, began = self.ledger.timing(identity)
         if began is not None:
             elapsed += (datetime.now(UTC) - began).total_seconds()
         elapsed = max(0.0, elapsed)

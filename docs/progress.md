@@ -361,3 +361,17 @@ Chrome proved submission → history → explicit draft import → offline state
 passed / 57 opt-in skipped, 64 schemas; frontend checks/build/four tests pass. [Guide](35-local-generation.md),
 [evidence](evidence/t36-generation.jpg). No model download, actual inference or artistic approval
 is implied by the synthetic protocol fixture.
+
+## T37 — sustained resource use (in progress)
+
+Preflight measured 87.75 ms per journal read with 90 chunks / 181 events. Incremental verified
+replay reduced hot reads to 0.83 ms on this Mac. Every event's inode/size/mtime/ctime is rechecked;
+changed history forces full hash-chain replay, and disk checkpoints remain untrusted. A bounded
+LRU retains one typed tail per recently observed job, instead of all historical chunk lists.
+
+Long curve graphs now keep global integral prefixes while selecting only branches reachable in
+the rendered interval, with balanced conditions for dense keys. Thirteen actual-media checks
+pass, including 2400-key curves, exact global integrals, opacity at fractional frame rates and
+chunk assembly. `make check`: 285 passed / 59 opt-in skipped; 64 schemas. A 45-minute native
+1080p synthetic Session is running; completion, sustained-resource and boundary evidence are
+still pending and will be recorded before T37 is marked complete.

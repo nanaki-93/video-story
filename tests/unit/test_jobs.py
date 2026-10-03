@@ -269,3 +269,54 @@ def test_worker_rejects_changed_inputs_before_rendering(queue, monkeypatch):
     result = service.work()[0]
     assert result.id == job.id and result.state == "failed"
     assert result.completed_frames == 0 and result.error.code == "render_failed"
+
+
+def test_journal_hot_reads_validate_metadata_and_replay_only_new_events(queue, monkeypatch):
+    from tabi.core.jobs.ledger import JobLedger
+
+    service, digest, profile = queue
+    job = service.submit(digest, profile, "exports/incremental.mp4", max_chunk_frames=3)
+    for n in range(20):
+        service.ledger.update(job.id, "observed", lambda j, n=n: revised(j, owner=f"test-{n}"))
+    reads = []
+    original = service.store._read_at
+
+    def read(directory, name):
+        reads.append(name)
+        return original(directory, name)
+
+    monkeypatch.setattr(service.store, "_read_at", read)
+    assert service.ledger.get(job.id).owner == "test-19"
+    assert reads == ["00000020.json"]
+    reads.clear()
+    for _ in range(5):
+        # Even mutating a returned nested list must not alter the verified cache.
+        result = service.ledger.get(job.id)
+        assert len(result.chunks) == 100
+        result.chunks.clear()
+        assert service.progress(job.id)["job"].owner == "test-19"
+    assert not reads
+    # Another service/process can append and be observed on the next poll.
+    other = JobLedger(ProjectStore(service.store.root))
+    other.update(job.id, "changed", lambda j: revised(j, owner="another-reader"))
+    assert service.ledger.get(job.id).owner == "another-reader"
+    assert reads == ["00000021.json"]
+    # The atomic checkpoint is still only a convenience copy, never authority.
+    (service.store.root / f"jobs/{job.id}.json").write_bytes(b"broken checkpoint")
+    assert service.ledger.get(job.id).owner == "another-reader"
+    assert JobLedger(service.store).get(job.id).owner == "another-reader"
+
+
+def test_changed_cached_history_cannot_hide_behind_preserved_mtime(queue):
+    service, digest, profile = queue
+    job = service.submit(digest, profile, "exports/stat-check.mp4")
+    service.cancel(job.id)
+    service.ledger.get(job.id)
+    path = service.store.root / f"jobs/.journals/{job.id}/00000000.json"
+    before = path.stat()
+    data = path.read_bytes()
+    assert b'"kind":"queued"' in data
+    path.write_bytes(data.replace(b'"kind":"queued"', b'"kind":"edited"'))
+    os.utime(path, ns=(before.st_atime_ns, before.st_mtime_ns))
+    with pytest.raises(StorageError, match="hash chain"):
+        service.ledger.get(job.id)

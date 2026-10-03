@@ -2,8 +2,12 @@
 
 import os
 import re
+import stat
+import threading
 import time
+from collections import OrderedDict
 from contextlib import contextmanager
+from dataclasses import dataclass
 from datetime import UTC, datetime
 
 from pydantic import TypeAdapter
@@ -22,9 +26,24 @@ def revised(job, **changes):
     return RenderJob.model_validate({**job.model_dump(), **changes})
 
 
+@dataclass(frozen=True)
+class JournalTail:
+    signatures: tuple
+    event: JobEvent
+    sha256: str
+    created_at: datetime
+    elapsed: float
+    began: datetime | None
+
+
 class JobLedger:
     def __init__(self, store):
         self.store = store
+        # Keep one typed job per recently observed journal, never every historical
+        # full chunk list. File metadata is rechecked on every read; changed history
+        # forces a full hash-chain replay. Disk checkpoints remain untrusted caches.
+        self._tails = OrderedDict()
+        self._tail_lock = threading.RLock()
 
     @contextmanager
     def transaction(self):
@@ -71,8 +90,66 @@ class JobLedger:
                 previous = content_hash(event)
             return records
 
+    @staticmethod
+    def _signature(directory, name):
+        info = os.stat(name, dir_fd=directory, follow_symlinks=False)
+        if not stat.S_ISREG(info.st_mode):
+            raise StorageError("job journal event is not a regular file")
+        return (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns)
+
+    def _tail(self, identity):
+        identity = job_id(identity)
+        with self._tail_lock, self.store._directory(("jobs", ".journals", identity)) as directory:
+            names = sorted(
+                name for name in os.listdir(directory) if re.fullmatch(r"\d{8}\.json", name)
+            )
+            if not names:
+                raise FileNotFoundError("job has no committed journal events")
+            if any(name != f"{i:08}.json" for i, name in enumerate(names)):
+                raise StorageError("job journal has a missing event")
+            signatures = tuple(self._signature(directory, name) for name in names)
+            tail = self._tails.get(identity)
+            if tail and len(signatures) < len(tail.signatures):
+                raise StorageError("job journal has lost committed events")
+            if tail and signatures[: len(tail.signatures)] != tail.signatures:
+                tail = None
+            start = len(tail.signatures) if tail else 0
+            previous = tail.sha256 if tail else None
+            elapsed, began = (tail.elapsed, tail.began) if tail else (0.0, None)
+            created_at = tail.created_at if tail else None
+            for sequence in range(start, len(names)):
+                event = parse_document(self.store._read_at(directory, names[sequence]))
+                if self._signature(directory, names[sequence]) != signatures[sequence]:
+                    raise StorageError("job journal changed while being read")
+                if not isinstance(event, JobEvent):
+                    raise StorageError("journal contains a different document type")
+                if (event.sequence, event.job.id, event.previous_sha256) != (
+                    sequence,
+                    identity,
+                    previous,
+                ):
+                    raise StorageError("job journal identity or hash chain is invalid")
+                if created_at is None:
+                    created_at = event.recorded_at
+                if event.job.state == "running" and began is None:
+                    began = event.recorded_at
+                elif event.job.state != "running" and began is not None:
+                    elapsed += (event.recorded_at - began).total_seconds()
+                    began = None
+                previous = content_hash(event)
+                tail = JournalTail(signatures, event, previous, created_at, elapsed, began)
+            self._tails[identity] = tail
+            self._tails.move_to_end(identity)
+            while len(self._tails) > 8:
+                self._tails.popitem(last=False)
+            return tail
+
     def get(self, identity):
-        return self.events(identity)[-1].job
+        return self._tail(identity).event.job.model_copy(deep=True)
+
+    def timing(self, identity):
+        tail = self._tail(identity)
+        return tail.event.job.model_copy(deep=True), tail.elapsed, tail.began
 
     def all(self):
         try:
@@ -85,7 +162,7 @@ class JobLedger:
         records = []
         for identity in identities:
             try:
-                records.append(self.events(identity))
+                records.append(self._tail(identity))
             except FileNotFoundError:
                 try:
                     self.store._read_bytes(f"jobs/{identity}.json")
@@ -93,8 +170,8 @@ class JobLedger:
                     # An interrupted first event may leave only an empty directory.
                     continue
                 raise StorageError("an existing job has lost its journal") from None
-        records.sort(key=lambda events: (events[0].recorded_at, events[0].job.id))
-        return [events[-1].job for events in records]
+        records.sort(key=lambda tail: (tail.created_at, tail.event.job.id))
+        return [tail.event.job.model_copy(deep=True) for tail in records]
 
     def _append(self, job, kind, previous):
         event = JobEvent(
@@ -130,8 +207,8 @@ class JobLedger:
 
     def update(self, identity, kind, transform):
         with self.transaction():
-            previous = self.events(identity)[-1]
-            updated = RenderJob.model_validate(transform(previous.job))
+            previous = self._tail(identity).event
+            updated = RenderJob.model_validate(transform(previous.job.model_copy(deep=True)))
             if updated.id != previous.job.id or updated.revision != previous.job.revision:
                 raise StorageError("job updates cannot change identity or their input revision")
             if updated == previous.job:
