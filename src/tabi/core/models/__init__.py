@@ -10,6 +10,7 @@ from .projects import Project
 from .registry import AssetHealth, ImportRequest
 from .rendering import CompilationResult, RenderReport
 from .scenes import Curve, SceneInstance, SceneTemplate
+from .story import StoryboardReport
 
 DOCUMENT_MODELS = {
     "project": Project,
@@ -30,6 +31,7 @@ DOCUMENT_MODELS = {
     "audio_timeline_report": AudioTimelineReport,
     "waveform_report": WaveformReport,
     "audio_mix_report": AudioMixReport,
+    "storyboard_report": StoryboardReport,
 }
 
 SCHEMA_MODELS = {

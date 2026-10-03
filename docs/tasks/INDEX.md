@@ -21,7 +21,7 @@ Statuses are recorded below and in each task. Update status and evidence during 
 | [T15](t15.md) | Implement music import and audio timeline | T03, T05 | mandatory | complete |
 | [T16](t16.md) | Mix continuous audio and ambience | T15 | mandatory | core complete; listening review pending |
 | [T17](t17.md) | Add restrained lighting rain and reflections | T11, T14 | mandatory | core complete; effect review pending |
-| [T18](t18.md) | Author episode continuity and scene transitions | T10, T13, T16, T17 | mandatory | planned |
+| [T18](t18.md) | Author episode continuity and scene transitions | T10, T13, T16, T17 | mandatory | core complete; story review pending |
 | [T19](t19.md) | Complete first short music story | T18 | mandatory | planned |
 | [T20](t20.md) | Implement jobs cancellation and persistence | T13 | mandatory | planned |
 | [T21](t21.md) | Implement chunk planner and resumable assembly | T16, T18, T20 | mandatory | planned |

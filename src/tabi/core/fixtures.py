@@ -461,6 +461,90 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
                 }
             )
         episode = validate_data(data)
+    if profile == "story":
+        data = episode.model_dump(mode="json")
+        transition = {
+            "kind": "overlap",
+            "overlap_frames": 36,
+            "character_policy": "matched",
+            "match_action": ref("fixture.idle"),
+            "note": (
+                "Synthetic city handover keeps one identical idle character "
+                "while scenery dissolves."
+            ),
+        }
+        first = data["scenes"][0]
+        first.update(
+            end_frame=180,
+            final_state=None,
+            transition_out=transition,
+            purpose="Establish the synthetic train and its first passing environment.",
+        )
+        first["initial_state"]["props"] = {"table": "seat"}
+        second = {
+            **first,
+            "id": "city",
+            "start_frame": 144,
+            "end_frame": 300,
+            "transition_in": transition,
+            "transition_out": {"kind": "cut"},
+            "initial_state": {**first["initial_state"], "travel_distance_px": 180},
+            "slot_assignments": {"far": ref("fixture.near"), "mid": ref("fixture.far")},
+            "purpose": "Develop the exterior composition and let the test tone resolve.",
+        }
+        data["scenes"] = [first, second]
+        data["title"] = "SYNTHETIC two-scene story and matched transition"
+        data["curves"][0]["scope"] = "episode"
+        data["events"][0].update(end_frame=144, world_x=100)
+        data["actions"] = [
+            {**requests[0], "id": "departure.idle", "start_frame": 0, "end_frame": 180},
+            {
+                **requests[0],
+                "id": "city.idle",
+                "scene_id": "city",
+                "start_frame": 144,
+                "end_frame": 300,
+            },
+            {**requests[5], "id": "departure.blink"},
+            {**requests[6], "id": "city.blink", "scene_id": "city"},
+        ]
+        data["beats"] = [
+            {
+                "id": "departure",
+                "scene_id": "train",
+                "start_frame": 0,
+                "end_frame": 90,
+                "summary": "Train departs",
+                "purpose": "Introduce motion together with the owned test signal.",
+                "music_placements": ["tone"],
+            },
+            {
+                "id": "handover",
+                "scene_id": "city",
+                "start_frame": 144,
+                "end_frame": 180,
+                "summary": "Exterior changes",
+                "purpose": "Prove a matched dissolve without doubling the character.",
+                "music_placements": ["tone"],
+            },
+            {
+                "id": "resolution",
+                "scene_id": "city",
+                "start_frame": 240,
+                "end_frame": 300,
+                "summary": "Test resolves",
+                "purpose": "End the demonstration with the authored audio fade.",
+                "music_placements": ["tone"],
+            },
+        ]
+        data["continuity"] = {
+            "summary": "Synthetic continuity proof only.",
+            "objects": ["table"],
+            "object_notes": {
+                "table": "The purple foreground block stays beside the seat in both scenes."
+            },
+        }
+        episode = validate_data(data)
     store.save_draft(episode, expected_revision=None)
     files = [
         hashed(root, path)
@@ -477,7 +561,7 @@ def _populate(root: Path, *, profile: str = "core") -> FixtureManifest:
 def generate_fixtures(output: Path, *, profile: str = "core") -> FixtureManifest:
     """Publish a new fixture project only; never merge into or replace an existing one."""
     output = output.expanduser().resolve()
-    if profile not in {"core", "effects"}:
+    if profile not in {"core", "effects", "story"}:
         raise StorageError("unknown fixture profile")
     if output.exists():
         raise StorageError("fixture output already exists; choose a new directory")

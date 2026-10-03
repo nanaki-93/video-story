@@ -243,6 +243,16 @@
           "title": "Notes",
           "type": "array"
         },
+        "object_notes": {
+          "patternProperties": {
+            "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "title": "Object Notes",
+          "type": "object"
+        },
         "objects": {
           "items": {
             "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
@@ -380,6 +390,13 @@
             "$ref": "#/$defs/AssetLock"
           },
           "title": "Asset Locks",
+          "type": "array"
+        },
+        "beats": {
+          "items": {
+            "$ref": "#/$defs/StoryBeat"
+          },
+          "title": "Beats",
           "type": "array"
         },
         "canvas": {
@@ -905,6 +922,19 @@
         "initial_state": {
           "$ref": "#/$defs/SceneState"
         },
+        "purpose": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Purpose"
+        },
         "slot_assignments": {
           "patternProperties": {
             "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$": {
@@ -1109,6 +1139,59 @@
       "title": "ScheduledAction",
       "type": "object"
     },
+    "StoryBeat": {
+      "additionalProperties": false,
+      "properties": {
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "music_placements": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+            "type": "string"
+          },
+          "title": "Music Placements",
+          "type": "array"
+        },
+        "purpose": {
+          "minLength": 1,
+          "title": "Purpose",
+          "type": "string"
+        },
+        "scene_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Scene Id",
+          "type": "string"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "summary": {
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame",
+        "id",
+        "scene_id",
+        "summary",
+        "purpose"
+      ],
+      "title": "StoryBeat",
+      "type": "object"
+    },
     "TrackPlacement": {
       "additionalProperties": false,
       "properties": {
@@ -1244,6 +1327,19 @@
             }
           ],
           "default": null
+        },
+        "note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
         },
         "overlap_frames": {
           "default": 0,

@@ -16,6 +16,7 @@ from .base import (
     Number,
     Point,
     PositiveInt,
+    Text,
     Version,
     unique,
 )
@@ -157,6 +158,7 @@ class Transition(Model):
     overlap_frames: Frame = 0
     character_policy: Literal["cut", "single_visible", "matched"] = "cut"
     match_action: AssetRef | None = None
+    note: Text | None = Field(default=None, exclude_if=lambda value: value is None)
 
     @model_validator(mode="after")
     def explicit_overlap(self) -> Self:
@@ -164,8 +166,10 @@ class Transition(Model):
             if self.overlap_frames or self.character_policy != "cut" or self.match_action:
                 raise ValueError("cuts cannot have overlap metadata")
         else:
-            if self.overlap_frames == 0 or self.character_policy == "cut":
+            if self.overlap_frames < 2 or self.character_policy == "cut":
                 raise ValueError("overlaps require duration and a character visibility policy")
+            if self.note is None:
+                raise ValueError("overlaps require an authored transition purpose")
             if (self.character_policy == "matched") != (self.match_action is not None):
                 raise ValueError("matched transitions require a matching action reference")
         return self
@@ -220,6 +224,7 @@ class SceneInstance(FrameInterval):
     transition_out: Transition = Field(default_factory=Transition)
     curves: list[Curve] = Field(default_factory=list)
     events: list[Event] = Field(default_factory=list)
+    purpose: Text | None = Field(default=None, exclude_if=lambda value: value is None)
 
     @model_validator(mode="after")
     def scoped_values(self) -> Self:

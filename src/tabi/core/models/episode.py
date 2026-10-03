@@ -110,6 +110,29 @@ class Continuity(Model):
     objects: list[Identifier] = Field(default_factory=list)
     previous_episode_id: Identifier | None = None
     notes: list[Text] = Field(default_factory=list)
+    object_notes: dict[Identifier, Text] = Field(
+        default_factory=dict, exclude_if=lambda value: not value
+    )
+
+    @model_validator(mode="after")
+    def notebook_objects(self) -> Self:
+        unique(self.objects, "continuity objects")
+        if not self.object_notes.keys() <= set(self.objects):
+            raise ValueError("notebook notes must refer to declared continuity objects")
+        return self
+
+
+class StoryBeat(FrameInterval):
+    id: Identifier
+    scene_id: Identifier
+    summary: Text
+    purpose: Text
+    music_placements: list[Identifier] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def music_ids(self) -> Self:
+        unique(self.music_placements, "beat music placements")
+        return self
 
 
 class Episode(DraftDocument):
@@ -129,6 +152,7 @@ class Episode(DraftDocument):
     events: list[Event] = Field(default_factory=list)
     continuity: Continuity = Field(default_factory=Continuity)
     notes: Text | None = None
+    beats: list[StoryBeat] = Field(default_factory=list, exclude_if=lambda value: not value)
 
     def references(self) -> set[tuple[str, str]]:
         refs = [(lock.id, lock.version) for lock in self.asset_locks]
@@ -187,6 +211,23 @@ class Episode(DraftDocument):
                 if index > 1 and scene.start_frame < self.scenes[index - 2].end_frame:
                     raise ValueError("three-way scene overlaps are unsupported")
         scenes = {scene.id: scene for scene in self.scenes}
+        unique([beat.id for beat in self.beats], "story beat IDs")
+        tracks = {track.id: track for track in self.tracks}
+        for beat in self.beats:
+            scene = scenes.get(beat.scene_id)
+            if (
+                scene is None
+                or not scene.start_frame <= beat.start_frame < beat.end_frame <= scene.end_frame
+            ):
+                raise ValueError("story beat must be inside its declared scene")
+            for track_id in beat.music_placements:
+                track = tracks.get(track_id)
+                if track is None or (
+                    self.fps.sample_at(beat.start_frame)
+                    >= track.start_sample + track.duration_samples
+                    or self.fps.sample_at(beat.end_frame) <= track.start_sample
+                ):
+                    raise ValueError("story beat music link must intersect a real placement")
         for curve in self.curves:
             if curve.scope == "episode":
                 start, end = 0, self.duration_frames

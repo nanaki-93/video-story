@@ -9,6 +9,7 @@ from tabi.core.episodes import EpisodeService
 from tabi.core.models import Episode
 from tabi.core.models.base import Canvas
 from tabi.core.persistence import ProjectStore
+from tabi.core.story import inspect_story
 
 from .assets import trusted_roots
 
@@ -19,6 +20,11 @@ def project_arguments(parser):
 
 
 def add_episode_commands(commands):
+    story = commands.add_parser("story", help="Inspect compiled story beats and continuity intent")
+    story_commands = story.add_subparsers(dest="story_command", required=True)
+    inspect = story_commands.add_parser("inspect")
+    inspect.add_argument("snapshot")
+    project_arguments(inspect)
     for name in ("validate", "compile"):
         parser = commands.add_parser(
             name, help=f"{name.title()} an episode through the shared compiler"
@@ -79,6 +85,8 @@ def run_episode_command(args, settings):
             if args.command == "validate"
             else service.compile(episode, purpose=args.purpose, output=args.output)
         )
+    elif args.command == "story":
+        result = inspect_story(service.store.read_snapshot(args.snapshot))
     elif args.command == "snapshot":
         if args.snapshot_command == "show":
             print(json.dumps(service.inspect_snapshot(args.snapshot), ensure_ascii=False, indent=2))

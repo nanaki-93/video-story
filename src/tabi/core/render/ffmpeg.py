@@ -21,6 +21,7 @@ from ..models.scenes import LandmarkEvent
 from ..process import run_tool
 from ..timeline import Timeline, loop_frame
 from ..timeline.effects import validate_effects
+from ..timeline.transitions import validate_transitions
 from ..toolchain import doctor, file_hash
 from .backend import FrozenRegistry, RenderError, backend_fingerprint
 from .motion import distance_expression, number, value_expression
@@ -331,12 +332,30 @@ class GraphBuilder:
 
     def build(self, start, end, *, video):
         parts = []
-        for scene in self.registry.snapshot.episode.scenes:
-            left, right = max(start, scene.start_frame), min(end, scene.end_frame)
-            if left < right:
-                if scene.transition_in.kind != "cut" or scene.transition_out.kind != "cut":
-                    raise RenderError("overlap rendering requires explicit T18 semantics")
-                parts.append(self.scene(scene, left, right))
+        scenes = self.registry.snapshot.episode.scenes
+        boundaries = {start, end}
+        for scene in scenes:
+            boundaries.update(n for n in (scene.start_frame, scene.end_frame) if start < n < end)
+        boundaries = sorted(boundaries)
+        for left, right in zip(boundaries, boundaries[1:], strict=False):
+            active = [scene for scene in scenes if scene.start_frame <= left < scene.end_frame]
+            layers = [self.scene(scene, left, right) for scene in active]
+            if len(layers) == 1:
+                parts.append(layers[0])
+            elif len(layers) == 2:
+                incoming = active[1]
+                progress = (
+                    f"min(1,max(0,(T*{self.rate.num}/{self.rate.den}+{left}-"
+                    f"{incoming.start_frame})/{incoming.transition_in.overlap_frames - 1}))"
+                )
+                out = self.label()
+                self.filter(
+                    f"[{layers[0]}][{layers[1]}]blend=all_expr='A*(1-({progress}))+B*({progress})':"
+                    f"shortest=1[{out}]"
+                )
+                parts.append(out)
+            else:
+                raise RenderError("scene coverage needs one scene or a declared two-scene overlap")
         base = parts[0]
         if len(parts) > 1:
             base = self.label()
@@ -460,6 +479,8 @@ class FFmpegRenderer:
             "lighting",
             "rain",
             "reflection",
+            "matched_overlap",
+            "single_character_overlap",
         }
     )
 
@@ -512,6 +533,7 @@ class FFmpegRenderer:
         if not capabilities.ready:
             raise RenderError("media tools/storage are not ready; run tabi doctor")
         registry = FrozenRegistry(self.assets, snapshot)
+        validate_transitions(snapshot.episode, snapshot.schedule, registry.get)
         with tempfile.TemporaryDirectory(prefix=".tabi-render-", dir=output.parent) as scratch:
             root = Path(scratch)
             builder = GraphBuilder(registry, root, canvas)

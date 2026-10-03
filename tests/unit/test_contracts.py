@@ -156,7 +156,12 @@ def test_overlap_requires_matched_duration_and_character_policy(episode_data):
     second = copy.deepcopy(first)
     second.update(id="train-02", start_frame=1755)
     first["end_frame"] = 1800
-    transition = {"kind": "overlap", "overlap_frames": 45, "character_policy": "single_visible"}
+    transition = {
+        "kind": "overlap",
+        "overlap_frames": 45,
+        "character_policy": "single_visible",
+        "note": "An authored transition to the next environment.",
+    }
     first["transition_out"] = transition
     second["transition_in"] = transition
     episode_data["scenes"].append(second)
@@ -301,6 +306,7 @@ def test_root_registry_is_complete(project_data, snapshot_data):
         "audio_timeline_report",
         "waveform_report",
         "audio_mix_report",
+        "storyboard_report",
     } == set(DOCUMENT_MODELS)
     for data in [project_data, snapshot_data]:
         document = validate_data(data)

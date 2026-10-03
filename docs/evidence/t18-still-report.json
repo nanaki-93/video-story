@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_report",
+  "purpose": "synthetic_test",
+  "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+  "first_frame": 162,
+  "frame_count": 1,
+  "canvas": {
+    "width": 640,
+    "height": 360
+  },
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "output": "/Users/marcoandreose/DEV/lab/video-story/docs/evidence/t18-story-frame-162.png",
+  "output_sha256": "99c9c8529573b14fd67bb4b7e9b85fdd19587df5be6ffd2758b9c02afae19b70",
+  "output_bytes": 2964,
+  "graph_sha256": "0caed466fa54fb698e4925646b9043dc4067c441a9f7b82b749a78cf26adc123",
+  "backend": {
+    "name": "tabi-ffmpeg",
+    "version": "1",
+    "sha256": "a4b8320c015e7b9fd7817143ba9b576088af1683b824cea157cc022b364a9740"
+  },
+  "toolchain_fingerprint": "bb3e13f31bb09d4352d071a4d4ac9dad23ca6ab8bcf9fa8050e327454431b785",
+  "render_seconds": 0.18253825000101642,
+  "full_decode_passed": true,
+  "timestamps_verified": false,
+  "normalized_images": 7,
+  "warnings": [],
+  "audio_mix": null,
+  "audio_verification": null
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0",
+  "document_type": "storyboard_report",
+  "snapshot_sha256": "70aa12354f2e2adeeaa92f75252908782575706b2daa6c449ed17b28cb8b94e4",
+  "scenes": [
+    {
+      "start_frame": 0,
+      "end_frame": 180,
+      "id": "train",
+      "template": {
+        "id": "scene.synthetic.train",
+        "version": "1.0"
+      },
+      "slot_assignments": {},
+      "anchor": "seated",
+      "initial_state": {
+        "body_pose": "idle",
+        "facial_overlay": null,
+        "props": {
+          "table": "seat"
+        },
+        "cabin_light": null,
+        "weather_phase_frame": 0,
+        "travel_distance_px": 0.0
+      },
+      "final_state": {
+        "body_pose": "idle",
+        "facial_overlay": null,
+        "props": {
+          "table": "seat"
+        },
+        "cabin_light": null,
+        "weather_phase_frame": 0,
+        "travel_distance_px": 300.0
+      },
+      "continuity": "preserve",
+      "transition_in": {
+        "kind": "cut",
+        "overlap_frames": 0,
+        "character_policy": "cut",
+        "match_action": null
+      },
+      "transition_out": {
+        "kind": "overlap",
+        "overlap_frames": 36,
+        "character_policy": "matched",
+        "match_action": {
+          "id": "fixture.idle",
+          "version": "1.0"
+        },
+        "note": "Synthetic city handover keeps one identical idle character while scenery dissolves."
+      },
+      "curves": [],
+      "events": [],
+      "purpose": "Establish the synthetic train and its first passing environment."
+    },
+    {
+      "start_frame": 144,
+      "end_frame": 300,
+      "id": "city",
+      "template": {
+        "id": "scene.synthetic.train",
+        "version": "1.0"
+      },
+      "slot_assignments": {
+        "far": {
+          "id": "fixture.near",
+          "version": "1.0"
+        },
+        "mid": {
+          "id": "fixture.far",
+          "version": "1.0"
+        }
+      },
+      "anchor": "seated",
+      "initial_state": {
+        "body_pose": "idle",
+        "facial_overlay": null,
+        "props": {
+          "table": "seat"
+        },
+        "cabin_light": null,
+        "weather_phase_frame": 0,
+        "travel_distance_px": 180.0
+      },
+      "final_state": {
+        "body_pose": "idle",
+        "facial_overlay": null,
+        "props": {
+          "table": "seat"
+        },
+        "cabin_light": null,
+        "weather_phase_frame": 0,
+        "travel_distance_px": 780.0
+      },
+      "continuity": "preserve",
+      "transition_in": {
+        "kind": "overlap",
+        "overlap_frames": 36,
+        "character_policy": "matched",
+        "match_action": {
+          "id": "fixture.idle",
+          "version": "1.0"
+        },
+        "note": "Synthetic city handover keeps one identical idle character while scenery dissolves."
+      },
+      "transition_out": {
+        "kind": "cut",
+        "overlap_frames": 0,
+        "character_policy": "cut",
+        "match_action": null
+      },
+      "curves": [],
+      "events": [],
+      "purpose": "Develop the exterior composition and let the test tone resolve."
+    }
+  ],
+  "beats": [
+    {
+      "start_frame": 0,
+      "end_frame": 90,
+      "id": "departure",
+      "scene_id": "train",
+      "summary": "Train departs",
+      "purpose": "Introduce motion together with the owned test signal.",
+      "music_placements": [
+        "tone"
+      ]
+    },
+    {
+      "start_frame": 144,
+      "end_frame": 180,
+      "id": "handover",
+      "scene_id": "city",
+      "summary": "Exterior changes",
+      "purpose": "Prove a matched dissolve without doubling the character.",
+      "music_placements": [
+        "tone"
+      ]
+    },
+    {
+      "start_frame": 240,
+      "end_frame": 300,
+      "id": "resolution",
+      "scene_id": "city",
+      "summary": "Test resolves",
+      "purpose": "End the demonstration with the authored audio fade.",
+      "music_placements": [
+        "tone"
+      ]
+    }
+  ],
+  "music_boundaries": [
+    {
+      "placement_id": "tone",
+      "sample": 0,
+      "kind": "start",
+      "purposes": [
+        "Introduce motion together with the owned test signal."
+      ]
+    },
+    {
+      "placement_id": "tone",
+      "sample": 480000,
+      "kind": "end",
+      "purposes": [
+        "End the demonstration with the authored audio fade."
+      ]
+    }
+  ],
+  "continuity": {
+    "summary": "Synthetic continuity proof only.",
+    "objects": [
+      "table"
+    ],
+    "previous_episode_id": null,
+    "notes": [],
+    "object_notes": {
+      "table": "The purple foreground block stays beside the seat in both scenes."
+    }
+  },
+  "issues": []
+}

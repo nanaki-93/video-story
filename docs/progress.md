@@ -136,7 +136,7 @@ Video-only preview is intentional at this step; T16 supplies continuous audio. R
 
 ## Next task and pending gates
 
-**Next software task: T18 — scene transitions, continuity and story beats.** T14 requires T07/T08 real artwork and Marco's visual review; T16/T17 real soundtrack/effect review remains pending. Independent software work continues while creative inputs are pending.
+**Next software task: T20 — persistent jobs and cancellation.** T14 requires T07/T08 real artwork and Marco's visual review; T16–T19 real soundtrack/effect/story review remains pending. Independent software work continues while creative inputs are pending.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 
@@ -163,3 +163,11 @@ No finished real music/listening approval was supplied; an asynchronous request 
 Verification: `make check` passes **25 schemas and 180 tests**, Ruff clean. Three new unit cases and two new actual-media cases pass, including thirteen independent PNG comparisons (maximum three RGB levels), protected foreground/character pixels, and full/split global range checks. Existing static and motion regression checks passed. [Inspected frame](evidence/t17-effects-frame-151.png) and [reports](17-effects.md) record a 300-frame/640×360 preview with 480,000 AAC samples. Latest render/mix/mux interval: 20.097 seconds, versus an earlier 42.855 seconds before reducing expression work to alpha planes; these are development observations with concurrent tests, not controlled benchmarks.
 
 Real effect/palette approval and 1080p/4K performance remain pending. The MP4 stays ignored at `.local/t17-effects-verified.mp4`.
+
+## T18 — core complete; story review pending
+
+`T18: author story beats and verify scene overlaps` adds scene/transition purposes, beats linked to musical placements and an object notebook, with a frozen storyboard inspection command. Conservative overlap validation prevents doubled or divergent characters. The renderer blends in global frame time; cut and overlap entry states share one pose/prop/travel evaluator. Active scoped curves are checked against their scene capabilities.
+
+Verification: `make schemas check` passes **26 schemas and 193 unit checks**, Ruff clean; `make test-media` passes **all 28 actual-media checks**. Thirteen new unit cases cover continuity, phase, placement, face/prop divergence, metadata and scope. The new media cases verify matched and single-character overlaps, including endpoints and starts inside a transition, against independent composition and global-range comparisons. [Evidence](18-story-continuity.md) retains a 300-frame/640×360 preview with 480,000 AAC samples and an inspected midpoint PNG. MP4 stays local and ignored.
+
+The outline, original music, approved artwork and Marco's creative review remain pending. No synthetic output is considered publishable or approved.

@@ -1,125 +1,5 @@
 {
   "$defs": {
-    "ActionRequest": {
-      "additionalProperties": false,
-      "properties": {
-        "action_id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Action Id",
-          "type": "string"
-        },
-        "channel": {
-          "enum": [
-            "body",
-            "face"
-          ],
-          "title": "Channel",
-          "type": "string"
-        },
-        "conflict_behavior": {
-          "const": "error",
-          "default": "error",
-          "title": "Conflict Behavior",
-          "type": "string"
-        },
-        "end_frame": {
-          "minimum": 0,
-          "title": "End Frame",
-          "type": "integer"
-        },
-        "id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Id",
-          "type": "string"
-        },
-        "pack": {
-          "$ref": "#/$defs/AssetRef"
-        },
-        "repeat": {
-          "enum": [
-            "once",
-            "loop_to_fill"
-          ],
-          "title": "Repeat",
-          "type": "string"
-        },
-        "return_pose": {
-          "anyOf": [
-            {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Return Pose"
-        },
-        "scene_id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Scene Id",
-          "type": "string"
-        },
-        "start_frame": {
-          "minimum": 0,
-          "title": "Start Frame",
-          "type": "integer"
-        },
-        "version": {
-          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "title": "Version",
-          "type": "string"
-        }
-      },
-      "required": [
-        "start_frame",
-        "end_frame",
-        "id",
-        "scene_id",
-        "pack",
-        "action_id",
-        "version",
-        "channel",
-        "repeat"
-      ],
-      "title": "ActionRequest",
-      "type": "object"
-    },
-    "AssetLock": {
-      "additionalProperties": false,
-      "properties": {
-        "id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Id",
-          "type": "string"
-        },
-        "sha256": {
-          "anyOf": [
-            {
-              "pattern": "^[0-9a-f]{64}$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Sha256"
-        },
-        "version": {
-          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "title": "Version",
-          "type": "string"
-        }
-      },
-      "required": [
-        "id",
-        "version"
-      ],
-      "title": "AssetLock",
-      "type": "object"
-    },
     "AssetRef": {
       "additionalProperties": false,
       "properties": {
@@ -139,27 +19,6 @@
         "version"
       ],
       "title": "AssetRef",
-      "type": "object"
-    },
-    "Canvas": {
-      "additionalProperties": false,
-      "properties": {
-        "height": {
-          "exclusiveMinimum": 0,
-          "title": "Height",
-          "type": "integer"
-        },
-        "width": {
-          "exclusiveMinimum": 0,
-          "title": "Width",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "width",
-        "height"
-      ],
-      "title": "Canvas",
       "type": "object"
     },
     "Continuity": {
@@ -305,27 +164,6 @@
       "title": "CurveKey",
       "type": "object"
     },
-    "FrameRate": {
-      "additionalProperties": false,
-      "properties": {
-        "den": {
-          "exclusiveMinimum": 0,
-          "title": "Den",
-          "type": "integer"
-        },
-        "num": {
-          "exclusiveMinimum": 0,
-          "title": "Num",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "num",
-        "den"
-      ],
-      "title": "FrameRate",
-      "type": "object"
-    },
     "LandmarkEvent": {
       "additionalProperties": false,
       "properties": {
@@ -393,6 +231,45 @@
       "title": "LandmarkEvent",
       "type": "object"
     },
+    "MusicBoundary": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "start",
+            "end"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "placement_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Placement Id",
+          "type": "string"
+        },
+        "purposes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Purposes",
+          "type": "array"
+        },
+        "sample": {
+          "minimum": 0,
+          "title": "Sample",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "placement_id",
+        "sample",
+        "kind",
+        "purposes"
+      ],
+      "title": "MusicBoundary",
+      "type": "object"
+    },
     "ParameterLimit": {
       "additionalProperties": false,
       "properties": {
@@ -455,91 +332,6 @@
         "location"
       ],
       "title": "PropEvent",
-      "type": "object"
-    },
-    "RandomActionTiming": {
-      "additionalProperties": false,
-      "properties": {
-        "action_id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Action Id",
-          "type": "string"
-        },
-        "channel": {
-          "enum": [
-            "body",
-            "face"
-          ],
-          "title": "Channel",
-          "type": "string"
-        },
-        "duration_frames": {
-          "exclusiveMinimum": 0,
-          "title": "Duration Frames",
-          "type": "integer"
-        },
-        "end_frame": {
-          "minimum": 0,
-          "title": "End Frame",
-          "type": "integer"
-        },
-        "id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Id",
-          "type": "string"
-        },
-        "maximum_gap_frames": {
-          "exclusiveMinimum": 0,
-          "title": "Maximum Gap Frames",
-          "type": "integer"
-        },
-        "minimum_gap_frames": {
-          "exclusiveMinimum": 0,
-          "title": "Minimum Gap Frames",
-          "type": "integer"
-        },
-        "pack": {
-          "$ref": "#/$defs/AssetRef"
-        },
-        "repeat": {
-          "default": "once",
-          "enum": [
-            "once",
-            "loop_to_fill"
-          ],
-          "title": "Repeat",
-          "type": "string"
-        },
-        "scene_id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Scene Id",
-          "type": "string"
-        },
-        "start_frame": {
-          "minimum": 0,
-          "title": "Start Frame",
-          "type": "integer"
-        },
-        "version": {
-          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
-          "title": "Version",
-          "type": "string"
-        }
-      },
-      "required": [
-        "start_frame",
-        "end_frame",
-        "id",
-        "scene_id",
-        "pack",
-        "action_id",
-        "version",
-        "channel",
-        "duration_frames",
-        "minimum_gap_frames",
-        "maximum_gap_frames"
-      ],
-      "title": "RandomActionTiming",
       "type": "object"
     },
     "SceneInstance": {
@@ -782,109 +574,6 @@
       "title": "StoryBeat",
       "type": "object"
     },
-    "TrackPlacement": {
-      "additionalProperties": false,
-      "properties": {
-        "asset": {
-          "$ref": "#/$defs/AssetRef"
-        },
-        "fade_in_samples": {
-          "default": 0,
-          "minimum": 0,
-          "title": "Fade In Samples",
-          "type": "integer"
-        },
-        "fade_out_samples": {
-          "default": 0,
-          "minimum": 0,
-          "title": "Fade Out Samples",
-          "type": "integer"
-        },
-        "gain_db": {
-          "default": 0.0,
-          "maximum": 24,
-          "minimum": -120,
-          "title": "Gain Db",
-          "type": "number"
-        },
-        "id": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-          "title": "Id",
-          "type": "string"
-        },
-        "loop_crossfade_samples": {
-          "default": 0,
-          "minimum": 0,
-          "title": "Loop Crossfade Samples",
-          "type": "integer"
-        },
-        "loop_duration_samples": {
-          "anyOf": [
-            {
-              "exclusiveMinimum": 0,
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Loop Duration Samples"
-        },
-        "release_id": {
-          "anyOf": [
-            {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Release Id"
-        },
-        "role": {
-          "default": "music",
-          "enum": [
-            "music",
-            "ambience"
-          ],
-          "title": "Role",
-          "type": "string"
-        },
-        "sample_rate": {
-          "const": 48000,
-          "default": 48000,
-          "title": "Sample Rate",
-          "type": "integer"
-        },
-        "start_sample": {
-          "minimum": 0,
-          "title": "Start Sample",
-          "type": "integer"
-        },
-        "trim_end_sample": {
-          "minimum": 0,
-          "title": "Trim End Sample",
-          "type": "integer"
-        },
-        "trim_start_sample": {
-          "minimum": 0,
-          "title": "Trim Start Sample",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "id",
-        "asset",
-        "start_sample",
-        "trim_start_sample",
-        "trim_end_sample"
-      ],
-      "title": "TrackPlacement",
-      "type": "object"
-    },
     "Transition": {
       "additionalProperties": false,
       "properties": {
@@ -940,26 +629,64 @@
       },
       "title": "Transition",
       "type": "object"
+    },
+    "ValidationIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "location": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "title": "Location",
+          "type": "array"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "suggested_fix": {
+          "minLength": 1,
+          "title": "Suggested Fix",
+          "type": "string"
+        }
+      },
+      "required": [
+        "severity",
+        "code",
+        "location",
+        "message",
+        "suggested_fix"
+      ],
+      "title": "ValidationIssue",
+      "type": "object"
     }
   },
-  "$id": "urn:tabi:schema:1.0:episode",
+  "$id": "urn:tabi:schema:1.0:storyboard_report",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "actions": {
-      "items": {
-        "$ref": "#/$defs/ActionRequest"
-      },
-      "title": "Actions",
-      "type": "array"
-    },
-    "asset_locks": {
-      "items": {
-        "$ref": "#/$defs/AssetLock"
-      },
-      "title": "Asset Locks",
-      "type": "array"
-    },
     "beats": {
       "items": {
         "$ref": "#/$defs/StoryBeat"
@@ -967,99 +694,33 @@
       "title": "Beats",
       "type": "array"
     },
-    "canvas": {
-      "$ref": "#/$defs/Canvas"
-    },
     "continuity": {
       "$ref": "#/$defs/Continuity"
     },
-    "curves": {
-      "items": {
-        "$ref": "#/$defs/Curve"
-      },
-      "title": "Curves",
-      "type": "array"
-    },
     "document_type": {
-      "const": "episode",
+      "const": "storyboard_report",
+      "default": "storyboard_report",
       "title": "Document Type",
       "type": "string"
     },
-    "duration_frames": {
-      "exclusiveMinimum": 0,
-      "minimum": 0,
-      "title": "Duration Frames",
-      "type": "integer"
-    },
-    "events": {
+    "issues": {
       "items": {
-        "discriminator": {
-          "mapping": {
-            "landmark": "#/$defs/LandmarkEvent",
-            "prop": "#/$defs/PropEvent"
-          },
-          "propertyName": "type"
-        },
-        "oneOf": [
-          {
-            "$ref": "#/$defs/LandmarkEvent"
-          },
-          {
-            "$ref": "#/$defs/PropEvent"
-          }
-        ]
+        "$ref": "#/$defs/ValidationIssue"
       },
-      "title": "Events",
+      "title": "Issues",
       "type": "array"
     },
-    "format": {
-      "enum": [
-        "story",
-        "session",
-        "track"
-      ],
-      "title": "Format",
-      "type": "string"
-    },
-    "fps": {
-      "$ref": "#/$defs/FrameRate"
-    },
-    "id": {
-      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
-      "title": "Id",
-      "type": "string"
-    },
-    "notes": {
-      "anyOf": [
-        {
-          "minLength": 1,
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "title": "Notes"
-    },
-    "random_actions": {
+    "music_boundaries": {
       "items": {
-        "$ref": "#/$defs/RandomActionTiming"
+        "$ref": "#/$defs/MusicBoundary"
       },
-      "title": "Random Actions",
+      "title": "Music Boundaries",
       "type": "array"
-    },
-    "revision": {
-      "default": 0,
-      "minimum": 0,
-      "title": "Revision",
-      "type": "integer"
     },
     "scenes": {
       "items": {
         "$ref": "#/$defs/SceneInstance"
       },
-      "minItems": 1,
       "title": "Scenes",
       "type": "array"
     },
@@ -1068,36 +729,21 @@
       "title": "Schema Version",
       "type": "string"
     },
-    "seed": {
-      "minimum": 0,
-      "title": "Seed",
-      "type": "integer"
-    },
-    "title": {
-      "minLength": 1,
-      "title": "Title",
+    "snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Snapshot Sha256",
       "type": "string"
-    },
-    "tracks": {
-      "items": {
-        "$ref": "#/$defs/TrackPlacement"
-      },
-      "title": "Tracks",
-      "type": "array"
     }
   },
   "required": [
     "schema_version",
-    "id",
-    "document_type",
-    "title",
-    "format",
-    "fps",
-    "canvas",
-    "duration_frames",
-    "seed",
-    "scenes"
+    "snapshot_sha256",
+    "scenes",
+    "beats",
+    "music_boundaries",
+    "continuity",
+    "issues"
   ],
-  "title": "Episode",
+  "title": "StoryboardReport",
   "type": "object"
 }

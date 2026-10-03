@@ -11,10 +11,12 @@ from ..models.assets import Action, ApprovableDocument
 from ..models.base import AssetRef, ResolvedAssetLock, content_hash
 from ..models.episode import ActionRequest
 from ..models.production import Fingerprint, ScheduledAction
-from ..models.scenes import LandmarkEvent, PropEvent, SceneInstance, SceneState
+from ..models.scenes import LandmarkEvent, PropEvent, SceneInstance
 from .curves import Timeline, TimelineError, contains, loop_frame
 from .effects import validate_effects
 from .random import expand_random_actions, prng_fingerprint
+from .state import scene_state, state_parts
+from .transitions import validate_transitions
 
 
 class CompileError(TimelineError):
@@ -222,9 +224,10 @@ class ActionCompiler:
         events = [*episode.events, *(event for scene in episode.scenes for event in scene.events)]
         schedule, scenes, previous_state = [], [], None
         for scene in episode.scenes:
-            if scene.transition_in.kind != "cut" or scene.transition_out.kind != "cut":
-                raise CompileError("scene overlap compilation enters in T18; use explicit cuts")
             template = self.resolve(scene.template, "scene_template")
+            for transition in (scene.transition_in, scene.transition_out):
+                if transition.match_action:
+                    self.resolve(transition.match_action, "asset")
             if scene.anchor is not None and scene.anchor not in template.anchors:
                 raise CompileError("unknown scene character anchor")
             slot_ids = {slot.id for slot in template.slots}
@@ -244,24 +247,37 @@ class ActionCompiler:
                     if asset_ref:
                         self.resolve(asset_ref, "asset")
             validate_effects(scene, template, timeline, self.resolve)
-            for curve in [*episode.curves, *scene.curves]:
-                if curve.scope not in {"episode", scene.id}:
-                    continue
-                limit = template.parameter_limits.get(curve.target)
+            targets = {
+                target for scope, target in timeline.curves if scope in {"episode", scene.id}
+            }
+            for target in targets:
+                evaluator = timeline.curve_for(scene.id, target)
+                frames = {scene.start_frame, scene.end_frame}
+                frames.update(
+                    n for n in evaluator.frames if scene.start_frame <= n <= scene.end_frame
+                )
+                # Sampling both sides also covers a zero-outside or constant jump.
+                frames.update(n - 1 for n in tuple(frames) if n > scene.start_frame)
+                limit = template.parameter_limits.get(target)
                 if limit is None or any(
-                    not limit.minimum <= key.value <= limit.maximum for key in curve.keys
+                    not limit.minimum <= evaluator.value_at(frame) <= limit.maximum
+                    for frame in frames
                 ):
                     raise CompileError(
-                        f"curve {curve.target} exceeds or lacks template capability limits"
+                        f"curve {target} exceeds or lacks template capability limits"
                     )
             initial = scene.initial_state
+            if scenes:
+                previous_state = scene_state(
+                    scenes[-1], schedule, events, timeline, scene.start_frame
+                )
             if (
                 previous_state is not None
                 and scene.continuity == "preserve"
                 and initial != previous_state
             ):
                 raise CompileError(
-                    f"scene {scene.id} initial state differs from the previous final state; "
+                    f"scene {scene.id} initial state differs from the previous scene at entry; "
                     "match it or declare a deliberate_reset"
                 )
             body_requests = [r for r in requests if r.scene_id == scene.id and r.channel == "body"]
@@ -334,16 +350,7 @@ class ActionCompiler:
                 _, props = state_parts(initial, body, events, scene.id, request.start_frame)
                 require_props(selected, props)
                 face.append(self._emit(request, selected, request.start_frame, duration, 0))
-            pose, props = state_parts(initial, body, events, scene.id, scene.end_frame)
-            final = SceneState(
-                **{
-                    **initial.model_dump(),
-                    "body_pose": pose,
-                    "props": props,
-                    "facial_overlay": None,
-                    "travel_distance_px": float(timeline.travel_at(scene.id, scene.end_frame)),
-                }
-            )
+            final = scene_state(scene, [*body, *face], events, timeline, scene.end_frame)
             if scene.final_state is not None and scene.final_state != final:
                 raise CompileError(
                     f"scene {scene.id} declared final state differs "
@@ -371,11 +378,12 @@ class ActionCompiler:
                 event.id,
             )
         )
+        frozen_episode = Episode.model_validate({**episode.model_dump(), "scenes": scenes})
+        validate_transitions(frozen_episode, schedule, self.resolve)
         resolved_locks = [
             ResolvedAssetLock(id=id, version=version, sha256=content_hash(document))
             for (id, version), document in sorted(self.resolved.items())
         ]
-        frozen_episode = Episode.model_validate({**episode.model_dump(), "scenes": scenes})
         return CompiledSnapshot(
             schema_version="1.0",
             document_type="compiled_snapshot",
@@ -396,27 +404,6 @@ class ActionCompiler:
             compiler=compiler_fingerprint(),
             prng=prng_fingerprint(),
         )
-
-
-def state_parts(
-    initial: SceneState, actions: list[ScheduledAction], events: list, scene_id: str, frame: int
-) -> tuple[str, dict[str, str]]:
-    pose, props = initial.body_pose, dict(initial.props)
-    changes = [
-        (a.end_frame, 0, a.id, a) for a in actions if a.channel == "body" and a.end_frame <= frame
-    ]
-    changes.extend(
-        (event.frame, 1, event.id, event)
-        for event in events
-        if isinstance(event, PropEvent) and event.scene_id == scene_id and event.frame <= frame
-    )
-    for _, _, _, change in sorted(changes):
-        if isinstance(change, PropEvent):
-            props[change.object_id] = change.location
-        else:
-            pose = change.end_pose
-            props.update(change.resulting_props)
-    return pose, props
 
 
 def state_at(snapshot: CompiledSnapshot, scene_id: str, frame: int) -> dict:
