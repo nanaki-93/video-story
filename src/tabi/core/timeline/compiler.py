@@ -5,6 +5,7 @@ from collections import deque
 from pathlib import Path
 
 from ..assets import AssetService
+from ..audio.timeline import validate_placement
 from ..models import ActionPack, CompiledSnapshot, Episode
 from ..models.assets import Action, ApprovableDocument
 from ..models.base import AssetRef, ResolvedAssetLock, content_hash
@@ -21,6 +22,7 @@ class CompileError(TimelineError):
 
 def compiler_fingerprint() -> Fingerprint:
     sources = sorted(Path(__file__).parent.glob("*.py"))
+    sources.append(Path(__file__).parents[1] / "audio" / "timeline.py")
     digest = hashlib.sha256()
     for source in sources:
         digest.update(source.name.encode() + b"\0" + source.read_bytes())
@@ -355,12 +357,7 @@ class ActionCompiler:
                 self.resolve(event.asset, "asset")
         for track in episode.tracks:
             asset = self.resolve(track.asset, "asset")
-            if (
-                asset.kind != "audio"
-                or asset.probe.sample_rate != 48000
-                or track.trim_end_sample > asset.probe.duration_samples
-            ):
-                raise CompileError("audio placement exceeds a prepared 48 kHz source")
+            validate_placement(track, asset)
         # Explicit authored locks can refer to any registry family; resolve them deterministically.
         for lock in episode.asset_locks:
             if (lock.id, lock.version) not in self.resolved:
@@ -391,7 +388,9 @@ class ActionCompiler:
             episode=frozen_episode,
             locked_assets=resolved_locks,
             schedule=schedule,
-            audio_placements=episode.tracks,
+            audio_placements=sorted(
+                episode.tracks, key=lambda track: (track.start_sample, track.id)
+            ),
             compiler=compiler_fingerprint(),
             prng=prng_fingerprint(),
         )

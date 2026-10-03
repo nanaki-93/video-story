@@ -136,8 +136,14 @@ Video-only preview is intentional at this step; T16 supplies continuous audio. R
 
 ## Next task and pending gates
 
-**Next unblocked task: T15 — music import and audio timeline.** T14 requires T07/T08 real artwork and Marco's visual review. Shared compilation and scene rendering are implemented; the web UI remains planned. Independent software work continues while creative inputs are pending.
+**Next unblocked task: T16 — continuous audio mixing and ambience.** T14 requires T07/T08 real artwork and Marco's visual review. Shared compilation and scene rendering are implemented; the web UI remains planned. Independent software work continues while creative inputs are pending.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 
 Pending creative inputs: selected reference/hash approval, editable separated art and masks/depth layers, sequence timing/anchors/loop ranges/transition poses, provenance and rights records, and finished original music. Continue independent synthetic infrastructure work while these remain pending.
+
+## T15 — complete
+
+`T15: preserve music masters and validate sample timelines` extends exact WAV import with bounded PCM reading, explicit sample envelopes, source waveform proxies, timeline gap/overlap/silence warnings and strict draft release-metadata import. CLI and episode validation share the same rules. Metadata cannot substitute a different master or invent identifiers; original and copied WAV bytes remain unchanged.
+
+Verification: `make schemas check` passed Ruff, **24 schemas and 174 tests**, 19 opt-in FFmpeg checks skipped. Six new audio cases cover independent PCM values and every split boundary, signed 24-bit decoding, source waveform statistics, silence, invalid trims/hashes and preserved metadata/master bytes. [Audio documentation/evidence](16-audio.md) records the ten-second/480,000-sample fixture and waveform. NumPy 2.4.6 is locked. Current interchange is integer mono/stereo PCM WAV; technical conversion and continuous mixing follow in T16. Real music/listening review remain pending.

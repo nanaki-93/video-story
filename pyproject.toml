@@ -9,6 +9,7 @@ description = "Local production tools for authored Tabi music stories"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 dependencies = [
+    "numpy>=2,<3",
     "pillow>=11,<13",
     "pydantic>=2.10,<3",
     "pyyaml>=6,<7",

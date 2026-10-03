@@ -7,6 +7,7 @@ from pathlib import Path
 
 from tabi import __version__
 from tabi.cli.assets import add_asset_commands, run_asset_command
+from tabi.cli.audio import add_audio_commands, run_audio_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
 from tabi.cli.logging import configure_logging
 from tabi.core.config import ConfigError, load_settings
@@ -31,6 +32,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     commands = parser.add_subparsers(dest="command", required=True)
     add_asset_commands(commands)
+    add_audio_commands(commands)
     add_episode_commands(commands)
     config = commands.add_parser(
         "config", help="Show resolved local settings without changing files"
@@ -150,6 +152,12 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
+    if args.command == "audio":
+        try:
+            return run_audio_command(args, settings)
+        except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
+            logger.error("audio_operation_failed: %s", error)
+            return 4
     if args.command in {"compile", "validate", "frame", "preview", "snapshot"}:
         try:
             return run_episode_command(args, settings)

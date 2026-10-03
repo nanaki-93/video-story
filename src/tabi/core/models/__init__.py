@@ -1,6 +1,7 @@
 """Versioned contracts shared by CLI, storage, future API and schema export."""
 
 from .assets import Action, ActionPack, Asset
+from .audio import AudioTimelineReport, WaveformReport
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
@@ -26,6 +27,8 @@ DOCUMENT_MODELS = {
     "asset_health": AssetHealth,
     "render_report": RenderReport,
     "compilation_result": CompilationResult,
+    "audio_timeline_report": AudioTimelineReport,
+    "waveform_report": WaveformReport,
 }
 
 SCHEMA_MODELS = {

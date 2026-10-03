@@ -1,16 +1,16 @@
 """Shared episode validation, immutable compilation and preview application service."""
 
-import os
 from datetime import UTC, datetime
 from pathlib import Path
-from tempfile import NamedTemporaryFile
 
 from .assets import AssetService
+from .audio import AudioService
 from .config import Settings
 from .documents import DocumentError
+from .export import export_document
 from .models import CompiledSnapshot, Episode, ValidationReport
 from .models.assets import Approval
-from .models.base import Canvas, canonical_bytes
+from .models.base import Canvas
 from .models.production import OutputProfile, ValidationIssue
 from .models.rendering import CompilationResult
 from .persistence import StorageError
@@ -27,6 +27,7 @@ class EpisodeService:
     def validate(self, episode: Episode, *, purpose: str = "preview") -> ValidationReport:
         try:
             ActionCompiler(self.assets, purpose=purpose).compile(episode)
+            audio = AudioService(self.assets).inspect(episode)
         except DocumentError as error:
             return error.report()
         except (ValueError, OSError, ToolError) as error:
@@ -53,7 +54,7 @@ class EpisodeService:
             document_type="validation_report",
             scope="compile",
             valid=True,
-            issues=[],
+            issues=audio.issues,
         )
 
     def _result(self, snapshot: CompiledSnapshot, digest: str) -> CompilationResult:
@@ -75,25 +76,7 @@ class EpisodeService:
         digest = self.store.save_snapshot(snapshot)
         result = self._result(snapshot, digest)
         if output is not None:
-            output = output.expanduser().absolute()
-            if output.exists() or output.is_symlink():
-                raise StorageError("snapshot export exists; select a new path")
-            output.parent.mkdir(parents=True, exist_ok=True)
-            temporary = None
-            try:
-                with NamedTemporaryFile(
-                    prefix=".tabi-snapshot-", dir=output.parent, delete=False
-                ) as stream:
-                    temporary = Path(stream.name)
-                    stream.write(canonical_bytes(snapshot))
-                    stream.flush()
-                    os.fsync(stream.fileno())
-                if CompiledSnapshot.model_validate_json(temporary.read_bytes()) != snapshot:
-                    raise StorageError("snapshot export failed byte/model verification")
-                os.link(temporary, output)
-            finally:
-                if temporary is not None:
-                    temporary.unlink(missing_ok=True)
+            export_document(snapshot, output)
         return result
 
     def inspect_snapshot(self, digest: str) -> dict:

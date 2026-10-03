@@ -1,0 +1,166 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "WaveformBin": {
+      "additionalProperties": false,
+      "properties": {
+        "end_sample": {
+          "minimum": 0,
+          "title": "End Sample",
+          "type": "integer"
+        },
+        "maximum": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "title": "Maximum",
+          "type": "array"
+        },
+        "minimum": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "title": "Minimum",
+          "type": "array"
+        },
+        "rms": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 2,
+          "minItems": 1,
+          "title": "Rms",
+          "type": "array"
+        },
+        "start_sample": {
+          "minimum": 0,
+          "title": "Start Sample",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_sample",
+        "end_sample",
+        "minimum",
+        "maximum",
+        "rms"
+      ],
+      "title": "WaveformBin",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:waveform_report",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "asset": {
+      "$ref": "#/$defs/AssetRef"
+    },
+    "asset_content_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Asset Content Sha256",
+      "type": "string"
+    },
+    "bins": {
+      "items": {
+        "$ref": "#/$defs/WaveformBin"
+      },
+      "maxItems": 8192,
+      "minItems": 1,
+      "title": "Bins",
+      "type": "array"
+    },
+    "channels": {
+      "enum": [
+        1,
+        2
+      ],
+      "title": "Channels",
+      "type": "integer"
+    },
+    "document_type": {
+      "const": "waveform_report",
+      "default": "waveform_report",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "duration_samples": {
+      "exclusiveMinimum": 0,
+      "title": "Duration Samples",
+      "type": "integer"
+    },
+    "leading_silence_samples": {
+      "minimum": 0,
+      "title": "Leading Silence Samples",
+      "type": "integer"
+    },
+    "sample_rate": {
+      "exclusiveMinimum": 0,
+      "title": "Sample Rate",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "silent": {
+      "title": "Silent",
+      "type": "boolean"
+    },
+    "source_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Source Sha256",
+      "type": "string"
+    },
+    "synthetic": {
+      "title": "Synthetic",
+      "type": "boolean"
+    },
+    "trailing_silence_samples": {
+      "minimum": 0,
+      "title": "Trailing Silence Samples",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "asset",
+    "asset_content_sha256",
+    "source_sha256",
+    "sample_rate",
+    "duration_samples",
+    "channels",
+    "bins",
+    "leading_silence_samples",
+    "trailing_silence_samples",
+    "silent",
+    "synthetic"
+  ],
+  "title": "WaveformReport",
+  "type": "object"
+}

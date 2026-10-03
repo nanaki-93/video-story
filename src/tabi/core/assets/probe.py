@@ -80,7 +80,9 @@ def probe_media(
                 sample_rate=audio.getframerate(),
                 duration_samples=frames,
                 channels=audio.getnchannels(),
-                codec=f"pcm_s{audio.getsampwidth() * 8}le",
+                codec="pcm_u8"
+                if audio.getsampwidth() == 1
+                else f"pcm_s{audio.getsampwidth() * 8}le",
             )
     stream_type = "v:0" if kind == "video" else "a:0"
     payload = json.loads(

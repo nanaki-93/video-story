@@ -1,0 +1,239 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "SampleRange": {
+      "additionalProperties": false,
+      "properties": {
+        "end_sample": {
+          "minimum": 0,
+          "title": "End Sample",
+          "type": "integer"
+        },
+        "start_sample": {
+          "minimum": 0,
+          "title": "Start Sample",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_sample",
+        "end_sample"
+      ],
+      "title": "SampleRange",
+      "type": "object"
+    },
+    "TrackPlacement": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "fade_in_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fade In Samples",
+          "type": "integer"
+        },
+        "fade_out_samples": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fade Out Samples",
+          "type": "integer"
+        },
+        "gain_db": {
+          "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
+          "title": "Gain Db",
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "release_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Release Id"
+        },
+        "role": {
+          "default": "music",
+          "enum": [
+            "music",
+            "ambience"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "sample_rate": {
+          "const": 48000,
+          "default": 48000,
+          "title": "Sample Rate",
+          "type": "integer"
+        },
+        "start_sample": {
+          "minimum": 0,
+          "title": "Start Sample",
+          "type": "integer"
+        },
+        "trim_end_sample": {
+          "minimum": 0,
+          "title": "Trim End Sample",
+          "type": "integer"
+        },
+        "trim_start_sample": {
+          "minimum": 0,
+          "title": "Trim Start Sample",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "asset",
+        "start_sample",
+        "trim_start_sample",
+        "trim_end_sample"
+      ],
+      "title": "TrackPlacement",
+      "type": "object"
+    },
+    "ValidationIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "location": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "title": "Location",
+          "type": "array"
+        },
+        "message": {
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "suggested_fix": {
+          "minLength": 1,
+          "title": "Suggested Fix",
+          "type": "string"
+        }
+      },
+      "required": [
+        "severity",
+        "code",
+        "location",
+        "message",
+        "suggested_fix"
+      ],
+      "title": "ValidationIssue",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:audio_timeline_report",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "audio_timeline_report",
+      "default": "audio_timeline_report",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "duration_samples": {
+      "exclusiveMinimum": 0,
+      "title": "Duration Samples",
+      "type": "integer"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/ValidationIssue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "music_gaps": {
+      "items": {
+        "$ref": "#/$defs/SampleRange"
+      },
+      "title": "Music Gaps",
+      "type": "array"
+    },
+    "placements": {
+      "items": {
+        "$ref": "#/$defs/TrackPlacement"
+      },
+      "title": "Placements",
+      "type": "array"
+    },
+    "sample_rate": {
+      "const": 48000,
+      "default": 48000,
+      "title": "Sample Rate",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "duration_samples",
+    "placements",
+    "music_gaps",
+    "issues"
+  ],
+  "title": "AudioTimelineReport",
+  "type": "object"
+}

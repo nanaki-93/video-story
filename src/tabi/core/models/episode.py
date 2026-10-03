@@ -31,7 +31,7 @@ class TrackPlacement(Model):
     trim_start_sample: Frame
     trim_end_sample: Frame
     sample_rate: Literal[48000] = 48000
-    gain_db: Number = 0.0
+    gain_db: Number = Field(default=0.0, ge=-120, le=24)
     fade_in_samples: Frame = 0
     fade_out_samples: Frame = 0
     role: Literal["music", "ambience"] = "music"

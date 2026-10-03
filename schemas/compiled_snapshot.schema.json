@@ -1129,6 +1129,8 @@
         },
         "gain_db": {
           "default": 0.0,
+          "maximum": 24,
+          "minimum": -120,
           "title": "Gain Db",
           "type": "number"
         },
