@@ -16,10 +16,12 @@ from ..models import CompiledSnapshot
 from ..models.base import Canvas, content_hash
 from ..models.production import OutputProfile, ScheduledAction
 from ..models.rendering import RenderReport
+from ..models.scenes import LandmarkEvent
 from ..process import run_tool
 from ..timeline import Timeline, loop_frame
 from ..toolchain import doctor, file_hash
 from .backend import FrozenRegistry, RenderError, backend_fingerprint
+from .motion import distance_expression, number
 from .normalize import ImageNormalizer
 from .synthetic import label as bitmap_text
 
@@ -100,6 +102,8 @@ class GraphBuilder:
     def action(self, event: ScheduledAction, start: int, end: int):
         left, right = max(start, event.start_frame), min(end, event.end_frame)
         asset = self.registry.get(event.clip, "asset")
+        if asset.compatibility.crop is not None:
+            raise RenderError("cropped action clips need an explicitly prepared pack canvas/anchor")
         folder = self.root / f"clip-{self.counter}-{len(self.inputs)}"
         folder.mkdir()
         for local, frame in enumerate(range(left, right)):
@@ -117,9 +121,96 @@ class GraphBuilder:
         )
         return result, left - start, right - start
 
+    def tile(self, scene, slot, start, width, height):
+        ref = scene.slot_assignments.get(slot.id, slot.asset)
+        if ref is None:
+            raise RenderError("tile slot has no asset")
+        asset = self.registry.get(ref, "asset")
+        if asset.kind != "still":
+            raise RenderError("tile strips must be prepared static images")
+        path = self.normalizer.prepare(asset)
+        with Image.open(path) as image:
+            if image.height != height or image.width < slot.tile_period + width:
+                raise RenderError("tile strip needs design height and period + viewport width")
+            first = image.crop((0, 0, width, height)).tobytes()
+            repeated = image.crop((slot.tile_period, 0, slot.tile_period + width, height)).tobytes()
+            if first != repeated:
+                raise RenderError("strip pixels do not repeat at the declared tile period")
+        source, layer = self.input(path), self.label()
+        distance = distance_expression(self.timeline, scene.id, f"(n+{start})")
+        # The small epsilon handles double representation at exact integer pixel boundaries.
+        x = f"floor(mod(({distance})*{number(slot.depth_factor)},{slot.tile_period})+0.0000001)"
+        self.filter(
+            f"[{source}]format=rgba,setparams=alpha_mode=straight,crop={width}:{height}:x='{x}':y=0[{layer}]"
+        )
+        return self.mask_and_opacity(layer, slot, (width, height))
+
+    def landmarks(self, scene, slot, start, end, width, height):
+        if slot.asset is not None or slot.id in scene.slot_assignments:
+            raise RenderError(
+                "scheduled sprite media is selected by its event, not a slot override"
+            )
+        slots = [
+            s
+            for s in self.registry.get(scene.template, "scene_template").slots
+            if s.kind == "scheduled_sprite"
+        ]
+        events = [
+            e
+            for e in self.registry.snapshot.schedule
+            if isinstance(e, LandmarkEvent) and e.scene_id == scene.id
+        ]
+        for event in events:
+            if event.slot_id is None and len(slots) != 1:
+                raise RenderError(
+                    "landmark needs an explicit slot when the scene has multiple sprite slots"
+                )
+            if event.slot_id is not None and event.slot_id not in {s.id for s in slots}:
+                raise RenderError("landmark references an unknown scheduled sprite slot")
+        blank = self.root / f"transparent-{width}-{height}.png"
+        if not blank.exists():
+            Image.new("RGBA", (width, height), (0, 0, 0, 0)).save(blank)
+        blank_input, base = self.input(blank), self.label()
+        self.filter(f"[{blank_input}]format=rgba,setparams=alpha_mode=straight[{base}]")
+        # On the pinned FFmpeg build, overlay position n is one-based. The
+        # generic enable expression and crop n are zero-based (verified in media tests).
+        distance = distance_expression(self.timeline, scene.id, f"(n-1+{start})")
+        for event in events:
+            if (
+                (event.slot_id is not None and event.slot_id != slot.id)
+                or event.end_frame <= start
+                or event.start_frame >= end
+            ):
+                continue
+            layer, _ = self.still(event.asset)
+            asset = self.registry.get(event.asset, "asset")
+            anchor = self.registry.get(scene.template, "scene_template").anchors.get(slot.anchor)
+            origin_x, origin_y = (anchor.x, anchor.y) if anchor else (0, 0)
+            if asset.compatibility.anchor:
+                origin_x -= asset.compatibility.anchor.x
+                origin_y -= asset.compatibility.anchor.y
+            if asset.compatibility.crop:
+                origin_x += asset.compatibility.crop.x
+                origin_y += asset.compatibility.crop.y
+            x = (
+                f"floor({number(event.world_x + origin_x)}-"
+                f"{number(slot.depth_factor)}*({distance})+0.0000001)"
+            )
+            enable = (
+                f"gte(n,{max(start, event.start_frame) - start})*"
+                f"lt(n,{min(end, event.end_frame) - start})"
+            )
+            base = self.overlay(base, layer, x=x, y=round(origin_y), enable=enable)
+        return self.mask_and_opacity(base, slot, (width, height))
+
     def scene(self, scene, start, end):
         template = self.registry.get(scene.template, "scene_template")
         width, height = template.design_canvas.width, template.design_canvas.height
+        if any(
+            isinstance(event, LandmarkEvent) and event.scene_id == scene.id
+            for event in self.registry.snapshot.schedule
+        ) and not any(slot.kind == "scheduled_sprite" for slot in template.slots):
+            raise RenderError("scene has landmark events but no scheduled sprite slot")
         base = self.label()
         self.filter(
             f"color=c=black:s={width}x{height}:r={self.rate_text},format=rgba,"
@@ -137,6 +228,10 @@ class GraphBuilder:
                     )
                 layer = self.mask_and_opacity(layer, slot, size)
                 base = self.overlay(base, layer)
+            elif slot.kind == "tile_strip":
+                base = self.overlay(base, self.tile(scene, slot, start, width, height))
+            elif slot.kind == "scheduled_sprite":
+                base = self.overlay(base, self.landmarks(scene, slot, start, end, width, height))
             elif slot.kind == "character":
                 if scene.slot_assignments.get(slot.id) is not None or slot.asset is not None:
                     raise RenderError(
@@ -172,9 +267,7 @@ class GraphBuilder:
                         enable=f"gte(n,{first})*lt(n,{last})",
                     )
             else:
-                raise RenderError(
-                    f"unsupported slot capability: {slot.kind}; static/character rendering only"
-                )
+                raise RenderError(f"unsupported slot capability: {slot.kind}")
         # Fit the complete composition, preserving relative anchors and mask geometry.
         out = self.label()
         target = self.canvas
@@ -319,6 +412,8 @@ class FFmpegRenderer:
             "cut",
             "letterbox",
             "crop",
+            "tile_strip",
+            "scheduled_sprite",
         }
     )
 

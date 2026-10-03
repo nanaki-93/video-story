@@ -10,7 +10,7 @@ from ..models.assets import Action, ApprovableDocument
 from ..models.base import AssetRef, ResolvedAssetLock, content_hash
 from ..models.episode import ActionRequest
 from ..models.production import Fingerprint, ScheduledAction
-from ..models.scenes import PropEvent, SceneInstance, SceneState
+from ..models.scenes import LandmarkEvent, PropEvent, SceneInstance, SceneState
 from .curves import Timeline, TimelineError, contains, loop_frame
 from .random import expand_random_actions, prng_fingerprint
 
@@ -227,6 +227,15 @@ class ActionCompiler:
             slot_ids = {slot.id for slot in template.slots}
             if not set(scene.slot_assignments).issubset(slot_ids):
                 raise CompileError("unknown scene slot assignment")
+            sprite_slots = {slot.id for slot in template.slots if slot.kind == "scheduled_sprite"}
+            for event in events:
+                if isinstance(event, LandmarkEvent) and event.scene_id == scene.id:
+                    if event.slot_id is None and len(sprite_slots) != 1:
+                        raise CompileError(
+                            "landmark needs exactly one sprite slot or an explicit slot_id"
+                        )
+                    if event.slot_id is not None and event.slot_id not in sprite_slots:
+                        raise CompileError("landmark references an unknown sprite slot")
             for slot in template.slots:
                 for asset_ref in (scene.slot_assignments.get(slot.id, slot.asset), slot.mask):
                     if asset_ref:

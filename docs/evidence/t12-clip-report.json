@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "document_type": "render_report",
+  "purpose": "synthetic_test",
+  "snapshot_sha256": "dd19596312ff4add7bd2fb5d4fd3a0da2b228396e75b99c1b33fd262dcd90066",
+  "first_frame": 0,
+  "frame_count": 300,
+  "canvas": {
+    "width": 640,
+    "height": 360
+  },
+  "fps": {
+    "num": 30,
+    "den": 1
+  },
+  "output": "/Users/marcoandreose/DEV/lab/video-story/.local/t12-motion/synthetic-motion.mp4",
+  "output_sha256": "eaf58043e6074766fea2e482f65e89c5aa1bc76cf697e74a71c086757eb7d17e",
+  "output_bytes": 169919,
+  "graph_sha256": "41593dc474cc9018c3921dd379c7011c317aee3d05a7c66d574c0d81c03af651",
+  "backend": {
+    "name": "tabi-ffmpeg",
+    "version": "1",
+    "sha256": "413a511c9060a300243c2077ef4649330fcbb2a2274e27dd9e9d2a05325ced10"
+  },
+  "toolchain_fingerprint": "ee1d73e413be684f4def8da78aca0fa4a2b4355b3770115753a6e28b30308906",
+  "render_seconds": 0.8147975419997238,
+  "full_decode_passed": true,
+  "timestamps_verified": true,
+  "normalized_images": 49,
+  "warnings": []
+}

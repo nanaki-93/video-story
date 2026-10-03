@@ -215,7 +215,7 @@ def _populate(root: Path) -> FixtureManifest:
             "design_canvas": CANVAS,
             "capabilities": ["travel", "landmarks", "body", "face"],
             "channels": ["body", "face"],
-            "anchors": {"seated": {"x": 370, "y": 294}},
+            "anchors": {"seated": {"x": 370, "y": 294}, "landmark-origin": {"x": 0, "y": 150}},
             "mask_semantics": "white_visible_black_hidden",
             "parameter_limits": {"travel_speed": {"minimum": 0, "maximum": 180}},
             "slots": [
@@ -236,6 +236,7 @@ def _populate(root: Path) -> FixtureManifest:
                     "id": "landmarks",
                     "z": 4,
                     "kind": "scheduled_sprite",
+                    "anchor": "landmark-origin",
                     "mask": ref("fixture.window"),
                 },
                 {"id": "actor", "z": 5, "kind": "character", "anchor": "seated"},

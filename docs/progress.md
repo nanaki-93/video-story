@@ -118,9 +118,17 @@ Verification: `make check`: Ruff, **21 schemas and 163 tests passed**, 14 media 
 
 This completes static/masked scene rendering against synthetic assets. Moving strips/landmarks, effects, audio and real Tabi artwork remain their respective tasks. PNG sequences are the supported prepared alpha interchange; unknown production color, unsupported effects and unapproved production snapshots fail explicitly. No final-art or 4K readiness is claimed.
 
+## T12 — complete
+
+`T12: render continuous parallax and one-time landmarks` uses shared analytic travel distance for all depths. Repeating strips validate their declared tile period and duplicated crop coverage; landmarks translate without wrapping through explicit anchors/intervals. Missing/ambiguous sprite slots fail, and optional `slot_id` supports deliberate routing. Fixture landmark placement is now explicit.
+
+Verification: **163 tests and 21 schema checks passed**, 18 media tests skipped; focused T11/T12 media suite **10 passed**. Twenty-four actual motion stills match independent references within two RGB levels across acceleration, stop, restart and wrap. The decoded full clip shows one continuous landmark pass and no recurrence; a range starting at frame 149 keeps global phase. Wrong strip periods and missing sprite slots fail. These tests caught and fixed a one-frame overlay-position convention mismatch in FFmpeg.
+
+[Inspected frame 149](evidence/t12-synthetic-frame-149.png), [still report](evidence/t12-still-report.json) and [clip report](evidence/t12-clip-report.json) retain output/backend/toolchain identities. The local ten-second clip is `.local/t12-motion/synthetic-motion.mp4` (300 frames, 640×360/30, no audio); FFmpeg subprocess measured 0.815 seconds, excluding preparation/verification. No real-art or long-form performance approval follows.
+
 ## Next task and pending gates
 
-**Next: T12 — continuous parallax and one-time landmarks.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
+**Next: T13 — preview CLI and frozen snapshot workflow.** T06–T08 real-art input remains pending. The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 

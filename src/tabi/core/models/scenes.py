@@ -145,6 +145,7 @@ class LandmarkEvent(FrameInterval):
     type: Literal["landmark"]
     id: Identifier
     scene_id: Identifier
+    slot_id: Identifier | None = None
     asset: AssetRef
     repeat: bool = Field(default=False, json_schema_extra={"const": False})
     world_x: Number = 0.0
