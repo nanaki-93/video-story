@@ -8,6 +8,12 @@ from .episode import ActionRequest, Episode, RandomActionTiming, TrackPlacement
 from .fixtures import FixtureManifest
 from .production import CompiledSnapshot, JobEvent, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
+from .publishing import (
+    PublicRelease,
+    ReleaseBundleReport,
+    ReleaseInspection,
+    ReleasePreparation,
+)
 from .registry import AssetHealth, ImportRequest
 from .rendering import CompilationResult, ExportVerification, RenderReport
 from .scenes import Curve, SceneInstance, SceneTemplate
@@ -39,6 +45,10 @@ DOCUMENT_MODELS = {
     "cache_prune_report": CachePruneReport,
     "storage_estimate": StorageEstimate,
     "export_verification": ExportVerification,
+    "release_preparation": ReleasePreparation,
+    "public_release": PublicRelease,
+    "release_inspection": ReleaseInspection,
+    "release_bundle_report": ReleaseBundleReport,
 }
 
 SCHEMA_MODELS = {

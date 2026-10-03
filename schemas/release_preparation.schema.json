@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Chapter": {
+      "additionalProperties": false,
+      "properties": {
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_frame",
+        "title"
+      ],
+      "title": "Chapter",
+      "type": "object"
+    },
+    "ReviewRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "content_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Content Sha256",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "reviewed_at": {
+          "format": "date-time",
+          "title": "Reviewed At",
+          "type": "string"
+        },
+        "reviewer": {
+          "minLength": 1,
+          "title": "Reviewer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reviewer",
+        "reviewed_at",
+        "content_sha256"
+      ],
+      "title": "ReviewRecord",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:release_preparation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "chapters": {
+      "items": {
+        "$ref": "#/$defs/Chapter"
+      },
+      "title": "Chapters",
+      "type": "array"
+    },
+    "creative_review": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewRecord"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    },
+    "disclosure_notes": {
+      "default": "",
+      "title": "Disclosure Notes",
+      "type": "string"
+    },
+    "document_type": {
+      "const": "release_preparation",
+      "default": "release_preparation",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "job_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Job Id",
+      "type": "string"
+    },
+    "metadata_review": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewRecord"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "thumbnail": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AssetRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "job_id",
+    "title"
+  ],
+  "title": "ReleasePreparation",
+  "type": "object"
+}

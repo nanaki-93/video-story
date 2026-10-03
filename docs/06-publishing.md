@@ -33,6 +33,11 @@ Keeping some melody recognizable is an artistic goal from the Melotrail project;
 
 Produce `video.mp4`, `thumbnail.png` if approved, `title.txt`, `description.txt`, `tracklist.csv`, `chapters.txt` when appropriate, `episode-snapshot.json`, `render-report.json`, `rights-summary.json`, `disclosure-notes.txt`, `release-metadata.json`, and a `README.txt` listing unresolved checks. No credentials or private licence documents are copied into a public bundle. Offer a separate private archive of source/rights evidence.
 
+The implemented [T24 exporter](23-release-preparation.md) places shareable files in `public/`
+and snapshot/render/source/review records in `private/`, with a top-level manifest and README.
+Raw snapshot and render-report paths are private evidence. Original masters and licence documents
+stay in project storage; T32 owns the separate full project backup workflow.
+
 Track list includes episode start/end, title, artist, asset version, actual release link and known ISRC. Chapter rules must be checked against current YouTube requirements before presenting them as upload-ready. Unsupported chapter layouts remain a simple track list.
 
 ## Publishing status

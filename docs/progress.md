@@ -218,3 +218,20 @@ include the earlier cancelled run and rejected hardware packet trace. No MP4 ent
 The benchmark uses synthetic art on a native 1080p canvas; the 4K output scales that composition.
 Native 4K design and sustained long-form resource use remain T37. Production artwork, music and
 creative approval remain pending; delivery verification does not grant publication approval.
+
+## T24 — core complete; production inputs and review pending
+
+`T24: prepare verified release bundles with private evidence` adds strict preparation/public/report
+contracts, factual music metadata, clip-relative sample intervals, conservative chapter validation,
+hash-bound reviews and readiness checks. Shared Python/CLI services copy independently verified
+media into an atomic new bundle, with public allowlists separated from private source/review evidence.
+Unknown IDs remain null. Pending rights, synthetic art and missing reviews block upload readiness.
+
+Verification: `make schemas check` passes **36 schemas and 227 unit checks**, Ruff clean. The new
+actual-media release test passes render/copy, privacy sentinel, pending review, stale revision,
+concurrent edit, existing/traversing destination and corrupted-output checks. [Evidence](23-release-preparation.md)
+retains a real CLI bundle from the 60-second T23 1080p export, with the exact video hash and valid
+three-chapter layout. Source masters and earlier bundles survive injected failures unchanged.
+
+The production-ready bundle gate remains pending on T19's real art/music/credits/licences and human
+reviews. This engineering bundle remains synthetic. No publication or asset approval was performed.

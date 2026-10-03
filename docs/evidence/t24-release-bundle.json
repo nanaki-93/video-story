@@ -1,0 +1,490 @@
+{
+  "schema_version": "1.0",
+  "document_type": "release_bundle_report",
+  "bundle_path": "bundles/t24-draft",
+  "inspection": {
+    "schema_version": "1.0",
+    "document_type": "release_inspection",
+    "preparation_id": "t24-synthetic-draft",
+    "job_id": "job-6b83154f6ec6491c8ff5383b7bf1d46e",
+    "status": "technically_verified",
+    "metadata_sha256": "665f1a7e4ea4ae122d4e8f154a28afe8cb54283cec9b540f4751727d14e739c2",
+    "render_report_sha256": "9f197b88d77eb94204a32018eaa698ae3ddcbbf6f934089d2c4d56fcf607a75f",
+    "public": {
+      "schema_version": "1.0",
+      "document_type": "public_release",
+      "title": "SYNTHETIC ENGINEERING TEST — NOT FOR PUBLICATION",
+      "description": "A 60-second generated geometric fixture used to verify the local release exporter. This is not Tabi artwork or original release music.",
+      "disclosure_notes": "Synthetic test geometry and a generated triangle signal. No publication decision has been made.",
+      "purpose": "synthetic_test",
+      "video_sha256": "dc4681f8b428f1106525c725595141f81c2c2a84f96390a13acbbe3532cf49cf",
+      "snapshot_sha256": "83d820dc5aa0c53c804dd8866bfa7be1f1217d398d428b5fd31339f358b5e1a6",
+      "first_frame": 0,
+      "frame_count": 1800,
+      "fps": {
+        "num": 30,
+        "den": 1
+      },
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "tracks": [
+        {
+          "placement_id": "tone",
+          "asset": {
+            "id": "fixture.tone",
+            "version": "1.0"
+          },
+          "source_sha256": "ef08523735e34fbaeb9e2a8db8d76b68ddb885ad4a0b5d643bb4c00c75fa847d",
+          "start_sample": 0,
+          "end_sample": 2880000,
+          "title": null,
+          "artist": null,
+          "credits": [],
+          "explicit_content": null,
+          "isrc": null,
+          "upc": null,
+          "release_url": null
+        }
+      ],
+      "chapters": [
+        {
+          "start_frame": 0,
+          "title": "Synthetic cycle one"
+        },
+        {
+          "start_frame": 600,
+          "title": "Synthetic cycle three"
+        },
+        {
+          "start_frame": 1200,
+          "title": "Synthetic cycle five"
+        }
+      ],
+      "chapter_status": "valid",
+      "thumbnail_sha256": null,
+      "rights": [
+        {
+          "asset": {
+            "id": "fixture.blink",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.cabin",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.entry",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.exit",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.far",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.foreground",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.idle",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.landmark",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.light-mask",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.mid",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.near",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.observe",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.rain",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.reflection",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.tone",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        },
+        {
+          "asset": {
+            "id": "fixture.window",
+            "version": "1.0"
+          },
+          "commercial_use": "pending",
+          "approved": false,
+          "synthetic": true
+        }
+      ]
+    },
+    "blockers": [
+      "asset_rights_or_approval_pending",
+      "creative_review_pending_or_stale",
+      "metadata_and_disclosure_review_pending_or_stale",
+      "music_metadata_pending",
+      "non_production_snapshot",
+      "synthetic_assets"
+    ],
+    "warnings": []
+  },
+  "files": [
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/README.txt"
+      },
+      "sha256": "1d6eb2783881b3d644eac3ac30236315b4282c846ee3755bd04616ad88f26bca",
+      "size_bytes": 520
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/episode-snapshot.json"
+      },
+      "sha256": "83d820dc5aa0c53c804dd8866bfa7be1f1217d398d428b5fd31339f358b5e1a6",
+      "size_bytes": 36184
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/export-verification.json"
+      },
+      "sha256": "ef861d225d83d0a25ccbcb39ddf2afa33d7610b1bb5b89488da6b13b96a2d198",
+      "size_bytes": 1186
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/inspection.json"
+      },
+      "sha256": "56d4e5e65c2989bace10755868e96cbe20b1d6698ea68d42cc7dc1bcfd5d844b",
+      "size_bytes": 3565
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.blink@1.0.json"
+      },
+      "sha256": "5c44a49992c740612ca1bbe43de3b02de1edf7cb549db51484df8c81fca7ebe2",
+      "size_bytes": 1951
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.cabin@1.0.json"
+      },
+      "sha256": "775157086f50e280bbaea7fdf26a719c92e807fd3b4eec1fe4e398ee21ed3137",
+      "size_bytes": 1082
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.entry@1.0.json"
+      },
+      "sha256": "f6ab717903de510df8140a20f084598cbdd77431322c90fd7b0c90a93762bb20",
+      "size_bytes": 1957
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.exit@1.0.json"
+      },
+      "sha256": "9edc0dd701256ba0036dddf4fdbf2960cc2792d0e75097008b3727b3181c8b1b",
+      "size_bytes": 1949
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.far@1.0.json"
+      },
+      "sha256": "1fbef813e877c1d06bd8997d59f7fb0f939b8499b9e6ce3c9fb4ad6fbe99f077",
+      "size_bytes": 1082
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.foreground@1.0.json"
+      },
+      "sha256": "993b0ec79b1b67c7f459b43cd68315a0fe41765cd4177bf1894af6569bf9da4f",
+      "size_bytes": 1102
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.idle@1.0.json"
+      },
+      "sha256": "76d40beef33cee9ab48fe8119a3301a57598f62e9fd0a4e6888390821773346e",
+      "size_bytes": 2964
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.landmark@1.0.json"
+      },
+      "sha256": "f143dd7abd831be3679a7a8004f7780ffefdf0e0c815e1683b020af93c679492",
+      "size_bytes": 1094
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.light-mask@1.0.json"
+      },
+      "sha256": "63d691641274bb16e442cbad81460dd334ed5ce83a121d82c08e1a8f3ea0aab8",
+      "size_bytes": 1099
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.mid@1.0.json"
+      },
+      "sha256": "d82dc5aa4365a1a7a608a64d0bf4f055ddaffe026daecf94af0c55355ded8d1b",
+      "size_bytes": 1082
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.near@1.0.json"
+      },
+      "sha256": "7524026141a5bb2a158a83d4b5a2da28858081a5bfd7ac2837067c4944c47c5f",
+      "size_bytes": 1085
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.observe@1.0.json"
+      },
+      "sha256": "039aba5f7d4b2fc9f4333a98db9604a81eddf7a358970cee82ed4de2c29fc2a7",
+      "size_bytes": 3006
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.rain@1.0.json"
+      },
+      "sha256": "325db55551154726f6ff50548b17d3801f5e4ad6d71497c627383d89da4f60e8",
+      "size_bytes": 2972
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.reflection@1.0.json"
+      },
+      "sha256": "274db5c6a9e28491b91571e91e6ae3c4c9a26dc4b20db218525ac34c00dccaa5",
+      "size_bytes": 1103
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.tone@1.0.json"
+      },
+      "sha256": "960f13f6cb88c4447178bf2a860fe4b3a22f07df73e30c673ac74effceed2d23",
+      "size_bytes": 1057
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/fixture.window@1.0.json"
+      },
+      "sha256": "068169671c4df1056e0e782ada149c2b090bc61f2eee80c7871e548c5ea77299",
+      "size_bytes": 1087
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/pack.synthetic@1.0.json"
+      },
+      "sha256": "f71597cb725168ddfa5d79b0856f17e0563081085c2dbc9f3c99e235d968c686",
+      "size_bytes": 1920
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/registry/scene.synthetic.train@1.0.json"
+      },
+      "sha256": "90b7c29e624a1e65d09fbf3e7344f834c6bacfd4c321f2ba1f856ffb17ab0ab1",
+      "size_bytes": 2953
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/release-preparation.json"
+      },
+      "sha256": "e0d191d92950f342c777118a45657ae5f2a9832d345ad52cdf41f12aa3bbe4a7",
+      "size_bytes": 707
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/private/render-report.json"
+      },
+      "sha256": "9f197b88d77eb94204a32018eaa698ae3ddcbbf6f934089d2c4d56fcf607a75f",
+      "size_bytes": 2743
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/README.txt"
+      },
+      "sha256": "94b6657605ec47ef6b5ac1bfb9cfd80e781654488946660bef1a0e159812ff76",
+      "size_bytes": 308
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/chapters.txt"
+      },
+      "sha256": "91bd6972f04caea9745e58928a109999b74c397db75da78d577417bac6e22ba4",
+      "size_bytes": 81
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/description.txt"
+      },
+      "sha256": "63393117cc0a5c424562000794afb3ba69cfaedc51ad5e5eb0a0b4a866d18aa8",
+      "size_bytes": 135
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/disclosure-notes.txt"
+      },
+      "sha256": "3f0618f3f2f5ca342235fd123e05f8597c28f625c66567fd058221a76cd5e851",
+      "size_bytes": 96
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/release-metadata.json"
+      },
+      "sha256": "665f1a7e4ea4ae122d4e8f154a28afe8cb54283cec9b540f4751727d14e739c2",
+      "size_bytes": 2983
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/rights-summary.json"
+      },
+      "sha256": "9122678c7f882abb6305c4f8aa29ea9716845b61892c42ede91f2fe0517a0bdb",
+      "size_bytes": 1784
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/title.txt"
+      },
+      "sha256": "7fa1a284087b884dced12e84b20d644781a8354a0f50e6e27cb7bc2109678103",
+      "size_bytes": 51
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/tracklist.csv"
+      },
+      "sha256": "7c69c80dc34f82953064d97e0260f538a7319bbaa3fd141e8df760b6058f7f5c",
+      "size_bytes": 122
+    },
+    {
+      "location": {
+        "root_id": "project",
+        "path": "bundles/t24-draft/public/video.mp4"
+      },
+      "sha256": "dc4681f8b428f1106525c725595141f81c2c2a84f96390a13acbbe3532cf49cf",
+      "size_bytes": 18213092
+    }
+  ]
+}

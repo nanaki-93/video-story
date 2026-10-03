@@ -76,7 +76,12 @@ def document_path(document: DraftDocument) -> str:
     kind = document.document_type
     if kind == "project":
         return "project.json"
-    folders = {"episode": "episodes", "render_job": "jobs", "release_record": "releases"}
+    folders = {
+        "episode": "episodes",
+        "render_job": "jobs",
+        "release_record": "releases",
+        "release_preparation": "publishing",
+    }
     if kind in folders:
         return f"{folders[kind]}/{document.id}.json"
     versioned = {"asset": "assets", "scene_template": "templates", "action_pack": "actions"}

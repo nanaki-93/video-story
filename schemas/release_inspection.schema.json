@@ -1,0 +1,469 @@
+{
+  "$defs": {
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "title": "Canvas",
+      "type": "object"
+    },
+    "Chapter": {
+      "additionalProperties": false,
+      "properties": {
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start_frame",
+        "title"
+      ],
+      "title": "Chapter",
+      "type": "object"
+    },
+    "Credit": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "role": {
+          "minLength": 1,
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "role"
+      ],
+      "title": "Credit",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "PublicAssetRights": {
+      "additionalProperties": false,
+      "properties": {
+        "approved": {
+          "title": "Approved",
+          "type": "boolean"
+        },
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "commercial_use": {
+          "enum": [
+            "pending",
+            "confirmed",
+            "not-permitted"
+          ],
+          "title": "Commercial Use",
+          "type": "string"
+        },
+        "synthetic": {
+          "title": "Synthetic",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "asset",
+        "commercial_use",
+        "approved",
+        "synthetic"
+      ],
+      "title": "PublicAssetRights",
+      "type": "object"
+    },
+    "PublicRelease": {
+      "additionalProperties": false,
+      "properties": {
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "chapter_status": {
+          "enum": [
+            "not_requested",
+            "valid",
+            "invalid"
+          ],
+          "title": "Chapter Status",
+          "type": "string"
+        },
+        "chapters": {
+          "items": {
+            "$ref": "#/$defs/Chapter"
+          },
+          "title": "Chapters",
+          "type": "array"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "disclosure_notes": {
+          "title": "Disclosure Notes",
+          "type": "string"
+        },
+        "document_type": {
+          "const": "public_release",
+          "default": "public_release",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "first_frame": {
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "purpose": {
+          "enum": [
+            "preview",
+            "production",
+            "synthetic_test"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        },
+        "rights": {
+          "items": {
+            "$ref": "#/$defs/PublicAssetRights"
+          },
+          "title": "Rights",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "thumbnail_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Thumbnail Sha256"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "tracks": {
+          "items": {
+            "$ref": "#/$defs/PublicTrack"
+          },
+          "title": "Tracks",
+          "type": "array"
+        },
+        "video_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Video Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "title",
+        "description",
+        "disclosure_notes",
+        "purpose",
+        "video_sha256",
+        "snapshot_sha256",
+        "first_frame",
+        "frame_count",
+        "fps",
+        "canvas",
+        "tracks",
+        "chapters",
+        "chapter_status",
+        "thumbnail_sha256",
+        "rights"
+      ],
+      "title": "PublicRelease",
+      "type": "object"
+    },
+    "PublicTrack": {
+      "additionalProperties": false,
+      "properties": {
+        "artist": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Artist"
+        },
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "credits": {
+          "items": {
+            "$ref": "#/$defs/Credit"
+          },
+          "title": "Credits",
+          "type": "array"
+        },
+        "end_sample": {
+          "exclusiveMinimum": 0,
+          "title": "End Sample",
+          "type": "integer"
+        },
+        "explicit_content": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Explicit Content"
+        },
+        "isrc": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Isrc"
+        },
+        "placement_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Placement Id",
+          "type": "string"
+        },
+        "release_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Release Url"
+        },
+        "source_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "start_sample": {
+          "minimum": 0,
+          "title": "Start Sample",
+          "type": "integer"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Title"
+        },
+        "upc": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Upc"
+        }
+      },
+      "required": [
+        "placement_id",
+        "asset",
+        "source_sha256",
+        "start_sample",
+        "end_sample"
+      ],
+      "title": "PublicTrack",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:release_inspection",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "blockers": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+        "type": "string"
+      },
+      "title": "Blockers",
+      "type": "array"
+    },
+    "document_type": {
+      "const": "release_inspection",
+      "default": "release_inspection",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "job_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Job Id",
+      "type": "string"
+    },
+    "metadata_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Metadata Sha256",
+      "type": "string"
+    },
+    "preparation_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Preparation Id",
+      "type": "string"
+    },
+    "public": {
+      "$ref": "#/$defs/PublicRelease"
+    },
+    "render_report_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Render Report Sha256",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "technically_verified",
+        "creatively_reviewed",
+        "rights_reviewed",
+        "ready_for_manual_upload"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "warnings": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "preparation_id",
+    "job_id",
+    "status",
+    "metadata_sha256",
+    "render_report_sha256",
+    "public",
+    "blockers",
+    "warnings"
+  ],
+  "title": "ReleaseInspection",
+  "type": "object"
+}

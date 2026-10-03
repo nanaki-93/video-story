@@ -12,6 +12,7 @@ from tabi.cli.cache import add_cache_commands, run_cache_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
 from tabi.cli.jobs import add_job_commands, run_job_command
 from tabi.cli.logging import configure_logging
+from tabi.cli.publishing import add_release_commands, run_release_command
 from tabi.core.config import ConfigError, load_settings
 from tabi.core.documents import DocumentError, read_document
 from tabi.core.fixtures import generate_fixtures
@@ -39,6 +40,7 @@ def main(argv: list[str] | None = None) -> int:
     add_cache_commands(commands)
     add_episode_commands(commands)
     add_job_commands(commands)
+    add_release_commands(commands)
     profiles = commands.add_parser("profiles", help="List explicit SDR export presets")
     profiles.add_argument("--encoder", choices=ENCODERS, default="libx264")
     profiles.add_argument("--fps-num", type=int, default=30)
@@ -186,6 +188,12 @@ def main(argv: list[str] | None = None) -> int:
             return run_cache_command(args)
         except (ValueError, DocumentError, StorageError, OSError) as error:
             logger.error("cache_operation_failed: %s", error)
+            return 4
+    if args.command == "release":
+        try:
+            return run_release_command(args, settings)
+        except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
+            logger.error("release_operation_failed: %s", error)
             return 4
     if args.command == "audio":
         try:
