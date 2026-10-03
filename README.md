@@ -2,7 +2,7 @@
 
 A local web application for authored Tabi music stories, backed by Python and FFmpeg. The browser edits project documents and plays rendered previews; Python owns all timeline, asset, audio and rendering behavior. Music creation and manual publishing remain separate workflows.
 
-**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 16 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI and episode renderer remain planned. See [progress](docs/progress.md), [toolchain checks](docs/10-toolchain.md) and the [implementation/asset review](docs/09-implementation-review.md).
+**Current state:** M0 is complete (T01, T03, T02): Python bootstrap, strict contracts, 17 generated schemas, safe local persistence, a toolchain doctor and a verified synthetic media test. T04 adds reproducible fixture projects. Software H.264 and VideoToolbox both passed on the M5 Pro. The web UI and episode renderer remain planned. See [progress](docs/progress.md), [toolchain checks](docs/10-toolchain.md) and the [implementation/asset review](docs/09-implementation-review.md).
 
 ## Development setup
 
@@ -34,6 +34,16 @@ make test-media
 ```
 
 `doctor` checks tool identity, versions, filters, advertised encoders and writable disk space. Only `render-spike` actually renders and verifies output. It creates a unique run folder containing generated inputs, graph/command logs, decoded frames and a report; the watermarked MP4 is published only after verification. All clips stay ignored by Git. `make check` runs the unit/contract checks; `make test-media` explicitly runs the real FFmpeg checks. See [reproduction and limits](docs/10-toolchain.md).
+
+## Reusable synthetic project
+
+```sh
+make fixtures
+# Or choose a new output folder:
+.venv/bin/tabi fixtures --output ".local/My synthetic project" --json
+```
+
+Generation requires a new directory and preserves existing projects. It creates 14 synthetic assets, separated scenery/masks, body and blink sequences, two WAV files, a registry and a ten-second episode. The manifest hashes 69 files; repeated generation with the pinned runtime produces identical bytes. These fixtures are visibly synthetic and never approved for publication. Episode rendering follows in T11–T13. See [fixture evidence](docs/tasks/t04.md).
 
 ## Projects and document validation
 
@@ -72,7 +82,7 @@ Precedence is defaults, then file values, then `TABI_PROJECT_ROOT`, `TABI_CACHE_
 
 1. Read [PLAN.md](PLAN.md) and [AGENTS.md](AGENTS.md).
 2. Review [assets](docs/01-assets.md), [architecture](docs/02-architecture.md), [contracts](docs/03-contracts.md), [rendering](docs/04-rendering.md), [web app UX](docs/05-webapp.md), [publishing](docs/06-publishing.md), and [QA](docs/07-qa.md).
-3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T04 is next: the reusable synthetic fixture pack.
+3. Execute the [task index](docs/tasks/INDEX.md) in its dependency order. T05 is next: the asset importer and immutable registry.
 4. Record behavior, checks and remaining approvals in [progress](docs/progress.md).
 
 The JSON [examples](examples/README.md) contain illustrative IDs and nonexistent media paths. They now pass structural schema validation; they are not working production projects. Regenerate/check published contracts with `make schemas` and `make check`.

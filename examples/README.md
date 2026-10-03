@@ -8,7 +8,7 @@ Pilot length: 3600 frames at 30/1 fps = 120 seconds. Audio length: 5,760,000 sam
 
 `asset.synthetic.json` records the actual SHA-256 and size of `tests/fixtures/synthetic/pixel.ppm`, a two-pixel owned fixture for schema checks. It is labeled synthetic and cannot receive production approval. Other references do not imply that corresponding media files exist. No licence, approval or generation history has been fabricated.
 
-Timing, registry data and provenance for real sources must be populated by import and review; T04 will create the complete synthetic media pack.
+Timing, registry data and provenance for real sources must be populated by import and review; `tabi fixtures --output NEW_DIRECTORY` creates the complete synthetic media pack (T04).
 
 `settings.macos.toml` is a separate developer-settings example for T02. It pins
 the externally installed FFmpeg/ffprobe 9.0.2 Cellar paths tested on Apple Silicon;

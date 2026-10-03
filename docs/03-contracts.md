@@ -117,3 +117,7 @@ Snapshots live at `snapshots/{sha256}.json`, where the digest covers their compl
 `MigrationRegistry` accepts explicit, forward, same-major transformations. `ProjectStore.migrate` checks revision, rejects approved documents, backs up exact source bytes before invoking a transformation, validates the target model/identity and publishes atomically. Transformation, validation and pre-publication I/O failures leave the source and backup intact. Production supports schema 1.0 only; a synthetic 1.1 model exercises the infrastructure in tests without claiming a historical migration exists.
 
 Verified on this Mac's local filesystem, including process termination during a save. Whole-project transactions, backup restoration UX, network-filesystem semantics and power-loss durability are not verified by T03. A directory fsync failure after atomic publication may mean the new target is already visible; callers should reread its revision before retrying. Keep source media backups separately; this layer backs up documents, not artwork or music.
+
+## Fixture manifest (T04)
+
+The `fixture_manifest` document records the generator identity and hash, synthetic/publication flags, project and episode paths, and unique project-relative SHA-256/size records. T04 brings the generated schema count to 17. A fixture manifest is reproducibility evidence, never production approval.

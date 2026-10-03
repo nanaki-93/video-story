@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "HashedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "location",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "HashedFile",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:fixture_manifest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "const": "fixture_manifest",
+      "default": "fixture_manifest",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "episode": {
+      "default": "episodes/episode.synthetic.json",
+      "title": "Episode",
+      "type": "string"
+    },
+    "files": {
+      "items": {
+        "$ref": "#/$defs/HashedFile"
+      },
+      "minItems": 1,
+      "title": "Files",
+      "type": "array"
+    },
+    "generator": {
+      "const": "tabi-fixtures-v1",
+      "default": "tabi-fixtures-v1",
+      "title": "Generator",
+      "type": "string"
+    },
+    "generator_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Generator Sha256",
+      "type": "string"
+    },
+    "production_approved": {
+      "default": false,
+      "title": "Production Approved",
+      "type": "boolean"
+    },
+    "project": {
+      "default": "project.json",
+      "title": "Project",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "synthetic": {
+      "default": true,
+      "title": "Synthetic",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "generator_sha256",
+    "files"
+  ],
+  "title": "FixtureManifest",
+  "type": "object"
+}

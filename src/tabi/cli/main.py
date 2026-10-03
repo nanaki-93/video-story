@@ -9,6 +9,7 @@ from tabi import __version__
 from tabi.cli.logging import configure_logging
 from tabi.core.config import ConfigError, load_settings
 from tabi.core.documents import DocumentError, read_document
+from tabi.core.fixtures import generate_fixtures
 from tabi.core.models import Project, ValidationReport
 from tabi.core.persistence import ProjectStore, StorageError
 from tabi.core.render.spike import ENCODERS, SpikeDependencyError, SpikeError, render_spike
@@ -40,6 +41,9 @@ def main(argv: list[str] | None = None) -> int:
     spike.add_argument("--output-dir", required=True, type=Path)
     spike.add_argument("--encoder", choices=ENCODERS, default="libx264")
     spike.add_argument("--json", action="store_true")
+    fixtures = commands.add_parser("fixtures", help="Generate a new reproducible synthetic project")
+    fixtures.add_argument("--output", required=True, type=Path)
+    fixtures.add_argument("--json", action="store_true")
     project = commands.add_parser("project", help="Create or inspect a local project")
     project_commands = project.add_subparsers(dest="project_command", required=True)
     init = project_commands.add_parser("init", help="Create a project in a new or empty directory")
@@ -59,6 +63,18 @@ def main(argv: list[str] | None = None) -> int:
     validate.add_argument("file", type=Path)
     args = parser.parse_args(argv)
     logger = configure_logging(args.log_level)
+    if args.command == "fixtures":
+        try:
+            manifest = generate_fixtures(args.output)
+        except (DocumentError, StorageError, OSError) as error:
+            logger.error("fixture_generation_failed: %s", error)
+            return 4
+        print(
+            manifest.model_dump_json(indent=2)
+            if args.json
+            else f"Synthetic project: {args.output.resolve()}"
+        )
+        return 0
     if args.command == "document":
         try:
             read_document(args.file)

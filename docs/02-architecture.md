@@ -71,6 +71,6 @@ T33 builds frontend assets into the Python distribution and provides a local lau
 
 ## Development commands to implement
 
-Implemented by T01: `make setup`, `make help`, `make check`, `make test`. T03 adds `make schemas` and schema drift checking to `make check`. T02 adds `make doctor` and opt-in `make test-media`; its fixed render experiment lives in `src/tabi/core/render/spike.py`. Later tasks add `make fixtures`, `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
+Implemented by T01: `make setup`, `make help`, `make check`, `make test`. T03 adds `make schemas` and schema drift checking to `make check`. T02 adds `make doctor` and opt-in `make test-media`; its fixed render experiment lives in `src/tabi/core/render/spike.py`. T04 adds `make fixtures` for a new reproducible synthetic project. Later tasks add `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
 
 Each target delegates to documented scripts. `clean-cache` requires a project/cache root and only deletes disposable cache entries. A fresh checkout must render the synthetic pilot without ComfyUI or real music.

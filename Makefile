@@ -1,6 +1,6 @@
 UV ?= $(if $(wildcard .tools/bin/uv),.tools/bin/uv,uv)
 
-.PHONY: setup check test test-media help schemas doctor
+.PHONY: setup check test test-media help schemas doctor fixtures
 
 setup:
 	$(UV) sync --frozen --group audit
@@ -25,3 +25,7 @@ doctor:
 
 test-media:
 	$(UV) run --frozen pytest --run-media tests/integration
+
+FIXTURE_OUTPUT ?= .local/fixtures-v1
+fixtures:
+	$(UV) run --frozen tabi fixtures --output "$(FIXTURE_OUTPUT)"

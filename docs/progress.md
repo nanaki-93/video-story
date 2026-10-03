@@ -74,9 +74,17 @@ Reproduction, reports and committed PNG evidence: [T02 toolchain checks](10-tool
 
 M0 now meets its gate: pinned Python dependencies and tested external media build, CLI, strict schemas/persistence, actual tool capabilities and synthetic media verification. No production/art approval follows.
 
+## T04 — complete
+
+`T04: generate reproducible synthetic fixture projects` adds `tabi fixtures --output PATH`, `make fixtures` and the strict fixture-manifest contract (17 schemas total). A generated project has 14 draft synthetic assets: original geometric cabin, window mask, foreground, tiled depth strips, a one-time landmark, fixed-canvas idle/observe/entry/exit/blink sequences, stereo tone/silence, registry records and a ten-second authored episode. Body/face channels, transition poses, anchors, travel speed changes and sample counts are explicit. Fixed timestamps are test sentinels, not production provenance.
+
+Verification: `make schemas && make check` passed Ruff and schema drift with **126 tests passed**, seven opt-in T02 media tests skipped. Tests decode actual PNG/WAV files, inspect mask/alpha and loop/transition endpoints, and compare all bytes from two independently generated Unicode/space/apostrophe projects. Refusing occupied output and injected generation failure both preserve source data. The installed CLI generated `.local/fixtures-v1`: **69 hashed files, 2,173,410 bytes**. [Manifest](evidence/t04-fixtures-manifest.json) and [visually inspected action contact sheet](evidence/t04-fixture-actions.png) are committed evidence; generated source media stays local. Machine/runtime as above, with Pillow 12.3.0 now a runtime dependency.
+
+This completes reusable fixtures, not episode rendering or art approval. No MP4 is added. Unrelated staged IDE files remain excluded.
+
 ## Next task and pending gates
 
-**Next: T04 — reusable synthetic fixture pack.** The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
+**Next: T05 — asset importer and immutable registry.** The web UI and reusable episode renderer remain planned. T02's deliberately bounded experiment does not implement those layers.
 
 Pending target-Mac checks: alpha-capable video interchange, real-scene VideoToolbox quality and 1080p/4K render time/memory, browser seeking/audio/authentication, local packaged launch, render cancellation/resume and user-facing backup restoration. The small synthetic pass does not establish those capabilities.
 

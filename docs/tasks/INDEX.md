@@ -1,13 +1,13 @@
 # Ordered implementation tasks
 
-Statuses are recorded below and in each task. Update status and evidence during implementation; see [progress](../progress.md). M0 (T01, T03, T02) is complete; T04 is next. Contracts were established before media probing. The local web UI replaces Kotlin/Compose in T25–T33. Dependencies are prerequisites for completion; synthetic infrastructure may proceed while real art review is pending. Optional tasks do not block V1.
+Statuses are recorded below and in each task. Update status and evidence during implementation; see [progress](../progress.md). M0 (T01, T03, T02) and T04 are complete; T05 is next. Contracts were established before media probing. The local web UI replaces Kotlin/Compose in T25–T33. Dependencies are prerequisites for completion; synthetic infrastructure may proceed while real art review is pending. Optional tasks do not block V1.
 
 | Task | Title | Dependencies | Scope | Status |
 | --- | --- | --- | --- | --- |
 | [T01](t01.md) | Bootstrap repository and developer commands | None | mandatory | complete |
 | [T03](t03.md) | Define schemas and safe project persistence | T01 | mandatory | complete |
 | [T02](t02.md) | Probe toolchain and renderer capabilities | T01 | mandatory | complete |
-| [T04](t04.md) | Generate synthetic fixture pack | T02, T03 | mandatory | planned |
+| [T04](t04.md) | Generate synthetic fixture pack | T02, T03 | mandatory | complete |
 | [T05](t05.md) | Create asset importer and immutable registry | T03, T04 | mandatory | planned |
 | [T06](t06.md) | Prepare approved Tabi style and seated sources | T05 | mandatory | planned |
 | [T07](t07.md) | Author core action pack and transition graph | T06 | mandatory | planned |

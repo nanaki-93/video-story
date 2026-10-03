@@ -3,6 +3,7 @@
 from .assets import Action, ActionPack, Asset
 from .diagnostics import CapabilityReport, RenderSpikeReport
 from .episode import ActionRequest, Episode, TrackPlacement
+from .fixtures import FixtureManifest
 from .production import CompiledSnapshot, ReleaseRecord, RenderJob, ValidationReport
 from .projects import Project
 from .scenes import Curve, SceneInstance, SceneTemplate
@@ -19,6 +20,7 @@ DOCUMENT_MODELS = {
     "validation_report": ValidationReport,
     "capability_report": CapabilityReport,
     "render_spike_report": RenderSpikeReport,
+    "fixture_manifest": FixtureManifest,
 }
 
 SCHEMA_MODELS = {
@@ -41,6 +43,7 @@ __all__ = [
     "CompiledSnapshot",
     "Curve",
     "Episode",
+    "FixtureManifest",
     "Project",
     "ReleaseRecord",
     "RenderJob",
