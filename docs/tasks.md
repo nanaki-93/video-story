@@ -24,6 +24,14 @@ the action must not restart travel. Faster travel and multiple connected exterio
 scene choices, rather than reasons to reintroduce complete-shot cuts. The
 [draft evidence](evidence/t14-train-actions-draft.json) records its actual limits.
 
+Marco's animation-polish pass further clarifies pacing: **long outside-watching holds and
+infrequent actions**, with music work deferred until the picture is consistent. The
+[calmer test](evidence/t14-calm-window-ride-draft.json) uses 78 seconds of window-facing idle
+and one coffee break. A normal train preset should favour this calm pace and show action
+frequency as an editable choice. Do not silently use the full defective sip return or require
+movement every few seconds; review foreground alpha, hand coverage and matching poses as well
+as timing. The one-off preparation and verification do not implement the guided application.
+
 ```mermaid
 flowchart LR
     A[1 · Add assets] --> B[2 · Build scene]

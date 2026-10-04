@@ -41,8 +41,12 @@ The newer [actions and faster scenery draft](../progress.md#t14--actions-and-fas
 adds breathing/read/sip/look movements, fixes the foreground cup layering and advances through
 three exterior views at 72 pixels/second. Marco says the result is almost the desired video,
 but reports intermittent TABI disappearance. The [saved review checkpoint](../progress.md#saved-review-checkpoint--4-october-2026)
-sets animation visibility and transition polish as the next creative priority. The defect is
-unresolved; the guided application work is still planned and T40 remains its first task.
+recorded animation visibility and transition polish as the next creative priority.
+The [calmer replacement](../progress.md#t14--calm-window-ride-animation-polish) now uses repaired
+foreground alpha, matching poses and a selected sip segment that avoids defective source frames.
+TABI watches outside for 78 seconds with one coffee break; all 2700 output frames were checked.
+Marco's visual acceptance and any remaining edge/bridge polish are pending. Music is unchanged
+and its polish is deferred. The guided application work is still planned; T40 remains its first task.
 
 ## V1 records
 

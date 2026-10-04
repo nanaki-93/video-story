@@ -20,11 +20,12 @@ Read the [guided workflow plan](docs/tasks.md), then select the first unblocked 
 artwork is not part of this work. The [documentation guide](docs/README.md) separates current
 instructions, technical references and historical records.
 
-The current creative checkpoint is the saved 90-second train draft with breathing/read/sip/look
-actions and three faster connected exterior views. Marco says it is almost the desired result,
-but TABI sometimes disappears. The next creative pass must fix animation visibility and polish
-transitions while retaining this scene, travel and music baseline. See the
-[saved review checkpoint](docs/progress.md#saved-review-checkpoint--4-october-2026).
+The current creative checkpoint is the [calmer 90-second window ride](docs/progress.md#t14--calm-window-ride-animation-polish):
+78 seconds watching outside, one coffee break, repaired foreground alpha and matching poses.
+All 2700 output frames were checked for character coverage and continuous scenery motion.
+The three faster exterior views and existing music are unchanged; music polish is deferred.
+Marco's visual acceptance remains pending. Earlier drafts and the
+[reported disappearance checkpoint](docs/progress.md#saved-review-checkpoint--4-october-2026) are preserved.
 T40 remains the first task when application workflow implementation resumes.
 
 ## Product boundaries

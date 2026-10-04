@@ -101,10 +101,21 @@ a creative draft candidate; it does not close the approved-art/pilot or publicat
 
 Marco's [subsequent review checkpoint](evidence/t14-train-actions-review-2026-10-04.json)
 confirms that the overall result is close to his intent, but reports that TABI sometimes
-disappears. Animation visibility is therefore an explicit unresolved creative defect. The
+disappears. That checkpoint therefore recorded an unresolved animation visibility defect. The
 existing sampled checks establish media integrity/travel and selected boundaries, not continuous
 foreground visibility through every action. Locate and repair the affected frames, check the
 entire routine and both repeats, and obtain another visual review before closing T14.
+
+The [calmer window-ride replacement](evidence/t14-calm-window-ride-draft.json) addresses the
+identified opacity and missing-hand failures with new derived foreground assets. It spends
+78 seconds watching outside and takes one 12-second coffee break. All 540 prepared frames pass
+interior-alpha checks; all 2700 final frames match the expected opaque character and continuously
+advancing scenery. Action and chunk joins pass, and the exported music stream is unchanged.
+The defective native coffee return is excluded by reversing the selected clean lift/sip segment;
+the full original sip clip is not declared repaired or approved. Source RGB, earlier snapshots
+and the fixed cabin/scenery are preserved. This is a verified draft candidate with source-edge,
+bridge and scenery-feather aesthetics still subject to Marco's review. T14's human visual gate,
+music listening/rights and publication acceptance remain open; music polish is deferred.
 
 | Input | Exact remaining decision or delivery |
 | --- | --- |

@@ -111,27 +111,73 @@ T40–T48 remain planned. No MP4 is tracked, and unrelated staged IDE changes ar
 ### Saved review checkpoint — 4 October 2026
 
 Marco reports that the result is almost the desired video, but **TABI sometimes disappears**
-during the animation. Keep this draft as the current creative baseline: one fixed cabin,
+during the animation. At this checkpoint the creative baseline was one fixed cabin,
 consistent character, breathing/read/sip/look actions, three connected exterior views moving
 at 72 pixels/second, and the selected Lo-Fi-Walz music. This feedback accepts the direction;
 it does not approve the defective animation or close the pilot's creative gate.
 
 The project, frozen snapshot, prepared layers and export are already saved on disk. The
 [review checkpoint](evidence/t14-train-actions-review-2026-10-04.json) records their exact
-identities and Marco's feedback. Precise disappearance frames and the cause are not established.
+identities and Marco's feedback. Precise disappearance frames and the cause were not yet established.
 The prior sampled travel, lid and repeat checks do not prove uninterrupted visibility across
-all intermediate action frames; the reported defect remains open.
+all intermediate action frames; the reported defect remained open at that checkpoint.
 
-The next creative pass must locate the affected frames in the full export, inspect the source
+The requested next creative pass was to locate the affected frames in the full export, inspect the source
 alpha, extracted silhouettes, foreground bridges and scheduled channel coverage, then repair
 the identified cause in a new derived version. Review the entire 900-frame routine and both
 repeats for disappearing body parts, transparency flashes, rough edges and pose jumps before
 exporting a replacement. Keep the cabin, continuous exterior travel and music as the baseline.
 
+## T14 — calm window ride animation polish
+
+Status: new calmer draft exported and technically verified; Marco's visual acceptance is pending.
+Marco requested consistent animation, more outside watching and fewer actions, with music polish
+deferred. The replacement watches outside for **36 seconds**, takes **one 12-second coffee break**,
+then watches for **42 seconds**. The window-facing hold uses the actual supplied head-turn pose
+with at most one pixel of authored breathing over six seconds; the cup stays fixed during holds.
+
+Inspection found partial foreground loss rather than a completely blank TABI frame. The old
+900-frame routine includes opacity holes in its foreground bridges, and supplied sip mattes omit
+hands that still exist in their RGB pixels. These defects are visible in the old export at frames
+365, 474 and 495. The new preparation repairs enclosed alpha and selected hand edges, excludes
+stray window-pole alpha beside the turning head, and keeps matching-pose bridges opaque.
+It uses native sip frames 0–63 forward and then in reverse to put the cup down, avoiding the
+defective native return, including frames 82, 100 and 102. Source RGB and original assets are
+preserved. The two native clips were measured at 25/1 fps; selected/reversed motion and the
+30/1 fps presentation are explicitly authored. This is not approval or repair of the full sip source.
+
+All **540 prepared foreground frames** have no enclosed alpha holes or soft interiors in the
+eroded silhouette checks; all selected native hand cores are preserved. Both coffee endpoints
+match the idle pixels exactly, and the schedule covers every frame without gaps. The app's
+14-second proxy crosses the entire break. The full export is **90 seconds / 2700 frames,
+1920×1080, 30/1 fps** and passed full decode and frozen-job hash verification. All 2700 decoded
+frames match the expected opaque character regions and global exterior travel within lossy-video
+tolerances. Maximum RGB error averages are 3.66 for head/gills, 4.12 for hands/cup and 3.23 for the
+clear window region. Both action boundaries and render chunk boundaries pass continuity checks.
+
+The cabin, glass mask and three-view exterior remain unchanged at **72 design pixels/second**,
+travelling 6480 pixels without reset or wrap. Episode audio tracks and the exported AAC stream
+are identical to the previous draft; no music tuning was performed. Visual review of the two
+short motion bridges, source edges and existing scenery feathers remains necessary. Music and
+rights/publication gates remain open; music polish is deferred by Marco.
+
+[Preparation, diagnosis and complete verification evidence](evidence/t14-calm-window-ride-draft.json).
+Episode: `tabi-train-calm-90s`, revision 0, in the existing `Tabi train test 90s` project. Output:
+`exports/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4`. New asset identities and
+`pack.tabi.calm-ride` preserve the prior versions. Prepared/native layers, scripts, every-frame
+audits and app screenshots are saved under `sources/train-polish-v3/`. The verified video is
+open in the local app. No application code changed and no MP4 is tracked.
+
+Verification: `.venv/bin/python .local/train-polish-v3/audit_prepared.py` and
+`.venv/bin/python .local/train-polish-v3/verify_export.py` passed on the target Mac.
+Unrelated staged IDE files remain untouched. T40–T48 are still planned.
+
 ## Next work
 
-The next creative priority is T14 animation polish: fix Marco's reported intermittent TABI
-disappearance and check all action frames. The saved draft is the starting point.
+Review the calmer T14 draft for visual acceptance and any remaining source-edge/bridge polish.
+Preserve its long outside-watching holds, infrequent actions and independent scenery travel.
+Music polish is deferred until the picture is settled. The new draft is the continuation point;
+the earlier rejected/defective drafts remain saved for comparison.
 
 T40 remains the first unblocked application implementation task: infer safe import parameters from actual media
 and explain the remaining choices. T41 exposes that as a simple importer. Scene preparation,
