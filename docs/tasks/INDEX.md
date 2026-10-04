@@ -35,6 +35,8 @@ checks and remaining limits; commit with the task ID as required by [AGENTS.md](
 Use the [acceptance report](../38-v1-acceptance.md) for exact inputs. These gates remain open;
 archiving old task files does not mark them complete. Technical implementation and testing can
 use clearly labeled synthetic fixtures while the real artwork is prepared.
+The [corrected 90-second continuous-train draft](../progress.md#t14--continuous-train-draft-follow-up)
+is now available for Marco's visual review; its technical checks do not close the creative gates.
 
 ## V1 records
 

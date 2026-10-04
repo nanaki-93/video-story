@@ -42,6 +42,34 @@ No renderer regression run is needed for this documentation-only change. The gui
 browser and media checks remain part of T48, and no redesigned UI screenshot or runtime
 behavior is claimed here.
 
+## T14 — continuous train draft follow-up
+
+Status: corrected draft rendered and technically verified; Marco's visual acceptance remains
+pending. The first 90-second montage was rejected because character shots and baked-in scenery
+jumped. The replacement uses one seated idle/blink source, a window mask derived with built-in
+imagegen under Marco's explicit authorization, and the supplied Yanaka panorama moving on the
+episode's independent travel curve. The original character/cabin pixels and source files are
+preserved. Larger sip/read actions are not part of this consistent-pose draft.
+
+The local app exported **2700 frames / 90 seconds at 1920×1080, 30/1 fps**, with the selected
+Lo-Fi-Walz music, stereo 48 kHz AAC, and the draft label. The eight-second app preview crossed
+the first idle repeat; the full export was opened, played and sought in Chrome. Independent
+strict decode/hash verification passed. All **15 sampled panorama positions** matched their
+expected global offsets, and the character remained aligned at all **four animation repeats
+and two render chunk joins**. [Recorded preparation and verification](evidence/t14-continuous-train-draft.json).
+
+Project: `/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s`.
+Episode: `tabi-train-continuous-90s`. Output:
+`exports/Tabi-Continuous-Train-90s-Lo-Fi-Walz-DRAFT.mp4`. Preparation scripts, generated-mask
+prompts, source hashes and detailed checks are retained under `sources/continuous-train-v1/`;
+local working evidence is in `.local/train-continuous/`. The rejected montage is retained for
+comparison. No MP4 is tracked, no application code changed, and the staged IDE patch is preserved.
+
+This panorama pass travels 1260 design pixels without wrapping. It does not establish a
+seamless long-form environment or an approved activity pack. The guided plan now explicitly
+requires independent scenery motion and a complete-scene loop review; T40–T48 remain planned.
+Human art/music/rights and publication acceptance are still open.
+
 ## Next work
 
 T40 is the first unblocked implementation task: infer safe import parameters from actual media

@@ -1,0 +1,257 @@
+{
+  "test": "T14 continuous train draft follow-up",
+  "date": "2026-10-04",
+  "user_intent": "One consistent TABI cabin/pose with small movements and continuous independent exterior motion; reject montage jumps.",
+  "preparation": {
+    "tool": "Built-in image_gen imagegen; model and seed not exposed",
+    "reference": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/prepared-train-test/travel/frame-000060.png",
+    "generated_mask_original": "/Users/marcoandreose/.codex/generated_images/01a10562-89a4-7ae2-a4bb-4524e8aed0fd/exec-7fe865a8-e514-41f0-99ea-e916abf7b5ce.png",
+    "mask": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/continuous-train-v1/window-mask-1920x1080-v1.png",
+    "strip": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/continuous-train-v1/yanaka-strip-period3240-guard1920.png",
+    "original_panorama": "/Users/marcoandreose/DEV/lab/video-story/docs/assets/scenario/tokyo-scenario/04-yanaka-residential-rooftops-panorama.png",
+    "mask_preparation": "FFmpeg scale to exact canvas, grayscale, threshold 128, boundary blur sigma 0.45",
+    "strip_preparation": "Lanczos scale 2172x724 to 3240x1080, append identical first1920px guard",
+    "travel": {
+      "speed_design_px_per_second": 14,
+      "duration_seconds": 90,
+      "total_distance_px": 1260,
+      "period_px": 3240,
+      "viewport_px": 1920,
+      "wrap_during_test": false
+    },
+    "status": "Draft derived layers, visual review pending; original TABI footage retained unchanged",
+    "reference_sha256": "3156e0f77d33c8d387848508a4dfae897a279dad07d8fe0b0970bdba20b1f5fa",
+    "generated_mask_original_sha256": "23a66c15a1af382e9d6fc0fc20aa611a34c942a4c8fdd83b05e5b13dd669e3ba",
+    "mask_sha256": "d40ee31298292a041a51403649194b31932133b821358b7482214eeeace50812",
+    "strip_sha256": "d2621c9f6b3928e733b0f40aa08b29cf58fdfc0212f834aec5337d58e1a2f66e",
+    "original_panorama_sha256": "bde1a4827cc8716292dcb3ea0bfac44951f0e1ce2c6621d7b23c558b86803182"
+  },
+  "verification": {
+    "project": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s",
+    "episode_id": "tabi-train-continuous-90s",
+    "output": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/exports/Tabi-Continuous-Train-90s-Lo-Fi-Walz-DRAFT.mp4",
+    "job_id": "job-9319ff18c13444a09e5334a6bcf39d9f",
+    "snapshot_sha256": "29cc4695bda17cda99f1580566729479efdbee9e03f195f6374cefe63ebcc990",
+    "output_sha256": "2e73ac7627133450c650b5b19ff16e480f336dac2a5448d844a5d90e5d4610a5",
+    "size_bytes": 90393292,
+    "width": 1920,
+    "height": 1080,
+    "fps": "30/1",
+    "video_frames": 2700,
+    "video_seconds": 90.0,
+    "audio_seconds": 90.0,
+    "sample_rate": 48000,
+    "audio_channels": 2,
+    "full_decode_passed": true,
+    "app_job_verified": true,
+    "app_verification_report": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/jobs/artifacts/job-9319ff18c13444a09e5334a6bcf39d9f/final-d227d85565db48c4bf9fa2ecaab0a4be-report.json",
+    "panorama_alignment": [
+      {
+        "global_frame": 0,
+        "expected_distance_floor_px": 0,
+        "measured_best_distance_px": 0,
+        "alignment_mae": 3.2524109686609686,
+        "reset_to_zero_mae": 3.2524109686609686
+      },
+      {
+        "global_frame": 44,
+        "expected_distance_floor_px": 20,
+        "measured_best_distance_px": 20,
+        "alignment_mae": 2.2691013770180435,
+        "reset_to_zero_mae": 22.245458214624882
+      },
+      {
+        "global_frame": 539,
+        "expected_distance_floor_px": 251,
+        "measured_best_distance_px": 251,
+        "alignment_mae": 2.2139446818613484,
+        "reset_to_zero_mae": 38.24996557454891
+      },
+      {
+        "global_frame": 540,
+        "expected_distance_floor_px": 252,
+        "measured_best_distance_px": 252,
+        "alignment_mae": 2.243287037037037,
+        "reset_to_zero_mae": 38.21483974358974
+      },
+      {
+        "global_frame": 899,
+        "expected_distance_floor_px": 419,
+        "measured_best_distance_px": 419,
+        "alignment_mae": 2.1459627255460587,
+        "reset_to_zero_mae": 40.835546058879395
+      },
+      {
+        "global_frame": 900,
+        "expected_distance_floor_px": 420,
+        "measured_best_distance_px": 420,
+        "alignment_mae": 3.301804368471035,
+        "reset_to_zero_mae": 40.74750712250712
+      },
+      {
+        "global_frame": 1079,
+        "expected_distance_floor_px": 503,
+        "measured_best_distance_px": 503,
+        "alignment_mae": 2.3048029439696105,
+        "reset_to_zero_mae": 39.819761396011394
+      },
+      {
+        "global_frame": 1080,
+        "expected_distance_floor_px": 504,
+        "measured_best_distance_px": 504,
+        "alignment_mae": 2.484520417853751,
+        "reset_to_zero_mae": 39.806118233618236
+      },
+      {
+        "global_frame": 1619,
+        "expected_distance_floor_px": 755,
+        "measured_best_distance_px": 755,
+        "alignment_mae": 2.223400997150997,
+        "reset_to_zero_mae": 35.24958214624881
+      },
+      {
+        "global_frame": 1620,
+        "expected_distance_floor_px": 756,
+        "measured_best_distance_px": 756,
+        "alignment_mae": 2.2569966761633427,
+        "reset_to_zero_mae": 35.18321106362773
+      },
+      {
+        "global_frame": 1799,
+        "expected_distance_floor_px": 839,
+        "measured_best_distance_px": 839,
+        "alignment_mae": 2.215612535612536,
+        "reset_to_zero_mae": 34.712422839506175
+      },
+      {
+        "global_frame": 1800,
+        "expected_distance_floor_px": 840,
+        "measured_best_distance_px": 840,
+        "alignment_mae": 3.3622281576448243,
+        "reset_to_zero_mae": 34.62533000949668
+      },
+      {
+        "global_frame": 2159,
+        "expected_distance_floor_px": 1007,
+        "measured_best_distance_px": 1007,
+        "alignment_mae": 2.374323361823362,
+        "reset_to_zero_mae": 36.44439339981007
+      },
+      {
+        "global_frame": 2160,
+        "expected_distance_floor_px": 1008,
+        "measured_best_distance_px": 1008,
+        "alignment_mae": 2.609683048433048,
+        "reset_to_zero_mae": 36.44952397910731
+      },
+      {
+        "global_frame": 2699,
+        "expected_distance_floor_px": 1259,
+        "measured_best_distance_px": 1259,
+        "alignment_mae": 2.4763366571699903,
+        "reset_to_zero_mae": 40.638085232668566
+      }
+    ],
+    "character_seams": [
+      {
+        "frames": [
+          539,
+          540
+        ],
+        "best_character_translation_px": [
+          0,
+          0
+        ],
+        "character_rgb_mae": 1.0745313601127555
+      },
+      {
+        "frames": [
+          899,
+          900
+        ],
+        "best_character_translation_px": [
+          0,
+          0
+        ],
+        "character_rgb_mae": 3.320762861169838
+      },
+      {
+        "frames": [
+          1079,
+          1080
+        ],
+        "best_character_translation_px": [
+          0,
+          0
+        ],
+        "character_rgb_mae": 1.69207540521494
+      },
+      {
+        "frames": [
+          1619,
+          1620
+        ],
+        "best_character_translation_px": [
+          0,
+          0
+        ],
+        "character_rgb_mae": 1.0640944326990838
+      },
+      {
+        "frames": [
+          1799,
+          1800
+        ],
+        "best_character_translation_px": [
+          0,
+          0
+        ],
+        "character_rgb_mae": 3.2552818886539816
+      },
+      {
+        "frames": [
+          2159,
+          2160
+        ],
+        "best_character_translation_px": [
+          0,
+          0
+        ],
+        "character_rgb_mae": 1.6513319238900634
+      }
+    ],
+    "blink_eye_region_change_mae": 33.77828070175438,
+    "contact_sheet": "/Users/marcoandreose/DEV/lab/video-story/.local/train-continuous/final-contact.jpg",
+    "status": "Corrected continuous-scene draft; subtle seated idle/blink only. Source artwork retained. Visual approval remains with user."
+  },
+  "music": {
+    "title": "Lo-Fi-Walz",
+    "asset_id": "music.lo-fi-walz",
+    "version": "1.0",
+    "gain_db": -2.7,
+    "fade_in_samples": 48000,
+    "fade_out_samples": 144000,
+    "trim_end_sample": 4320000,
+    "rights": "pending"
+  },
+  "limits": [
+    "One fixed seated blink/idle source, not a complete sip/read rig.",
+    "The90s panorama pass does not wrap; long-form seam review remains pending.",
+    "Draft watermark retained; no human visual approval or publication approval inferred.",
+    "No source art or source audio replaced; all MP4 files remain local and untracked."
+  ],
+  "verification_command": ".venv/bin/python .local/train-continuous/verify_export.py",
+  "browser_review": {
+    "page": "http://127.0.0.1:52909/#renders",
+    "working_episode": "Tabi \u2014 Continuous train | 90-second test \u00b7 revision 0",
+    "verified_frames": 2700,
+    "video_duration_seconds": 90,
+    "playback_observed_from_seconds": 17,
+    "playback_observed_to_seconds": 27.373547,
+    "final_paused_seconds": 0,
+    "screenshot": "/Users/marcoandreose/DEV/lab/video-story/.local/train-continuous/app-final-export.jpg",
+    "short_preview_screenshot": "/Users/marcoandreose/DEV/lab/video-story/.local/train-continuous/app-preview.jpg"
+  },
+  "source_clip_sha256": "7136e45800aebc577e4529a36cc3007b05117199db611e6a3a76a7edb686970f",
+  "source_clip_unchanged": true
+}

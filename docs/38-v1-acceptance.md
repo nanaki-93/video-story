@@ -79,6 +79,15 @@ integrity and frame tolerances are checked. [Full benchmark evidence and measure
 
 ## Creative inputs still outstanding
 
+The subsequent [continuous-train draft](evidence/t14-continuous-train-draft.json) adds an actual
+90-second, 1080p/30 visual test with Marco's selected Lo-Fi-Walz master. It replaces a rejected
+montage with one seated idle/blink source and independent scrolling scenery through a generated
+window matte. Full decode, timing, all four animation repeats and both render chunk joins were
+checked; 15 panorama samples match the expected global travel positions. This is a draft
+candidate, not completion of T14's human visual gate. Matching larger actions, long-form scenery
+wraps, music listening/rights and production approval remain pending. Preparation details,
+hashes, local output paths and actual limits are preserved in the linked evidence.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |

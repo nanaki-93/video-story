@@ -11,6 +11,12 @@ chose assembling existing artwork/animation, so this plan does not add AI artwor
 Deliver import and scene building first (T40–T44); then connect music, navigation and output
 (T45–T47), and verify the whole journey (T48).
 
+Marco's subsequent 90-second test clarified the normal train workflow: **one continuous cabin
+and consistent Tabi pose, with small prepared movements and scenery scrolling independently**.
+Switching between complete generated shots is not an acceptable substitute for this scene.
+The one-off window-mask preparation authorized for that test does not add an automatic artwork
+generation feature to this implementation plan.
+
 ```mermaid
 flowchart LR
     A[1 · Add assets] --> B[2 · Build scene]
@@ -110,6 +116,7 @@ episode automatically. A saved scene retains exact versions and its reviewed tim
 | Duration | Full length of the selected ordered music; no song stretching, trimming, repeats or fixed 30–60-minute target |
 | Before music | A clearly labeled 10-second silent scene check; “Add music to set video length” |
 | Character | No motion until a compatible prepared loop is chosen; then repeat that reviewed loop. No automatic sip/read/pose transitions. |
+| Train scenery | One continuous travel phase across character blinks, action repeats and render chunks. Validate available strip coverage for the chosen duration; a short non-wrapping pass does not establish a seamless long-form loop. |
 | Weather / lighting / ambience | Off unless already authored in the selected saved scene; no invented rain or train noise |
 | Audio | Complete masters in order, 0 dB gain, no added fades/crossfades or loudness remastering; 48 kHz prepared mix, original masters unchanged |
 | Quick preview | 960×540, first ten seconds or shorter if the episode is shorter; optional loop-seam/other-range review |
@@ -217,6 +224,7 @@ and one failed group in Safari and Chrome; record screenshots and one resume-aft
 - A complete image preserves its design canvas and fits as a whole. Layered recipes require a consistent design canvas; propose derived fit/crop copies instead of altering originals. Preserve alpha and raw mask values; apply the same geometric transform to explicitly aligned groups.
 - For missing/incompatible art, return the affected role and a concrete next action. Do not remove baked-in Tabi, repair hidden regions, generate missing layers or assume a panorama is tileable.
 - Scenery strips require their actual period/coverage and review; unsupported effects stay unavailable. Keep these rules recipe-driven, not train-specific branches in the compiler.
+- A continuous-train recipe keeps one cabin/camera and advances the existing global travel curve independently of character source time. Never replace this recipe with cuts between full-scene action clips. A flattened idle clip may be used only with a prepared, checked window-replacement mask and compatible scene geometry.
 - Save metadata only after dependencies exist; use guarded new versions and retry-safe identities. On failure leave the last usable scene intact; harmless unreferenced new drafts are discoverable for retry, not claimed as a completed scene.
 - Reusing a saved setup creates a fresh episode through Python with new identity and draft state. Preserve exact asset versions, clear episode-level reviews/music, and let the music step set its duration. Backup/restore preserves the setup and all referenced sources.
 
@@ -244,6 +252,7 @@ make web-build
 **Implementation rules**
 - Reuse compatible existing packs first. For a prepared transparent sequence, offer a simple looping-idle binding with source range, anchor and declared start/end pose; create the pack and compatibility metadata as new drafts.
 - Do not loop an arbitrary clip on import. Provide a two-cycle seam preview and explicit loop selection; a drinking/prop-changing one-shot needs entry/exit/prop declarations and stays Advanced in this release.
+- Review the complete composition across an animation repeat with travel enabled: character pose remains aligned and exterior motion does not reset. An isolated character thumbnail cannot establish scene continuity.
 - Default a composite character clip to owning body and face so an extra blink cannot double it. Preserve reviewed pack channel rules when reusing one.
 - Scene timing follows the selected pack's supported actual rate; mixed-rate packs need explicit preparation. No automatic resampling or duration change disguised as a default.
 - Use the existing compiler for coverage, channel, pose, camera, outfit and anchor checks. Position through supported anchors; arbitrary character scaling/rigging is out of scope.
