@@ -72,7 +72,7 @@ Human art/music/rights and publication acceptance are still open.
 
 ## T14 — actions and faster scenery follow-up
 
-Status: expanded draft rendered and technically verified; Marco's visual review is pending.
+Status: saved working draft; media integrity verified, animation polish still required.
 Marco accepted the continuous-scene direction, identified a cup-lid cropping error, and asked
 for more movements, more exterior views and faster travel. The new scene places the complete
 TABI/cup foreground **above** the independently scrolling exterior, over one restored empty
@@ -108,9 +108,32 @@ routine, prompts and preparation scripts are retained under `sources/train-actio
 working checks and screenshots are in `.local/train-actions-v2/`. No application code changed;
 T40–T48 remain planned. No MP4 is tracked, and unrelated staged IDE changes are preserved.
 
+### Saved review checkpoint — 4 October 2026
+
+Marco reports that the result is almost the desired video, but **TABI sometimes disappears**
+during the animation. Keep this draft as the current creative baseline: one fixed cabin,
+consistent character, breathing/read/sip/look actions, three connected exterior views moving
+at 72 pixels/second, and the selected Lo-Fi-Walz music. This feedback accepts the direction;
+it does not approve the defective animation or close the pilot's creative gate.
+
+The project, frozen snapshot, prepared layers and export are already saved on disk. The
+[review checkpoint](evidence/t14-train-actions-review-2026-10-04.json) records their exact
+identities and Marco's feedback. Precise disappearance frames and the cause are not established.
+The prior sampled travel, lid and repeat checks do not prove uninterrupted visibility across
+all intermediate action frames; the reported defect remains open.
+
+The next creative pass must locate the affected frames in the full export, inspect the source
+alpha, extracted silhouettes, foreground bridges and scheduled channel coverage, then repair
+the identified cause in a new derived version. Review the entire 900-frame routine and both
+repeats for disappearing body parts, transparency flashes, rough edges and pose jumps before
+exporting a replacement. Keep the cabin, continuous exterior travel and music as the baseline.
+
 ## Next work
 
-T40 is the first unblocked implementation task: infer safe import parameters from actual media
+The next creative priority is T14 animation polish: fix Marco's reported intermittent TABI
+disappearance and check all action frames. The saved draft is the starting point.
+
+T40 remains the first unblocked application implementation task: infer safe import parameters from actual media
 and explain the remaining choices. T41 exposes that as a simple importer. Scene preparation,
 animation binding and a visual builder follow before the wider workflow/navigation work.
 See [T40–T48](tasks/INDEX.md) for dependencies and verification commands.

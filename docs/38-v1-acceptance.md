@@ -99,6 +99,13 @@ breath timing and foreground bridges are explicitly authored. Video matte qualit
 bridges, spatial feather joins and final picture/music remain human review items. This adds
 a creative draft candidate; it does not close the approved-art/pilot or publication gates.
 
+Marco's [subsequent review checkpoint](evidence/t14-train-actions-review-2026-10-04.json)
+confirms that the overall result is close to his intent, but reports that TABI sometimes
+disappears. Animation visibility is therefore an explicit unresolved creative defect. The
+existing sampled checks establish media integrity/travel and selected boundaries, not continuous
+foreground visibility through every action. Locate and repair the affected frames, check the
+entire routine and both repeats, and obtain another visual review before closing T14.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |

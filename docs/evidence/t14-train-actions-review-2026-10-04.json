@@ -1,0 +1,71 @@
+{
+  "checkpoint": "T14 train actions draft review",
+  "saved_at": "2026-10-04T14:24:42.231654+00:00",
+  "reviewer": "Marco",
+  "feedback": "save these progress, we need to polish the animations, because sometimes it disappears, but the result is almost the one i want it",
+  "creative_status": "Direction close to desired result; animation polish required; no final approval",
+  "baseline": {
+    "project": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s",
+    "episode_id": "tabi-train-actions-90s",
+    "episode_revision": 0,
+    "snapshot_sha256": "d25153c4e5eb65dad108daea3612e706a066093bd97360c3f6f332078261ac80",
+    "job_id": "job-95dbec53b17d40999eea9b24a7774970",
+    "job_state": "verified",
+    "export": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/exports/Tabi-Actions-Faster-Journey-90s-Lo-Fi-Walz-DRAFT.mp4",
+    "export_sha256": "b522f3334dfae04064cdacc60bdc7e09120df7a91343625c5ebf863b91f9888f",
+    "prepared_layers": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-actions-v2",
+    "duration_seconds": 90,
+    "fps": "30/1",
+    "canvas": [
+      1920,
+      1080
+    ],
+    "routine_frames": 900,
+    "routine_repeats": 3,
+    "travel_speed_design_px_per_second": 72,
+    "exterior_views": [
+      "Yanaka rooftops",
+      "Sumida-style river skyline",
+      "Tokyo Bay bridge"
+    ],
+    "music": "Lo-Fi-Walz",
+    "preserve": [
+      "fixed cabin and consistent TABI identity",
+      "foreground character and cup above exterior",
+      "continuous independent scenery motion",
+      "existing music and 90-second duration"
+    ]
+  },
+  "open_defects": [
+    {
+      "id": "tabi-intermittent-disappearance",
+      "reported_by": "Marco",
+      "state": "open",
+      "description": "TABI sometimes disappears during animation",
+      "affected_frames": null,
+      "cause": null,
+      "prior_checks_limit": "Sampled travel/lid/repeat checks do not establish foreground visibility at every intermediate frame"
+    }
+  ],
+  "next_creative_pass": [
+    "Locate disappearing frames in the full saved export",
+    "Inspect source alpha, extracted silhouettes, foreground motion bridges and scheduled channel coverage; do not assume the cause",
+    "Repair identified cause in a new derived asset version, preserving this baseline",
+    "Review the entire900-frame routine and both repeats for visibility, transparency flashes, edges and pose continuity",
+    "Render a replacement draft and obtain full visual review"
+  ],
+  "application_workflow": "T40\u2013T48 remain planned; T40 first when implementation resumes",
+  "media_changes_this_checkpoint": false,
+  "checkpoint_verification": {
+    "export_hash_matches": true,
+    "saved_snapshot_exists": true,
+    "prepared_routine_frame_count": 900,
+    "documentation_audit": {
+      "markdown_files": 53,
+      "local_links": 745,
+      "errors": 0
+    },
+    "unrelated_staged_changes_preserved": true,
+    "media_modified": false
+  }
+}

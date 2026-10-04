@@ -39,8 +39,10 @@ The [corrected 90-second continuous-train draft](../progress.md#t14--continuous-
 is now available for Marco's visual review; its technical checks do not close the creative gates.
 The newer [actions and faster scenery draft](../progress.md#t14--actions-and-faster-scenery-follow-up)
 adds breathing/read/sip/look movements, fixes the foreground cup layering and advances through
-three exterior views at 72 pixels/second. It remains a reviewed technical draft, with human
-creative acceptance pending; the guided application work is still planned.
+three exterior views at 72 pixels/second. Marco says the result is almost the desired video,
+but reports intermittent TABI disappearance. The [saved review checkpoint](../progress.md#saved-review-checkpoint--4-october-2026)
+sets animation visibility and transition polish as the next creative priority. The defect is
+unresolved; the guided application work is still planned and T40 remains its first task.
 
 ## V1 records
 
