@@ -142,10 +142,20 @@ pixel-identical or human-approved artwork. Likeness, outlines, rigged gestures, 
 publication remain open. Earlier versions are preserved; defective clips are excluded rather
 than declared repaired or approved.
 
+Marco then rejected the generated rig's neck/collar anatomy, tilted table cup and duplicated
+arm/sleeve shapes during coffee. The successful opacity and render/source comparisons above
+establish coverage and media fidelity; they do not establish correct anatomy or prop contact.
+The [complete-frame anatomy test](progress.md#t14--anatomy-review-and-complete-character-frames)
+uses complete native coffee foregrounds with no added head, arm or cup pieces. It is a bounded
+diagnostic, not a new 90-second pilot acceptance. Native ear/shape variation and matte edges,
+matched `06-looking-out-window.png` endpoints, coherent breathing/vibing/deep-breath masters
+and full routine review remain required. Complete frames may be authored using a properly
+reviewed rig; neither a single surface nor a technically valid clip is automatic art approval.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |
-| Character/action masters | Editable aligned pieces, hidden-region repairs, reviewed anchors/pivots, source frame rates/loop intervals, transition endpoints and face/foreground ownership. |
+| Character/action masters | Coherent complete foreground frames with reviewed neck/collar anatomy, two arms, cup/table contact, ear/identity consistency and matching window-rest endpoints; actual source rates/loop intervals and face/prop ownership. If authored with a parts rig, repair hidden regions and review joints/overlaps before baking the frames. |
 | Train/Tokyo environment | Separated cabin/window/foreground and three prepared depth layers, completed hidden regions, wrap/landmark choices, normalized canvases and day/dusk looks. |
 | Music | Finished original WAV masters with enough material for the intended story length; factual titles/credits and rights evidence. Synthetic tones do not satisfy this input. |
 | Reviews | Actual alpha/likeness/motion/pilot, full story/audio, effects, thumbnail, rights and public metadata/disclosure review. Every approval binds the reviewed content hash. |

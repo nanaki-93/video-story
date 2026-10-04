@@ -55,12 +55,19 @@ work is still planned; T40 remains its first task.
 
 Marco's subsequent review still found ear defects and could not perceive the larger breath.
 He selected the window-looking reference for rest and authorized matching generated assets.
-The [latest window-rest/visible-breath draft](../progress.md#t14--window-rest-and-visible-deep-breath)
+The [window-rest/visible-breath draft](../progress.md#t14--window-rest-and-visible-deep-breath)
 uses a shared head/frill rig and face-only expressions, stronger normal breathing and an explicit
 closed-eye inhale/hold/exhale at 75–85 seconds. All 2700 prepared/final frames and six independent
 frill cores per prepared frame were checked. Generated likeness, outlines and rigged gestures
 remain human review items. T14's creative gate remains open; T40–T48 are still planned and
 music polish remains deferred.
+
+Marco's latest review rejects that draft's disconnected neck/collar, incorrect table cup and
+duplicated resting/moving arm shapes. The [anatomy review and complete-frame test](../progress.md#t14--anatomy-review-and-complete-character-frames)
+records the causes and recommends whole character frames from one coherent master, with
+independent scenery. The bounded coffee diagnostic is not a replacement 90-second video;
+native ears/matte edges, matching window-rest endpoints and complete breathing/action masters
+remain open. T14 is not creatively accepted. No T40–T48 implementation is claimed.
 
 ## V1 records
 

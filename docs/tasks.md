@@ -47,6 +47,17 @@ The normal scene preset should expose idle pose and motion strength in plain lan
 occasional action cues over independent travel. Marco authorized missing-art generation for
 this one-off test; it does not add automatic artwork generation to the guided application plan.
 
+Marco subsequently rejected that rig's neck/collar separation, incorrectly tilted table cup
+and resting arm/sleeve shapes underneath the moving arms. The
+[anatomy review](progress.md#t14--anatomy-review-and-complete-character-frames) changes the creative
+preparation method: prefer **complete transparent character frames** from one coherent master.
+Cabin, foreground occlusion and scenery remain separate. This is not a return to full-scene
+clips with baked-in scenery. Complete frames must still be checked for ear/identity drift,
+collar anatomy, exactly two arms, cup contact and matching action endpoints; one image surface
+alone cannot establish artistic correctness. A parts rig may author the frames only after its
+hidden torso, shoulder joints, collar overlaps and replacement-limb ownership are reviewed.
+The app consumes prepared clips and does not add a body-part editor or runtime limb assembly.
+
 ```mermaid
 flowchart LR
     A[1 · Add assets] --> B[2 · Build scene]
@@ -284,6 +295,7 @@ make web-build
 - Do not loop an arbitrary clip on import. Provide a two-cycle seam preview and explicit loop selection; a drinking/prop-changing one-shot needs entry/exit/prop declarations and stays Advanced in this release.
 - Review the complete composition across an animation repeat with travel enabled: character pose remains aligned and exterior motion does not reset. An isolated character thumbnail cannot establish scene continuity.
 - Default a composite character clip to owning body and face so an extra blink cannot double it. Preserve reviewed pack channel rules when reusing one.
+- Prefer reviewed complete character frames for this train recipe. Do not add moving arms over a body that still contains resting arms, or a replacement cup over a clip that owns its cup. Review neck/collar continuity, arm replacement, table contact and matching full poses in the actual composed action. Alpha coverage and successful rendering do not approve anatomy.
 - Scene timing follows the selected pack's supported actual rate; mixed-rate packs need explicit preparation. No automatic resampling or duration change disguised as a default.
 - Use the existing compiler for coverage, channel, pose, camera, outfit and anchor checks. Position through supported anchors; arbitrary character scaling/rigging is out of scope.
 - Source media, pack and episode approvals remain separate. A technical seam test cannot grant human approval.

@@ -22,15 +22,16 @@ generated components for the current animation-polish test. The
 [documentation guide](docs/README.md) separates current instructions, technical references
 and historical records.
 
-The current creative checkpoint is [window rest with a stable ear rig and visible breathing](docs/progress.md#t14--window-rest-and-visible-deep-breath).
-Marco still saw ear defects and could not perceive the earlier larger breath. He selected
-`06-looking-out-window.png` for rest and explicitly authorized matching new assets. The new rig
-keeps one head and six ear-frill shapes throughout, with lowered resting arms, 22-pixel normal
-breathing and a clear closed-eye inhale/hold/exhale at 75–85 seconds, reaching 62 pixels of lift.
-Window leans at 15/60 seconds, coffee at 30 and music nodding at 45 preserve his cues. All 2700
-prepared and final frames were checked. Cabin, continuous three-view scenery and exact music
-tracks are unchanged; music polish remains deferred. Generated likeness, gesture quality and
-final visual acceptance remain subject to Marco's review. Earlier drafts are saved.
+The current creative priority is [coherent anatomy and complete character frames](docs/progress.md#t14--anatomy-review-and-complete-character-frames).
+Marco rejected the latest parts rig's neck/collar join, table cup and duplicated arm shapes.
+The earlier opacity and render-fidelity checks did not validate those details. Prefer complete
+transparent TABI frames authored from one coherent master, with separate cabin and continuous
+scenery. A parts rig needs proper hidden artwork, joints and prop ownership before it can author
+those frames. A short native-coffee anatomy diagnostic tests this choice; it does not replace
+the 90-second video or resolve native ear variation and matching rest endpoints.
+Preserve `06-looking-out-window.png` for eventual resting pose, continuous visible breathing,
+the requested 15/30/45/60/75-second actions and independent 72-pixel/second scenery. Music polish
+remains deferred. Earlier drafts and original assets stay saved; no creative approval is inferred.
 T40 remains the first task when application workflow implementation resumes.
 
 ## Product boundaries

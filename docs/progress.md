@@ -231,9 +231,10 @@ change; the actual app proxy/full jobs and complete foreground/export checks are
 
 ## T14 — window rest and visible deep breath
 
-Status: new reference-based rig exported and technically verified; Marco's visual acceptance
-remains pending. Marco still reported ear defects, did not perceive the previous big breath,
-requested stronger normal breathing and selected `06-looking-out-window.png` for rest.
+Status: exported and technically verified, then rejected by Marco for neck/collar, cup and arm
+assembly defects in the subsequent review below. Marco still reported ear defects, did not
+perceive the previous big breath, requested stronger normal breathing and selected
+`06-looking-out-window.png` for rest.
 He explicitly authorized generating missing matching assets for this polish pass.
 
 Built-in imagegen prepared six selected transparent components from the actual reference and
@@ -291,13 +292,83 @@ is tracked, and unrelated staged IDE files are preserved. Previous versions rema
 The documentation audit passed all 757 local links, preserved archived task/history records
 and found no tracked MP4. `git diff --check` passed.
 
+## T14 — anatomy review and complete character frames
+
+Status: the v6 parts rig is rejected for anatomy/prop defects. The method review and a bounded
+12-second complete-character coffee diagnostic are saved; no new 90-second replacement or
+creative acceptance is claimed.
+
+Marco reported a disconnected neck/outfit, a wrong table cup and resting arms underneath the
+moving arms. Comparing the rendered coffee action, generated parts and actual supplied
+`06-looking-out-window.png` / drinking references identifies the causes: the head's neck strip
+does not tuck into the separately authored collar; the supposedly hidden torso retains upper
+sleeve/arm contours beneath the coffee-arm overlay; the replacement cup is tilted in its table
+rest. These are visual construction defects. The earlier checks proved opacity and faithful
+rendering of those prepared images, not correct anatomy, limb replacement or table contact.
+
+**Preparation decision:** use complete transparent TABI foreground frames from one coherent
+master, with cabin, window/exterior and any necessary foreground occlusion kept separate.
+Complete frames keep head, chin, collar, body, both arms and cup coherent within each pose.
+They still need identity/ear/outline review and matching full entry/exit poses. Do not generate
+each frame independently or switch between complete train shots. A parts rig can author these
+frames later, but only with hidden-region artwork, reviewed joints/overlaps and explicit arm/prop
+replacement. The application consumes prepared frames; this does not add a rig editor.
+
+The short diagnostic reuses 64 complete coffee RGBA frames from the earlier v4 preparation,
+including its prior matte/frill repairs. It selects the intact source segment at its recorded
+25/1 fps, explicitly conforms it to 30/1 by repetition, holds the sip and reverses the selected
+segment back to table rest. All 360 foreground files are byte-identical to their recorded
+prepared source; no separate head, moving-arm or replacement-cup image is added. The native cup
+stays upright at rest and moves with the hands. This narrow forward/hold/reverse test is not a
+new final coffee master or a declaration that the original defective full return is repaired.
+
+| Diagnostic phase | Local seconds |
+| --- | --- |
+| Upright cup and table rest | 0–2 |
+| Reach and lift | 2–4.53 |
+| Sip hold | 4.53–6.03 |
+| Return along selected source poses | 6.03–8.57 |
+| Same complete table-rest frame | 8.57–12 |
+
+Actual app export verifies **360 frames / 12 seconds, 1920×1080, 30/1 fps, H.264**, with an
+empty music schedule (the renderer supplies silent stereo 48 kHz AAC). Independent strict decode
+and output SHA pass. All 360 rendered frames match the prepared foreground, neck/collar and
+arm/cup cores within compression tolerance; all exterior comparisons and ten exact offset
+checks pass. Travel advances 864 design pixels at 72 pixels/second, starting at distance 2160.
+Native browser playback reaches 12 seconds/ended; app review checks table rest and cup lift.
+The visual sample has a coherent collar and replaces the arm pose as a whole. These observations
+support the preparation method; they do not close TABI's art gate.
+
+**Remaining defects/scope:** native head/frill shapes still vary and matte edges need polish.
+The source coffee-ready rest differs from the requested window-facing/lap rest in reference06.
+Matching window-rest endpoints and complete breathing/window-look/coffee/vibe/deep-breath
+masters remain to be authored and reviewed. No added breathing is applied in this diagnostic.
+The existing 90-second videos and their music are unchanged; final music work remains deferred.
+
+[Method, diagnosis and test evidence](evidence/t14-anatomy-method-review.json).
+Episode: `tabi-anatomy-coffee-test-12s`, revision 0. Pack: `pack.tabi.anatomy-coffee-test` at 1.0.
+Output: `exports/previews/Tabi-Coffee-Whole-Frames-12s-ANATOMY-TEST.mp4` in the existing
+`/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s` project.
+Job: `job-dd6ea665c09a48a59f06bf288e7bf1eb`. Snapshot: `c942b4c63476654a63cc2f9074ba4c74e4aee8a9d7b9aa143dcdf18c739622c5`.
+Scripts, source index/hash mappings, all-frame audits, reports and app screenshots are saved
+under `sources/anatomy-test-v7/`. No original asset, old registered version or previous video is
+overwritten. No new raster artwork was generated during this review.
+
+Target-Mac verification: preparation/source-hash audit, core validation/compilation, actual app
+rendering/playback and `.venv/bin/python .local/train-anatomy-v7/verify_export.py` pass. No app
+code changed, so broad renderer regression is not repeated. Documentation links/archive/task
+audit passes all 761 local links, 38 archived tasks and nine planned tasks; `git diff --check`
+passes. No MP4 is tracked; unrelated staged IDE changes are preserved.
+Human creative approval, final 90-second picture, music/rights and publication remain open.
+
 ## Next work
 
-Review the new window-rest/ear-rig T14 draft, especially likeness, outlines, coffee reach/return
-and stronger normal/deep breathing. Preserve window-facing rest, requested cues and independent
-scenery travel.
-Music polish is deferred until the picture is settled. This draft is the continuation point;
-all earlier drafts remain saved for comparison.
+Prepare complete character action frames from one coherent master, with the requested
+window-facing rest at both ends. Review neck/collar continuity, two-arm anatomy, upright cup
+contact, ears and complete gestures before another 90-second replacement. Preserve continuous
+visible breathing, the 15/30/45/60/75-second cues and independent scenery travel. The native
+coffee anatomy diagnostic above establishes a preparation direction, not final action masters.
+Music polish is deferred until the picture is settled. All earlier drafts remain saved for comparison.
 
 T40 remains the first unblocked application implementation task: infer safe import parameters from actual media
 and explain the remaining choices. T41 exposes that as a simple importer. Scene preparation,
