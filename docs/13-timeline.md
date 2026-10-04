@@ -19,7 +19,7 @@ Optional `random_actions` describe a scene, pack/action version, channel, interv
 
 Manual/random channel collisions are errors. Random expansion never silently drops conflicts or invents compatible poses; the action compiler validates those. Expanded IDs are deterministic and schedules are sorted canonically. The frozen snapshot records both the PRNG fingerprint and the expanded schedule; rendering never rerolls it. Compilation caps expansion at 100,000 actions.
 
-Verification: [T09 task](tasks/t09.md) and [measured synthetic frame/schedule report](evidence/t09-timeline.json). Tests cover exact area through acceleration/stop/restart, out-of-order queries, interval additivity at every split, a noninteger frame rate, ties-to-even samples, scope precedence, duplicate rejection and a fixed random reference vector independently checked with OpenSSL.
+Verification: [T09 task](archive/v1-tasks.md#t09) and [measured synthetic frame/schedule report](evidence/t09-timeline.json). Tests cover exact area through acceleration/stop/restart, out-of-order queries, interval additivity at every split, a noninteger frame rate, ties-to-even samples, scope precedence, duplicate rejection and a fixed random reference vector independently checked with OpenSSL.
 
 ## Action compiler (T10)
 

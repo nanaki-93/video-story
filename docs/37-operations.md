@@ -25,6 +25,38 @@ launcher after changing tools; do not bookmark or share the initial authenticati
 In development, prefix the examples below with `.venv/bin/` if `tabi` is not on PATH. Use
 `TABI_CONFIG=examples/settings.macos.toml` only when its exact tested Cellar paths exist.
 
+## First scene from an existing image
+
+This works in the current app. Use the supplied
+[train composition](assets/scenario/tabi-train-example.png) for a **static, silent draft**.
+The image already includes Tabi, the table and the window scenery. This exercise does not
+separate those parts or animate the character.
+
+1. In **Projects**, create/open a project. In **Assets → Import media**, choose that PNG.
+2. Set **Asset ID** to `train-reference` (or another unused ID), **New immutable version** to
+   `1.0`, and **Media type** to `still`. The sequence/video fps fields are ignored for stills.
+   Set **Origin** to `User supplied`, keep **Commercial rights** pending unless actually
+   confirmed, and leave unknown creator/history fields empty. The existing evidence default
+   `[]` and generation default `null` can stay as they are. Click **Copy and import selected files**.
+3. The inspector opens. Scroll to **Use as a still scene**, retain the proposed template ID
+   and version, and click **Create still scene template**. No proxy preparation, compatibility
+   JSON or approval is required for this draft.
+4. Open **New episode**, enter a title and choose the new scene template. Keep the generated
+   episode ID, 30 fps, 1920×1080 canvas, `idle` pose, seed `0` and **300 frames** (ten seconds).
+   Leave music empty for this visual check. Click **Create draft episode**.
+5. Open **Preview**, keep the saved episode selected and render its range from frame `0` to
+   `300`. Play the result and inspect the exact-frame image. The draft label is expected.
+
+For animation, importing the breath/drink PNGs is only the first step. Their original timing,
+loop/action behavior, matching foreground and scene compatibility still need preparation.
+Layered scenes currently require authored template/action-pack documents. The supplied train
+still cannot serve as a clean background for a second character without duplicating Tabi.
+See the [asset review](12-tabi-art-review.md) and [source audit](09-implementation-review.md).
+
+The proposed [guided import and visual scene builder](tasks.md) will replace this scattered
+sequence of screens with examples, defaults and an explicit missing-asset checklist. Those
+new controls are planned, not available yet.
+
 ## Produce another episode in the app
 
 1. **Projects:** create a new folder or open an existing project. Reopening retains saved edits

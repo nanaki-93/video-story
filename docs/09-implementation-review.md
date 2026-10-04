@@ -1,38 +1,9 @@
-# Implementation and supplied asset review — 3 October 2026
+# Supplied asset audit — 3 October 2026
 
-## Decision
-
-Build a **local web app** with a small TypeScript/Vite interface, Python/FastAPI service and FFmpeg renderer. This uses the user's permission to replace the macOS client and removes Kotlin/JVM, embedded-player integration and native DMG work from V1. The existing Python service boundary makes this a contained change. It does not reduce the work required for correct rendering, usable assets or creative approval.
-
-The service runs on Marco's Mac and owns local files and jobs. FastAPI can serve the built frontend ([documentation](https://fastapi.tiangolo.com/tutorial/static-files/)); Starlette supports file byte ranges for video seeking ([documentation](https://starlette.dev/responses/#fileresponse)). Native browser playback remains a technical spike, especially authentication, seeking and audio. Use Python-rendered stills for exact frame inspection. Browser filesystem access has its own interfaces and compatibility constraints ([MDN](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API)); V1 uses an authenticated local file service and standard file input instead of requiring browser-specific filesystem extensions.
-
-| Concern | Local web app decision |
-| --- | --- |
-| UI | Ordinary forms, scene cards, asset cards and native video first; timeline interaction over proven contracts later |
-| Core | Python remains the only timeline/compiler/render/audio implementation |
-| Storage | Versioned local files, atomic saves and revision checks; no database or account |
-| Launch | Python launcher verifies an owned loopback server before opening the browser |
-| Auth | Ephemeral bootstrap/session, authenticated video/SSE, Host/Origin and CSRF checks |
-| File access | Registered roots plus streamed local imports; no arbitrary path access from a webpage |
-| Distribution | Built static UI bundled with Python; documented Python/FFmpeg dependencies; no Node runtime |
-| Offline | Approved local media renders without ComfyUI, hosted services or internet after setup |
-
-```mermaid
-flowchart LR
-    Browser[Browser UI and proxy player] --> API[Local FastAPI service]
-    CLI[Python CLI] --> Core[Shared Python services]
-    API --> Core
-    Core --> Files[Local projects and immutable assets]
-    Core --> Render[FFmpeg jobs and verified outputs]
-```
-
-PLAN, architecture, API, QA and T25–T33 now describe this decision. The UX spec moves from `05-desktop.md` to [05-webapp.md](05-webapp.md); all task links are updated. No web UI or HTTP service is claimed as implemented by this review.
-
-## What the documents already establish
-
-The plan has strong boundaries: rational fps, integer frames/samples, immutable asset versions, frozen render snapshots, one Python core, global-time schedules, continuous audio, safe cancellation and resumable chunks. Preserve these. The examples are explicitly illustrations and cannot be treated as runnable assets. There is no application code to migrate from Kotlin.
-
-The first build should prove a complete small production path before expanding the editor: validate a synthetic episode, render a real 10-second masked scene, inspect a proxy/still, save and reopen the document. Use the existing task IDs and acceptance gates. Real art approval must not prevent independent synthetic core work, but a synthetic test cannot complete the artistic pilot gate.
+Retained source inspection and preparation limits. The obsolete initial implementation order
+and web-client proposal have been removed; use [current progress](progress.md),
+[V1 acceptance](38-v1-acceptance.md) and the [active tasks](tasks/INDEX.md).
+This audit does not grant reference, animation or publication approval.
 
 ## Complete technical asset inventory
 
@@ -52,7 +23,7 @@ All 322 media files were read and SHA-256 hashed. All 317 stills decoded with Pi
 
 Total media size is 966,442,926 bytes (about 922 MiB). MP4s account for 112,082,657 bytes; the tracked PNG/JPG collection still accounts for roughly 815 MiB. MP4 removal alone therefore does not make this a small repository. Preserve existing artwork; decide any later external-media migration separately.
 
-See [asset-inventory.json](asset-inventory.json) for each file's hash and image properties, and [video audit](asset-video-audit.json) for measured clip metadata. The still audit is reproducible with `scripts/audit_assets.py`; video measurements used a local read-only AVFoundation script because FFmpeg/ffprobe were not on PATH. This is not evidence that the planned FFmpeg backend works.
+See [asset-inventory.json](asset-inventory.json) for each file's hash and image properties, and [video audit](asset-video-audit.json) for measured clip metadata. The still audit is reproducible with `scripts/audit_assets.py`; video measurements used a local read-only AVFoundation script because FFmpeg/ffprobe were not on PATH. This source audit is separate from the later [renderer acceptance evidence](38-v1-acceptance.md).
 
 | Local clip filename | Duration | FPS | Decoded frames |
 | --- | ---: | ---: | ---: |
@@ -76,22 +47,3 @@ Every still/frame was reviewed in contact sheets, with the character profile als
 - **Music and production records are absent.** No WAV masters, editable layered sources, source/generation manifests, licences or approval records were found in `docs/assets/`. Filenames containing `comfy` do not establish a model, workflow, generation history or permission. Keep those fields pending.
 
 Local, ignored review sheets are in `.local/asset-audit/contact-sheets/`: `stills-01` through `stills-04`, `breath-01` through `breath-04`, `drink-01` through `drink-05`, and `videos-01` (JPEG). They are derived review artifacts; originals were not changed. Regenerating them needs the local source files.
-
-## Implementation order and gates
-
-| Step | Task/status | Concrete gate |
-| --- | --- | --- |
-| Bootstrap | T01 complete | Install from lock, CLI help/version/config, structured diagnostics and 18 tests |
-| Contracts | T03 next | All nested schemas; examples adapted; atomic saves, revisions, backups and immutable snapshots |
-| Toolchain | T02 planned | Explicit FFmpeg/ffprobe capability report and actual 10-second synthetic render/decode |
-| Fixtures and import | T04–T05 planned | Reproducible synthetic pack, immutable registry, source preservation and hash approval |
-| Art and visual pilot | T06–T14 planned | Reuse/prepare supplied sources, add missing layers and transitions, 90–120 s reviewed pilot |
-| Audio and recovery | T15–T24 planned | Finished audio timeline, verified chunks, cancel/resume and release bundle |
-| Browser product | T25–T33 planned | Real core-backed screens, session/file boundaries, browser playback and installed local launch |
-| V1 acceptance | T34, T37–T38 planned | Second scene, measured long-form reliability, operations and human review |
-
-No milestone beyond T01 is complete. The M0 gate still needs T03 and T02. Target Mac checks still pending include FFmpeg masks/alpha, hardware encoding, render speed/memory, Safari/Chromium playback, installed launch and job recovery. Actual art approval, editable sources, source timing and original music are separate creative inputs, and do not block the next schema task.
-
-## Git changes
-
-The previous ignore pattern `.mp4` matched only a file literally named `.mp4`. It is replaced by `*.[mM][pP]4`; the no-MP4 rule is also explicit in AGENTS.md and README. All five MP4s were staged additions, and were removed from the index using `git rm --cached`. Their local bytes remain unchanged. No MP4 is tracked after the change, and no history rewrite was needed.

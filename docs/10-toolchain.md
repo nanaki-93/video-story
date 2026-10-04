@@ -53,6 +53,6 @@ Full reports: [software](evidence/t02-software-m5-pro.json), [hardware](evidence
 
 ## Remaining gates
 
-M0 is complete. This fixed experiment is not a reusable scene renderer or the T04 fixture pack. Alpha-capable video interchange, real asset normalization, noninteger frame-rate media, audio mastering, browser playback/seeking, resumable jobs, crash cleanup, resource benchmarks, and final export quality remain their later tasks. There is no production or artistic approval, and no publication action occurred.
+M0 is complete. This fixed experiment is narrower than the reusable renderer and fixture pack. Subsequent rendering, audio, browser, recovery, resource and export checks are recorded in [V1 acceptance](38-v1-acceptance.md), which also records the remaining real-art limitations. This experiment grants no production or artistic approval, and no publication action occurred.
 
 References checked during implementation: [FFmpeg filter documentation](https://ffmpeg.org/ffmpeg-filters.html), [FFprobe frame/stream reporting](https://ffmpeg.org/ffprobe.html), [Homebrew FFmpeg formula](https://formulae.brew.sh/formula/ffmpeg). Installed `ffmpeg -h filter=setparams` and `ffmpeg -h encoder=h264_videotoolbox` were also inspected; output verification established the behavior of this specific build.

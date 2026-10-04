@@ -78,9 +78,9 @@ not an OS sandbox against another process with the user's filesystem privileges.
 | `GET/HEAD …/{id}/video` | Verified, cookie-authenticated byte-range media |
 
 Settings currently shows the actual connected worker, roots, open projects and verified media
-links. Other production page workflows remain T27–T32; the design placeholders retain their
-wireframe labels. Root chooser mutations/import streaming follow in T27; packaged assets and
-installed distribution remain T33. No Node server is required at runtime.
+links. The production screens, root chooser and streamed imports are implemented; see the
+[current UI guide](05-webapp.md) and [project workflows](26-project-workflows.md). Packaged
+assets and installed launch are documented in [installation](32-installation.md). No Node server is required at runtime.
 
 ## Verification and evidence
 

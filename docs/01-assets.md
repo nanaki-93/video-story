@@ -2,7 +2,7 @@
 
 ## Reference and style foundation
 
-The supplied collection has now been inventoried: see [implementation/asset review](09-implementation-review.md) and the per-file [hash inventory](asset-inventory.json). `assets/tabi-character-profile.png` is an actual reference candidate with turnaround, palette and proportions; `assets/scenario/tabi-train-example.png` supplies the seated scene. Their presence does not establish approval. Reuse these originals for comparison and record the selected approved hash in T06. No replacement Tabi design is needed for technical development.
+The supplied collection has now been inventoried: see [supplied asset audit](09-implementation-review.md) and the per-file [hash inventory](asset-inventory.json). `assets/tabi-character-profile.png` is an actual reference candidate with turnaround, palette and proportions; `assets/scenario/tabi-train-example.png` supplies the seated scene. Their presence does not establish approval. Reuse these originals for comparison and record the selected approved hash in T06. No replacement Tabi design is needed for technical development.
 
 Obtain the actual approved Tabi reference and channel artwork from Marco or the existing asset collection. Do not assume the channel banner is a layered character master. Preserve an original copy and document its source. Create a contact sheet containing front/side/three-quarter views, approved seated silhouette, head-to-body proportions, frill shapes, headphone design, face states, outline treatment, and palette swatches sampled from the approved art.
 

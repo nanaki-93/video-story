@@ -1,8 +1,9 @@
 # T25 browser foundation and playback
 
-The local TypeScript/Vite shell has twelve navigable design pages. Eleven are explicitly
-read-only wireframes; Preview is an actual Python-rendered media experiment. T27–T32 replace
-the wireframes with working services. Interface colors remain proposals, pending Marco's review.
+Historical T25 evidence: at this checkpoint the shell had twelve design pages, eleven of
+which were wireframes. T27–T32 subsequently implemented the product screens. Use the
+[current UI reference](05-webapp.md) and [operations](37-operations.md) for normal work.
+The standalone playback experiment below remains available for bounded diagnostics.
 
 ## Build and run
 

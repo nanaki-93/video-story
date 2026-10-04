@@ -25,7 +25,7 @@ The corresponding template declares `rain_amount` limits in 0–1. The actual up
 
 Strength is evaluated at global frames using the shared constant/linear curve semantics and scene-over-episode precedence. Only the alpha plane is scaled, preserving the prepared RGB artwork. The existing source alpha, grayscale mask and slot opacity multiply together. Template layer order places glass effects behind the character and foreground where authored.
 
-`scene.initial_state.weather_phase_frame` is the explicit **global phase origin**, retained as state across cuts. It does not advance with chunks. It must not be later than the scene start when a temporal effect exists. At frame `n`, source selection is `loop.start_frame + (n - origin) mod loop_length`. Fade/buildup is a separate strength curve, so rain may be invisible while its phase continues. Reading a still, seeking or starting a range never resets that origin. Cut/overlap continuity is expanded in T18.
+`scene.initial_state.weather_phase_frame` is the explicit **global phase origin**, retained as state across cuts. It does not advance with chunks. It must not be later than the scene start when a temporal effect exists. At frame `n`, source selection is `loop.start_frame + (n - origin) mod loop_length`. Fade/buildup is a separate strength curve, so rain may be invisible while its phase continues. Reading a still, seeking or starting a range never resets that origin. Cut/overlap continuity is documented in [story continuity](18-story-continuity.md).
 
 ## Reproduction and evidence
 

@@ -1,115 +1,80 @@
-# Tabi Story Studio full implementation plan
+# Tabi Story Studio product plan
 
-## Purpose and final outcome
+Tabi Story Studio is a local tool for turning Tabi artwork, prepared animation and finished
+music into reviewed videos. Python owns media, timeline and rendering behavior; the TypeScript
+web app guides the work. Music composition and external publishing remain separate.
 
-Implement a local production tool for Tabi Eki: original lofi music distributed separately through DistroKid, and YouTube episodes using that music with consistent Tabi animation and visual storytelling. The application turns approved assets plus an authored episode manifest into a reproducible video and a release preparation folder.
+## Current priority
 
-Target machine: Marco's Apple Silicon MacBook Pro M5 Pro with 48 GB unified memory. macOS playback, hardware encoding, installed packaging and synthetic performance have now been verified on this machine; see [long-form measurements](docs/36-longform.md) and [V1 acceptance](docs/38-v1-acceptance.md). Real-art performance and creative approval remain separate gates. Development can run elsewhere with synthetic media, but other hardware is not qualified by these results.
+The V1 software is implemented and its engineering gates are recorded in
+[V1 acceptance](docs/38-v1-acceptance.md). The interface still exposes too many technical tools
+and gives too little guidance between importing media and making a scene.
 
-The first creative milestone is a 90–120-second train pilot. The first completed episode is approximately 5–10 minutes, using enough finished music to justify its length. Longer Stories and Sessions are supported after the short episode and recovery workflow are proven. Do not stretch a short composition to an arbitrary duration.
+Marco's 4 October 2026 request takes priority over the original build order: simplify asset
+import, help him **assemble scenes from his existing Tabi images and animation files**, and
+provide reusable defaults for standard videos. This request is for documentation cleanup and
+a plan; the redesigned workflow is not implemented yet.
 
-## Product decisions
+Read the [guided workflow plan](docs/tasks.md), then select the first unblocked item in the
+[active task index](docs/tasks/INDEX.md). Begin with import and scene creation. Generating new
+artwork is not part of this work. The [documentation guide](docs/README.md) separates current
+instructions, technical references and historical records.
 
-| Area | Proposed decision | Reason |
-| --- | --- | --- |
-| Application identity | Tabi Story Studio; channel identity remains Tabi Eki | Separates production software from the channel |
-| Music generation | Outside this project; import Melotrail or DAW WAV exports | Keeps audio composition and video production manageable |
-| Core implementation | Python package, typed contracts, CLI | Direct access to media tooling and simple headless operation |
-| Renderer | FFmpeg behind a replaceable renderer interface | Suitable for prepared layers and clips |
-| Art authoring | Editable layered artwork and authored cutout animation; Fusion optional | Preserves character identity and deliberate motion |
-| Interface | Local browser web app; TypeScript with Vite, ordinary HTML/CSS controls initially | Removes the Kotlin/JVM and embedded-player packaging work |
-| Local service | Python FastAPI, launched by a Python CLI launcher; serves built UI and API from one loopback origin | Same core as CLI; media and project files stay on the Mac |
-| Data | Versioned JSON/YAML documents and local project folders | No account, cloud backend, or database required |
-| Generation | Optional local ComfyUI adapter after V1 core | Rendering approved episodes must work offline |
-| Scene system | Reusable template capabilities; train first, café second | Supports Tabi beyond travel |
-| Preview | Renderer-generated proxy video and still frames | Avoids a second compositor with subtly different output |
-| Publishing | Export checklist and release folder; manual upload | Keeps final creative and rights review with Marco |
+## Product boundaries
 
-These are implementation choices, not claims that one stack is universally optimal. The local web app replaces the original Kotlin/Compose proposal following Marco's 3 October 2026 request. It still needs a local Python/FFmpeg service; a static hosted page cannot replace the renderer or local project storage. See the [implementation and asset review](docs/09-implementation-review.md).
+| Area | Decision |
+| --- | --- |
+| Runtime | Local Python/FastAPI service; bundled TypeScript/Vite UI on one authenticated loopback origin |
+| Media engine | Shared Python services used by CLI and API; FFmpeg renderer and renderer-generated previews |
+| Storage | Versioned local documents and media; atomic draft saves, immutable approved versions, no database |
+| Time | Integer frames, integer audio samples and rational frame rates |
+| Source art | Preserve supplied originals; never infer approval, missing layers, source timing or licences |
+| Normal production | Import prepared media, build/reuse a scene, add finished music, preview and export |
+| Defaults | Fill technical settings where evidence permits; keep creative review and unknown source facts explicit |
+| Delivery | Verified local video and release preparation folder; manual external upload |
+| Optional generation | Existing local ComfyUI adapter remains an advanced utility; no new models or generation workflow required |
 
-Pin compatible Python, frontend tooling, and FFmpeg versions as each layer is introduced. T01 pins the tested Python environment and dependency lock; T02 measures media tools; T25 pins frontend tooling. Node is a development/build dependency, not a required runtime for the packaged static frontend. Do not hardcode guessed current versions into this plan.
+Target machine: Marco's Apple Silicon M5 Pro MacBook Pro with 48 GB unified memory. The
+[measured long-form checks](docs/36-longform.md) qualify synthetic 45-minute native 1080p
+and 60-second native 4K workloads on that machine. They do not qualify every real-art workload.
+One active export is the default. Node is required for frontend development/building, not for
+running the installed application.
 
-## Scope by release
+## Creative milestones still open
 
-**Pilot:** one camera angle, seated Tabi, idle breathing and blink, looking outside with clean entry/exit transitions, three exterior depth layers, one scheduled passing landmark, a cabin/window mask, one daylight-to-dusk treatment, original or synthetic demo WAV, 1080p/30 output, basic CLI validation and preview.
+1. Select the actual character and seated reference hashes in the [review packet](docs/12-tabi-art-review.md).
+2. Prepare/review the real character animation, matching foreground, cabin/window and exterior layers.
+3. Review a 90–120-second train pilot with the actual assets.
+4. Finish an approximately 5–10-minute original-music story and review the full picture and sound.
+5. Review rights, credits, thumbnail and release metadata before manual publication.
 
-**Core beta:** robust asset registry; schema migration; scene and action compilation; deterministic event schedules; full audio timeline; weather/reflections; resumable chunks; cache invalidation; release bundle; automated integration checks; complete short episode.
+These remain creative gates, not reasons to block independent interface work using labeled
+synthetic fixtures. Standard scene-based videos need not become multi-scene stories, and music
+must not be stretched to meet an arbitrary length.
 
-**V1 local web app:** project browser, asset import/approval, episode setup, story/timeline editor, preview, audio editor, render queue, publishing preparation, settings, basic continuity notebook, local launcher and install instructions, backup/recovery, CLI parity. Start with forms and scene cards; introduce timeline interaction only over working core services. Add a café template as an architectural acceptance test before declaring the engine scene-independent.
+The optional first story brief remains *The Last Train Home*: departure, city, rain/dusk and
+arrival. Tokyo-inspired imagery should not claim an exact real route. Tabi's identity comes
+from the selected reference; Platform 7 and 11:11 are optional motifs.
 
-**Expansion:** additional outfits and camera packs; sipping, reading and sleeping; more environment packs; richer continuity; local ComfyUI workflow execution; longer Sessions; reusable episode templates; more sophisticated compositor if measured limitations warrant it.
+## Implementation and verification
 
-**Deferred:** native Kotlin/Compose client and DMG, 3D scenes, general-purpose rig editor, fully automatic depth separation, lip-sync/dialogue, cloud rendering, collaborative editing, accounts, automatic DistroKid uploads, automatic YouTube publishing, social analytics, a browser game, and a reimplementation of Melotrail. These are not needed to complete V1.
+Follow [AGENTS.md](AGENTS.md), the active task's dependencies and the applicable
+[technical specifications](docs/README.md#technical-reference). Implement one coherent behavior,
+run its meaningful checks, record evidence in [progress](docs/progress.md), and commit it with
+its task ID. Preserve unrelated staged work. No MP4 enters Git.
 
-## Asset to episode workflow
+The new workflow must preserve existing projects, CLI/API parity, immutable approvals,
+authenticated media/SSE, registered filesystem roots, source-preserving cache cleanup and
+owned-job recovery. The browser must not implement a second compositor or timeline compiler.
+Run the milestone acceptance gate before merging; visual and listening approval remains human.
 
-1. Approve Tabi reference, palette, proportions, and seated camera design.
-2. Produce editable character pieces, cabin masks, exterior plates, and sound assets.
-3. Export and approve normalized assets; record provenance, versions, and licences.
-4. Import finished music and release metadata independently from Melotrail.
-5. Author a story outline; map scene beats to musical sections.
-6. Compile that outline to an explicit timeline, including transitions and persistent prop states.
-7. Validate, render stills and a proxy, then inspect motion and sound.
-8. Approve a content-hashed episode snapshot; render resumable sections.
-9. Assemble video, mix/mux audio once, and verify the deliverable.
-10. Export artwork references, chapters, track list, disclosure notes, and rights report for manual publishing.
+The original task records and detailed build log are retained in the
+[V1 archive](docs/archive/v1-tasks.md) and [implementation history](docs/archive/v1-progress.md).
+They are evidence, not the current queue.
 
-## Implementation milestones and gates
+## Deferred scope
 
-| Milestone | Work | Exit gate |
-| --- | --- | --- |
-| M0 Contracts and toolchain | T01–T03 | CLI skeleton, pinned tools, capability report, versioned schemas |
-| M1 Asset foundation | T04–T08 | Synthetic test pack plus approved real pilot assets, or explicit art review pending |
-| M2 Visual pilot | T09–T14 | 90–120-second preview with correct masks, actions and parallax; user art approval |
-| M3 Complete episode | T15–T19 | 5–10-minute authored episode, audio integrated, no discontinuities |
-| M4 Reliable headless production | T20–T24 | Resume/cancel/cache tests and final release folder pass |
-| M5 Local web product | T25–T33 | All V1 screens use the same core; local launch, browser playback and recovery work on Apple Silicon |
-| M6 Extension and production readiness | T34–T38 | Café template, optional generation bridge, long-form benchmark, recovery drill |
-
-Tasks marked optional are not required for V1. M2 artistic approval and M3 finished music cannot be claimed through synthetic fixtures. Agents should continue independent infrastructure work while waiting for those inputs. Start T01 → T03 → T02 → T04 so contracts precede media/domain implementation. Stable task IDs are retained; use the index order and each task's dependencies, not numeric order alone.
-
-## Proposed first episode
-
-Working title: The Last Train Home. This is a creative brief, not a promised geographically exact route.
-
-| Segment | Duration share | Story and visual development |
-| --- | --- | --- |
-| Departure | 0–15% | Quiet station, motion eases in; Tabi listens |
-| City | 15–45% | Residential scenery develops; one landmark passes; Tabi looks outside |
-| Rain and dusk | 45–80% | Rain grows gently; cabin lighting warms; music changes at an authored boundary |
-| Arrival | 80–100% | Motion slows; Tabi settles; closing composition and music resolution |
-
-Use stylized Tokyo-inspired artwork without asserting that impossible combinations are a real rail journey. Platform 7 and clock 11:11 may be recurring brand details where visually appropriate; they are not mandatory for every episode. Preserve Tabi's approved pastel, soft zen identity. Exact colors and anatomy must come from an approved reference, not an agent's memory.
-
-## Dependency and collaboration policy
-
-Work in order until interfaces are stable. Parallel work is optional only when explicitly authorized in a future implementation session. Suitable independent lanes after M0 are asset preparation, core/compiler, and web UI wireframes. Every lane uses shared schemas and task ownership. Do not have two agents edit the same contract without coordination.
-
-Suggested review units: bootstrap, asset registry, timeline/compiler, rendering, audio, recovery, web UI, release, second scene. Each change must name its task, behavior, evidence, and unresolved limitations. No task is done solely because the UI contains a button.
-
-## Effort and cost planning
-
-Do not budget this as a one-prompt build. The critical path is art cleanup and animation transitions, followed by renderer correctness, browser integration and local distribution. Asset approval and target-Mac benchmarking determine the schedule. For each milestone, the implementing agent should report actual effort, remaining art inputs, and measured render speed; only then revise delivery estimates.
-
-Use local approved assets and local rendering by default. Track generation model downloads, commercial asset licences, optional Resolve Studio, optional signing/notarization credentials, disk space, and backups as explicit choices. No paid service or licence purchase is implied by the plan.
-
-## Definition of complete
-
-Marco can install or launch the app, create a project, import his music and approved Tabi assets, author and preview an episode, export a correct MP4, cancel/resume without corruption, and obtain a complete release preparation folder. A second scene template runs without engine-specific train assumptions. Reopening the project preserves edits and asset identities. Documentation covers fresh setup, normal production, missing files, failed renders, backups, and external publishing.
-
-An original finished Tabi episode must be viewed and heard by Marco. No amount of automation guarantees YouTube monetization or distributor acceptance. Software completion, artwork approval, and publication are separate statuses.
-
-## Detailed specifications
-
-- [Assets and production briefs](docs/01-assets.md)
-- [Project architecture](docs/02-architecture.md)
-- [Data contracts and interfaces](docs/03-contracts.md)
-- [Timeline and rendering implementation](docs/04-rendering.md)
-- [Web app pages and interactions](docs/05-webapp.md)
-- [Music and publishing handoff](docs/06-publishing.md)
-- [Verification and acceptance](docs/07-qa.md)
-- [Ordered task backlog](docs/tasks/INDEX.md)
-- [Official references and verification status](docs/08-sources.md)
-- [Implementation review and supplied asset audit](docs/09-implementation-review.md)
-- [Implementation progress](docs/progress.md)
-- [Implemented toolchain and synthetic media checks](docs/10-toolchain.md)
+Native Kotlin/Compose packaging and DMG, signing/notarization, a general animation/rig editor,
+automatic layer extraction, 3D, dialogue/lip-sync, cloud rendering, accounts, collaboration,
+analytics and automatic publishing remain outside this work. Buy no assets, upload no private
+music and download no large models without authorization.

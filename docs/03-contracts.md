@@ -43,55 +43,32 @@ Within a scene, planner inserts only transitions that exist in the approved acti
 
 Randomization is limited to optional idle/blink timing within approved ranges. Store the seed, PRNG algorithm/version and the expanded scheduled events. Recompiling the same inputs must produce the same schedule. Export uses the frozen schedule, not a newly randomized one.
 
-## CLI specification
+## CLI and API adapters
 
-| Command | Behavior |
-| --- | --- |
-| `tabi --version`, `tabi config --json` | T01: application version and resolved local developer settings; no media probing |
-| `tabi web` | T26: launch authenticated local web app, register configured roots, verify worker readiness and open browser |
-| `tabi doctor --json [--output-dir PATH]` | T02: probe runtime/tools, listed filters/encoders and writable storage; no rendering |
-| `tabi render-spike --output-dir PATH [--encoder ENCODER] [--json]` | T02: render/verify a fixed synthetic ten-second scene and save per-run evidence |
-| `tabi project init PATH --title TITLE [--json]` | T03: create a safe local project folder with versioned defaults |
-| `tabi project show PATH [--json]` | T03: reopen and inspect the saved project index |
-| `tabi document validate FILE` | T03: validate JSON/YAML structure and print a JSON report; no media probing |
-| `tabi assets import --project PATH --file FILE --kind KIND` | Register original, probe, copy or link explicitly |
-| `tabi assets approve --project PATH --id ID --version VERSION` | Record user-reviewed approval with hashes |
-| `tabi validate EPISODE --project PATH [--purpose PURPOSE]` | T13: structured compiler validation; no rendering |
-| `tabi compile EPISODE --project PATH [--output NEW_JSON]` | T13: resolve versions, expand schedule and save immutable snapshot |
-| `tabi preview SNAPSHOT_SHA --project PATH --start N --end N --output MP4` | T13: render global-frame range; placeholders are labeled |
-| `tabi frame SNAPSHOT_SHA --project PATH --frame N --output PNG` | T13: exact frame inspection |
-| `tabi snapshot show/review SNAPSHOT_SHA --project PATH` | T13: inspect frozen content or record an explicit hash-bound review |
-| `tabi render SNAPSHOT --profile youtube-1080 --output MP4` | Persist job and render asynchronously or wait by flag |
-| `tabi jobs status JOB_ID --json` | Return journal state and verified artifact paths |
-| `tabi jobs cancel JOB_ID` | Cancel owned job safely |
-| `tabi jobs resume JOB_ID` | Check fingerprints and resume valid chunks |
-| `tabi release prepare JOB_ID --output DIR` | Release preparation; never upload |
-| `tabi cache prune --project PATH --dry-run` | Show disposable entries and reclaim estimate |
+The implemented command reference is in [operations](37-operations.md#cli-authoring-and-review),
+with detailed [asset](11-asset-registry.md), [preview](15-preview-workflow.md),
+[audio](16-audio.md), [job](19-jobs.md), [cache](21-cache-storage.md) and
+[release](23-release-preparation.md) guides. Run `tabi --help` or the relevant command's
+`--help` for exact arguments. The former speculative command list has been removed.
 
-Frame ranges use the same half-open convention. CLI exit codes: 0 success, 2 validation/usage, 3 missing dependency, 4 render/I/O failure, 5 cancellation. JSON output goes to stdout; logs to stderr. Avoid embedding secrets or private licence files in logs.
+The actual `/api/v1` routes and typed request/response boundaries are defined in
+`src/tabi/api/app.py`, `workspace.py`, `uploads.py`, `preview.py`, `audio.py`, `production.py`,
+`release.py`, `generation.py` and `contracts.py`. The [service guide](25-local-service.md)
+covers authenticated startup, media and worker lifecycle; the browser invokes these same
+Python core services rather than constructing renderer commands.
 
-Commands with task IDs above are implemented. The T05 asset commands use singular `tabi asset`; their exact syntax is in [asset registry](11-asset-registry.md). T13 syntax, snapshot review requirements and limits are in [preview workflow](15-preview-workflow.md). The remaining commands describe planned behavior and are not exposed as placeholders. `render-spike` remains a bounded capability test.
-
-## Local service API
-
-Proposed routes, versioned under `/api/v1`:
-
-- `POST /session`: exchange one-time browser bootstrap secret; authenticated `GET /session` returns protocol and CSRF context for reconnect.
-- `GET /roots`, `GET /roots/{id}/entries`: browse only launcher-registered local roots, with normalized relative paths and traversal/symlink checks.
-- `GET /health`, `GET /capabilities`: protocol/runtime state and tool support.
-- `POST /projects/open`, `GET /projects/{id}`, `PUT /projects/{id}`: opened projects with revision guard.
-- `GET /projects/{id}/assets`, `POST /projects/{id}/assets/import`, `POST /assets/{id}/normalize`, `POST /assets/{id}/approve`.
-- `GET /episodes/{id}`, `PUT /episodes/{id}` with expected revision; `POST /episodes/{id}/validate`, `/compile`.
-- `POST /previews` and `POST /renders`: return job ID and frozen input hash.
-- `GET /jobs/{id}`, `POST /jobs/{id}/cancel`, `/resume`; `GET /jobs/{id}/events` as server-sent events.
-- `GET /artifacts/{id}` serves only registered job artifacts within approved roots, supports range requests for proxy playback.
-- `POST /releases/prepare`: return folder and validation report.
-
-Requests use typed bodies; long jobs return immediately. Job errors include stable code, user message and diagnostic log reference. Every edit uses a project/episode revision to prevent lost updates. API payloads refer to registered asset IDs, not arbitrary shell arguments. Authentication is required even on loopback: ephemeral bearer tokens for CLI clients, or the verified session cookie for browsers, including video range and SSE requests. Browser mutations also require exact Origin/Host validation and a CSRF header. No credentials in artifact URLs. The full bootstrap and root-access policy is specified in [architecture](02-architecture.md).
+Every mutation validates its current revision/hash and registered paths. Browser requests use
+the verified session cookie with exact Host/Origin and CSRF checks; media ranges and SSE are
+authenticated too. No secrets appear in media URLs. Frame ranges remain half-open and all
+source references remain versioned. JSON CLI output goes to stdout, diagnostics to stderr.
 
 ## Implemented version-1 contract details (T03)
 
-Python models in `src/tabi/core/models/` are the source of truth. T03 introduced 14 Draft 2020-12 schemas under `schemas/`. Nine domain root types require `schema_version: "1.0"` and `document_type`: project, asset, action_pack, scene_template, episode, compiled_snapshot, render_job and release_record, plus validation_report. Five schemas describe nested action, scene_instance, track_placement, action_request and curve values. T02 adds `capability_report` and `render_spike_report`, for 16 schemas in total; `make schemas` publishes them and `make check` detects drift. Diagnostic reports are observations, not mutable project drafts or approved snapshots.
+Python models in `src/tabi/core/models/` and transport contracts in `src/tabi/api/contracts.py`
+are the source of truth. T38 records 64 published JSON Schemas; `make schemas` regenerates
+`schemas/` and `make check` detects drift. All document roots require a supported
+`schema_version` and `document_type`. Diagnostic reports are observations, not mutable drafts
+or approved snapshots. The original T03 contract and persistence decisions below still apply.
 
 Every nested model forbids unknown fields. Scalar time values are strict integers (booleans, strings and fractions are rejected); fps is a reduced positive rational. Curve keys use global frames and may include an end boundary for interpolation. Audio placements and fades use samples; the frame/sample conversion uses exact rational arithmetic with ties-to-even.
 
@@ -105,7 +82,7 @@ Generated JSON Schema describes structural fields and nested types; Python addit
 
 ## Implemented project persistence (T03)
 
-`src/tabi/core/persistence.py` is shared by CLI and future services. `ProjectStore.initialize` creates a project index and standard folders only in a new/empty directory; `read` parses stored JSON through the strict contracts. Project roots remain portable (`.`). Saving an episode does not implicitly alter the project's episode index; a future service owns that coordinated operation.
+`src/tabi/core/persistence.py` is shared by CLI and API services. `ProjectStore.initialize` creates a project index and standard folders only in a new/empty directory; `read` parses stored JSON through the strict contracts. Project roots remain portable (`.`). Saved episode files are authoritative; `AuthoringService` enumerates them rather than relying on a separately updated project episode index.
 
 Draft storage is fixed by identity: `project.json`, `episodes/{id}.json`, `jobs/{id}.json`, `releases/{id}.json`, and `registry/{assets|templates|actions}/{id}/{version}.json`. Creation requires revision 0 and `expected_revision=None`. An edit requires both the submitted revision and expected revision to match the stored revision, then increments it. Project creation time is preserved and update time refreshed. An approved registry version cannot be overwritten, even by submitting a draft approval status; edits create a new version.
 

@@ -6,7 +6,7 @@ The Python core owns schemas, asset registry, timeline compiler, state evaluatio
 
 Logical flow: approved assets + music + episode document → validation → compiled immutable snapshot → render plan → chunk jobs → assembled video and continuous audio → export verification → release preparation.
 
-## Proposed repository structure
+## Repository structure
 
 | Path | Responsibility |
 | --- | --- |
@@ -17,12 +17,12 @@ Logical flow: approved assets + music + episode document → validation → comp
 | `src/tabi/core/toolchain.py`, `src/tabi/core/process.py` | Tool identity/capability/storage checks and bounded subprocess execution (T02) |
 | `src/tabi/core/assets/` | Import, probing, normalization, approval, registry |
 | `src/tabi/core/timeline/` | Curves, scheduling, transitions, state evaluation |
-| `src/tabi/core/render/` | Renderer interface, FFmpeg backend, graph compiler, cache |
+| `src/tabi/core/render/`, `src/tabi/core/cache/` | Renderer interface, FFmpeg backend, normalization and caches |
 | `src/tabi/core/audio/` | WAV probe, track timeline, mix and loudness report |
 | `src/tabi/core/jobs/` | Journal, process runner, cancellation, recovery |
-| `src/tabi/core/releases/` | Metadata, rights summary, preparation bundle |
+| `src/tabi/core/publishing.py` | Metadata, rights summary, preparation bundle |
 | `src/tabi/cli/`, `src/tabi/api/` | CLI and FastAPI adapters |
-| `web/` | TypeScript/Vite browser UI, bundled static assets; introduced in T25 |
+| `web/` | TypeScript/Vite browser UI and bundled static assets |
 | `schemas/` | Generated JSON Schemas, checked against browser DTOs and tests |
 | `tests/unit/`, `tests/integration/`, `tests/fixtures/` | Small synthetic media and semantic tests |
 | `docs/`, `scripts/` | Decisions, setup, operations, fixture generator |
@@ -36,7 +36,7 @@ Each project folder contains `project.json`, `episodes/`, `registry/`, `assets/`
 
 Use atomic writes and a single-writer project lock. Readers can inspect snapshots while editing occurs. Maintain an append-only job event journal and periodically compact to a job document. Recover unfinished jobs as interrupted, not successful. A schema migration produces a backup first and is explicit when destructive conversions would be necessary.
 
-T03 implements the document storage foundation with `.tabi.lock`, `.backups/`, revision guards and hash-addressed snapshots. Job journals/recovery remain T20. See the [persistence contract](03-contracts.md#implemented-project-persistence-t03) for implemented behavior and failure boundaries.
+T03 implements the document storage foundation with `.tabi.lock`, `.backups/`, revision guards and hash-addressed snapshots. Job journals and recovery are implemented in the [job service](19-jobs.md). See the [persistence contract](03-contracts.md#implemented-project-persistence-t03) for implemented behavior and failure boundaries.
 
 ## Core services
 
@@ -53,7 +53,7 @@ Avoid importing HTTP or UI concerns into these services. Define storage and rend
 
 ## Local launch, browser session and worker lifecycle
 
-The planned `tabi web` launcher starts the installed Python server using an argument array. Bind `127.0.0.1` on an ephemeral port and return protocol version, PID, session ID and a one-time bootstrap secret over a private readiness channel. The launcher verifies the protocol before opening the browser. No fixed-port discovery or connection to an unrelated process is allowed. These commands are introduced in T26, not the T01 bootstrap.
+The `tabi web` launcher starts the installed Python server using an argument array. Bind `127.0.0.1` on an ephemeral port and return protocol version, PID, session ID and a one-time bootstrap secret over a private readiness channel. The launcher verifies the protocol before opening the browser. No fixed-port discovery or connection to an unrelated process is allowed. See the [local service guide](25-local-service.md) for implemented lifecycle behavior.
 
 Serve the built frontend and `/api/v1` on the same origin. The launcher opens a URL with the one-time secret in its fragment; the frontend removes the fragment immediately and exchanges the secret through a same-origin request for an HttpOnly, SameSite=Strict session cookie. Reject replay/expired secrets. Give each worker session a distinct cookie name; validate the exact Host and Origin, and require a per-session CSRF header on mutations. Cookie-authenticated GETs allow native `<video>` range requests and SSE without credentials in URLs. An authenticated same-origin session endpoint supports refresh/reconnect and reports protocol compatibility. CLI API callers can use the ephemeral bearer token through a private channel. Never log, persist in browser storage, or put these secrets in query strings. Test this flow in Safari and Chromium.
 
@@ -63,14 +63,16 @@ One render job is active by default; queued jobs store frozen input snapshots. C
 
 ## Dependency and packaging choices
 
-Use typed Python validation (Pydantic or equivalent), Typer or argparse for CLI, FastAPI for service, YAML parsing in safe mode, and pytest for meaningful checks. Use NumPy/Pillow only for needed fixture/image operations. FFmpeg/ffprobe are external tools whose version, filters, encoders and alpha capabilities are probed by `doctor`.
+The implementation uses Pydantic validation, argparse for CLI, FastAPI for the service, safe YAML parsing and pytest for checks. Use NumPy/Pillow only for needed fixture/image operations. FFmpeg/ffprobe are external tools whose version, filters, encoders and alpha capabilities are probed by `doctor`.
 
-Use TypeScript DTOs generated from or checked against schemas. Start with Vite, HTML/CSS, forms and scene cards; no general editor framework is required. Pin tooling in T25. The browser plays renderer-generated H.264/AAC proxies with native `<video>`; exact frame inspection asks Python for a still. Test seeking, audio, stale-proxy handling and authenticated range serving on Safari and Chromium before declaring preview complete. Browser playback is not the frame-accurate renderer.
+Use TypeScript DTOs generated from or checked against schemas. Start with Vite, HTML/CSS, forms and scene cards; no general editor framework is required. Frontend tooling is pinned in the npm lockfile. The browser plays renderer-generated H.264/AAC proxies with native `<video>`; exact frame inspection asks Python for a still. Test seeking, audio, stale-proxy handling and authenticated range serving on Safari and Chromium before declaring preview complete. Browser playback is not the frame-accurate renderer.
 
 T33 builds frontend assets into the Python distribution and provides a local launcher/install workflow. No Node server is required at runtime. Initially use a configured external Python and FFmpeg installation with an actionable dependency check. Test installed launch outside the development checkout and document external-drive permissions. Bundled runtimes or FFmpeg require a licence review first; do not commit binaries. Kotlin/Compose, native DMG and signing/notarization are deferred.
 
-## Development commands to implement
+## Development commands
 
-Implemented by T01: `make setup`, `make help`, `make check`, `make test`. T03 adds `make schemas` and schema drift checking to `make check`. T02 adds `make doctor` and opt-in `make test-media`; its fixed render experiment lives in `src/tabi/core/render/spike.py`. T04 adds `make fixtures` for a new reproducible synthetic project. Later tasks add `make run-worker`, `make run-web`, `make pilot`, `make package-local`, and `make clean-cache`. Do not add targets that pretend an unimplemented operation succeeded.
-
-Each target delegates to documented scripts. `clean-cache` requires a project/cache root and only deletes disposable cache entries. A fresh checkout must render the synthetic pilot without ComfyUI or real music.
+The current `Makefile` provides `setup`, `check`, `test`, `test-media`, `schemas`, `doctor`,
+`fixtures`, `web-check`, `web-build`, `run-web`, `run-worker`, `package` and `clean-cache`.
+See [README](../README.md) for use and [installation](32-installation.md) for packaging.
+`clean-cache` previews managed-cache pruning by default; applying it requires the observed
+inventory. Sources, approved snapshots and active job artifacts remain protected.

@@ -1,6 +1,6 @@
 # Asset import and review
 
-T05 implements copy/link import, independent media checks, immutable versions, relinking and image proxy records. CLI and future API callers use `AssetService`; a missing/changed file cannot be used by `require_valid`. Approval is a recorded human decision bound to the full asset metadata and file hashes. Checking an edited file invalidates its effective approval without rewriting the historical record.
+T05 implements copy/link import, independent media checks, immutable versions, relinking and image proxy records. CLI and API callers use `AssetService`; a missing/changed file cannot be used by `require_valid`. Approval is a recorded human decision bound to the full asset metadata and file hashes. Checking an edited file invalidates its effective approval without rewriting the historical record.
 
 Create a project and a JSON/YAML import request (the `import_request` schema validates it):
 
@@ -45,4 +45,4 @@ Image/font checks use Pillow. PCM WAV import counts actual decoded samples and r
 
 Publication order is verified copies, then atomic registry metadata under the project lock. Failure removes only the new operation's staging directory. A hard crash can leave an unreferenced owned copy for later storage review. Originals and registered media are never generic cache-cleanup targets. This is local application coordination, not an OS sandbox against another process editing the same files.
 
-Evidence: [T05 record](tasks/t05.md), [observed fixture health](evidence/t05-asset-health.json). No actual art approval is implied.
+Evidence: [T05 record](archive/v1-tasks.md#t05), [observed fixture health](evidence/t05-asset-health.json). No actual art approval is implied.

@@ -1,48 +1,44 @@
-# Ordered implementation tasks
+# Active task index
 
-Statuses are recorded below and in each task. Update status and evidence during implementation; see [progress](../progress.md). T01–T05 are complete; T06–T08 need art review while synthetic infrastructure can continue. Contracts were established before media probing. The local web UI replaces Kotlin/Compose in T25–T33. Dependencies are prerequisites for completion; synthetic infrastructure may proceed while real art review is pending. Optional tasks do not block V1.
+Marco requested a documentation cleanup and a plan before further implementation on
+4 October 2026. His priority is **importing existing Tabi images/animation files and building
+a scene from them**, with defaults for standard videos. The proposal is in [docs/tasks.md](../tasks.md).
+The redesigned app is not implemented yet. Start with T40 when implementation resumes.
 
-| Task | Title | Dependencies | Scope | Status |
-| --- | --- | --- | --- | --- |
-| [T01](t01.md) | Bootstrap repository and developer commands | None | mandatory | complete |
-| [T03](t03.md) | Define schemas and safe project persistence | T01 | mandatory | complete |
-| [T02](t02.md) | Probe toolchain and renderer capabilities | T01 | mandatory | complete |
-| [T04](t04.md) | Generate synthetic fixture pack | T02, T03 | mandatory | complete |
-| [T05](t05.md) | Create asset importer and immutable registry | T03, T04 | mandatory | complete |
-| [T06](t06.md) | Prepare approved Tabi style and seated sources | T05 | mandatory | source review pending |
-| [T07](t07.md) | Author core action pack and transition graph | T06 | mandatory | synthetic implementation complete; real animation/timing review pending |
-| [T08](t08.md) | Prepare train interior and Tokyo environment | T05, T06 | mandatory | synthetic implementation complete; separated environment art/review pending |
-| [T09](t09.md) | Implement global timeline and curves | T03, T04 | mandatory | complete |
-| [T10](t10.md) | Compile actions and persistent state | T07, T09 | mandatory | core complete; real-art review pending |
-| [T11](t11.md) | Implement scene renderer and window masking | T02, T08, T09 | mandatory | core complete; real-art review pending |
-| [T12](t12.md) | Add parallax and scheduled landmarks | T09, T11 | mandatory | complete |
-| [T13](t13.md) | Add preview CLI and frozen snapshots | T05, T10, T11, T12 | mandatory | complete |
-| [T14](t14.md) | Approve 90 to 120 second visual pilot | T07, T08, T13 | mandatory | real-art inputs and review pending |
-| [T15](t15.md) | Implement music import and audio timeline | T03, T05 | mandatory | complete |
-| [T16](t16.md) | Mix continuous audio and ambience | T15 | mandatory | core complete; listening review pending |
-| [T17](t17.md) | Add restrained lighting rain and reflections | T11, T14 | mandatory | core complete; effect review pending |
-| [T18](t18.md) | Author episode continuity and scene transitions | T10, T13, T16, T17 | mandatory | core complete; story review pending |
-| [T19](t19.md) | Complete first short music story | T18 | mandatory | original music, approved art and creative review pending |
-| [T20](t20.md) | Implement jobs cancellation and persistence | T13 | mandatory | complete |
-| [T21](t21.md) | Implement chunk planner and resumable assembly | T16, T18, T20 | mandatory | complete |
-| [T22](t22.md) | Implement caches storage estimates and pruning | T05, T21 | mandatory | complete |
-| [T23](t23.md) | Verify final export profiles | T02, T21, T22 | mandatory | complete |
-| [T24](t24.md) | Build release preparation exporter | T19, T23 | mandatory | core complete; production inputs and review pending |
-| [T25](t25.md) | Design web app pages and browser playback spike | T03, T13 | mandatory | complete |
-| [T26](t26.md) | Implement authenticated local service and worker lifecycle | T20, T25 | mandatory | complete |
-| [T27](t27.md) | Implement projects assets and episode setup pages | T05, T25, T26 | mandatory | complete |
-| [T28](t28.md) | Implement story editor and timeline | T09, T10, T18, T27 | mandatory | complete |
-| [T29](t29.md) | Implement preview and frame inspection page | T13, T26, T28 | mandatory | complete |
-| [T30](t30.md) | Implement audio page and release metadata forms | T15, T16, T27 | mandatory | core complete; listening review pending |
-| [T31](t31.md) | Implement render queue settings and recovery UI | T22, T23, T26 | mandatory | complete |
-| [T32](t32.md) | Implement release page and project portability | T24, T30, T31 | mandatory | core complete; rights/disclosure review pending |
-| [T33](t33.md) | Package and verify local web app launch | T26, T29, T31, T32 | mandatory | complete |
-| [T34](t34.md) | Add café scene template and prove extensibility | T11, T28 | mandatory | core complete; café art review pending |
-| [T35](t35.md) | Add optional activity and outfit packs | T07, T10, T34 | optional expansion | core complete; activity/outfit art review pending |
-| [T36](t36.md) | Add optional local ComfyUI asset bridge | T05, T26 | optional expansion | core complete; model/workflow validation pending |
-| [T37](t37.md) | Benchmark long form and tune resource use | T21, T23, T33, T34 | mandatory reliability | complete |
-| [T38](t38.md) | Document operations and complete V1 acceptance | T19, T24, T33, T34, T37 | mandatory | implementation complete; final creative/product acceptance pending |
+| Task | Outcome | Dependencies | Status |
+| --- | --- | --- | --- |
+| [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
+| [T40](../tasks.md#t40) | Derive safe import choices in Python | Existing asset probe/import services | planned; first unblocked |
+| [T41](../tasks.md#t41) | Guide file import with defaults and examples | T40 | planned |
+| [T42](../tasks.md#t42) | Build still/layered scene drafts from selected assets | T40 | planned |
+| [T43](../tasks.md#t43) | Turn prepared character animation into a compatible scene pack | T42 | planned |
+| [T44](../tasks.md#t44) | Add the visual scene builder and reusable scene library | T41, T42, T43 | planned |
+| [T45](../tasks.md#t45) | Add standard video defaults and fit duration to music | T42, T43 | planned |
+| [T46](../tasks.md#t46) | Connect steps with readiness, context and useful next actions | T41, T44, T45 | planned |
+| [T47](../tasks.md#t47) | Simplify preview and export over the existing services | T45, T46 | planned |
+| [T48](../tasks.md#t48) | Verify the guided workflow on the target Mac and update operations | T40, T41, T42, T43, T44, T45, T46, T47 | planned |
 
-All independently implementable software has been executed and committed. The
-[acceptance report](../38-v1-acceptance.md) records the final gates and exact remaining human
-inputs; [operations](../37-operations.md) explains how to produce the next episode.
+Dependencies are explicit prerequisites, not authorization to implement in this planning pass.
+For each implementation step, update this index and [progress](../progress.md) with behavior,
+checks and remaining limits; commit with the task ID as required by [AGENTS.md](../../AGENTS.md).
+
+## Creative gates carried forward
+
+| Original tasks | Remaining input/review |
+| --- | --- |
+| T06–T08, T10–T11 | Reference selection; separated/matching real art; authored animation timing, loops, transitions and compatibility |
+| T14, T16–T19, T30 | Actual Tabi pilot, original music, visual/effects/story and listening review |
+| T24, T32, T38 | Real production credits/rights/disclosure/thumbnail and final product/release acceptance |
+| T34–T35 | Real café/activity/outfit art if those packs are used |
+| T36 (optional) | A selected real ComfyUI/model/workflow trial; independent of this scene-building request |
+
+Use the [acceptance report](../38-v1-acceptance.md) for exact inputs. These gates remain open;
+archiving old task files does not mark them complete. Technical implementation and testing can
+use clearly labeled synthetic fixtures while the real artwork is prepared.
+
+## V1 records
+
+All original T01–T38 task bodies, verification and limits are retained in
+[V1 task records](../archive/v1-tasks.md). The [chronological log](../archive/v1-progress.md)
+retains prior commits, test results and local clip paths. Follow the active table above for new
+work rather than historical “next task” instructions.

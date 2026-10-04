@@ -1,8 +1,8 @@
 # Timeline compiler and rendering design
 
-## First prove a bounded FFmpeg backend
+## Bounded FFmpeg foundation
 
-Build a 10-second synthetic scene before real artwork. Use an exterior strip, one grayscale window mask, a cabin foreground, transparent character rectangle and a WAV tone. Prove exterior clipping, alpha overlay, time-dependent scrolling and audio duration with actual FFmpeg output. Then prove changing speed, clip entry/exit and alpha interpretation. If those fail, fix the backend before adding weather or UI.
+The original ten-second synthetic foundation is implemented; see [toolchain evidence](10-toolchain.md). Its acceptance criteria remain: Use an exterior strip, one grayscale window mask, a cabin foreground, transparent character rectangle and a WAV tone. Prove exterior clipping, alpha overlay, time-dependent scrolling and audio duration with actual FFmpeg output. Then prove changing speed, clip entry/exit and alpha interpretation. If those fail, fix the backend before adding weather or UI.
 
 A renderer must expose capabilities and reject unsupported effects. Keep the first backend restricted to prepared layers, pre-authored character clips, translate/crop/opacity, tested color treatments, masks, simple rain and scheduled sprites. Do not build a rig editor into one filter graph.
 
@@ -58,7 +58,7 @@ Resume skips only verified compatible chunks. Corrupt/missing chunks rerender; s
 
 ## Export presets and benchmarks
 
-Proposed presets: proxy 960×540/30 H.264; pilot/final 1920×1080/30; optional 3840×2160/30. Final delivery MP4, SDR BT.709, H.264, stereo AAC at 48 kHz, web-friendly metadata placement. Treat output bitrates as configurable and refer to YouTube's current recommended settings rather than permanently freezing them.
+Implemented preset dimensions: proxy 960×540; 1080p 1920×1080; optional 4K 3840×2160. Profiles retain the episode frame rate (default 30/1); exact settings and verification are in [export profiles](22-export-profiles.md). Final delivery MP4, SDR BT.709, H.264, stereo AAC at 48 kHz, web-friendly metadata placement. Treat output bitrates as configurable and refer to YouTube's current recommended settings rather than permanently freezing them.
 
 Probe software H.264 and available VideoToolbox encoders; verify output quality and actual support on target Mac. Hardware encoding does not guarantee GPU filtering. Benchmark a difficult 60-second shot containing rain, reflections, a landmark, action transition and lighting change. Record frame rate, wall time, CPU, memory, disk, encoder and output quality at 1080p and 4K.
 

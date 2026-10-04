@@ -1,6 +1,6 @@
 # Durable jobs and cancellation
 
-The shared Python `JobService` queues frozen snapshots, runs one owned worker per project, records verified progress and exposes cancellation/recovery to both CLI and the future API. A queued job fixes its global range, profile, renderer fingerprint and source snapshot. It never follows edits to the draft episode.
+The shared Python `JobService` queues frozen snapshots, runs one owned worker per project, records verified progress and exposes cancellation/recovery to both CLI and API. A queued job fixes its global range, profile, renderer fingerprint and source snapshot. It never follows edits to the draft episode.
 
 ```sh
 tabi jobs submit SNAPSHOT_SHA --project ROOT --output exports/story-preview.mp4 \
@@ -13,7 +13,7 @@ tabi jobs cancel JOB_ID --project ROOT
 tabi jobs recover --project ROOT
 ```
 
-Commands return structured JSON. Submission queues work; `work` drains the queue in submission order, or executes at most one job with `--once`. The CLI worker stays in the foreground. The later local service owns its background lifecycle. `work` returns 4 for failed/interrupted results, 5 for cancellation and 130 for an operator interrupt. Status/recovery reads do not imply a job succeeded.
+Commands return structured JSON. Submission queues work; `work` drains the queue in submission order, or executes at most one job with `--once`. The CLI worker stays in the foreground. The [local service](25-local-service.md) owns its background lifecycle in the web app. `work` returns 4 for failed/interrupted results, 5 for cancellation and 130 for an operator interrupt. Status/recovery reads do not imply a job succeeded.
 
 ## Persistence and ownership
 

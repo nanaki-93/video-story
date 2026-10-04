@@ -8,7 +8,7 @@ remains pending:** no original finished Tabi music story or publication approval
 The final workflow audit added explicit template/action-pack review (`a8baa3f`) and completed
 the CLI adapters and operations walkthrough (`d0db033`). The [operations guide](37-operations.md)
 walks through setup, normal production, troubleshooting, recovery and private backups. Each
-[task record](tasks/INDEX.md) retains its own behavior, checks, output and limits.
+[archived task record](archive/v1-tasks.md) retains its own behavior, checks, output and limits.
 
 ## Final engineering gates
 
