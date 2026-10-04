@@ -37,6 +37,10 @@ archiving old task files does not mark them complete. Technical implementation a
 use clearly labeled synthetic fixtures while the real artwork is prepared.
 The [corrected 90-second continuous-train draft](../progress.md#t14--continuous-train-draft-follow-up)
 is now available for Marco's visual review; its technical checks do not close the creative gates.
+The newer [actions and faster scenery draft](../progress.md#t14--actions-and-faster-scenery-follow-up)
+adds breathing/read/sip/look movements, fixes the foreground cup layering and advances through
+three exterior views at 72 pixels/second. It remains a reviewed technical draft, with human
+creative acceptance pending; the guided application work is still planned.
 
 ## V1 records
 

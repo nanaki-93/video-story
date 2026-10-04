@@ -70,6 +70,44 @@ seamless long-form environment or an approved activity pack. The guided plan now
 requires independent scenery motion and a complete-scene loop review; T40–T48 remain planned.
 Human art/music/rights and publication acceptance are still open.
 
+## T14 — actions and faster scenery follow-up
+
+Status: expanded draft rendered and technically verified; Marco's visual review is pending.
+Marco accepted the continuous-scene direction, identified a cup-lid cropping error, and asked
+for more movements, more exterior views and faster travel. The new scene places the complete
+TABI/cup foreground **above** the independently scrolling exterior, over one restored empty
+cabin. Built-in imagegen prepared the empty cabin and glass matte from the supplied reference;
+the character imagery comes from the supplied cutouts/read/look footage. Originals and the
+earlier drafts are retained.
+
+TABI breathes, leans down to read, picks up/sips/returns coffee, turns to watch the window, and
+returns to the relaxed pose. A **900-frame / 30-second routine repeats three times** with
+identical first/last foreground frames. Source read/look/drink clips measure 25/1 fps and
+129 frames; their presentation is explicitly conformed to 30/1 fps. The untimed breath cutouts
+receive a newly authored cadence. Short foreground motion bridges soften source pose changes;
+the cabin and scenery never enter those bridges. Read/look video mattes and bridges remain
+creative review items, rather than an approved reusable animation master.
+
+Yanaka rooftops, the Sumida-style skyline and the bay/bridge panorama form one strip with
+540-pixel spatial feather joins. Travel is **72 design pixels/second**, 5.14 times the previous
+14, covering 6480 pixels without a wrap or reset. Feather joins can blend building details;
+this finite pilot does not establish seamless long-form scenery or an exact real train route.
+
+The app verified a 900-frame proxy and the full **2700-frame / 90-second 1080p/30 export** with
+the same Lo-Fi-Walz track and stereo 48 kHz AAC. Chrome played both exports to their ends and
+sought the full export to 74 seconds. Independent full decode, timing and hash checks passed;
+**29 sampled exterior offsets** matched global travel, both repeat/chunk joins retained zero
+character translation, and **eight cup-lid checks** retained the source coverage above alpha
+128 with low RGB error. The cup-component extraction removes a small low-coverage edge fringe;
+no opaque lid pixels are removed. Tests cannot confer visual approval.
+
+[Preparation, hashes and verification evidence](evidence/t14-train-actions-draft.json).
+Episode: `tabi-train-actions-90s`, in the same `Tabi train test 90s` project. Output:
+`exports/Tabi-Actions-Faster-Journey-90s-Lo-Fi-Walz-DRAFT.mp4`. The reusable scene/template,
+routine, prompts and preparation scripts are retained under `sources/train-actions-v2/`;
+working checks and screenshots are in `.local/train-actions-v2/`. No application code changed;
+T40–T48 remain planned. No MP4 is tracked, and unrelated staged IDE changes are preserved.
+
 ## Next work
 
 T40 is the first unblocked implementation task: infer safe import parameters from actual media

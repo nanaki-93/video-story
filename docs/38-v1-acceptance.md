@@ -88,6 +88,17 @@ candidate, not completion of T14's human visual gate. Matching larger actions, l
 wraps, music listening/rights and production approval remain pending. Preparation details,
 hashes, local output paths and actual limits are preserved in the linked evidence.
 
+The [expanded actions/faster-scenery draft](evidence/t14-train-actions-draft.json) follows
+Marco's cup-lid correction and request for more movement. Its fixed restored cabin, glass
+matte and TABI/cup foreground support breathing, reading, coffee and window-looking in one
+90-second 1080p/30 export. A 30-second action routine repeats three times; the exterior passes
+through three supplied views at 72 design pixels/second without resetting or wrapping.
+The app proxy/full jobs, independent decode/hash/timing, 29 exterior positions, two character
+repeat/chunk joins and eight lid checks pass. Native read/look/drink timing is measured;
+breath timing and foreground bridges are explicitly authored. Video matte quality, pose
+bridges, spatial feather joins and final picture/music remain human review items. This adds
+a creative draft candidate; it does not close the approved-art/pilot or publication gates.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |

@@ -17,6 +17,13 @@ Switching between complete generated shots is not an acceptable substitute for t
 The one-off window-mask preparation authorized for that test does not add an automatic artwork
 generation feature to this implementation plan.
 
+The next test adds prepared reading, coffee and window-looking motion over one fixed cabin,
+with the character/cup foreground above the exterior so the glass mask cannot crop moving props.
+Scene binding must retain that layer ownership and review matching entry/exit poses; changing
+the action must not restart travel. Faster travel and multiple connected exterior views are
+scene choices, rather than reasons to reintroduce complete-shot cuts. The
+[draft evidence](evidence/t14-train-actions-draft.json) records its actual limits.
+
 ```mermaid
 flowchart LR
     A[1 · Add assets] --> B[2 · Build scene]
