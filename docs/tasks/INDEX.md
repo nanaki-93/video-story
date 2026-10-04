@@ -62,12 +62,19 @@ frill cores per prepared frame were checked. Generated likeness, outlines and ri
 remain human review items. T14's creative gate remains open; T40–T48 are still planned and
 music polish remains deferred.
 
-Marco's latest review rejects that draft's disconnected neck/collar, incorrect table cup and
+Marco rejected that draft's disconnected neck/collar, incorrect table cup and
 duplicated resting/moving arm shapes. The [anatomy review and complete-frame test](../progress.md#t14--anatomy-review-and-complete-character-frames)
 records the causes and recommends whole character frames from one coherent master, with
 independent scenery. The bounded coffee diagnostic is not a replacement 90-second video;
 native ears/matte edges, matching window-rest endpoints and complete breathing/action masters
 remain open. T14 is not creatively accepted. No T40–T48 implementation is claimed.
+
+His next review finds ear flicker in the complete-frame coffee diagnostic. The
+[ear-stability correction](../progress.md#t14--ear-stability-correction) fits one shared
+five-frill master into the same complete-frame 12-second action. Face/prop cores, collar and
+lower-body pixels are preserved; the test is rendered and reviewed with continuous scenery.
+It is a new draft asset version, not creative acceptance or a 90-second replacement. Review
+temporal ear roots/outlines as well as opacity before the remaining action masters.
 
 ## V1 records
 

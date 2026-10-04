@@ -152,6 +152,15 @@ matched `06-looking-out-window.png` endpoints, coherent breathing/vibing/deep-br
 and full routine review remain required. Complete frames may be authored using a properly
 reviewed rig; neither a single surface nor a technically valid clip is automatic art approval.
 
+Marco subsequently reported ear flicker in that complete-frame diagnostic. The
+[ear-stability correction](progress.md#t14--ear-stability-correction) replaces its changing ear
+outlines with five shared generated frills, fitted behind the preserved native head and baked
+into complete foreground frames. Frame-level checks preserve face/prop opaque cores, collar
+and lower body; actual app playback and rendered ear-core comparisons support review of the
+12-second test. Generated ear likeness, root/outline motion and the complete final routine
+still need human review. The 90-second picture, matching window-rest endpoints and coherent
+breathing/action masters remain open; the existing music is unchanged.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |

@@ -361,13 +361,72 @@ audit passes all 761 local links, 38 archived tasks and nine planned tasks; `git
 passes. No MP4 is tracked; unrelated staged IDE changes are preserved.
 Human creative approval, final 90-second picture, music/rights and publication remain open.
 
+## T14 — ear stability correction
+
+Status: Marco reported recurring ear flicker in the complete-frame coffee diagnostic. A
+corrected 12-second draft is rendered and saved for review. The earlier diagnostic and all
+90-second versions remain preserved; T14 creative acceptance is still open.
+
+The complete-frame method avoids the separate neck, duplicate-arm and tilted-cup defects,
+but its earlier v4 alpha preparation classifies each source frame separately. The resulting
+ear outlines change and retain fragments beside the window. Source coffee RGB also contains
+ragged fringe contours, so alpha changes alone cannot repair all the visible ear damage.
+
+**Correction:** one transparent five-frill master was generated with the built-in imagegen
+tool using the actual coffee and `06-looking-out-window.png` references. The same three left
+and two visible right frills are fitted to nine reviewed pose keys, with smooth transforms
+between them. Old ear fragments are removed inside bounded edit regions; new roots tuck
+behind the original native head/headphones and cup/hand occlusion. The application receives
+complete finished foreground frames, with no additional head, arm or replacement-cup layers.
+This is an ear-only draft variant, not exact source extraction or human-approved artwork.
+The actual prompt, references and generated master/hash are retained; the tool exposes no
+model/seed, and none is invented.
+
+Preparation verifies all **64 native frames and 360 scheduled frames**, including **320
+independent opaque-frill core checks**. Native face/head/prop opaque cores are preserved;
+all collar-region RGBA pixels and all pixels from y600 downward remain unchanged. All RGBA
+pixels outside the bounded ear edit remain unchanged. The 25/1-to-30/1 repeat schedule and
+12-second rest/lift/hold/reverse/return timing match the preceding anatomy diagnostic; the
+first and final complete foregrounds match. A prototype stretched the left middle frill due
+to a broken source contour and retained pink root fragments. Those were corrected before
+installation and export; prototype results are not used as final evidence.
+
+Actual app export verifies **360 frames / 12 seconds, 1920×1080, 30/1 fps, H.264** and silent
+stereo 48 kHz AAC. Independent strict decode, SHA and all-frame foreground/head/collar/arm/cup
+comparisons pass. All **1800 rendered ear-core comparisons** pass within compression tolerance
+(maximum ear RGB MAE 4.30 at half resolution). All-frame exterior comparisons and ten exact
+offset checks pass: travel advances 864 design pixels at 72 pixels/second from distance 2160.
+Native browser playback reaches 12 seconds/ended; app seeks at 0, 3.5, 4.8 and 7.2 seconds
+review complete outer ear outlines during rest, lift, sip and return. These observations and
+coverage/fidelity checks support review; they do not certify temporal aesthetics or likeness.
+
+[Preparation, preservation and app evidence](evidence/t14-ear-stability-draft.json).
+Episode: `tabi-ear-stability-test-12s`, revision 0. Asset: `tabi.actions.anatomy-coffee-test` at
+1.1; pack: `pack.tabi.anatomy-coffee-test` at 1.1. Existing 1.0 versions are unchanged.
+Output: `exports/previews/Tabi-Coffee-Stable-Ears-12s-DRAFT.mp4` in the existing
+`/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s` project.
+Job: `job-536f633510f049f1adcda39840c565fa`. Snapshot: `e4866ad0b34da795c1c9ee8e3602376ca2b47aa94651b46155d5f1a0f41fef63`.
+Master, prompt, prepared frames, scripts, complete audits and four app screenshots are saved
+under `sources/ear-stability-v8/`.
+
+Target-Mac preparation/hash audit, shared Python validation/compilation, actual app rendering
+and playback, and `.venv/bin/python .local/train-ear-stability-v8/verify_export.py` pass.
+No app code changed, so broad renderer regression is not repeated. Documentation link/archive/
+task audit and `git diff --check` pass. No MP4 is tracked; unrelated staged IDE files are preserved.
+All older episode drafts are hash-checked unchanged. Music polish remains deferred.
+
+**Remaining:** generated ear likeness and temporal root/outline review; native face/head geometry
+and texture still vary. Coffee-ready rest still differs from the requested06 window/lap rest.
+This diagnostic adds no breathing and does not replace the90-second routine. Matching complete
+window-rest/action masters, the full cue schedule and human creative approval remain required.
+
 ## Next work
 
 Prepare complete character action frames from one coherent master, with the requested
 window-facing rest at both ends. Review neck/collar continuity, two-arm anatomy, upright cup
 contact, ears and complete gestures before another 90-second replacement. Preserve continuous
-visible breathing, the 15/30/45/60/75-second cues and independent scenery travel. The native
-coffee anatomy diagnostic above establishes a preparation direction, not final action masters.
+visible breathing, the 15/30/45/60/75-second cues and independent scenery travel. The corrected
+12-second coffee test above establishes a preparation direction, not final action masters.
 Music polish is deferred until the picture is settled. All earlier drafts remain saved for comparison.
 
 T40 remains the first unblocked application implementation task: infer safe import parameters from actual media

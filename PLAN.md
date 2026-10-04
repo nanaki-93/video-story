@@ -22,13 +22,19 @@ generated components for the current animation-polish test. The
 [documentation guide](docs/README.md) separates current instructions, technical references
 and historical records.
 
-The current creative priority is [coherent anatomy and complete character frames](docs/progress.md#t14--anatomy-review-and-complete-character-frames).
+The current creative priority is [ear stability in the complete-frame coffee test](docs/progress.md#t14--ear-stability-correction).
+Marco found ear flicker in the native-coffee anatomy diagnostic. The correction fits one shared
+five-frill master behind the preserved native head and bakes it into complete foreground frames;
+it changes the ear artwork/cutout rather than repainting the collar, arms or cup. Review the
+corrected 12-second lift/hold/return with scenery moving before preparing the full routine.
+The earlier [anatomy review](docs/progress.md#t14--anatomy-review-and-complete-character-frames)
+still governs character preparation.
 Marco rejected the latest parts rig's neck/collar join, table cup and duplicated arm shapes.
 The earlier opacity and render-fidelity checks did not validate those details. Prefer complete
 transparent TABI frames authored from one coherent master, with separate cabin and continuous
 scenery. A parts rig needs proper hidden artwork, joints and prop ownership before it can author
-those frames. A short native-coffee anatomy diagnostic tests this choice; it does not replace
-the 90-second video or resolve native ear variation and matching rest endpoints.
+those frames. The short correction test does not replace the 90-second video or establish
+creative approval, consistent native face geometry or matching window-rest endpoints.
 Preserve `06-looking-out-window.png` for eventual resting pose, continuous visible breathing,
 the requested 15/30/45/60/75-second actions and independent 72-pixel/second scenery. Music polish
 remains deferred. Earlier drafts and original assets stay saved; no creative approval is inferred.
