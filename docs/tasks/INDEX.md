@@ -47,11 +47,20 @@ foreground alpha, matching poses and a selected sip segment that avoids defectiv
 TABI watches outside for 78 seconds with one coffee break; all 2700 output frames were checked.
 Marco then called the calmer version better, identified remaining ear clipping and requested
 continuous breathing with actions at 15/30/45/60/75 seconds. The
-[latest timed-action draft](../progress.md#t14--continuous-breathing-and-timed-actions) restores
+[previous timed-action draft](../progress.md#t14--continuous-breathing-and-timed-actions) restores
 source ear fringes and adds that authored schedule. All 2700 prepared and final frames were
 checked, including ear cores, action/chunk joins and continuous exterior positions. Final visual
 acceptance remains pending. Music is unchanged and its polish is deferred. Guided application
 work is still planned; T40 remains its first task.
+
+Marco's subsequent review still found ear defects and could not perceive the larger breath.
+He selected the window-looking reference for rest and authorized matching generated assets.
+The [latest window-rest/visible-breath draft](../progress.md#t14--window-rest-and-visible-deep-breath)
+uses a shared head/frill rig and face-only expressions, stronger normal breathing and an explicit
+closed-eye inhale/hold/exhale at 75–85 seconds. All 2700 prepared/final frames and six independent
+frill cores per prepared frame were checked. Generated likeness, outlines and rigged gestures
+remain human review items. T14's creative gate remains open; T40–T48 are still planned and
+music polish remains deferred.
 
 ## V1 records
 

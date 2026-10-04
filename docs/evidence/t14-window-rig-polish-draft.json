@@ -1,0 +1,609 @@
+{
+  "checkpoint": "T14 reference06 window rest, stable ear rig and visible deep breath",
+  "saved_at": "2026-10-04T18:06:32.339033+00:00",
+  "request": "Marco still sees ear defects, did not perceive the earlier big breath, wants stronger normal breathing and06-looking-out-window.png as resting pose; explicitly permits creating missing animation assets.",
+  "baseline_preserved": {
+    "episode_id": "tabi-train-breathing-90s",
+    "job_id": "job-679791009a4e4227b3744d4c6cd61b9f",
+    "snapshot_sha256": "ab36c8250bf9bb3dcfb5290266f5f2eeb4b260d88497e297bde7bbe93762ce07",
+    "output": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/exports/Tabi-Breathing-Actions-90s-Lo-Fi-Walz-DRAFT.mp4",
+    "output_sha256": "ef1de54b5cf74ab6e6fa0ff45bd020dd7f9c980315e716a862a942227400eb7b"
+  },
+  "diagnosis": "Prior output matching and source alpha checks did not establish good fringe geometry or perceptually visible breathing. Old generative clips change ear shape;6px normal and16px extra breathing read too weakly.",
+  "prototype_preserved": {
+    "output": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/exports/Tabi-Window-Rig-Polished-90s-Lo-Fi-Walz-DRAFT.mp4",
+    "job_id": "job-470ce05a36f44e0989a9473468ece56b",
+    "output_sha256": "7c716b1641855e33f99b910b51f915b6ef6737e3840af20a48329ba90809dcda",
+    "sources": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v5",
+    "reason_superseded": "Closer silhouette review found an enclosed coat/tail wedge during the music nod, largest1130.5designpx area at frame1483, bounding box333,672,65,145. Prior opacity/core checks missed this anatomical connection defect.",
+    "repair": "The v6 rig uses continuous deformation into anchored tail/foot cores. All2700prepared frames pass a new regional connection-gap check; master artwork is unchanged."
+  },
+  "preparation": {
+    "canvas": [
+      1920,
+      1080
+    ],
+    "fps": "30/1",
+    "duration_frames": 2700,
+    "schedule": [
+      {
+        "action": "window-rest",
+        "start_frame": 0,
+        "end_frame": 450,
+        "start_pose": "window-rest",
+        "end_pose": "window-rest"
+      },
+      {
+        "action": "watch-first",
+        "start_frame": 450,
+        "end_frame": 900,
+        "start_pose": "window-rest",
+        "end_pose": "window-rest"
+      },
+      {
+        "action": "coffee",
+        "start_frame": 900,
+        "end_frame": 1350,
+        "start_pose": "window-rest",
+        "end_pose": "window-rest"
+      },
+      {
+        "action": "vibe",
+        "start_frame": 1350,
+        "end_frame": 1800,
+        "start_pose": "window-rest",
+        "end_pose": "window-rest"
+      },
+      {
+        "action": "watch-second",
+        "start_frame": 1800,
+        "end_frame": 2250,
+        "start_pose": "window-rest",
+        "end_pose": "window-rest"
+      },
+      {
+        "action": "deep-breath",
+        "start_frame": 2250,
+        "end_frame": 2700,
+        "start_pose": "window-rest",
+        "end_pose": "window-rest"
+      }
+    ],
+    "user_cues_seconds": {
+      "watch-first": 15,
+      "coffee": 30,
+      "vibe": 45,
+      "watch-second": 60,
+      "deep-breath": 75
+    },
+    "idle_reference": "docs/assets/tabi-assets/train-actions/06-looking-out-window.png",
+    "shared_head_and_six_frills": true,
+    "expression_face_only": true,
+    "anchored_hip_connection": "Continuous source deformation into fixed tail/foot cores; no separated-tail composite seam.",
+    "normal_breathing": {
+      "period_frames": 150,
+      "maximum_lift_design_px": 22,
+      "maximum_chest_expansion": 0.04,
+      "global_phase": true
+    },
+    "deep_breath": {
+      "start_frame": 2250,
+      "inhale_end_frame": 2340,
+      "hold_end_frame": 2370,
+      "exhale_end_frame": 2550,
+      "maximum_lift_design_px": 62,
+      "maximum_chest_expansion": 0.095,
+      "closed_eye_expression": true
+    },
+    "coffee": {
+      "start_frame": 900,
+      "reach_end_frame": 939,
+      "sip_arrival_frame": 1014,
+      "return_start_frame": 1065,
+      "table_return_frame": 1143,
+      "withdrawal_end_frame": 1182,
+      "single_prop_path": true
+    },
+    "generated_master_sha256": {
+      "tabi-body-collar-v1.png": "ff32b3a20e5679775442d6835b5a1c99e7d2309c44ab91fdc87a1f19cada8747",
+      "tabi-window-head-v1.png": "6293740b228fdbb143d4dbd68da3bad7e8a974311f91f9211c6771584a1b7ddf",
+      "tabi-resting-lap-v1.png": "2f1958788a44a4d0871bbeea300c32b83929c2df9d3dd9897cafcda821cb644d",
+      "tabi-window-head-v2.png": "8ca781a69ac584f02290ab22e1b1876f16443215e012be611f2b5dc404a6a9c3",
+      "tabi-cup-v1.png": "eb8d29f8873fb01661899cd87e2e6e63a5a84477f424f2caf1d86b26f6243fed",
+      "tabi-coffee-gesture-v1.png": "9c0f6b03aac6665aa5741843962fa5c452147fc76aaa2de472a2221c2241eafa",
+      "tabi-torso-base-v1.png": "a852e5df7c3481f331845f757657631edc6bf9d3ff6d0feffcdff945b51c0d94",
+      "tabi-torso-base-v2.png": "fabfccdf3b83ebc2623a1231780b60aad90ee98ba74e13f3f3c944ad699a9b3d",
+      "tabi-closed-eyes-v1.png": "2f9ec393a9a5d2adaad46c0a2344f710bc9605c767303d39262c29fa24c3adb6"
+    },
+    "rendered_unique_geometry_frames": 1303,
+    "technical_normalization": "253-alpha opaque plateau normalized; premultiplied interpolation then straight-alpha output.",
+    "policy": "New generated draft components and new frame assets. Supplied sources, earlier versions and exports unchanged.",
+    "creative_status": "Authored motion and new generated assets; human visual acceptance pending."
+  },
+  "prepared_frame_audit": {
+    "passed": true,
+    "frames_checked": 2700,
+    "frill_core_checks": 16200,
+    "frill_core_failures": 0,
+    "landmarks": [
+      {
+        "frill": "left-top",
+        "master_point": [
+          474,
+          301
+        ],
+        "opaque_core_radius_px": 18.7813720703125
+      },
+      {
+        "frill": "left-middle",
+        "master_point": [
+          398,
+          382
+        ],
+        "opaque_core_radius_px": 18.5751953125
+      },
+      {
+        "frill": "left-bottom",
+        "master_point": [
+          364,
+          468
+        ],
+        "opaque_core_radius_px": 14.1968994140625
+      },
+      {
+        "frill": "right-top",
+        "master_point": [
+          852,
+          244
+        ],
+        "opaque_core_radius_px": 15.393798828125
+      },
+      {
+        "frill": "right-middle",
+        "master_point": [
+          895,
+          434
+        ],
+        "opaque_core_radius_px": 11.9844970703125
+      },
+      {
+        "frill": "right-bottom",
+        "master_point": [
+          904,
+          511
+        ],
+        "opaque_core_radius_px": 10.78759765625
+      }
+    ],
+    "minimum_master_core_padding_px": 93,
+    "minimum_main_component_area": 322401,
+    "maximum_adjacent_opaque_area_fraction_change": 0.0034695962913999043,
+    "action_and_chunk_seams": [
+      {
+        "frames": [
+          449,
+          450
+        ],
+        "premultiplied_rgba_mae": 0.02683234907832321
+      },
+      {
+        "frames": [
+          899,
+          900
+        ],
+        "premultiplied_rgba_mae": 0.02683234907832321
+      },
+      {
+        "frames": [
+          1349,
+          1350
+        ],
+        "premultiplied_rgba_mae": 0.02683234907832321
+      },
+      {
+        "frames": [
+          1799,
+          1800
+        ],
+        "premultiplied_rgba_mae": 0.02683234907832321
+      },
+      {
+        "frames": [
+          2249,
+          2250
+        ],
+        "premultiplied_rgba_mae": 0.02683234907832321
+      }
+    ],
+    "normal_breath_lift_px": 22,
+    "deep_breath_lift_px": 62,
+    "deep_eye_hold_verified": true,
+    "deep_breath_global_frames": [
+      2250,
+      2340,
+      2370,
+      2550
+    ],
+    "fixed_tail_and_foot_core_checks": 2700,
+    "coat_tail_connection_checks": 2700,
+    "coat_tail_connection_gaps": 0,
+    "creative_limits": "Technical opacity/schedule checks cannot approve likeness, outlines, coffee reach or motion aesthetics."
+  },
+  "generated_assets": {
+    "mode": "built-in image_gen",
+    "reference": "docs/assets/tabi-assets/train-actions/06-looking-out-window.png",
+    "reference_sha256": "2aec9990ae32442588e9b620d8033483d80f7e7cd24e2cd67c43981090d96fbb",
+    "identity_review": "Compared visually with actual06 reference: same six pink frills, lavender head, forehead star, brown eyes, coral headphones and green/leopard outfit; generated variant, not pixel-identical.",
+    "selected": [
+      {
+        "path": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/tabi-window-head-v2.png",
+        "sha256": "8ca781a69ac584f02290ab22e1b1876f16443215e012be611f2b5dc404a6a9c3"
+      },
+      {
+        "path": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/tabi-closed-eyes-v1.png",
+        "sha256": "2f9ec393a9a5d2adaad46c0a2344f710bc9605c767303d39262c29fa24c3adb6"
+      },
+      {
+        "path": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/tabi-resting-lap-v1.png",
+        "sha256": "2f1958788a44a4d0871bbeea300c32b83929c2df9d3dd9897cafcda821cb644d"
+      },
+      {
+        "path": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/tabi-coffee-gesture-v1.png",
+        "sha256": "9c0f6b03aac6665aa5741843962fa5c452147fc76aaa2de472a2221c2241eafa"
+      },
+      {
+        "path": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/tabi-cup-v1.png",
+        "sha256": "eb8d29f8873fb01661899cd87e2e6e63a5a84477f424f2caf1d86b26f6243fed"
+      },
+      {
+        "path": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/tabi-torso-base-v2.png",
+        "sha256": "fabfccdf3b83ebc2623a1231780b60aad90ee98ba74e13f3f3c944ad699a9b3d"
+      }
+    ],
+    "prompt_set_and_intermediate_records": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/imagegen-prompts.json",
+    "model": "Not exposed by the built-in tool",
+    "seed": "Not exposed by the built-in tool",
+    "status": "Generated draft components, not approved artwork."
+  },
+  "episode_id": "tabi-train-window-rest-90s",
+  "revision": 0,
+  "pack_ref": {
+    "id": "pack.tabi.window-rest",
+    "version": "1.0"
+  },
+  "asset_refs": [
+    {
+      "id": "tabi.actions.window-rest-window-rest",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.window-rest-watch-first",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.window-rest-coffee",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.window-rest-vibe",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.window-rest-watch-second",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.window-rest-deep-breath",
+      "version": "1.0"
+    }
+  ],
+  "template_reused": {
+    "id": "scene.tabi.train-actions",
+    "version": "1.0"
+  },
+  "verification": {
+    "project": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s",
+    "episode_id": "tabi-train-window-rest-90s",
+    "job_id": "job-a8b3b011e1284302ad4ceccbd1254ced",
+    "snapshot_sha256": "34fcd6289b617053f203656b88139c18cf8fb95b96c8349d313892f223a9340a",
+    "output": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/exports/Tabi-Window-Rest-Polished-90s-Lo-Fi-Walz-DRAFT.mp4",
+    "output_sha256": "71aa81ae1fa349a96c72f8b2d06aa60c53bdd0b111707013005f60546b987677",
+    "size_bytes": 94783478,
+    "frames": 2700,
+    "seconds": 90,
+    "canvas": [
+      1920,
+      1080
+    ],
+    "fps": "30/1",
+    "full_decode_passed": true,
+    "every_output_frame_visibility": {
+      "frames_checked": 2700,
+      "regions": {
+        "foreground": {
+          "maximum_rgb_mae": 3.8313915387897097,
+          "maximum_fraction_rgb_error_gt30": 0.000804993599641052
+        },
+        "head_and_gills": {
+          "maximum_rgb_mae": 4.187501037155043,
+          "maximum_fraction_rgb_error_gt30": 0.001033640293177974
+        },
+        "ear_fringe_colours": {
+          "maximum_rgb_mae": 3.989408373025821,
+          "maximum_fraction_rgb_error_gt30": 0.0001881703568964436
+        },
+        "hands_and_cup": {
+          "maximum_rgb_mae": 4.288504053058217,
+          "maximum_fraction_rgb_error_gt30": 0.001678539261442725
+        },
+        "panorama": {
+          "maximum_rgb_mae": 3.23710407239819
+        }
+      },
+      "limits": {
+        "foreground_head_ears_rgb_mae": 8,
+        "hands_rgb_mae": 10,
+        "fraction_rgb_error_gt30": 0.02,
+        "panorama_rgb_mae": 10
+      },
+      "decode_error_output": ""
+    },
+    "panorama_alignment": [
+      {
+        "frame": 0,
+        "expected_floor_design_px": 0,
+        "best_match_design_px": 0,
+        "rgb_mae": 3.23710407239819
+      },
+      {
+        "frame": 449,
+        "expected_floor_design_px": 1077,
+        "best_match_design_px": 1077,
+        "rgb_mae": 2.7897737556561086
+      },
+      {
+        "frame": 450,
+        "expected_floor_design_px": 1080,
+        "best_match_design_px": 1080,
+        "rgb_mae": 2.70710407239819
+      },
+      {
+        "frame": 899,
+        "expected_floor_design_px": 2157,
+        "best_match_design_px": 2157,
+        "rgb_mae": 2.3455555555555554
+      },
+      {
+        "frame": 900,
+        "expected_floor_design_px": 2160,
+        "best_match_design_px": 2160,
+        "rgb_mae": 2.7436500754147812
+      },
+      {
+        "frame": 1349,
+        "expected_floor_design_px": 3237,
+        "best_match_design_px": 3237,
+        "rgb_mae": 2.3467471091000505
+      },
+      {
+        "frame": 1350,
+        "expected_floor_design_px": 3240,
+        "best_match_design_px": 3240,
+        "rgb_mae": 2.2146455505279037
+      },
+      {
+        "frame": 1799,
+        "expected_floor_design_px": 4317,
+        "best_match_design_px": 4317,
+        "rgb_mae": 2.21052790346908
+      },
+      {
+        "frame": 1800,
+        "expected_floor_design_px": 4320,
+        "best_match_design_px": 4320,
+        "rgb_mae": 2.5703720462543993
+      },
+      {
+        "frame": 2249,
+        "expected_floor_design_px": 5397,
+        "best_match_design_px": 5397,
+        "rgb_mae": 2.167481146304676
+      },
+      {
+        "frame": 2250,
+        "expected_floor_design_px": 5400,
+        "best_match_design_px": 5400,
+        "rgb_mae": 2.0356812468577172
+      },
+      {
+        "frame": 2699,
+        "expected_floor_design_px": 6477,
+        "best_match_design_px": 6477,
+        "rgb_mae": 2.66701860231272
+      }
+    ],
+    "action_and_chunk_seams": [
+      {
+        "frames": [
+          449,
+          450
+        ],
+        "character_roi_rgb_mae": 3.39471164021164
+      },
+      {
+        "frames": [
+          899,
+          900
+        ],
+        "character_roi_rgb_mae": 4.961510582010582
+      },
+      {
+        "frames": [
+          1349,
+          1350
+        ],
+        "character_roi_rgb_mae": 2.0885132275132277
+      },
+      {
+        "frames": [
+          1799,
+          1800
+        ],
+        "character_roi_rgb_mae": 3.299873015873016
+      },
+      {
+        "frames": [
+          2249,
+          2250
+        ],
+        "character_roi_rgb_mae": 2.5100925925925925
+      }
+    ],
+    "music_encoded_aac_sha256": "eac65179b6bc15b3b787878c64ddf124b96e8f048730ca0be7c364d55efd8c5c",
+    "music_encoded_aac_identical_to_previous": true,
+    "global_breathing_phase": true,
+    "cue_schedule_seconds": {
+      "watch-first": 15,
+      "coffee": 30,
+      "vibe": 45,
+      "watch-second": 60,
+      "deep-breath": 75
+    },
+    "idle_reference": "docs/assets/tabi-assets/train-actions/06-looking-out-window.png",
+    "shared_head_and_six_frills": true,
+    "normal_breathing": {
+      "period_frames": 150,
+      "maximum_lift_design_px": 22,
+      "maximum_chest_expansion": 0.04,
+      "global_phase": true
+    },
+    "deep_breath": {
+      "start_frame": 2250,
+      "inhale_end_frame": 2340,
+      "hold_end_frame": 2370,
+      "exhale_end_frame": 2550,
+      "maximum_lift_design_px": 62,
+      "maximum_chest_expansion": 0.095,
+      "closed_eye_expression": true
+    },
+    "travel_speed_design_px_per_second": 72,
+    "travel_design_px": 6480,
+    "prepared_audit": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/prepared-visibility-audit.json",
+    "complete_output_audit": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/every-frame-visibility-audit.json",
+    "contact_sheet": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/final-contact.jpg",
+    "app_verification_report": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/jobs/artifacts/job-a8b3b011e1284302ad4ceccbd1254ced/final-6e6aebf327104bca8ac15f35c702899b-report.json",
+    "creative_status": "Draft; shared generated head/frill master, every-frame opacity, authored timing, picture/scenery continuity and media integrity verified. Human likeness, outline and gesture review pending."
+  },
+  "prepared_frame_aggregates": {
+    "window-rest": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "6f78b14d415f01691619fb819d72138944e6fd6d544f99f2b744beb0bc59dd93"
+    },
+    "watch-first": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "f4f46debb7c3080c0f3f3edeb0c52236dcc0aeb5119968f0d030d7675f123610"
+    },
+    "coffee": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "f7842c37fee479c0da326c333e9a640dc9d74d5c40c0af4841aaf76612747daf"
+    },
+    "vibe": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "c06b2dc02ca63de76dc39e201b443207773fe45c3c0fee664b6460aa72974328"
+    },
+    "watch-second": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "3a28fcf28ccce42a5654ea9b671f1bff827ebacffd95be2b4b3920f991db7a5e"
+    },
+    "deep-breath": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "8bfbd36b209d4caafeed48061efb824f5e54a56c9257ad251b8153e0061d6d4f"
+    }
+  },
+  "app_observation": {
+    "deep_breath_preview": {
+      "job_id": "job-b42c45436b9d42dfaf41396663ee373a",
+      "range_global_frames": [
+        2250,
+        2640
+      ],
+      "duration_seconds": 13,
+      "state": "verified",
+      "frames": 390,
+      "complete_playback": {
+        "start_seconds": 0.010698,
+        "end_seconds": 13,
+        "ended": true
+      },
+      "screenshot": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/app-deep-breath-preview.png",
+      "inhale_peak_seek_seconds": 3.2,
+      "player_ready_state": 4,
+      "visual_review": "Complete head/frills, connected coat/tail and raised chest with closed eyes visible at the inhale peak. Played through the slower exhale and return to window rest."
+    },
+    "full_export": {
+      "job_id": "job-a8b3b011e1284302ad4ceccbd1254ced",
+      "snapshot_sha256": "34fcd6289b617053f203656b88139c18cf8fb95b96c8349d313892f223a9340a",
+      "state": "verified",
+      "frames": 2700,
+      "duration_seconds": 90,
+      "ready_state": 4,
+      "playback_ranges": [
+        {
+          "start": 30.006448,
+          "end": 83.676351,
+          "coverage": "Coffee reach/sip/return, music nod, later window lean and beginning of deep breath."
+        },
+        {
+          "start": 75.019892,
+          "end": 90,
+          "ended": true,
+          "coverage": "Full final inhale/hold/exhale through return to window rest and the end of the video."
+        }
+      ],
+      "visual_seek_seconds": [
+        33.8,
+        49.4,
+        78.2,
+        0
+      ],
+      "screenshots": [
+        "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/app-coffee-review.png",
+        "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/app-music-nod-review.png",
+        "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/app-full-deep-breath-review.png",
+        "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6/app-final-window-rest.png"
+      ],
+      "visual_review": "Complete stable frills observed in coffee, music nod, deep breath and resting poses. Coat/tail connection remains closed during nod; cup has a complete lid/body silhouette. Generated variant remains subject to Marco visual acceptance.",
+      "left_open": "Verified full video paused at0 in the app."
+    }
+  },
+  "durable_preparation_and_full_audits": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v6",
+  "verification_commands": [
+    ".venv/bin/python .local/train-polish-v6/prepare_rig.py",
+    ".venv/bin/python .local/train-polish-v6/audit_prepared.py",
+    ".venv/bin/python .local/train-polish-v6/verify_export.py"
+  ],
+  "creative_status": "Complete90s draft exported and technically verified; final Marco visual acceptance pending.",
+  "known_limits": [
+    "Generated components match the observed supplied identity/gaze/outfit by visual comparison, not pixel-identical reproduction.",
+    "Coffee reach/return and larger breathing are authored2D rig motion and remain aesthetic review items.",
+    "This replaces the defective native head/sip clips for this draft; it does not declare those source clips repaired or approved.",
+    "Existing exterior feather joins remain subject to human visual review.",
+    "Music tracks and final AAC essence unchanged; music polish and rights review deferred.",
+    "No app code or guided workflow implementation changed; T40 remains first application task.",
+    "No human art/music/rights/publication approval inferred. No private music uploaded or external publication."
+  ],
+  "source_policy": "Supplied originals, earlier asset versions, episodes, snapshots and exports preserved. New generated draft components and new registered action assets only.",
+  "tracked_media_policy": "No MP4 committed; rendered media and animation masters/frames remain local.",
+  "documentation_verification": {
+    "command": ".venv/bin/python .local/docs-cleanup/check_docs.py",
+    "markdown_files": 53,
+    "local_links": 757,
+    "archived_tasks_preserved": 38,
+    "planned_tasks": 9,
+    "target_file_references": 127,
+    "tracked_mp4s": 0,
+    "errors": 0,
+    "diff_check": "git diff --check passed",
+    "unrelated_staged_patch_preserved": true
+  }
+}

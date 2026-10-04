@@ -16,17 +16,21 @@ provide reusable defaults for standard videos. This request is for documentation
 a plan; the redesigned workflow is not implemented yet.
 
 Read the [guided workflow plan](docs/tasks.md), then select the first unblocked item in the
-[active task index](docs/tasks/INDEX.md). Begin with import and scene creation. Generating new
-artwork is not part of this work. The [documentation guide](docs/README.md) separates current
-instructions, technical references and historical records.
+[active task index](docs/tasks/INDEX.md). Begin with import and scene creation. The guided
+application plan does not add artwork generation. Marco separately authorized matching
+generated components for the current animation-polish test. The
+[documentation guide](docs/README.md) separates current instructions, technical references
+and historical records.
 
-The current creative checkpoint is [continuous breathing with five timed actions](docs/progress.md#t14--continuous-breathing-and-timed-actions)
-in one 90-second train scene. Marco called the calmer draft better but reported ear clipping.
-New masks recover the missing ear fringes from the actual source RGB. Gentle breathing continues
-throughout; outside watching starts at 15/60 seconds, coffee at 30, music nodding at 45 and a larger
-breath at 75. All 2700 prepared and final frames were checked. The fixed cabin, continuous
-three-view scenery and existing music are unchanged; music polish is deferred. Marco's visual
-acceptance remains pending. Earlier drafts and review evidence are preserved.
+The current creative checkpoint is [window rest with a stable ear rig and visible breathing](docs/progress.md#t14--window-rest-and-visible-deep-breath).
+Marco still saw ear defects and could not perceive the earlier larger breath. He selected
+`06-looking-out-window.png` for rest and explicitly authorized matching new assets. The new rig
+keeps one head and six ear-frill shapes throughout, with lowered resting arms, 22-pixel normal
+breathing and a clear closed-eye inhale/hold/exhale at 75–85 seconds, reaching 62 pixels of lift.
+Window leans at 15/60 seconds, coffee at 30 and music nodding at 45 preserve his cues. All 2700
+prepared and final frames were checked. Cabin, continuous three-view scenery and exact music
+tracks are unchanged; music polish remains deferred. Generated likeness, gesture quality and
+final visual acceptance remain subject to Marco's review. Earlier drafts are saved.
 T40 remains the first task when application workflow implementation resumes.
 
 ## Product boundaries

@@ -128,6 +128,20 @@ native pose/outline variation, motion bridges and final aesthetics remain human 
 T14 visual acceptance, music/rights and publication remain open. No source or prior version is
 overwritten, and the full defective native sip return remains excluded rather than approved.
 
+The subsequent [window-rest/visible-deep-breath draft](evidence/t14-window-rig-polish-draft.json)
+records Marco's remaining ear defects and imperceptible-breath feedback. Under his explicit
+asset-generation authorization, built-in imagegen prepared matching draft components from the
+actual window-looking reference and train foreground. One shared head/six-frill master replaces
+variable native clip geometry; only facial expression changes. Rest faces the window with lowered
+arms. Normal breathing reaches 22 pixels; the 75–85-second closed-eye inhale/hold/exhale reaches
+62 pixels with stronger chest expansion. The app's 13-second breath preview and full 90-second
+1080p/30 export verify, including all 2700 prepared/final frames, 16200 frill-core checks,
+action/chunk joins and continuous exterior positions. Exact music tracks and AAC essence are
+unchanged. Generated variants were compared visually with the supplied identity, but are not
+pixel-identical or human-approved artwork. Likeness, outlines, rigged gestures, music/rights and
+publication remain open. Earlier versions are preserved; defective clips are excluded rather
+than declared repaired or approved.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |

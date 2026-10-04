@@ -40,6 +40,13 @@ strength editable; the calmer and timed schedules are saved draft examples, not 
 action every few seconds. Source-fringe completeness needs actual RGB/alpha review in addition
 to output matching. This creative preparation still does not implement T40–T48.
 
+Marco's next review selects `06-looking-out-window.png` for rest and asks for more visible
+breathing and a perceptible final inhale/exhale. The [new rig draft](evidence/t14-window-rig-polish-draft.json)
+uses one shared head/frill master, a face-only expression track and stronger breathing values.
+The normal scene preset should expose idle pose and motion strength in plain language, with
+occasional action cues over independent travel. Marco authorized missing-art generation for
+this one-off test; it does not add automatic artwork generation to the guided application plan.
+
 ```mermaid
 flowchart LR
     A[1 · Add assets] --> B[2 · Build scene]

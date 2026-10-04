@@ -229,10 +229,73 @@ bodies and the complete V1 history; all nine planned tasks / 127 target referenc
 `git diff --check` passed. No renderer regression suite was repeated for this creative-only
 change; the actual app proxy/full jobs and complete foreground/export checks are recorded above.
 
+## T14 — window rest and visible deep breath
+
+Status: new reference-based rig exported and technically verified; Marco's visual acceptance
+remains pending. Marco still reported ear defects, did not perceive the previous big breath,
+requested stronger normal breathing and selected `06-looking-out-window.png` for rest.
+He explicitly authorized generating missing matching assets for this polish pass.
+
+Built-in imagegen prepared six selected transparent components from the actual reference and
+existing train foreground: complete head/frills, closed-eye expression, lowered-arm resting
+body, hidden torso, coffee arms and matching cup. Visual comparison preserves the observed
+lavender face, six pink frills, forehead star, brown eyes, coral headphones and green/leopard
+outfit. These are generated variants, not pixel-identical extraction or approved masters.
+The local project retains exact prompts, source/master hashes, selected/intermediate outputs
+and paths. The tool does not expose model or seed; none is invented.
+
+The same head/frill master is used throughout, with expression edits confined to the face.
+Chest expansion occurs beneath the rigid head. The tail and foot cores remain fixed, and table
+occlusion is fixed to the cabin. Previous defective native head/sip frames and optical-flow pose
+bridges are excluded. Supplied sources and earlier derived versions remain unchanged; the old
+clips are not declared repaired or approved.
+
+| Cue | Authored behavior |
+| --- | --- |
+| Throughout | Window-facing rest with lowered arms. One global five-second breathing cycle reaches 22 design pixels of lift and up to 4% chest expansion; resting cup, tail core and foot stay anchored. |
+| 15 seconds / frame 450 | Ease into a small lean toward the window, then settle before coffee. Default gaze remains toward the window. |
+| 30 seconds / frame 900 | Reach, raise the cup, sip once, return it and lower the hands by 39.4 seconds. One continuous cup path. |
+| 45 seconds / frame 1350 | Finite rhythmic nod/sway with relaxed eyes; return to window rest by 57 seconds. |
+| 60 seconds / frame 1800 | Lean toward the window again; settle before the breath cue. |
+| 75 seconds / frame 2250 | Close the eyes, inhale through 78 seconds, hold until 79, then exhale slowly through 85. Reach 62 pixels of lift and up to 9.5% chest expansion. |
+
+All **2700 prepared frames** pass visibility and schedule checks. All **16200 independent frill-core
+checks** retain opaque coverage; tail and foot cores match throughout. Maximum adjacent silhouette
+area change is 0.347%; all five joins have premultiplied RGBA MAE at most 0.0268.
+An intermediate separated-tail prototype exposed a small coat/tail wedge during nodding. The
+saved replacement uses continuous deformation into the anchored tail and passes a regional
+connection-gap check in all 2700 frames. Other enclosed gaps are recorded for visual review.
+Technical checks cannot approve likeness, ear outlines or motion aesthetics.
+
+The app's 13-second 540p preview covers global 75–88 seconds and plays the inhale/hold/exhale.
+The full app export verifies **2700 frames / 90 seconds, 1920×1080, 30/1 fps, H.264 and stereo
+48 kHz AAC**. Independent strict decode, output hash, all-frame foreground/head/frill-colour/
+hand/cup and scenery comparisons, all five action/chunk joins and 12 exact exterior offsets pass.
+The panorama travels 6480 design pixels at 72 pixels/second without resets or wrapping.
+Episode music tracks and encoded AAC essence match the earlier draft; music is unchanged.
+
+[Preparation and verification evidence](evidence/t14-window-rig-polish-draft.json).
+Episode: `tabi-train-window-rest-90s`, revision 0. Pack: `pack.tabi.window-rest` at 1.0.
+Output: `exports/Tabi-Window-Rest-Polished-90s-Lo-Fi-Walz-DRAFT.mp4` in the existing
+`/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s` project. Masters, prompts,
+scripts, motion envelope, complete audits and screenshots are saved under `sources/train-polish-v6/`.
+Full job: `job-a8b3b011e1284302ad4ceccbd1254ced`. Snapshot: `34fcd6289b617053f203656b88139c18cf8fb95b96c8349d313892f223a9340a`.
+
+Target-Mac checks: `.venv/bin/python .local/train-polish-v6/audit_prepared.py` and
+`.venv/bin/python .local/train-polish-v6/verify_export.py` passed. Core validation and actual app
+preview/full rendering were exercised; no broad renderer regression was repeated for this
+creative-only pass. Generated likeness/outlines, rigged coffee reach/return, breathing strength
+and scenery feather joins remain human review items. Art/music/rights/publication approval
+remains open. No private music was uploaded or video published. No app code changed, no MP4
+is tracked, and unrelated staged IDE files are preserved. Previous versions remain saved.
+The documentation audit passed all 757 local links, preserved archived task/history records
+and found no tracked MP4. `git diff --check` passed.
+
 ## Next work
 
-Review the breathing/timed-action T14 draft, especially ear outlines and the coffee/nod/deep-breath
-motion. Preserve the continuous breathing phase, requested cues and independent scenery travel.
+Review the new window-rest/ear-rig T14 draft, especially likeness, outlines, coffee reach/return
+and stronger normal/deep breathing. Preserve window-facing rest, requested cues and independent
+scenery travel.
 Music polish is deferred until the picture is settled. This draft is the continuation point;
 all earlier drafts remain saved for comparison.
 
