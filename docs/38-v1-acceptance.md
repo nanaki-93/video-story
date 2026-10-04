@@ -117,6 +117,17 @@ and the fixed cabin/scenery are preserved. This is a verified draft candidate wi
 bridge and scenery-feather aesthetics still subject to Marco's review. T14's human visual gate,
 music listening/rights and publication acceptance remain open; music polish is deferred.
 
+The [5 October breathing/timed-action draft](evidence/t14-breathing-actions-draft.json) follows
+Marco's remaining ear-clipping feedback. It restores missing lower fringes from source RGB,
+retains the hand repair, adds continuous gentle breathing and cues at 15/30/45/60/75 seconds.
+Both independently checked lower-ear cores are fully opaque; all 130 native RGB frames are
+unchanged. All 2700 prepared and final frames pass opacity, schedule, foreground/ear and scenery
+checks. The app's coffee proxy, full 1080p/30 export, all five action joins and 12 exterior offsets
+verify, with unchanged AAC essence. This strengthens technical and source-fringe evidence;
+native pose/outline variation, motion bridges and final aesthetics remain human review items.
+T14 visual acceptance, music/rights and publication remain open. No source or prior version is
+overwritten, and the full defective native sip return remains excluded rather than approved.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |

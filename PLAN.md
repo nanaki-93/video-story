@@ -20,12 +20,13 @@ Read the [guided workflow plan](docs/tasks.md), then select the first unblocked 
 artwork is not part of this work. The [documentation guide](docs/README.md) separates current
 instructions, technical references and historical records.
 
-The current creative checkpoint is the [calmer 90-second window ride](docs/progress.md#t14--calm-window-ride-animation-polish):
-78 seconds watching outside, one coffee break, repaired foreground alpha and matching poses.
-All 2700 output frames were checked for character coverage and continuous scenery motion.
-The three faster exterior views and existing music are unchanged; music polish is deferred.
-Marco's visual acceptance remains pending. Earlier drafts and the
-[reported disappearance checkpoint](docs/progress.md#saved-review-checkpoint--4-october-2026) are preserved.
+The current creative checkpoint is [continuous breathing with five timed actions](docs/progress.md#t14--continuous-breathing-and-timed-actions)
+in one 90-second train scene. Marco called the calmer draft better but reported ear clipping.
+New masks recover the missing ear fringes from the actual source RGB. Gentle breathing continues
+throughout; outside watching starts at 15/60 seconds, coffee at 30, music nodding at 45 and a larger
+breath at 75. All 2700 prepared and final frames were checked. The fixed cabin, continuous
+three-view scenery and existing music are unchanged; music polish is deferred. Marco's visual
+acceptance remains pending. Earlier drafts and review evidence are preserved.
 T40 remains the first task when application workflow implementation resumes.
 
 ## Product boundaries

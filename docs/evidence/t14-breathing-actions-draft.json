@@ -1,0 +1,546 @@
+{
+  "checkpoint": "T14 continuous breathing and five timed train actions",
+  "saved_at": "2026-10-04T16:53:55.555945+00:00",
+  "request": "Marco says the calmer draft is better but the ears still clip. Add continuous breathing, watch15s, drink30s, vibe45s, watch60s, big breath75s; music remains deferred.",
+  "baseline_preserved": {
+    "episode_id": "tabi-train-calm-90s",
+    "job_id": "job-73febc6c1d424e8c8996851bfd99edc1",
+    "snapshot_sha256": "c8ebfbd8987d42500adb5b9fcdbfe7b9cb327a5fc48687bb1694cb59ee427e1d",
+    "output": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/exports/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4",
+    "output_sha256": "a0d56de1ca30056ba9744c167aa2ae36c7185f1519afa2ce4b3ee1bfd60424e3"
+  },
+  "diagnosis": "Earlier checks proved output matched its prepared character, but did not establish complete source fringes. Actual RGB includes lower right-ear lobes omitted by native cutout alpha. Narrow outer outlines were also clipped.",
+  "preparation": {
+    "canvas": [
+      1920,
+      1080
+    ],
+    "fps": "30/1",
+    "duration_frames": 2700,
+    "schedule": [
+      {
+        "action": "breathe",
+        "start_frame": 0,
+        "end_frame": 450,
+        "start_pose": "relaxed-front",
+        "end_pose": "relaxed-front"
+      },
+      {
+        "action": "watch-first",
+        "start_frame": 450,
+        "end_frame": 900,
+        "start_pose": "relaxed-front",
+        "end_pose": "relaxed-front"
+      },
+      {
+        "action": "coffee",
+        "start_frame": 900,
+        "end_frame": 1350,
+        "start_pose": "relaxed-front",
+        "end_pose": "relaxed-front"
+      },
+      {
+        "action": "vibe",
+        "start_frame": 1350,
+        "end_frame": 1800,
+        "start_pose": "relaxed-front",
+        "end_pose": "relaxed-front"
+      },
+      {
+        "action": "watch-second",
+        "start_frame": 1800,
+        "end_frame": 2250,
+        "start_pose": "relaxed-front",
+        "end_pose": "watching-window"
+      },
+      {
+        "action": "big-breath",
+        "start_frame": 2250,
+        "end_frame": 2700,
+        "start_pose": "watching-window",
+        "end_pose": "watching-window"
+      }
+    ],
+    "user_cues_seconds": {
+      "watch-first": 15,
+      "coffee": 30,
+      "vibe": 45,
+      "watch-second": 60,
+      "big-breath": 75
+    },
+    "breathing": {
+      "global_phase": true,
+      "period_frames": 150,
+      "maximum_gentle_lift_design_px": 6,
+      "maximum_big_extra_lift_design_px": 16,
+      "big_breath_frames": [
+        2250,
+        2490
+      ],
+      "fixed_seat_and_resting_cup": true
+    },
+    "vibe": {
+      "authored_duration_frames": 360,
+      "nod_period_seconds": 0.8,
+      "maximum_bob_design_px": 7,
+      "maximum_tilt_degrees": 2.2,
+      "music_edited": false
+    },
+    "coffee": {
+      "selected_native_inclusive_range": [
+        0,
+        63
+      ],
+      "return": "Reverse the selected clean lift/sip segment.",
+      "native_fps": "25/1"
+    },
+    "head_turn": {
+      "selected_native_inclusive_range": [
+        0,
+        65
+      ],
+      "native_fps": "25/1",
+      "first_visit_return_before_coffee": true,
+      "second_visit_held_to_end": true
+    },
+    "source_policy": "New derived assets from actual RGB; earlier registered versions and sources unchanged.",
+    "creative_status": "Draft with newly authored breathing/nodding/deep-breath motion; human review pending."
+  },
+  "prepared_frame_audit": {
+    "passed": true,
+    "scope": "All2700prepared foreground frames, alpha interiors, native ear cores, global motion and requested cue schedule. Human aesthetic approval remains separate.",
+    "groups": {
+      "breathe": {
+        "frames": 450,
+        "minimum_opaque_area_px": 326425,
+        "maximum_opaque_area_px": 329906,
+        "maximum_enclosed_alpha_holes_px_halfres": 0,
+        "maximum_soft_interiors_px_halfres": 0
+      },
+      "watch-first": {
+        "frames": 450,
+        "minimum_opaque_area_px": 327157,
+        "maximum_opaque_area_px": 334109,
+        "maximum_enclosed_alpha_holes_px_halfres": 0,
+        "maximum_soft_interiors_px_halfres": 0
+      },
+      "coffee": {
+        "frames": 450,
+        "minimum_opaque_area_px": 312755,
+        "maximum_opaque_area_px": 333609,
+        "maximum_enclosed_alpha_holes_px_halfres": 0,
+        "maximum_soft_interiors_px_halfres": 0
+      },
+      "vibe": {
+        "frames": 450,
+        "minimum_opaque_area_px": 321236,
+        "maximum_opaque_area_px": 329906,
+        "maximum_enclosed_alpha_holes_px_halfres": 0,
+        "maximum_soft_interiors_px_halfres": 0
+      },
+      "watch-second": {
+        "frames": 450,
+        "minimum_opaque_area_px": 327157,
+        "maximum_opaque_area_px": 334109,
+        "maximum_enclosed_alpha_holes_px_halfres": 0,
+        "maximum_soft_interiors_px_halfres": 0
+      },
+      "big-breath": {
+        "frames": 450,
+        "minimum_opaque_area_px": 328781,
+        "maximum_opaque_area_px": 339656,
+        "maximum_enclosed_alpha_holes_px_halfres": 0,
+        "maximum_soft_interiors_px_halfres": 0
+      }
+    },
+    "seams": [
+      {
+        "global_frame": 450,
+        "foreground_premultiplied_mae": 0.0007062368094921112
+      },
+      {
+        "global_frame": 900,
+        "foreground_premultiplied_mae": 0.0007062368094921112
+      },
+      {
+        "global_frame": 1350,
+        "foreground_premultiplied_mae": 0.0007062368094921112
+      },
+      {
+        "global_frame": 1800,
+        "foreground_premultiplied_mae": 0.0007062368094921112
+      },
+      {
+        "global_frame": 2250,
+        "foreground_premultiplied_mae": 0.0005801497609354556
+      }
+    ],
+    "frames_checked": 2700,
+    "foreground_schedule_gaps": 0,
+    "global_breathing_phase_verified": true,
+    "gentle_breath_period_frames": 150,
+    "gentle_lift_min_max_design_px": [
+      0.0,
+      6.0
+    ],
+    "maximum_extra_big_breath_lift_design_px": 15.999308873283548,
+    "all130native_rgb_frames_unchanged": true,
+    "restored_lower_ear_cores": [
+      {
+        "category": "look",
+        "native_index": 0,
+        "rgb_unchanged": true,
+        "missing_tracked_ear_colour_before": 2370,
+        "missing_tracked_ear_colour_after": 1,
+        "added_head_alpha_pixels": 3796,
+        "removed_head_background_pixels": 180,
+        "independent_lower_ear_core_pixels": 1417,
+        "independent_lower_ear_core_coverage": 1.0
+      },
+      {
+        "category": "drink",
+        "native_index": 0,
+        "rgb_unchanged": true,
+        "missing_tracked_ear_colour_before": 745,
+        "missing_tracked_ear_colour_after": 13,
+        "added_head_alpha_pixels": 2658,
+        "removed_head_background_pixels": 31,
+        "independent_lower_ear_core_pixels": 393,
+        "independent_lower_ear_core_coverage": 1.0
+      }
+    ],
+    "maximum_consecutive_opaque_area_fraction_change": 0.015796797403332917,
+    "cue_schedule": {
+      "watch-first": 15,
+      "coffee": 30,
+      "vibe": 45,
+      "watch-second": 60,
+      "big-breath": 75
+    },
+    "source_return_defects_avoided_inclusive_native_range": [
+      64,
+      128
+    ]
+  },
+  "native_ear_repair": {
+    "method": "Full-resolution bounded native alpha refinement; tracked actual lower-ear RGB cores; no thin-fringe erosion, unchanged RGB.",
+    "frames_checked": 130,
+    "source_rgb_unchanged": true,
+    "restored_lower_ear_cores": [
+      {
+        "category": "look",
+        "native_index": 0,
+        "rgb_unchanged": true,
+        "missing_tracked_ear_colour_before": 2370,
+        "missing_tracked_ear_colour_after": 1,
+        "added_head_alpha_pixels": 3796,
+        "removed_head_background_pixels": 180,
+        "independent_lower_ear_core_pixels": 1417,
+        "independent_lower_ear_core_coverage": 1.0
+      },
+      {
+        "category": "drink",
+        "native_index": 0,
+        "rgb_unchanged": true,
+        "missing_tracked_ear_colour_before": 745,
+        "missing_tracked_ear_colour_after": 13,
+        "added_head_alpha_pixels": 2658,
+        "removed_head_background_pixels": 31,
+        "independent_lower_ear_core_pixels": 393,
+        "independent_lower_ear_core_coverage": 1.0
+      }
+    ],
+    "background_policy": "Bounded right-ear recovery; do not propagate the hidden lower fringe into the window after native head index30. Keep body/resting cup components and reject disconnected scenery.",
+    "open_fringe_gaps_preserved": true,
+    "interior_policy": "Opaque actual source interiors before and after breathing/nod resampling; original RGB supplies any missing interior colour."
+  },
+  "episode_id": "tabi-train-breathing-90s",
+  "revision": 0,
+  "pack_ref": {
+    "id": "pack.tabi.breathing-actions",
+    "version": "1.0"
+  },
+  "asset_refs": [
+    {
+      "id": "tabi.actions.breathing-breathe",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.breathing-watch-first",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.breathing-coffee",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.breathing-vibe",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.breathing-watch-second",
+      "version": "1.0"
+    },
+    {
+      "id": "tabi.actions.breathing-big-breath",
+      "version": "1.0"
+    }
+  ],
+  "template_reused": {
+    "id": "scene.tabi.train-actions",
+    "version": "1.0"
+  },
+  "verification": {
+    "project": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s",
+    "episode_id": "tabi-train-breathing-90s",
+    "job_id": "job-679791009a4e4227b3744d4c6cd61b9f",
+    "snapshot_sha256": "ab36c8250bf9bb3dcfb5290266f5f2eeb4b260d88497e297bde7bbe93762ce07",
+    "output": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/exports/Tabi-Breathing-Actions-90s-Lo-Fi-Walz-DRAFT.mp4",
+    "output_sha256": "ef1de54b5cf74ab6e6fa0ff45bd020dd7f9c980315e716a862a942227400eb7b",
+    "size_bytes": 92424521,
+    "frames": 2700,
+    "seconds": 90,
+    "canvas": [
+      1920,
+      1080
+    ],
+    "fps": "30/1",
+    "full_decode_passed": true,
+    "every_output_frame_visibility": {
+      "frames_checked": 2700,
+      "regions": {
+        "foreground": {
+          "maximum_rgb_mae": 3.4528759894459102,
+          "maximum_fraction_rgb_error_gt30": 3.918802413982287e-05
+        },
+        "head_and_gills": {
+          "maximum_rgb_mae": 3.458896900163149,
+          "maximum_fraction_rgb_error_gt30": 2.6359490734639007e-05
+        },
+        "ear_fringe_colours": {
+          "maximum_rgb_mae": 3.353011988993711,
+          "maximum_fraction_rgb_error_gt30": 0.0
+        },
+        "hands_and_cup": {
+          "maximum_rgb_mae": 4.043175876953006,
+          "maximum_fraction_rgb_error_gt30": 8.554319931565441e-05
+        },
+        "panorama": {
+          "maximum_rgb_mae": 3.233192559074912
+        }
+      },
+      "limits": {
+        "foreground_head_ears_rgb_mae": 8,
+        "hands_rgb_mae": 10,
+        "fraction_rgb_error_gt30": 0.02,
+        "panorama_rgb_mae": 10
+      },
+      "decode_error_output": ""
+    },
+    "panorama_alignment": [
+      {
+        "frame": 0,
+        "expected_floor_design_px": 0,
+        "best_match_design_px": 0,
+        "rgb_mae": 3.233192559074912
+      },
+      {
+        "frame": 449,
+        "expected_floor_design_px": 1077,
+        "best_match_design_px": 1077,
+        "rgb_mae": 2.6214027149321266
+      },
+      {
+        "frame": 450,
+        "expected_floor_design_px": 1080,
+        "best_match_design_px": 1080,
+        "rgb_mae": 2.721764705882353
+      },
+      {
+        "frame": 899,
+        "expected_floor_design_px": 2157,
+        "best_match_design_px": 2157,
+        "rgb_mae": 2.3448265460030164
+      },
+      {
+        "frame": 900,
+        "expected_floor_design_px": 2160,
+        "best_match_design_px": 2160,
+        "rgb_mae": 2.7431975867269984
+      },
+      {
+        "frame": 1349,
+        "expected_floor_design_px": 3237,
+        "best_match_design_px": 3237,
+        "rgb_mae": 2.1247209653092005
+      },
+      {
+        "frame": 1350,
+        "expected_floor_design_px": 3240,
+        "best_match_design_px": 3240,
+        "rgb_mae": 2.2180693815987933
+      },
+      {
+        "frame": 1799,
+        "expected_floor_design_px": 4317,
+        "best_match_design_px": 4317,
+        "rgb_mae": 2.023031674208145
+      },
+      {
+        "frame": 1800,
+        "expected_floor_design_px": 4320,
+        "best_match_design_px": 4320,
+        "rgb_mae": 2.5946053293112117
+      },
+      {
+        "frame": 2249,
+        "expected_floor_design_px": 5397,
+        "best_match_design_px": 5397,
+        "rgb_mae": 2.0192156862745096
+      },
+      {
+        "frame": 2250,
+        "expected_floor_design_px": 5400,
+        "best_match_design_px": 5400,
+        "rgb_mae": 2.2139165409753647
+      },
+      {
+        "frame": 2699,
+        "expected_floor_design_px": 6477,
+        "best_match_design_px": 6477,
+        "rgb_mae": 2.594439416792358
+      }
+    ],
+    "action_and_chunk_seams": [
+      {
+        "frames": [
+          449,
+          450
+        ],
+        "character_roi_rgb_mae": 2.6898518518518517
+      },
+      {
+        "frames": [
+          899,
+          900
+        ],
+        "character_roi_rgb_mae": 4.798346560846561
+      },
+      {
+        "frames": [
+          1349,
+          1350
+        ],
+        "character_roi_rgb_mae": 1.4941560846560846
+      },
+      {
+        "frames": [
+          1799,
+          1800
+        ],
+        "character_roi_rgb_mae": 3.0754814814814813
+      },
+      {
+        "frames": [
+          2249,
+          2250
+        ],
+        "character_roi_rgb_mae": 2.335142857142857
+      }
+    ],
+    "music_encoded_aac_sha256": "eac65179b6bc15b3b787878c64ddf124b96e8f048730ca0be7c364d55efd8c5c",
+    "music_encoded_aac_identical_to_previous": true,
+    "global_breathing_phase": true,
+    "cue_schedule_seconds": {
+      "watch-first": 15,
+      "coffee": 30,
+      "vibe": 45,
+      "watch-second": 60,
+      "big-breath": 75
+    },
+    "travel_speed_design_px_per_second": 72,
+    "travel_design_px": 6480,
+    "prepared_audit": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v4/prepared-visibility-audit.json",
+    "complete_output_audit": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v4/every-frame-visibility-audit.json",
+    "contact_sheet": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v4/final-contact.jpg",
+    "app_verification_report": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/jobs/artifacts/job-679791009a4e4227b3744d4c6cd61b9f/final-831edc3a23f34cd586641bb962c6ae61-report.json",
+    "creative_status": "Draft; native masks, timing, every-frame visibility and continuity verified. Human visual acceptance remains pending."
+  },
+  "prepared_frame_aggregates": {
+    "breathe": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "215340b1e391d8fd056212787bbfd9331b3871e412e41802bb96ac728cc82976"
+    },
+    "watch-first": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "5a68226a3a38995270541cc91a5d955cdab69e537d554fba9eea629c7e53310c"
+    },
+    "coffee": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "e09b8eb4c2ac1aaa1c1f5a65e0d91782484b4aca8ddf18dd4c4a5cd6c4f3e6b9"
+    },
+    "vibe": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "4c99db316185f52f2d6be849b9675f55190dedb4da26097cca1bb5be51dd798f"
+    },
+    "watch-second": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "6c270211f7ef71bc603bb0a7565575d1461524106008e5b5738a4537dbf9806c"
+    },
+    "big-breath": {
+      "frames": 450,
+      "name_and_frame_sha256_aggregate": "7f5e5c6c691f430fe2ac1c02a7aaf77b96d870b372400f49319602f45685a150"
+    }
+  },
+  "app_observation": {
+    "coffee_preview": {
+      "job_id": "job-af487f1274c340afa475797255be3b02",
+      "range_global_frames": [
+        870,
+        1110
+      ],
+      "duration_seconds": 8,
+      "state": "verified",
+      "player_paused_at_seconds": 3.2,
+      "screenshot": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v4/app-coffee-preview.png"
+    },
+    "full_export": {
+      "job_id": "job-679791009a4e4227b3744d4c6cd61b9f",
+      "state": "verified",
+      "frames": 2700,
+      "player_duration_seconds": 90,
+      "play_started_at_seconds": 47.117686,
+      "play_paused_at_seconds": 85.433664,
+      "final_paused_at_seconds": 79,
+      "ready_state": 4,
+      "screenshot": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v4/app-verified-actions-export.png",
+      "tab_retained_as_deliverable": true
+    }
+  },
+  "durable_preparation_and_full_audits": "/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s/sources/train-polish-v4",
+  "verification_commands": [
+    ".venv/bin/python .local/train-polish-v4/audit_prepared.py",
+    ".venv/bin/python .local/train-polish-v4/verify_export.py"
+  ],
+  "documentation_audit": {
+    "command": ".venv/bin/python .local/docs-cleanup/check_docs.py",
+    "markdown_files": 53,
+    "local_links": 753,
+    "archived_tasks_preserved": 38,
+    "planned_tasks": 9,
+    "target_file_references": 127,
+    "tracked_mp4s": 0,
+    "errors": 0,
+    "git_diff_check_passed": true
+  },
+  "creative_status": "Verified draft; final Marco visual review remains pending.",
+  "known_limits": [
+    "No full129-frame sip-source repair/approval. The defective return remains excluded.",
+    "Native source pose/fringe shape variation, short foreground bridges and existing scenery feathers remain aesthetic review items.",
+    "Motion pulse is inferred for this draft, not an approved beat/tempo map. Music files, tracks and final AAC essence are unchanged.",
+    "No app code or guided workflow implementation changed; T40 remains first application task.",
+    "No human final art/music/rights/publication approval inferred. No external upload or publication."
+  ],
+  "source_policy": "Original source artwork, previous asset versions, episodes, snapshots and exports preserved. New derived assets only.",
+  "tracked_media_policy": "No MP4 committed; all rendered media and prepared layers are retained locally."
+}

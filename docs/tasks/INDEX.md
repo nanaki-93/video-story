@@ -45,8 +45,13 @@ recorded animation visibility and transition polish as the next creative priorit
 The [calmer replacement](../progress.md#t14--calm-window-ride-animation-polish) now uses repaired
 foreground alpha, matching poses and a selected sip segment that avoids defective source frames.
 TABI watches outside for 78 seconds with one coffee break; all 2700 output frames were checked.
-Marco's visual acceptance and any remaining edge/bridge polish are pending. Music is unchanged
-and its polish is deferred. The guided application work is still planned; T40 remains its first task.
+Marco then called the calmer version better, identified remaining ear clipping and requested
+continuous breathing with actions at 15/30/45/60/75 seconds. The
+[latest timed-action draft](../progress.md#t14--continuous-breathing-and-timed-actions) restores
+source ear fringes and adds that authored schedule. All 2700 prepared and final frames were
+checked, including ear cores, action/chunk joins and continuous exterior positions. Final visual
+acceptance remains pending. Music is unchanged and its polish is deferred. Guided application
+work is still planned; T40 remains its first task.
 
 ## V1 records
 

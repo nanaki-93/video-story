@@ -32,6 +32,14 @@ frequency as an editable choice. Do not silently use the full defective sip retu
 movement every few seconds; review foreground alpha, hand coverage and matching poses as well
 as timing. The one-off preparation and verification do not implement the guided application.
 
+On 5 October Marco requested a [more active timed test](evidence/t14-breathing-actions-draft.json):
+continuous gentle breathing, outside watching at 15/60 seconds, coffee at 30, music nodding at 45
+and a larger breath at 75. Treat idle breathing as continuous motion beneath occasional actions,
+with a global phase that does not restart at action/chunk boundaries. Keep cues and movement
+strength editable; the calmer and timed schedules are saved draft examples, not a mandatory
+action every few seconds. Source-fringe completeness needs actual RGB/alpha review in addition
+to output matching. This creative preparation still does not implement T40–T48.
+
 ```mermaid
 flowchart LR
     A[1 · Add assets] --> B[2 · Build scene]

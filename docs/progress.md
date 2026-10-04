@@ -1,6 +1,6 @@
 # Current progress
 
-Updated 4 October 2026 (Asia/Manila).
+Updated 5 October 2026 (Asia/Manila).
 
 ## Current state
 
@@ -172,12 +172,69 @@ Verification: `.venv/bin/python .local/train-polish-v3/audit_prepared.py` and
 `.venv/bin/python .local/train-polish-v3/verify_export.py` passed on the target Mac.
 Unrelated staged IDE files remain untouched. T40–T48 are still planned.
 
+## T14 — continuous breathing and timed actions
+
+Status: replacement draft exported and technically verified; final Marco visual review pending.
+On 5 October Marco called the calmer draft better, reported clipping in TABI's ears, and requested
+continuous breathing with five specific actions. The new 90-second schedule is:
+
+| Cue | Authored behavior |
+| --- | --- |
+| Throughout | One global five-second breathing cycle, at most six design pixels of upper-body lift and gentle chest expansion; seat and resting cup stay anchored. |
+| 15 seconds / frame 450 | Turn toward the window, hold, then return before the coffee cue. |
+| 30 seconds / frame 900 | Lift/sip/return the coffee once, then rest with continuous breathing. |
+| 45 seconds / frame 1350 | Ease into a small rhythmic nod/sway; ease out before the next look. |
+| 60 seconds / frame 1800 | Turn toward the window again and keep watching through the end. |
+| 75 seconds / frame 2250 | Take one eight-second larger breath, adding at most 16 design pixels of lift and chest expansion above the gentle cycle. |
+
+Actual source RGB contains lower right-ear fringes missing from the supplied alpha. New bounded
+native masks restore these lobes and their outlines without the previous thin-fringe erosion.
+The hidden fringe's tracked patch stops when the head turns into profile; disconnected scenery
+is excluded. All 130 selected native RGB frames remain unchanged. Independent lower-ear core
+checks cover 1417 pixels in the head-turn entry and 393 in the coffee entry, both fully opaque.
+The existing hand repair is retained and defective native sip return frames 64–128 remain
+excluded. Native clips are measured at 25/1 fps and explicitly conformed to 30/1 presentation.
+Breathing/nod/deep-breath timing is newly authored, not inferred native breath timing.
+
+The music segment suggests a 0.8-second pulse for the small nod; this is draft motion timing,
+not an approved beat map. No audio tuning occurred. The original cabin, mask and three-view
+exterior advance independently at 72 design pixels/second, travelling 6480 pixels without reset.
+Episode audio tracks and the final AAC essence are identical to the previous calmer export.
+
+All **2700 prepared foreground frames** pass opacity, cue coverage and action-join checks.
+The opacity audit distinguishes true full-resolution interiors from narrow open fringe gaps
+that close when downsampled. All five joins retain the same breathing phase and matching poses.
+The app's eight-second 540p preview crosses the coffee cue. The complete **2700-frame / 90-second,
+1920×1080, 30/1 fps** app export passed full strict decode, output hash and every-frame comparison
+for foreground, head, ear colours, hands/cup and continuously advancing scenery. All five action
+joins, including both 900-frame chunk joins, pass; all 12 sampled exterior offsets match.
+
+[Preparation and verification evidence](evidence/t14-breathing-actions-draft.json).
+Episode: `tabi-train-breathing-90s`, revision 0. Pack: `pack.tabi.breathing-actions` at 1.0.
+Output: `exports/Tabi-Breathing-Actions-90s-Lo-Fi-Walz-DRAFT.mp4` in the existing
+`/Users/marcoandreose/Tabi Story Studio/projects/Tabi train test 90s` project. New derived assets,
+native/prepared layers, scripts, complete audits and app screenshots are saved under
+`sources/train-polish-v4/`. Previous versions, drafts, snapshots and original media are preserved.
+The full video is open in the app. No app code changed and no MP4 is tracked.
+
+Verification: `.venv/bin/python .local/train-polish-v4/audit_prepared.py` and
+`.venv/bin/python .local/train-polish-v4/verify_export.py` passed on the target Mac.
+Native source pose/fringe shape variation, short foreground bridges and existing exterior
+feathers remain subject to human aesthetic review. This does not approve the full sip source,
+art, music, rights or publication. Music polish is deferred; T40–T48 remain planned and the
+pre-existing staged IDE files remain untouched.
+
+The documentation audit passed for 53 Markdown files, 753 local links, all 38 archived task
+bodies and the complete V1 history; all nine planned tasks / 127 target references remain valid.
+`git diff --check` passed. No renderer regression suite was repeated for this creative-only
+change; the actual app proxy/full jobs and complete foreground/export checks are recorded above.
+
 ## Next work
 
-Review the calmer T14 draft for visual acceptance and any remaining source-edge/bridge polish.
-Preserve its long outside-watching holds, infrequent actions and independent scenery travel.
-Music polish is deferred until the picture is settled. The new draft is the continuation point;
-the earlier rejected/defective drafts remain saved for comparison.
+Review the breathing/timed-action T14 draft, especially ear outlines and the coffee/nod/deep-breath
+motion. Preserve the continuous breathing phase, requested cues and independent scenery travel.
+Music polish is deferred until the picture is settled. This draft is the continuation point;
+all earlier drafts remain saved for comparison.
 
 T40 remains the first unblocked application implementation task: infer safe import parameters from actual media
 and explain the remaining choices. T41 exposes that as a simple importer. Scene preparation,
