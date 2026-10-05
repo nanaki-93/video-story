@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F04 — native clip imports and explicit preparation
+
+6 October 2026. Native clips now import against the exact pending attempt, with a full decode, every-timestamp check, measured frame count and immutable copied source. Repeated receipts add no progress; interrupted imports reuse the registered source. A cumulative scene requires an explicit frame range. A diagnosed scene timestamp gap can produce a separate video-only version while preserving the raw original; genuine irregular timing is rejected. Verification: all 3 actual-media tests pass, including 8+7+7 yielding 528 frames, a synthetic scene gap, Unicode paths and interrupted publication. Ruff passes; original files remain byte-identical.
+
 ## F03 — focused prompts from observed state
 
 6 October 2026. Opening image prompts focus on motion; text/reference openings describe identity and scene. Continuations use confirmed props and hands, one action and ongoing exterior movement. Cup pickup, sip and return have separate prerequisites and ending instructions. Missing cups, invented handle/saucer overrides and conflicting lap instructions are explained. A targeted retry keeps the clean parent and current action. Verification: 10 prompt/service tests pass; Ruff passes. Semantic checks are limited compatibility guards, not automatic visual approval.

@@ -271,6 +271,8 @@ Regenerate with `make schemas` and `npm --prefix web run schemas`; verify with
 
 ## F04 — Import native results with measured timing and lineage
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/flow/media.py` (new) — source inspection, bounded preparation and candidate registration.
 - `src/tabi/core/flow/service.py` — associate one imported candidate with the exact pending attempt.

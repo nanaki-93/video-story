@@ -10,7 +10,7 @@ The older P/T queue below is historical and is not a second implementation queue
 | [F01](../tasks.md#f01--define-strict-flow-episode-and-execution-contracts) | Define Flow contracts | complete |
 | [F02](../tasks.md#f02--persist-resumable-sequences-and-accepted-branches) | Persist accepted branches | complete |
 | [F03](../tasks.md#f03--compile-focused-prompts-from-confirmed-state) | Compile focused prompts | complete |
-| [F04](../tasks.md#f04--import-native-results-with-measured-timing-and-lineage) | Import native clips | planned |
+| [F04](../tasks.md#f04--import-native-results-with-measured-timing-and-lineage) | Import native clips | complete |
 | [F05](../tasks.md#f05--review-technical-defects-and-visual-continuity-separately) | Review continuity | planned |
 | [F06](../tasks.md#f06--advance-the-bounded-generation-and-review-cycle) | Bound retries and progress | planned |
 | [F07](../tasks.md#f07--assemble-a-verified-silent-video-from-accepted-footage) | Assemble verified video | planned |
