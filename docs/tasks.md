@@ -1,50 +1,134 @@
-# Guided asset import and scene creation
+# Repeatable TABI production with an almost automatic workflow
 
-Plan prepared on 4 October 2026; **not implemented**. Help Marco build scenes from his existing
-Tabi images and animation files, then reuse a standard setup for music videos. Reduce the
-parameters he must understand before seeing a useful result.
+Revised 5 October 2026; **proposal, not implemented or proven with a reusable TABI master**.
+Build videos from a persistent character, reusable motions and compatible scene templates.
+Cover train interiors/exteriors, outfits, actions, a café and walking without repairing frames
+or writing scripts for each video.
 
-## User outcome and scope
+## Current decision and scope
 
-The primary problem is the handoff from imported files to a usable scene. Marco explicitly
-chose assembling existing artwork/animation, so this plan does not add AI artwork generation.
-Deliver import and scene building first (T40–T44); then connect music, navigation and output
-(T45–T47), and verify the whole journey (T48).
+Marco's latest request changes the priority from another ear repair to a repeatable production
+workflow. He explicitly requires **almost entirely automatic setup**, and accepts using several
+applications. Do not assume he will draw layers, paint skin weights, learn rigging or commission
+an animator. The existing calm-window video remains the preferred visual reference; it is not
+a reusable character master and its unresolved flicker is not accepted.
 
-Marco's subsequent 90-second test clarified the normal train workflow: **one continuous cabin
-and consistent Tabi pose, with small prepared movements and scenery scrolling independently**.
-Switching between complete generated shots is not an acceptable substitute for this scene.
-The one-off window-mask preparation authorized for that test does not add an automatic artwork
-generation feature to this implementation plan.
+This revision supersedes this file's previous instruction to repair the ears before addressing
+the product. Existing PLAN/progress/index entries retain the prior queue and historical state;
+they do not mean this proposed pipeline has been adopted or implemented. P01 is the next
+production decision. T40 remains independent engineering work, but import improvements cannot
+establish that character creation works. When implementation is authorized, reconcile the active
+index and product boundaries with the selected route as part of P01's evidence update.
 
-The train recipe uses one fixed cabin, a prepared glass mask, an independently scrolling
-exterior and complete transparent character frames above the exterior. The character clip owns
-its face, arms and cup; an extra limb, blink or cup overlay must not duplicate what is already
-painted. Entry/exit poses and prop contact must match. Review the entire moving composition,
-including neck/collar continuity and ear outlines, rather than only checking opaque interiors.
+**Recommended investigation:** create one 3D TABI master with assisted image-to-3D and automatic
+rigging, reuse it for every animation, and test an illustration-like render in Blender. This is
+a candidate for meeting the automation requirement, not a promise that conversion preserves the
+current artwork. Whether this visual approach is acceptable is still a decision for Marco.
+Do not replace the approved/reference look merely to make an auto-rigger pass.
 
-Prefer long outside-watching holds and infrequent complete actions. The selected calm example
-uses 78 seconds of window-facing idle and one 12-second coffee break. The source clips were
-explicitly conformed from their measured 25 fps to this pack's 30 fps; importing frames must
-not silently invent their timing. The one-off preparation does not implement the guided app.
+The setup proof must include TABI's actual frills, headphones, head/body proportions, tail,
+face and clothing. Generic humanoid demonstrations do not settle it. A fixed model removes
+frame-by-frame character regeneration and cutout extraction from normal production; bad
+geometry, deformation, shading or antialiasing can still produce visible defects.
 
-The [creative review history](progress.md) retains the earlier breathing, timed-action, window
-pose, anatomy and ear experiments. Separate body-part rigs and generated replacement ears were
-rejected as the new direction. Additional actions and stronger breathing remain future work
-following the baseline repair. The runtime consumes complete reviewed character frames; this
-plan does not add a body-part editor or automatically reconstruct incompatible source clips.
+If that proof fails, report the failing requirement and stop the proposed 3D integration.
+An authored 2D rig is the alternative for preserving the illustrated look, but requires skilled
+setup and therefore does not currently satisfy Marco's automation constraint. Generating more
+independent AI video clips is not the fallback for a consistent continuous character.
 
-**Current creative direction, 5 October:** Marco subsequently says the later variants are worse
-and selects the [calm-window 90-second video](progress.md#t14--return-to-the-calm-window-baseline)
-as the last good result. Its existing animations, poses, artwork and timing are the baseline.
-Repair the local ear-edge flicker first, using the original source movement and ear shapes;
-compare directly against that video. The generated replacement ears and parts rigs are
-superseded experiments. Earlier extra-action/breathing requests remain future work, separate
-from this limited repair.
+## Tools and responsibility
+
+Official documentation checked on 5 October 2026. Feature availability is vendor evidence;
+the proposed fit to TABI is an engineering inference and remains untested.
+
+| Tool | Proposed responsibility | Evidence and limit |
+| --- | --- | --- |
+| Meshy, initial candidate | Convert selected character references into one persistent textured model; auto-rig and obtain reusable motion candidates | [Image-to-3D](https://docs.meshy.ai/en/api/image-to-3d), [rigging API](https://docs.meshy.ai/en/api/rigging), [animation guide](https://docs.meshy.ai/en/webapp/guides/animate). The API limits reliable rigging to clear standard humanoids; custom motion/facial work is not guaranteed. TABI's shape is a specific acceptance risk. |
+| Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
+| video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
+| Logic | Finish original music and supply its local master when needed | Keep the selected master intact. Picture can be tested silently; music polish remains deferred. |
+
+Moho Pro supports [PSD-based 2D rigging and Smart Bones](https://moho.lostmarble.com/products/moho-pro-14)
+on macOS, but authoring the character is substantial setup, so it is not the default under the
+latest constraint. Cartoon Animator's current download lists
+[Windows requirements](https://www.reallusion.com/cartoon-animator/download.html), so it is not
+the native Mac route. No subscription, provider account, upload or installation is performed
+by this planning change. A provider trial needs an explicit service/input/budget decision;
+there is no authorized credit budget. No private music is needed by character generation.
+
+## What becomes reusable
+
+| Requirement | Reusable input and normal operation | Boundary to make visible |
+| --- | --- | --- |
+| Same TABI throughout | One versioned character master; rendered complete character frames from it | Reject likeness/deformation defects before adding the master to the library. Do not regenerate the head for each action or outfit. |
+| Different train interiors | Compatible cabin templates with camera, seating position, table height, masks and foreground | A new perspective or table position needs a qualified template/contact setup; it is not just a replacement background. |
+| Different views outside | Independent exterior/parallax library, measured strip coverage and one global travel phase | New panoramas need matching horizons and reviewed joins. The 90-second baseline does not prove an endless wrap. |
+| Different outfits | Garment/material variants bound to the same character, tested against its actions | Recoloring differs from a new garment shape. A coat cannot be treated as a texture on a T-shirt. Test a genuine silhouette change before claiming wardrobe support. |
+| Different actions | Breathing, looking, drinking, music sway, large breath and walking with known entry/exit and prop states | A generic motion preset does not establish cup contact, facial motion, seating or a seamless transition. Missing actions require a new reusable action, not per-video repairs. |
+| Café | The same master in a seated café template with different seating/table contact and matching props | Reuse motion only after contact/perspective compatibility; preserve one visible cup as ownership changes. |
+| Walking | A tested walk cycle, fixed side/follow camera, grounded feet and synchronized ground travel | First release is a defined walking template. Free navigation, stairs, arbitrary cameras and contacts require additional templates or a later renderer extension. |
+| A completely new scene | Add one versioned scene template with supported cameras, actions, outfits and contact points | Existing library choices are automatic; arbitrary unseen scenes are new preparation work. Report honestly if automatic preparation fails. |
+
+Authoring may use a skeleton, separate garments and body parts internally. Rendering must
+produce one coherent character with correct occlusion. The earlier duplicated arms and neck
+gaps do not prove that rigs are unsuitable; they show that those experimental cutouts lacked
+a consistent master and correct layer ownership. No independent replacement ears, extra arms
+or flat cup overlays are added to already complete character frames.
+
+## The workflow Marco should see
+
+**Library setup, only when something new is needed:** select references or a prepared bundle →
+automatic preparation → review the short movement test → save the reusable version. Expose
+whether an item is ready, needs review, or is incompatible; never present raw frame folders
+and technical IDs as the normal experience.
+
+**Each video:** choose Train / Café / Walk → choose the compatible environment and outfit →
+choose a routine and duration → preview → export. Add finished music whenever ready. Defaults
+cover the frame rate, camera, action transitions, breathing, travel, output and cache behavior.
+
+```mermaid
+flowchart LR
+    R[Selected TABI references] --> M[One reusable character master]
+    M --> L[Reviewed outfits and actions]
+    S[Scene and exterior templates] --> V[video-story choices]
+    L --> V
+    V --> P[Automatic preparation when needed]
+    P --> C[Preview and review]
+    C --> E[Export video]
+```
+
+Home offers **New video**, **Continue** and **Library**. The normal creation steps are **Scene →
+TABI and actions → Length and music → Preview → Export**. Imports happen inside the relevant
+library/scene choice. Advanced retains the current timeline, inspector, exact parameters,
+generation and diagnostics. A new user should not need to discover an order among 12 tools.
+
+## A bounded proof before more product promises
+
+P01 is a single feasibility decision with predefined outputs, not an open-ended series of
+90-second repairs. Start with at most two candidate masters and one correction round, subject
+to a separately agreed provider budget. Stop if the route needs frame painting or manual
+mesh/weight editing to meet the baseline. Record user clicks, preparation operations, elapsed
+time and cost; do not label an assistant performing hidden manual repairs as automation.
+
+1. **Likeness and deformation:** render the real master in the current train view and a walking
+   view. Test breathing, a head turn and a short walk. Review face, frill count/roots, neck,
+   headphones, tail, feet and painterly texture against the supplied references.
+2. **Hard reuse cases:** use the same master in train and café; fit a second, visibly different
+   garment; lift, sip and return one cup; test a visible deep breath. No regeneration of TABI's
+   identity and no manual frame repair. A recolor alone does not pass the outfit requirement.
+3. **Production rehearsal:** create a 90-second train video, then change interior, exterior,
+   outfit and routine independently; make short café and walking videos. Reuse saved settings
+   after restarting. Before integration, run this through one documented preparation entry
+   point; after T48, the same tasks must work entirely in the app.
+
+Proceed to P02–P04 only if the resulting look and amount of manual work are acceptable. If only
+some examples pass, list those capabilities; do not silently drop walking, clothing or drinking
+and call the overall workflow complete. Exact reproduction of the current 2D style and almost
+automatic preparation are not both established by any research or test performed here.
 
 ## Can the normal app workflow produce this video?
 
-**5 October assessment: the renderer can; the guided asset-to-video workflow is not complete.**
+**5 October assessment: prepared 2D composition/export works; automatic source-to-video does not.**
 The calm baseline uses the real compiler, independent travel curve, full-character PNG
 sequences and durable export jobs. Its cabin separation, cutouts, pose bridges and animation
 pack were prepared with local scripts outside the UI. Importing a flattened scene or imperfect
@@ -53,46 +137,29 @@ do not repair ears, reconnect anatomy or make incompatible actions consistent.
 
 | Step | Current capability | Work needed for the intended workflow |
 | --- | --- | --- |
-| Prepare matching cabin, glass mask, exterior and complete character actions | External art/preparation, with manual visual review | Prepare one reusable train pack; retain source hashes and explicit preparation history. Do not promise automatic cleanup of arbitrary generated clips. |
-| Import and bind the pack | Media import and authored template/action/episode JSON | T40–T44: grouped import, named scene recipes, visible missing inputs, compatible saved routines and reusable scene setup without hand-written JSON. |
+| Prepare matching character, scene, wardrobe and actions | One-off external scripts; no demonstrated reusable master or automatic wardrobe/rig | P01 tests the actual foundation; P02–P04 turn a successful preparation route into a reusable app service. |
+| Import and bind the library | Media import and authored template/action/episode JSON | T40–T44: bundle import, named scene recipes, compatibility and saved routines without hand-written JSON. |
 | Set timing and continuous scenery | Python compiler, curves and editor already support it | T43–T45: expose safe routine/duration/travel defaults, fit only compatible complete actions, keep the exterior on one global clock. |
 | Preview and export | Real preview, frozen snapshots and verified export jobs exist | T46–T48: one guided path and a fresh-project walkthrough using the reviewed train pack. |
 
-The first product path is **Use saved scene → Calm train → choose scenery and duration →
-preview the action → export**. Music can be added later. The initial saved routine keeps the
-selected baseline: 1080p, 30 fps, 90 seconds, window-facing idle, one 12-second coffee break
-at 36 seconds and 72 design-pixels/second travel. These are editable recipe defaults, not
-facts to infer from filenames. Reuse complete character frames; do not layer new arms or a
-separate breathing head on top of an already complete character.
+The current `ActionPack` is bound to one exact template, camera, outfit, canvas and frame rate.
+The outfit switch in `EditorService` changes prepared clips, not the clothing on a live model.
+`FFmpegRenderer` positions character frames at fixed anchors; there is no 3D import, rig engine,
+general character path or arbitrary animated-background slot. Café/activity fixtures prove
+compiler behavior using simple geometry, not real TABI quality. The optional local ComfyUI
+adapter has no qualified real generation workflow and is not a Meshy/Blender integration.
 
-Preparation happens once per reusable scene/action pack. When source artwork changes shape
-between frames, use a small set of manually cleaned complete frames or a properly authored
-animation export from the same character master. Temporal matte trimming can remove cutout
-noise but cannot reconstruct damaged painted outlines. Integrating that experimental cleanup
-into normal import is deferred until it passes moving before/after review. More scenarios use
-compatible exterior strips; changing the outside does not regenerate Tabi.
+Keep Python as the only timing/composition authority. The proposed first integration runs
+Blender as an asset-preparation tool over tested templates, exports complete character PNG
+sequences and prepared scene layers, and binds them to the existing compositor. It does not
+introduce a second timeline in the browser. Versioned outputs are cached by master, outfit,
+camera, motion, renderer and preparation settings. Changing scenery alone reuses TABI frames.
+A new camera or garment can require a new bake, not a new character identity.
 
-The completion gate is a fresh project created entirely through the UI from a prepared train
-pack, producing the 90-second scene, then a second video with a different compatible exterior
-and duration. Neither run may require a preparation script, editing JSON or rebuilding Tabi.
-One-time art preparation must be stated separately. T40 is still the first unblocked app task;
-none of T40–T48 is implemented by this creative test.
-
-```mermaid
-flowchart LR
-    A[1 · Add assets] --> B[2 · Build scene]
-    B --> C[3 · Add music]
-    C --> D[4 · Preview]
-    D --> E[5 · Export]
-    B --> S[Save scene for next video]
-    S --> C
-```
-
-Home offers **New video**, **Continue** and **Use saved scene**. Within a video, show the five
-steps, the current project/video, saved state and one primary next action. Assets can be added
-from the scene builder without losing the scene. Library and Settings are utility destinations.
-Story, timeline, exact numeric controls, continuity, generation and diagnostics move under
-Advanced; release preparation follows a verified export. Existing advanced workflows stay usable.
+The first walking template uses a fixed follow camera and prepared in-place cycle with ground
+travel matched to its stride. Do not pretend fixed anchor support implements arbitrary walking
+paths. New spatial behavior must either be baked in a qualified template or specified as a
+separate renderer change after the pilot; hiding it in a script is not product support.
 
 ## What the repository explains about the confusion
 
@@ -109,7 +176,10 @@ Advanced; release preparation follows a verified export. Existing advanced workf
 
 ## The proposed import experience
 
-Drop/select files → see grouped thumbnails → choose what each group is for → **Import and use**.
+For normal production, choose an existing library item or import one prepared bundle. Raw-file
+import remains available for adding references, backgrounds and music; it is not the main
+character-creation workflow. Drop/select files → see grouped thumbnails → choose what each
+group is for → **Import and use**.
 Each card shows a friendly name, detected dimensions/type, animation length when known, and
 one next action. A folder of consecutively numbered frames becomes one proposed animation,
 not 97 independent assets. Unrelated stills remain separate assets.
@@ -133,13 +203,18 @@ the affected card. Advanced metadata stays collapsed. Pending rights never preve
 
 ## Build the scene visibly
 
-Offer three recipe cards with a thumbnail, a small asset checklist and an honest result description:
+Keep raw assembly recipes in Library/Advanced. Normal creation shows tested Train, Café and
+Walk templates with compatible choices. The underlying assembly recipes remain:
 
 | Recipe | Inputs | Result |
 | --- | --- | --- |
 | **Complete image** | One finished scene still | A static scene ready for music; no invented animation |
 | **Character over background** | Background without a baked-in duplicate character; prepared transparent character animation; matching foreground when its cutout needs occlusion | Tabi's reviewed prepared motion over the selected scene |
 | **Layered train** | Prepared cabin/background, window mask, compatible exterior strips, character animation and foreground | A composed train scene with optional supported movement; missing layers listed individually |
+
+Café binds its own seating/table/prop geometry. Walk binds its reviewed camera, floor, stride
+and ground speed. A new photo of a café or street is reference material until these constraints
+have been prepared; the app must not claim to understand contacts from an arbitrary image.
 
 The builder shows the rendered scene on the left and a short ordered layer list on the right.
 Choose/replace assets by thumbnail, toggle supported layers and position the character through
@@ -149,7 +224,7 @@ or a reviewed animation loop. Scenery movement appears only for valid prepared s
 declared periods; weather appears only for templates with the necessary artwork/masks.
 No general rig editor, automatic cutout extraction or independent browser compositor is added.
 
-The first actual-asset examples should use the existing source audit, not a fictional asset pack:
+The legacy import examples below remain useful diagnostics, not the proposed production master:
 
 | Supplied source | Guided example and limit |
 | --- | --- |
@@ -175,9 +250,12 @@ episode automatically. A saved scene retains exact versions and its reviewed tim
 | Frame rate | 30/1 for still scenes; use the selected compatible animation pack's actual supported rate for animated scenes. Show a source-driven exception such as 25 fps in the summary; never reinterpret 25 fps as 30. |
 | Scene canvas | Preserve source design geometry; fit the complete composition into the output. Derived layer preparation uses one explicit transform for aligned background/mask/foreground groups. |
 | Duration | Full length of the selected ordered music; no song stretching, trimming, repeats or fixed 30–60-minute target |
-| Before music | A clearly labeled 10-second silent scene check; “Add music to set video length” |
-| Character | No motion until a compatible prepared loop or saved routine is chosen. The calm train routine includes its declared coffee action and matching poses; arbitrary imported clips never gain automatic sip/read transitions. |
+| Before music | 90-second visual-test preset plus a 10-second quick preview. Explicit duration works without music; adding music can propose its full length. |
+| Character | Breathing enabled in each qualified routine, including rest; default train rest looks outside. Bake it together with the action so it cannot disconnect the head/neck or duplicate motion. Retain the old baseline as a separate comparison preset. |
+| Action density | Calm by default: one complete secondary action around 36 seconds in the 90-second preset, long resting holds. “Action test” separately exercises look/sip/sway/look/deep breath at 15/30/45/60/75 seconds using compatible complete durations. Never silently cut an action to hit a cue. |
+| Breathing | Proposed new-master starting cycle: six seconds, subtle chest/shoulder movement with hands/feet contact respected; larger explicit inhale/hold/exhale action. Visibility and timing must be visually qualified, not inferred from transform values. |
 | Train scenery | One continuous travel phase across character blinks, action repeats and render chunks. Validate available strip coverage for the chosen duration; a short non-wrapping pass does not establish a seamless long-form loop. |
+| Travel speed | Calm train starts from the reviewed baseline's 72 design-pixels/second. Slow/Normal/Fast map to each scene's qualified range. Walk speed is coupled to stride; it cannot reuse the train speed preset. |
 | Weather / lighting / ambience | Off unless already authored in the selected saved scene; no invented rain or train noise |
 | Audio | Complete masters in order, 0 dB gain, no added fades/crossfades or loudness remastering; 48 kHz prepared mix, original masters unchanged |
 | Quick preview | 960×540, first ten seconds or shorter if the episode is shorter; optional loop-seam/other-range review |
@@ -191,7 +269,9 @@ promote pending rights, copy snapshot approval to a new video, or silently updat
 
 ## Implementation conventions
 
-All tasks below are **planned**. Follow the [active index](tasks/INDEX.md). Domain operations
+All tasks below are **planned**. P01–P04 are the proposed preparation track; their adoption
+must be reflected in the [active index](tasks/INDEX.md) at implementation. T40–T48 retain their
+identifiers and useful engineering work, with expanded production gates. Domain operations
 belong in Python; API and CLI call the same service. Retain strict unknown-field/version checks,
 integer frames/samples, immutable versions and revision guards. New optional preference fields
 must preserve loading and content hashes of legacy documents; use explicit backed-up migrations
@@ -203,6 +283,125 @@ shared `web/src/generated/documents.ts`, `web/src/generated/validators.cjs` and
 `web/src/generated/validators.d.cts` using `make schemas` and `make web-build`; do not hand-edit
 generated validators. Each implementation task also updates `docs/progress.md` and
 `docs/tasks/INDEX.md` with its verification and commit. New file paths are marked below.
+
+<a id="p01"></a>
+
+## P01 — Decide whether automatic character preparation meets the real requirements
+
+**Target files**
+- `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.
+- `docs/evidence/p01-character-comparison.jpg` (new) — supplied reference and actual rendered candidate, clearly labeled.
+- `scripts/verify_character_pipeline.py` (new) — verify recorded media identity, dimensions, frame counts and reuse evidence; never grant visual approval.
+- `PLAN.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — record the selected route, current queue, measured automation and any failed requirements before further integration.
+
+**Inputs / dependencies**
+- No app task dependency. Current TABI references and calm-window baseline; Marco's almost-automatic requirement.
+- A visual decision on the proposed illustrated 3D result; authorized provider inputs/budget or a user-supplied local rigged candidate, and an available supported Blender installation. Research does not authorize purchases or cloud uploads.
+
+**Implementation rules**
+- Execute the bounded proof above. Include an actual new garment shape, prop contact and walking; a stock humanoid, still turntable, recolor or idle-only clip cannot pass the requested scope.
+- Preserve one master identity across all examples. Keep model generation distinct from pose/motion rendering. Record every manual correction and reject a route dependent on recurring frame cleanup or specialist setup by Marco.
+- Require character-only transparency over both light and dark backgrounds and complete composed-motion review. Check ear/frill roots, outlines, neck, hand/cup contact, clothing intersections, feet and every loop/transition.
+- Reuse the selected master in a second output without rerunning image-to-3D. Repeat after restarting the tools. Qualify supported cameras and scene geometry, not arbitrary combinations.
+- If the style, automation or hard reuse cases fail, record a no-go and the precise tradeoff. Do not start P02–P04 as though the requirement were solved. Preserve the existing app and original artwork.
+- Keep all models, textures and videos in local project media storage; commit only compact factual evidence and the verifier. No provider credentials or guessed licences in reports.
+
+**Verification command**
+```sh
+.venv/bin/python scripts/verify_character_pipeline.py --report docs/evidence/p01-character-pipeline.json
+git diff --check
+```
+Also record Marco's visual decision and the observed operations needed to reproduce the second
+video. The verifier cannot approve likeness or declare an unperformed trial successful.
+
+<a id="p02"></a>
+
+## P02 — Define a versioned handoff from the character library to prepared media
+
+**Target files**
+- `src/tabi/core/models/preparation.py` (new) — strict library manifest, preparation request/result and durable preparation-run documents.
+- `src/tabi/core/models/__init__.py`, `src/tabi/core/persistence.py` — register documents and explicit storage paths.
+- `src/tabi/core/preparation/library.py` (new) — inspect manifest dependencies and compatible combinations through registered roots.
+- `src/tabi/core/portability.py`, `tests/unit/test_portability.py` — include masters, textures, motion and template sources in private project backup.
+- `schemas/preparation_library.schema.json`, `schemas/preparation_run.schema.json`, `web/src/generated/preparation_library.ts`, `web/src/generated/preparation_run.ts` (new) — generated document contracts.
+- `tests/unit/test_preparation_models.py`, `tests/unit/test_preparation_library.py` (new) — strictness, compatibility, paths and source identity.
+
+**Inputs / dependencies**
+- P01 passes the real-art/automation gate; existing `Asset`, `ActionPack`, `SceneTemplate`, integer-time and immutable-source contracts.
+
+**Implementation rules**
+- Store exact source hashes/versions for master, skeleton, garments, motions, renderer template, textures and preparation code. Include camera, scale, canvas, rational fps, alpha/color conventions, contact points, loop intervals, entry/exit poses, prop ownership and supported scene/outfit/action combinations.
+- Distinguish texture variants from garment geometry. A compatibility declaration has its own review evidence; matching names or skeleton IDs alone cannot establish that a sleeve or cup clears the body.
+- Represent preset motion and any generated motion as immutable inputs after review. Do not call cloud generation on every render. Keep provider metadata factual and secrets outside documents.
+- Limit the initial handoff to the P01-qualified fixed-camera templates and complete-character render outputs. No general 3D editor, arbitrary executable plugin bundle or browser-side animation engine.
+- A prepared folder manifest supplies timing and references; the importer creates project-local asset identities. Missing files, changed hashes, traversal and unknown major versions fail before installation.
+- Preserve legacy projects and hashes; use new document types instead of repurposing existing action fields for 3D semantics.
+
+**Verification command**
+```sh
+make schemas
+.venv/bin/python -m pytest tests/unit/test_preparation_models.py tests/unit/test_preparation_library.py tests/unit/test_portability.py
+make web-build
+```
+
+<a id="p03"></a>
+
+## P03 — Prepare complete character actions from the same master with Blender
+
+**Target files**
+- `src/tabi/core/preparation/blender.py`, `src/tabi/core/preparation/verify.py` (new) — bounded preparation runner, content-addressed output and media verification.
+- `src/tabi/core/preparation/blender_entry.py` (new) — shipped Blender-side script applying only qualified preset parameters and rendering frames.
+- `src/tabi/core/config.py`, `src/tabi/core/toolchain.py` — optional Blender executable/version capability checks; existing FFmpeg-only projects remain runnable.
+- `src/tabi/core/assets/service.py` — install verified derived media with source/preparation identities preserved.
+- `tests/unit/test_blender_preparation.py`, `tests/integration/test_blender_preparation.py` (new) — cache invalidation, cancellation and actual small synthetic animation renders.
+
+**Inputs / dependencies**
+- P02 and P01's qualified master/template operations; available Blender executable and explicit supported version range derived from the trial.
+
+**Implementation rules**
+- Use subprocess argument arrays and the existing owned-process/cancellation utilities. Run only the shipped entry script; disable auto-execution of arbitrary imported scripts and restrict source/output access to registered project roots.
+- Render complete body/face/held-prop actions with matching endpoints. Apply breathing inside the same rig evaluation; do not move a second head/body layer. Blend joint motion or use reviewed transition clips before baking, never ghost two complete character images.
+- Produce scene-aligned straight-alpha PNG sequences at the declared fps/canvas with no baked exterior. Export static cabin/foreground layers separately. Ground/contact shadows must belong to the correct scene setup.
+- Cache by every source, preset, camera, outfit, renderer/version and output setting affecting pixels. Scenery/music-only changes reuse character outputs; garment/camera changes invalidate only affected preparations.
+- Validate all expected frames, sequence order, alpha convention and source hashes before atomic publication. A failed/cancelled preparation cannot replace the last usable library version.
+- Run without a generation provider after the required sources are local. No model downloads or remote costs are triggered by preview/export.
+
+**Verification command**
+```sh
+.venv/bin/python -m pytest tests/unit/test_blender_preparation.py
+.venv/bin/python -m pytest --run-media tests/integration/test_blender_preparation.py
+```
+Run the media test with the actual P01 Blender executable; a skip is not passing evidence.
+Compare two renders and a changed-outfit render, then inspect the real TABI action boundaries.
+
+<a id="p04"></a>
+
+## P04 — Make preparation a durable application operation
+
+**Target files**
+- `src/tabi/core/preparation/service.py` (new) — inspect/prepare/reuse/cancel/resume operations and durable preparation-run records.
+- `src/tabi/api/preparation.py`, `src/tabi/cli/preparation.py` (new) — authenticated API and CLI adapters to the shared service.
+- `src/tabi/api/app.py`, `src/tabi/api/contracts.py`, `src/tabi/cli/__init__.py` — register the adapters and typed status response.
+- `schemas/web_preparation.schema.json`, `web/src/generated/web_preparation.ts` (new) — generated capability, progress, output and failure contract.
+- `tests/unit/test_preparation_service.py`, `tests/unit/test_web_preparation.py`, `tests/integration/test_preparation_service.py` (new) — duplicate submission, ownership, restarts and media installation.
+
+**Inputs / dependencies**
+- P03; P02's run documents; existing project locking, authenticated worker, execution scopes and immutable media services.
+
+**Implementation rules**
+- Persist the exact request before execution and reconcile ambiguous replies/restarts by identity. Queue one expensive preparation/export at a time using worker ownership; never compete silently for Mac resources.
+- Show which compatible library item will be prepared, what is cached, progress and a concrete failure remedy. Source preparation and FFmpeg export are distinct stages with factual status.
+- Freeze a preparation's inputs, verify output before installation and preserve the last usable pack on failure. Reconnect after tab closure without submitting another run; cancellation affects only the owned process.
+- Do not modify the existing FFmpeg job format to pretend Blender outputs are final MP4 exports. Reuse existing locking/process primitives with preparation-specific typed state.
+- Return installed exact asset/pack references to the scene builder. No routine production step requires a console command, path copying or metadata JSON editing.
+
+**Verification command**
+```sh
+make schemas
+.venv/bin/python -m pytest tests/unit/test_preparation_service.py tests/unit/test_web_preparation.py tests/unit/test_web_service.py
+.venv/bin/python -m pytest --run-media tests/integration/test_preparation_service.py
+make web-build
+```
 
 <a id="t40"></a>
 
@@ -244,7 +443,7 @@ make web-build
 - `docs/26-project-workflows.md` — document the implemented import behavior.
 
 **Inputs / dependencies**
-- T40's proposal/commit API and the import defaults table above.
+- T40's proposal/commit API, P02's prepared-library manifest and the import defaults table above.
 
 **Implementation rules**
 - The normal form asks for files, a friendly name and intended role. Show read-only detected facts; hide IDs, versions, raw provenance JSON and numerator/denominator controls under Advanced.
@@ -252,6 +451,7 @@ make web-build
 - Provide worked cards for a complete image, numbered animation and WAV. Display pending review unobtrusively while allowing draft use.
 - Preserve bounded uploads, cancellation, resumable byte checks and per-group outcomes. Retrying after navigation must not duplicate an imported asset.
 - “Import and use in scene” carries selected asset references and returns to the originating slot; Library import offers “Build a scene”.
+- A prepared character/scene bundle appears as one library item with its declared variants, measured dependencies and review status. Import its manifest and media together; do not make Marco configure every frame or action individually. Raw GLB/FBX files are preparation sources, not ready-to-compose 2D actions.
 
 **Verification command**
 ```sh
@@ -277,14 +477,17 @@ and one failed group in Safari and Chrome; record screenshots and one resume-aft
 - `tests/unit/test_scene_builder.py`, `tests/integration/test_scene_builder.py` (new) — recipe validation, source preservation and rendered layer evidence.
 
 **Inputs / dependencies**
-- T40; `SceneTemplate`, `LayerSlot`, `AssetRef`, current renderer canvas/mask restrictions and reference geometry.
+- T40, P02; `SceneTemplate`, `LayerSlot`, `AssetRef`, current renderer canvas/mask restrictions and reference geometry.
 
 **Implementation rules**
 - Define `SceneSetup` before the builder: a revisioned project-local draft with a friendly title, recipe kind, exact template reference, optional exact action-pack reference, rational fps and initial pose. Referenced templates hold slots/anchors; packs hold animation facts. This small JSON document is the reusable setup, not another approval record or a database. Older projects simply have no setups.
+- Retain the exact optional preparation-library/variant references used to build a setup. Offer P01-qualified Train, Café and Walk templates in normal creation; the underlying layer recipes are advanced authoring tools. Derive compatible wardrobe/action/camera choices in Python.
 - Offer Complete image and the static layer portions of Character over background / Layered train. Build valid ordered slots, camera IDs and declared anchors in Python; no hand-written JSON in the basic path.
 - A complete image preserves its design canvas and fits as a whole. Layered recipes require a consistent design canvas; propose derived fit/crop copies instead of altering originals. Preserve alpha and raw mask values; apply the same geometric transform to explicitly aligned groups.
 - For missing/incompatible art, return the affected role and a concrete next action. Do not remove baked-in Tabi, repair hidden regions, generate missing layers or assume a panorama is tileable.
 - Scenery strips require their actual period/coverage and review; unsupported effects stay unavailable. Keep these rules recipe-driven, not train-specific branches in the compiler.
+- Changing an interior uses its matching camera, seat/table contacts, masks and foreground as one validated setup change. Exterior-only changes preserve character preparation. Reuse a master across templates without pretending their rendered camera-bound packs are interchangeable.
+- The first Walk setup uses the qualified fixed follow camera, in-place cycle and a stride-derived ground speed. Keep feet grounded and foreground occlusion valid; arbitrary paths and camera motion remain unavailable until separately implemented and qualified.
 - A continuous-train recipe keeps one cabin/camera and advances the existing global travel curve independently of character source time. Never replace this recipe with cuts between full-scene action clips. A flattened idle clip may be used only with a prepared, checked window-replacement mask and compatible scene geometry.
 - Save metadata only after dependencies exist; use guarded new versions and retry-safe identities. On failure leave the last usable scene intact; harmless unreferenced new drafts are discoverable for retry, not claimed as a completed scene.
 - Reusing a saved setup creates a fresh episode through Python with new identity and draft state. Preserve exact asset versions, clear episode-level reviews/music, and let the music step set its duration. Backup/restore preserves the setup and all referenced sources.
@@ -308,16 +511,17 @@ make web-build
 - `tests/unit/test_scene_builder.py`, `tests/integration/test_scene_builder.py` — real alpha, loop phase, channel and compatibility checks.
 
 **Inputs / dependencies**
-- T42; actual clip fps, canvas, alpha, anchor, pose and loop interval, either supplied by a prepared pack or explicitly entered/reviewed. Human source facts are needed for real-art completion; synthetic prepared clips unblock engineering.
+- T42, P04; actual clip fps, canvas, alpha, anchor, pose and loop interval from the prepared library. Human source facts are needed for real-art completion; synthetic prepared clips unblock engineering.
 
 **Implementation rules**
 - Reuse compatible existing packs first. For a prepared transparent sequence, offer a simple looping-idle binding with source range, anchor and declared start/end pose; create the pack and compatibility metadata as new drafts.
+- Resolve a library selection to an existing bake or P04 preparation request. Offer only combinations qualified in P01 and declared by the library. A new garment/camera may require automatic preparation; show that state instead of treating missing output as an import error.
 - Do not loop an arbitrary clip on import. Provide a two-cycle seam preview and explicit loop selection. A drinking/prop-changing one-shot needs reviewed entry/exit/prop declarations. Expose it normally only through an already compatible saved routine; authoring arbitrary one-shots stays Advanced.
-- Bind a saved scene to a reusable routine of reviewed complete actions. The first train routine preserves the calm baseline's 78 seconds of window idle and one 12-second coffee break at 36 seconds. Offer idle-only and calm pacing through Python-authored schedules, fit complete actions inside the requested duration and finish in the declared resting pose. Do not infer transitions or overlay a second body/face/breathing channel. Reusing an existing pack must not require hand-written episode JSON.
+- Bind a saved scene to a reusable routine of reviewed complete actions. Retain the baseline's 78 seconds of window idle and 12-second coffee break at 36 seconds as a comparison preset. For the new master offer breathing rest, Calm and Action test as qualified in P01; fit complete actions inside the requested duration and finish in the declared resting pose. New duration proposals preserve compatible breathing/action boundaries and do not truncate a sip or deep breath. Reusing a pack never requires hand-written episode JSON.
 - Review the complete composition across an animation repeat with travel enabled: character pose remains aligned and exterior motion does not reset. An isolated character thumbnail cannot establish scene continuity.
 - Default a composite character clip to owning body and face so an extra blink cannot double it. Preserve reviewed pack channel rules when reusing one.
 - Prefer reviewed complete character frames for this train recipe. Do not add moving arms over a body that still contains resting arms, or a replacement cup over a clip that owns its cup. Review neck/collar continuity, arm replacement, table contact and matching full poses in the actual composed action. Alpha coverage and successful rendering do not approve anatomy.
-- Check ear outlines and roots through the complete moving action with exterior travel enabled. Opaque interior coverage does not detect changing silhouettes, cutout chatter or retained source fragments. Reuse consistent artwork across poses and review temporal edges before a full render; preserve the face, collar and prop while repairing ear cutouts.
+- Check ear outlines and roots through the complete moving action with exterior travel enabled. Opaque interior coverage does not detect changing silhouettes or shading chatter. A failed character source returns to library preparation; do not hide per-episode ear repair inside import or rendering.
 - Scene timing follows the selected pack's supported actual rate; mixed-rate packs need explicit preparation. No automatic resampling or duration change disguised as a default.
 - Use the existing compiler for coverage, channel, pose, camera, outfit and anchor checks. Position through supported anchors; arbitrary character scaling/rigging is out of scope.
 - Source media, pack and episode approvals remain separate. A technical seam test cannot grant human approval.
@@ -336,19 +540,20 @@ make web-build
 
 **Target files**
 - `web/src/scene-builder.ts` (new) — recipe cards, role slots, renderer still, animation review and save/reuse scene.
+- `web/src/preparation.ts` (new) — library variant selection and P04 preparation status/retry/cancel inside the builder.
 - `web/src/scene-state.ts`, `web/tests/scene-state.test.mjs` (new) — pending changes, guarded application and contextual import return.
 - `web/src/assets.ts`, `web/src/workspace.ts`, `web/src/main.ts`, `web/src/style.css` — reachable builder, library selection and current draft context.
 - `docs/26-project-workflows.md` — actual scene workflow and supplied-asset examples.
 
 **Inputs / dependencies**
-- T41, T42 and T43; the three recipe cards and actual-asset examples above.
+- T41, T42 and T43; P04 status; qualified Train/Café/Walk templates and the library/advanced assembly distinction above.
 
 **Implementation rules**
-- Show a real renderer-produced still beside ordered role cards and a missing-input checklist. Expose only relevant roles, with “Choose”, “Import” and “Replace”; keep the current composition visible while edits validate.
+- Normal creation starts with Train/Café/Walk thumbnails, then compatible interior/exterior, outfit and routine choices. Show a real renderer-produced still and a short readiness explanation. Keep ordered layer cards and raw assembly under Library/Advanced; never introduce a second compositor.
 - A character placement gesture submits an anchor change to Python; it is not a second browser compositor. Debounce still requests, discard outdated responses and cancel only owned superseded preview work.
 - Render a short scene check before music. Show unknown fps, missing foreground and baked-in-character guidance in context. No fake sample preview may be presented as the user's scene.
 - “Save scene” stores a usable template/pack combination. “Use saved scene” creates a new draft using exact versions; approved originals remain immutable. Save/reload must retain role choices and the current scene.
-- Show the saved scene's available routines, compatible exterior choices, duration and supported travel speed with the calm defaults above. Preview the coffee entry, sip, return and idle repeat over moving scenery before accepting a new pack version. Show baseline and candidate together; technical validation never labels a repair visually fixed.
+- Show available routines, compatible variants, duration and qualified speed with the defaults above. If a variant needs preparation, use P04 and retain selections across refresh. Preview the coffee entry, sip, return, visible breath and idle repeat over moving scenery before accepting a new version; technical validation does not approve art.
 - Keep unsupported scaling, arbitrary one-shot authoring and manual metadata in Advanced. Keyboard controls, focus return and error links must reach each affected slot.
 
 **Verification command**
@@ -358,7 +563,7 @@ make web-build
 ```
 Record Safari/Chrome walkthroughs for a supplied-image static draft and a clearly synthetic
 animated layered scene, including missing-mask correction, loop review, save/reopen and reuse.
-Real train-art quality remains a separate gate if matching layers/timing are unavailable.
+Real-art product completion additionally requires P01's master and all expanded T48 journeys.
 
 <a id="t45"></a>
 
@@ -382,6 +587,7 @@ Real train-art quality remains a separate gate if matching layers/timing are una
 - Calculate the smallest whole-frame duration whose existing `sample_at()` boundary covers all prepared music samples using exact rational arithmetic. Pad only the sub-frame remainder with silence; never truncate a master or label a rounding remainder as a missing song.
 - Propose/apply the track placement, single-scene end and validated repeating-body coverage as one guarded episode edit. Only mechanically generated standard scenes qualify; manual actions/curves/beats/transitions or multiple scenes produce a specific conflict requiring an explicit edit.
 - Retain the old audio API's explicit-duration behavior for existing/custom projects. Scene checks before music are labeled silent; removing music does not silently shrink an authored video.
+- Keep a 90-second picture-test preset independent of music. Offer an explicit duration or the full ordered music length. Regenerate a routine only through its declared compatible policy; preserve manually authored timelines and explain conflicts.
 - Defaults precedence: explicit draft values, explicitly saved personal technical defaults, built-in values; animation compatibility overrides an incompatible proposed fps with a visible explanation. Existing episodes are never retroactively changed.
 - Saved scene references belong to their project; don't put another project's asset IDs in global defaults. Persist the seed once per draft. Remembering defaults never remembers guessed rights or source timing.
 
@@ -410,7 +616,8 @@ make web-build
 - T41, T44 and T45; existing project recents, catalog, preview stale detection and durable jobs.
 
 **Implementation rules**
-- Expose Add assets → Build scene → Add music → Preview → Export. Saved-scene reuse skips satisfied preparation work; visiting a page does not mark a step complete.
+- Expose Scene → TABI and actions → Length and music → Preview → Export. Imports and preparation are contextual Library actions. Saved-scene reuse skips satisfied work; visiting a page does not mark a step complete.
+- Readiness distinguishes missing sources, incompatible combination, preparation queued/running/failed, ready for preview and reviewed for production. Choosing a library item must not count as successfully preparing it.
 - Use current revisions/content identities to report scene readiness, missing music, stale preview, render progress and release blockers. Draft-preview readiness is distinct from production/publishing readiness.
 - Persist content through existing project documents; selection is UI state, scoped by project and episode. Restore context on refresh/relaunch and don't show another project's selected episode.
 - Every blocker has a plain-language explanation and a link to its specific correction. Enable visual checks without music and draft export without production approval, with their real labels.
@@ -441,6 +648,7 @@ make web-build
 
 **Implementation rules**
 - “Preview scene” selects the default range/profile in Python and queues the real proxy; show stale status and regenerate after changes. Exact-frame/longer-range tools are secondary.
+- Resolve required P04 preparations first and freeze the resulting exact media/pack versions before composition. Reopening or double-clicking cannot rebake an identical request. A variant preparation failure leaves the prior scene/export available.
 - “Export video” shows resolution, complete duration, destination, storage and draft/production status. Resolve snapshots, chunking and profile internally; do not ask the user to copy a hash between forms.
 - Production still requires actual input approval and a separate explicit content review, expressed as a readable review panel. Edits invalidate it; preview playback is never automatic approval.
 - Revalidate the saved revision, hashes and storage at submission. Use a durable request identity bound to the resolved input so double clicks, ambiguous HTTP replies or reconnects cannot create duplicate jobs.
@@ -468,17 +676,20 @@ make web-build
 - `docs/progress.md`, `docs/tasks/INDEX.md` — actual milestone results and limits.
 
 **Inputs / dependencies**
-- T40, T41, T42, T43, T44, T45, T46 and T47. Safari/Chrome on the target Mac; small labeled synthetic fixtures plus unchanged supplied stills. Original music/real-art approval remains independent.
+- P01, P02, P03, P04, T40, T41, T42, T43, T44, T45, T46 and T47. Safari/Chrome on the target Mac; small labeled synthetic fixtures plus the qualified real master/library. Music/rights/production approval remains independent.
 
 **Implementation rules**
 - Fresh project: import one scene image and WAV, reach a verified export through the guided steps with no JSON, asset IDs, frame arithmetic, encoder or chunk questions.
 - Prepared animation: import a numbered transparent sequence, resolve its real fps/loop once, place it over a compatible background/foreground, inspect a true seam preview, save and reuse the scene. Verify one character and correct occlusion/phase across chunk boundaries.
 - Missing-input journey: the supplied train still works as static; the actual breath/drink collection gets accurate timing/layer/action guidance. Never report the incomplete real pack as approved or ready for animation automatically.
 - Reuse: create a second video from the saved scene by changing title/music only; show the new duration. Reopen after a worker restart; preserve media, versions and deliberate overrides.
-- Train acceptance: start from a fresh project and a prepared train pack, select its calm routine, render the 90-second continuous ride, then reuse the scene with another compatible exterior and duration. No preparation script, metadata JSON editing or character reconstruction is allowed during either normal production run. Record one-time external art preparation separately and review moving ears, neck/collar, exactly two arms, cup contact, full action endpoints and exterior continuity. Test longer durations only with reviewed panorama coverage/wraps; this 90-second pass is not evidence of a seamless long-form journey.
+- Train acceptance: start from a fresh project and the reusable library, select a calm routine and render 90 seconds. Independently change the interior, exterior, actual garment shape, routine and duration, reusing the same master. Test the 15/30/45/60/75-second action routine with visible continuous breathing and a complete deep breath. No terminal, custom script, JSON edit, frame repair or character regeneration is allowed during these production runs.
+- Broader reuse: create a café video with correct cup/table contact and a side/follow-camera walking video with synchronized ground travel, outfit clearance and grounded feet. Reopen the project and reproduce a second variant after restarting the worker and preparation tool. Record user choices, preparation/cache hits, render time and any intervention. Train-only success cannot close this task.
+- Review moving ears, neck/collar, exactly two arms, one cup, action endpoints and exterior continuity at intended viewing size and enlarged crops. Test longer durations only with reviewed panorama coverage/wraps; a 90-second pass is not proof of a seamless long-form journey. Source/library preparation and per-video operations are reported separately, including all manual work.
 - Exercise incompatible fps, missing mask, failed/resumed import, stale second-tab edits, ambiguous export replies, cancel/restart/resume, pending rights and insufficient space. Check that source hashes and old snapshots remain unchanged.
 - Observe 1280×800 and narrow laptop layouts, keyboard/focus operation, authenticated playback and scale-readable labels in Safari/Chrome. Marco can follow the steps without developer guidance; usability acceptance remains pending until he tries it.
 - Record checks, versions, screenshots and local clip paths. Do not rerun the 45-minute/4K benchmark unless implementation changes invalidate its assumptions; run the existing full media gate for regression coverage.
+- Measure Blender preparation on the actual Mac separately. Existing FFmpeg synthetic throughput does not predict 3D baking time or long-form storage. The application is accepted only after Marco can make the second video without developer assistance.
 
 **Verification command**
 ```sh
