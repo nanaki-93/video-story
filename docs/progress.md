@@ -2,7 +2,55 @@
 
 Updated 5 October 2026 (Asia/Manila).
 
+## P01 — Flow selected after native Blender rejection
+
+5 October 2026. Marco rejected the native Blender appearance as insufficient and reports much
+better visual quality in his existing Flow trials. He supplied the
+[Flow project](https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781) and asks
+for consistent TABI and a continuous 90-second story. Further native-model refinement is paused.
+The previous trial report is unchanged; this entry records the subsequent visual rejection.
+
+The [Flow source review and prompt pack](evidence/p01-flow-continuity-review.json) and
+[bounded checkpoint](tasks.md#next-checkpoint--google-flow-continuity) are ready. Start from an
+existing preferred clip, continue breathing/look/hold through up to three sequential extensions,
+and inspect character, props and scenery at every join before scaling toward the earlier
+look/sip/sway/look/deep-breath schedule. One repair maximum, one output per call and 20 included
+credits maximum for the first test. A long uninterrupted result is unproven; do not replace it
+with unrelated cuts, loops or cutout repairs without agreement.
+
+Google's current [feature matrix](https://support.google.com/flow/answer/16352836?hl=en) specifies
+Veo 3.1 Lite for extension, including Fast/Quality source clips. A quality change is therefore a
+specific test risk. Ingredients help visual reference reuse; they do not establish uninterrupted
+world motion. Scenebuilder can assemble/trim footage but cannot repair drift. The credit table
+and feature table are not fully aligned about Extend, so live controls must be verified.
+
+**No Flow clip was inspected or generated in this turn.** Browser automatic approval review
+rejected the tab-access action because its review service was at capacity, explicitly reporting
+a review failure rather than an unsafe-action finding. No browser action, upload, purchase or
+credit-consuming generation occurred; no alternate route was used to bypass the block. The
+project link is user-provided; exact source clip, model, live features and balance remain unknown.
+Public source review and local planning were the independent work completed.
+
+The official commercial-use FAQ and Google/Google One terms were reviewed; Google disclaims
+ownership of generated original content. No separate commercial-output purchase was identified.
+Applicable account terms, source rights and YouTube monetization remain separate. Flow credits
+are distinct from Colab units. The review records dated sources, tentative budget arithmetic and
+the live checks still needed; it does not promise that 30 videos/month fit the allowance.
+
+P01 remains open. The earlier P02–P04 Blender-specific design is paused and must be rescoped if
+Flow succeeds: complete-scene video contains baked scenery and is not a transparent action pack.
+No built-in Flow API, unattended app generation or completed UI workflow is claimed. Source art,
+all previous outputs and the calm-window comparison baseline are preserved. No app code changed.
+
+Verification: the new JSON record parses and its six story intervals cover 0–90 seconds without
+gaps; three continuations plus one repair fit the proposed 20-credit cap at the documented
+5-credit rate. The earlier native master hash is unchanged. Documentation links, archived
+history and staged IDE preservation checks pass; zero MP4s are tracked. `git diff --check`
+passes. These are preparation/document checks, not Flow video-quality or runtime evidence.
+
 ## P01 — native Blender and Colab trial
+
+Historical result: Marco subsequently rejected its appearance; see the Flow decision above.
 
 5 October 2026. **The bounded rendering trial works; the character and production workflow
 remain unqualified.** Marco chose Blender + Colab without other external tools if possible.

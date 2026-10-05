@@ -33,14 +33,16 @@ variant qualified: the image-only rear is wrong, while the approximate shape pri
 but merges/distorts the gills, headphones, body and tail. All 16 Blender views and both meshes
 are preserved. This closes the bounded SPAR3D trial, not the broader workflow decision.
 
-Marco subsequently chose **Blender + Colab, without other external tools if possible**.
-The current [native Blender study](docs/tasks.md#next-checkpoint--native-blender-master)
-uses authored geometry/materials and baked motion, with Colab only as a Blender render host.
-This is a separate draft, compared with the supplied artwork; it is not automatic reconstruction
-of the reference pictures and does not relax the almost-automatic normal-workflow requirement.
-The previously reviewed [TRELLIS mesh-only proposal](docs/evidence/p01-next-route-review.json)
-is deferred. No LivePortrait, segmentation model, image-to-3D service or additional AI weights
-are part of the selected native study. Full production feasibility remains open.
+Marco rejected the [native Blender study](docs/evidence/p01-blender-native-trial.json) as
+visually insufficient and selected **Google Flow**, where his existing TABI clips look better.
+The current [Flow continuity checkpoint](docs/tasks.md#next-checkpoint--google-flow-continuity)
+starts from his preferred existing clip and tests sequential continuation, preserving character,
+props, camera and exterior movement before extending toward 90 seconds. Reference consistency
+and uninterrupted motion are separate gates; neither is guaranteed by a prompt.
+Existing Google entitlement only, no purchases or top-ups. Live browser access was blocked by
+automatic approval review's capacity failure, so no clip was inspected or generation started.
+Native Blender and [TRELLIS](docs/evidence/p01-next-route-review.json) are deferred. Prior
+evidence stays immutable. Full production feasibility remains open.
 
 The current production target is **30 × 90-second videos per month**, with some new assets
 and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
@@ -84,11 +86,13 @@ selected baseline or close the visual gate.
 
 The [workflow feasibility assessment](docs/tasks.md#can-the-normal-app-workflow-produce-this-video)
 distinguishes the working compositor/exporter from the missing guided preparation/binding flow.
-The proposed strategy is one persistent master, compatible scene/outfit/action libraries and
-automatic Blender preparation, feeding complete-character frames to the existing Python
-compositor. This is contingent on P01, including cup contact, walking and a genuinely different
-garment. Normal production should use named routines and defaults through the UI, with no
-scripts or metadata editing. The failed diagnostic does not establish that handoff.
+The earlier Blender preparation proposal remains conditional and is now paused. The Flow trial
+tests complete-scene video, whose exterior is baked into the pixels. It cannot be substituted
+for a transparent character action pack or given independently editable scenery without new
+preparation. If the trial succeeds, rescope the app handoff around source clips, reference assets,
+continuation history, measured timing and final assembly. Do not promise a built-in Flow API,
+automatic scene regeneration or the existing layered renderer's capabilities for flattened video.
+Cup contact, walking, a genuinely different garment and repeatable normal production remain gates.
 
 ## Product boundaries
 

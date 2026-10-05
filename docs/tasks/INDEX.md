@@ -18,13 +18,16 @@ saved. The [paired retry](../evidence/p01-turnaround-trial.json) completed and b
 failed the static quality gate. The runtime is released; 0.37 units were observed consumed.
 Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
 
-Marco's latest choice is **Blender + Colab without other external tools if possible**. The
+Marco subsequently tried Blender + Colab. The
 [native Blender trial](../evidence/p01-blender-native-trial.json) produced a 15-second local
 motion study and rendered three poses from the identical master in Colab. It adds no AI weights
 or paid add-ons. The runtime is inactive; the displayed account-balance delta was 0.37 units.
-One-time authoring, character likeness, hard actions, real outfit changes and normal app operation
-remain explicit gates. The [earlier TRELLIS source review](../evidence/p01-next-route-review.json)
-is deferred. No reusable production character is qualified.
+He rejected its appearance as insufficient and selected **Google Flow**, where his existing
+clips look better. The [Flow continuity checkpoint](../tasks.md#next-checkpoint--google-flow-continuity)
+and [source review/prompts](../evidence/p01-flow-continuity-review.json) start from his supplied
+project. Browser approval review failed at capacity before inspection, so no Flow generation
+or credit use occurred. Live source/model/price verification and the short continuation test are
+next. Native Blender refinement and TRELLIS are deferred. No production route is qualified.
 
 The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit
 Colab monthly grant against the clarified target of 30 × 90-second videos with new assets.
@@ -34,9 +37,9 @@ The [budget and measurement plan](../tasks.md#monthly-production-and-compute-bud
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
-| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | native Blender draft needs likeness review; cloud portability verified; full production unqualified |
+| [P01](../tasks.md#p01) | Qualify repeatable TABI identity, continuous motion and scene/outfit/action reuse | Real references, approved trial scope, licences, selected provider | native Blender appearance rejected; Flow continuity trial prepared, browser access unavailable; production unqualified |
 | [P02](../tasks.md#p02) | Define the prepared character-library handoff | P01 passes | blocked on P01 |
-| [P03](../tasks.md#p03) | Implement repeatable Blender preparation | P01, P02 | blocked on P01/P02 |
+| [P03](../tasks.md#p03) | Earlier Blender preparation design; rescope after the selected route qualifies | P01, P02 | blocked; Flow handoff not specified |
 | [P04](../tasks.md#p04) | Connect preparation to durable app jobs | P02, P03 | blocked on preparation proof |
 | [T40](../tasks.md#t40) | Derive safe import choices in Python | Existing asset probe/import services | planned; independently unblocked engineering |
 | [T41](../tasks.md#t41) | Guide file import with defaults and examples | T40, P02 | planned |

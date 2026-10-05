@@ -1,7 +1,7 @@
 # Repeatable TABI production with an almost automatic workflow
 
-Revised 5 October 2026; **P01 trial recorded, no reusable TABI master qualified**.
-Build videos from a persistent character, reusable motions and compatible scene templates.
+Revised 5 October 2026; **native Blender appearance rejected; Flow continuity trial selected**.
+Build videos with a consistent character, reusable visual references and coherent scene motion.
 Cover train interiors/exteriors, outfits, actions, a café and walking without repairing frames
 or writing scripts for each video.
 
@@ -29,28 +29,24 @@ reference did not fix the rear, and approximate multiview shape guidance distort
 P01 remains the next production decision. T40 is independent engineering work,
 but import improvements cannot establish that character creation works.
 
-Marco then selected **Blender + Colab without other external tools if possible**. The current
-[native master study](#next-checkpoint--native-blender-master) uses Blender geometry, materials
-and baked motion, with Colab as an optional renderer of the saved project. The earlier
-[TRELLIS source review](evidence/p01-next-route-review.json) remains historical evidence;
-that preflight is deferred under the latest tool choice. No new AI model is selected.
+Marco then tried native Blender + Colab and **rejected its appearance as insufficient**. He now
+requests **Google Flow**, using his existing higher-quality TABI work as the starting point.
+The [Flow checkpoint](#next-checkpoint--google-flow-continuity) supersedes further native-model
+refinement. The saved Blender trial remains technical evidence, not an approved creative result.
+TRELLIS is also deferred. No replacement character design is authorized by a missing Flow asset.
 
-**Current investigation:** author one native Blender TABI draft against the existing references,
-save its controls and motions, and reopen the same file for local/cloud rendering. This avoids
-new image-to-3D dependencies but introduces one-time model authoring. Codex performs that setup;
-do not call it automatic reconstruction, assume arbitrary outfits/actions become automatic, or
-expect Marco to take over specialist rigging. Whether the resulting style preserves enough of
-the supplied artwork remains a visual decision. Do not replace the reference look to pass a test.
+**Current investigation:** continue one selected Flow clip, inspect every join and test gradual
+identity drift before scaling to 90 seconds. Keep one camera, outfit, cabin, cup and exterior
+travel direction/speed. The same character references help new scene setup; they do not fix the
+temporal state of a preceding clip. The proposed initial test uses sequential Extend operations,
+not independent text-only generations. A 90-second uninterrupted result is a feasibility target,
+not an established Flow capability with TABI. Do not substitute cuts or a montage without agreement.
 
-The setup proof must include TABI's actual frills, headphones, head/body proportions, tail,
-face and clothing. Generic humanoid demonstrations do not settle it. A fixed model removes
-frame-by-frame character regeneration and cutout extraction from normal production; bad
-geometry, deformation, shading or antialiasing can still produce visible defects.
-
-If that proof fails, report the failing requirement and stop the proposed 3D integration.
-An authored 2D rig is the alternative for preserving the illustrated look, but requires skilled
-setup and therefore does not currently satisfy Marco's automation constraint. Generating more
-independent AI video clips is not the fallback for a consistent continuous character.
+The [source review and ready-to-use prompts](evidence/p01-flow-continuity-review.json) record the
+user's project link, current feature restrictions, commercial-use sources and bounded test.
+Automatic approval review could not inspect the Flow tab because its review service was at
+capacity; no generation occurred. Live model, selected clip, project contents and credit balance
+remain unverified. The existing no-purchase constraint still applies.
 
 ## Tools and responsibility
 
@@ -64,7 +60,8 @@ are untested with TABI.
 | SPAR3D, second tested diagnostic | Generate one mesh on Colab and inspect it in local Blender | [Measured trial](evidence/p01-spar3d-trial.json): exact code/model/dependency route reviewed under user-confirmed revenue eligibility and commercial registration. Mesh generated in 7.666 seconds after loading; eight unedited views fail depth/anatomy checks. No rig, new garment or production workflow qualified. |
 | SPAR3D, bounded correction completed | Test a new volumetric reference with and without shape guidance from eight generated views | [Paired correction](evidence/p01-turnaround-trial.json): same front image/seed; image-only front recognizable but rear wrong; point-cloud prior adds depth but merges/distorts gills and tail/body. Sixteen real Blender views; both no-go. Whole-session displayed delta 0.37 units; runtime released. Generated references remain useful drafts. |
 | TRELLIS 1, deferred | Previously proposed multiview coloured-mesh route | [Pinned source review](evidence/p01-next-route-review.json) remains available. Not selected under the latest Blender/Colab-only direction; no weights or inference run. |
-| Native Blender study, current | Authored reusable geometry and baked motion; Colab renders the saved Blender file | [Measured trial](evidence/p01-blender-native-trial.json): 15-second local video and three cloud poses from the identical master; 0.37 displayed units, runtime inactive. No external AI model or paid add-on. Likeness and the full walking/contact/garment/reuse/app gates remain open. |
+| Native Blender study, appearance rejected | Authored geometry and baked motion; Colab rendered the saved file | [Measured trial](evidence/p01-blender-native-trial.json): 15-second local video and three cloud poses; subsequent user rejection is recorded in progress. No further refinement selected. |
+| Google Flow, current trial | Continue an existing preferred TABI clip and reuse references for future scenes | [Continuity review](evidence/p01-flow-continuity-review.json). Existing subscription only; no live clip review or generation yet because browser approval review failed at capacity. Full 90-second continuity and app integration remain unproven. |
 | Meshy / Tripo Studio, previous paid candidates | Historical alternatives | Excluded from the current route by the no-additional-paid-apps preference. No paid trial or subscription authorized. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
 | video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
@@ -176,6 +173,12 @@ No credit purchase is authorized if the measured workload exceeds the existing a
 
 ### Character feasibility proof
 
+The following master/rig proof describes the earlier 3D route. It is paused after the native
+appearance rejection. The selected Flow route uses the separate bounded continuity checkpoint
+below, while retaining the user-facing likeness, contact, garment, scene and workload requirements.
+Alpha extraction and a mesh rig are not requirements for a complete-scene Flow result; independently
+editable backgrounds remain a product gap that must be stated rather than silently assumed.
+
 P01 is a single feasibility decision with predefined outputs, not an open-ended series of
 90-second repairs. Start with at most two candidate masters and one correction round, using
 zero additional software/service spend and only the existing available compute allowance.
@@ -234,6 +237,14 @@ The first walking template uses a fixed follow camera and prepared in-place cycl
 travel matched to its stride. Do not pretend fixed anchor support implements arbitrary walking
 paths. New spatial behavior must either be baked in a qualified template or specified as a
 separate renderer change after the pilot; hiding it in a script is not product support.
+
+**Latest Flow route:** the Blender-specific integration above and P02–P04 below are paused,
+conditional designs. A successful complete-scene Flow video needs a separately specified import,
+continuation-history and assembly handoff. The existing `ActionPack` cannot stand in for a whole
+video with baked scenery. Provider API access, included-credit API coverage and unattended Flow
+generation have not been established. Initially Flow performs generation and Scenebuilder review;
+the proposed app role is to manage references, action plans, imported results, local music and
+verified export. Rework dependencies/contracts after the continuity proof, before implementing.
 
 ## What the repository explains about the confusion
 
@@ -364,6 +375,9 @@ generated validators. Each implementation task also updates `docs/progress.md` a
 
 ## P01 — Decide whether automatic character preparation meets the real requirements
 
+Current action: [Google Flow continuity test](#next-checkpoint--google-flow-continuity).
+The model trials below are historical; the later native Blender appearance was also rejected.
+
 Status: first candidate trial recorded on 5 October. TripoSR produced a real GLB, but its
 Blender views failed likeness/frill/anatomy checks. No rig, motion, contact, wardrobe or scene
 reuse was attempted after that failure. [Comparison](evidence/p01-character-comparison.jpg),
@@ -394,10 +408,62 @@ No rig, mesh repair or motion test followed. This is not evidence against every 
 multiview method, but it ends this bounded route. Further model testing requires an explicit
 revised strategy and exact commercial-licence/dependency review; do not keep rerolling SPAR3D.
 
-### Next checkpoint — native Blender master
+### Next checkpoint — Google Flow continuity
 
-Status: [bounded rendering trial completed](evidence/p01-blender-native-trial.json);
-likeness review is next. Technical completion does not pass P01 or approve this new character.
+User-selected [Flow project](https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781).
+Detailed prompts, review gates, budgets and dated official sources are in the
+[Flow review](evidence/p01-flow-continuity-review.json). No new video has been generated.
+
+1. Inspect the existing preferred clip and generation history. Save source identifiers, actual
+   model/settings, prompt, reference images and a local original with hash. Establish a frame
+   for TABI's identity and a short continuity record: camera, pose, hands, cup position, cabin,
+   lighting and exterior direction/speed. Do not use the rejected Blender model as an ingredient.
+2. Verify live Extend support and displayed credits. Current Google feature documentation says
+   eligible Veo 3.1 clips extend using **Veo 3.1 Lite**, including clips originally generated
+   with Fast/Quality. This can change the look; verify against the preferred source. An Omni
+   source may need a saved-frame continuation instead, subject to a separate motion-join test.
+3. First try up to three sequential continuations: breathing/hold, a gentle look outside, then
+   hold. One output per call, one local repair attempt maximum, **20 included credits maximum**
+   for this initial extension test at the currently documented 5-credit Ultra Lite rate. Prefer
+   the equivalent zero-credit lower-priority mode only if actually offered to this account.
+   Verify actual cost before each call; stop at the cap or unavailable credit balance. No purchase.
+4. Measure the actual added duration and inspect the resulting roughly 20–30-second sequence
+   at full size, every join and beginning/middle/end. Review ears, face, neck, arms, cup, scenery
+   landmarks and speed. Reject a drifting continuation; never use its final frame as the next
+   seed. Passing short joins does not establish long-run identity. Retain original versions.
+5. Only after this passes, continue through the 90-second brief below. End-frame chaining can
+   be tested when Extend is unavailable, but matching one image does not preserve velocity or
+   panorama history. Scenebuilder arranges/trims footage; it does not fix temporal discontinuity.
+   Stop and report a failed continuity requirement instead of hiding it with repeated scenery,
+   backward playback, unrelated cuts or transparent cutout repair.
+6. Download the assembled candidate and measure real fps/duration, decode integrity, full motion
+   and every action/contact. Target exactly 90 seconds at a supported rational fps after assembly;
+   generated beat timing is approximate. Record accepted footage versus all attempts, credits,
+   elapsed time and human intervention before judging 30-video monthly capacity. Re-test a new
+   scene, garment and action before qualifying the broader workflow or revising P02–P04.
+
+The story target carries forward Marco's previous timing, with calm holds between actions:
+
+| Target interval | Character beat | Continuous environment |
+| --- | --- | --- |
+| 0–15 s | Quiet seated breathing; establish the selected source pose | Continue the existing panorama and travel speed |
+| 15–30 s | Gentle turn to watch outside, then rest | Same camera, cabin and daylight; scenery keeps moving |
+| 30–45 s | Reach, lift the same cup, one sip, return it to the same place | No exterior reset during contact action |
+| 45–60 s | Small relaxed head/shoulder sway | Continue the same route and speed |
+| 60–75 s | Return to watching outside | New scenery arrives naturally along the route |
+| 75–90 s | Visible deep inhale/hold/exhale, then a quiet finish | No abrupt destination/time-of-day change |
+
+Breathing remains present between deliberate actions. Keep original music local for the final
+edit; request no generated score or dialogue. Props and world layout must follow the selected
+clip; these prompts require adaptation after actual visual inspection. If the source starts
+in another state, construct a compatible lead-in rather than pretending the timeline already fits.
+
+<a id="next-checkpoint--native-blender-master"></a>
+
+### Historical checkpoint — native Blender master
+
+Status: [bounded rendering trial completed](evidence/p01-blender-native-trial.json), then
+**appearance rejected by Marco**. Further native-model refinement is superseded by the Flow trial.
 
 Marco explicitly requested trying Blender and Colab without other external tools. The bounded
 native study under ignored `.local/p01-blender-native-v1/` authors a new, clearly labeled 3D draft
@@ -465,6 +531,7 @@ An authored master remains a setup tradeoff if this route fails, not an assumed 
 Marco's nearly automatic requirement.
 
 **Target files**
+- `docs/evidence/p01-flow-continuity-review.json` (new) — dated source review, user route decision, prompt pack, limited test and unverified live facts; not a generated-media acceptance report.
 - `docs/evidence/p01-blender-native-trial.json` (new), `docs/evidence/p01-blender-native-comparison.jpg` (new) — separate native-study evidence; source and media remain in ignored `.local/p01-blender-native-v1/`.
 - `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.
 - `docs/evidence/p01-character-comparison.jpg` (new) — supplied reference and actual rendered candidate, clearly labeled.
@@ -474,16 +541,16 @@ Marco's nearly automatic requirement.
 
 **Inputs / dependencies**
 - No app task dependency. Current TABI references and calm-window baseline; Marco's almost-automatic requirement.
-- A visual decision on the proposed illustrated 3D result; authorized provider inputs/budget or a user-supplied local rigged candidate, and an available supported Blender installation. Research does not authorize purchases or cloud uploads.
+- Current Flow route: inspect the user-supplied project, selected source and live model/credits; use existing entitlement within the bounded test. Earlier 3D route: available supported Blender plus authorized inputs. No purchases or unrelated cloud uploads.
 
 **Implementation rules**
 - Execute the bounded proof above. Include an actual new garment shape, prop contact and walking; a stock humanoid, still turntable, recolor or idle-only clip cannot pass the requested scope.
-- Preserve one master identity across all examples. Keep model generation distinct from pose/motion rendering. Record every manual correction and reject a route dependent on recurring frame cleanup or specialist setup by Marco.
-- Require character-only transparency over both light and dark backgrounds and complete composed-motion review. Check ear/frill roots, outlines, neck, hand/cup contact, clothing intersections, feet and every loop/transition.
-- Reuse the selected master in a second output without rerunning image-to-3D. Repeat after restarting the tools. Qualify supported cameras and scene geometry, not arbitrary combinations.
+- Preserve the selected character identity across all examples. For Flow, retain canonical references and a branch history of accepted continuations; for a master route, keep model generation distinct from motion rendering. Record every correction and reject dependence on recurring frame cleanup or specialist setup by Marco.
+- Review complete motion, ear/frill roots, outlines, neck, hand/cup contact, clothing, feet and every transition. Test alpha over light/dark backgrounds only for a layered-media route; do not claim flattened Flow footage provides transparent character layers.
+- Reuse saved references/settings in a second output and after reopening tools; a Flow generation must still be compared for drift. A persistent mesh route additionally requires reuse without rerunning image-to-3D. Qualify supported scene/outfit/action combinations, not arbitrary combinations.
 - If the style, automation or hard reuse cases fail, record a no-go and the precise tradeoff. Do not start P02–P04 as though the requirement were solved. Preserve the existing app and original artwork.
 - Keep all models, textures and videos in local project media storage; commit only compact factual evidence and the verifier. No provider credentials or guessed licences in reports.
-- Measure recurring preparation against the monthly production budget above, with one-time setup, failed attempts and other Colab usage accounted for. A fast inference or a large current balance alone cannot establish 30-video monthly capacity.
+- Measure recurring preparation with setup, rejected attempts and other account usage included. Track Flow credits separately from the historical Colab budget. Fast inference or a large balance alone cannot establish 30-video monthly capacity.
 
 **Verification command**
 ```sh
@@ -497,6 +564,9 @@ video. The verifier cannot approve likeness or declare an unperformed trial succ
 <a id="p02"></a>
 
 ## P02 — Define a versioned handoff from the character library to prepared media
+
+This and P03–P04 retain the earlier Blender-specific design for reference. They are blocked and
+must be rescoped if the Flow route qualifies; do not implement them as Flow integration.
 
 **Target files**
 - `src/tabi/core/models/preparation.py` (new) — strict library manifest, preparation request/result and durable preparation-run documents.
