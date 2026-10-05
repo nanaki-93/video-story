@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "report_type": "source_review_not_model_trial",
+  "review_date": "2026-10-05",
+  "timezone": "Asia/Manila",
+  "task_id": "P01",
+  "decision": "recommend_trellis_1_mesh_only_preflight",
+  "production_feasibility_passed": false,
+  "new_model_downloaded": false,
+  "gpu_runtime_started": false,
+  "cloud_uploads": [],
+  "new_purchases": [],
+  "app_code_changed": false,
+  "constraints": [
+    "Almost automatic TABI preparation; no recurring frame or specialist mesh repairs.",
+    "No new paid apps, subscriptions, plugins, licences or compute top-ups.",
+    "Existing Colab entitlement and local Blender; worldwide monetized-video intent.",
+    "Preserve existing references and preferred calm-window draft; no further SPAR3D rerolls."
+  ],
+  "candidates": [
+    {
+      "name": "TRELLIS 1 mesh-only multiview",
+      "status": "conditional_candidate_for_preflight_only",
+      "code_revision": "442aa1e1afb9014e80681d3bf604e8d728a86ee7",
+      "model_repo": "microsoft/TRELLIS-image-large",
+      "model_revision": "25e0d31ffbebe4b5a97464dd851910efc3002d96",
+      "model_gated_at_review": false,
+      "main_code_and_model_terms": "MIT; official model card and repository statement cover weights. Model repository has no separate LICENSE file.",
+      "multiview": "Official run_multi_image conditions one generation on multiple image embeddings. It is a tuning-free adaptation of a single-image model, not a separately trained calibrated multiview reconstructor; quality is explicitly uncertain.",
+      "selected_output": "Mesh decoder has use_color=true; export its native vertex colours to PLY/GLB and inspect in Blender. Avoid stock to_glb(), which bakes from Gaussian/radiance-field renders.",
+      "flexicubes": {
+        "repo": "MaxtirError/FlexiCubes",
+        "revision": "815e075a2a400d06c48d94c347674344ed6ae5c5",
+        "terms": "Apache-2.0 in pinned LICENSE.txt and both source headers; supports voxelgrid_colors. Older non-commercial conclusions do not describe this pinned revision."
+      },
+      "image_conditioner": {
+        "name": "dinov2_vitl14_reg",
+        "reviewed_code_revision": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+        "terms": "DINOv2 base code/weights Apache-2.0. Separate Cell-DINO code/weights are non-commercial and excluded.",
+        "required_loader_change": "Do not call unmodified torch.hub.load on current hubconf.py: it eagerly imports Cell-DINO. Import only the reviewed DINOv2 backbone path and pin/hash the selected checkpoint before inference."
+      },
+      "known_blocks_in_stock_setup": [
+        "Gaussian general_utils.py and gaussian_render.py have explicit Inria non-commercial headers.",
+        "Stock representations/__init__.py eagerly imports Gaussian, even when requesting mesh output.",
+        "Stock pipeline loader instantiates every decoder in pipeline.json, including Gaussian/radiance-field decoders.",
+        "Do not install/import mip-splatting, diff-gaussian-rasterization, diffoctreerast or their restricted helpers.",
+        "Do not download background-remover weights: all selected references already have alpha."
+      ],
+      "required_preflight": [
+        "Isolate mesh-only imports and four learned TRELLIS components, preserving exact learned weights and failing on missing/unexpected learned state.",
+        "Audit all transitively imported source files and installed dependency versions; record licence notices and pin compatible Kaolin/attention/sparse-convolution packages.",
+        "Run an import audit with forbidden modules absent, plus a synthetic coloured-mesh export/load check. Source inspection alone is not runtime proof.",
+        "Retain MIT/Apache copyright, licence and modification notices with the preparation bundle; review distribution obligations separately for a shipped app."
+      ],
+      "checkpoint_metadata": [
+        {
+          "path": "ckpts/slat_dec_mesh_swin8_B_64l8m256c_fp16.safetensors",
+          "bytes": 181903412,
+          "published_lfs_sha256": "3e87aba94b5786407eb06d0502c1ed0885a0027a3f2b8537bfe15b0a92c01859",
+          "downloaded": false
+        },
+        {
+          "path": "ckpts/slat_flow_img_dit_L_64l8p2_fp16.safetensors",
+          "bytes": 1203755136,
+          "published_lfs_sha256": "693fb2a58ad497bd222007301eeec49d14d60f8c12d2f2f00c221fa747b4c66c",
+          "downloaded": false
+        },
+        {
+          "path": "ckpts/ss_dec_conv3d_16l8_fp16.safetensors",
+          "bytes": 147591972,
+          "published_lfs_sha256": "1c76d4a40519aa2d711cc263a8404105231ac26db31d946bed48b84fee79009a",
+          "downloaded": false
+        },
+        {
+          "path": "ckpts/ss_flow_img_dit_L_16l8_fp16.safetensors",
+          "bytes": 1130770840,
+          "published_lfs_sha256": "96dc6bfd4136fd950af564dd16b4ae533c9ba6af8f26c670646b2a9f2789b1db",
+          "downloaded": false
+        }
+      ],
+      "selected_trellis_checkpoint_bytes": 2664021360,
+      "download_size_limit_note": "2.664 GB is only the four TRELLIS checkpoints; DINOv2 weights and runtime packages are additional and unmeasured here. No weight bytes were downloaded or locally verified.",
+      "hardware": "Official Linux/NVIDIA requirement is at least 16 GB VRAM. Existing Colab L4 class meets nominal capacity, but this modified runtime, peak memory and full-session cost are untested.",
+      "known_quality_limits": [
+        "Native vertex colours may lose fine face, gill and leopard-print detail compared with a baked texture.",
+        "The eight generated references are approximate and uncalibrated; supplying more views does not guarantee compatible geometry.",
+        "A static clothed mesh is not a rig, a separate base body, removable clothes, facial controls or reusable actions."
+      ]
+    },
+    {
+      "name": "Hunyuan3D-2mv",
+      "status": "excluded_from_proposed_worldwide_video_route",
+      "capability": "Officially fine-tuned for multiview-controlled shape generation.",
+      "reviewed_source_revision": "f8db63096c8282cb27354314d896feba5ba6ff8a",
+      "reason": "Current licence sections 1(l) and 5(c) exclude EU/UK/South Korea and expressly restrict Outputs/results there. This is incompatible with the proposed unrestricted worldwide YouTube distribution route without separate rights clarification.",
+      "source": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2/blob/f8db63096c8282cb27354314d896feba5ba6ff8a/LICENSE",
+      "model_source": "https://huggingface.co/tencent/Hunyuan3D-2mv",
+      "license_quote": "You must not use, reproduce, modify, distribute, or display",
+      "note": "No inference about Marco's residence or nationality was used; no terms were accepted."
+    },
+    {
+      "name": "InstantMesh standard full pipeline",
+      "status": "not_selected",
+      "reason": "Apache main code/model does not clear the default Zero123++ component. Its official documentation says the weights are CC-BY-NC-4.0 and cannot be used in a commercial product pipeline, while separately allowing outputs. A reconstruction-only adaptation is a different route requiring camera/architecture/dependency validation.",
+      "sources": [
+        "https://github.com/TencentARC/InstantMesh",
+        "https://huggingface.co/TencentARC/InstantMesh",
+        "https://github.com/SUDO-AI-3D/zero123plus#license"
+      ]
+    }
+  ],
+  "proposed_next_steps": [
+    "Prepare and verify the isolated TRELLIS 1 mesh-only dependency/import path before any new model trial. Stop if a restricted or unclear component remains required.",
+    "If preflight passes and the revised trial is authorized, run one fixed-seed candidate using existing front/back/both-profile PNGs. Use the other four views as review references. Proposed maximum: 60 connected minutes or 30 displayed compute units, whichever comes first; these are ceilings, not expected costs.",
+    "Save raw coloured mesh and actual eight-angle Blender renders. Review face, all gill roots, headphones, neck, rear coat, limbs and tail; no manual geometry repair, no unbounded seed search. Stop at the static gate if it fails.",
+    "Only after likeness passes, qualify separate automatic rig/body/garment preparation and short breathing/head-turn/walk/cup/deep-breath tests, including a real second garment and train/cafe reuse. These are still unproven.",
+    "Integrate the qualified preparer into video-story through P02-P04: choose scene/outfit/routine, prepare complete-character frames in Blender, reuse cache, then continuous scenery/music/preview/export through existing Python services."
+  ],
+  "app_integration_status": "P02-P04 remain blocked on complete P01 proof. No app can yet be claimed to satisfy all requested automation, likeness, outfits and scene/action requirements.",
+  "fallback_if_proof_fails": "An authored master/rig would require a setup tradeoff; neither a paid tool nor specialist manual setup is authorized by this source-review request. Do not silently relax the automation requirement.",
+  "source_snapshots": [
+    {
+      "path": ".local/p01-next-route-review/trellis-revision.json",
+      "url": "https://api.github.com/repos/microsoft/TRELLIS/commits/main",
+      "bytes": 13654,
+      "sha256": "ca39b5fb84800ac57373e536d3d6d86c361c35c513b8bb12f8fc09399c4a395b"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-model.json",
+      "url": "https://huggingface.co/api/models/microsoft/TRELLIS-image-large",
+      "bytes": 4158,
+      "sha256": "f0b2ecd4e7a75ef4d6da7b49b12478fc8ce42cae51b265739f37b6872a18042a"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-code-license.txt",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/LICENSE",
+      "bytes": 1141,
+      "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-multi-image.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/example_multi_image.py",
+      "bytes": 1752,
+      "sha256": "55df67028b2eb58293b7b931237e81146c9f725d0fdec099d460ac2386942888"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-pipeline.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/trellis/pipelines/trellis_image_to_3d.py",
+      "bytes": 15345,
+      "sha256": "a9a6eab500dd0693f6f5aa86d42291a4921596988c5c6460aa17fad6fe66b833"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-gaussian-render.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/trellis/renderers/gaussian_render.py",
+      "bytes": 8122,
+      "sha256": "80f2e7ce8ae64a0f9a08207ceed250657ccf943c803054318f5776a6123dbbc3"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-gaussian-utils.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/trellis/representations/gaussian/general_utils.py",
+      "bytes": 3971,
+      "sha256": "97553507caa4f3e6849919d9658b0b0da064e6c8f19142045da79072171ffa51"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-postprocessing.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/trellis/utils/postprocessing_utils.py",
+      "bytes": 25978,
+      "sha256": "34c5b9711cebd2991236c4913e6f653dfe5ffbb8ce31f7464bde334d46785a6e"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-base-pipeline.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/trellis/pipelines/base.py",
+      "bytes": 1840,
+      "sha256": "2b06cdf54571576247bd6601adda7b3772dc23106a4973c35bfc42c4e9253c0c"
+    },
+    {
+      "path": ".local/p01-next-route-review/flexicubes-license.txt",
+      "url": "https://raw.githubusercontent.com/MaxtirError/FlexiCubes/815e075a2a400d06c48d94c347674344ed6ae5c5/LICENSE.txt",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": ".local/p01-next-route-review/flexicubes.py",
+      "url": "https://raw.githubusercontent.com/MaxtirError/FlexiCubes/815e075a2a400d06c48d94c347674344ed6ae5c5/flexicubes.py",
+      "bytes": 20945,
+      "sha256": "fe443b5225680969c706644931a4f723e7137ce8007758c1870b6841af2d4238"
+    },
+    {
+      "path": ".local/p01-next-route-review/flexicubes-tables.py",
+      "url": "https://raw.githubusercontent.com/MaxtirError/FlexiCubes/815e075a2a400d06c48d94c347674344ed6ae5c5/tables.py",
+      "bytes": 40967,
+      "sha256": "de9535d097dc7df266a8e8098efbe6f46d923287536d5f7f7ee924171267c442"
+    },
+    {
+      "path": ".local/p01-next-route-review/dinov2-revision.json",
+      "url": "https://api.github.com/repos/facebookresearch/dinov2/commits/main",
+      "bytes": 15483,
+      "sha256": "8d514590738b315c8e13a194e5e3527039f8ed13a81ae7a7263d5db97460aa95"
+    },
+    {
+      "path": ".local/p01-next-route-review/hunyuan-revision.json",
+      "url": "https://api.github.com/repos/Tencent-Hunyuan/Hunyuan3D-2/commits/main",
+      "bytes": 7964,
+      "sha256": "61e11c2e3d825ed26e560e7ec83452a02170f14a7df759c1f0b1e24e8cb32680"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-representations-init.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/trellis/representations/__init__.py",
+      "bytes": 143,
+      "sha256": "9a927094c556265a0e346d3a288ef5909011f2bd1422416bbf55e631848a96ea"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-models-init.py",
+      "url": "https://raw.githubusercontent.com/microsoft/TRELLIS/442aa1e1afb9014e80681d3bf604e8d728a86ee7/trellis/models/__init__.py",
+      "bytes": 3173,
+      "sha256": "afb0321d3b8212be4efdebe16bc80f317135e2c106de3d044896df1d8f46f9ab"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-model-card.md",
+      "url": "https://huggingface.co/microsoft/TRELLIS-image-large/resolve/25e0d31ffbebe4b5a97464dd851910efc3002d96/README.md",
+      "bytes": 464,
+      "sha256": "9b64b43ea1d58635f14f2ebe5664c22be6fee8943943ece39a14e98b1da4378c"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-model-files.json",
+      "url": "https://huggingface.co/api/models/microsoft/TRELLIS-image-large/tree/25e0d31ffbebe4b5a97464dd851910efc3002d96/ckpts",
+      "bytes": 3667,
+      "sha256": "e16cd97cce7badad4e8c26196fa84870dcd1d127889dbee264acb925517f4be9"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-pinned-pipeline.json",
+      "url": "https://huggingface.co/microsoft/TRELLIS-image-large/resolve/25e0d31ffbebe4b5a97464dd851910efc3002d96/pipeline.json",
+      "bytes": 1987,
+      "sha256": "2686b6c9b3b0a100b544d5f9dc7b3ecb15c9d98be9852d68e8731bd8dbe52a42"
+    },
+    {
+      "path": ".local/p01-next-route-review/trellis-pinned-mesh-config.json",
+      "url": "https://huggingface.co/microsoft/TRELLIS-image-large/resolve/25e0d31ffbebe4b5a97464dd851910efc3002d96/ckpts/slat_dec_mesh_swin8_B_64l8m256c_fp16.json",
+      "bytes": 372,
+      "sha256": "293900795cb69cc972d1a20a4940ee12f7e007952c2ae92d128dda91b96ac317"
+    },
+    {
+      "path": ".local/p01-next-route-review/dinov2-license.txt",
+      "url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/LICENSE",
+      "bytes": 11359,
+      "sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7"
+    },
+    {
+      "path": ".local/p01-next-route-review/dinov2-hubconf.py",
+      "url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/hubconf.py",
+      "bytes": 1126,
+      "sha256": "c1f5090e78ff940b72c076d2bf9c0310d1707c946b3d10e2d6f2b0bdf56a6f64"
+    },
+    {
+      "path": ".local/p01-next-route-review/dinov2-backbones.py",
+      "url": "https://raw.githubusercontent.com/facebookresearch/dinov2/7764ea0f912e53c92e82eb78a2a1631e92725fc8/dinov2/hub/backbones.py",
+      "bytes": 5586,
+      "sha256": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e"
+    },
+    {
+      "path": ".local/p01-next-route-review/hunyuan-pinned-license.txt",
+      "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/Hunyuan3D-2/f8db63096c8282cb27354314d896feba5ba6ff8a/LICENSE",
+      "bytes": 17829,
+      "sha256": "94259df223918a5733677965c1bfe1774a2dba25042d9c3b47a3418ea6c1f324"
+    },
+    {
+      "path": ".local/p01-next-route-review/kaolin-license.txt",
+      "url": "https://raw.githubusercontent.com/NVIDIAGameWorks/kaolin/d52da9f86d460e8abcd99037e21ff0bec57997ed/LICENSE",
+      "bytes": 10139,
+      "sha256": "1f81d44e1506aef37184653d2d31d00ae6e4f453d431de971c2879be960665b8"
+    }
+  ],
+  "verification_scope": "Local snapshot byte counts/SHA-256, published model metadata arithmetic, source-path/import inspection, and existing reference-sheet visual review. No new inference, Blender render, runtime dependency closure or app test was executed."
+}

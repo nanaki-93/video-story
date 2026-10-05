@@ -33,6 +33,14 @@ variant qualified: the image-only rear is wrong, while the approximate shape pri
 but merges/distorts the gills, headphones, body and tail. All 16 Blender views and both meshes
 are preserved. This closes the bounded SPAR3D trial, not the broader workflow decision.
 
+The [next-route source review](docs/evidence/p01-next-route-review.json) recommends a
+**TRELLIS 1 mesh-only preflight**. Its official multi-image sampling and native vertex-colour
+mesh decoder offer a candidate path, with an Apache-licensed pinned FlexiCubes component.
+The stock imports/exporter still include non-commercial components; isolating and verifying
+the permitted dependency path is the next checkpoint. No new model/runtime has been run.
+Hunyuan3D-2mv is excluded from the proposed worldwide-video route because its current licence
+expressly restricts outputs in the EU, UK and South Korea. Full production feasibility remains open.
+
 The current production target is **30 × 90-second videos per month**, with some new assets
 and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
 is 2,000 Colab compute units monthly; 2,499.4 were available on 5 October. The

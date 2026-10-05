@@ -2,6 +2,37 @@
 
 Updated 5 October 2026 (Asia/Manila).
 
+## P01 — next route checked after the failed correction
+
+5 October 2026. **Source review complete; no new generation or runtime.** The
+[saved review](evidence/p01-next-route-review.json) recommends an isolated **TRELLIS 1
+mesh-only preflight**. Official multi-image sampling uses features from several input images
+in one generation, but is a tuning-free adaptation with uncertain quality. The pinned model
+has a colour-enabled mesh decoder; the pinned FlexiCubes code/licence is now Apache-2.0.
+This suggests a direct coloured-mesh route avoiding the stock texture-baking pipeline.
+
+The stock TRELLIS representation imports and loader still bring in Gaussian helpers with
+explicit non-commercial headers. Current DINOv2 hubconf also eagerly imports separate
+non-commercial Cell-DINO code. A mesh-only loader must isolate the permitted branches and
+verify installed dependencies; the review does not clear an unmodified installation. Hunyuan3D-2mv
+is excluded from the proposed worldwide-video route because its current terms expressly
+restrict outputs/results in the EU, UK and South Korea. Stock InstantMesh's Zero123++ dependency
+also prevents selecting that full pipeline for the commercial app.
+
+The [next checkpoint](tasks.md#next-checkpoint--trellis-1-mesh-only-preflight) defines preflight,
+one possible fixed-seed four-view trial with eight-view review, and the later mandatory motion,
+contact, garment and scene-reuse gates. A generated clothed mesh does not establish removable
+outfits or automatic rigging. P01 stays open and P02–P04 blocked. The previous SPAR3D scope is
+closed; this source review does not authorize an unbounded series of new trials.
+
+Verification: 25 local public-text snapshots passed byte-size/SHA-256 checks; four selected
+checkpoint metadata records total 2,664,021,360 bytes, with DINOv2/packages additional.
+Source imports, native-colour configuration and exact licence headers were inspected. All eight
+existing reference views were visually reviewed as approximate, uncalibrated drafts. Documentation
+links and `git diff --check` passed. No model weights were downloaded, code executed from those
+sources, cloud upload made, GPU started or application behavior changed. Runtime compatibility,
+complete installed dependency clearance, generated quality and cost remain untested.
+
 ## Current state
 
 The Python core, CLI and local web application implement the V1 production services. The last

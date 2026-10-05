@@ -29,6 +29,11 @@ reference did not fix the rear, and approximate multiview shape guidance distort
 P01 remains the next production decision. T40 is independent engineering work,
 but import improvements cannot establish that character creation works.
 
+The subsequent [source review](evidence/p01-next-route-review.json) selects **TRELLIS 1
+mesh-only preflight** as the next investigation. This is a conditional candidate, not a
+qualified production route or an extension of the closed SPAR3D trial. No additional model
+weights were downloaded and no runtime was started during the check.
+
 **Recommended investigation:** create one 3D TABI master with assisted image-to-3D and automatic
 rigging, reuse it for every animation, and test an illustration-like render in Blender. This is
 a candidate for meeting the automation requirement, not a promise that conversion preserves the
@@ -56,6 +61,7 @@ are untested with TABI.
 | TripoSR on Colab, tested diagnostic | Generate one persistent mesh without a paid image-to-3D service | [Actual trial and licence record](evidence/p01-character-pipeline.json): MIT code/weights, CPU mesh extraction with scikit-image, eight Blender views. First candidate rejected for shallow geometry and lost TABI details; no rig or production workflow qualified. |
 | SPAR3D, second tested diagnostic | Generate one mesh on Colab and inspect it in local Blender | [Measured trial](evidence/p01-spar3d-trial.json): exact code/model/dependency route reviewed under user-confirmed revenue eligibility and commercial registration. Mesh generated in 7.666 seconds after loading; eight unedited views fail depth/anatomy checks. No rig, new garment or production workflow qualified. |
 | SPAR3D, bounded correction completed | Test a new volumetric reference with and without shape guidance from eight generated views | [Paired correction](evidence/p01-turnaround-trial.json): same front image/seed; image-only front recognizable but rear wrong; point-cloud prior adds depth but merges/distorts gills and tail/body. Sixteen real Blender views; both no-go. Whole-session displayed delta 0.37 units; runtime released. Generated references remain useful drafts. |
+| TRELLIS 1, conditional next preflight | Use actual image features from several existing views and export a native vertex-colour mesh | [Pinned source review](evidence/p01-next-route-review.json): MIT main code/weights and Apache FlexiCubes at the reviewed revisions. Must isolate mesh-only imports and DINOv2 backbone, excluding non-commercial Gaussian/radiance-field/Cell-DINO paths. Official multi-image sampling is experimental; no TABI result, runtime clearance or performance proof yet. |
 | Meshy / Tripo Studio, previous paid candidates | Historical alternatives | Excluded from the current route by the no-additional-paid-apps preference. No paid trial or subscription authorized. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
 | video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
@@ -77,6 +83,14 @@ identifies BRIA and Tencent-derived components despite the MIT top-level licence
 input could avoid background removal but does not resolve the other component terms. Do not
 promote either stock pipeline as commercially cleared or replace one dependency and assume
 the whole route is cleared. These are preliminary source checks, not executed candidates.
+
+The new review also excludes Hunyuan3D-2mv from the proposed worldwide-video route: sections
+1(l) and 5(c) of its [pinned current licence](https://github.com/Tencent-Hunyuan/Hunyuan3D-2/blob/f8db63096c8282cb27354314d896feba5ba6ff8a/LICENSE)
+expressly restrict outputs/results in the EU, UK and South Korea. This conclusion concerns the
+planned distribution, not an assumption about Marco's residence. Stock InstantMesh is not
+selected because its default Zero123++ weights are non-commercial for a product pipeline;
+the [official distinction](https://github.com/SUDO-AI-3D/zero123plus#license) allowing outputs
+does not clear that integrated pipeline. A reconstruction-only adaptation would need its own review.
 
 ## What becomes reusable
 
@@ -376,6 +390,42 @@ supported point-cloud input. It did not jointly condition appearance on eight im
 No rig, mesh repair or motion test followed. This is not evidence against every native
 multiview method, but it ends this bounded route. Further model testing requires an explicit
 revised strategy and exact commercial-licence/dependency review; do not keep rerolling SPAR3D.
+
+### Next checkpoint — TRELLIS 1 mesh-only preflight
+
+The [5 October source review](evidence/p01-next-route-review.json) pins TRELLIS code
+`442aa1e1afb9014e80681d3bf604e8d728a86ee7`, weights metadata
+`25e0d31ffbebe4b5a97464dd851910efc3002d96`, and Apache FlexiCubes submodule
+`815e075a2a400d06c48d94c347674344ed6ae5c5`. The four required TRELLIS checkpoints total
+2,664,021,360 bytes; DINOv2 and runtime packages are additional. These are published metadata,
+not locally downloaded or verified weights. Model access is currently ungated.
+
+1. **Verify the permitted execution path first.** Prepare one isolated mesh-only loader/exporter
+   under ignored `.local/p01-trellis-mesh-only/`; record its reproducible source and dependency
+   checks in a new `docs/evidence/p01-trellis-preflight.json`. The stock representation imports
+   eagerly reach non-commercial Gaussian helpers, and the default loader instantiates all
+   decoders. Requesting only mesh output is insufficient. Load only the four required components,
+   pin the DINOv2 backbone without current hubconf's Cell-DINO imports, and use the native
+   vertex-colour output. Exclude Gaussian/radiance-field renderers, their helpers and background
+   removal weights. Verify exact installed dependency licences, forbidden-module absence,
+   strict learned-weight coverage when loaded, and synthetic coloured-mesh export/import.
+   Retain required notices. This route has not been implemented or run.
+2. **Then propose one bounded visual trial.** After preflight passes and the revised model trial
+   is authorized, use the existing front/back/both-profile PNGs, one fixed seed and documented
+   sampler settings. Review against all eight saved references. Stop at 60 connected minutes or
+   30 displayed compute units, whichever comes first; these are caps, not expected consumption
+   or automatic quota enforcement. Use existing allowance only and record the full session.
+   Save the unmodified coloured mesh and eight real Blender views. No seed search or hand repair.
+3. **Keep the complete P01 gate.** Reject wrong anatomy/likeness at the static review. If it
+   passes, separately qualify automatic rigging, a body/garment representation that supports a
+   real second garment, and breathing/head-turn/walk/cup/deep-breath motion with train/café reuse.
+   Native vertex colours may lose fine detail; official multi-image sampling is a tuning-free
+   adaptation with uncertain results. A successful static conversion cannot close these gates.
+
+The immediate outcome is a reproducible, licence-reviewed preflight; there is no cleared
+ready-made workflow yet. Keep P02–P04 blocked and keep the earlier trial reports immutable.
+An authored master remains a setup tradeoff if this route fails, not an assumed change to
+Marco's nearly automatic requirement.
 
 **Target files**
 - `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.
