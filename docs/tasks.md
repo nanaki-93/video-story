@@ -461,10 +461,15 @@ failed verification and comparison samples on both sides of every join.
 
 ## F10 — Present Setup, Opening, Continue and Finish as the normal UI
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `web/src/flow.ts` (new), `web/src/flow-state.ts` (new) — guided pages and request/reconnect state only.
 - `web/src/main.ts`, `web/src/wireframes.ts`, `web/src/style.css` — navigation and workflow layout.
+- `web/src/session.ts`, `web/src/workspace.ts` — default landing screen and saved-project handoff.
+- `docs/evidence/f10-flow-ui.json`, `docs/evidence/f10-flow-finish.jpg`, `docs/evidence/f10-flow-playback.jpg` (new) — target-Mac guided workflow evidence.
 - `web/src/contracts.ts` — use the generated Flow DTO in existing validation dispatch.
+- `src/tabi/api/flow.py`, `src/tabi/api/contracts.py`, `schemas/web_flow.schema.json`, `web/src/generated/web_flow.ts`, `web/src/generated/validators.cjs` — expose the Python preset and remaining routine for the guided screen.
 - `web/tests/flow-state.test.mjs` (new) — stale requests, reconnect and repeated clicks.
 
 **Inputs / dependencies**

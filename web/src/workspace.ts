@@ -288,7 +288,7 @@ export function projectsPage(): Panel {
         })
           .then((p) => {
             remember(p);
-            if (active) refreshPage();
+            if (active) location.hash = "flow";
           })
           .catch((e: unknown) => {
             status.textContent = `Project unavailable. Reconnect the drive or choose Relink. ${String(e)}`;
@@ -308,10 +308,10 @@ export function projectsPage(): Panel {
   if (selected) {
     list.append(
       element("p", { text: `Current: ${selected.project.title}` }),
-      button("Open assets", () => {
-        location.hash = "assets";
+      button("Create video", () => {
+        location.hash = "flow";
       }),
-      button("New episode", () => {
+      button("Advanced scene setup", () => {
         location.hash = "setup";
       }),
     );

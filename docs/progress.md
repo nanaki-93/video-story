@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F10 — Guided Create video workflow
+
+6 October 2026. web-check and web-build pass (7 browser tests). Target-Mac Chrome journey starts the 90s preset, then exercises a clearly labeled shortened 2s fixture: native import, join review, stale-tab refusal, rejection/retry, exact export and playback after refresh. Screenshot and facts: docs/evidence/f10-flow-ui.json. Normal navigation is Create video / Projects; former mock screens are removed and existing tools are under Advanced. Full 90s/music and mobile verification follow in F12.
+
 ## F09 — Flow CLI and authenticated app services
 
 6 October 2026. 14 CLI/API/security tests and 2 actual-media loopback-worker tests pass, including rejected retry, join review, authenticated byte ranges, re-opened interrupted export and recovery without another Flow request. Generated 68 contracts; web-check passes. One local media lane and export ownership are shared with existing jobs. Browser handoff remains assisted.

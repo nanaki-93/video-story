@@ -9,8 +9,8 @@ from tabi.core.audio.timeline import prepared_samples
 from tabi.core.flow.assembly import FlowAssembler
 from tabi.core.flow.media import FlowMedia
 from tabi.core.flow.review import FlowReview
-from tabi.core.flow.runner import FlowRunner
-from tabi.core.flow.service import updated
+from tabi.core.flow.runner import FlowRunner, completed_beats
+from tabi.core.flow.service import default_recipe, updated
 from tabi.core.models.assets import Provenance
 from tabi.core.models.base import HashedFile
 from tabi.core.models.registry import ImportRequest
@@ -42,7 +42,12 @@ def routes(runtime):
     def view(handle, identity=None):
         item, service = services(handle)
         episode = service.get(identity) if identity else None
-        data = {"schema_version": "1.0", "episodes": service.list(), "episode": episode}
+        data = {
+            "schema_version": "1.0",
+            "episodes": service.list(),
+            "preset": default_recipe(),
+            "episode": episode,
+        }
         if episode:
             step = FlowRunner(service).status(episode)
             base = f"/api/v1/projects/{handle}/flow/{identity}"
@@ -52,6 +57,9 @@ def routes(runtime):
             parent = service.candidate(episode, step["parent_id"]) if step["parent_id"] else None
             data.update(
                 next_step=step,
+                remaining_beats=[
+                    b for b in episode.recipe.beats if b.id not in completed_beats(episode)
+                ],
                 exports=service.exports(identity),
                 reference_urls=[f"{base}/references/{i}" for i in range(len(episode.references))],
                 parent_url=f"{base}/clips/{parent.id}/video" if parent else None,

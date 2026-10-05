@@ -10,7 +10,7 @@ export async function connect() {
   if (fragment.startsWith("#bootstrap=")) {
     const secret = fragment.slice("#bootstrap=".length);
     // Remove the one-time ticket before any network request or UI rendering.
-    history.replaceState(null, "", `${location.pathname}#settings`);
+    history.replaceState(null, "", `${location.pathname}#flow`);
     response = await fetch("/api/v1/bootstrap", {
       method: "POST",
       credentials: "same-origin",
@@ -22,10 +22,6 @@ export async function connect() {
       credentials: "same-origin",
       cache: "no-store",
     });
-  if (response.status === 404) {
-    const spike = await fetch("/spike/export.json");
-    if (spike.ok) return "spike" as const;
-  }
   if (!response.ok)
     throw new Error(
       "Session unavailable or expired. Enter ‘open’ in the local launcher to reopen this workspace.",

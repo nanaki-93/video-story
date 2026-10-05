@@ -201,6 +201,7 @@ export type ParentId2 = string | null;
 export type TargetFrames1 = number;
 export type ParentUrl = string | null;
 export type ReferenceUrls = string[];
+export type RemainingBeats = FlowBeat[];
 export type Checklist = string[];
 export type Diagnostics = string[];
 export type Frame = number;
@@ -221,7 +222,9 @@ export interface WebFlow {
   exports?: Exports;
   next_step?: FlowNext | null;
   parent_url?: ParentUrl;
+  preset: FlowRecipe;
   reference_urls?: ReferenceUrls;
+  remaining_beats?: RemainingBeats;
   review?: FlowReviewView | null;
   safe_cut_frame?: SafeCutFrame;
   schema_version: SchemaVersion4;

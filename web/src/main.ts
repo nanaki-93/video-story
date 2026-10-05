@@ -1,8 +1,7 @@
 import "./style.css";
 import { element } from "./dom";
-import { layouts, wireframe } from "./wireframes";
+import { layouts } from "./wireframes";
 import type { PageId } from "./wireframes";
-import { playbackSpike } from "./playback";
 import { api, connect } from "./session";
 import { projectsPage, setupPage, restoreRecents } from "./workspace";
 import { assetsPage, inspectorPage } from "./assets";
@@ -11,28 +10,32 @@ import { previewPage } from "./preview";
 import { audioPage } from "./audio";
 import { rendersPage, settingsPage } from "./production";
 import { releasePage } from "./release";
+import { flowPage } from "./flow";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
 const sidebar = element("aside", { className: "sidebar" });
 sidebar.append(
   element("div", { className: "wordmark", text: "tabi / story studio" }),
-  element("p", { className: "eyebrow", text: "LOCAL WORKSPACE" }),
 );
 const navigation = element("nav");
-navigation.setAttribute("aria-label", "Workspace design pages");
+navigation.setAttribute("aria-label", "Workspace");
+const advanced = element("details", { className: "advanced-nav" });
+advanced.append(element("summary", { text: "Advanced" }));
 const links = new Map<PageId, HTMLAnchorElement>();
 for (const [id, layout] of Object.entries(layouts)) {
   const link = element("a", { text: layout.title });
   link.href = `#${id}`;
-  navigation.append(link);
   links.set(id as PageId, link);
+  if (["flow", "projects"].includes(id)) navigation.append(link);
+  else advanced.append(link);
 }
+navigation.append(advanced);
 sidebar.append(
   navigation,
   element("p", {
     className: "sidebar-note",
-    text: "Local files stay on this Mac.",
+    text: "Files and music stay on this Mac.\nGeneration happens in Google Flow.",
   }),
 );
 const main = element("main", { id: "workspace" });
@@ -45,112 +48,72 @@ document
     event.preventDefault();
     main.focus();
   });
+const pages = {
+  flow: flowPage,
+  projects: projectsPage,
+  setup: setupPage,
+  assets: assetsPage,
+  inspector: inspectorPage,
+  story: () => editorPage("story"),
+  timeline: () => editorPage("timeline"),
+  notebook: () => editorPage("notebook"),
+  preview: previewPage,
+  audio: audioPage,
+  renders: rendersPage,
+  release: releasePage,
+  settings: settingsPage,
+};
 let cleanup: (() => void) | undefined;
-let mode: "spike" | "connected" | undefined;
+let connected = false;
 function navigate() {
-  if (!mode) return;
+  if (!connected) return;
   cleanup?.();
   const requested = location.hash.slice(1);
   const page: PageId = Object.hasOwn(layouts, requested)
     ? (requested as PageId)
-    : mode === "spike"
-      ? "preview"
-      : "projects";
+    : "flow";
   for (const [id, link] of links) {
     if (id === page) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   }
+  if (!["flow", "projects"].includes(page)) advanced.open = true;
   const layout = layouts[page];
   const header = element("header", { className: "page-header" });
   const text = element("div");
   text.append(
-    element("p", {
-      className: "eyebrow",
-      text: "TABI STORY STUDIO / LOCAL WORKSPACE",
-    }),
+    element("p", { className: "eyebrow", text: "TABI STORY STUDIO" }),
     element("h1", { text: layout.title }),
     element("p", { className: "muted", text: layout.subtitle }),
   );
-  header.append(
-    text,
-    element("span", {
-      className: "badge",
-      text:
-        mode === "connected" &&
-        [
-          "settings",
-          "projects",
-          "assets",
-          "inspector",
-          "setup",
-          "story",
-          "timeline",
-          "notebook",
-          "preview",
-          "audio",
-          "renders",
-          "release",
-        ].includes(page)
-          ? "Connected worker"
-          : page === "preview" && mode === "spike"
-            ? "Working playback spike"
-            : "Wireframe",
-    }),
-  );
-  main.replaceChildren(header);
-  const pages = {
-    release: releasePage,
-    renders: rendersPage,
-    settings: settingsPage,
-    audio: audioPage,
-    preview: previewPage,
-    projects: projectsPage,
-    setup: setupPage,
-    assets: assetsPage,
-    inspector: inspectorPage,
-    story: () => editorPage("story"),
-    timeline: () => editorPage("timeline"),
-    notebook: () => editorPage("notebook"),
-  };
-  if (mode === "connected" && Object.hasOwn(pages, page)) {
-    const panel = pages[page as keyof typeof pages]();
-    cleanup = panel.dispose;
-    main.append(panel.root);
-  } else if (page === "preview" && mode === "spike") {
-    const preview = playbackSpike();
-    cleanup = preview.dispose;
-    main.append(preview.root);
-  } else {
-    cleanup = undefined;
-    main.append(wireframe(page));
-  }
+  header.append(text);
+  const panel = pages[page]();
+  cleanup = panel.dispose;
+  main.replaceChildren(header, panel.root);
   document.title = `${layout.title} · Tabi Story Studio`;
 }
-let connectionAttempt = 0;
+let attempt = 0;
 function connectWorkspace() {
-  const attempt = ++connectionAttempt;
+  const current = ++attempt;
   cleanup?.();
-  mode = undefined;
+  connected = false;
   main.replaceChildren(
     element("p", {
-      text: "Connecting to the local worker…",
+      text: "Opening your local workspace…",
       className: "notice",
     }),
   );
   void connect()
-    .then(async (value) => {
-      if (attempt !== connectionAttempt) return;
-      if (value === "connected") {
-        await restoreRecents();
-        const preferences = await api("/settings", "web_settings");
-        document.documentElement.dataset.theme = preferences.preferences.theme;
-      }
-      if (attempt !== connectionAttempt) return;
-      mode = value;
+    .then(async () => {
+      if (current !== attempt) return;
+      await restoreRecents();
+      const settings = await api("/settings", "web_settings");
+      document.documentElement.dataset.theme = settings.preferences.theme;
+      if (current !== attempt) return;
+      connected = true;
       navigate();
     })
-    .catch((error: unknown) => {
-      if (attempt !== connectionAttempt) return;
+    .catch((error) => {
+      if (current !== attempt) return;
       main.replaceChildren(
         element("h1", { text: "Workspace unavailable" }),
         element("p", { text: String(error), className: "notice" }),

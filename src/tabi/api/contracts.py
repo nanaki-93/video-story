@@ -85,6 +85,8 @@ class FlowReviewView(Model):
 class WebFlow(Document):
     document_type: Literal["web_flow"] = "web_flow"
     episodes: list[FlowEpisode]
+    preset: FlowRecipe
+    remaining_beats: list[FlowBeat] = Field(default_factory=list)
     episode: FlowEpisode | None = None
     next_step: FlowNext | None = None
     exports: list[FlowExport] = Field(default_factory=list)

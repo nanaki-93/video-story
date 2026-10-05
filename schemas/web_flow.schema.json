@@ -2223,12 +2223,22 @@
       "default": null,
       "title": "Parent Url"
     },
+    "preset": {
+      "$ref": "#/$defs/FlowRecipe"
+    },
     "reference_urls": {
       "items": {
         "minLength": 1,
         "type": "string"
       },
       "title": "Reference Urls",
+      "type": "array"
+    },
+    "remaining_beats": {
+      "items": {
+        "$ref": "#/$defs/FlowBeat"
+      },
+      "title": "Remaining Beats",
       "type": "array"
     },
     "review": {
@@ -2269,7 +2279,8 @@
   },
   "required": [
     "schema_version",
-    "episodes"
+    "episodes",
+    "preset"
   ],
   "title": "WebFlow",
   "type": "object"
