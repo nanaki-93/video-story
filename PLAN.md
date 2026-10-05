@@ -24,6 +24,13 @@ Tripo Studio are no longer the recommended next trial. SPAR3D is a preliminary c
 audit, not a qualified replacement: its community licence has revenue/registration conditions,
 its Mac support is experimental, and exact weights/dependencies still require review.
 
+The current production target is **30 × 90-second videos per month**, with some new assets
+and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
+is 2,000 Colab compute units monthly; 2,499.4 were available on 5 October. The
+[capacity plan](docs/tasks.md#monthly-production-and-compute-budget) reserves 20% and requires
+measured preparation costs before claiming the workload fits. Reuse assets and render locally;
+the 45 minutes of monthly finished footage are not 45 minutes of cloud compute.
+
 The authorized **5 October Colab/Blender trial** produced one real TripoSR mesh and eight
 local Blender views. [Evidence and licence review](docs/evidence/p01-character-pipeline.json)
 record a **no-go for that candidate**: shallow geometry and lost face/frill/outfit detail.

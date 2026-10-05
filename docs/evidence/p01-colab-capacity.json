@@ -1,0 +1,117 @@
+{
+  "record_type": "capacity_assessment",
+  "status": "entitlement_verified_workload_consumption_unmeasured",
+  "reviewed_at_utc": "2026-10-05T07:49:49Z",
+  "observed_account": {
+    "plan": "Google AI Ultra, 20x tier",
+    "recurring_compute_units_per_month": 2000,
+    "available_compute_units": 2499.4,
+    "active_sessions": 0,
+    "displayed_current_compute_units_per_hour": 0,
+    "runtime_connected": false,
+    "next_grant_date": null,
+    "balance_expiration_dates": null,
+    "excess_balance_origin": "not established",
+    "observed_source": "Signed-in Google One plan-benefits dialog and Colab resource monitor"
+  },
+  "user_workload": {
+    "videos_per_month": 30,
+    "seconds_per_video": 90,
+    "new_assets": "A new combination and some new assets for every video",
+    "new_assets_per_video": null,
+    "finished_seconds_per_month": 2700,
+    "finished_minutes_per_month": 45,
+    "additional_spend_allowed": false
+  },
+  "proposed_budget": {
+    "reserve_fraction": 0.2,
+    "reserve_compute_units": 400,
+    "planned_available_compute_units": 1600,
+    "average_maximum_compute_units_per_video": 53.333333333333336,
+    "reserve_purpose": "Setup, troubleshooting and unexpected retries; proposal, not a Colab limit",
+    "other_colab_workload_compute_units": "unknown; subtract from production allowance if applicable",
+    "recurring_allowance_is_budget_basis": true
+  },
+  "illustrative_scenarios_not_benchmarks": [
+    {
+      "compute_units_per_video": 10,
+      "compute_units_for_30_videos": 300,
+      "within_proposed_1600_unit_budget": true,
+      "within_recurring_2000_unit_allowance": true
+    },
+    {
+      "compute_units_per_video": 25,
+      "compute_units_for_30_videos": 750,
+      "within_proposed_1600_unit_budget": true,
+      "within_recurring_2000_unit_allowance": true
+    },
+    {
+      "compute_units_per_video": 50,
+      "compute_units_for_30_videos": 1500,
+      "within_proposed_1600_unit_budget": true,
+      "within_recurring_2000_unit_allowance": true
+    },
+    {
+      "compute_units_per_video": 70,
+      "compute_units_for_30_videos": 2100,
+      "within_proposed_1600_unit_budget": false,
+      "within_recurring_2000_unit_allowance": false
+    }
+  ],
+  "planned_work_split_not_yet_qualified": {
+    "colab": "Licence-cleared asset generation/preparation in bounded notebook sessions; save and reuse outputs locally",
+    "local_blender": "Reuse the same qualified character and motions, prepare compatible outfit/camera variants and render character frames",
+    "local_video_story": "Assemble the 90-second timeline, continuously scroll scenery, preview and export",
+    "cloud_units_for_local_rendering": 0,
+    "new_combinations": "No cloud regeneration when all selected assets and motions are already compatible and prepared",
+    "current_gap": "No reusable TABI master or automatic outfit/action pipeline is qualified; P01 remains open"
+  },
+  "limits": [
+    "Compute units are not finished-video minutes or a fixed number of generations.",
+    "No GPU was connected for this read-only check and no per-GPU hourly rate was measured.",
+    "No completed-video compute-unit cost has been measured; scenario values are budget tests only.",
+    "The earlier 11.475-second TripoSR inference excludes setup/downloads and failed the character gate; it cannot price a finished episode.",
+    "Current balance is not the monthly grant. No consumption is inferred from the difference between 2500 and 2499.4.",
+    "Google documents variable resource availability; an allowance does not guarantee a specific accelerator or uninterrupted service.",
+    "Colab and Flow/Gemini AI credits are separate; this record concerns Colab compute only.",
+    "Commercial model/asset permissions remain a separate acceptance gate."
+  ],
+  "next_measurement": [
+    "After licence/dependency clearance, record GPU type, displayed hourly rate, before/after balance and full connected time.",
+    "Include environment setup, downloads, successful and failed attempts, previews, idle intervals and restart overhead.",
+    "Separate one-time master/library setup from repeat per-episode asset changes.",
+    "Rehearse a new combination with representative new assets and then an episode using saved assets.",
+    "Record local Blender/video-story time and manual interventions separately from cloud consumption.",
+    "Accept monthly capacity only when measured repeat cost plus amortized setup and a retry reserve fits the 2000-unit grant after any other Colab usage."
+  ],
+  "sources": [
+    {
+      "url": "https://one.google.com/home",
+      "evidence": "Authenticated plan-benefits dialog explicitly lists 2000 Colab compute units per month for this plan."
+    },
+    {
+      "url": "https://colab.research.google.com/",
+      "evidence": "Authenticated resource panel: 2499.4 units available, 0 sessions, no connected runtime."
+    },
+    {
+      "url": "https://support.google.com/googleone/answer/16286513?hl=en-419",
+      "evidence": "Official Ultra help distinguishes plan-dependent 1000/2000 Colab compute units and separate AI products."
+    },
+    {
+      "url": "https://research.google.com/colaboratory/faq.html",
+      "evidence": "Official FAQ explains dynamic limits and monthly Google AI grants; stacked Colab grants may follow different schedules."
+    }
+  ],
+  "local_account_screenshots_not_for_git": [
+    {
+      "path": ".local/p01-character-pipeline/colab-monthly-entitlement-2026-10-05.png",
+      "sha256": "0ec183d4c3041a37c782a52136ca6275c8e380f1642610fca2b1b30de90c888c",
+      "bytes": 79446
+    },
+    {
+      "path": ".local/p01-character-pipeline/colab-balance-2026-10-05.png",
+      "sha256": "ab3c0add1cb08ba1028db61a948fc04b7d0c27c0b44fa9b2107d855dc1852a2e",
+      "bytes": 102677
+    }
+  ]
+}

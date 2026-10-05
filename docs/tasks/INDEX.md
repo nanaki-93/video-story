@@ -11,6 +11,11 @@ tools, installed Blender and existing Google/Colab allowance only. SPAR3D is a p
 candidate for licence/dependency and hardware review; it has not been downloaded or run.
 Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
 
+The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit
+Colab monthly grant against the clarified target of 30 × 90-second videos with new assets.
+The [budget and measurement plan](../tasks.md#monthly-production-and-compute-budget) uses a
+20% reserve; actual end-to-end consumption and local preparation time remain unmeasured.
+
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |

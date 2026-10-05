@@ -620,6 +620,32 @@ or downloaded, no cloud runtime was started, and no service terms were accepted.
 TripoSR no-go report stays unchanged. Verification is the local documentation/link/history
 check and `git diff --check`; application tests are not required for this scope-only update.
 
+## P01 — Colab allowance for 30 monthly videos
+
+5 October 2026. **Account allowance verified; production consumption not yet measured.**
+Marco clarified 30 videos of about 90 seconds monthly, with a new combination and some new
+assets per video. That is 45 minutes of finished footage, not a cloud-runtime estimate.
+
+Read-only inspection of the signed-in Google One plan-benefits dialog confirmed Google AI
+Ultra's **2,000 Colab compute units per month**. Colab's resource monitor showed **2,499.4 units
+available**, zero active sessions and no connected runtime. The balance's additional units,
+individual expiry dates and next deposit date were not established. No GPU was started,
+subscription changed, credit purchased or model downloaded during this check.
+
+[Capacity evidence](evidence/p01-colab-capacity.json) records the observations, public official
+sources, private local screenshot hashes, explicit assumptions and missing measurements. The
+production plan now proposes a 400-unit reserve and 1,600-unit working budget, about 53.33 units
+per episode before subtracting other Colab work. Its 10/25/50/70-unit examples are sensitivity
+scenarios, not benchmarks. Final local Blender/video-story rendering would consume no Colab
+units; generating new assets, retries and environment setup would consume the cloud budget.
+
+This supports testing the existing-entitlement route without a new paid app, but does not
+qualify automatic TABI preparation or guarantee a specific GPU. The next licence-cleared trial
+must record the whole session's consumption and separate one-time setup from recurring new
+assets. P01 remains open and P02–P04 blocked. The first failed candidate's report, preferred
+video and source assets are unchanged. Verification: JSON arithmetic/source-path checks,
+local documentation links and `git diff --check`; no application behavior changed.
+
 ## Next work
 
 P01 remains the production decision: first finish the exact licence/dependency and hardware

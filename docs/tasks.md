@@ -121,6 +121,39 @@ generation and diagnostics. A new user should not need to discover an order amon
 
 ## A bounded proof before more product promises
 
+### Monthly production and compute budget
+
+Marco's current target is **30 videos per month, about 90 seconds each**, with a new combination
+and some new assets for every video: 45 minutes of finished footage monthly. The number and
+complexity of new assets are not yet fixed. The
+[5 October account check](evidence/p01-colab-capacity.json) verified **2,000 Colab compute units
+per month** from the existing Google AI Ultra plan and **2,499.4 units currently available**.
+Use the recurring grant for sustainable planning; the extra balance is not an established
+monthly entitlement. Flow/Gemini credits are separate.
+
+Propose a 400-unit reserve and a 1,600-unit production budget, averaging **53.33 units per
+episode**, including allocated setup and asset-generation costs. Other Colab work must reduce
+that budget. These are planning limits, not measured consumption or implemented app controls.
+At 10/25/50/70 units per episode, 30 episodes would use 300/750/1,500/2,100 units respectively;
+none of these scenarios is a measured forecast.
+
+Keep the qualified character, motions and generated assets locally. Use Colab only for the
+new asset preparation that needs it, then use local Blender and video-story for frame rendering
+and final composition. Local renders consume no Colab units; compatible saved combinations do
+not require cloud regeneration. This proposed split still depends on P01's visual, automation,
+licence and performance gates. The current allowance looks suitable for investigating this
+route, but does not yet prove 30 complete productions per month. Colab is a bounded notebook
+preparation tool, not an assumed always-on backend for the app.
+
+The next licence-cleared trial must measure the accelerator/rate, before/after unit balance
+and full connected time, including setup, downloads, retries and idle intervals. Separate the
+one-time master/library cost from recurring per-episode additions. Rehearse a representative
+new-assets episode and a saved-assets episode; record local render time and hands-on operations
+separately. The rejected TripoSR mesh's 11.475-second inference cannot price a finished video.
+No credit purchase is authorized if the measured workload exceeds the existing allowance.
+
+### Character feasibility proof
+
 P01 is a single feasibility decision with predefined outputs, not an open-ended series of
 90-second repairs. Start with at most two candidate masters and one correction round, using
 zero additional software/service spend and only the existing available compute allowance.
@@ -332,6 +365,7 @@ checks evidence integrity and explicitly reports that production feasibility has
 - Reuse the selected master in a second output without rerunning image-to-3D. Repeat after restarting the tools. Qualify supported cameras and scene geometry, not arbitrary combinations.
 - If the style, automation or hard reuse cases fail, record a no-go and the precise tradeoff. Do not start P02–P04 as though the requirement were solved. Preserve the existing app and original artwork.
 - Keep all models, textures and videos in local project media storage; commit only compact factual evidence and the verifier. No provider credentials or guessed licences in reports.
+- Measure recurring preparation against the monthly production budget above, with one-time setup, failed attempts and other Colab usage accounted for. A fast inference or a large current balance alone cannot establish 30-video monthly capacity.
 
 **Verification command**
 ```sh
