@@ -1,13 +1,11 @@
 import { api, request, sessionPanel } from "./session";
 import type { Documents } from "./contracts";
 import { button, element, field, section } from "./dom";
-import { generationPanel } from "./generation";
 import {
   actionForm,
   choice,
   episodeId,
   input,
-  jsonEditor,
   number,
   prefix,
   projectPage,
@@ -424,33 +422,6 @@ export function settingsPage() {
           "number",
         );
       budget.step = "0.1";
-      const generation = data.preferences.generation;
-      const genMode = choice(
-        [
-          ["false", "Disabled"],
-          ["true", "Enabled for allowlisted workflows"],
-        ],
-        String(generation?.enabled ?? false),
-      );
-      const genEndpoint = input(
-        generation?.endpoint || "http://127.0.0.1:8188",
-      );
-      const genHashes = jsonEditor(generation?.allowed_workflow_hashes || []);
-      const genBudget = input(
-        String((generation?.max_output_bytes ?? 64 * 1024 ** 2) / 1024 ** 2),
-        "number",
-      );
-      const genFields = element("details");
-      genFields.append(
-        element("summary", { text: "Local ComfyUI execution settings" }),
-        element("p", {
-          text: "Allow only manifests you reviewed, including their workflow, local model files and installed nodes. This app does not install models or change custom nodes.",
-        }),
-        field("Local generation", genMode),
-        field("ComfyUI loopback endpoint", genEndpoint),
-        field("Allowed workflow manifest hashes JSON", genHashes),
-        field("Generation import limit (MiB)", genBudget),
-      );
       prefs.append(
         actionForm(
           "Save local preferences",
@@ -459,7 +430,6 @@ export function settingsPage() {
             field("Default export profile", preset),
             field("Default encoder", encoder),
             field("Managed cache target (GiB)", budget),
-            genFields,
           ],
           async () => {
             const result = await api(
@@ -474,14 +444,6 @@ export function settingsPage() {
                   cache_budget_bytes: Math.round(
                     Number(budget.value) * 1024 ** 3,
                   ),
-                  generation: {
-                    enabled: genMode.value === "true",
-                    endpoint: genEndpoint.value,
-                    allowed_workflow_hashes: JSON.parse(genHashes.value),
-                    max_output_bytes: Math.round(
-                      Number(genBudget.value) * 1024 ** 2,
-                    ),
-                  },
                 },
                 expected_revision: data.preferences_saved
                   ? data.preferences.revision
@@ -581,7 +543,7 @@ export function settingsPage() {
       details,
       prune,
     );
-    box.append(health, cache, generationPanel(base, isActive));
+    box.append(health, cache);
   });
   root.append(project.root);
   return {

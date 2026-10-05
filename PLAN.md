@@ -40,7 +40,7 @@ new combinations and some new assets each time. That full target remains unquali
 
 The selected creative comparison is `docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4`.
 Marco calls it the best result so far, with a mouth defect near 10 seconds and later particles.
-It is preserved with its [review history](docs/progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review).
+It is preserved with its [review history](docs/archive/production-progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review).
 The earlier calm-window draft and rejected preparation experiments remain historical evidence.
 Their passing technical checks do not override Marco's visual feedback.
 

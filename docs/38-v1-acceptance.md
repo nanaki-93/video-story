@@ -25,6 +25,12 @@ provider commercial rights. Café/walking, Safari's new workflow and Marco's usa
 are pending. Thirty monthly videos and almost entirely automatic preparation are not qualified.
 The preserved best Flow draft does not close these gates.
 
+F13 retires the unqualified ComfyUI execution bridge and the replaced browser prototype.
+Legacy data contracts and the working layered renderer remain. Bulk source variants are
+preserved locally with hashes and excluded from the tracked tree; previous proposals and
+character trial history are archived. The [cleanup evidence](evidence/f13-repository-cleanup.json)
+records the post-cleanup gates and exact source-preservation check.
+
 The original V1 results below describe that earlier milestone, not current test totals.
 
 Review date: 4 October 2026 (Asia/Manila). All independently implementable software in

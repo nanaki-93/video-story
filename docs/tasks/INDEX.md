@@ -1,6 +1,6 @@
 # Active task index
 
-The current implementation queue is **F00–F12** in [the Flow plan](../tasks.md).
+The current implementation queue is **F00–F13** in [the Flow plan](../tasks.md).
 One train/Tokyo/90-second workflow comes first. Implement and verify one step, then commit it.
 The older P/T queue below is historical and is not a second implementation queue.
 
@@ -20,6 +20,8 @@ The older P/T queue below is historical and is not a second implementation queue
 | [F11](../tasks.md#f11--prepare-a-youtube-delivery-with-existing-review-rules) | Prepare YouTube delivery | complete |
 | [F12](../tasks.md#f12--verify-repeatable-production-and-document-the-remaining-automation-gap) | Verify full production workflow | engineering complete; creative/control gates open |
 
+| [F13](../tasks.md#f13--retire-unused-routes-and-reduce-the-tracked-repository) | Retire obsolete code and untrack preserved bulk media | complete |
+
 ## Remaining acceptance
 
 The guided assisted workflow is implemented. [F12 evidence](../evidence/f12-flow-workflow.json)
@@ -34,7 +36,7 @@ full-length Chrome playback from real creative approval.
   [F00](../evidence/f00-flow-execution.json) establishes only the assisted handoff.
 
 The selected best draft and its mouth/particle defects remain in the
-[feedback record](../progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review).
+[feedback record](../archive/production-progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review).
 The [Tokyo review](../evidence/p01-flow-tokyo-001-review.json) retains the separate timestamp-gap
 and invented-prop findings. Neither is a production-ready release.
 

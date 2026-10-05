@@ -1,19 +1,22 @@
 # Tabi Story Studio
 
-A local web app for building Tabi music videos from artwork, prepared animation and finished
-music. Python and FFmpeg own media processing; the browser edits local documents and plays
-rendered previews. Music creation and publishing remain separate workflows.
+A local app for reviewed TABI videos with a simple **Setup → Opening → Continue → Finish**
+workflow. Start from the train/Tokyo/90-second preset, copy the next focused prompt to Google
+Flow, import and review each native result, then export with optional local music.
 
-The V1 software is implemented and tested. Real Tabi artwork preparation, original music and
-creative approval remain open. The next priority is a simpler **import → scene → music →
-preview → export** workflow, currently planned rather than implemented.
+Python owns timing, media, retries and delivery; the browser guides the work. Progress survives
+reopening, and rejected clips do not enter the final video. YouTube delivery uses the existing
+rights/creative/metadata reviews and public/private bundle; publishing stays manual.
+
+The assisted workflow is implemented and tested. Real train/outfit variation quality,
+production rights and unattended Flow control remain open. No new paid tools or top-ups are
+part of this route. Existing layered projects remain accessible under Advanced.
 
 | Start here | |
 | --- | --- |
-| Use the current app | [Installation](docs/32-installation.md), [first scene from an image](docs/37-operations.md#first-scene-from-an-existing-image), [operations](docs/37-operations.md) |
-| Review the proposed improvements | [Guided import and scene plan](docs/tasks.md) |
+| Make a video | [Installation](docs/32-installation.md), [90-second Flow workflow](docs/37-operations.md#make-a-90-second-train-video) |
 | Continue development | [Product plan](PLAN.md), [agent rules](AGENTS.md), [active tasks](docs/tasks/INDEX.md) |
-| Find evidence or technical details | [Documentation guide](docs/README.md), [current progress](docs/progress.md), [V1 acceptance](docs/38-v1-acceptance.md) |
+| Review status and evidence | [Progress](docs/progress.md), [acceptance](docs/38-v1-acceptance.md), [documentation guide](docs/README.md) |
 
 ## Run from a development checkout
 
@@ -84,7 +87,10 @@ Rendering caches use each project's `.cache/tabi-v1`; global `cache_root` stores
 
 The [source audit](docs/09-implementation-review.md) and [hash inventory](docs/asset-inventory.json)
 record the supplied media and missing preparation. No import or technical test grants artistic
-or publication approval. Local MP4 sources are deliberately absent from a fresh checkout.
+or publication approval. Local MP4 sources and bulk preparation variants are deliberately absent from a fresh checkout.
+The [media guide](docs/assets/README.md) and [hash inventory](docs/evidence/f13-local-media-inventory.json)
+record preserved local files. Selected static references stay tracked; production media belongs
+in backed-up local project storage. Existing Git history has not been rewritten.
 
 Never commit MP4s, including source clips and exports, in any letter case. Keep production
 media and backups in local project storage. Do not delete source art when clearing caches.

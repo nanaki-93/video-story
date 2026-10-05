@@ -3,7 +3,8 @@
 Historical T25 evidence: at this checkpoint the shell had twelve design pages, eleven of
 which were wireframes. T27–T32 subsequently implemented the product screens. Use the
 [current UI reference](05-webapp.md) and [operations](37-operations.md) for normal work.
-The standalone playback experiment below remains available for bounded diagnostics.
+The standalone playback experiment was removed in F13 after the authenticated production
+player replaced it. The commands and screenshots below are historical evidence.
 
 ## Build and run
 

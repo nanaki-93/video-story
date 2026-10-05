@@ -229,8 +229,9 @@ the first save when `preferences_saved` is false. Tool requests contain `ffmpeg`
 previous bytes are backed up. Environment overrides still take precedence after a restart.
 
 Existing [compile/frame/preview/snapshot](15-preview-workflow.md), [audio](16-audio.md),
-[jobs](19-jobs.md), [cache](21-cache-storage.md), [release](23-release-preparation.md) and
-[generation](35-local-generation.md) commands complete the headless workflow. Production
+[jobs](19-jobs.md), [cache](21-cache-storage.md) and [release](23-release-preparation.md)
+commands complete the Advanced headless workflow. Use `tabi flow --help` for the guided route.
+The optional ComfyUI commands have been retired. Production
 `snapshot review` returns a **new** snapshot SHA; submit that reviewed SHA, not the earlier draft.
 
 ## Troubleshooting and recovery
@@ -250,7 +251,7 @@ Existing [compile/frame/preview/snapshot](15-preview-workflow.md), [audio](16-au
 | Audio over full scale or duration conflict | Lower gain or explicitly edit trims/placements; preview/listen again. Extend the story explicitly if needed. |
 | Output destination already exists | Choose a new output name. Final files are published only after verification and are never silently clobbered. |
 | Backup cannot restore | Preserve the original backup, inspect its manifest/hash error and create a fresh complete copy. Restore always targets a new folder. |
-| Optional generation offline | Normal rendering still works. Inspect the configured loopback provider and allowlisted versions; no automatic model download is required. |
+| Flow handoff unavailable | Save progress. Reopen the exact accepted parent in Flow; reconcile any pending result before another request. There is no automatic paid API fallback. |
 
 After an interrupted CLI render:
 

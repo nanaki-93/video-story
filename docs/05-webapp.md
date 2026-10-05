@@ -4,23 +4,32 @@ The implemented UI uses TypeScript/Vite served by FastAPI on the same authentica
 origin. Python owns authoring, compatibility, timelines, audio, rendering and saved documents.
 The browser displays renderer-produced proxies/stills and sends guarded edits.
 
-## Current screens
+## Normal workflow
 
-| Current destination | Implemented behavior / guide |
+Navigation contains **Create video** and **Projects**, with technical tools under Advanced.
+The Python-provided train/Tokyo/90-second preset and next action guide the work:
+
+| Step | Behavior |
 | --- | --- |
-| Projects, New episode | Local folders, recent projects, saved episodes and explicit setup — [guide](26-project-workflows.md) |
-| Assets, Asset inspector | Import, inspect, new versions, still-template creation, metadata and explicit approval — [guide](26-project-workflows.md) |
-| Story, Timeline, Continuity notebook | Shared scene/action document, semantic edits and continuity — [guide](27-editor.md) |
-| Audio | Ordered tracks, sample edits, auditions and factual release metadata — [guide](29-audio-editor.md) |
-| Preview | Rendered proxies, stale detection and exact frame PNGs — [guide](28-preview.md) |
-| Renders, Settings | Frozen export plans, durable queue, recovery, tool settings and cache — [guide](30-render-queue.md) |
-| Release | Public/private preparation, manual reviews and backup/restore — [guide](31-release-and-backups.md) |
+| Setup | Title, preset, optional scene changes and a current observed allowance/cost |
+| Opening | Import stable reference, prepare/copy prompt, open Flow and import the native result |
+| Continue | Watch candidate/join, confirm actual ending facts, accept or retry one focused defect |
+| Finish | Exact verified export, optional continuous local WAV, full playback and YouTube delivery |
 
-The twelve navigation entries are useful tools but do not form a clear beginner journey.
-The [new workflow plan](tasks.md) proposes guided asset import, a visual scene builder and
-standard defaults. That proposal supersedes the original navigation design; it is not yet an
-implemented UI. The [first-scene walkthrough](37-operations.md#first-scene-from-an-existing-image)
-uses controls available today.
+Saved progress resumes the same attempt after reload. Unknown external outcomes need
+reconciliation before another submission. Only accepted descendants advance progress. New
+variation reuses stable references/recipe while starting a fresh opening and review chain.
+
+Generation is assisted; the installed app does not automate Flow's website. The
+[operations guide](37-operations.md#make-a-90-second-train-video) describes actual controls;
+[F12 evidence](evidence/f12-flow-workflow.json) separates engineering from real creative acceptance.
+
+## Advanced tools
+
+Existing project/asset import, still templates, layered scene/action editing, audio auditions,
+preview, render jobs, cache, release and backup remain available for prior projects. See
+[Advanced operations](37-operations.md#produce-an-advanced-layered-episode). The old ComfyUI
+execution panel and standalone playback experiment are removed; their documents are historical.
 
 ## Interaction constraints to preserve
 

@@ -1,0 +1,52 @@
+{
+  "retired_api": {
+    "GET /generation": 404,
+    "POST /generation/submit with JSON": 405,
+    "GET /flow on opened project": 200
+  },
+  "cli_flow_available": true,
+  "cli_generation_removed": true,
+  "wheel_source_modules": 110,
+  "wheel_modules_match_source": true,
+  "retired_modules_absent": true,
+  "banned_distribution_files": 0,
+  "tracked_mp4s": 0,
+  "preserved_local_media": 296,
+  "archived_history_unchanged_except_relative_links": true,
+  "tracked_bytes_before": 873971836,
+  "tracked_bytes_after_existing_files": 57633129,
+  "task_id": "F13",
+  "review_date": "2026-10-06",
+  "engineering_status": "passed",
+  "generation_mode": "assisted Flow; no external generation or credits used",
+  "gates": {
+    "make check": "319 passed / 74 media skipped; Ruff/format and 68 schemas pass",
+    "make web-check": "7 passed; TypeScript, formatting and contracts pass",
+    "make web-build": "passed; existing bundled-validator size warning",
+    "make package": "passed; 110 Python module bytes match source; retired modules absent; no MP4/font/runtime binaries",
+    "make test-media": "73 passed / 1 optional private Tokyo fixture skipped in 264.27s; Tokyo was separately verified in F12"
+  },
+  "target_mac_ui": {
+    "normal_navigation": "Create video / Projects with Advanced collapsed",
+    "settings": "Observed Chrome Settings has tools/cache/preferences; no local generator endpoint, workflow or execution controls",
+    "source_qa_only": "Synthetic fixtures; no settings changed or new generation"
+  },
+  "media_policy": "296 bulk variants/sequences removed from index only. Every local path, size and SHA-256 is unchanged. Selected static TABI/train references remain tracked. Back up local sources separately.",
+  "history_policy": "Existing Git history was not rewritten and still contains prior large assets. Tracked-tree reduction does not reduce local artwork or old Git history disk usage.",
+  "archives": [
+    "docs/archive/pre-flow-plan.md",
+    "docs/archive/production-progress.md",
+    "docs/archive/local-generation.md"
+  ],
+  "preserved_services": [
+    "layered renderer/compiler",
+    "continuous audio mixer",
+    "owned jobs and recovery",
+    "release/backup services",
+    "strict legacy document and preference schemas"
+  ],
+  "remaining_acceptance": "F12 real train/setting/outfit visual/listening review, source rights, observed human effort, cafe/walking, Safari/usability and unattended control remain open.",
+  "tracked_bytes_after": 57887558,
+  "tracked_MiB_before": 833.48,
+  "tracked_MiB_after": 55.21
+}

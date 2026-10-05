@@ -17,3 +17,11 @@ build/
 dist/
 node_modules/
 assets-source/
+
+# Bulk preparation sources stay local; hashes are recorded in docs/evidence/f13-local-media-inventory.json.
+docs/assets/tabi-assets/train-actions/breath/
+docs/assets/tabi-assets/train-actions/drink/
+docs/assets/tabi-assets/train-actions/walking/
+docs/assets/tabi-assets/outfits/
+docs/assets/tabi-assets/emotions/
+docs/assets/scenario/tokyo-scenario/

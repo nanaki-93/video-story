@@ -13,7 +13,6 @@ from tabi.cli.backup import add_backup_commands, run_backup_command
 from tabi.cli.cache import add_cache_commands, run_cache_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
 from tabi.cli.flow import add_flow_commands, run_flow_command
-from tabi.cli.generation import add_generation_commands, run_generation_command
 from tabi.cli.jobs import add_job_commands, run_job_command
 from tabi.cli.logging import configure_logging
 from tabi.cli.preferences import add_preferences_commands, run_preferences_command
@@ -49,7 +48,6 @@ def main(argv: list[str] | None = None) -> int:
     add_flow_commands(commands)
     add_job_commands(commands)
     add_release_commands(commands)
-    add_generation_commands(commands)
     add_preferences_commands(commands)
     web = commands.add_parser("web", help="Launch the owned, authenticated local web workspace")
     web.add_argument("--root", action="append", default=[], metavar="ID=PATH")
@@ -197,12 +195,6 @@ def main(argv: list[str] | None = None) -> int:
             return run_flow_command(args, settings)
         except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
             logger.error("flow_operation_failed: %s", error)
-            return 4
-    if args.command == "generation":
-        try:
-            return run_generation_command(args, settings)
-        except (ValueError, OSError, ToolError) as error:
-            logger.error("generation_operation_failed: %s", error)
             return 4
     if args.command == "web":
         from tabi.api.launcher import launch
