@@ -2,7 +2,7 @@
 
 The current implementation queue is **F00–F13** in [the Flow plan](../tasks.md).
 One train/Tokyo/90-second workflow comes first. Implement and verify one step, then commit it.
-The older P/T queue below is historical and is not a second implementation queue.
+The archived P/T plans are historical and are not a second implementation queue.
 
 | Task | Outcome | Status |
 | --- | --- | --- |
@@ -19,7 +19,6 @@ The older P/T queue below is historical and is not a second implementation queue
 | [F10](../tasks.md#f10--present-setup-opening-continue-and-finish-as-the-normal-ui) | Guide the app workflow | complete |
 | [F11](../tasks.md#f11--prepare-a-youtube-delivery-with-existing-review-rules) | Prepare YouTube delivery | complete |
 | [F12](../tasks.md#f12--verify-repeatable-production-and-document-the-remaining-automation-gap) | Verify full production workflow | engineering complete; creative/control gates open |
-
 | [F13](../tasks.md#f13--retire-unused-routes-and-reduce-the-tracked-repository) | Retire obsolete code and untrack preserved bulk media | complete |
 
 ## Remaining acceptance
