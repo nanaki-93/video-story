@@ -29,16 +29,18 @@ reference did not fix the rear, and approximate multiview shape guidance distort
 P01 remains the next production decision. T40 is independent engineering work,
 but import improvements cannot establish that character creation works.
 
-The subsequent [source review](evidence/p01-next-route-review.json) selects **TRELLIS 1
-mesh-only preflight** as the next investigation. This is a conditional candidate, not a
-qualified production route or an extension of the closed SPAR3D trial. No additional model
-weights were downloaded and no runtime was started during the check.
+Marco then selected **Blender + Colab without other external tools if possible**. The current
+[native master study](#next-checkpoint--native-blender-master) uses Blender geometry, materials
+and baked motion, with Colab as an optional renderer of the saved project. The earlier
+[TRELLIS source review](evidence/p01-next-route-review.json) remains historical evidence;
+that preflight is deferred under the latest tool choice. No new AI model is selected.
 
-**Recommended investigation:** create one 3D TABI master with assisted image-to-3D and automatic
-rigging, reuse it for every animation, and test an illustration-like render in Blender. This is
-a candidate for meeting the automation requirement, not a promise that conversion preserves the
-current artwork. Whether this visual approach is acceptable is still a decision for Marco.
-Do not replace the approved/reference look merely to make an auto-rigger pass.
+**Current investigation:** author one native Blender TABI draft against the existing references,
+save its controls and motions, and reopen the same file for local/cloud rendering. This avoids
+new image-to-3D dependencies but introduces one-time model authoring. Codex performs that setup;
+do not call it automatic reconstruction, assume arbitrary outfits/actions become automatic, or
+expect Marco to take over specialist rigging. Whether the resulting style preserves enough of
+the supplied artwork remains a visual decision. Do not replace the reference look to pass a test.
 
 The setup proof must include TABI's actual frills, headphones, head/body proportions, tail,
 face and clothing. Generic humanoid demonstrations do not settle it. A fixed model removes
@@ -61,7 +63,8 @@ are untested with TABI.
 | TripoSR on Colab, tested diagnostic | Generate one persistent mesh without a paid image-to-3D service | [Actual trial and licence record](evidence/p01-character-pipeline.json): MIT code/weights, CPU mesh extraction with scikit-image, eight Blender views. First candidate rejected for shallow geometry and lost TABI details; no rig or production workflow qualified. |
 | SPAR3D, second tested diagnostic | Generate one mesh on Colab and inspect it in local Blender | [Measured trial](evidence/p01-spar3d-trial.json): exact code/model/dependency route reviewed under user-confirmed revenue eligibility and commercial registration. Mesh generated in 7.666 seconds after loading; eight unedited views fail depth/anatomy checks. No rig, new garment or production workflow qualified. |
 | SPAR3D, bounded correction completed | Test a new volumetric reference with and without shape guidance from eight generated views | [Paired correction](evidence/p01-turnaround-trial.json): same front image/seed; image-only front recognizable but rear wrong; point-cloud prior adds depth but merges/distorts gills and tail/body. Sixteen real Blender views; both no-go. Whole-session displayed delta 0.37 units; runtime released. Generated references remain useful drafts. |
-| TRELLIS 1, conditional next preflight | Use actual image features from several existing views and export a native vertex-colour mesh | [Pinned source review](evidence/p01-next-route-review.json): MIT main code/weights and Apache FlexiCubes at the reviewed revisions. Must isolate mesh-only imports and DINOv2 backbone, excluding non-commercial Gaussian/radiance-field/Cell-DINO paths. Official multi-image sampling is experimental; no TABI result, runtime clearance or performance proof yet. |
+| TRELLIS 1, deferred | Previously proposed multiview coloured-mesh route | [Pinned source review](evidence/p01-next-route-review.json) remains available. Not selected under the latest Blender/Colab-only direction; no weights or inference run. |
+| Native Blender study, current | Authored reusable geometry and baked motion; Colab renders the saved Blender file | [Measured trial](evidence/p01-blender-native-trial.json): 15-second local video and three cloud poses from the identical master; 0.37 displayed units, runtime inactive. No external AI model or paid add-on. Likeness and the full walking/contact/garment/reuse/app gates remain open. |
 | Meshy / Tripo Studio, previous paid candidates | Historical alternatives | Excluded from the current route by the no-additional-paid-apps preference. No paid trial or subscription authorized. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
 | video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
@@ -391,7 +394,41 @@ No rig, mesh repair or motion test followed. This is not evidence against every 
 multiview method, but it ends this bounded route. Further model testing requires an explicit
 revised strategy and exact commercial-licence/dependency review; do not keep rerolling SPAR3D.
 
-### Next checkpoint — TRELLIS 1 mesh-only preflight
+### Next checkpoint — native Blender master
+
+Status: [bounded rendering trial completed](evidence/p01-blender-native-trial.json);
+likeness review is next. Technical completion does not pass P01 or approve this new character.
+
+Marco explicitly requested trying Blender and Colab without other external tools. The bounded
+native study under ignored `.local/p01-blender-native-v1/` authors a new, clearly labeled 3D draft
+against the existing illustrated and eight-view references. It must preserve the preferred
+90-second video and must not be mistaken for a faithful automatic conversion.
+
+1. Save one self-contained `.blend` with six fixed gills, native materials, one pair of arms,
+   a connected head/collar arrangement, planted feet, and baked breathing/head-turn/sway/deep-breath
+   channels. Produce a silent 15-second local motion study and eight transparent character views.
+2. Reopen the saved master with automatic script execution disabled. Check all frames for camera
+   margins and rigid gill attachments, verify actual video duration/decode, and compare the rendered
+   anatomy/likeness against supplied artwork. Geometric checks do not prove artistic correctness.
+3. Package that exact master and an explicit render script for a token-free, bounded Colab check
+   using official checksum-verified Blender only. Record setup failures, runtime, resource balance
+   and download integrity. Local EEVEE and cloud Cycles are separate rendering configurations;
+   three cloud frames would establish portability, not monthly throughput or identical pixels.
+4. Obtain a likeness decision before extending this master. Drinking with hand/cup contact,
+   walking, a true second garment, café reuse, continuous 90-second rehearsal and app-driven reuse
+   remain mandatory. P01 stays open and P02–P04 stay blocked. Record the authored setup burden;
+   a simple local render command is not evidence that new assets or normal app production are solved.
+
+Save compact evidence in `docs/evidence/p01-blender-native-trial.json` and a labeled comparison
+in `docs/evidence/p01-blender-native-comparison.jpg`. Reuse the existing evidence verifier with
+that new report; keep prior model reports immutable. Local scripts/notebook, `.blend`, video,
+official licence/checksum snapshots and render logs remain in the ignored trial folder.
+
+<a id="next-checkpoint--trellis-1-mesh-only-preflight"></a>
+
+### Deferred checkpoint — TRELLIS 1 mesh-only preflight
+
+This earlier investigation is deferred by Marco's subsequent Blender/Colab-only choice.
 
 The [5 October source review](evidence/p01-next-route-review.json) pins TRELLIS code
 `442aa1e1afb9014e80681d3bf604e8d728a86ee7`, weights metadata
@@ -428,6 +465,7 @@ An authored master remains a setup tradeoff if this route fails, not an assumed 
 Marco's nearly automatic requirement.
 
 **Target files**
+- `docs/evidence/p01-blender-native-trial.json` (new), `docs/evidence/p01-blender-native-comparison.jpg` (new) — separate native-study evidence; source and media remain in ignored `.local/p01-blender-native-v1/`.
 - `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.
 - `docs/evidence/p01-character-comparison.jpg` (new) — supplied reference and actual rendered candidate, clearly labeled.
 - `scripts/verify_character_pipeline.py` (new) — verify recorded media identity, dimensions, frame counts and reuse evidence; never grant visual approval.
@@ -450,6 +488,7 @@ Marco's nearly automatic requirement.
 **Verification command**
 ```sh
 .venv/bin/python scripts/verify_character_pipeline.py --report docs/evidence/p01-character-pipeline.json
+.venv/bin/python scripts/verify_character_pipeline.py --report docs/evidence/p01-blender-native-trial.json
 git diff --check
 ```
 Also record Marco's visual decision and the observed operations needed to reproduce the second

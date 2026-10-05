@@ -1,0 +1,543 @@
+{
+  "schema_version": "1.0",
+  "task_id": "P01",
+  "review_date": "2026-10-05",
+  "decision": "pending",
+  "decision_scope": "Native Blender authored-master motion study and Colab portability only; full production gate remains open.",
+  "production_ready": false,
+  "user_visual_approval": "pending",
+  "summary": "A self-contained authored Blender master produced a 15-second local EEVEE video and three Cycles/CUDA poses in Colab using the identical master hash. The simplified draft differs from the supplied illustration. This proves bounded saved-file rendering, not automatic reference reconstruction, approved TABI likeness, hard actions or an app-driven monthly workflow.",
+  "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b",
+  "artifacts": [
+    {
+      "path": ".local/p01-blender-native-v1/TABI-native-Blender-study.blend",
+      "sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b",
+      "kind": "file",
+      "role": "master"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/TABI-Blender-native-15s-DRAFT.mp4",
+      "sha256": "f1528dd15b77ff98009d740811fcec27d1a2c6f7c771d83e4c8ed9eb61720778",
+      "kind": "video",
+      "role": "local_native_motion_study",
+      "width": 960,
+      "height": 540,
+      "frames": 360,
+      "fps": "24/1",
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/build_trial.py",
+      "sha256": "bf64b6a9603b2f43d903ce142fbe6ae5a3719e46998427091aee1bcd04603e7a",
+      "kind": "file",
+      "role": "build_trial.py"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/render_trial.py",
+      "sha256": "1066a44ed91eaaf7511ea212f2a347d052df759972bcaa295a4ff9ecda652f61",
+      "kind": "file",
+      "role": "render_trial.py"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/prepare_colab.py",
+      "sha256": "c48ccc6470cac5bbbf108bece19806d5ff8ded9fc19527663b4e33783b54ae4c",
+      "kind": "file",
+      "role": "prepare_colab.py"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/TABI-Blender-only-portability.ipynb",
+      "sha256": "7ce913b6be7eb49565252ffbf4a268da8d988340d17a762827306f9cbed2bb5c",
+      "kind": "file",
+      "role": "TABI-Blender-only-portability.ipynb"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/TABI-Blender-native-input.zip",
+      "sha256": "863411c99bd9bca5ceea258562ed12d8c1f963057e4911e2c1c31d944312f878",
+      "kind": "file",
+      "role": "TABI-Blender-native-input.zip"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/TABI-Blender-cloud-result.zip",
+      "sha256": "d026d91ff9611d9bf9d7de4e9679df5b8ab8fdd4678c3565e26dc3f07498add5",
+      "kind": "file",
+      "role": "TABI-Blender-cloud-result.zip"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/input-manifest.json",
+      "sha256": "0ad9db59c4a0fbb5cc150404adb777b0c3bd780efdd3f6d583d90a789227fdd7",
+      "kind": "file",
+      "role": "input-manifest.json"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/build-report.json",
+      "sha256": "a0b0f368858d9f74df41a14f338f5e4a24e6410fe805bda3d4eb8a60638b8239",
+      "kind": "file",
+      "role": "build-report.json"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/audit-report.json",
+      "sha256": "6809200258c38754885758e8eb05fc84ce6cf3802a2ccc78947e548d84fce0d4",
+      "kind": "file",
+      "role": "audit-report.json"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/review-report.json",
+      "sha256": "f056aa2d9ce5a2dc03fdf62db49a6b9abe651de1374e42d9a82af405f3e3d7d8",
+      "kind": "file",
+      "role": "review-report.json"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/clip-report.json",
+      "sha256": "87d6455ab98612f3e9294d38297ce348cd411aaded46ed63d13ae97b5ca10526",
+      "kind": "file",
+      "role": "clip-report.json"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/video-verification.json",
+      "sha256": "10a1b0dc92eac9990c137ead7aab179b30c26e0dbbf71261961e2ee2c65423e9",
+      "kind": "file",
+      "role": "video-verification.json"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/session-observations.json",
+      "sha256": "d8a32244d9478daed455675b257dc369f9b0091e1cb29de28257728fe3d6da4e",
+      "kind": "file",
+      "role": "session-observations.json"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/START-HERE.txt",
+      "sha256": "0781b2b3b8efa138d29c0af09f81e73a1e89e6d7c59cd9c1eab034bf57eb9061",
+      "kind": "file",
+      "role": "START-HERE.txt"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/GPL-3.0-or-later.txt",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "kind": "file",
+      "role": "GPL-3.0-or-later.txt"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/blender-license.html",
+      "sha256": "5fc0d9f9840c93e989485d46aed0a6043e18a12440ba4cb1e2f3085f90662063",
+      "kind": "file",
+      "role": "blender-license.html"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/blender-5.2.2.sha256",
+      "sha256": "1b49426816930c73a2b55a59044d699141198e756ed4749bbeba4d38dd3597be",
+      "kind": "file",
+      "role": "blender-5.2.2.sha256"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/build.log",
+      "sha256": "4ad4b8dbdcc3cffa81e9bc8701dcd7bebc3f0a72a2e942025a1f3a2f9ddee3b2",
+      "kind": "file",
+      "role": "local_execution_log"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/audit.log",
+      "sha256": "7ef0810d15087ce5ec22cdcbbf002e0b4ee1907ac651828a39f7b09f41b09a01",
+      "kind": "file",
+      "role": "local_execution_log"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/review.log",
+      "sha256": "97912b2276772d6ad12ee46f056fe10765cabd3ea0d1a201068d259a35599f6f",
+      "kind": "file",
+      "role": "local_execution_log"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/clip.log",
+      "sha256": "ff94238c2065fd0e9f4a60cb644b4ac8fb33f8942a376d314fdedab3dd7f7cb5",
+      "kind": "file",
+      "role": "local_execution_log"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/cloud-deep-breath.png",
+      "sha256": "77931ecaadd0bbf9171436ecba1f10e1cf13bd7e97e47f588135a52656dd3ff6",
+      "kind": "image",
+      "role": "downloaded_cloud_evidence",
+      "width": 960,
+      "height": 540,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/cloud-look.png",
+      "sha256": "be25acac6f91a00b176c39f6f0fdbc6cecfab5cf3e385fd0676fdd4ebf4350dc",
+      "kind": "image",
+      "role": "downloaded_cloud_evidence",
+      "width": 960,
+      "height": 540,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/cloud-render.log",
+      "sha256": "19cac3b37723fb9a063794276859a389df70b48e2362d93eeca36b61f2aa8c25",
+      "kind": "file",
+      "role": "downloaded_cloud_evidence"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/cloud-report.json",
+      "sha256": "1e73928c0e3805b5003401a949c67af71b081182e3f572592d3772bdc5040198",
+      "kind": "file",
+      "role": "downloaded_cloud_evidence"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/cloud-start.png",
+      "sha256": "6017aec58f78700aeed6efededf4ec82fa44ec1883cd7dd4a664e8b80c8c6d29",
+      "kind": "image",
+      "role": "downloaded_cloud_evidence",
+      "width": 960,
+      "height": 540,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/input-manifest.json",
+      "sha256": "8053517013599058212d5877423cc2e0c7f074fdd4624ce7daae57cdef1953fc",
+      "kind": "file",
+      "role": "downloaded_cloud_evidence"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/result-manifest.json",
+      "sha256": "b4ca66648d2f25718cc2d344e3bd0486b500d99c87c0c3d40a87435f10c370ba",
+      "kind": "file",
+      "role": "downloaded_cloud_evidence"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/session-end.json",
+      "sha256": "4d1d0435ea85a63ea7fdcb4c4dc2de05f7f05c525a5237e42f5982fe07ff621f",
+      "kind": "file",
+      "role": "downloaded_cloud_evidence"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/session-start.json",
+      "sha256": "1c64d28bb8491121eb3dc9374c26e0b34c613a747f58a0ea27edf2b08398815b",
+      "kind": "file",
+      "role": "downloaded_cloud_evidence"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/cloud-result/setup-report.json",
+      "sha256": "e24189c7b32e249bbb667b5b7af6d25f1c14e395fe51a8d7dbc11f9a596869be",
+      "kind": "file",
+      "role": "downloaded_cloud_evidence"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-000.png",
+      "sha256": "69ff9a8714592fb8430a7a0648e67a7869c390395105de8e4df45532be87c99e",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-045.png",
+      "sha256": "7d8339372df022f4bc407d7e4fddae9ff8eadcabcead5077caf5595953a8cd37",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-090.png",
+      "sha256": "8d63d36a33c4e0645fd13110da20603117244355e0d8322251f73625628f3ac5",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-135.png",
+      "sha256": "2b22b4770099139eac8bc44273107e8540f7752d4cf04bd61496242a3e821095",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-180.png",
+      "sha256": "f45338799cf84eb51df0946a2799f89fb965a86c1c474fcbdd9ab9f4d0ee4c08",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-225.png",
+      "sha256": "8e714295bc546ba374bafdd0154ee24646ee34b7a2e56a396f73ab5b82a7cbec",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-270.png",
+      "sha256": "53a2b410aef8ea694946f46b7146c9576e5bd024ea7a536b5cf0da595cf49f71",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/character-315.png",
+      "sha256": "f0a17e38972a21cd1f182bf68f70b02ebcd74f8d9ae44762e2b3848db2101f1f",
+      "kind": "image",
+      "role": "native_eight_view_review",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/train-start.png",
+      "sha256": "3a403cabe256368497b9081c127ee6c69655e302f2ba46e74a7a909f26ca97b5",
+      "kind": "image",
+      "role": "native_visual_review",
+      "width": 960,
+      "height": 540,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/train-look.png",
+      "sha256": "a60f042441cdbca4bdd5884fdfa0d4a157dc3ab533f0bda4239c92ef8836c5aa",
+      "kind": "image",
+      "role": "native_visual_review",
+      "width": 960,
+      "height": 540,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/train-deep-breath.png",
+      "sha256": "3905831458bb7386531052eef65eaab97840d56485a446e5b479faf2898d6534",
+      "kind": "image",
+      "role": "native_visual_review",
+      "width": 960,
+      "height": 540,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/motion-review.jpg",
+      "sha256": "0ea44694afe4da179fe8db895920ca38d04a40f6416e68e5a34b4af9605c6731",
+      "kind": "image",
+      "role": "native_visual_review",
+      "width": 1440,
+      "height": 2940,
+      "master_sha256": "9c72f0e710da838b8daab5a56bf81b0e5e00bfc5562e4077bee21b17933be66b"
+    },
+    {
+      "path": ".local/p01-blender-native-v1/colab-result-saved.png",
+      "sha256": "d6da79c52a7d1b4dd4bc96b3d3a7a1b137266b13ab073b39614b47943efdfb3b",
+      "kind": "image",
+      "role": "colab_ui_evidence",
+      "width": 1512,
+      "height": 684
+    },
+    {
+      "path": ".local/p01-blender-native-v1/colab-runtime-released.png",
+      "sha256": "d365b8de8d98cdf35d84f3619f4f89d9b74464b59078663ae3cd5b4725cd7454",
+      "kind": "image",
+      "role": "colab_ui_evidence",
+      "width": 1512,
+      "height": 684
+    },
+    {
+      "path": "docs/evidence/p01-blender-native-comparison.jpg",
+      "sha256": "506f0d381d12ab906b8d99893a43d6ed095f28e6c0df86658424d7dc119c7044",
+      "kind": "image",
+      "role": "reference_comparison",
+      "width": 1600,
+      "height": 1240
+    },
+    {
+      "path": "docs/assets/tabi-assets/train-actions/06-looking-out-window.png",
+      "sha256": "2aec9990ae32442588e9b620d8033483d80f7e7cd24e2cd67c43981090d96fbb",
+      "kind": "image",
+      "role": "supplied_illustrated_reference",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "assets-source/tabi/turnaround-v2-draft/00-front.png",
+      "sha256": "6a5982973da0df8c7365960715aafff661f62d59ef9d3ec46c7575e7f193fd54",
+      "kind": "image",
+      "role": "previous_generated_reference_draft",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "docs/assets/clip-tests/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4",
+      "sha256": "a0d56de1ca30056ba9744c167aa2ae36c7185f1519afa2ce4b3ee1bfd60424e3",
+      "kind": "file",
+      "role": "preserved_preferred_creative_baseline"
+    }
+  ],
+  "gates": {
+    "likeness": {
+      "status": "pending",
+      "evidence": "Supplied illustration and earlier generated reference compared directly with eight actual Blender views. Simplified facial surface/eyes, flat gills, garment detail and faceted tail differ. No approved reproduction claimed."
+    },
+    "frills_and_anatomy": {
+      "status": "pending",
+      "evidence": "Six rigid gills stay attached to the same head across 360 frames; all conservative bounds stay in camera. Head/collar bounds overlap and one pair of arms are regression checks, not proof of anatomically correct surfaces. User visual review remains open."
+    },
+    "breathing_and_head_turn": {
+      "status": "pending",
+      "evidence": "Continuous breathing, three blinks and a small head turn are rendered in the 15-second study. Thirty sampled video frames were visually reviewed; full decode and all-frame geometry checks passed. The turn is not a qualified window gaze, and temporal artistic acceptance is pending."
+    },
+    "walking": {
+      "status": "not_run",
+      "evidence": "Baked object-transform hierarchy is not a general skinned walking rig. No walking authored or tested."
+    },
+    "train_and_cafe_reuse": {
+      "status": "not_run",
+      "evidence": "One native train study with independent scenery movement. No cafe variant or second complete scene video."
+    },
+    "different_garment": {
+      "status": "not_run",
+      "evidence": "One authored green coat. Material recolouring is not proof of a genuinely different garment."
+    },
+    "cup_contact": {
+      "status": "not_run",
+      "evidence": "Cup remains static on the table; hand-to-cup and mouth contact are not tested."
+    },
+    "deep_breath": {
+      "status": "pending",
+      "evidence": "Larger inhale/hold/exhale rendered near the end and at cloud frame 295. Visible chest displacement recorded; visual approval and 90-second action schedule remain open."
+    },
+    "light_and_dark_motion": {
+      "status": "not_run",
+      "evidence": "Eight transparent stills were reviewed over light/dark backgrounds. A motion comparison over both backgrounds was not rendered."
+    },
+    "restart_reuse": {
+      "status": "pending",
+      "evidence": "Saved hash-identical master was reopened with autoexec disabled by local render/audit processes and cloud Blender. No complete second video after restart or app-driven reuse rehearsal."
+    },
+    "production_rehearsal": {
+      "status": "not_run",
+      "evidence": "Only 15 seconds at 960x540 and three diagnostic cloud frames; no finished 90-second 1080p video or 30-video monthly benchmark."
+    },
+    "automation": {
+      "status": "pending",
+      "evidence": "Codex authored Blender geometry, hierarchy and baked motion with Python and corrected setup defects. The user did not sculpt or rig, but one-time authored setup and new-asset work are not automatic reconstruction. No video-story preparation UI integration."
+    },
+    "commercial_rights": {
+      "status": "pending",
+      "evidence": "Blender licence permits commercial use of original output and does not apply GPL to the rendered artwork. New Blender API scripts use GPL-3.0-or-later. No external model weights or paid add-ons. Underlying reference rights and final publication approval remain separate and unasserted."
+    },
+    "user_visual_review": {
+      "status": "pending",
+      "evidence": "New native study and comparison delivered for user review; no visual approval received."
+    }
+  },
+  "licenses": [
+    {
+      "component": "Blender local and official Linux render binary",
+      "revision": "5.2.2 LTS / d13f752e3b9c; Linux archive SHA-256 84098912789dc450e95697c4184fb8a90acbe5111c2ba4aede3fecb57806a168",
+      "disposition": "used_reviewed",
+      "license": "GNU GPL; Blender states that artwork made with Blender is the creator's property and can be used commercially.",
+      "urls": [
+        "https://www.blender.org/about/license/",
+        "https://www.blender.org/support/faq/",
+        "https://download.blender.org/release/Blender5.2/blender-5.2.2.sha256"
+      ],
+      "obligations_and_limits": "No Blender binary enters source control. Reusing Blender does not clear rights in supplied artwork or imply YouTube monetization acceptance."
+    },
+    {
+      "component": "New Blender API build/render scripts",
+      "revision": "Exact source hashes in artifacts and input-manifest.json",
+      "disposition": "used_reviewed",
+      "license": "GPL-3.0-or-later",
+      "urls": [
+        "https://www.blender.org/support/faq/"
+      ],
+      "obligations_and_limits": "Source headers and full GPL text accompany local scripts. Rendered artwork and the .blend are not made GPL solely by Blender use."
+    },
+    {
+      "component": "Supplied TABI references and new authored scene",
+      "revision": "Reference and candidate hashes in artifacts",
+      "disposition": "pending",
+      "license": "User-supplied artwork; no independent ownership or publication clearance asserted.",
+      "urls": [],
+      "obligations_and_limits": "Derived unapproved draft, not an approved replacement. No external downloaded art, textures, music or pretrained model in the native master."
+    },
+    {
+      "component": "Google Colab service",
+      "revision": "Existing user account and previously accepted terms; session 2026-10-05",
+      "disposition": "used_reviewed",
+      "license": "Existing Colab service entitlement, not a model/content licence.",
+      "urls": [
+        "https://research.google.com/colaboratory/faq.html",
+        "https://research.google.com/colaboratory/tos_v6.html"
+      ],
+      "obligations_and_limits": "No new purchase or subscription. Finite compute allowance and variable availability; observed small trial does not establish monthly production capacity."
+    }
+  ],
+  "environment": {
+    "local": "macOS / Apple M5 Pro / 48 GB / Blender 5.2.2 LTS; EEVEE at 960x540, 24/1 fps",
+    "cloud": "Colab L4 high-RAM / NVIDIA L4 23034 MiB / driver 580.82.07 / official Blender 5.2.2 Linux x64 / Cycles CUDA",
+    "cloud_render": "32 samples, denoising off; actual CUDA selected, CPU and OPTIX not used. Shading/noise differ from local EEVEE.",
+    "notebook": "https://colab.research.google.com/drive/1G9SafZEk5zd3fvyYHAvnpBsmAfLWf14n?authuser=1",
+    "cloud_end_state": "No runtime connected, zero active sessions, zero compute units/hour, 2497.24 units available."
+  },
+  "measurements": {
+    "video_seconds": 15,
+    "video_frames": 360,
+    "video_fps": "24/1",
+    "video_audio_streams": 0,
+    "local_clip_render_seconds": 153.55,
+    "cloud_setup_success_seconds": 29.204,
+    "cloud_render_script_seconds": 42.812,
+    "cloud_render_subprocess_seconds": 45.809,
+    "cloud_pose_frames": "1,145,295",
+    "cloud_first_cell_to_result_zip_seconds": 479.63,
+    "displayed_compute_balance_before": 2497.61,
+    "displayed_compute_balance_after": 2497.24,
+    "displayed_compute_balance_delta": 0.37,
+    "active_runtime_count_at_end": 0,
+    "final_compute_units_per_hour": 0,
+    "exact_runtime_disconnect_time_observed": false,
+    "new_purchase": false,
+    "image_dependencies": 0,
+    "geometry_audit_frames": 360,
+    "gills": 6,
+    "minimum_camera_margin_fraction": 0.06204962730407715,
+    "maximum_gill_head_relative_matrix_error": 7.152557373046875e-07,
+    "maximum_foot_world_drift": 0,
+    "minimum_head_collar_bounds_overlap": 0.1413719654083252,
+    "chest_z_min": 1.149999976158142,
+    "chest_z_max": 1.25,
+    "visually_reviewed_video_samples": 30,
+    "cloud_downloaded_payload_records_verified": 9,
+    "full_video_decode_passed": true,
+    "new_models_downloaded": 0,
+    "monthly_production_capacity_qualified": false,
+    "executed_notebook_downloaded_locally": false,
+    "local_authoring_person_minutes": null
+  },
+  "operations": [
+    "Read existing P01 plan and actual supplied references; preserved all previous candidates and preferred 90-second video.",
+    "Authored native meshes/materials, train scene, six attached gills, one arm pair, static cup and baked breathing/blink/turn/sway/deep-breath transforms. Corrected parenting scale loss, camera cropping and tail closure during setup.",
+    "Saved the self-contained .blend, reopened with autoexec disabled, audited 360 frames, rendered eight character views and a native Blender H.264 video. Promoted the partial video only after full decode/metadata verification.",
+    "Compared source art and actual native model; visually inspected all eight views and 30 sampled video frames. This is not uninterrupted playback or a claim of zero perceptible flicker.",
+    "Uploaded the 1,284,994-byte input ZIP to the authorized Colab session. Verified all input hashes and official 383,295,504-byte Blender Linux archive checksum.",
+    "First official download returned HTTP 403 using urllib default user-agent. Retried the same URL with a normal User-Agent header successfully; corrected the local starter notebook. No alternative model or paid service.",
+    "Rendered three poses from the identical master using actual L4 CUDA. Downloaded result ZIP through browser Save dialog; verified all nine payload records before extraction. Downloaded cloud start/deep-breath images visually reviewed.",
+    "Saved the executed notebook in Colab. Local executed-notebook download did not complete; kept corrected unexecuted starter and downloaded execution logs/results separately.",
+    "User approved ending this trial. On returning to the tab it was already disconnected; no delete click was needed. UI showed zero active sessions and zero usage per hour. Exact disconnect time/cause were not observed.",
+    "Updated current P01 documentation/evidence. No core, CLI or web app code changed; no full app regression run required for this media feasibility checkpoint."
+  ],
+  "unresolved": [
+    "Refine and obtain approval of native character likeness before extending this draft; no automatic image reconstruction promised.",
+    "Walking, hand/cup contact, true wardrobe changes, cafe/scene reuse, full light/dark motion and 90-second rehearsal remain untested.",
+    "App-driven repeatable preparation and fresh-project reuse remain unimplemented; P01 stays open and P02-P04 blocked.",
+    "Three grainy cloud diagnostic frames are not a full-video throughput/cost benchmark. Local EEVEE and cloud Cycles are different output configurations.",
+    "Local authoring time was not instrumented; code authoring and setup corrections remain real work despite zero specialist user intervention.",
+    "Art, underlying rights, music and publication approval remain separate. No music was uploaded or changed."
+  ],
+  "generation_prompt": "No image/model generation prompt. Native Blender authoring brief: study existing TABI illustration and draft turnaround, author a persistent lavender character with six pink gills, coral headphones, green coat and leopard trim, native train scene and continuous exterior motion; bake 15 seconds of breathing, blink, small turn, sway and a larger breath. Label as unapproved feasibility draft and preserve prior artwork."
+}

@@ -2,9 +2,72 @@
 
 Updated 5 October 2026 (Asia/Manila).
 
+## P01 — native Blender and Colab trial
+
+5 October 2026. **The bounded rendering trial works; the character and production workflow
+remain unqualified.** Marco chose Blender + Colab without other external tools if possible.
+The [new evidence](evidence/p01-blender-native-trial.json) and
+[reference comparison](evidence/p01-blender-native-comparison.jpg) record one self-contained
+native Blender master, a silent **15-second / 360-frame / 960×540 / 24 fps** local video,
+eight character views and three actual L4/CUDA renders of the identical master in Colab.
+No AI model, paid add-on, new subscription or private music upload was involved.
+
+Local deliverables are in `.local/p01-blender-native-v1/`: open
+`TABI-native-Blender-study.blend`, watch `TABI-Blender-native-15s-DRAFT.mp4`, or read
+`START-HERE.txt`. The [executed notebook](https://colab.research.google.com/drive/1G9SafZEk5zd3fvyYHAvnpBsmAfLWf14n?authuser=1)
+is saved in Colab. The local notebook is the corrected unexecuted starter; exporting an executed
+notebook through the browser save dialog did not complete. The cloud result ZIP, all three PNGs,
+execution log, input hashes and reports were downloaded and verified locally.
+
+Codex authored the character/scene geometry, native materials and baked transforms in Blender
+Python against the actual references. This is one-time model authoring, **not automatic
+reconstruction from the images**. It required parenting, camera and geometry corrections.
+Marco did no sculpting or rigging, but the authoring burden and arbitrary new-asset automation
+remain unresolved. The control hierarchy is not a general skinned walking rig.
+
+The study exercises breathing, blinking, a small head turn, sway and a larger breath, with
+independent continuously moving exterior geometry. The turn does not yet establish the desired
+window gaze. Six gills remain attached to the same head and one pair of arms is present;
+sampled review still shows simplified eyes, flat gills, different garment detail and a faceted
+tail compared with the illustration. It is an unapproved draft, not a replacement for the
+preferred calm-window video. Drinking/contact, walking, a genuinely different garment, café
+reuse, a complete 90-second rehearsal and guided app use remain open. **P01 stays open;
+P02–P04 stay blocked.** Obtain a likeness decision before extending this master.
+
+Verification: the saved master was reopened with automatic script execution disabled. All
+360 frames passed conservative camera/attachment checks, with a minimum 6.2% camera margin
+and no planted-foot drift. Head/collar bounds overlap is only a regression guard, not anatomy
+approval. Full video decode/metadata checks passed; eight views and 30 sampled video frames
+were visually inspected. This does not claim uninterrupted playback review or zero perceptible
+flicker. Local EEVEE video rendering took **153.55 seconds**. The cloud used official,
+checksum-verified Blender 5.2.2 and rendered three Cycles/CUDA frames in **42.812 seconds**
+inside the render script. A first official download returned HTTP 403; adding a normal
+User-Agent to the same URL resolved it. No alternate source or model was introduced.
+
+The cloud result ZIP's nine payload records passed hash checks. Colab's displayed balance
+changed from **2497.61 to 2497.24 units** (0.37 units, subject to rounding/account accounting).
+After Marco authorized ending the trial, the UI already showed **no runtime connected,
+zero active sessions and zero ongoing usage**; no delete click was needed. Exact disconnect
+time/cause were not observed. This was verified within the 20-minute trial bound. Three noisy
+cloud diagnostic frames and a local 15-second clip are not a monthly capacity benchmark;
+local EEVEE and cloud Cycles use different rendering settings.
+
+Blender's [licence](https://www.blender.org/about/license/) permits commercial use of original
+output; its GPL does not apply to rendered artwork solely because Blender produced it.
+The new Blender API scripts include GPL-3.0-or-later headers and licence text. Underlying
+reference rights and publication/monetization acceptance remain separate. No application code
+changed; prior full V1 engineering results below were not rerun for this media trial.
+
+Final repository checks: `scripts/verify_character_pipeline.py` verified all **51 native-trial
+artifacts** with decision `pending`, and the original 32-file report still verifies as `no_go`.
+The documentation audit passed **53 Markdown files / 839 local links**, preserved all archived
+task/history text and unrelated staged IDE work, and found zero tracked MP4s. `git diff --check`
+passed. These checks preserve evidence integrity; they do not grant visual approval.
+
 ## P01 — next route checked after the failed correction
 
-5 October 2026. **Source review complete; no new generation or runtime.** The
+Historical source review, superseded as the next action by the native Blender trial above.
+5 October 2026. **Source review complete; no new generation or runtime during that review.** The
 [saved review](evidence/p01-next-route-review.json) recommends an isolated **TRELLIS 1
 mesh-only preflight**. Official multi-image sampling uses features from several input images
 in one generation, but is a tuning-free adaptation with uncertain quality. The pinned model

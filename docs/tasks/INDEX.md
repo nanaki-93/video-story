@@ -18,12 +18,13 @@ saved. The [paired retry](../evidence/p01-turnaround-trial.json) completed and b
 failed the static quality gate. The runtime is released; 0.37 units were observed consumed.
 Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
 
-The [next-route source check](../evidence/p01-next-route-review.json) recommends
-[TRELLIS 1 mesh-only preflight](../tasks.md#next-checkpoint--trellis-1-mesh-only-preflight).
-Its permitted imports, dependency closure and export path still need implementation and
-verification before a new model trial. No weights/runtime were started during this review.
-Hunyuan3D-2mv's current output-territory restrictions exclude it from the proposed worldwide
-YouTube route. No reusable character or rig is qualified.
+Marco's latest choice is **Blender + Colab without other external tools if possible**. The
+[native Blender trial](../evidence/p01-blender-native-trial.json) produced a 15-second local
+motion study and rendered three poses from the identical master in Colab. It adds no AI weights
+or paid add-ons. The runtime is inactive; the displayed account-balance delta was 0.37 units.
+One-time authoring, character likeness, hard actions, real outfit changes and normal app operation
+remain explicit gates. The [earlier TRELLIS source review](../evidence/p01-next-route-review.json)
+is deferred. No reusable production character is qualified.
 
 The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit
 Colab monthly grant against the clarified target of 30 × 90-second videos with new assets.
@@ -33,7 +34,7 @@ The [budget and measurement plan](../tasks.md#monthly-production-and-compute-bud
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
-| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | initial candidates/correction no-go; next: conditional TRELLIS 1 mesh-only preflight; production unqualified |
+| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | native Blender draft needs likeness review; cloud portability verified; full production unqualified |
 | [P02](../tasks.md#p02) | Define the prepared character-library handoff | P01 passes | blocked on P01 |
 | [P03](../tasks.md#p03) | Implement repeatable Blender preparation | P01, P02 | blocked on P01/P02 |
 | [P04](../tasks.md#p04) | Connect preparation to durable app jobs | P02, P03 | blocked on preparation proof |

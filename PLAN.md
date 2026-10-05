@@ -33,13 +33,14 @@ variant qualified: the image-only rear is wrong, while the approximate shape pri
 but merges/distorts the gills, headphones, body and tail. All 16 Blender views and both meshes
 are preserved. This closes the bounded SPAR3D trial, not the broader workflow decision.
 
-The [next-route source review](docs/evidence/p01-next-route-review.json) recommends a
-**TRELLIS 1 mesh-only preflight**. Its official multi-image sampling and native vertex-colour
-mesh decoder offer a candidate path, with an Apache-licensed pinned FlexiCubes component.
-The stock imports/exporter still include non-commercial components; isolating and verifying
-the permitted dependency path is the next checkpoint. No new model/runtime has been run.
-Hunyuan3D-2mv is excluded from the proposed worldwide-video route because its current licence
-expressly restricts outputs in the EU, UK and South Korea. Full production feasibility remains open.
+Marco subsequently chose **Blender + Colab, without other external tools if possible**.
+The current [native Blender study](docs/tasks.md#next-checkpoint--native-blender-master)
+uses authored geometry/materials and baked motion, with Colab only as a Blender render host.
+This is a separate draft, compared with the supplied artwork; it is not automatic reconstruction
+of the reference pictures and does not relax the almost-automatic normal-workflow requirement.
+The previously reviewed [TRELLIS mesh-only proposal](docs/evidence/p01-next-route-review.json)
+is deferred. No LivePortrait, segmentation model, image-to-3D service or additional AI weights
+are part of the selected native study. Full production feasibility remains open.
 
 The current production target is **30 × 90-second videos per month**, with some new assets
 and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
@@ -144,6 +145,7 @@ They are evidence, not the current queue.
 ## Deferred scope
 
 Native Kotlin/Compose packaging and DMG, signing/notarization, a general animation/rig editor,
-automatic layer extraction, 3D, dialogue/lip-sync, cloud rendering, accounts, collaboration,
+automatic layer extraction, production 3D/cloud integration beyond the bounded P01 trial,
+dialogue/lip-sync, accounts, collaboration,
 analytics and automatic publishing remain outside this work. Buy no assets, upload no private
 music and download no large models without authorization.
