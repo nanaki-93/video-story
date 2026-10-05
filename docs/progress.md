@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F06 — bounded continuation and recovery cycle
+
+6 October 2026. Python now selects one next action from accepted footage and confirmed state. Prompts and credit reservations persist before the external handoff; refresh and unknown outcomes cannot create a duplicate request. Rejected/old branches do not count toward progress. Retry, attempt and credit ceilings stop with saved progress; refunds require observed costs. Pause/resume is durable. Required actions and the exact reviewed final cut must pass before Finish. Verification: 11 runner/service tests pass, including late receipt after a disconnect, explicit refund, retry exhaustion, budget stop, backtracking and safe target trim; Ruff passes. Credit control applies to this local workflow and does not prevent independent spending inside Flow.
+
 ## F05 — candidate and join review evidence
 
 6 October 2026. Review now prepares first/middle/last PNG samples, parent ending, a playable join and hash-bound reference context. Strict time/canvas checks fail incompatible media. Repeated scaled frames, possible cuts and seam differences are advisory with exact frame ranges; exterior motion stays unassessed without a selected window region. Accept validates the packet and its media hashes, and records the human-confirmed ending state. Verification: 7 unit/service tests and 6 actual-media review/import tests pass, including a still clip that remains pending rather than being automatically rejected. Ruff passes. Full character quality remains a human gate.

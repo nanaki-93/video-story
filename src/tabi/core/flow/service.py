@@ -205,6 +205,10 @@ class FlowService:
             raise FlowError("choose Accept or Retry")
         active = episode.accepted_ids
         if decision == "accepted":
+            from .runner import action_complete
+
+            if not action_complete(attempt.beat, observed_state):
+                raise FlowError("the requested action is incomplete; retry from the clean parent")
             parent = active[-1] if active else None
             if candidate.parent_id != parent:
                 raise FlowError("clip belongs to an old branch; choose its parent explicitly")

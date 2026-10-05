@@ -333,6 +333,8 @@ the second join. Do not commit the Tokyo MP4s or use copyrighted media as CI fix
 
 ## F06 — Advance the bounded generation and review cycle
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/flow/runner.py` (new) — next-step decision, progress, retry accounting and recovery.
 - `src/tabi/core/flow/service.py` — persisted attempt transitions and idempotent result association.
