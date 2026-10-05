@@ -646,10 +646,53 @@ assets. P01 remains open and P02–P04 blocked. The first failed candidate's rep
 video and source assets are unchanged. Verification: JSON arithmetic/source-path checks,
 local documentation links and `git diff --check`; no application behavior changed.
 
+## P01 — SPAR3D access and measured-trial preparation
+
+5 October 2026. **Prepared, not executed.** Marco confirmed total annual revenue below
+US $1 million including affiliates, and completed both Hugging Face access and Stability's
+free commercial registration himself. The signed-in model page confirms access. Registration
+completion is recorded as Marco's confirmation; no personal form fields enter Git.
+
+[Preflight evidence](evidence/p01-spar3d-preflight.json) pins the official source and model
+revisions, model SHA-256 and byte size, the downloaded 4 KB configuration and licence identity.
+The exact model licence Git blob matches the reviewed source licence bytes. This clears that
+primary licence question under the confirmed conditions; it does not approve source artwork,
+all runtime dependencies, generated quality or YouTube eligibility.
+
+The visible tensor inventory includes SPAR3D's own image-estimator and DINO weights. The
+prepared runner initializes the existing architectures and requires complete learned-weight
+coverage from the single SPAR3D checkpoint. Only the later upstream constant-zero device
+sentinel may be absent. No standalone OpenAI CLIP, DINOv2, research-only AlphaCLIP or
+background-removal checkpoint is downloaded. This modified loader has not run and may fail;
+missing learned weights must stop the trial, never leave random initializations in inference.
+The installed dependency closure still needs review before the main weight download.
+
+A separate [Colab notebook](https://colab.research.google.com/drive/1h84XS9vkk3xi1WJSOX_Oj5fdVh_Oakv1?authuser=1)
+is saved with L4 / high RAM / runtime 2025.07 selected. The original TripoSR notebook remains
+separate. Chrome's initial file-upload restriction was resolved on the subsequent connection;
+the uploaded notebook is visibly present. A read-only Hugging Face token is the remaining
+user handoff. Browser rules require the user to create the credential; it must be entered
+privately in Colab, never in chat, notebook source, reports or Git.
+
+No SPAR3D weights were downloaded, no model installed or generated, no GPU connected and no
+new spend incurred. Colab still shows **2,499.4 units, zero active sessions and zero units/hour**.
+The notebook uses manual 30-unit / 60-connected-minute trial ceilings; it cannot read or
+enforce Google's quota automatically. Actual setup, download, generation and whole-session
+costs remain unmeasured. The local Blender review helper is ready for eight unedited mesh
+views; it preserves SPAR3D's normal glTF coordinates instead of applying TripoSR's correction.
+
+Verification: all six notebook code cells parse and remain unexecuted with empty outputs;
+the runner passes Ruff; synthetic phase records are atomic, retain failure type and omit
+exception bodies; configuration/licence Git-blob identities match; the draft input retains
+its previous SHA-256. Local prepared scripts, notebook and audit files are hashed in the
+preflight evidence and remain under ignored `.local/p01-spar3d/`. No application behavior
+changed, so application tests were not rerun. P01 stays open and P02–P04 blocked. The preferred
+90-second baseline and first failed candidate are unchanged.
+
 ## Next work
 
-P01 remains the production decision: first finish the exact licence/dependency and hardware
-review of a candidate that fits zero additional spend, then qualify a reusable character through
+P01 remains the production decision: provision the private read token, finish the actual
+SPAR3D dependency review and measured trial within existing allowance, then qualify a reusable character through
 the required motion, wardrobe, prop and scene-reuse cases before starting P02–P04. The first
 candidate is a no-go, not a base for more per-frame repairs. A second bounded candidate requires
 the same model/dependency/output licence checks; the standard

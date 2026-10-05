@@ -7,8 +7,10 @@ trial generated a real model, but [that candidate failed](../progress.md#p01--co
 The redesigned app is not implemented; T40 remains independent import engineering.
 
 The latest tool-selection constraint is **no additional paid apps**: free commercial-compatible
-tools, installed Blender and existing Google/Colab allowance only. SPAR3D is a preliminary
-candidate for licence/dependency and hardware review; it has not been downloaded or run.
+tools, installed Blender and existing Google/Colab allowance only. SPAR3D's
+[preflight](../evidence/p01-spar3d-preflight.json) records granted model access, confirmed
+commercial registration and a prepared measured-trial notebook. Its large weights have not
+been downloaded or run. Private token provisioning and runtime dependency review remain.
 Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
 
 The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit

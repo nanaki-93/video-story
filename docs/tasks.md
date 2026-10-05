@@ -347,6 +347,14 @@ reuse was attempted after that failure. [Comparison](evidence/p01-character-comp
 [licences, exact hashes and operations](evidence/p01-character-pipeline.json). The verifier
 checks evidence integrity and explicitly reports that production feasibility has not passed.
 
+The second candidate's [SPAR3D preflight](evidence/p01-spar3d-preflight.json) is prepared,
+not executed. Exact main code/model licence identity, eligibility, registration and model
+access are recorded. A separate Colab notebook is configured for L4 / runtime 2025.07, with
+manual 30-unit / 60-minute ceilings. Private credential provisioning and actual dependency
+review precede downloads. The proposed loader uses SPAR3D's embedded image-analysis weights
+and rejects incomplete learned-weight coverage; no research-only AlphaCLIP checkpoint is used.
+This loader still requires runtime validation. No second mesh or rig exists yet.
+
 **Target files**
 - `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.
 - `docs/evidence/p01-character-comparison.jpg` (new) — supplied reference and actual rendered candidate, clearly labeled.

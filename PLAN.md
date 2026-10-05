@@ -20,9 +20,11 @@ engineering; the redesigned normal workflow is not implemented yet.
 Marco's latest cost constraint is **no additional paid apps**. Investigate free tools with
 commercial-compatible terms, the installed Blender and existing Google/Colab allowance.
 Exclude new subscriptions, paid plugins and credit top-ups from the proposed route. Meshy and
-Tripo Studio are no longer the recommended next trial. SPAR3D is a preliminary candidate to
-audit, not a qualified replacement: its community licence has revenue/registration conditions,
-its Mac support is experimental, and exact weights/dependencies still require review.
+Tripo Studio are no longer the recommended next trial. SPAR3D remains an unqualified candidate.
+Its [prepared trial](docs/evidence/p01-spar3d-preflight.json) now records verified code/model
+licence identity, Marco's revenue eligibility and completed registration, granted model access,
+and a separate saved Colab notebook. No SPAR3D weights have been downloaded or inference run.
+Private token provisioning, actual runtime dependency review and the measured trial remain.
 
 The current production target is **30 × 90-second videos per month**, with some new assets
 and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
@@ -37,7 +39,8 @@ record a **no-go for that candidate**: shallow geometry and lost face/frill/outf
 There is no qualified rig or animation. P01 remains open; P02–P04 stay blocked. The standard
 TRELLIS.2 setup was excluded because some dependencies have non-commercial terms despite its
 MIT main code/weights. No new purchase, subscription or private-music upload occurred.
-The runtime is closed and diagnostic files are saved locally.
+That runtime is closed and diagnostic files are saved locally. The separate SPAR3D notebook
+is configured but has no connected runtime; it does not replace the failed candidate's evidence.
 
 Read the [active task index](docs/tasks/INDEX.md) and [documentation guide](docs/README.md).
 Check the exact model, weights, dependencies, hosted service and output terms before every
