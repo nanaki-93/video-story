@@ -39,6 +39,7 @@ path = "scripts/build_hook.py"
 include = ["/src", "/tests", "/scripts", "/schemas", "/web/src", "/web/scripts", "/web/tests", "/web/index.html", "/web/package.json", "/web/package-lock.json", "/web/vite.config.ts", "/web/tsconfig.json", "/web/.prettierignore", "/web/.npmrc", "/pyproject.toml", "/README.md", "/THIRD-PARTY.md", "/uv.lock", "/Makefile", "/.python-version"]
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 testpaths = ["tests"]
 addopts = "-ra"
 markers = ["media: actual FFmpeg render/decode checks; opt in with --run-media"]

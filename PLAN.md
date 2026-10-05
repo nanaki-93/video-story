@@ -1,168 +1,101 @@
 # Tabi Story Studio product plan
 
-Tabi Story Studio is a local tool for turning Tabi artwork, prepared animation and finished
-music into reviewed videos. Python owns media, timeline and rendering behavior; the TypeScript
-web app guides the work. Music composition and external publishing remain separate.
+Tabi Story Studio is a local app for making reviewed TABI videos. Python owns prompts,
+media, timing, rendering and delivery; the TypeScript interface guides the work. Music
+composition and publishing remain separate.
 
-## Current priority
+## Current workflow
 
-The V1 software is implemented and its engineering gates are recorded in
-[V1 acceptance](docs/38-v1-acceptance.md). The interface still exposes too many technical tools
-and gives too little guidance between importing media and making a scene.
+The normal app starts at **Create video → Setup → Opening → Continue → Finish**. The train /
+Tokyo / 90-second preset supplies character, outfit, fixed camera, continuous scenery and a
+calm routine. Each step shows the next useful action. Existing scene tools are under Advanced.
 
-Marco now requires an **almost entirely automatic, reusable character workflow**, covering
-train/café/walking scenes, different interiors/exteriors, real garment changes and actions.
-Another isolated ear repair or a simpler importer cannot establish that this works. The
-[production plan](docs/tasks.md) makes P01's real-character feasibility proof the current
-priority, before integrating preparation through P02–P04. T40 remains independent import
-engineering; the redesigned normal workflow is not implemented yet.
+Generation uses **Copy prompt → Open Flow → Import native result → Review**. The app saves
+reference hashes, prompts, parent lineage, attempts, confirmed prop states, reviews and credit
+reservations. Accept continues from the clean reviewed parent; Retry makes one focused
+correction. Refresh and an unknown external result do not create another generation request.
 
-Marco's latest cost constraint is **no additional paid apps**. Investigate free tools with
-commercial-compatible terms, the installed Blender and existing Google/Colab allowance.
-Exclude new subscriptions, paid plugins and credit top-ups from the proposed route. Meshy and
-Tripo Studio are outside this route. The second candidate, SPAR3D, has now
-[run successfully but failed the character-quality gate](docs/evidence/p01-spar3d-trial.json).
-Its actual Blender views show a recognizable front, very shallow side geometry and a visible
-tail gap. Exact code/model/dependency checks, private token entry and the measured generation
-are complete. Neither tested candidate qualifies as the reusable production character.
+Finish assembles only accepted footage at its measured native cadence, trims to an explicitly
+reviewed exact ending, and can add one continuous local soundtrack. The verified export can
+enter the existing YouTube delivery review and public/private bundle workflow.
 
-The authorized correction round using [eight separate body references and saved prompts](docs/evidence/p01-turnaround-reference-pack.json)
-is now complete. The [paired SPAR3D retry](docs/evidence/p01-turnaround-trial.json) compared
-the new front image with and without a shape prior derived from all eight views. Neither
-variant qualified: the image-only rear is wrong, while the approximate shape prior adds depth
-but merges/distorts the gills, headphones, body and tail. All 16 Blender views and both meshes
-are preserved. This closes the bounded SPAR3D trial, not the broader workflow decision.
+[F00–F11](docs/tasks.md) are implemented. [F12 evidence](docs/evidence/f12-flow-workflow.json)
+records full-length engineering verification and target-Mac UI observations. A synthetic
+90-second video verifies software behavior, not TABI likeness or release approval.
 
-Marco rejected the [native Blender study](docs/evidence/p01-blender-native-trial.json) as
-visually insufficient and selected **Google Flow**, where his existing TABI clips look better.
-The current [Flow continuity checkpoint](docs/tasks.md#next-checkpoint--google-flow-continuity)
-starts from his preferred existing clip and tests sequential continuation, preserving character,
-props, camera and exterior movement before extending toward 90 seconds. Reference consistency
-and uninterrupted motion are separate gates; neither is guaranteed by a prompt.
-Existing Google entitlement only, no purchases or top-ups. The subsequent
-[Flow train trial](docs/evidence/p01-flow-train-trial.json) produced an exact **90-second,
-720p/24 fps silent draft**, using 70 included credits. Browser access recovered. Native extension
-preserves the sampled joins, but light specks, small shape/framing changes and approximate timing
-remain. The final was assembled locally from downloaded Flow footage; this is not a completed
-video-story generation workflow or visual acceptance. Marco has now selected this Flow draft
-as the **best result so far**, reporting a mouth defect near 10 seconds and flying dots later.
-The [repeatable Flow procedure](docs/tasks.md#repeatable-flow-production-procedure) is the
-current operating proposal: fixed references, a compatible opening, per-extension review,
-recovery from a clean parent and measured local assembly. It is not implemented app behavior.
-Native Blender and [TRELLIS](docs/evidence/p01-next-route-review.json) are deferred. Prior
-evidence stays immutable. Full production feasibility remains open.
+## Remaining production gates
 
-The current production target is **30 × 90-second videos per month**, with some new assets
-and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
-is 2,000 Colab compute units monthly; 2,499.4 were available on 5 October. The
-[capacity plan](docs/tasks.md#monthly-production-and-compute-budget) reserves 20% and requires
-measured preparation costs before claiming the workload fits. Reuse assets and render locally;
-the 45 minutes of monthly finished footage are not 45 minutes of cloud compute.
+Marco wants almost entirely automatic preparation for 30 × 90-second videos per month, with
+new combinations and some new assets each time. That full target remains unqualified:
 
-The authorized **5 October Colab/Blender trial** produced one real TripoSR mesh and eight
-local Blender views. [Evidence and licence review](docs/evidence/p01-character-pipeline.json)
-record a **no-go for that candidate**: shallow geometry and lost face/frill/outfit detail.
-There is no qualified rig or animation. P01 remains open; P02–P04 stay blocked. The standard
-TRELLIS.2 setup was excluded because some dependencies have non-commercial terms despite its
-MIT main code/weights. No new purchase, subscription or private-music upload occurred.
-That runtime is closed and diagnostic files are saved locally. The separate SPAR3D trial also
-preserves its model, executed notebook, measurements and eight unedited Blender views locally.
-Its [comparison](docs/evidence/p01-spar3d-comparison.jpg) and evidence remain separate from
-TripoSR. Runtime release is recorded in the latest progress entry.
+- No supported external consumer Flow connector, unattended native continuation or enforceable
+  account-wide spending cap was established in [F00](docs/evidence/f00-flow-execution.json).
+  The installed app does not include this chat's browser automation.
+- A real 90-second episode and a fresh setting/outfit variation still need full visual/listening
+  review, measured rejected generations, credits and human effort through the guided workflow.
+  Café and walking require separate creative trials.
+- Source art, original music, exact provider/model commercial terms, disclosure and release
+  metadata need current evidence. Commercial output permission does not guarantee YouTube
+  monetization.
 
-Read the [active task index](docs/tasks/INDEX.md) and [documentation guide](docs/README.md).
-Check the exact model, weights, dependencies, hosted service and output terms before every
-new route/version. Commercial-use terms do not approve source artwork or guarantee YouTube
-monetization. This is now a standing rule in [AGENTS.md](AGENTS.md).
+The selected creative comparison is `docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4`.
+Marco calls it the best result so far, with a mouth defect near 10 seconds and later particles.
+It is preserved with its [review history](docs/progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review).
+The earlier calm-window draft and rejected preparation experiments remain historical evidence.
+Their passing technical checks do not override Marco's visual feedback.
 
-The current creative baseline is `docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4`,
-selected as best so far with mouth/particle polish outstanding. The
-[latest feedback](docs/progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review)
-records its exact hash and distinguishes this selection from release approval.
+The existing Tokyo 8/7/7-second native sources import as **528 frames / 22 seconds** without
+inheriting the combined scene's one-second timestamp gap. Invented props and particles still
+require visual rejection; fixing timestamps does not repair those pixels.
 
-The earlier creative baseline is Marco's selected
-[calm-window 90-second video](docs/progress.md#t14--return-to-the-calm-window-baseline),
-`docs/assets/clip-tests/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4`.
-He says its animations are good and later versions are worse. Use episode `tabi-train-calm-90s`,
-pack `pack.tabi.calm-ride` at 1.0 and the original `sources/train-polish-v3/` preparation.
-Preserve this version's TABI artwork, original ear shapes, poses, cup, timing, 36–48-second
-coffee break, calm window holds, continuous 72-pixel/second scenery and existing soundtrack.
+## Cost and tool boundaries
 
-This remains a preserved historical comparison. Marco's newer request supersedes the instruction
-to keep repairing its ear edges before addressing the production strategy. Do not resume
-frame repairs or promote a new design merely to make a rig pass. The separate parts rigs and
-replacement-ear experiments remain historical. Music polish is deferred; all originals and
-previous versions remain preserved.
-The [bounded upper-ear comparison](docs/progress.md#t14--bounded-ear-comparison-and-app-workflow-assessment)
-is technically verified but retains source-outline distortion; it does not replace Marco's
-selected baseline or close the visual gate.
+Use existing Google entitlement and local tools. No new subscriptions, paid API, plugins,
+licence purchases or credit top-ups are part of the route. Record a freshly observed Flow
+allowance and displayed per-attempt cost for each run; included compute is limited.
+Local reservations cannot prevent independent spending inside Flow.
 
-The [workflow feasibility assessment](docs/tasks.md#can-the-normal-app-workflow-produce-this-video)
-distinguishes the working compositor/exporter from the missing guided preparation/binding flow.
-The earlier Blender preparation proposal remains conditional and is now paused. The Flow trial
-tests complete-scene video, whose exterior is baked into the pixels. It cannot be substituted
-for a transparent character action pack or given independently editable scenery without new
-preparation. If the trial succeeds, rescope the app handoff around source clips, reference assets,
-continuation history, measured timing and final assembly. Do not promise a built-in Flow API,
-automatic scene regeneration or the existing layered renderer's capabilities for flattened video.
-Cup contact, walking, a genuinely different garment and repeatable normal production remain gates.
+The earlier Colab/Blender character trials failed their appearance/depth gates. Their exact
+model/licence evidence stays in the [historical progress](docs/progress.md); do not resume those
+routes or introduce another generator without reviewing its weights, dependencies, hosted
+terms and commercial output rights. The earlier monthly Colab estimate is not a Flow capacity
+qualification. Thirty production videos per month have not been demonstrated.
 
 ## Product boundaries
 
 | Area | Decision |
 | --- | --- |
-| Runtime | Local Python/FastAPI service; bundled TypeScript/Vite UI on one authenticated loopback origin |
-| Media engine | Shared Python services used by CLI and API; FFmpeg renderer and renderer-generated previews |
-| Storage | Versioned local documents and media; atomic draft saves, immutable approved versions, no database |
-| Time | Integer frames, integer audio samples and rational frame rates |
-| Source art | Preserve supplied originals; never infer approval, missing layers, source timing or licences |
-| Normal production | Import prepared media, build/reuse a scene, add finished music, preview and export |
-| Defaults | Fill technical settings where evidence permits; keep creative review and unknown source facts explicit |
-| Delivery | Verified local video and release preparation folder; manual external upload |
-| Character preparation | P01 feasibility open; P02–P04 conditional on a qualified master and almost-automatic operations. Existing ComfyUI adapter remains an advanced utility. |
+| Runtime | Local Python/FastAPI worker and bundled TypeScript UI on authenticated loopback |
+| Engine | Shared Python services for CLI and API; no browser timeline compiler or FFmpeg commands |
+| Storage | Versioned local documents/media, atomic drafts and immutable approved hashes; no database |
+| Timing | Integer frames/samples and rational frame rates; preserve native clip cadence |
+| Review | Automatic technical checks, explicit human appearance/ending-state and release reviews |
+| Safety | Registered roots, Host/Origin/CSRF checks, authenticated media, owned cancellation and recovery |
+| Media | Original artwork/music remain local; never commit MP4 files or erase masters with cache cleanup |
+| Delivery | Verified local export, factual release bundle and manual upload |
+| Variations | Fresh opening from stable references; previous reviews do not approve a changed outfit/scene |
 
-Target machine: Marco's Apple Silicon M5 Pro MacBook Pro with 48 GB unified memory. The
-[measured long-form checks](docs/36-longform.md) qualify synthetic 45-minute native 1080p
-and 60-second native 4K workloads on that machine. They do not qualify every real-art workload.
-One active export is the default. Node is required for frontend development/building, not for
-running the installed application.
-
-## Creative milestones still open
-
-1. Select the actual character and seated reference hashes in the [review packet](docs/12-tabi-art-review.md).
-2. Prepare/review the real character animation, matching foreground, cabin/window and exterior layers.
-3. Review a 90–120-second train pilot with the actual assets.
-4. Finish an approximately 5–10-minute original-music story and review the full picture and sound.
-5. Review rights, credits, thumbnail and release metadata before manual publication.
-
-These remain creative gates, not reasons to block independent interface work using labeled
-synthetic fixtures. Standard scene-based videos need not become multi-scene stories, and music
-must not be stretched to meet an arbitrary length.
-
-The optional first story brief remains *The Last Train Home*: departure, city, rain/dusk and
-arrival. Tokyo-inspired imagery should not claim an exact real route. Tabi's identity comes
-from the selected reference; Platform 7 and 11:11 are optional motifs.
+The target Mac is Apple M5 Pro with 48 GB unified memory. Existing layered projects remain
+supported through Advanced, with the same compositor, audio mixer, owned job services and
+release checks. Their [long-form measurements](docs/36-longform.md) remain workload-specific.
 
 ## Implementation and verification
 
-Follow [AGENTS.md](AGENTS.md), the active task's dependencies and the applicable
-[technical specifications](docs/README.md#technical-reference). Implement one coherent behavior,
-run its meaningful checks, record evidence in [progress](docs/progress.md), and commit it with
-its task ID. Preserve unrelated staged work. No MP4 enters Git.
+Follow [AGENTS.md](AGENTS.md), the [active index](docs/tasks/INDEX.md) and each task's dependencies.
+Implement one coherent step, run its required checks, record evidence in
+[progress](docs/progress.md), then commit with its task ID. Preserve unrelated staged changes.
 
-The new workflow must preserve existing projects, CLI/API parity, immutable approvals,
-authenticated media/SSE, registered filesystem roots, source-preserving cache cleanup and
-owned-job recovery. The browser must not implement a second compositor or timeline compiler.
-Run the milestone acceptance gate before merging; visual and listening approval remains human.
+Run `make check`, `make web-check`, `make web-build`, `make package` and the target-Mac
+`make test-media` milestone gate. Review full real picture/sound separately. No mock preview,
+stub generation job or passing fixture may be called a production-ready video.
 
-The original task records and detailed build log are retained in the
-[V1 archive](docs/archive/v1-tasks.md) and [implementation history](docs/archive/v1-progress.md).
-They are evidence, not the current queue.
+Use the [operations guide](docs/37-operations.md) for the current guided path, recovery and
+Advanced workflows. [V1 acceptance](docs/38-v1-acceptance.md),
+[V1 tasks](docs/archive/v1-tasks.md) and [V1 history](docs/archive/v1-progress.md) retain earlier
+engineering results. Old plans are evidence, not another active implementation queue.
 
 ## Deferred scope
 
-Native Kotlin/Compose packaging and DMG, signing/notarization, a general animation/rig editor,
-automatic layer extraction, production 3D/cloud integration beyond the bounded P01 trial,
-dialogue/lip-sync, accounts, collaboration,
-analytics and automatic publishing remain outside this work. Buy no assets, upload no private
-music and download no large models without authorization.
+Direct unattended Flow control, automatic visual approval, new providers, a general rig/editor,
+native Kotlin/Compose packaging, signing/notarization, dialogue/lip-sync, collaboration,
+analytics and automatic publishing remain outside this verified release.

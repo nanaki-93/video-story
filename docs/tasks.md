@@ -59,13 +59,10 @@ does not establish coverage by Marco's consumer Flow allowance. Do not substitut
 Cloud billing, paid vision reviewer, subscription or top-up for the existing entitlement.
 Do not make an undocumented private endpoint or extracted browser credential a product dependency.
 
-F00 is a bounded investigation, F01–F11 are the proposed assisted app implementation, and F12
-is its acceptance gate. These are **planned**, with no new generation or app code in this
-planning turn. F01–F11 can use synthetic media and existing downloads without closing P01's
-creative gate. They do not depend on the rejected Blender master or P02–P04. The earlier task
-records below retain their anchors and history; they do not imply that a Flow video is an
-editable character action pack. At implementation start, register this queue in
-`docs/tasks/INDEX.md` and record each verified step in `docs/progress.md`.
+F00 qualified the assisted route; F01–F11 are implemented and committed. F12 records
+engineering acceptance with real creative/variation and unattended-control gates kept open.
+The earlier P/T records are historical and do not form a second active implementation queue.
+Each verified change is recorded in `docs/progress.md` and `docs/tasks/INDEX.md`.
 
 ### Prompt and state policy
 
@@ -544,9 +541,15 @@ Also run `make schemas`, `npm --prefix web run schemas` and `make web-check` aft
 
 ## F12 — Verify repeatable production and document the remaining automation gap
 
+**Status** [x] Engineering implementation and assisted-workflow regression complete.
+**Real acceptance** [ ] Train/variation creative review, measured human effort and unattended Flow control remain open; see `docs/evidence/f12-flow-workflow.json`.
+
 **Target files**
 - `tests/integration/test_flow_workflow.py` (new) — complete assisted workflow and interruption regression.
+- `tests/unit/test_flow_release.py` → `tests/unit/test_flow_release_contracts.py`, `tests/unit/test_web_flow.py` → `tests/unit/test_web_flow_contracts.py`, `pyproject.toml` — avoid unit/integration collection collisions and make repository test helpers importable in the full gate.
+- `src/tabi/core/publishing.py` — correct soundtrack lock access exposed by the full-length music-to-delivery regression.
 - `docs/evidence/f12-flow-workflow.json` (new) — measured synthetic/real journeys and remaining limits.
+- `docs/evidence/f12-flow-finish.jpg`, `docs/evidence/f12-flow-mobile.jpg` (new) — target-Mac full-length playback and narrow-layout observations.
 - `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md`, `PLAN.md` — verified operations, current queue and honest production status.
 
 **Inputs / dependencies**

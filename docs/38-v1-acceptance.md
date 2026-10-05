@@ -1,5 +1,32 @@
 # V1 implementation and acceptance
 
+## Flow workflow engineering acceptance — 6 October 2026
+
+The normal app now implements **Setup → Opening → Continue → Finish**, with shared CLI/API,
+focused prompts, immutable references/attempts, native clip import, join review, bounded retries,
+resume, verified export, continuous local music and YouTube delivery. F00 qualifies the assisted
+Copy prompt / Open Flow / Import result handoff; unattended app control remains unqualified.
+
+[F12 evidence](evidence/f12-flow-workflow.json) records the final gates and precise observations.
+The authenticated fresh service run verifies 2160 frames at 24 fps, all PTS, 4320000 selected audio
+samples, all 22 sides of eleven joins, rejection/retry and reopening an unknown attempt without
+another submission. Synthetic production approval remains blocked. The actual Tokyo clips import
+as 528 frames / 22 seconds with original hashes unchanged; the third clip's saucer/particles
+remain a visual gate.
+
+[F10's fresh short Chrome journey](evidence/f10-flow-ui.json) exercises upload, review, stale-tab
+refusal, retry, refresh and export. F12 reopens the full-length saved project in Chrome, plays
+the 90-second export and checks a 390×844 layout without horizontal overflow. This combination
+is engineering coverage, not a claimed manual 90-second production run from Setup.
+
+Real acceptance remains open: one train episode and a fresh setting/outfit variation through
+the guided path, full picture/sound review, measured credits/human effort and current source /
+provider commercial rights. Café/walking, Safari's new workflow and Marco's usability review
+are pending. Thirty monthly videos and almost entirely automatic preparation are not qualified.
+The preserved best Flow draft does not close these gates.
+
+The original V1 results below describe that earlier milestone, not current test totals.
+
 Review date: 4 October 2026 (Asia/Manila). All independently implementable software in
 T01–T38 is implemented, including the optional activity packs and local generation adapter.
 The local web app replaces Kotlin with the user's authorization. **Creative product acceptance

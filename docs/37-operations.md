@@ -1,10 +1,9 @@
 # Operating Tabi Story Studio
 
-The app and CLI use the same local Python services. Begin with a draft, review rendered media,
-then freeze a production snapshot only when its actual inputs are approved. The software is
-usable with existing stills or prepared animation; it does not author a missing Tabi rig or music.
-The [V1 acceptance report](38-v1-acceptance.md) distinguishes tested software from pending creative
-decisions. Supplied reference images remain drafts.
+The normal app guides **Setup → Opening → Continue → Finish** from Create video.
+The app and CLI share Python services; generation happens in Google Flow. Assets and music
+stay on this Mac. [Acceptance](38-v1-acceptance.md) separates tested engineering from real
+TABI appearance, original music and publication reviews still pending.
 
 ## Install, check and launch
 
@@ -25,7 +24,44 @@ launcher after changing tools; do not bookmark or share the initial authenticati
 In development, prefix the examples below with `.venv/bin/` if `tabi` is not on PATH. Use
 `TABI_CONFIG=examples/settings.macos.toml` only when its exact tested Cellar paths exist.
 
+## Make a 90-second train video
+
+1. Launch the app, choose **Projects**, and create/open a local working folder. Return to
+   **Create video**. Setup starts with the train/Tokyo/90-second preset; optional changes are
+   under Scene details. Enter the actual remaining Flow allowance and displayed candidate
+   cost in the allowance section. The app cannot read your account or buy more credits.
+2. **Opening:** import the selected TABI/train reference. Click Prepare opening prompt,
+   then Copy prompt and Open Flow. Generate one candidate in your existing account using
+   the appropriate reference mode. Download its native clip, not a combined scene with repeats.
+   Return and import it; record the actual model shown by Flow when known.
+3. Review the clip, selected frames and ending state. Confirm the actual cup, hands, objects
+   and pose rather than the desired prompt. Accept only after watching. Unknown facts stay
+   unknown. Reference comparison remains necessary; a decoded MP4 is not visual approval.
+4. **Continue:** use the next saved focused prompt with native Extend from the exact accepted
+   parent in Flow. Import and review the candidate and its join. Retry rejects that candidate
+   and prepares one focused correction from the clean parent. Stop saves progress. Reopening
+   resumes the same attempt; reconcile an unknown outcome before submitting again.
+5. The routine includes breathing/window rest, looking around 15s, cup pickup/sip/return near
+   30s, music sway near 45s, looking near 60s and a bigger breath near 75s. Actual action timing
+   follows reviewed native clip boundaries. Complete actions and confirm the exact final cut;
+   the app neither loops old footage nor pads a freeze to reach 90 seconds.
+6. **Finish:** keep silent or import/select a local WAV. A longer master needs the explicit
+   first-video-length trim confirmation; a short master is not automatically looped. Export
+   and watch the complete verified draft. Output preserves the measured picture resolution
+   and frame rate, using H.264 and optional stereo 48 kHz AAC. Music is never uploaded to Flow.
+7. **Prepare YouTube delivery:** record factual title, concept, rights, exact model/terms,
+   disclosure, thumbnail and listening/creative reviews. Inspect blockers and export the
+   existing public/private bundle. Publication remains manual. Keep private evidence private.
+
+For another setting/outfit, use **New variation**. It copies the recipe and stable references,
+starts a new opening and resets reviews. Café/walking and each new outfit still need visual
+qualification. Almost entirely automatic Flow control has not been established; the handoff
+above is the supported assisted workflow. No additional paid provider is configured.
+
 ## First scene from an existing image
+
+This Advanced walkthrough retains the earlier layered renderer. Open the named tools through
+**Advanced**; it is separate from the normal Flow sequence.
 
 This works in the current app. Use the supplied
 [train composition](assets/scenario/tabi-train-example.png) for a **static, silent draft**.
@@ -53,11 +89,7 @@ Layered scenes currently require authored template/action-pack documents. The su
 still cannot serve as a clean background for a second character without duplicating Tabi.
 See the [asset review](12-tabi-art-review.md) and [source audit](09-implementation-review.md).
 
-The proposed [guided import and visual scene builder](tasks.md) will replace this scattered
-sequence of screens with examples, defaults and an explicit missing-asset checklist. Those
-new controls are planned, not available yet.
-
-## Produce another episode in the app
+## Produce an Advanced layered episode
 
 1. **Projects:** create a new folder or open an existing project. Reopening retains saved edits
    and immutable IDs. Use Relink after moving a project to another registered root.

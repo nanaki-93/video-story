@@ -670,8 +670,8 @@ class FlowReleaseSource:
                 raise StorageError("Flow source/reference has no registered asset identity")
             self.documents[(asset.id, asset.version)] = asset
         for lock in self.export.inputs.audio_locks:
-            asset = assets.require_valid(lock.asset)
-            if content_hash(asset) != lock.content_sha256:
+            asset = assets.require_valid(AssetRef(id=lock.id, version=lock.version))
+            if content_hash(asset) != lock.sha256:
                 raise StorageError("Flow soundtrack metadata changed after export")
             self.documents[(asset.id, asset.version)] = asset
         self.verify()

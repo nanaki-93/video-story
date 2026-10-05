@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F12 — Assisted workflow engineering acceptance
+
+6 October 2026. Required full-length/Tokyo tests: 2 passed in 25.73s. Milestone gates: 339 unit passes, 74 media passes (one optional private case skipped, separately passed), seven frontend passes, 68 schemas, build/package and module-byte audit pass. The 90s fixture checks every frame/PTS, 4320000 audio samples, all 22 join sides, retry and unknown-attempt reopen; original music/source bytes remain unchanged. Chrome reopens and plays the saved 90s export; 390px layout has no overflow. Exact observations are in docs/evidence/f12-flow-workflow.json. Real train/variation full picture/sound, observed human effort, source rights and unattended control remain open; no credits were used.
+
 ## F11 — Shared YouTube delivery for Flow exports
 
 6 October 2026. 5 unit and 3 actual-media release/API tests pass; web-check/build and 68 generated-contract drift checks pass. Legacy preparation hashes are preserved. Frozen Flow source, current asset/music/terms evidence, full decode and hash-bound creative/metadata reviews use the existing release bundle service. Target-Mac Finish handoff and pending checks are observed in docs/evidence/f11-flow-delivery.json. Synthetic footage cannot receive production creative approval; no upload or monetization approval is inferred.
