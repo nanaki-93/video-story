@@ -1,0 +1,18 @@
+{
+  "task": "F11",
+  "review_date": "2026-10-06",
+  "official_sources": {
+    "encoding": "https://support.google.com/youtube/answer/1722171?hl=en",
+    "monetization": "https://support.google.com/youtube/answer/1311392?hl=en",
+    "flow_commercial_faq": "https://support.google.com/flow/answer/16353333?hl=en"
+  },
+  "implementation": "Shared ReleaseService accepts verified FlowExport inputs and frozen original episode. No fabricated layered job or compiled snapshot. Exact source frames, output hash and any AAC sample schedule are decoded again. Human commercial review names actual models and dates official evidence; missing or older-than-30-day facts stay pending. Public metadata excludes prompts, model notes and filesystem paths.",
+  "target_mac": "Finish -> Prepare YouTube delivery reopened the actual 48-frame Flow export, and Inspect displayed 7 pending checks including synthetic assets, actual provider model and commercial review. No approval, cloud generation or upload.",
+  "validation": "5 unit tests, 3 real-media integration tests (including unchanged layered release/API behavior), web-check and web-build. Legacy preparation hashes remain unchanged at default source kind.",
+  "limits": [
+    "Synthetic engineering acceptance is not production approval",
+    "YouTube encoding and local readiness do not establish YPP eligibility",
+    "Manual upload only",
+    "Real reference/music rights and provider models must be recorded before readiness"
+  ]
+}

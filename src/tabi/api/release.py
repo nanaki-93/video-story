@@ -32,6 +32,11 @@ def routes(runtime):
     def preparations(handle: str):
         return WebReleases(
             schema_version="1.0",
+            flow_exports=[
+                e
+                for e in runtime.flow_service(runtime.get(handle)).exports()
+                if e.state == "verified"
+            ],
             preparations=AuthoringService(runtime.get(handle).assets).documents(
                 "publishing", ReleasePreparation
             ),
@@ -54,15 +59,20 @@ def routes(runtime):
     @router.post("/projects/{handle}/releases/{identity}/inspect")
     def inspect(handle: str, identity: str):
         current = service(handle)
-        return current.inspect(current.load(identity))
+        with runtime.local_operation(runtime.get(handle)):
+            return current.inspect(current.load(identity))
 
     @router.post("/projects/{handle}/releases/{identity}/review")
     def review(handle: str, identity: str, body: ReleaseReview):
-        return service(handle).review(identity, **body.model_dump())
+        with runtime.local_operation(runtime.get(handle)):
+            return service(handle).review(identity, **body.model_dump())
 
     @router.post("/projects/{handle}/releases/{identity}/export")
     def export(handle: str, identity: str, body: ExportRelease):
-        return service(handle).export(identity, body.bundle_id, require_ready=body.require_ready)
+        with runtime.local_operation(runtime.get(handle)):
+            return service(handle).export(
+                identity, body.bundle_id, require_ready=body.require_ready
+            )
 
     @router.api_route(
         "/projects/{handle}/bundles/{identity}/files/{index}", methods=["GET", "HEAD"]

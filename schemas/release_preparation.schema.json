@@ -42,6 +42,65 @@
       "title": "Chapter",
       "type": "object"
     },
+    "FlowCommercialReview": {
+      "additionalProperties": false,
+      "properties": {
+        "commercial_use": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "confirmed",
+            "not-permitted"
+          ],
+          "title": "Commercial Use",
+          "type": "string"
+        },
+        "note": {
+          "minLength": 1,
+          "title": "Note",
+          "type": "string"
+        },
+        "provider_models": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Provider Models",
+          "type": "array"
+        },
+        "reviewed_at": {
+          "format": "date-time",
+          "title": "Reviewed At",
+          "type": "string"
+        },
+        "reviewer": {
+          "minLength": 1,
+          "title": "Reviewer",
+          "type": "string"
+        },
+        "source_links": {
+          "items": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Links",
+          "type": "array"
+        }
+      },
+      "required": [
+        "provider_models",
+        "reviewed_at",
+        "reviewer",
+        "source_links",
+        "note"
+      ],
+      "title": "FlowCommercialReview",
+      "type": "object"
+    },
     "ReviewRecord": {
       "additionalProperties": false,
       "properties": {
@@ -99,6 +158,11 @@
       "title": "Claim Notes",
       "type": "string"
     },
+    "concept_notes": {
+      "default": "",
+      "title": "Concept Notes",
+      "type": "string"
+    },
     "creative_review": {
       "anyOf": [
         {
@@ -125,6 +189,17 @@
       "default": "release_preparation",
       "title": "Document Type",
       "type": "string"
+    },
+    "flow_terms": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FlowCommercialReview"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
     },
     "id": {
       "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
@@ -166,6 +241,15 @@
     "schema_version": {
       "const": "1.0",
       "title": "Schema Version",
+      "type": "string"
+    },
+    "source_kind": {
+      "default": "layered",
+      "enum": [
+        "layered",
+        "flow"
+      ],
+      "title": "Source Kind",
       "type": "string"
     },
     "thumbnail": {

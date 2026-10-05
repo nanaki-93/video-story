@@ -76,7 +76,6 @@ function navigate() {
     if (id === page) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   }
-  if (!["flow", "projects"].includes(page)) advanced.open = true;
   const layout = layouts[page];
   const header = element("header", { className: "page-header" });
   const text = element("div");

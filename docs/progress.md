@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F11 — Shared YouTube delivery for Flow exports
+
+6 October 2026. 5 unit and 3 actual-media release/API tests pass; web-check/build and 68 generated-contract drift checks pass. Legacy preparation hashes are preserved. Frozen Flow source, current asset/music/terms evidence, full decode and hash-bound creative/metadata reviews use the existing release bundle service. Target-Mac Finish handoff and pending checks are observed in docs/evidence/f11-flow-delivery.json. Synthetic footage cannot receive production creative approval; no upload or monetization approval is inferred.
+
 ## F10 — Guided Create video workflow
 
 6 October 2026. web-check and web-build pass (7 browser tests). Target-Mac Chrome journey starts the 90s preset, then exercises a clearly labeled shortened 2s fixture: native import, join review, stale-tab refusal, rejection/retry, exact export and playback after refresh. Screenshot and facts: docs/evidence/f10-flow-ui.json. Normal navigation is Create video / Projects; former mock screens are removed and existing tools are under Advanced. Full 90s/music and mobile verification follow in F12.

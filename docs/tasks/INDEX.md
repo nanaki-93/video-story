@@ -17,7 +17,7 @@ The older P/T queue below is historical and is not a second implementation queue
 | [F08](../tasks.md#f08--add-one-continuous-local-soundtrack-at-finish) | Add local music | complete |
 | [F09](../tasks.md#f09--expose-flow-workflow-services-through-cli-and-authenticated-api) | Expose shared CLI/API | complete |
 | [F10](../tasks.md#f10--present-setup-opening-continue-and-finish-as-the-normal-ui) | Guide the app workflow | complete |
-| [F11](../tasks.md#f11--prepare-a-youtube-delivery-with-existing-review-rules) | Prepare YouTube delivery | planned |
+| [F11](../tasks.md#f11--prepare-a-youtube-delivery-with-existing-review-rules) | Prepare YouTube delivery | complete |
 | [F12](../tasks.md#f12--verify-repeatable-production-and-document-the-remaining-automation-gap) | Verify full production workflow | planned |
 
 ## Earlier production investigations

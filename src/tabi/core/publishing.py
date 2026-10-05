@@ -2,6 +2,7 @@
 
 import csv
 import io
+import json
 import os
 import shutil
 import stat
@@ -14,6 +15,8 @@ from PIL import Image
 from pydantic import TypeAdapter
 
 from .assets.service import digest_file
+from .audio.mix import verify_aac
+from .flow.service import FlowService
 from .jobs import JobService
 from .models import Asset, ReleaseRecord
 from .models.base import (
@@ -24,6 +27,7 @@ from .models.base import (
     canonical_bytes,
     content_hash,
 )
+from .models.flow import FlowEpisode
 from .models.production import ReviewRecord
 from .models.publishing import (
     PublicAssetRights,
@@ -37,6 +41,7 @@ from .models.rendering import RenderReport
 from .persistence import StorageError
 from .process import checkpoint
 from .render.backend import FrozenRegistry
+from .render.ffmpeg import verify_video
 
 
 def chapter_lines(chapters, fps, duration_frames):
@@ -119,10 +124,10 @@ def copy_verified(source, destination, expected):
         raise StorageError("release source changed or copy verification failed")
 
 
-def review_status(public, blockers, creative_review, metadata_review):
+def review_status(public, blockers, creative_review, metadata_review, *, metadata_digest=None):
     """Reviews bind the exact video and public metadata, never a mutable title."""
     blockers = list(blockers)
-    digest = content_hash(public)
+    digest = metadata_digest or content_hash(public)
     status = "technically_verified"
     if creative_review and creative_review.content_sha256 == public.video_sha256:
         status = "creatively_reviewed"
@@ -153,11 +158,16 @@ class ReleaseService:
         preparation = ReleasePreparation.model_validate(preparation)
         # Prevent a saved reference to an unrelated/missing job. Preparing before
         # completion is allowed; inspect/export still require verified media.
-        self.jobs.ledger.get(preparation.job_id)
+        if preparation.source_kind == "flow":
+            FlowService(self.store, self.assets.roots).get_export(preparation.job_id)
+        else:
+            self.jobs.ledger.get(preparation.job_id)
         return self.store.save_draft(preparation, expected_revision=expected_revision)
 
     def _inspect(self, preparation):
         preparation = ReleasePreparation.model_validate(preparation)
+        if preparation.source_kind == "flow":
+            return self._inspect_flow(preparation)
         verification = self.jobs.verify_export(preparation.job_id)
         job = self.jobs.ledger.get(preparation.job_id)
         render_report = self.store.read(job.report_path)
@@ -201,8 +211,30 @@ class ReleaseService:
             blockers.append("asset_rights_or_approval_pending")
         begin = snapshot.episode.fps.sample_at(job.first_frame)
         end = snapshot.episode.fps.sample_at(job.first_frame + job.duration_frames)
+        tracks, releases, music_blockers = self._music_tracks(
+            snapshot.audio_placements, registry, begin, end
+        )
+        blockers.extend(music_blockers)
+        inspection, thumbnail, lines = self._public_inspection(
+            preparation,
+            purpose=snapshot.purpose,
+            output=job.output,
+            inputs_sha256=job.snapshot_sha256,
+            first_frame=job.first_frame,
+            duration_frames=job.duration_frames,
+            profile=job.profile,
+            tracks=tracks,
+            rights=rights,
+            blockers=blockers,
+            warnings=warnings,
+            render_report=render_report,
+        )
+        return inspection, verification, registry, releases, thumbnail, lines
+
+    def _music_tracks(self, placements, registry, begin, end):
+        blockers = []
         tracks, releases = [], {}
-        for placement in snapshot.audio_placements:
+        for placement in placements:
             first = max(begin, placement.start_sample)
             last = min(end, placement.start_sample + placement.duration_samples)
             if placement.role != "music" or first >= last:
@@ -249,6 +281,24 @@ class ReleaseService:
                 )
             )
         tracks.sort(key=lambda item: (item.start_sample, item.placement_id))
+        return tracks, releases, blockers
+
+    def _public_inspection(
+        self,
+        preparation,
+        *,
+        purpose,
+        output,
+        inputs_sha256,
+        first_frame,
+        duration_frames,
+        profile,
+        tracks,
+        rights,
+        blockers,
+        warnings,
+        render_report,
+    ):
         thumbnail = None
         if preparation.thumbnail:
             thumbnail = self.assets.require_valid(preparation.thumbnail, production=True)
@@ -258,9 +308,7 @@ class ReleaseService:
                 image.load()
                 if image.format != "PNG":
                     raise StorageError("thumbnail must be PNG; import an approved PNG version")
-        lines, chapter_warning = chapter_lines(
-            preparation.chapters, job.profile.fps, job.duration_frames
-        )
+        lines, chapter_warning = chapter_lines(preparation.chapters, profile.fps, duration_frames)
         if chapter_warning:
             warnings.append(chapter_warning)
         public = PublicRelease(
@@ -268,27 +316,43 @@ class ReleaseService:
             title=preparation.title,
             description=preparation.description,
             disclosure_notes=preparation.disclosure_notes,
-            purpose=snapshot.purpose,
-            video_sha256=job.output.sha256,
-            snapshot_sha256=job.snapshot_sha256,
-            first_frame=job.first_frame,
-            frame_count=job.duration_frames,
-            fps=job.profile.fps,
-            canvas=job.profile.canvas,
+            purpose=purpose,
+            video_sha256=output.sha256,
+            snapshot_sha256=inputs_sha256,
+            first_frame=first_frame,
+            frame_count=duration_frames,
+            fps=profile.fps,
+            canvas=profile.canvas,
             tracks=tracks,
             chapters=preparation.chapters if lines else [],
             chapter_status="valid" if lines else "invalid" if chapter_warning else "not_requested",
             thumbnail_sha256=thumbnail.files[0].sha256 if thumbnail else None,
             rights=sorted(rights, key=lambda item: (item.asset.id, item.asset.version)),
         )
-        digest = content_hash(public)
+        digest = (
+            content_hash(public)
+            if preparation.source_kind == "layered"
+            else content_hash(
+                {
+                    "public": public.model_dump(mode="json"),
+                    "flow_terms": preparation.flow_terms.model_dump(mode="json")
+                    if preparation.flow_terms
+                    else None,
+                    "concept_notes": preparation.concept_notes,
+                }
+            )
+        )
         status, blockers = review_status(
-            public, blockers, preparation.creative_review, preparation.metadata_review
+            public,
+            blockers,
+            preparation.creative_review,
+            preparation.metadata_review,
+            metadata_digest=digest,
         )
         inspection = ReleaseInspection(
             schema_version="1.0",
             preparation_id=preparation.id,
-            job_id=job.id,
+            job_id=preparation.job_id,
             status=status,
             metadata_sha256=digest,
             render_report_sha256=content_hash(render_report),
@@ -296,6 +360,93 @@ class ReleaseService:
             blockers=sorted(set(blockers)),
             warnings=warnings,
         )
+        return inspection, thumbnail, lines
+
+    def _inspect_flow(self, preparation):
+        registry = FlowReleaseSource(self.assets, preparation.job_id)
+        export, report = registry.export, registry.report
+        video_path = registry.service.verify_file(export.output)
+        video = verify_video(
+            self.settings, video_path, export.inputs.profile, export.inputs.duration_frames
+        )
+        audio = None
+        if export.inputs.tracks:
+            with tempfile.TemporaryDirectory(
+                prefix=".flow-release-", dir=self.store.root / "flow"
+            ) as scratch:
+                audio = verify_aac(
+                    self.settings,
+                    video_path,
+                    export.inputs.profile.fps.sample_at(export.inputs.duration_frames),
+                    Path(scratch),
+                )
+        verification = {
+            "source_kind": "flow",
+            "export_id": export.id,
+            "inputs_sha256": export.inputs_sha256,
+            "video": video.model_dump(mode="json"),
+            "audio": audio.model_dump(mode="json") if audio else None,
+        }
+        blockers, warnings = (
+            [],
+            [
+                "Manual upload only. Commercial permission does not establish monetization.",
+                "Review originality and variation; generic repeated episodes may be ineligible.",
+                f"Source-native export: {export.inputs.profile.canvas.width}"
+                f"x{export.inputs.profile.canvas.height}.",
+            ],
+        )
+        rights = [
+            PublicAssetRights(
+                asset=AssetRef(id=a.id, version=a.version),
+                commercial_use=a.provenance.commercial_use,
+                approved=a.approval.status == "approved",
+                synthetic=a.provenance.origin == "synthetic",
+            )
+            for a in registry.documents.values()
+        ]
+        synthetic = report["synthetic"] or any(item.synthetic for item in rights)
+        if synthetic:
+            blockers.append("synthetic_assets")
+        if any(not r.approved or r.commercial_use != "confirmed" for r in rights):
+            blockers.append("asset_rights_or_approval_pending")
+        models = [
+            a.provider_model for a in registry.snapshot.attempts if a.id in registry.used_attempts
+        ]
+        terms = preparation.flow_terms
+        if not models or any(model is None for model in models):
+            blockers.append("actual_provider_model_pending")
+        if (
+            not terms
+            or terms.commercial_use != "confirmed"
+            or any(model not in terms.provider_models for model in models)
+            or (datetime.now(UTC) - terms.reviewed_at).days > 30
+        ):
+            blockers.append("flow_commercial_terms_pending_or_stale")
+        if not preparation.concept_notes.strip():
+            blockers.append("episode_concept_review_pending")
+        tracks, releases, music_blockers = self._music_tracks(
+            export.inputs.tracks,
+            registry,
+            0,
+            export.inputs.profile.fps.sample_at(export.inputs.duration_frames),
+        )
+        blockers.extend(music_blockers)
+        inspection, thumbnail, lines = self._public_inspection(
+            preparation,
+            purpose="synthetic_test" if synthetic else "production",
+            output=export.output,
+            inputs_sha256=export.inputs_sha256,
+            first_frame=0,
+            duration_frames=export.inputs.duration_frames,
+            profile=export.inputs.profile,
+            tracks=tracks,
+            rights=rights,
+            blockers=blockers,
+            warnings=warnings,
+            render_report=report,
+        )
+        registry.verify()
         return inspection, verification, registry, releases, thumbnail, lines
 
     def inspect(self, preparation):
@@ -329,7 +480,8 @@ class ReleaseService:
         inspection, verification, registry, releases, thumbnail, lines = self._inspect(preparation)
         if require_ready and inspection.status != "ready_for_manual_upload":
             raise StorageError("release is not ready: " + ", ".join(inspection.blockers))
-        job = self.jobs.ledger.get(preparation.job_id)
+        flow_source = isinstance(registry, FlowReleaseSource)
+        source = registry.export if flow_source else self.jobs.ledger.get(preparation.job_id)
         relative = f"bundles/{bundle_id}"
         with self.store._directory(("bundles",), create=True) as parent:
             try:
@@ -357,9 +509,9 @@ class ReleaseService:
                         os.fsync(stream.fileno())
 
                 copy_verified(
-                    self.store.root / job.destination,
+                    self.assets.resolve(source.output.location),
                     public / "video.mp4",
-                    (job.output.sha256, job.output.size_bytes),
+                    (source.output.sha256, source.output.size_bytes),
                 )
                 if thumbnail:
                     record = thumbnail.files[0]
@@ -388,7 +540,13 @@ class ReleaseService:
                     {"assets": [item.model_dump(mode="json") for item in inspection.public.rights]},
                 )
                 write(private / "episode-snapshot.json", registry.snapshot)
-                write(private / "render-report.json", self.store.read(job.report_path))
+                write(
+                    private / "render-report.json",
+                    registry.report if flow_source else self.store.read(source.report_path),
+                )
+                if flow_source:
+                    write(private / "flow-export.json", source)
+                    write(private / "flow-inputs.json", source.inputs)
                 write(private / "export-verification.json", verification)
                 write(private / "release-preparation.json", preparation)
                 write(private / "inspection.json", inspection)
@@ -471,3 +629,65 @@ class ReleaseService:
                     os.rmdir(bundle_id, dir_fd=parent)
                 if scratch.exists():
                     shutil.rmtree(scratch)
+
+
+class FlowReleaseSource:
+    def __init__(self, assets, identity):
+        self.assets = assets
+        self.service = FlowService(assets.store, assets.roots)
+        self.export = self.service.get_export(identity)
+        if self.export.state != "verified" or self.export.output is None:
+            raise StorageError("Flow source requires a verified export")
+        self.report = json.loads(assets.store._read_bytes(self.export.report_path))
+        if (
+            self.report["inputs_sha256"] != self.export.inputs_sha256
+            or self.report["output_sha256"] != self.export.output.sha256
+            or self.report["output_bytes"] != self.export.output.size_bytes
+        ):
+            raise StorageError("Flow report differs from the verified export")
+        self.snapshot = assets.store.read(f"flow/exportepisodes/{identity}.json")
+        if not isinstance(self.snapshot, FlowEpisode) or (
+            content_hash(self.snapshot.recipe) != self.export.inputs.recipe_sha256
+            or self.snapshot.references != self.export.inputs.references
+            or self.snapshot.revision != self.export.inputs.episode_revision
+        ):
+            raise StorageError("Flow source episode differs from frozen inputs")
+        candidates = {c.id: c for c in self.snapshot.candidates}
+        self.used_attempts = set()
+        for segment in self.export.inputs.segments:
+            candidate = candidates[segment.candidate_id]
+            if candidate.id not in self.snapshot.accepted_ids or candidate.media != segment.media:
+                raise StorageError("Flow segment differs from the reviewed branch")
+            self.used_attempts.add(candidate.attempt_id)
+        needed = [s.media for s in self.export.inputs.segments] + [
+            r.media for r in self.export.inputs.references
+        ]
+        all_assets = assets.list_assets()
+        self.documents = {}
+        for media in needed:
+            asset = next((a for a in all_assets if media in a.files), None)
+            if asset is None:
+                raise StorageError("Flow source/reference has no registered asset identity")
+            self.documents[(asset.id, asset.version)] = asset
+        for lock in self.export.inputs.audio_locks:
+            asset = assets.require_valid(lock.asset)
+            if content_hash(asset) != lock.content_sha256:
+                raise StorageError("Flow soundtrack metadata changed after export")
+            self.documents[(asset.id, asset.version)] = asset
+        self.verify()
+
+    def get(self, reference, kind):
+        if kind != "asset" or (reference.id, reference.version) not in self.documents:
+            raise StorageError("Flow release requested an unlocked source")
+        return self.documents[(reference.id, reference.version)]
+
+    def verify(self):
+        self.service.verify_file(self.export.output)
+        for asset in self.documents.values():
+            current = self.assets.require_valid(AssetRef(id=asset.id, version=asset.version))
+            if current != asset:
+                raise StorageError("Flow source metadata changed during release preparation")
+            for media in asset.files:
+                self.service.verify_file(media)
+        for reference in self.export.inputs.references:
+            self.service.verify_file(reference.media)

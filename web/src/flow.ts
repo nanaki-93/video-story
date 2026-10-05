@@ -152,6 +152,7 @@ export function flowPage(): Panel {
     accept: string,
     route: string,
     payload: object,
+    extra: () => object = () => ({}),
   ) {
     const file = input("", "file");
     file.accept = accept;
@@ -177,6 +178,7 @@ export function flowPage(): Panel {
             const id = await upload(source);
             return api(`${path()}${route}`, "web_flow", {
               ...payload,
+              ...extra(),
               upload_id: id,
               synthetic: synthetic.control.checked,
             });
@@ -364,11 +366,21 @@ export function flowPage(): Panel {
         handoff.append(
           video(view.parent_url, "Accepted parent · extend this clip"),
         );
+      const providerModel = input("");
       handoff.append(
-        importControl("Import Flow result", "video/mp4", "/import", {
-          expected_revision: episode.revision,
-          attempt_id: attempt.id,
-        }),
+        field("Model shown in Flow (for release evidence)", providerModel),
+      );
+      handoff.append(
+        importControl(
+          "Import Flow result",
+          "video/mp4",
+          "/import",
+          {
+            expected_revision: episode.revision,
+            attempt_id: attempt.id,
+          },
+          () => ({ provider_model: providerModel.value || null }),
+        ),
         details(
           "Generation failed or connection lost",
           element("p", {
@@ -578,7 +590,42 @@ export function flowPage(): Panel {
         });
         download.href = url;
         download.download = `${episode.title}.mp4`;
-        box.append(download);
+        box.append(
+          download,
+          button("Prepare YouTube delivery", () => {
+            if (requests.busy) return;
+            status.textContent = "Opening delivery review…";
+            void requests
+              .change(async () => {
+                const list = await api(
+                  `${prefix(project)}/releases`,
+                  "web_releases",
+                );
+                const id = `flow-release-${exportItem.id}`;
+                if (!list.preparations.some((p) => p.id === id))
+                  await api(
+                    `${prefix(project)}/releases`,
+                    "release_preparation",
+                    {
+                      preparation: {
+                        schema_version: "1.0",
+                        document_type: "release_preparation",
+                        id,
+                        revision: 0,
+                        source_kind: "flow",
+                        job_id: exportItem.id,
+                        title: episode.title,
+                      },
+                      expected_revision: null,
+                    },
+                  );
+                sessionStorage.setItem("tabi-release", id);
+                location.hash = "release";
+                return view;
+              })
+              .catch(error);
+          }),
+        );
       } else if (["queued", "running"].includes(exportItem.state))
         box.append(
           button(

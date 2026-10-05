@@ -501,10 +501,15 @@ including stale-tab acceptance, rejected candidate, reconnect and export playbac
 
 ## F11 — Prepare a YouTube delivery with existing review rules
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/models/publishing.py` — explicit Flow/render export source selection preserving legacy serialization.
 - `src/tabi/core/publishing.py` — verified Flow source adapter and shared readiness/bundle logic.
-- `src/tabi/api/release.py`, `web/src/release.ts`, `web/src/flow.ts` — Finish-to-release handoff.
+- `src/tabi/api/release.py`, `web/src/release.ts`, `web/src/flow.ts`, `web/src/main.ts` — Finish-to-release handoff without expanding advanced navigation.
+- `docs/evidence/f11-flow-delivery.json` (new) — current official guidance and target-Mac source handoff evidence.
+- `src/tabi/api/contracts.py` — expose verified Flow exports in the shared release chooser.
+- `schemas/release_inspection.schema.json`, `schemas/release_bundle_report.schema.json`, `web/src/generated/release_inspection.ts`, `web/src/generated/release_bundle_report.ts` — nested preparation contract regeneration.
 - `schemas/release_preparation.schema.json`, `schemas/web_releases.schema.json`, `web/src/generated/release_preparation.ts`, `web/src/generated/web_releases.ts`, `web/src/generated/documents.ts`, `web/src/generated/validators.cjs`, `web/src/generated/validators.d.cts` — regenerated contracts.
 - `tests/unit/test_flow_release.py` (new), `tests/integration/test_flow_release.py` (new) — source verification, hash-bound reviews and private data boundaries.
 

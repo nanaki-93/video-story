@@ -317,6 +317,7 @@ class WebRenderPlan(Document):
 class WebReleases(Document):
     document_type: Literal["web_releases"] = "web_releases"
     preparations: list[ReleasePreparation]
+    flow_exports: list[FlowExport] = Field(default_factory=list)
 
 
 class SaveRelease(Model):
