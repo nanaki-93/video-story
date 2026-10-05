@@ -2,6 +2,47 @@
 
 Updated 5 October 2026 (Asia/Manila).
 
+## P01 — Flow baseline selected and repeatable workflow review
+
+5 October 2026. Marco calls `docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4` the best
+result so far. It is now the current comparison baseline, with its exact hash preserved:
+`7e45fd8faf4b2cfe7556ee248bb2da90a63f6ac92024edf2dccb6f7a58917e0b`.
+This is a best-draft selection, not final visual or publication approval. The older calm-window
+baseline, its soundtrack and all original Flow clips remain unchanged.
+
+Marco reports a mouth problem near 10 seconds and many flying dots after 30–40 seconds.
+The [new feedback record](evidence/p01-flow-workflow-feedback.json) and 28 targeted native-frame
+samples show a brief extra lower-mouth shape around 11 seconds, inside the first saved-frame
+continuation. The join itself does not fully explain it. Indoor particles are already visible
+in the 25–32-second pickup segment and become much more conspicuous around 35–40 seconds.
+They are present in native downloads. The local assembler only concatenated and end-trimmed;
+it introduced no particle effect. Generative embellishment carried into later continuations is
+the likely explanation, not a verified account of the model's internal mechanism. A correction
+would need a reviewed clean parent; this inspection does not establish the exact first bad frame.
+
+The [repeatable Flow procedure and defaults](tasks.md#repeatable-flow-production-procedure)
+now lead the production plan: fixed identity references and an episode recipe, an eligible
+eight-second opening, one native continuation at a time, visual acceptance before extending,
+bounded retry from the clean parent, and measured local assembly. Replacing a parent does not
+automatically make its old descendants compatible. Defaults retain a fixed camera, breathing,
+window rest and approximate 15/30/45/60/75-second beats. Music remains deferred.
+
+Code inspection confirms reusable import/probe/hash, approval, local audio and render-assembly
+foundations, but no Flow sequence domain, guided review queue or Flow generation adapter. The
+proposed four-step UI is **Choose episode → Review opening → Continue and review → Finish video**,
+with an explicit Open Flow / Copy next prompt / Import result handoff. This is a production
+procedure and product boundary, not completed app functionality. P01 stays open for visual
+polish and a repeatable second episode; earlier Blender-specific P02–P04 remain conditional.
+Café, walking, a new garment and arbitrary scene changes are not qualified by this train draft.
+
+Current official Flow feature/editing/commercial-use pages were rechecked. Eligible Veo
+eight-second sources extend with Lite; other edit modes cannot be applied to extended clips.
+No new generation, credits, purchase, music upload or source edit occurred during this review.
+Existing commercial-use evidence remains separate from source rights and YouTube acceptance.
+Verification covers the unchanged baseline and native input hashes, the 28 extracted samples,
+documentation links/history/staged-work preservation and `git diff --check`. No app tests were
+rerun for these documentation changes; no app feature or visual repair is claimed complete.
+
 ## P01 — 90-second Google Flow train draft
 
 5 October 2026. Marco explicitly requested the full 90-second train attempt. The new local

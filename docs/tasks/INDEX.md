@@ -28,7 +28,9 @@ and [source review/prompts](../evidence/p01-flow-continuity-review.json) start f
 project. Browser access subsequently recovered, and the
 [actual Flow trial](../evidence/p01-flow-train-trial.json) produced a **90-second silent draft**
 from sequential continuations, using 70 included credits. Twelve joins and 205 sampled frames
-were reviewed; floating specks and small shape/framing changes remain. Visual acceptance and
+were reviewed. Marco now selects it as the best result so far, with mouth and particle defects
+still open. The [repeatable Flow procedure](../tasks.md#repeatable-flow-production-procedure)
+defines defaults and review before each extension. Visual acceptance and
 repeatable production/app integration are still open. Native Blender refinement and TRELLIS
 remain deferred. No production route is qualified.
 
@@ -40,7 +42,7 @@ The [budget and measurement plan](../tasks.md#monthly-production-and-compute-bud
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
-| [P01](../tasks.md#p01) | Qualify repeatable TABI identity, continuous motion and scene/outfit/action reuse | Real references, approved trial scope, licences, selected provider | Flow 90-second draft created; visual acceptance and repeatable production remain open |
+| [P01](../tasks.md#p01) | Qualify repeatable TABI identity, continuous motion and scene/outfit/action reuse | Real references, approved trial scope, licences, selected provider | Flow draft selected best so far; mouth/particles and repeatable second episode remain open |
 | [P02](../tasks.md#p02) | Define the prepared character-library handoff | P01 passes | blocked on P01 |
 | [P03](../tasks.md#p03) | Earlier Blender preparation design; rescope after the selected route qualifies | P01, P02 | blocked; Flow handoff not specified |
 | [P04](../tasks.md#p04) | Connect preparation to durable app jobs | P02, P03 | blocked on preparation proof |
@@ -60,7 +62,12 @@ checks and remaining limits; commit with the task ID as required by [AGENTS.md](
 
 ## Creative gates carried forward
 
-**Current working baseline:** Marco selected
+**Current working baseline:** Marco selected `TABI-Flow-Train-90s-DRAFT.mp4` as best so far.
+The [feedback record](../progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review)
+preserves its hash and the mouth/particle defects. This does not approve publication or qualify
+the app workflow. The earlier comparison remains preserved:
+
+**Historical baseline:** Marco selected
 [the calm-window 90-second video](../progress.md#t14--return-to-the-calm-window-baseline)
 as the last good result and rejected the direction of later variants. Preserve its original
 artwork, poses, timing, scenery and soundtrack. The new feasibility investigation supersedes

@@ -5,6 +5,13 @@ T01–T38 is implemented, including the optional activity packs and local genera
 The local web app replaces Kotlin with the user's authorization. **Creative product acceptance
 remains pending:** no original finished Tabi music story or publication approval is claimed.
 
+5 October creative update: Marco selects the new 90-second Flow train draft as the best result
+so far, with mouth and floating-particle defects still open. The
+[current feedback](progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review) and
+[Flow procedure](tasks.md#repeatable-flow-production-procedure) supersede the older comparison
+selection below. The output used assistant-operated Flow and local assembly, not a completed
+video-story Flow workflow. The original engineering evidence remains unchanged.
+
 The final workflow audit added explicit template/action-pack review (`a8baa3f`) and completed
 the CLI adapters and operations walkthrough (`d0db033`). The [operations guide](37-operations.md)
 walks through setup, normal production, troubleshooting, recovery and private backups. Each
@@ -161,7 +168,7 @@ and lower body; actual app playback and rendered ear-core comparisons support re
 still need human review. The 90-second picture, matching window-rest endpoints and coherent
 breathing/action masters remain open; the existing music is unchanged.
 
-**Latest user selection:** Marco says those later variants are getting worse and chooses
+**Earlier user selection:** Marco says those later variants are getting worse and chooses
 `Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4` as the last good result. The
 [baseline reset](progress.md#t14--return-to-the-calm-window-baseline) records the exact video
 hash and its original episode/pack. Its animations are the preferred starting point; the next
@@ -176,7 +183,7 @@ RGB and music preserved. Final coffee1.2 only trims alpha in the upper-ear regio
 cup and every lower pixel are restored exactly after visual review caught overlap in the first
 internal candidate. All 2700 rendered frames, travel offsets/joins and unchanged AAC passed
 technical checks. Residual painted-outline distortion remains, so the original calm video is
-still the preferred baseline and T14's human visual gate remains open.
+still the preferred baseline at that checkpoint and T14's human visual gate remains open.
 
 The [app workflow assessment](tasks.md#can-the-normal-app-workflow-produce-this-video) separates
 working composition/export from currently external art and pack preparation. T40–T48 remain
@@ -187,8 +194,8 @@ one-off render does not satisfy that product acceptance gate.
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |
-| Character/action masters | Preserve the selected calm-window 1.0 animation as the current working baseline and repair its local ear-edge flicker first. Review source RGB/alpha and moving outlines without changing its artwork, poses, cup or timing. Any later expanded actions need coherent anatomy, prop ownership and matching endpoints; earlier generated rigs are not the starting point. |
-| Train/Tokyo environment | Separated cabin/window/foreground and three prepared depth layers, completed hidden regions, wrap/landmark choices, normalized canvases and day/dusk looks. |
+| Character/action masters | Current best comparison: the Flow 90-second draft. Mouth/particles and repeatable reference-based scene/outfit/action generation remain open. Preserve the earlier calm-window version. Layered masters are an alternative route, not an output of Flow. |
+| Train/Tokyo environment | For the selected Flow route, review baked full-scene continuity and qualify each new setting; independent panorama replacement is unavailable. Separated cabin/window/foreground and depth layers remain requirements only for the earlier layered route. |
 | Music | Finished original WAV masters with enough material for the intended story length; factual titles/credits and rights evidence. Synthetic tones do not satisfy this input. |
 | Reviews | Actual alpha/likeness/motion/pilot, full story/audio, effects, thumbnail, rights and public metadata/disclosure review. Every approval binds the reviewed content hash. |
 | Optional generation | Operator-selected installed models/workflows with factual versions/hashes, licences and a real integration trial. The adapter's protocol fixture is not proof of generated-art quality. |

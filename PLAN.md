@@ -44,7 +44,11 @@ Existing Google entitlement only, no purchases or top-ups. The subsequent
 720p/24 fps silent draft**, using 70 included credits. Browser access recovered. Native extension
 preserves the sampled joins, but light specks, small shape/framing changes and approximate timing
 remain. The final was assembled locally from downloaded Flow footage; this is not a completed
-video-story generation workflow or visual acceptance.
+video-story generation workflow or visual acceptance. Marco has now selected this Flow draft
+as the **best result so far**, reporting a mouth defect near 10 seconds and flying dots later.
+The [repeatable Flow procedure](docs/tasks.md#repeatable-flow-production-procedure) is the
+current operating proposal: fixed references, a compatible opening, per-extension review,
+recovery from a clean parent and measured local assembly. It is not implemented app behavior.
 Native Blender and [TRELLIS](docs/evidence/p01-next-route-review.json) are deferred. Prior
 evidence stays immutable. Full production feasibility remains open.
 
@@ -71,7 +75,12 @@ Check the exact model, weights, dependencies, hosted service and output terms be
 new route/version. Commercial-use terms do not approve source artwork or guarantee YouTube
 monetization. This is now a standing rule in [AGENTS.md](AGENTS.md).
 
-The current creative baseline is Marco's selected
+The current creative baseline is `docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4`,
+selected as best so far with mouth/particle polish outstanding. The
+[latest feedback](docs/progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review)
+records its exact hash and distinguishes this selection from release approval.
+
+The earlier creative baseline is Marco's selected
 [calm-window 90-second video](docs/progress.md#t14--return-to-the-calm-window-baseline),
 `docs/assets/clip-tests/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4`.
 He says its animations are good and later versions are worse. Use episode `tabi-train-calm-90s`,
@@ -79,7 +88,7 @@ pack `pack.tabi.calm-ride` at 1.0 and the original `sources/train-polish-v3/` pr
 Preserve this version's TABI artwork, original ear shapes, poses, cup, timing, 36–48-second
 coffee break, calm window holds, continuous 72-pixel/second scenery and existing soundtrack.
 
-This remains the visual comparison baseline. Marco's newer request supersedes the instruction
+This remains a preserved historical comparison. Marco's newer request supersedes the instruction
 to keep repairing its ear edges before addressing the production strategy. Do not resume
 frame repairs or promote a new design merely to make a rig pass. The separate parts rigs and
 replacement-ear experiments remain historical. Music polish is deferred; all originals and

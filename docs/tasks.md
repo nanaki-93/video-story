@@ -1,6 +1,6 @@
 # Repeatable TABI production with an almost automatic workflow
 
-Revised 5 October 2026; **native Blender appearance rejected; Flow continuity trial selected**.
+Revised 5 October 2026; **Flow train draft selected as the best result so far; production workflow still open**.
 Build videos with a consistent character, reusable visual references and coherent scene motion.
 Cover train interiors/exteriors, outfits, actions, a café and walking without repairing frames
 or writing scripts for each video.
@@ -10,8 +10,9 @@ or writing scripts for each video.
 Marco's latest request changes the priority from another ear repair to a repeatable production
 workflow. He explicitly requires **almost entirely automatic setup**, and accepts using several
 applications. Do not assume he will draw layers, paint skin weights, learn rigging or commission
-an animator. The existing calm-window video remains the preferred visual reference; it is not
-a reusable character master and its unresolved flicker is not accepted.
+an animator. The new `TABI-Flow-Train-90s-DRAFT.mp4` is now the preferred comparison baseline.
+Marco still reports a mouth defect near 10 seconds and excessive flying dots later in the video;
+this selection is not publication approval. The earlier calm-window video remains preserved.
 
 The latest constraint is **no additional paid apps**. The next investigation must use free
 commercial-compatible tools and existing Blender/Google entitlements, with no new subscriptions,
@@ -35,18 +36,108 @@ The [Flow checkpoint](#next-checkpoint--google-flow-continuity) supersedes furth
 refinement. The saved Blender trial remains technical evidence, not an approved creative result.
 TRELLIS is also deferred. No replacement character design is authorized by a missing Flow asset.
 
-**Current investigation:** continue one selected Flow clip, inspect every join and test gradual
-identity drift before scaling to 90 seconds. Keep one camera, outfit, cabin, cup and exterior
-travel direction/speed. The same character references help new scene setup; they do not fix the
-temporal state of a preceding clip. The proposed initial test uses sequential Extend operations,
-not independent text-only generations. A 90-second uninterrupted result is a feasibility target,
-not an established Flow capability with TABI. Do not substitute cuts or a montage without agreement.
+**Current investigation:** turn the [90-second Flow trial](evidence/p01-flow-train-trial.json)
+into the repeatable procedure below. The trial used 70 included credits and local assembly;
+the app did not generate or assemble it. Browser access recovered after the historical
+[preflight](evidence/p01-flow-continuity-review.json). Visual polish, a second independently
+prepared episode and normal app use remain unqualified. No further generation was requested
+or performed during this workflow review.
 
-The [source review and ready-to-use prompts](evidence/p01-flow-continuity-review.json) record the
-user's project link, current feature restrictions, commercial-use sources and bounded test.
-Automatic approval review could not inspect the Flow tab because its review service was at
-capacity; no generation occurred. Live model, selected clip, project contents and credit balance
-remain unverified. The existing no-purchase constraint still applies.
+## Repeatable Flow production procedure
+
+This is the selected operating proposal, not implemented app behavior. Flow generates complete
+scene clips; video-story should guide choices, preserve references and accepted continuations,
+and assemble the downloaded footage locally. No additional paid application is needed for
+this proposed route. Existing included credits remain finite. The earlier mesh/layer proposals
+below are historical alternatives, not prerequisites for using Flow.
+
+1. **Choose the episode.** Start from the saved TABI identity references and choose the scene,
+   outfit, exterior and routine. Save these selections as an episode recipe, with exact reference
+   hashes, service/model labels and licence evidence. For a new outfit, cabin, café or walking
+   scene, first review one matching opening image and short motion test. Do not silently derive
+   the identity for the next episode from a late, potentially drifted video frame.
+2. **Review the opening.** For the next trial, prefer a clean eight-second Veo 3.1 Lite opening
+   at the same settings as its extensions. Check likeness, mouth, ears/gills, anatomy, one cup,
+   camera and clear cabin air. This avoids the current draft's saved-frame handoff at 10 seconds;
+   it does not guarantee that the generator will preserve identity. The original preferred
+   clip remains a visual reference. Do not prepend an incompatible source merely to keep it.
+3. **Continue one beat at a time.** Explicitly select the last accepted clip and use native
+   Extend. Keep the identity/camera/lighting/outfit constraints fixed and change only the next
+   action. Carry forward hand position, cup ownership, gaze and exterior travel. Reach, sip
+   and return may span several extensions; do not force every complete action into one clip.
+   Google documents Extend for eligible eight-second Veo clips using Lite; check live settings
+   and cost before starting a session. See [supported features](https://support.google.com/flow/answer/16352836?hl=en).
+4. **Review before continuing.** Play every new clip and its join at normal speed, then inspect
+   mouth/gills/contact closely. Compare both to the immediate parent and the original selected
+   references, so gradual drift is caught too. Check for unwanted mouth motion, floating dots,
+   changed eyes, duplicate arms/cups, camera drift and scenery resets. Save Accept or Retry with
+   the reason. Only an accepted clip can become the next parent. If a defect appears, branch
+   from the last clean parent; after replacing an earlier clip, later clips need regeneration
+   or explicit continuity review. Preserve all earlier files. Limit retries and stop at the
+   session's existing-credit cap instead of continuing a visibly defective chain.
+5. **Finish locally.** Import accepted downloads, verify hashes and actual frame counts, order
+   them by parent relationship, omit generated sound and trim only a quiet ending to exactly
+   90 seconds. Do not use Flow's nominal timeline ruler as the media duration. Watch the full
+   result and review joins before marking it ready. Add the local music master when requested;
+   keep music off the generation service. Save a new output version and measured report.
+
+| Choice | Initial train default |
+| --- | --- |
+| Length and picture | 90 seconds, 16:9, 1280×720 draft; preserve measured 24/1 fps for this tested route |
+| Generation | Veo 3.1 Lite, eight-second opening, one output per request; native Extend thereafter |
+| Timing | Measure every download; this trial's extensions added seven actual seconds each |
+| Camera and character | Fixed wide camera; selected TABI appearance/outfit, natural blinking and visible gentle breathing |
+| Resting behavior | Quiet window gaze; relaxed hands unless the current action needs them; no talking |
+| Routine | Look near 15s, drink near 30s, sway near 45s, look near 60s, deep breath near 75s; calm gaps |
+| Exterior | Continuous right-to-left travel at the reviewed opening's pace, gradual landscape changes, closed clear window |
+| Effects and audio | Clear cabin air, no decorative particles; generated audio omitted; music deferred |
+| Recovery | Review each extension before generating another; one focused retry per failed beat, then reassess |
+
+Action times are targets, not frame-accurate controls exposed by Flow. Exact total duration is
+a local export requirement. Upscaling does not repair facial motion or particle defects.
+
+**Why the latest draft needs these gates:** native-frame review shows a brief extra lower-mouth
+shape around 11 seconds in the first generated continuation. It is inside the footage, not
+just a cut at 10 seconds. Indoor particles are visible in the 25–32-second pickup segment and
+grow conspicuous around 35–40 seconds. They are already in the downloaded clips; local assembly
+only concatenated and trimmed. Continuation carrying forward and amplifying an invented effect
+is the likely explanation, not an observed internal model mechanism. Later negative prompts
+did not reliably remove it. Repeating “no particles” is not a deterministic repair. A correction
+must start from a visually verified clean parent, rather than assume that 30 seconds is clean.
+See the [feedback and sampled-frame evidence](evidence/p01-flow-workflow-feedback.json).
+
+### How this should appear in video-story
+
+**Choose episode → Review opening → Continue and review → Finish video.**
+The home screen needs New video, Continue and Library; exact parameters stay in Advanced.
+The episode page should show a single next action, the accepted duration, remaining story beats
+and a thumbnail for each accepted continuation. During the external generation step, show
+Open Flow, Copy next prompt and Import result. This explicit handoff can be made repeatable
+without claiming that the app can use the subscription through an API.
+
+The current code already has hashed video imports/probing (`src/tabi/core/assets/service.py`),
+approval/provenance records (`src/tabi/core/models/assets.py`), local audio and verified render
+assembly (`src/tabi/core/render/assembly.py`). The latter assembles the app's own render chunks;
+it is not an existing general Flow sequence endpoint. The current generation service is a
+local ComfyUI adapter (`src/tabi/core/generation.py`). `web/src/main.ts` still exposes tool pages.
+There is no implemented Flow episode recipe, continuation/retry history, guided review queue
+or whole-scene Flow export path. These need a separately scoped integration; an `ActionPack`
+must not be used to pretend baked footage has independent character/background layers.
+
+The next product milestone should guide one already-generated train episode from imported
+clips through review and exact-duration export, with no scripts or hand-written JSON. Direct
+Flow generation is a separate capability to verify; no supported account/API integration or
+unattended generation is established here. Automatic detection can flag suspicious frames,
+but does not replace the visual gate demonstrated by this trial.
+
+For new interiors/outfits, reuse identity references and the procedure, then qualify a fresh
+opening and short continuation. Café and walking require their own contact/gait checks before
+being labeled ready. A flattened Flow shot cannot independently swap its panorama or outfit;
+that change requires another generation. P01 stays open until a second episode demonstrates
+reuse with acceptable quality, review effort, elapsed time and total credits including retries.
+The trial used 70 credits; 30 identical-cost runs would be 2,100 credits, which is arithmetic,
+not a measured forecast for 30 different episodes. Licensing evidence remains attached to
+each source/model version; best-draft selection does not grant publication approval.
 
 ## Tools and responsibility
 
@@ -61,10 +152,10 @@ are untested with TABI.
 | SPAR3D, bounded correction completed | Test a new volumetric reference with and without shape guidance from eight generated views | [Paired correction](evidence/p01-turnaround-trial.json): same front image/seed; image-only front recognizable but rear wrong; point-cloud prior adds depth but merges/distorts gills and tail/body. Sixteen real Blender views; both no-go. Whole-session displayed delta 0.37 units; runtime released. Generated references remain useful drafts. |
 | TRELLIS 1, deferred | Previously proposed multiview coloured-mesh route | [Pinned source review](evidence/p01-next-route-review.json) remains available. Not selected under the latest Blender/Colab-only direction; no weights or inference run. |
 | Native Blender study, appearance rejected | Authored geometry and baked motion; Colab rendered the saved file | [Measured trial](evidence/p01-blender-native-trial.json): 15-second local video and three cloud poses; subsequent user rejection is recorded in progress. No further refinement selected. |
-| Google Flow, current trial | Continue an existing preferred TABI clip and reuse references for future scenes | [Continuity review](evidence/p01-flow-continuity-review.json). Existing subscription only; no live clip review or generation yet because browser approval review failed at capacity. Full 90-second continuity and app integration remain unproven. |
+| Google Flow, current route | Continue a reviewed TABI opening and reuse identity references for future scenes | [Actual trial](evidence/p01-flow-train-trial.json): exact 90-second local draft, selected as best so far; mouth/particles remain. Follow the procedure above; new-scene reuse and guided app integration are unproven. |
 | Meshy / Tripo Studio, previous paid candidates | Historical alternatives | Excluded from the current route by the no-additional-paid-apps preference. No paid trial or subscription authorized. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
-| video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
+| video-story | Proposed Flow recipe/reference library, continuation review, measured local assembly and music/export | Existing import/audio/export foundations are useful, but the Flow handoff is not implemented. P02–P04 need rescoping; earlier layered-renderer tasks do not establish this workflow. |
 | Logic | Finish original music and supply its local master when needed | Keep the selected master intact. Picture can be tested silently; music polish remains deferred. |
 
 Moho Pro supports [PSD-based 2D rigging and Smart Bones](https://moho.lostmarble.com/products/moho-pro-14)
@@ -94,6 +185,10 @@ does not clear that integrated pipeline. A reconstruction-only adaptation would 
 
 ## What becomes reusable
 
+Historical master/layer proposal, conditional on a qualified reusable rig. For the selected
+Flow route, references and episode recipes are reusable; independently editable body, outfit
+and exterior layers are not outputs of the current trial. Use the Flow procedure above.
+
 | Requirement | Reusable input and normal operation | Boundary to make visible |
 | --- | --- | --- |
 | Same TABI throughout | One versioned character master; rendered complete character frames from it | Reject likeness/deformation defects before adding the master to the library. Do not regenerate the head for each action or outfit. |
@@ -112,6 +207,9 @@ a consistent master and correct layer ownership. No independent replacement ears
 or flat cup overlays are added to already complete character frames.
 
 ## The workflow Marco should see
+
+Historical prepared-library proposal. The selected Flow workflow and its external handoff are
+described above; automatic master preparation has not qualified in any completed trial.
 
 **Library setup, only when something new is needed:** select references or a prepared bundle →
 automatic preparation → review the short movement test → save the reusable version. Expose
@@ -375,7 +473,8 @@ generated validators. Each implementation task also updates `docs/progress.md` a
 
 ## P01 — Decide whether automatic character preparation meets the real requirements
 
-Current action: [Google Flow continuity test](#next-checkpoint--google-flow-continuity).
+Current action: [repeatable Flow production procedure](#repeatable-flow-production-procedure),
+based on the selected best draft and its outstanding mouth/particle defects.
 The model trials below are historical; the later native Blender appearance was also rejected.
 
 Status: first candidate trial recorded on 5 October. TripoSR produced a real GLB, but its
@@ -432,6 +531,11 @@ crossfades, reversed footage, interpolation or cutout repairs. Music remains def
 All 12 sampled joins continue the scenery; the cup action and a visible deep breath are present.
 Floating specks, small shape/framing changes and approximate action timing remain. This is a
 reviewable draft, not zero-flicker approval or a repeatable app workflow. P01 remains open.
+
+**Subsequent user review:** Marco selected this as the best result so far and reported the
+mouth near 10 seconds and flying dots later. The [operating procedure](#repeatable-flow-production-procedure)
+supersedes continued ungated extension. The initial trial steps below remain historical method
+and acceptance context; this review did not run a new generation or repair the video.
 
 1. Inspect the existing preferred clip and generation history. Save source identifiers, actual
    model/settings, prompt, reference images and a local original with hash. Establish a frame
