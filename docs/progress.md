@@ -15,8 +15,10 @@ review, and publication decisions remain pending. Simplifying the app does not a
 
 The current creative baseline is Marco's selected [calm-window 90-second
 video](#t14--return-to-the-calm-window-baseline). He prefers its animations and rejects the
-later direction. Preserve its existing artwork and motion; the next repair is limited to ear
-edges. Later technical test results remain historical evidence, not a preferred creative result.
+later direction. Preserve its existing artwork and motion. A separate
+[upper-ear comparison](#t14--bounded-ear-comparison-and-app-workflow-assessment) tests a limited
+matte repair; it does not replace the preferred baseline or close the visual gate. Later technical
+test results remain historical evidence, not a preferred creative result.
 
 ## T39 — documentation cleanup and workflow plan
 
@@ -465,14 +467,80 @@ media and soundtrack are unchanged. Documentation links/archive/task checks and
 No claim that the ear flicker is fixed, no new app implementation, and no final creative or
 publication acceptance is made by this baseline selection.
 
+## T14 — bounded ear comparison and app workflow assessment
+
+Status: upper-ear comparison exported through the app and technically verified. The selected
+calm baseline remains preferred. The ear defect is not declared fully fixed.
+
+Marco authorized the narrow repair and asked whether this result can become the normal
+video-story workflow. The final candidate derives directly from the calm 1.0 foreground:
+all painted RGB is identical, the 180-frame idle asset is reused unchanged, and only opacity
+within x750–1019/y170–424 is reduced. A small contour filter, motion-compensated temporal
+median and bounded removal of source-window colours trim unstable fragments. Every RGBA pixel
+at y425 and below is identical to the original, protecting the raised cup, hands, lower face,
+neck, outfit and body. Coffee endpoints still match the idle exactly. No generated replacement
+ears, separate head/arm/cup layers, new actions, retiming or music changes are included.
+
+Visual review rejected two broader alpha-recovery experiments for halos/ragged edges. The
+first exported conservative candidate, pack 1.1, also touched a cup edge because the prop
+enters the old repair region during the sip. Its own draft is labeled **REJECTED**; its files
+and frozen export are retained for audit. The final 1.2 candidate restores that entire lower
+region. This is a specific regression check learned from the composed moving action, not a
+claim that opacity statistics establish good art.
+
+Final candidate episode: `tabi-train-calm-upper-ear-comparison-90s`; pack
+`pack.tabi.calm-ride@1.2`; coffee asset `tabi.actions.calm-coffee-break@1.2`. Preparation,
+scripts and per-frame hashes are saved in the project's `sources/calm-ear-repair-v11/` and
+ignored `.local/calm-ear-repair-v11/`. All original assets, the 1.0 pack, original episode and
+selected MP4 remain intact. The 90-second schedule, 78 seconds watching, 36–48-second coffee
+break, 72-pixel/second independent panorama and music tracks are unchanged.
+
+The final app job `job-fd0b0456aac54654b85b8e21ebb6035a` verified **2700 frames / 90 seconds,
+1080p30 H.264 with stereo 48 kHz AAC**. Independent full decoding and comparison of every
+output frame passed; all ten sampled travel offsets and both action/two chunk joins matched.
+The encoded AAC hash is identical to the baseline. All 360 prepared coffee frames retain exact
+RGB and all RGBA outside the final upper-ear region; 332 frames contain localized alpha trims,
+with a maximum of 2087 changed pixels. Idle and coffee endpoints remain identical.
+
+Chrome selected the new episode, froze it, estimated storage, queued the export, opened the
+verified output, played from 36 through 58 seconds and sought to 41.8 seconds. The
+[app screenshot](evidence/t14-calm-upper-ear-app.jpg) and
+[rendered before/after close-ups](evidence/t14-calm-upper-ear-comparison.jpg) support review.
+The [90-second comparison](assets/clip-tests/Tabi-Calm-Upper-Ear-Comparison-90s-Lo-Fi-Walz-DRAFT.mp4)
+and [12-second side-by-side](assets/clip-tests/Tabi-Calm-Upper-Ears-Before-After-12s.mp4) stay local
+and untracked. [Exact identities, preservation checks and workflow evidence](evidence/t14-calm-upper-ear-comparison.json)
+record the distinction between technical success and remaining visual defects. Original video
+and episode hashes still match the selected baseline. No application code changed.
+
+Verification commands: `.venv/bin/python .local/calm-ear-repair-v11/install_candidate.py`
+(360-frame preservation audit and shared compiler validation), `verify_export.py` in the same
+folder (all 2700 rendered frames, travel/joins and identical AAC), and `compare_video.py`
+(360-frame side-by-side). `.venv/bin/python .local/docs-cleanup/check_docs.py` passes for
+53 Markdown files, 779 local links, 38 archived tasks, nine planned tasks and 130 target paths;
+`git diff --check` passes. The pre-existing staged IDE patch is preserved and zero MP4s are tracked.
+
+The [workflow assessment and strategy](tasks.md#can-the-normal-app-workflow-produce-this-video)
+is explicit: current Python services and the app render screen can compose and export this
+prepared scene. Cabin separation, matte repair, pose bridges and pack preparation still happen
+outside the UI. The target is a reviewed reusable train pack, named calm/idle routines,
+compatible scenery selection and duration defaults, followed by preview/export. T43/T44 now
+include compatible saved routines; T48 must reproduce this ride and a second scenery/duration
+variant in a fresh project without scripts or JSON. T40–T48 remain planned, not implemented.
+
+Residual source-art distortion remains visible through the head turn. Automatic matte trimming
+cannot restore already damaged ink or supply missing painted ear lobes. Finish those few
+complete source frames from the same character master and review the moving comparison before
+promoting a pack. The broader head/neck/arm reconstruction and generated-ear experiments remain
+superseded. Music polish and human creative/rights/publication gates stay open.
+
 ## Next work
 
-Repair only the local ear-edge flicker in the selected calm-window baseline. Work from its
-original native RGB/alpha and exact prepared motion; review the whole head-turn/coffee return
-with the independently moving window, compare to the unchanged baseline, and require preserved
-non-ear pixels and timing. Start with the cutout edges and inspect any source RGB damage before
-choosing a correction. Keep the existing artwork, poses, cup, scenery and soundtrack as the
-reference. Extra actions and stronger breathing follow separately after this narrow repair.
+Review the bounded upper-ear comparison against the selected calm-window baseline. Finish
+the remaining damaged painted outlines in a small set of complete source frames, keeping the
+same ear design and motion; do not apply broader automatic alpha expansion or reconstruct
+body parts. Require preserved cup/hands, neck/collar, timing and continuous scenery before
+promoting a new pack. Keep the original calm video as the reference. Extra actions and stronger
+breathing follow separately after this narrow repair.
 Music polish remains deferred. All earlier experiments are preserved for comparison.
 
 T40 remains the first unblocked application implementation task: infer safe import parameters from actual media

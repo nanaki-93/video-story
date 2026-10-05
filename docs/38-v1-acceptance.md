@@ -170,6 +170,20 @@ Later generated ears and separate parts rigs are superseded. The ear defect rema
 choosing the best draft does not claim it is fully finished. Extra actions and stronger breathing
 are deferred during this repair, and music polish remains deferred.
 
+The subsequent [bounded upper-ear comparison](progress.md#t14--bounded-ear-comparison-and-app-workflow-assessment)
+is an app-exported 90-second derivative of that exact baseline, with its schedule, idle, painted
+RGB and music preserved. Final coffee1.2 only trims alpha in the upper-ear region; the raised
+cup and every lower pixel are restored exactly after visual review caught overlap in the first
+internal candidate. All 2700 rendered frames, travel offsets/joins and unchanged AAC passed
+technical checks. Residual painted-outline distortion remains, so the original calm video is
+still the preferred baseline and T14's human visual gate remains open.
+
+The [app workflow assessment](tasks.md#can-the-normal-app-workflow-produce-this-video) separates
+working composition/export from currently external art and pack preparation. T40–T48 remain
+planned. Completion now explicitly requires a fresh-project train video and a second
+scenery/duration variant through the guided UI without scripts or hand-written JSON; this
+one-off render does not satisfy that product acceptance gate.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |

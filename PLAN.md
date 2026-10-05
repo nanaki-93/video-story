@@ -31,14 +31,25 @@ pack `pack.tabi.calm-ride` at 1.0 and the original `sources/train-polish-v3/` pr
 Preserve this version's TABI artwork, original ear shapes, poses, cup, timing, 36–48-second
 coffee break, calm window holds, continuous 72-pixel/second scenery and existing soundtrack.
 
-The next creative change is limited to the existing ear-edge flicker. Compare source RGB and
+Creative repair remains limited to the existing ear-edge flicker. Compare source RGB and
 alpha through the head turn, repair only the affected ear region, and compare against this exact
 baseline. Review moving outlines as well as opacity; technically valid frames did not make the
 later experiments look better. The separate parts rigs and generated replacement-ear master
 remain historical experiments and are not the starting point. Earlier requests for extra cues
 and stronger breathing remain recorded as future work after this baseline is stable. Music
 polish is deferred. Original assets and all previous versions remain preserved.
+The [bounded upper-ear comparison](docs/progress.md#t14--bounded-ear-comparison-and-app-workflow-assessment)
+is technically verified but retains source-outline distortion; it does not replace Marco's
+selected baseline or close the visual gate.
 T40 remains the first task when application workflow implementation resumes.
+
+The [workflow feasibility assessment](docs/tasks.md#can-the-normal-app-workflow-produce-this-video)
+distinguishes the working compositor/exporter from the missing guided preparation/binding flow.
+The product strategy is to prepare and review a reusable complete-character train pack once,
+then use named routines, compatible exterior choices and duration defaults for normal videos.
+The acceptance test must reproduce the ride and a second scenery/duration variant through the
+UI in a fresh project, without scripts or hand-written JSON. Source-art retouching is a separate
+preparation step; importing files or making PNG proxies does not perform it.
 
 ## Product boundaries
 

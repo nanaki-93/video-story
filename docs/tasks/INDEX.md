@@ -30,6 +30,15 @@ as the last good result and rejected the direction of later variants. Preserve i
 artwork, poses, timing, scenery and soundtrack; next address only the local ear-edge flicker.
 The records below are chronological evidence, not instructions to resume the later rigs or
 generated replacement ears. Earlier extra-motion requests are deferred during this repair.
+The [bounded upper-ear comparison](../progress.md#t14--bounded-ear-comparison-and-app-workflow-assessment)
+is technically verified but remains a review candidate with residual source-art distortion;
+it does not promote a new creative baseline.
+
+The [app workflow assessment](../tasks.md#can-the-normal-app-workflow-produce-this-video)
+now makes the product gap explicit: the compositor and export jobs work, while raw-art cleanup
+and guided pack/scene assembly are not end-to-end UI features. T43/T44 include compatible saved
+routines and T48 requires a fresh-project train export followed by a scenery/duration variant
+without scripts or hand-written JSON. One-time art preparation remains separately reviewed.
 
 | Original tasks | Remaining input/review |
 | --- | --- |

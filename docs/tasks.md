@@ -17,46 +17,22 @@ Switching between complete generated shots is not an acceptable substitute for t
 The one-off window-mask preparation authorized for that test does not add an automatic artwork
 generation feature to this implementation plan.
 
-The next test adds prepared reading, coffee and window-looking motion over one fixed cabin,
-with the character/cup foreground above the exterior so the glass mask cannot crop moving props.
-Scene binding must retain that layer ownership and review matching entry/exit poses; changing
-the action must not restart travel. Faster travel and multiple connected exterior views are
-scene choices, rather than reasons to reintroduce complete-shot cuts. The
-[draft evidence](evidence/t14-train-actions-draft.json) records its actual limits.
+The train recipe uses one fixed cabin, a prepared glass mask, an independently scrolling
+exterior and complete transparent character frames above the exterior. The character clip owns
+its face, arms and cup; an extra limb, blink or cup overlay must not duplicate what is already
+painted. Entry/exit poses and prop contact must match. Review the entire moving composition,
+including neck/collar continuity and ear outlines, rather than only checking opaque interiors.
 
-Marco's animation-polish pass further clarifies pacing: **long outside-watching holds and
-infrequent actions**, with music work deferred until the picture is consistent. The
-[calmer test](evidence/t14-calm-window-ride-draft.json) uses 78 seconds of window-facing idle
-and one coffee break. A normal train preset should favour this calm pace and show action
-frequency as an editable choice. Do not silently use the full defective sip return or require
-movement every few seconds; review foreground alpha, hand coverage and matching poses as well
-as timing. The one-off preparation and verification do not implement the guided application.
+Prefer long outside-watching holds and infrequent complete actions. The selected calm example
+uses 78 seconds of window-facing idle and one 12-second coffee break. The source clips were
+explicitly conformed from their measured 25 fps to this pack's 30 fps; importing frames must
+not silently invent their timing. The one-off preparation does not implement the guided app.
 
-On 5 October Marco requested a [more active timed test](evidence/t14-breathing-actions-draft.json):
-continuous gentle breathing, outside watching at 15/60 seconds, coffee at 30, music nodding at 45
-and a larger breath at 75. Treat idle breathing as continuous motion beneath occasional actions,
-with a global phase that does not restart at action/chunk boundaries. Keep cues and movement
-strength editable; the calmer and timed schedules are saved draft examples, not a mandatory
-action every few seconds. Source-fringe completeness needs actual RGB/alpha review in addition
-to output matching. This creative preparation still does not implement T40–T48.
-
-Marco's next review selects `06-looking-out-window.png` for rest and asks for more visible
-breathing and a perceptible final inhale/exhale. The [new rig draft](evidence/t14-window-rig-polish-draft.json)
-uses one shared head/frill master, a face-only expression track and stronger breathing values.
-The normal scene preset should expose idle pose and motion strength in plain language, with
-occasional action cues over independent travel. Marco authorized missing-art generation for
-this one-off test; it does not add automatic artwork generation to the guided application plan.
-
-Marco subsequently rejected that rig's neck/collar separation, incorrectly tilted table cup
-and resting arm/sleeve shapes underneath the moving arms. The
-[anatomy review](progress.md#t14--anatomy-review-and-complete-character-frames) changes the creative
-preparation method: prefer **complete transparent character frames** from one coherent master.
-Cabin, foreground occlusion and scenery remain separate. This is not a return to full-scene
-clips with baked-in scenery. Complete frames must still be checked for ear/identity drift,
-collar anatomy, exactly two arms, cup contact and matching action endpoints; one image surface
-alone cannot establish artistic correctness. A parts rig may author the frames only after its
-hidden torso, shoulder joints, collar overlaps and replacement-limb ownership are reviewed.
-The app consumes prepared clips and does not add a body-part editor or runtime limb assembly.
+The [creative review history](progress.md) retains the earlier breathing, timed-action, window
+pose, anatomy and ear experiments. Separate body-part rigs and generated replacement ears were
+rejected as the new direction. Additional actions and stronger breathing remain future work
+following the baseline repair. The runtime consumes complete reviewed character frames; this
+plan does not add a body-part editor or automatically reconstruct incompatible source clips.
 
 **Current creative direction, 5 October:** Marco subsequently says the later variants are worse
 and selects the [calm-window 90-second video](progress.md#t14--return-to-the-calm-window-baseline)
@@ -64,7 +40,43 @@ as the last good result. Its existing animations, poses, artwork and timing are 
 Repair the local ear-edge flicker first, using the original source movement and ear shapes;
 compare directly against that video. The generated replacement ears and parts rigs are
 superseded experiments. Earlier extra-action/breathing requests remain future work, separate
-from this limited repair. This selection changes the creative baseline, not T40–T48's scope.
+from this limited repair.
+
+## Can the normal app workflow produce this video?
+
+**5 October assessment: the renderer can; the guided asset-to-video workflow is not complete.**
+The calm baseline uses the real compiler, independent travel curve, full-character PNG
+sequences and durable export jobs. Its cabin separation, cutouts, pose bridges and animation
+pack were prepared with local scripts outside the UI. Importing a flattened scene or imperfect
+cutouts does not reproduce that preparation. PNG proxies only normalize preview media; they
+do not repair ears, reconnect anatomy or make incompatible actions consistent.
+
+| Step | Current capability | Work needed for the intended workflow |
+| --- | --- | --- |
+| Prepare matching cabin, glass mask, exterior and complete character actions | External art/preparation, with manual visual review | Prepare one reusable train pack; retain source hashes and explicit preparation history. Do not promise automatic cleanup of arbitrary generated clips. |
+| Import and bind the pack | Media import and authored template/action/episode JSON | T40–T44: grouped import, named scene recipes, visible missing inputs, compatible saved routines and reusable scene setup without hand-written JSON. |
+| Set timing and continuous scenery | Python compiler, curves and editor already support it | T43–T45: expose safe routine/duration/travel defaults, fit only compatible complete actions, keep the exterior on one global clock. |
+| Preview and export | Real preview, frozen snapshots and verified export jobs exist | T46–T48: one guided path and a fresh-project walkthrough using the reviewed train pack. |
+
+The first product path is **Use saved scene → Calm train → choose scenery and duration →
+preview the action → export**. Music can be added later. The initial saved routine keeps the
+selected baseline: 1080p, 30 fps, 90 seconds, window-facing idle, one 12-second coffee break
+at 36 seconds and 72 design-pixels/second travel. These are editable recipe defaults, not
+facts to infer from filenames. Reuse complete character frames; do not layer new arms or a
+separate breathing head on top of an already complete character.
+
+Preparation happens once per reusable scene/action pack. When source artwork changes shape
+between frames, use a small set of manually cleaned complete frames or a properly authored
+animation export from the same character master. Temporal matte trimming can remove cutout
+noise but cannot reconstruct damaged painted outlines. Integrating that experimental cleanup
+into normal import is deferred until it passes moving before/after review. More scenarios use
+compatible exterior strips; changing the outside does not regenerate Tabi.
+
+The completion gate is a fresh project created entirely through the UI from a prepared train
+pack, producing the 90-second scene, then a second video with a different compatible exterior
+and duration. Neither run may require a preparation script, editing JSON or rebuilding Tabi.
+One-time art preparation must be stated separately. T40 is still the first unblocked app task;
+none of T40–T48 is implemented by this creative test.
 
 ```mermaid
 flowchart LR
@@ -164,7 +176,7 @@ episode automatically. A saved scene retains exact versions and its reviewed tim
 | Scene canvas | Preserve source design geometry; fit the complete composition into the output. Derived layer preparation uses one explicit transform for aligned background/mask/foreground groups. |
 | Duration | Full length of the selected ordered music; no song stretching, trimming, repeats or fixed 30–60-minute target |
 | Before music | A clearly labeled 10-second silent scene check; “Add music to set video length” |
-| Character | No motion until a compatible prepared loop is chosen; then repeat that reviewed loop. No automatic sip/read/pose transitions. |
+| Character | No motion until a compatible prepared loop or saved routine is chosen. The calm train routine includes its declared coffee action and matching poses; arbitrary imported clips never gain automatic sip/read transitions. |
 | Train scenery | One continuous travel phase across character blinks, action repeats and render chunks. Validate available strip coverage for the chosen duration; a short non-wrapping pass does not establish a seamless long-form loop. |
 | Weather / lighting / ambience | Off unless already authored in the selected saved scene; no invented rain or train noise |
 | Audio | Complete masters in order, 0 dB gain, no added fades/crossfades or loudness remastering; 48 kHz prepared mix, original masters unchanged |
@@ -290,9 +302,9 @@ make web-build
 ## T43 — Bind prepared animation to the scene
 
 **Target files**
-- `src/tabi/core/scene_builder.py` — produce compatible draft `ActionPack`, body coverage and scene/episode binding.
+- `src/tabi/core/scene_builder.py`, `src/tabi/core/models/scenes.py` — produce compatible draft `ActionPack`, body coverage, saved routine references and scene/episode binding.
 - `src/tabi/core/authoring.py`, `src/tabi/api/workspace.py`, `src/tabi/api/contracts.py`, `src/tabi/cli/authoring.py` — shared animation-binding proposal/apply.
-- `schemas/web_scene_plan.schema.json`, `web/src/generated/web_scene_plan.ts` — include animation requirements and preview intervals.
+- `schemas/scene_setup.schema.json`, `web/src/generated/scene_setup.ts`, `schemas/web_scene_plan.schema.json`, `web/src/generated/web_scene_plan.ts` — include saved routine references, animation requirements and preview intervals.
 - `tests/unit/test_scene_builder.py`, `tests/integration/test_scene_builder.py` — real alpha, loop phase, channel and compatibility checks.
 
 **Inputs / dependencies**
@@ -300,7 +312,8 @@ make web-build
 
 **Implementation rules**
 - Reuse compatible existing packs first. For a prepared transparent sequence, offer a simple looping-idle binding with source range, anchor and declared start/end pose; create the pack and compatibility metadata as new drafts.
-- Do not loop an arbitrary clip on import. Provide a two-cycle seam preview and explicit loop selection; a drinking/prop-changing one-shot needs entry/exit/prop declarations and stays Advanced in this release.
+- Do not loop an arbitrary clip on import. Provide a two-cycle seam preview and explicit loop selection. A drinking/prop-changing one-shot needs reviewed entry/exit/prop declarations. Expose it normally only through an already compatible saved routine; authoring arbitrary one-shots stays Advanced.
+- Bind a saved scene to a reusable routine of reviewed complete actions. The first train routine preserves the calm baseline's 78 seconds of window idle and one 12-second coffee break at 36 seconds. Offer idle-only and calm pacing through Python-authored schedules, fit complete actions inside the requested duration and finish in the declared resting pose. Do not infer transitions or overlay a second body/face/breathing channel. Reusing an existing pack must not require hand-written episode JSON.
 - Review the complete composition across an animation repeat with travel enabled: character pose remains aligned and exterior motion does not reset. An isolated character thumbnail cannot establish scene continuity.
 - Default a composite character clip to owning body and face so an extra blink cannot double it. Preserve reviewed pack channel rules when reusing one.
 - Prefer reviewed complete character frames for this train recipe. Do not add moving arms over a body that still contains resting arms, or a replacement cup over a clip that owns its cup. Review neck/collar continuity, arm replacement, table contact and matching full poses in the actual composed action. Alpha coverage and successful rendering do not approve anatomy.
@@ -335,7 +348,8 @@ make web-build
 - A character placement gesture submits an anchor change to Python; it is not a second browser compositor. Debounce still requests, discard outdated responses and cancel only owned superseded preview work.
 - Render a short scene check before music. Show unknown fps, missing foreground and baked-in-character guidance in context. No fake sample preview may be presented as the user's scene.
 - “Save scene” stores a usable template/pack combination. “Use saved scene” creates a new draft using exact versions; approved originals remain immutable. Save/reload must retain role choices and the current scene.
-- Keep unsupported scaling, arbitrary one-shots and manual metadata in Advanced. Keyboard controls, focus return and error links must reach each affected slot.
+- Show the saved scene's available routines, compatible exterior choices, duration and supported travel speed with the calm defaults above. Preview the coffee entry, sip, return and idle repeat over moving scenery before accepting a new pack version. Show baseline and candidate together; technical validation never labels a repair visually fixed.
+- Keep unsupported scaling, arbitrary one-shot authoring and manual metadata in Advanced. Keyboard controls, focus return and error links must reach each affected slot.
 
 **Verification command**
 ```sh
@@ -461,6 +475,7 @@ make web-build
 - Prepared animation: import a numbered transparent sequence, resolve its real fps/loop once, place it over a compatible background/foreground, inspect a true seam preview, save and reuse the scene. Verify one character and correct occlusion/phase across chunk boundaries.
 - Missing-input journey: the supplied train still works as static; the actual breath/drink collection gets accurate timing/layer/action guidance. Never report the incomplete real pack as approved or ready for animation automatically.
 - Reuse: create a second video from the saved scene by changing title/music only; show the new duration. Reopen after a worker restart; preserve media, versions and deliberate overrides.
+- Train acceptance: start from a fresh project and a prepared train pack, select its calm routine, render the 90-second continuous ride, then reuse the scene with another compatible exterior and duration. No preparation script, metadata JSON editing or character reconstruction is allowed during either normal production run. Record one-time external art preparation separately and review moving ears, neck/collar, exactly two arms, cup contact, full action endpoints and exterior continuity. Test longer durations only with reviewed panorama coverage/wraps; this 90-second pass is not evidence of a seamless long-form journey.
 - Exercise incompatible fps, missing mask, failed/resumed import, stale second-tab edits, ambiguous export replies, cancel/restart/resume, pending rights and insufficient space. Check that source hashes and old snapshots remain unchanged.
 - Observe 1280×800 and narrow laptop layouts, keyboard/focus operation, authenticated playback and scale-readable labels in Safari/Chrome. Marco can follow the steps without developer guidance; usability acceptance remains pending until he tries it.
 - Record checks, versions, screenshots and local clip paths. Do not rerun the 45-minute/4K benchmark unless implementation changes invalidate its assumptions; run the existing full media gate for regression coverage.
