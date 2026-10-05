@@ -61,10 +61,17 @@ below are historical alternatives, not prerequisites for using Flow.
    camera and clear cabin air. This avoids the current draft's saved-frame handoff at 10 seconds;
    it does not guarantee that the generator will preserve identity. The original preferred
    clip remains a visual reference. Do not prepend an incompatible source merely to keep it.
+   Record the objects and hand positions actually visible in the accepted opening. If they
+   differ from the intended recipe, either accept that inventory explicitly or reject the
+   opening; do not introduce the missing requested objects during later continuations.
 3. **Continue one beat at a time.** Explicitly select the last accepted clip and use native
    Extend. Keep the identity/camera/lighting/outfit constraints fixed and change only the next
    action. Carry forward hand position, cup ownership, gaze and exterior travel. Reach, sip
    and return may span several extensions; do not force every complete action into one clip.
+   Use one focused action or exterior transition per extension. A pickup prompt must not also
+   require hands on lap; a takeaway cup must not be described as a ceramic cup with a handle
+   and saucer. Describe the next movement using the accepted scene's actual objects, and carry
+   the current exterior forward rather than restarting a district already established.
    Google documents Extend for eligible eight-second Veo clips using Lite; check live settings
    and cost before starting a session. See [supported features](https://support.google.com/flow/answer/16352836?hl=en).
 4. **Review before continuing.** Play every new clip and its join at normal speed, then inspect
@@ -77,7 +84,9 @@ below are historical alternatives, not prerequisites for using Flow.
    session's existing-credit cap instead of continuing a visibly defective chain.
 5. **Finish locally.** Import accepted downloads, verify hashes and actual frame counts, order
    them by parent relationship, omit generated sound and trim only a quiet ending to exactly
-   90 seconds. Do not use Flow's nominal timeline ruler as the media duration. Watch the full
+   90 seconds. Check source timestamps and assign continuous output timestamps during assembly;
+   do not preserve empty nominal timeline slots as held frames. Do not use Flow's nominal
+   timeline ruler as the media duration. Watch the full
    result and review joins before marking it ready. Add the local music master when requested;
    keep music off the generation service. Save a new output version and measured report.
 
@@ -105,6 +114,15 @@ is the likely explanation, not an observed internal model mechanism. Later negat
 did not reliably remove it. Repeating “no particles” is not a deterministic repair. A correction
 must start from a visually verified clean parent, rather than assume that 30 seconds is clean.
 See the [feedback and sampled-frame evidence](evidence/p01-flow-workflow-feedback.json).
+
+The [6 October Tokyo inspection](evidence/p01-flow-tokyo-001-review.json) confirms a separate
+timing issue: three clips contain 8 + 7 + 7 seconds, but the downloaded scene leaves a one-second
+timestamp gap before clip 3. Local assembly removes that gap without regeneration. Native clip 3
+also adds a saucer absent from the opening, after contradictory cup/hand instructions. Timing
+normalization cannot repair that visual invention. Google's
+[video prompting guidance](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/video/best-practice)
+recommends a focused moment and, for image-conditioned generation, emphasis on motion. Applying
+that guidance to Flow Extend is a recommendation, not a guarantee of consistent objects.
 
 ### How this should appear in video-story
 

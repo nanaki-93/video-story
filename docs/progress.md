@@ -1,6 +1,39 @@
 # Current progress
 
-Updated 5 October 2026 (Asia/Manila).
+Updated 6 October 2026 (Asia/Manila).
+
+## P01 — Tokyo scene timing and prop conflicts
+
+6 October 2026. Marco supplied the three-clip **Test Tokyo 001** Flow scene to investigate
+pauses and changing objects. The [native media and observed prompt review](evidence/p01-flow-tokyo-001-review.json)
+separates the two issues. Flow displays 24 seconds, but the downloaded clips contain
+192 + 168 + 168 frames: **22 seconds at 24 fps**. The downloaded scene has a timestamp gap
+from frame 359 at 14.958333s to frame 360 at 16s. This holds the preceding picture for about
+one second at the second-to-third join. Both individual extensions have regular timestamps;
+the gap is in the scene assembly. This does not explain every possible playback stall.
+
+A new local comparison, `docs/assets/clip-tests/Test-Tokyo-001-CONTINUOUS-22s-CHECK.mp4`,
+concatenates the three unchanged native clips with continuous timestamps. It verifies
+**528 frames, 22.000s, 1280×720, 24/1 fps**, every frame timestamp and a full strict decode.
+Its SHA-256 is `46b97bb9e7fe2609b3ad7eed4374a44ef2e5f245a0582c665b3514843ec748cc`.
+Native generated audio is retained for this timing comparison; private music is untouched.
+No interpolation, loop, reversal or visual repair is applied. Original downloads are preserved.
+
+The actual opening shows a tan takeaway cup with dark lid and flower design, an open book,
+a pen and a brown bag. The prompts instead request a white ceramic cup, saucer and closed book.
+Clip 3 requests an existing cup handle and empty saucer, then also requests hands on lap while
+lifting the cup. Both extensions repeat a Ginza transition. A new white saucer is visible by
+native clip 3 frame 84; [before/after frames](evidence/p01-flow-tokyo-001-props.jpg) show it.
+These prompt conflicts plausibly contribute to prop invention, but internal causation is not
+observable. Particles and small character contour changes also remain in the native footage.
+
+The [procedure](tasks.md#repeatable-flow-production-procedure) now requires an inventory from
+the accepted opening, compatible hand states, separate action/exterior beats and timestamp
+checks on import. A source-matching pickup prompt is saved but not submitted. No new generation,
+credits, purchase or cloud scene edit occurred; no app code changed. The comparison fixes timing
+only and does not promote the Tokyo scene or replace the selected 90-second baseline.
+Documentation links/history, source and baseline hashes, staged-work preservation and
+`git diff --check` pass. P01 stays open; full visual acceptance and app integration remain pending.
 
 ## P01 — Flow baseline selected and repeatable workflow review
 

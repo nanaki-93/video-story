@@ -34,6 +34,12 @@ defines defaults and review before each extension. Visual acceptance and
 repeatable production/app integration are still open. Native Blender refinement and TRELLIS
 remain deferred. No production route is qualified.
 
+The [6 October Tokyo scene review](../evidence/p01-flow-tokyo-001-review.json) measures a
+one-second timestamp gap between clips 2 and 3 and saves a continuous 22-second local comparison.
+Native prop invention remains separate: the prompts contradict the actual cup/book inventory
+and hand states. The procedure now records actual props, separates beats and checks timestamps.
+No new generation or app integration is claimed.
+
 The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit
 Colab monthly grant against the clarified target of 30 × 90-second videos with new assets.
 The [budget and measurement plan](../tasks.md#monthly-production-and-compute-budget) uses a
