@@ -215,6 +215,8 @@ Regenerate with `make schemas` and `npm --prefix web run schemas`; verify with
 
 ## F02 — Persist resumable sequences and accepted branches
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/flow/__init__.py` (new), `src/tabi/core/flow/service.py` (new) — shared episode, attempt, branch and frozen-export storage operations.
 - `src/tabi/core/persistence.py` — explicit Flow document paths and immutable export-input storage.

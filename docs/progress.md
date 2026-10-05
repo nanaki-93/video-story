@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F02 — resumable reviewed branches
+
+6 October 2026. Flow drafts now save atomically with immutable history and attempt evidence. Reviews bind the actual source and reference hashes; stale revisions, changed media and rewritten attempts fail. Backtracking keeps old descendants while excluding them from active progress; cloning starts a fresh review chain. Frozen export inputs have independent immutable storage. Verification: 26 tests pass in test_flow_service.py and test_persistence.py, including an interruption before draft publication. Ruff passes. Full UI/media acceptance remains for F12.
+
 ## F01 — strict Flow contracts
 
 6 October 2026. Added Flow episode, attempt and export documents. Actual clip timing, parent
