@@ -25,9 +25,12 @@ or paid add-ons. The runtime is inactive; the displayed account-balance delta wa
 He rejected its appearance as insufficient and selected **Google Flow**, where his existing
 clips look better. The [Flow continuity checkpoint](../tasks.md#next-checkpoint--google-flow-continuity)
 and [source review/prompts](../evidence/p01-flow-continuity-review.json) start from his supplied
-project. Browser approval review failed at capacity before inspection, so no Flow generation
-or credit use occurred. Live source/model/price verification and the short continuation test are
-next. Native Blender refinement and TRELLIS are deferred. No production route is qualified.
+project. Browser access subsequently recovered, and the
+[actual Flow trial](../evidence/p01-flow-train-trial.json) produced a **90-second silent draft**
+from sequential continuations, using 70 included credits. Twelve joins and 205 sampled frames
+were reviewed; floating specks and small shape/framing changes remain. Visual acceptance and
+repeatable production/app integration are still open. Native Blender refinement and TRELLIS
+remain deferred. No production route is qualified.
 
 The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit
 Colab monthly grant against the clarified target of 30 × 90-second videos with new assets.
@@ -37,7 +40,7 @@ The [budget and measurement plan](../tasks.md#monthly-production-and-compute-bud
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
-| [P01](../tasks.md#p01) | Qualify repeatable TABI identity, continuous motion and scene/outfit/action reuse | Real references, approved trial scope, licences, selected provider | native Blender appearance rejected; Flow continuity trial prepared, browser access unavailable; production unqualified |
+| [P01](../tasks.md#p01) | Qualify repeatable TABI identity, continuous motion and scene/outfit/action reuse | Real references, approved trial scope, licences, selected provider | Flow 90-second draft created; visual acceptance and repeatable production remain open |
 | [P02](../tasks.md#p02) | Define the prepared character-library handoff | P01 passes | blocked on P01 |
 | [P03](../tasks.md#p03) | Earlier Blender preparation design; rescope after the selected route qualifies | P01, P02 | blocked; Flow handoff not specified |
 | [P04](../tasks.md#p04) | Connect preparation to durable app jobs | P02, P03 | blocked on preparation proof |

@@ -412,7 +412,26 @@ revised strategy and exact commercial-licence/dependency review; do not keep rer
 
 User-selected [Flow project](https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781).
 Detailed prompts, review gates, budgets and dated official sources are in the
-[Flow review](evidence/p01-flow-continuity-review.json). No new video has been generated.
+[Flow review](evidence/p01-flow-continuity-review.json). The subsequent
+[measured trial](evidence/p01-flow-train-trial.json) has produced an exact 90-second silent draft;
+the steps below retain the trial method and acceptance requirements.
+
+**Actual result, 5 October:** 14 single-output Veo 3.1 Lite requests used 70 existing credits.
+The selected 10-second source did not support Extend, so its saved final frame seeded an
+8-second clip. Eleven accepted native extensions then added seven actual seconds each.
+Select the **last accepted timeline clip** before extending; the selected clip does not advance
+automatically. One mistaken branch was removed from the sequence, and one blue-eye/hand-gesture
+branch was replaced from its clean parent with explicit dark-brown eyes and resting hands.
+Both unused versions remain local. A continuity draft passed the bounded 20-credit checkpoint;
+the remaining calls fulfilled Marco's explicit request for the complete 90-second attempt.
+
+The accepted Flow chain contains 85 seconds of actual footage, although its timeline displays
+nominal 96 seconds. Local Python/FFmpeg assembly prepended the original 10 seconds and trimmed
+five seconds from the final quiet hold, producing 2160 frames at 24 fps. It used no loops,
+crossfades, reversed footage, interpolation or cutout repairs. Music remains deferred.
+All 12 sampled joins continue the scenery; the cup action and a visible deep breath are present.
+Floating specks, small shape/framing changes and approximate action timing remain. This is a
+reviewable draft, not zero-flicker approval or a repeatable app workflow. P01 remains open.
 
 1. Inspect the existing preferred clip and generation history. Save source identifiers, actual
    model/settings, prompt, reference images and a local original with hash. Establish a frame

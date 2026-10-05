@@ -39,8 +39,12 @@ The current [Flow continuity checkpoint](docs/tasks.md#next-checkpoint--google-f
 starts from his preferred existing clip and tests sequential continuation, preserving character,
 props, camera and exterior movement before extending toward 90 seconds. Reference consistency
 and uninterrupted motion are separate gates; neither is guaranteed by a prompt.
-Existing Google entitlement only, no purchases or top-ups. Live browser access was blocked by
-automatic approval review's capacity failure, so no clip was inspected or generation started.
+Existing Google entitlement only, no purchases or top-ups. The subsequent
+[Flow train trial](docs/evidence/p01-flow-train-trial.json) produced an exact **90-second,
+720p/24 fps silent draft**, using 70 included credits. Browser access recovered. Native extension
+preserves the sampled joins, but light specks, small shape/framing changes and approximate timing
+remain. The final was assembled locally from downloaded Flow footage; this is not a completed
+video-story generation workflow or visual acceptance.
 Native Blender and [TRELLIS](docs/evidence/p01-next-route-review.json) are deferred. Prior
 evidence stays immutable. Full production feasibility remains open.
 

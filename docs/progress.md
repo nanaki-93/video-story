@@ -2,7 +2,67 @@
 
 Updated 5 October 2026 (Asia/Manila).
 
+## P01 — 90-second Google Flow train draft
+
+5 October 2026. Marco explicitly requested the full 90-second train attempt. The new local
+draft is `docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4`: **90.000 seconds, 2160 frames,
+1280×720, 24 fps, silent**. The [measured evidence and exact prompts](evidence/p01-flow-train-trial.json)
+and [frame overview](evidence/p01-flow-train-overview.jpg) preserve the result and limitations.
+Original artwork, private music and the preferred calm-window comparison video are unchanged.
+
+Browser access recovered. The selected source in Marco's Flow project is the 10-second
+`Axolotl looking out train window`. Its Extend control is disabled; its original generation
+model was not established. A saved final frame seeded an 8-second **Veo 3.1 Lite** clip.
+The [saved Flow continuation chain](https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781/scene/0c358f69-c425-426b-87ac-d3d845c61c99)
+then uses native Extend. Each downloaded extension adds **seven actual seconds**, despite
+the timeline reserving eight. Its 12 accepted clips contain 85 seconds of media; the local
+export prepends the original 10 seconds and trims five seconds of the final quiet hold.
+The finished 90-second file is therefore the local deliverable, not the nominal Flow time ruler.
+
+The sequence includes quiet breathing, a window look near 15 seconds, cup pickup around
+28–31 seconds, sip/return around 31–37 seconds, gentle sway around 46–51 seconds, another
+window gaze around 62–74 seconds, and a larger inhale/hold/settle around 75–79 seconds.
+The background advances through temple/cherry-tree, river and countryside views. No loops,
+reversed shots, unrelated cuts, crossfades, interpolation or transparent cutout repair were used.
+Generated sound was omitted from the final file; original music was not uploaded or modified.
+
+**14 generation calls used 70 included Flow credits**, measured from 24,720 to 24,650.
+No subscription, top-up, paid add-on, new agreement or purchase was made. The dated
+[commercial-use review](evidence/p01-flow-continuity-review.json) applies to the same hosted
+service/model family; source rights and YouTube monetization remain separate acceptance gates.
+The first submission to the last clip download spanned about 46 minutes, including browser
+operation, waiting, inspection and recovery. It is not pure model compute or a production-rate
+benchmark. Initial source inspection and final assembly/review took additional time.
+
+Two branches were excluded. The first was accidentally extended from the same selected parent,
+so its scenery repeated; explicitly selecting the last accepted clip corrected the sequence.
+The second changed TABI's eyes to blue and added a cheek gesture. One replacement from the prior
+good clip restored brown eyes and hands on lap. Both rejected clips remain local. A temporary
+browser approval-review capacity failure recovered on retry without a bypass. One render stayed
+at 99% for several minutes and then finished; no duplicate request was submitted for that wait.
+
+**Visual approval remains pending.** Reviewed samples show connected anatomy, continuous cup
+contact and no disappearing TABI or duplicated resting arms. Floating light specks accumulate,
+small face/gill contour and framing/posture changes remain, and the deep breath briefly lowers
+the arms beside the body despite the lap instruction. Action timings are approximate. This does
+not certify zero ear flicker or exact identity preservation throughout playback.
+
+Verification: all 2160 output frames decode successfully; exact fps, duration, dimensions and
+absence of audio were checked, and the delivery copy matches SHA-256
+`7e45fd8faf4b2cfe7556ee248bb2da90a63f6ac92024edf2dccb6f7a58917e0b`.
+Visual review covers 205 sampled final frames, including three consecutive frames at all 12
+joins, plus denser source/cup/deep-breath contacts. Local source, branch and assembly hashes,
+scripts and prompts are preserved under `.local/p01-flow-train-v1/` with `START-HERE.txt`.
+Documentation/archive/staged-work checks and `git diff --check` pass; no MP4 is tracked.
+
+No app code changed. This was assistant-operated Flow generation and local Python/FFmpeg
+assembly, not video-story's normal UI workflow. P01 stays open; P02–P04 stay blocked until
+visual acceptance and a repeatable new-scene/outfit/action test. The broader almost-automatic
+production requirement is not qualified by one train draft.
+
 ## P01 — Flow selected after native Blender rejection
+
+Historical preparation record; the subsequent generated trial is recorded above.
 
 5 October 2026. Marco rejected the native Blender appearance as insufficient and reports much
 better visual quality in his existing Flow trials. He supplied the
