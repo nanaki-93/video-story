@@ -1,14 +1,19 @@
 """One owned render lane shared by all browser tabs and opened projects."""
 
 import threading
+from contextlib import contextmanager
 from dataclasses import dataclass
+from uuid import uuid4
 
 from fastapi import HTTPException
 
 from tabi.core.assets import AssetService
+from tabi.core.flow.assembly import FlowAssembler
+from tabi.core.flow.service import FlowService, updated
 from tabi.core.jobs import JobService
 from tabi.core.models.base import canonical_bytes, content_hash
 from tabi.core.persistence import ProjectBusy, ProjectStore
+from tabi.core.process import ExecutionScope, execution_scope
 
 from .contracts import RecentProject, WebProject, WebProjects, WebRecents
 from .files import Artifacts, RootRegistry
@@ -47,6 +52,8 @@ class Runtime:
         self.thread = None
         self.active = None
         self.failure = None
+        self.media_lane = threading.Lock()
+        self.flow_owner = uuid4().hex
         self.on_stopped = lambda: None
 
     def recent_store(self):
@@ -108,6 +115,7 @@ class Runtime:
                 jobs.recover()
             except ProjectBusy:
                 pass  # Another genuine lease may own this project; never adopt it.
+            FlowService(store, self.roots.roots).recover_exports()
             result = OpenProject(handle, root_id, path, assets, jobs)
             self.projects[handle] = result
             self.remember(result)
@@ -145,21 +153,32 @@ class Runtime:
                     if self.stopping.is_set():
                         break
                     try:
-                        if not any(job.state == "queued" for job in item.jobs.ledger.all()):
+                        flow = self.flow_service(item)
+                        queued = next((e for e in flow.exports() if e.state == "queued"), None)
+                        if not queued and not any(
+                            job.state == "queued" for job in item.jobs.ledger.all()
+                        ):
                             continue
-                        with self.lock:
-                            if self.stopping.is_set():
-                                break
-                            self.active = item
-                        item.jobs.work(once=True)
+                        with self.local_operation(item):
+                            if queued:
+                                with execution_scope(
+                                    ExecutionScope(
+                                        lambda flow=flow, identity=queued.id: (
+                                            self.cancelling.is_set()
+                                            or flow.get_export(identity).cancel_requested
+                                        )
+                                    )
+                                ):
+                                    FlowAssembler(flow, self.settings).run(
+                                        queued.id, owner=self.flow_owner
+                                    )
+                            else:
+                                item.jobs.work(once=True)
                     except ProjectBusy:
                         pass
                     except Exception:
                         # Details remain in the job ledger; never leak request secrets in logs.
                         self.failure = "Queue could not read this project; inspect its job ledger"
-                    finally:
-                        with self.lock:
-                            self.active = None
         finally:
             self.on_stopped()
 
@@ -193,3 +212,38 @@ class Runtime:
         if job.state == "running" and job.owner != item.jobs.owner:
             raise HTTPException(409, "Another worker owns this job; pause it from its owner")
         return item.jobs.pause(identity)
+
+    def flow_service(self, item):
+        return FlowService(item.assets.store, self.roots.roots)
+
+    @contextmanager
+    def local_operation(self, item):
+        if not self.media_lane.acquire(blocking=False):
+            raise ProjectBusy("Local media work is busy. Wait for the current operation.")
+        try:
+            with self.lock:
+                if self.stopping.is_set():
+                    raise ProjectBusy("The worker is stopping. Reopen it to continue.")
+                self.active = item
+            with execution_scope(ExecutionScope(self.cancelling.is_set)):
+                yield
+        finally:
+            with self.lock:
+                self.active = None
+            self.media_lane.release()
+
+    def flow_cancel(self, item, identity):
+        service = self.flow_service(item)
+        export = service.get_export(identity)
+        if export.state == "running" and export.owner != self.flow_owner:
+            raise HTTPException(409, "Another worker owns this export; cancel it from its owner")
+        if export.state == "verified":
+            raise ValueError("This export is already verified")
+        return service.save_export(
+            updated(
+                export,
+                cancel_requested=True,
+                state="cancelled" if export.state != "running" else "running",
+            ),
+            expected_revision=export.revision,
+        )

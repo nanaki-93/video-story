@@ -213,6 +213,10 @@ def create_app(runtime, origin, web_root, *, drive_jobs=True):
 
     app.include_router(generation_routes(runtime))
 
+    from .flow import routes as flow_routes
+
+    app.include_router(flow_routes(runtime))
+
     @app.api_route("/{path:path}", methods=["GET", "HEAD"])
     def static(path: str, request: Request):
         if path.startswith("api/"):

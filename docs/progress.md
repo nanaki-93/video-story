@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F09 — Flow CLI and authenticated app services
+
+6 October 2026. 14 CLI/API/security tests and 2 actual-media loopback-worker tests pass, including rejected retry, join review, authenticated byte ranges, re-opened interrupted export and recovery without another Flow request. Generated 68 contracts; web-check passes. One local media lane and export ownership are shared with existing jobs. Browser handoff remains assisted.
+
 ## F08 — optional continuous local soundtrack
 
 6 October 2026. The existing mixer now exposes a locked-track input boundary shared by layered and Flow exports. Optional music uses explicit sample trims, unchanged local PCM masters, continuous stereo PCM and one final AAC encode. Frozen audio metadata and content hashes are checked; overload blocks publication. Silent export remains available. Verification: 12 actual-media Flow/audio/chunk tests pass. The Flow fixture preserves all 96000 selected PCM samples exactly before AAC, verifies final audio/video timing, retains the original WAV bytes and rejects a changed soundtrack copy. Existing resampling, ambience, overload and chunk audio checks pass. Ruff passes. No private music was uploaded or remastered.

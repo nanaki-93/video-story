@@ -18,7 +18,13 @@ from ..models.flow import (
     FlowReference,
     FlowState,
 )
-from ..persistence import ProjectStore, RevisionConflict, StorageError, resolve_media_path
+from ..persistence import (
+    ProjectBusy,
+    ProjectStore,
+    RevisionConflict,
+    StorageError,
+    resolve_media_path,
+)
 
 
 class FlowError(StorageError):
@@ -262,3 +268,32 @@ class FlowService:
         if not isinstance(document, FlowExport):
             raise FlowError("expected a Flow export")
         return document
+
+    def exports(self, episode_id=None):
+        folder = self.store.root / "flow/exports"
+        return [
+            item
+            for path in sorted(folder.glob("*.json"))
+            if (item := self.get_export(path.stem))
+            and (episode_id is None or item.episode_id == episode_id)
+        ]
+
+    def recover_exports(self):
+        for export in self.exports():
+            if export.state != "running":
+                continue
+            try:
+                with self.store.exclusive_lock(f"flow/locks/{export.id}.lock"):
+                    current = self.get_export(export.id)
+                    if current.state == "running":
+                        self.save_export(
+                            updated(
+                                current,
+                                state="interrupted",
+                                owner=None,
+                                diagnostic="Local worker stopped. Resume this frozen export.",
+                            ),
+                            expected_revision=current.revision,
+                        )
+            except ProjectBusy:
+                pass  # A live lease owns it; never adopt a persisted PID.

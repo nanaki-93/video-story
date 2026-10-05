@@ -53,6 +53,7 @@ import type { WebCache } from "./web_cache";
 import type { WebCatalog } from "./web_catalog";
 import type { WebDirectory } from "./web_directory";
 import type { WebEditor } from "./web_editor";
+import type { WebFlow } from "./web_flow";
 import type { WebFrame } from "./web_frame";
 import type { WebJobs } from "./web_jobs";
 import type { WebPreview } from "./web_preview";
@@ -122,6 +123,7 @@ export interface Documents {
   web_catalog: WebCatalog;
   web_directory: WebDirectory;
   web_editor: WebEditor;
+  web_flow: WebFlow;
   web_frame: WebFrame;
   web_jobs: WebJobs;
   web_preview: WebPreview;

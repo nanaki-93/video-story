@@ -427,9 +427,12 @@ failed verification and comparison samples on both sides of every join.
 
 ## F09 — Expose Flow workflow services through CLI and authenticated API
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/api/flow.py` (new), `src/tabi/cli/flow.py` (new) — thin adapters over shared Flow services.
 - `src/tabi/api/app.py`, `src/tabi/api/runtime.py`, `src/tabi/api/files.py`, `src/tabi/api/contracts.py`, `src/tabi/cli/main.py` — routing, one owned local work lane and authenticated artifacts.
+- `src/tabi/core/flow/service.py`, `src/tabi/core/flow/assembly.py` — shared export discovery, recovery and cancellation ownership.
 - `schemas/web_flow.schema.json` (new), `web/src/generated/web_flow.ts` (new) — generated next-step/status DTO.
 - `web/src/generated/documents.ts`, `web/src/generated/validators.cjs`, `web/src/generated/validators.d.cts` — regenerated registries.
 - `tests/unit/test_web_flow.py` (new), `tests/unit/test_flow_cli.py` (new), `tests/integration/test_web_flow.py` (new) — parity, security and real-media recovery.

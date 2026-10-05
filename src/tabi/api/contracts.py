@@ -2,7 +2,7 @@
 
 from typing import Literal
 
-from pydantic import Field, field_validator
+from pydantic import Field, field_validator, model_validator
 
 from tabi.core.models import (
     ActionPack,
@@ -18,6 +18,7 @@ from tabi.core.models.base import (
     SHA256,
     Document,
     Frame,
+    FrameInterval,
     Identifier,
     MediaPath,
     Model,
@@ -26,12 +27,141 @@ from tabi.core.models.base import (
     Version,
 )
 from tabi.core.models.cache import CacheInventory, StorageEstimate
+from tabi.core.models.episode import TrackPlacement
+from tabi.core.models.flow import (
+    FlowBeat,
+    FlowEpisode,
+    FlowExport,
+    FlowLimits,
+    FlowRecipe,
+    FlowState,
+)
 from tabi.core.models.portability import BackupManifest
 from tabi.core.models.preview import PreviewSelection
 from tabi.core.models.production import OutputProfile, RenderJob
 from tabi.core.models.publishing import ReleasePreparation
 from tabi.core.models.rendering import RenderReport
 from tabi.core.models.settings import AppPreferences
+
+
+class AudioSource(Model):
+    asset: Asset
+    prepared_samples: Frame
+
+
+class FlowNext(Model):
+    action: Literal[
+        "paused",
+        "waiting_flow",
+        "review",
+        "finish",
+        "choose_reference",
+        "needs_attention",
+        "prepare",
+    ]
+    message: Text
+    accepted_frames: Frame
+    target_frames: Frame
+    credit_units: Frame
+    parent_id: Identifier | None
+    attempt_id: Identifier | None
+    candidate_id: Identifier | None
+    beat: FlowBeat | None
+
+
+class FlowImage(Model):
+    role: Text
+    frame: Frame
+    url: Text
+
+
+class FlowReviewView(Model):
+    images: list[FlowImage]
+    join_url: Text | None
+    diagnostics: list[Text]
+    checklist: list[Text]
+
+
+class WebFlow(Document):
+    document_type: Literal["web_flow"] = "web_flow"
+    episodes: list[FlowEpisode]
+    episode: FlowEpisode | None = None
+    next_step: FlowNext | None = None
+    exports: list[FlowExport] = Field(default_factory=list)
+    reference_urls: list[Text] = Field(default_factory=list)
+    candidate_url: Text | None = None
+    parent_url: Text | None = None
+    review: FlowReviewView | None = None
+    safe_cut_frame: Frame | None = None
+    audio_sources: list[AudioSource] = Field(default_factory=list)
+    target_samples: Frame = 0
+
+
+class FlowRevision(Model):
+    expected_revision: Frame
+
+
+class FlowCreate(Model):
+    title: Text = "TABI in Tokyo"
+    limits: FlowLimits
+    recipe: FlowRecipe | None = None
+
+
+class FlowClone(Model):
+    title: Text
+    recipe: FlowRecipe | None = None
+    limits: FlowLimits | None = None
+
+
+class FlowSource(FlowRevision):
+    upload_id: Identifier | None = None
+    source: MediaPath | None = None
+    synthetic: bool = False
+
+    @model_validator(mode="after")
+    def one_source(self):
+        if (self.upload_id is None) == (self.source is None):
+            raise ValueError("choose one completed upload or registered source")
+        return self
+
+
+class FlowReferenceRequest(FlowSource):
+    title: Text = "TABI opening reference"
+
+
+class FlowImport(FlowSource):
+    attempt_id: Identifier
+    source_kind: Literal["segment", "scene"] = "segment"
+    source_range: FrameInterval | None = None
+    prepare_timestamp_gap: bool = False
+    provider_clip_id: Text | None = None
+    provider_model: Text | None = None
+    observed_credits: Frame | None = None
+
+
+class FlowReviewRequest(FlowRevision):
+    media_sha256: SHA256
+    decision: Literal["accepted", "rejected"]
+    note: Text
+    observed_state: FlowState | None = None
+    trim: FrameInterval | None = None
+    safe_end_frame: Frame | None = None
+
+
+class FlowTransition(FlowRevision):
+    state: Literal["submitted", "unknown", "failed"]
+    diagnostic: Text | None = None
+    observed_credits: Frame | None = None
+
+
+class FlowBranch(FlowRevision):
+    parent_id: Identifier | None
+
+
+class FlowExportRequest(FlowRevision):
+    tracks: list[TrackPlacement] = Field(default_factory=list)
+    profile: OutputProfile | None = None
+
 
 PROTOCOL = "1"
 
@@ -135,11 +265,6 @@ class WebFrame(Document):
     document_type: Literal["web_frame"] = "web_frame"
     id: Identifier
     report: RenderReport
-
-
-class AudioSource(Model):
-    asset: Asset
-    prepared_samples: Frame
 
 
 class WebAudio(Document):
@@ -369,6 +494,7 @@ class WorkerReady(Model):
 
 
 WEB_SCHEMAS = {
+    "web_flow": WebFlow,
     "web_releases": WebReleases,
     "web_backup": WebBackup,
     "web_render_plan": WebRenderPlan,

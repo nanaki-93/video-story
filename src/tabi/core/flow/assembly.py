@@ -117,7 +117,7 @@ class FlowAssembler:
         self.service._immutable(f"flow/exportepisodes/{export.id}.json", episode)
         return self.service.save_export(export, expected_revision=None)
 
-    def run(self, export_id):
+    def run(self, export_id, *, owner=None):
         export = self.service.get_export(export_id)
         with self.service.store.exclusive_lock(f"flow/locks/{export.id}.lock"):
             export = self.service.get_export(export_id)
@@ -127,7 +127,7 @@ class FlowAssembler:
             if export.cancel_requested or export.state == "cancelled":
                 raise FlowError("This export was cancelled. Create a new export when ready.")
             export = self.service.save_export(
-                updated(export, state="running", owner=uuid4().hex, diagnostic=None),
+                updated(export, state="running", owner=owner or uuid4().hex, diagnostic=None),
                 expected_revision=export.revision,
             )
             try:
@@ -299,6 +299,9 @@ class FlowAssembler:
         )
 
     def _finish(self, export, output, report_path):
+        export = self.service.get_export(export.id)
+        if export.cancel_requested:
+            raise OperationCancelled("the owned export was cancelled")
         digest, size = digest_file(output)
         return self.service.save_export(
             updated(

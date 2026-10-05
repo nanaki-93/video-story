@@ -12,6 +12,7 @@ from tabi.cli.authoring import add_author_commands, run_author_command
 from tabi.cli.backup import add_backup_commands, run_backup_command
 from tabi.cli.cache import add_cache_commands, run_cache_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
+from tabi.cli.flow import add_flow_commands, run_flow_command
 from tabi.cli.generation import add_generation_commands, run_generation_command
 from tabi.cli.jobs import add_job_commands, run_job_command
 from tabi.cli.logging import configure_logging
@@ -45,6 +46,7 @@ def main(argv: list[str] | None = None) -> int:
     add_backup_commands(commands)
     add_cache_commands(commands)
     add_episode_commands(commands)
+    add_flow_commands(commands)
     add_job_commands(commands)
     add_release_commands(commands)
     add_generation_commands(commands)
@@ -189,6 +191,12 @@ def main(argv: list[str] | None = None) -> int:
             return adapter(args, settings)
         except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
             logger.error("authoring_operation_failed: %s", error)
+            return 4
+    if args.command == "flow":
+        try:
+            return run_flow_command(args, settings)
+        except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
+            logger.error("flow_operation_failed: %s", error)
             return 4
     if args.command == "generation":
         try:
