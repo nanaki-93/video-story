@@ -689,14 +689,69 @@ preflight evidence and remain under ignored `.local/p01-spar3d/`. No application
 changed, so application tests were not rerun. P01 stays open and P02–P04 blocked. The preferred
 90-second baseline and first failed candidate are unchanged.
 
+## P01 — measured SPAR3D trial and Blender review
+
+5 October 2026. **Second candidate generated; no-go for this character master.**
+[Comparison](evidence/p01-spar3d-comparison.jpg) and
+[measured evidence](evidence/p01-spar3d-trial.json) preserve this result separately from the
+earlier TripoSR trial. TABI is recognizable from the front, but the side views expose an almost
+flat head/body and a visible gap between tail and body. Face, frill and coat detail softens.
+These are failures against the supplied character profile and walking reference, not a user
+approval decision. No rig, motion, garment, prop-contact or scene-reuse test followed.
+
+Marco created a read-only token and entered it through a private Colab `getpass` field.
+No credential entered source, reports or Git. The token was removed from the parent environment
+after downloads, and inference used local verified weights with networking disabled. The
+executed dependency closure contains 55 packages; source licences resolve the metadata gaps
+for AlphaCLIP, texture_baker and uv_unwrapper. Existing NVIDIA platform libraries are used
+under their SDK terms, not redistributed. The main Community License conditions, revenue
+eligibility and commercial registration remain as recorded in preflight. Source-art rights,
+publication approval and YouTube eligibility are separate.
+
+Two technical failures are retained: Colab's standard `venv` creation failed, so setup used
+MIT-licensed virtualenv 20.35.3; the initial strict checkpoint check then stopped on a moved
+bounding-box buffer and removed background constant. The corrected adapter checks exact key
+sets and values: current `bbox` equals `renderer.bbox`, background is `[0.5, 0.5, 0.5]`, and
+the device sentinel is zero. Every current learned weight is present. This is a compatibility
+fix, not permission to leave random weights or modify the character mesh.
+
+| Recorded stage | Actual result |
+| --- | --- |
+| Successful setup retry | 226.026 seconds; first failure and UI waits remain in whole-session cost |
+| Model/configuration weight downloads | 92.475 seconds; main 7,326,949,440-byte checkpoint hash verified |
+| Successful model load | 26.463 seconds on an NVIDIA L4 |
+| Generation and export | 7.666 seconds; 15,399 vertices, 24,332 faces; peak CUDA allocation 10,680,788,992 bytes |
+| Local review | Blender 5.2.2 LTS, eight 640×640 transparent views, standard glTF import, no geometry edits |
+| Balance before / at result bundle | 2,499.4 / 2,498.63 units; 0.77 units observed at that intermediate checkpoint |
+
+The result bundle's 28 files passed byte-size and SHA-256 checks before extraction. A separate
+executed notebook snapshot, original failure records, complete runtime licences, source/config
+copies, GLB, points and Blender scene remain under ignored `.local/` storage. A sandboxed
+Blender startup crashed before importing the model; the installed Blender rendered successfully
+outside the sandbox. The eight views were reviewed on light and dark backgrounds; this is
+static inspection and does not establish temporal alpha or ear stability.
+
+Runtime release confirmation has been requested after local verification. Final balance and
+connected-time bounds will be recorded after release; the intermediate 0.77-unit delta is not
+the completed session cost. There was no purchase or credit top-up. The trial's setup, private
+entry, licence inspection, browser transfer delays and idle intervals count toward the full
+session. Hands-on time and recurring episode preparation remain unmeasured.
+
+The existing evidence verifier checks the second report without granting artistic approval.
+No application behavior changed and no application tests are claimed. The preferred 90-second
+video, source artwork, first failed candidate and unrelated staged IDE files remain preserved.
+P01 stays open; P02–P04 remain blocked.
+
 ## Next work
 
-P01 remains the production decision: provision the private read token, finish the actual
-SPAR3D dependency review and measured trial within existing allowance, then qualify a reusable character through
-the required motion, wardrobe, prop and scene-reuse cases before starting P02–P04. The first
-candidate is a no-go, not a base for more per-frame repairs. A second bounded candidate requires
-the same model/dependency/output licence checks; the standard
-TRELLIS.2 setup is not commercially cleared by its main MIT licence alone.
+P01 remains the production decision. Both tested models from the illustrated neutral input
+fail the depth/anatomy gate; neither should become a base for more frame repairs. At most one
+bounded correction round remains. A reference that explicitly depicts TABI's volume could
+test whether the shared flat input caused the shallow reconstruction, but that is a hypothesis
+and needs its own comparison. Do not promise automatic rigging, new garments or a reliable
+app workflow from these static results. Qualify the required motion, wardrobe, prop and
+scene-reuse cases before starting P02–P04. The standard TRELLIS.2 setup remains uncleared by
+its main MIT licence alone.
 
 Preserve the calm-window baseline, original art and deferred music work. T40 remains the first
 independent application engineering task, but cannot qualify character generation. The

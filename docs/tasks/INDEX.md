@@ -3,15 +3,16 @@
 Marco's latest priority is a reusable TABI workflow with **almost entirely automatic setup**,
 commercial-compatible tools and train/café/walking, outfit and action reuse. The proposal is in
 [docs/tasks.md](../tasks.md). P01 is the current feasibility gate. The authorized Colab/Blender
-trial generated a real model, but [that candidate failed](../progress.md#p01--commercial-licence-review-and-colabblender-trial).
+trials generated two real models, but neither passed the character-quality gate. The latest
+[SPAR3D comparison](../evidence/p01-spar3d-comparison.jpg) shows the depth/anatomy failure.
 The redesigned app is not implemented; T40 remains independent import engineering.
 
 The latest tool-selection constraint is **no additional paid apps**: free commercial-compatible
 tools, installed Blender and existing Google/Colab allowance only. SPAR3D's
-[preflight](../evidence/p01-spar3d-preflight.json) records granted model access, confirmed
-commercial registration and a prepared measured-trial notebook. Its large weights have not
-been downloaded or run. Private token provisioning and runtime dependency review remain.
-Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
+[measured trial](../evidence/p01-spar3d-trial.json) records reviewed code/model/dependencies,
+confirmed commercial eligibility/registration, actual inference and local Blender review.
+The model is unsuitable for the requested motion/reuse, so no rig or app integration follows
+from this result. Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
 
 The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit
 Colab monthly grant against the clarified target of 30 × 90-second videos with new assets.
@@ -21,7 +22,7 @@ The [budget and measurement plan](../tasks.md#monthly-production-and-compute-bud
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
-| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | trial recorded; candidate no-go; overall feasibility open |
+| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | two candidates tested; both no-go; overall feasibility open |
 | [P02](../tasks.md#p02) | Define the prepared character-library handoff | P01 passes | blocked on P01 |
 | [P03](../tasks.md#p03) | Implement repeatable Blender preparation | P01, P02 | blocked on P01/P02 |
 | [P04](../tasks.md#p04) | Connect preparation to durable app jobs | P02, P03 | blocked on preparation proof |

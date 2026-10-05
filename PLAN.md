@@ -20,11 +20,11 @@ engineering; the redesigned normal workflow is not implemented yet.
 Marco's latest cost constraint is **no additional paid apps**. Investigate free tools with
 commercial-compatible terms, the installed Blender and existing Google/Colab allowance.
 Exclude new subscriptions, paid plugins and credit top-ups from the proposed route. Meshy and
-Tripo Studio are no longer the recommended next trial. SPAR3D remains an unqualified candidate.
-Its [prepared trial](docs/evidence/p01-spar3d-preflight.json) now records verified code/model
-licence identity, Marco's revenue eligibility and completed registration, granted model access,
-and a separate saved Colab notebook. No SPAR3D weights have been downloaded or inference run.
-Private token provisioning, actual runtime dependency review and the measured trial remain.
+Tripo Studio are outside this route. The second candidate, SPAR3D, has now
+[run successfully but failed the character-quality gate](docs/evidence/p01-spar3d-trial.json).
+Its actual Blender views show a recognizable front, very shallow side geometry and a visible
+tail gap. Exact code/model/dependency checks, private token entry and the measured generation
+are complete. Neither tested candidate qualifies as the reusable production character.
 
 The current production target is **30 × 90-second videos per month**, with some new assets
 and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
@@ -39,8 +39,10 @@ record a **no-go for that candidate**: shallow geometry and lost face/frill/outf
 There is no qualified rig or animation. P01 remains open; P02–P04 stay blocked. The standard
 TRELLIS.2 setup was excluded because some dependencies have non-commercial terms despite its
 MIT main code/weights. No new purchase, subscription or private-music upload occurred.
-That runtime is closed and diagnostic files are saved locally. The separate SPAR3D notebook
-is configured but has no connected runtime; it does not replace the failed candidate's evidence.
+That runtime is closed and diagnostic files are saved locally. The separate SPAR3D trial also
+preserves its model, executed notebook, measurements and eight unedited Blender views locally.
+Its [comparison](docs/evidence/p01-spar3d-comparison.jpg) and evidence remain separate from
+TripoSR. Runtime release is recorded in the latest progress entry.
 
 Read the [active task index](docs/tasks/INDEX.md) and [documentation guide](docs/README.md).
 Check the exact model, weights, dependencies, hosted service and output terms before every

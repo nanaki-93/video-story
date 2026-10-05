@@ -21,9 +21,10 @@ current route. This changes tool selection without relaxing the likeness or auto
 
 This revision supersedes the previous instruction to repair the ears before addressing the
 product. PLAN/progress/index now place P01 first. Marco authorized a Colab/Blender trial and
-required monetization licence checks. [The first candidate](evidence/p01-character-pipeline.json)
-was generated and rendered, but failed likeness/anatomy; no preparation integration is approved
-by that result. P01 remains the next production decision. T40 is independent engineering work,
+required monetization licence checks. Both [TripoSR](evidence/p01-character-pipeline.json)
+and [SPAR3D](evidence/p01-spar3d-trial.json) generated real meshes but failed the character's
+depth/anatomy requirements; neither qualifies preparation integration. P01 remains the next
+production decision. T40 is independent engineering work,
 but import improvements cannot establish that character creation works.
 
 **Recommended investigation:** create one 3D TABI master with assisted image-to-3D and automatic
@@ -45,13 +46,13 @@ independent AI video clips is not the fallback for a consistent continuous chara
 ## Tools and responsibility
 
 Official documentation checked on 5 October 2026. Feature availability is vendor evidence;
-the TripoSR diagnostic is recorded below, while the remaining proposed routes are untested
-with TABI.
+the TripoSR and SPAR3D diagnostics are recorded below. Rigging and the remaining reuse stages
+are untested with TABI.
 
 | Tool | Proposed responsibility | Evidence and limit |
 | --- | --- | --- |
 | TripoSR on Colab, tested diagnostic | Generate one persistent mesh without a paid image-to-3D service | [Actual trial and licence record](evidence/p01-character-pipeline.json): MIT code/weights, CPU mesh extraction with scikit-image, eight Blender views. First candidate rejected for shallow geometry and lost TABI details; no rig or production workflow qualified. |
-| SPAR3D, preliminary candidate to audit | Investigate image-to-mesh with point-cloud conditioning for depth/backside reconstruction; reuse Blender for inspection | [Official implementation](https://github.com/Stability-AI/stable-point-aware-3d) supports CUDA and experimental Apple Silicon MPS. The [repository licence](https://github.com/Stability-AI/stable-point-aware-3d/blob/main/LICENSE.md) permits qualifying commercial use without fees below US $1 million annual revenue, including affiliates, and requires registration. User eligibility, gated weight terms, dependencies, likeness, texture and animation remain unverified. No install, model download or trial has occurred. |
+| SPAR3D, second tested diagnostic | Generate one mesh on Colab and inspect it in local Blender | [Measured trial](evidence/p01-spar3d-trial.json): exact code/model/dependency route reviewed under user-confirmed revenue eligibility and commercial registration. Mesh generated in 7.666 seconds after loading; eight unedited views fail depth/anatomy checks. No rig, new garment or production workflow qualified. |
 | Meshy / Tripo Studio, previous paid candidates | Historical alternatives | Excluded from the current route by the no-additional-paid-apps preference. No paid trial or subscription authorized. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
 | video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
@@ -61,9 +62,10 @@ Moho Pro supports [PSD-based 2D rigging and Smart Bones](https://moho.lostmarble
 on macOS, but authoring the character is substantial setup, so it is not the default under the
 latest constraint. Cartoon Animator's current download lists
 [Windows requirements](https://www.reallusion.com/cartoon-animator/download.html), so it is not
-the native Mac route. The authorized trial used existing Colab Pro+ resources and local Blender;
-only the generated TABI PNG was uploaded to Colab. No new purchase, subscription or private-music
-upload occurred. Compute-unit consumption was not measured. Paid-provider trials are outside
+the native Mac route. The authorized trials used existing Colab Pro+ resources and local Blender;
+uploads were limited to the generated TABI PNG and trial code/notebooks. No new purchase,
+subscription or private-music upload occurred. The first trial's unit consumption was unmeasured;
+SPAR3D records whole-session balance observations. Paid-provider trials are outside
 the current route. The standard TRELLIS.2 setup is excluded pending replacement
 of its non-commercial dependencies; main-repository MIT licensing alone does not clear it.
 
@@ -321,7 +323,7 @@ promote pending rights, copy snapshot approval to a new video, or silently updat
 
 ## Implementation conventions
 
-P01 has one executed diagnostic and a candidate no-go; **overall feasibility remains open**.
+P01 has two executed diagnostics and two candidate no-go decisions; **overall feasibility remains open**.
 P02–P04 remain blocked on that proof, as reflected in the [active index](tasks/INDEX.md).
 T40–T48 retain their
 identifiers and useful engineering work, with expanded production gates. Domain operations
@@ -347,13 +349,21 @@ reuse was attempted after that failure. [Comparison](evidence/p01-character-comp
 [licences, exact hashes and operations](evidence/p01-character-pipeline.json). The verifier
 checks evidence integrity and explicitly reports that production feasibility has not passed.
 
-The second candidate's [SPAR3D preflight](evidence/p01-spar3d-preflight.json) is prepared,
-not executed. Exact main code/model licence identity, eligibility, registration and model
-access are recorded. A separate Colab notebook is configured for L4 / runtime 2025.07, with
-manual 30-unit / 60-minute ceilings. Private credential provisioning and actual dependency
-review precede downloads. The proposed loader uses SPAR3D's embedded image-analysis weights
-and rejects incomplete learned-weight coverage; no research-only AlphaCLIP checkpoint is used.
-This loader still requires runtime validation. No second mesh or rig exists yet.
+The second candidate's [SPAR3D trial](evidence/p01-spar3d-trial.json) is executed and also a
+no-go. The L4 generated a real mesh in 7.666 seconds after a 26.463-second successful model load;
+eight standard Blender views show a very shallow body/head and a visible tail gap. The
+recognizable front does not qualify head turns, walking or wardrobe changes. No rig or motion
+was attempted after the static failure. [Comparison](evidence/p01-spar3d-comparison.jpg).
+
+Actual runtime dependencies and pinned code/model/configuration were reviewed. A compatibility
+adapter checks the moved bounding-box buffer, legacy background constant and device sentinel
+exactly; all current learned weights come from the verified SPAR3D checkpoint. No research-only
+AlphaCLIP, standalone CLIP/DINO or background-removal weights were used. The executed notebook,
+failed attempts and verified result bundle are local. Whole-session balance and release state
+are recorded in the evidence; fast inference does not establish 30-video monthly capacity.
+The historical [preflight](evidence/p01-spar3d-preflight.json) remains unchanged as an earlier
+checkpoint. At most one bounded correction round remains; it is not an authorization for
+indefinite model trials or per-frame cleanup.
 
 **Target files**
 - `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.

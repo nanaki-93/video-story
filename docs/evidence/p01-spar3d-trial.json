@@ -1,0 +1,619 @@
+{
+  "schema_version": "1.0",
+  "task_id": "P01",
+  "review_date": "2026-10-05",
+  "decision": "no_go",
+  "decision_scope": "Second candidate: SPAR3D with the same saved illustrated neutral input. This rejects this candidate, not all possible 3D workflows.",
+  "production_ready": false,
+  "user_visual_approval": "pending",
+  "summary": "SPAR3D generated a verified real mesh and local Blender rendered eight views. The front is recognizable but side geometry is very shallow, the tail has a visible gap, and detail is softened. Stop before rigging; P01 stays open and P02-P04 remain blocked.",
+  "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb",
+  "artifacts": [
+    {
+      "path": "docs/assets/tabi-character-profile.png",
+      "sha256": "1c63aa8f579634eff5f8c6864e97882513feba381c1e2380ae66018800f9d238",
+      "kind": "image",
+      "role": "supplied_reference",
+      "width": 1086,
+      "height": 1448
+    },
+    {
+      "path": "docs/assets/tabi-assets/train-actions/walking/04-walk-toward-camera.png",
+      "sha256": "42c883e976ae36638dc29e3a25462431a93db65f2d458f39585b885b65a27c4e",
+      "kind": "image",
+      "role": "supplied_reference",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "path": "docs/assets/clip-tests/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4",
+      "sha256": "a0d56de1ca30056ba9744c167aa2ae36c7185f1519afa2ce4b3ee1bfd60424e3",
+      "kind": "video",
+      "role": "preserved_baseline",
+      "width": 1920,
+      "height": 1080,
+      "frames": 2700,
+      "fps": "30/1"
+    },
+    {
+      "path": ".local/p01-spar3d/result/alpha-clip/LICENSE",
+      "sha256": "e8555cbbeaa17bff444ca58500cc94e8c49f4f7fbbaaf885bac819ebef198912",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/attempt-1-phase-model-load.json",
+      "sha256": "006f88ddeba76a8ca74d65f85abc759dfd7ad1fec730c4a5cf4378c588d9b6ef",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/attempt-1-weight-coverage-failure.json",
+      "sha256": "c2eda4f4f59679e25cb7360fa7983c3b5f668cc0a16a389b8dd63fc64e9c1897",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/configuration-reviewed.json",
+      "sha256": "876c7bd5c8ca3b9f2f412b0846c72dc2857b2e8e61bad119a05e4178820ce1ad",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/dinov2-large/config.json",
+      "sha256": "12df51c069a2dc1305e34ba71ef58bc2407ea553b75f4722a1715c1bce3bbed0",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/model/LICENSE.md",
+      "sha256": "7f5c6984fbbaa7f56690c39284f0d50f886b19bf76f2994309c3282dfe71257f",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/model/config.yaml",
+      "sha256": "2795e11a7a6cb381a442e07abfdb5a3c0cc20e711c6e7e349ba73bf343c2ebdd",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/model/local-config.yaml",
+      "sha256": "7ebadfc36040700afe394bbe36680073210fa3be35df2f3a7588d6b58012d81c",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/model-input.png",
+      "sha256": "b164b27d9ef75050f640f5df80dd2612440ae4e5784472e7a16efa035e51b046",
+      "kind": "image",
+      "role": "local_trial_record",
+      "width": 1593,
+      "height": 1593
+    },
+    {
+      "path": ".local/p01-spar3d/result/packages.json",
+      "sha256": "43552bcf66bf378b328e3119f30569466bb50b8170a10c763b1dcb9628a81876",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/phase-configuration.json",
+      "sha256": "fd4be858cf60e0d254400e9c991a93a2de7808af7790d28c4b8c99bf2e51c6b3",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/phase-inference.json",
+      "sha256": "381a313a03596fcedfe603fdc2fe027ae8cc3c3264d40b061a8db82cedce2221",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/phase-model-load.json",
+      "sha256": "250d575e94e981445856be86e433b6fba9b1b25a0b67751eaa0e110d0a44c373",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/phase-weight-downloads.json",
+      "sha256": "e373704d61646c71134352f69d15f40450675d3516838128c1709deb1fdba5b4",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/pip-freeze.txt",
+      "sha256": "e3f53562d34bfa45734cbc09e5b69c59823e1e8fe250410157bc01b662513b8d",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/points.ply",
+      "sha256": "07769cea691d27b172cb5d59788af0909b429d8c0b6415de30d14aa00867a432",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/runtime-licenses.json",
+      "sha256": "0789504864bcf14a03de1c2baacba1c5068bda4681cd5bf07b51ab496badebf4",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/session-measurement.json",
+      "sha256": "2d3116ba5007e6587c2309cd53224a20fb7fc1799561cb858b4a475f7bb7b7e0",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/session-start.json",
+      "sha256": "cf0e22c26bfa5faf04b8765896e9c33165f114eb2a942a885f63040e8d268c3f",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/setup-log.txt",
+      "sha256": "963645974769b55b0868486c6825377cf9d4700710fc3f3ad89909e10f4f8f17",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/setup.json",
+      "sha256": "eb3d15e6685826cad40a86469acdeac2846f9b8663f1e9a67f9c883bb4ed276b",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/source/LICENSE.md",
+      "sha256": "7f5c6984fbbaa7f56690c39284f0d50f886b19bf76f2994309c3282dfe71257f",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/source/spar3d/utils.py",
+      "sha256": "0b44a31b2737b07145bf582d55273b9ff7bef20a59d6443dadfeac4a873b074d",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/tabi-neutral-v1-draft.png",
+      "sha256": "adc41ae7e2684768bef420229941699161940669a8eab456a475c1827e518e0e",
+      "kind": "image",
+      "role": "local_trial_record",
+      "width": 1223,
+      "height": 1286
+    },
+    {
+      "path": ".local/p01-spar3d/result/tabi-spar3d-v1.glb",
+      "sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb",
+      "kind": "glb",
+      "role": "master"
+    },
+    {
+      "path": ".local/p01-spar3d/result/trial_runner.py",
+      "sha256": "e2584254f2645beebd028ad5c910884dccc93918b2d6b73c829ad334861af11e",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/trial_runner_compat.py",
+      "sha256": "35b9e0cd5963ff4a5dbf5cd8d7b44c7caf9b74d365a9c2d9cf9ef6c9149879fc",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/weight-coverage-failure.json",
+      "sha256": "c2eda4f4f59679e25cb7360fa7983c3b5f668cc0a16a389b8dd63fc64e9c1897",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/result/bundle-manifest.json",
+      "sha256": "5b28261aec10513156f146b392aab9bda623feeb8fdbf68883d0ecab12ba380f",
+      "kind": "file",
+      "role": "bundle_manifest"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-000.png",
+      "sha256": "a81e2b64dfe67ccd144d16cfef431ab5663986ab194a261a3619fdb7e56232dc",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-045.png",
+      "sha256": "cdf992253c526aa458e6dbcbd068da832388dc365649d2ce27f49a1e5eda592a",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-090.png",
+      "sha256": "7bdf453d07d2a163896e9353e8652e65ddcc73c4052613c7e41aa755a04a1036",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-135.png",
+      "sha256": "27fda48274dc783cb81cc715fda9dd008e892abe5e7a9943f28dc29bb25e0a0e",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-180.png",
+      "sha256": "fb6fdc0d3214d139668cc28395dd4a49967a49c75c03712d5f98b7bdffcd38c8",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-225.png",
+      "sha256": "809b78e6a7bd78cb8e4369aaca8599427aea903b10c15a85a3575d500cb27c30",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-270.png",
+      "sha256": "210ede38e90adfbaca7c4ae895b12123cb5432c244103e90b421bdce0ccd3a0a",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/angle-315.png",
+      "sha256": "be7db7ad7768afbfa7f160fa9fe620fc04ebaa169d3136cfb093fbf496fc3589",
+      "kind": "image",
+      "role": "diagnostic_render",
+      "width": 640,
+      "height": 640,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/blender-report.json",
+      "sha256": "6364abc5b51a7c677689d6cde1684be3b130ff80ddb467d789d7f8b35914f5d7",
+      "kind": "file",
+      "role": "blender_review",
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/tabi-spar3d-v1-review.blend",
+      "sha256": "74459013a8bfc8bffe32c6aec58d2361733cfde9b4820d8bb6bb8c212a0215d8",
+      "kind": "file",
+      "role": "blender_review",
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": ".local/p01-spar3d/result/blender-review/eight-views.jpg",
+      "sha256": "745554a569aea94dae0bb9055146606e33f38c11a33bf891a3c97311e7b1f8fb",
+      "kind": "image",
+      "role": "all_eight_views",
+      "width": 1600,
+      "height": 880,
+      "master_sha256": "b0eeba5381a7215dcdde748c64cc3d0ee36fc60e1e59f3e0abde1d32e5a20cfb"
+    },
+    {
+      "path": "docs/evidence/p01-spar3d-comparison.jpg",
+      "sha256": "7ec0db73e3cc636e0de050ca0ab153fc0ce0f3ba2faebee7fc0f1b82896465d1",
+      "kind": "image",
+      "role": "comparison",
+      "width": 1600,
+      "height": 660
+    },
+    {
+      "path": ".local/p01-spar3d/render_trial.py",
+      "sha256": "37f513efb69f7e58939f25096374ab78e6fbd236f5c9d3c86674778dc416ec79",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/setup-cell.py",
+      "sha256": "505821acf07c49e355aa8323577759cf3884bdf40a311a1e3df4e4c32587bb26",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/configuration-cell.py",
+      "sha256": "cd14a6112b40f76d9b4ea344ff9ac95ffa2f8cb1a9623fcfc6b295f2b8419778",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/inference-cell.py",
+      "sha256": "7f19cee9e6ca4a2a0a7c1386eb8ac88f6988f30839c719fdaa38730db34cf478",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/compat-cell.py",
+      "sha256": "1013df7f96956a89b696ef71eb2a562fc84166d3518c1585929fbed50fd3643d",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/bundle-cell-executed.py",
+      "sha256": "69d7872868a7c810e862e89721e5acfed99b507e006fab3938b50994edc33dbb",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/setup-attempt-1.txt",
+      "sha256": "8e5bea9f11fbc76bf72c858922d6811807f6ba29af3ee6c0836fa33b22419bdf",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/inference-attempt-1.txt",
+      "sha256": "e72e991d2872314e5d16f6ab86897efee95de3b7cd48e1ea204b3bb91c1b5b8e",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/configuration-output.txt",
+      "sha256": "82e92eafe14f5003780214752748324befef3ebba99f8597b9e32aa50b26b27e",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/compatibility-values.txt",
+      "sha256": "015d1d65414b428aac26babf3b8886887ff4c319204b2525faf2478acb868126",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/blender-render.log",
+      "sha256": "aabb0ba5673eb8eb4feda36b1a3b227440f3c85af9ddc5eb9ac56cce5826f95e",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/p01-spar3d/blender-render-local.log",
+      "sha256": "c8128fab89caa0b305398786a2a5712550525504d01641c0d8d24004eecee522",
+      "kind": "file",
+      "role": "local_trial_record"
+    },
+    {
+      "path": ".local/tabi-p01-spar3d-result.zip",
+      "sha256": "d5674404c2ce03b12d0e97dbdb0fc850531517264257afe6142a0581e8d995fe",
+      "kind": "file",
+      "role": "downloaded_bundle"
+    },
+    {
+      "path": ".local/tabi-p01-spar3d-executed.ipynb",
+      "sha256": "d64ab6523f57fb986df2504ea41465dd1c491a875d0b473fea032eca6c67aff7",
+      "kind": "file",
+      "role": "executed_notebook_snapshot"
+    },
+    {
+      "path": "docs/evidence/p01-spar3d-preflight.json",
+      "sha256": "8a6ee6950b8636254c8c4c4f50218c82e122f92aab66a39f4084e0d944fa4db6",
+      "kind": "file",
+      "role": "historical_preflight"
+    }
+  ],
+  "gates": {
+    "breathing_and_head_turn": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "walking": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "train_and_cafe_reuse": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "different_garment": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "cup_contact": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "deep_breath": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "light_and_dark_motion": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "restart_reuse": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "production_rehearsal": {
+      "status": "not_run",
+      "evidence": "Stopped at static character-quality gate; no rig or animation generated."
+    },
+    "likeness": {
+      "status": "failed",
+      "evidence": "Front silhouette and colours remain recognizable, but facial/coat/frill detail softens and the illustrated volumetric reference is flattened in side views. Eight actual Blender views and supplied-reference comparison retained."
+    },
+    "frills_and_anatomy": {
+      "status": "failed",
+      "evidence": "Side views show an extremely shallow head/body and a visible spatial gap between tail and body. Frill/headphone depth and roots do not match the reference. Static alpha is not temporal-stability evidence."
+    },
+    "automation": {
+      "status": "failed",
+      "evidence": "No end-to-end production workflow. Trial required manual account/token handoffs, notebook/UI operations, environment repair and an explicit source/checkpoint compatibility adapter. No mesh painting or weight editing performed."
+    },
+    "commercial_rights": {
+      "status": "pending",
+      "evidence": "Exact generator, model and executed dependency route reviewed for this trial under confirmed revenue/registration conditions. Supplied art/publication rights remain separate and pending; no YouTube monetization guarantee."
+    },
+    "user_visual_review": {
+      "status": "pending",
+      "evidence": "Candidate comparison prepared; no Marco approval of this model."
+    }
+  },
+  "licenses": [
+    {
+      "component": "SPAR3D main code and weights, texture_baker and uv_unwrapper",
+      "revision": "fdc311b16809e6a8adc2f5a3407ebb3db1a95bd1 / 5699918cb34f55cd7d828493d2725f3038313761",
+      "disposition": "used_reviewed",
+      "license": "Stability AI Community License, 2024-07-05",
+      "urls": [
+        "https://huggingface.co/stabilityai/stable-point-aware-3d/blob/main/LICENSE.md",
+        "https://stability.ai/news-updates/license-update",
+        "https://stability.ai/community-license",
+        "https://stability.ai/use-policy"
+      ],
+      "obligations_and_limits": "Exact code/model licence bytes match. User confirmed revenue below USD 1M including affiliates and completed commercial registration; HF access granted. Free qualifying commercial use subject to AUP and other terms. Licence/NOTICE/Powered by Stability AI obligations apply to relevant distribution. Source artwork and publication approval remain separate. Bundled third-party bvh is Unlicense."
+    },
+    {
+      "component": "AlphaCLIP architecture code",
+      "revision": "ef9262bc539728bf8ef2dfe9c402ae12bbfcd9ff",
+      "disposition": "used_reviewed",
+      "license": "Apache-2.0 code",
+      "urls": [
+        "https://github.com/SunzeY/AlphaCLIP#license"
+      ],
+      "obligations_and_limits": "Used code only. Learned values came from the verified SPAR3D checkpoint with complete current learned-weight coverage. Research-only AlphaCLIP checkpoints and standalone OpenAI CLIP weights excluded."
+    },
+    {
+      "component": "DINOv2 architecture configuration",
+      "revision": "47b73eefe95e8d44ec3623f8890bd894b6ea2d6c",
+      "disposition": "used_reviewed",
+      "license": "Apache-2.0",
+      "urls": [
+        "https://huggingface.co/facebook/dinov2-large"
+      ],
+      "obligations_and_limits": "Only the 549-byte configuration fetched; SHA-256 verified. DINO learned values from SPAR3D; no standalone DINO checkpoint."
+    },
+    {
+      "component": "Installed inference and build dependency closure",
+      "revision": "Exact 55 package records in runtime-licenses.json; full environment in pip-freeze.txt",
+      "disposition": "used_reviewed",
+      "license": "MIT, BSD, Apache-2.0, MPL-2.0, HPND, PSF, Unlicense and NVIDIA SDK terms",
+      "urls": [
+        "https://docs.nvidia.com/cuda/archive/12.5.1/eula/index.html",
+        "https://docs.nvidia.com/deeplearning/cudnn/backend/v9.3.0/reference/eula.html",
+        "https://github.com/NVIDIA/nccl/blob/v2.21.5-1/LICENSE.txt",
+        "https://pypi.org/project/virtualenv/20.35.3/"
+      ],
+      "obligations_and_limits": "Resolved installed metadata closure reviewed before model download. Missing metadata for the three local extensions resolved against pinned source licences. Existing Colab NVIDIA libraries used on NVIDIA hardware; no GPU runtime redistributed. Virtualenv 20.35.3 MIT used to recover a missing ensurepip setup. This review qualifies this diagnostic use, not redistribution of a bundled app environment."
+    },
+    {
+      "component": "Blender",
+      "revision": "5.2.2 LTS; build d13f752e3b9c",
+      "disposition": "used_reviewed",
+      "license": "GPL software; rendered artwork is not automatically GPL",
+      "urls": [
+        "https://www.blender.org/about/license/",
+        "https://www.blender.org/support/faq/"
+      ],
+      "obligations_and_limits": "Official licence/FAQ search excerpts distinguish Blender software from artwork made with it. Commercial rendering allowed; input/asset rights remain separate. Direct licence-page retrieval returned an error. Used the existing local installation; no plugin or asset pack downloaded."
+    },
+    {
+      "component": "OpenAI built-in imagegen",
+      "revision": "tool image_gen.imagegen; underlying model version not exposed",
+      "disposition": "used_reviewed",
+      "license": "OpenAI Terms of Use, effective 2026-01-01",
+      "urls": [
+        "https://openai.com/policies/terms-of-use/"
+      ],
+      "obligations_and_limits": "Terms assign output to the user as between OpenAI and the user where permitted, subject to rights in inputs and applicable law. No uniqueness, copyright or monetization guarantee. One generated neutral draft from two supplied references; no approval inferred."
+    },
+    {
+      "component": "Supplied TABI artwork and music",
+      "revision": "Exact reference hashes listed in artifacts",
+      "disposition": "pending",
+      "license": "Source rights remain pending",
+      "urls": [],
+      "obligations_and_limits": "Reference access is not proof of creator permission or release rights. No music used in this model diagnostic. Keep final artwork/music/credits and YouTube release checks separate from generator licences."
+    },
+    {
+      "component": "Google Colab",
+      "revision": "Existing Ultra allowance / Pro+ runtime 2025.07; L4, 1.54 units/hour observed",
+      "disposition": "used_reviewed",
+      "license": "Hosted-service terms",
+      "urls": [
+        "https://research.google.com/colaboratory/tos_v6.html",
+        "https://research.google.com/colaboratory/faq.html"
+      ],
+      "obligations_and_limits": "Previously user-accepted terms; existing allowance only. No purchase, private music upload or Drive mount. Only a draft character PNG and runner uploaded. User entered a read token through getpass; removed from parent environment after downloads, excluded from evidence. Release is separately recorded."
+    }
+  ],
+  "environment": {
+    "gpu": "NVIDIA L4, 23034 MiB; driver 580.82.07",
+    "colab": "runtime 2025.07; Python 3.11; torch 2.6.0+cu124; CUDA 12.4; high RAM 52.96 GB",
+    "blender": "5.2.2 LTS d13f752e3b9c",
+    "code_revision": "fdc311b16809e6a8adc2f5a3407ebb3db1a95bd1",
+    "model_revision": "5699918cb34f55cd7d828493d2725f3038313761",
+    "model_sha256": "62673b63fd9dad425e74b213ffe8501262d9621d5174310ac33017747be31f58",
+    "seed": "20261005",
+    "inference": "1024 bake, no remeshing, 32 configured point-diffusion steps, bfloat16 CUDA autocast",
+    "network": "Disabled during inference; no extra learned checkpoint used"
+  },
+  "measurements": {
+    "successful_setup_seconds": 226.02552176199993,
+    "weight_download_seconds": 92.475,
+    "successful_model_load_seconds": 26.463,
+    "generation_and_export_seconds": 7.666,
+    "peak_cuda_allocated_bytes": 10680788992,
+    "vertices": 15399,
+    "faces": 24332,
+    "balance_before": 2499.4,
+    "balance_at_bundle": 2498.63,
+    "observed_units_at_bundle": 0.77,
+    "balance_after_release": null,
+    "whole_session_observed_compute_units": null,
+    "runtime_released": false,
+    "first_observed_connected_at_utc": "2026-10-05T08:44:04Z",
+    "connection_requested_at_utc": "2026-10-05T08:42:34Z",
+    "released_at_utc": null,
+    "connected_seconds_upper_bound": null,
+    "connected_seconds_lower_bound": null,
+    "displayed_units_per_hour": 1.54,
+    "monthly_compute_units": 2000,
+    "production_budget_units_after_reserve": 1600,
+    "monthly_video_count": 30,
+    "seconds_per_video": 90,
+    "end_to_end_monthly_capacity_proven": false,
+    "extra_purchase": false,
+    "hands_on_minutes": null,
+    "measurement_limit": "Whole-session delta includes setup, failed attempts, token entry, licence checks, browser delays and idle time. Successful-stage timing does not include all process/import/UI overhead. No finished-video cost measured."
+  },
+  "operations": [
+    "Reused the unchanged neutral RGBA draft and preserved the preferred 90-second video.",
+    "Connected one L4; recorded before balance and rate. User entered read token privately.",
+    "Uploaded only runner and draft PNG. First stdlib venv attempt failed; recovered with pinned virtualenv.",
+    "Installed pinned packages/source and built texture_baker/uv_unwrapper. Audited installed dependency declarations and source exceptions; GPU smoke test passed.",
+    "Fetched/hash-checked SPAR3D weights and tiny DINO config. Removed parent HF_TOKEN; inference offline.",
+    "Initial model-load check failed on bbox/dummy_param and legacy renderer.bbox/background.env_color. Saved failure.",
+    "Compatibility adapter verifies bbox is a buffer and equals checkpoint bbox, verifies background constant equals 0.5 and dummy sentinel equals zero, and rejects every other mismatch. Current learned-weight coverage complete.",
+    "One actual inference generated the GLB; no second mesh, random learned values, geometry or skin-weight repair.",
+    "Exported bundle with allowlisted paths, hashes and secret-pattern check. Verified all 28 entries locally before extraction.",
+    "Sandboxed Blender launch crashed before import; installed Blender succeeded outside sandbox, rendering eight standard glTF camera views without geometry changes.",
+    "Reviewed all views against the supplied profile and walking reference. Stopped at depth/anatomy failure before rigging or another video.",
+    "Downloaded executed notebook separately; private token absent from source and evidence."
+  ],
+  "unresolved": [
+    "No qualified reusable character, rig, animation library or app integration.",
+    "A successful mesh generation is not evidence that 30 complete 90-second videos fit the allowance.",
+    "No walking, cup contact, new garment shape, train/cafe motion, restart reuse or production rehearsal performed.",
+    "The shared flat illustrated input may contribute to shallow reconstructions; a depth-explicit reference correction is a hypothesis, not a demonstrated solution.",
+    "At most one bounded correction round remains in the existing two-candidate plan; no further model shopping or per-frame repair promoted to a workflow.",
+    "User visual approval and source/publication rights remain pending."
+  ],
+  "generation_prompt": "No text prompt passed to SPAR3D. Reused hash-verified generated neutral RGBA draft from prior trial; original generation provenance remains in p01-character-pipeline.json."
+}
