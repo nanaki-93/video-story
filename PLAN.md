@@ -26,10 +26,12 @@ Its actual Blender views show a recognizable front, very shallow side geometry a
 tail gap. Exact code/model/dependency checks, private token entry and the measured generation
 are complete. Neither tested candidate qualifies as the reusable production character.
 
-Marco has now authorized the remaining correction round using multiple body references.
-[Eight separate views and their prompts](docs/evidence/p01-turnaround-reference-pack.json)
-are saved. A paired SPAR3D retry will compare the new front image with and without an
-experimental shape prior derived from all eight views; its result is not yet available.
+The authorized correction round using [eight separate body references and saved prompts](docs/evidence/p01-turnaround-reference-pack.json)
+is now complete. The [paired SPAR3D retry](docs/evidence/p01-turnaround-trial.json) compared
+the new front image with and without a shape prior derived from all eight views. Neither
+variant qualified: the image-only rear is wrong, while the approximate shape prior adds depth
+but merges/distorts the gills, headphones, body and tail. All 16 Blender views and both meshes
+are preserved. This closes the bounded SPAR3D trial, not the broader workflow decision.
 
 The current production target is **30 × 90-second videos per month**, with some new assets
 and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)

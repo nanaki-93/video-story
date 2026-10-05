@@ -206,7 +206,7 @@
     }
   ],
   "prepared_at_utc": "2026-10-05T09:59:53.279851+00:00",
-  "state": "references_generated_correction_inputs_uploading",
+  "state": "correction_completed_neither_mesh_qualified",
   "prompts": {
     "anchor": "Use case: stylized-concept\nAsset type: TABI full-body reference for a reusable 3D character, draft turnaround anchor.\nInput images: Image 1 is the authoritative TABI character profile, including its front/side/back designs. Image 2 is a supporting identity and outfit reference, not the desired walking pose.\nPrimary request: create ONE standalone, full-body FRONT THREE-QUARTER view of exactly this TABI, facing slightly toward the viewer's right, showing clear head and torso depth. Translate the existing design into a softly shaded, solid three-dimensional stylized character without redesigning him.\nScene/backdrop: genuinely transparent background, native alpha; no floor or cast shadow.\nSubject invariants: large round lavender-pink axolotl head, large warm dark-brown eyes, tiny calm smile, pink cheeks, gold four-point forehead star and tiny golden freckles; pink feathery external gills attached naturally at both sides of the head, behind the headphones; pink/coral headphone band and round dark-plum earcups; short cozy body in an emerald-green coat with golden leopard-print collar, cuffs, front trim and hem; small lavender bare paws and feet; a single broad curved lavender tail with gold freckles, visibly attached at the lower back, curving toward the character's right (viewer left in front view), as in the reference.\nPose: neutral symmetrical standing, both feet flat and slightly apart, head upright; arms relaxed a little away from the torso so the paws, cuffs and sleeves are separate readable forms. No walking, no pockets hiding the paws. Preserve the large-head/short-body proportions.\nStyle: polished soft 3D character study, matte plush-like surfaces, gentle studio shading revealing genuine volume rather than flat printed outlines. Head has a rounded back, torso has chest-to-back depth, limbs and gills are solid connected forms. Preserve the charm and exact color palette of the original.\nComposition: one character only, centered in a square canvas, full body including every gill tip, tail and foot, 12% transparent margin. Camera at mid-body height, long lens with minimal perspective, no top-down view. Neutral even light.\nAvoid: multiple views, contact sheets, captions, props, scenery, bases, floating disconnected parts, extra limbs, extra tails, realistic human anatomy, flattened cardboard body, a visible neck gap or clipping.\n",
     "first_views": [
@@ -332,5 +332,89 @@
     "input_zip_payload_entries_verified": 18,
     "preferred_video_unchanged": true,
     "artistic_approval": false
+  },
+  "source_references": [
+    {
+      "path": "docs/assets/tabi-character-profile.png",
+      "sha256": "1c63aa8f579634eff5f8c6864e97882513feba381c1e2380ae66018800f9d238",
+      "role": "authoritative supplied design and turnaround"
+    },
+    {
+      "path": "docs/assets/tabi-assets/train-actions/walking/04-walk-toward-camera.png",
+      "sha256": "42c883e976ae36638dc29e3a25462431a93db65f2d458f39585b885b65a27c4e",
+      "role": "supporting supplied identity/outfit, not the neutral pose"
+    }
+  ],
+  "generation_calls": [
+    {
+      "output": "01-front-three-quarter-right.png",
+      "referenced_image_paths": [
+        "docs/assets/tabi-character-profile.png",
+        "docs/assets/tabi-assets/train-actions/walking/04-walk-toward-camera.png"
+      ]
+    },
+    {
+      "output": "00-front.png",
+      "referenced_image_paths": [
+        "assets-source/tabi/turnaround-v2-draft/01-front-three-quarter-right.png",
+        "docs/assets/tabi-character-profile.png"
+      ]
+    },
+    {
+      "output": "02-right-profile.png",
+      "referenced_image_paths": [
+        "assets-source/tabi/turnaround-v2-draft/01-front-three-quarter-right.png",
+        "docs/assets/tabi-character-profile.png"
+      ]
+    },
+    {
+      "output": "04-back.png",
+      "referenced_image_paths": [
+        "assets-source/tabi/turnaround-v2-draft/01-front-three-quarter-right.png",
+        "docs/assets/tabi-character-profile.png"
+      ]
+    },
+    {
+      "output": "06-left-profile.png",
+      "referenced_image_paths": [
+        "assets-source/tabi/turnaround-v2-draft/01-front-three-quarter-right.png",
+        "assets-source/tabi/turnaround-v2-draft/02-right-profile.png",
+        "docs/assets/tabi-character-profile.png"
+      ]
+    },
+    {
+      "output": "07-front-three-quarter-left.png",
+      "referenced_image_paths": [
+        "assets-source/tabi/turnaround-v2-draft/01-front-three-quarter-right.png",
+        "assets-source/tabi/turnaround-v2-draft/00-front.png",
+        "docs/assets/tabi-character-profile.png"
+      ]
+    },
+    {
+      "output": "03-rear-three-quarter-right.png",
+      "referenced_image_paths": [
+        "assets-source/tabi/turnaround-v2-draft/01-front-three-quarter-right.png",
+        "assets-source/tabi/turnaround-v2-draft/04-back.png",
+        "docs/assets/tabi-character-profile.png"
+      ]
+    },
+    {
+      "output": "05-rear-three-quarter-left.png",
+      "referenced_image_paths": [
+        "assets-source/tabi/turnaround-v2-draft/01-front-three-quarter-right.png",
+        "assets-source/tabi/turnaround-v2-draft/04-back.png",
+        "docs/assets/tabi-character-profile.png"
+      ]
+    }
+  ],
+  "correction_outcome": {
+    "report": "docs/evidence/p01-turnaround-trial.json",
+    "decision": "no_go",
+    "variants": [
+      "image-control",
+      "multiview-prior"
+    ],
+    "reference_images_approved": false,
+    "scope": "One paired correction round; no conclusion about all native multiview methods."
   }
 }

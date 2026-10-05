@@ -746,7 +746,7 @@ No application behavior changed and no application tests are claimed. The prefer
 video, source artwork, first failed candidate and unrelated staged IDE files remain preserved.
 P01 stays open; P02–P04 remain blocked.
 
-### P01 — eight-view reference pack and prepared correction
+### P01 — eight-view reference pack and completed correction
 
 Marco authorized generating views around TABI's whole body before trying reconstruction again.
 Eight separate 1254×1254 native-alpha PNGs now exist in
@@ -759,14 +759,14 @@ prompts, source roles, hashes and rights review. Source images and the preferred
 unchanged. Generated views are drafts, not approved artwork or calibrated camera observations;
 tail silhouettes, gill occlusion and camera angles vary somewhat between views.
 
-The prepared correction compares the same frontal reference and random seed with and without
+The correction compared the same frontal reference and random seed with and without
 an approximate 512-point shape prior derived automatically from all eight alpha silhouettes.
 SPAR3D's normal image-list argument produces separate meshes, not joint multiview reconstruction.
 Its supported point-cloud input provides a way to test the extra shape information without
 claiming native multiview image support. This experimental prior uses fixed approximate angles,
 height/head-axis alignment, a 2.5%-height silhouette tolerance and seven-of-eight agreement.
-No hand sculpting or frame repair was used. It can be wrong when the generated views disagree;
-the paired result must be visually reviewed, including side depth and tail/frill attachment.
+No hand sculpting or frame repair was used. The prior can be wrong when generated views disagree;
+the paired results were reviewed from eight actual Blender angles each.
 
 The separate [correction notebook](https://colab.research.google.com/drive/18-ajPt8mS_E2zcMBwCqJJnsyx6GB82fo?authuser=1)
 uses the same reviewed SPAR3D code/checkpoint and pins the previously reviewed dependency
@@ -783,20 +783,53 @@ projections are saved under `.local/p01-tabi-turnaround-v2/`. No app behavior ch
 
 The new L4 session was requested at 09:58:57 UTC on 5 October and first recorded connected at
 10:00:57 UTC, with 2,498.11 units and 1.54 units/hour. Marco entered the existing read token
-in the private field; it was not retained after the previous runtime was deleted. The prepared
-inputs are being transferred. No new mesh has been generated in this correction yet; its
-final cost and outcome remain unmeasured.
+in the private field; it was not retained after the previous runtime was deleted. All 55
+installed dependency records exactly match the preceding reviewed trial, including versions
+and licence metadata. Setup took 236.608 seconds, weight download 80.679 seconds and the shared
+model load 26.915 seconds. Every current learned weight came from the hash-verified checkpoint.
+
+The image-only variant generated/exported in 7.894 seconds (20,500 vertices, 29,472 faces).
+The guided variant took 1.502 seconds (28,108 vertices, 39,976 faces); it bypassed point
+diffusion and reused the loaded model, so these are not independent cold-start benchmarks.
+Both use the same front image, seed, texture resolution and unmodified SPAR3D weights.
+
+**Neither variant passes the static character-quality gate.** In the image-only version,
+the frontal face is recognizable but the rear skull becomes red, the coat repeats a front-like
+leopard strip on the back, and the thin tail has an incorrect brown rear. With the shape prior,
+overall depth increases but gills/headphones become thick fused ridges and the tail/body merges
+into a bulky mass with smeared textures. The [actual comparison](evidence/p01-turnaround-comparison.jpg)
+and [strict evidence report](evidence/p01-turnaround-trial.json) preserve both results.
+No rigging, animation, garment or prop test followed this failure.
+
+All 45 payloads in the 14,770,274-byte result archive passed byte-size/SHA-256/path checks before
+atomic local extraction. The separately downloaded notebook has six executed code cells, all
+parse, and no token-like text. Installed Blender 5.2.2 LTS rendered 16 real 640×640 camera views
+and saved two review scenes without geometry edits. The reference pack, GLBs, full view sheets,
+licences, exact scripts, measurement records and notebook remain local; no MP4 was committed.
+
+After Marco authorized release, Colab already showed **zero active sessions and zero units/hour**;
+no redundant deletion was performed. Final displayed balance is **2,497.74 units**, a
+**0.37-unit whole-session observed delta**. Exact shutdown time was not captured; saved active
+and released observations bound connected time to roughly 15–21 minutes, within the 60-minute
+and 30-unit ceilings. No purchase or top-up occurred. The full 30-video monthly workflow is
+still unmeasured. The evidence verifier checks saved media/record integrity without granting
+artistic approval. Application code and behavior are unchanged; P02–P04 remain blocked.
+
+Verification: `.venv/bin/python scripts/verify_character_pipeline.py --report
+docs/evidence/p01-turnaround-trial.json` passed **100 files**, decision `no_go`;
+`git diff --check` passed. Original reference/baseline hashes and the unrelated staged IDE
+patch match their saved values; zero MP4 files are tracked. No application tests were rerun
+because application code did not change.
 
 ## Next work
 
-P01 remains the production decision. Finish the single authorized correction round from the
-eight-view reference pack, download/hash-check both comparison variants, and inspect real
-Blender front, side and back views against the original design and the generated reference
-pack. Record the whole Colab session cost and release it after saving outputs. Proceed to
-automatic-rigging feasibility only if both likeness and anatomy pass. A failed approximate
-visual-hull prior would not prove that every genuine multiview reconstruction method fails;
-it would show the limits of this tested adapter. Do not repeat unbounded generation or repair
-cycles if this route still fails.
+P01 remains the production decision, but the bounded SPAR3D correction is finished. Preserve
+the eight-view draft pack for a future route. The failed approximate visual-hull prior does
+not prove that every native multiview reconstruction method fails. A further investigation
+needs a revised strategy with genuine multiview appearance/geometry support and exact licence
+review, or an explicit decision about one-time authored-master preparation. Neither alternative
+is qualified here. Do not continue SPAR3D rerolls or manual mesh/frame repairs as a substitute
+for a dependable workflow.
 
 Do not promise automatic rigging, new garments or a reliable
 app workflow from these static results. Qualify the required motion, wardrobe, prop and

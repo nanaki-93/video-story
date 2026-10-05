@@ -23,8 +23,10 @@ This revision supersedes the previous instruction to repair the ears before addr
 product. PLAN/progress/index now place P01 first. Marco authorized a Colab/Blender trial and
 required monetization licence checks. Both [TripoSR](evidence/p01-character-pipeline.json)
 and [SPAR3D](evidence/p01-spar3d-trial.json) generated real meshes but failed the character's
-depth/anatomy requirements; neither qualifies preparation integration. P01 remains the next
-production decision. T40 is independent engineering work,
+depth/anatomy requirements; neither qualifies preparation integration. The authorized
+[eight-view correction](evidence/p01-turnaround-trial.json) also failed: a new volumetric front
+reference did not fix the rear, and approximate multiview shape guidance distorted the body.
+P01 remains the next production decision. T40 is independent engineering work,
 but import improvements cannot establish that character creation works.
 
 **Recommended investigation:** create one 3D TABI master with assisted image-to-3D and automatic
@@ -53,6 +55,7 @@ are untested with TABI.
 | --- | --- | --- |
 | TripoSR on Colab, tested diagnostic | Generate one persistent mesh without a paid image-to-3D service | [Actual trial and licence record](evidence/p01-character-pipeline.json): MIT code/weights, CPU mesh extraction with scikit-image, eight Blender views. First candidate rejected for shallow geometry and lost TABI details; no rig or production workflow qualified. |
 | SPAR3D, second tested diagnostic | Generate one mesh on Colab and inspect it in local Blender | [Measured trial](evidence/p01-spar3d-trial.json): exact code/model/dependency route reviewed under user-confirmed revenue eligibility and commercial registration. Mesh generated in 7.666 seconds after loading; eight unedited views fail depth/anatomy checks. No rig, new garment or production workflow qualified. |
+| SPAR3D, bounded correction completed | Test a new volumetric reference with and without shape guidance from eight generated views | [Paired correction](evidence/p01-turnaround-trial.json): same front image/seed; image-only front recognizable but rear wrong; point-cloud prior adds depth but merges/distorts gills and tail/body. Sixteen real Blender views; both no-go. Whole-session displayed delta 0.37 units; runtime released. Generated references remain useful drafts. |
 | Meshy / Tripo Studio, previous paid candidates | Historical alternatives | Excluded from the current route by the no-additional-paid-apps preference. No paid trial or subscription authorized. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
 | video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
@@ -63,7 +66,7 @@ on macOS, but authoring the character is substantial setup, so it is not the def
 latest constraint. Cartoon Animator's current download lists
 [Windows requirements](https://www.reallusion.com/cartoon-animator/download.html), so it is not
 the native Mac route. The authorized trials used existing Colab Pro+ resources and local Blender;
-uploads were limited to the generated TABI PNG and trial code/notebooks. No new purchase,
+uploads were limited to generated TABI references, the derived shape prior and trial code/notebooks. No new purchase,
 subscription or private-music upload occurred. The first trial's unit consumption was unmeasured;
 SPAR3D records whole-session balance observations. Paid-provider trials are outside
 the current route. The standard TRELLIS.2 setup is excluded pending replacement
@@ -323,7 +326,8 @@ promote pending rights, copy snapshot approval to a new video, or silently updat
 
 ## Implementation conventions
 
-P01 has two executed diagnostics and two candidate no-go decisions; **overall feasibility remains open**.
+P01 has two initial candidate no-go decisions and a completed paired correction, also no-go;
+**overall feasibility remains open**. The bounded SPAR3D conversion trial is finished.
 P02–P04 remain blocked on that proof, as reflected in the [active index](tasks/INDEX.md).
 T40–T48 retain their
 identifiers and useful engineering work, with expanded production gates. Domain operations
@@ -362,8 +366,16 @@ AlphaCLIP, standalone CLIP/DINO or background-removal weights were used. The exe
 failed attempts and verified result bundle are local. Whole-session balance and release state
 are recorded in the evidence; fast inference does not establish 30-video monthly capacity.
 The historical [preflight](evidence/p01-spar3d-preflight.json) remains unchanged as an earlier
-checkpoint. At most one bounded correction round remains; it is not an authorization for
-indefinite model trials or per-frame cleanup.
+checkpoint. The remaining correction round has now run from
+[eight generated views](evidence/p01-turnaround-reference-pack.json). SPAR3D consumes one
+appearance image; its image-list interface batches independent meshes. The tested adapter
+derived a 512-point approximate visual hull from all eight views and supplied it through the
+supported point-cloud input. It did not jointly condition appearance on eight images.
+[Actual comparison](evidence/p01-turnaround-comparison.jpg) and
+[measured report](evidence/p01-turnaround-trial.json) record failures in both paired variants.
+No rig, mesh repair or motion test followed. This is not evidence against every native
+multiview method, but it ends this bounded route. Further model testing requires an explicit
+revised strategy and exact commercial-licence/dependency review; do not keep rerolling SPAR3D.
 
 **Target files**
 - `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.
