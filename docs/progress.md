@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F07 — verified complete-scene export
+
+6 October 2026. Flow export now freezes ordered reviewed trims, source hashes, references, profile and toolchain. It reuses an extracted verified concat primitive from the existing assembler, preserves native cadence and publishes only after full frame/PTS/decode checks. Each export retains its source episode and report; interruption after output publication reconciles the existing verified file. Verification: 3 Flow actual-media tests and 5 shared chunk-assembly cases pass. The 8+7+7 fixture exports 528 frames/22 seconds; RGB samples on both sides of both joins match the source within encoding tolerance. Exact safe trim, changed-source failure, 30000/1001 fps and Unicode paths pass. Ruff passes. Synthetic exports remain drafts with creative approval pending.
+
 ## F06 — bounded continuation and recovery cycle
 
 6 October 2026. Python now selects one next action from accepted footage and confirmed state. Prompts and credit reservations persist before the external handoff; refresh and unknown outcomes cannot create a duplicate request. Rejected/old branches do not count toward progress. Retry, attempt and credit ceilings stop with saved progress; refunds require observed costs. Pause/resume is durable. Required actions and the exact reviewed final cut must pass before Finish. Verification: 11 runner/service tests pass, including late receipt after a disconnect, explicit refund, retry exhaustion, budget stop, backtracking and safe target trim; Ruff passes. Credit control applies to this local workflow and does not prevent independent spending inside Flow.

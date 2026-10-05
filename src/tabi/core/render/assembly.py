@@ -78,6 +78,72 @@ def stream_signature(settings, path):
     return {key: stream.get(key) for key in keys}, keyframe
 
 
+def concatenate_video(settings, profile, chunks, root, expected_frames):
+    """Shared verified concat primitive for numeric, owned video-only chunks."""
+    manifest, signatures = ["ffconcat version 1.0"], []
+    for index, (path, frames, digest) in enumerate(chunks):
+        checkpoint()
+        if digest_file(path)[0] != digest:
+            raise RenderError("chunk changed before assembly")
+        local = root / f"{index:08}.mp4"
+        os.link(path, local)
+        signatures.append(stream_signature(settings, local))
+        # User paths never enter FFmpeg's concat language. It sees only
+        # owned, numeric ASCII basenames in this private directory.
+        duration_us = round(Fraction(frames * profile.fps.den * 1000000, profile.fps.num))
+        manifest.extend([f"file {local.name}", f"duration {duration_us / 1000000:.6f}"])
+    text = "\n".join(manifest) + "\n"
+    manifest_path = root / "inputs.ffconcat"
+    manifest_path.write_text(text)
+    video = root / "assembled-video.mp4"
+    mode, reason = "stream_copy", None
+    compatible = all(
+        keyframe and signature == signatures[0][0] for signature, keyframe in signatures
+    )
+    base = [
+        settings.ffmpeg,
+        "-v",
+        "error",
+        "-xerror",
+        "-nostdin",
+        "-n",
+        "-f",
+        "concat",
+        "-safe",
+        "1",
+        "-i",
+        str(manifest_path),
+        "-map",
+        "0:v:0",
+        "-an",
+    ]
+    if compatible:
+        try:
+            run_tool([*base, "-c:v", "copy", "-movflags", "+faststart", str(video)], timeout=3600)
+            verify_video(settings, video, profile, expected_frames)
+        except OperationCancelled:
+            raise
+        except (ToolError, RenderError) as error:
+            reason = f"Stream copy failed verification: {error}"
+    else:
+        reason = "Chunk codec configuration or initial keyframes require re-encoding."
+    if reason:
+        mode = "reencode"
+        video.unlink(missing_ok=True)
+        args = [
+            *base,
+            "-vf",
+            f"setpts=N*{profile.fps.den}/({profile.fps.num}*TB)",
+            "-r",
+            f"{profile.fps.num}/{profile.fps.den}",
+            *video_arguments(profile),
+            str(video),
+        ]
+        run_tool(args, timeout=3600)
+        verify_video(settings, video, profile, expected_frames)
+    return video, mode, reason, text
+
+
 class VideoAssembler:
     def __init__(self, assets, settings):
         self.assets, self.settings = assets, settings
@@ -101,69 +167,9 @@ class VideoAssembler:
         began = time.monotonic()
         with tempfile.TemporaryDirectory(prefix=".tabi-assembly-", dir=output.parent) as scratch:
             root = Path(scratch)
-            manifest, signatures = ["ffconcat version 1.0"], []
-            for index, (path, frames, digest) in enumerate(chunks):
-                checkpoint()
-                if digest_file(path)[0] != digest:
-                    raise RenderError("chunk changed before assembly")
-                local = root / f"{index:08}.mp4"
-                os.link(path, local)
-                signatures.append(stream_signature(self.settings, local))
-                # User paths never enter FFmpeg's concat language. It sees only
-                # owned, numeric ASCII basenames in this private directory.
-                duration_us = round(Fraction(frames * profile.fps.den * 1000000, profile.fps.num))
-                manifest.extend([f"file {local.name}", f"duration {duration_us / 1000000:.6f}"])
-            text = "\n".join(manifest) + "\n"
-            manifest_path = root / "inputs.ffconcat"
-            manifest_path.write_text(text)
-            video = root / "assembled-video.mp4"
-            mode, reason = "stream_copy", None
-            compatible = all(
-                keyframe and signature == signatures[0][0] for signature, keyframe in signatures
+            video, mode, reason, text = concatenate_video(
+                self.settings, profile, chunks, root, job.duration_frames
             )
-            base = [
-                self.settings.ffmpeg,
-                "-v",
-                "error",
-                "-xerror",
-                "-nostdin",
-                "-n",
-                "-f",
-                "concat",
-                "-safe",
-                "1",
-                "-i",
-                str(manifest_path),
-                "-map",
-                "0:v:0",
-                "-an",
-            ]
-            if compatible:
-                try:
-                    run_tool(
-                        [*base, "-c:v", "copy", "-movflags", "+faststart", str(video)], timeout=3600
-                    )
-                    verify_video(self.settings, video, profile, job.duration_frames)
-                except OperationCancelled:
-                    raise
-                except (ToolError, RenderError) as error:
-                    reason = f"Stream copy failed verification: {error}"
-            else:
-                reason = "Chunk codec configuration or initial keyframes require re-encoding."
-            if reason:
-                mode = "reencode"
-                video.unlink(missing_ok=True)
-                args = [
-                    *base,
-                    "-vf",
-                    f"setpts=N*{profile.fps.den}/({profile.fps.num}*TB)",
-                    "-r",
-                    f"{profile.fps.num}/{profile.fps.den}",
-                    *video_arguments(profile),
-                    str(video),
-                ]
-                run_tool(args, timeout=3600)
-                verify_video(self.settings, video, profile, job.duration_frames)
             final, audio, audio_verified = video, None, None
             if job.profile.audio_codec:
                 audio_path = root / "continuous.wav"

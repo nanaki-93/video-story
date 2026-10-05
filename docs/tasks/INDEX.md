@@ -13,7 +13,7 @@ The older P/T queue below is historical and is not a second implementation queue
 | [F04](../tasks.md#f04--import-native-results-with-measured-timing-and-lineage) | Import native clips | complete |
 | [F05](../tasks.md#f05--review-technical-defects-and-visual-continuity-separately) | Review continuity | complete |
 | [F06](../tasks.md#f06--advance-the-bounded-generation-and-review-cycle) | Bound retries and progress | complete |
-| [F07](../tasks.md#f07--assemble-a-verified-silent-video-from-accepted-footage) | Assemble verified video | planned |
+| [F07](../tasks.md#f07--assemble-a-verified-silent-video-from-accepted-footage) | Assemble verified video | complete |
 | [F08](../tasks.md#f08--add-one-continuous-local-soundtrack-at-finish) | Add local music | planned |
 | [F09](../tasks.md#f09--expose-flow-workflow-services-through-cli-and-authenticated-api) | Expose shared CLI/API | planned |
 | [F10](../tasks.md#f10--present-setup-opening-continue-and-finish-as-the-normal-ui) | Guide the app workflow | planned |

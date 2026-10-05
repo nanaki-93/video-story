@@ -370,6 +370,8 @@ rejected branches excluded from duration, 92s to safe 90s trim, unfinished sip, 
 
 ## F07 — Assemble a verified silent video from accepted footage
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/flow/assembly.py` (new) — frozen complete-scene export preparation and verification.
 - `src/tabi/core/render/assembly.py` — extract reusable verified video concat primitives while retaining the existing renderer behavior.
