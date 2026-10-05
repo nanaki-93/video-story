@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 from uuid import uuid4
 
@@ -180,6 +181,19 @@ class FlowService:
         if candidate.review != "pending" or candidate.media.sha256 != media_sha256:
             raise FlowError("review is stale or the clip has already been reviewed")
         self.verify_file(candidate.media)
+        if candidate.review_packet:
+            packet = json.loads(self.store._read_bytes(candidate.review_packet))
+            if (
+                packet.get("candidate_sha256") != candidate.media.sha256
+                or packet.get("parent_sha256") != candidate.parent_sha256
+                or packet.get("reference_hashes")
+                != [item.media.sha256 for item in episode.references]
+            ):
+                raise FlowError("review packet no longer matches the clip, parent or references")
+            for image in packet["images"]:
+                self.verify_file(HashedFile.model_validate(image["media"]))
+            if packet.get("join_video"):
+                self.verify_file(HashedFile.model_validate(packet["join_video"]))
         attempt = next(item for item in episode.attempts if item.id == candidate.attempt_id)
         if attempt.recipe_sha256 != content_hash(episode.recipe) or (
             attempt.references_sha256 != references_hash(episode)

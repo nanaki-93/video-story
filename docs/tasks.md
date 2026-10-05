@@ -302,6 +302,8 @@ the second join. Do not commit the Tokyo MP4s or use copyrighted media as CI fix
 
 ## F05 — Review technical defects and visual continuity separately
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/flow/review.py` (new) — measured diagnostics, review packet and hash-bound decisions.
 - `src/tabi/core/flow/service.py` — guarded Accept/Retry transitions and confirmed ending state.

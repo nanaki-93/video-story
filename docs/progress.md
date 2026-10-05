@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F05 — candidate and join review evidence
+
+6 October 2026. Review now prepares first/middle/last PNG samples, parent ending, a playable join and hash-bound reference context. Strict time/canvas checks fail incompatible media. Repeated scaled frames, possible cuts and seam differences are advisory with exact frame ranges; exterior motion stays unassessed without a selected window region. Accept validates the packet and its media hashes, and records the human-confirmed ending state. Verification: 7 unit/service tests and 6 actual-media review/import tests pass, including a still clip that remains pending rather than being automatically rejected. Ruff passes. Full character quality remains a human gate.
+
 ## F04 — native clip imports and explicit preparation
 
 6 October 2026. Native clips now import against the exact pending attempt, with a full decode, every-timestamp check, measured frame count and immutable copied source. Repeated receipts add no progress; interrupted imports reuse the registered source. A cumulative scene requires an explicit frame range. A diagnosed scene timestamp gap can produce a separate video-only version while preserving the raw original; genuine irregular timing is rejected. Verification: all 3 actual-media tests pass, including 8+7+7 yielding 528 frames, a synthetic scene gap, Unicode paths and interrupted publication. Ruff passes; original files remain byte-identical.
