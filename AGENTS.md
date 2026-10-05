@@ -16,6 +16,8 @@ Complete reversible implementation work and synthetic tests without waiting for 
 
 Do not generate a new Tabi design because the reference is unavailable. Do not invent music licences, release identifiers, generation history, or permissions. Do not silently publish, buy assets, upload private music, download unapproved large models, or sign with credentials you have not been given. Manual publishing is outside V1 implementation.
 
+Marco requires a monetizable production workflow. Before using a new generator, model, checkpoint, motion, font or asset, check the official commercial-use and output terms, including dependencies and hosted-service terms. Record the exact version/revision, source links, review date, attribution requirements and unresolved restrictions with the preparation evidence. A repository's code licence does not automatically cover its weights or bundled models. Exclude non-commercial/research-only or territorially incompatible components from the production route; unknown rights remain pending. Recheck on version/provider changes and before release. Commercial-use permission does not establish YouTube Partner Program eligibility or approve the supplied artwork/music.
+
 Approved asset versions are immutable; edits create a new version. Draft project files can change atomically. Never erase source artwork when clearing caches. Approval applies to the content hash and is invalidated by edits.
 
 ## Engineering rules

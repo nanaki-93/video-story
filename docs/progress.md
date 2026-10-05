@@ -533,20 +533,79 @@ complete source frames from the same character master and review the moving comp
 promoting a pack. The broader head/neck/arm reconstruction and generated-ear experiments remain
 superseded. Music polish and human creative/rights/publication gates stay open.
 
+## P01 — commercial licence review and Colab/Blender trial
+
+5 October 2026. **Diagnostic completed; candidate rejected; overall P01 feasibility open.**
+Marco authorized trying an alternative to Meshy with his existing Google/Blender tools and
+explicitly required monetization licence checks. He separately approved the Colab first-use
+terms and ending the trial runtime. No new purchase, subscription or music upload occurred.
+
+The licence review found that the standard TRELLIS.2 setup includes non-commercial BRIA
+RMBG-2.0 weights and NVIDIA nvdiffrast/nvdiffrec rendering components. Its MIT main repository
+does not clear those dependencies. That standard route was excluded. A custom replacement
+route remains unimplemented; DINOv3 also has separate terms/access requirements. Hunyuan's
+territorial terms were unsuitable for the intended unrestricted worldwide publication route.
+The [component-by-component review](evidence/p01-character-pipeline.json) preserves official
+links, versions, obligations and pending rights. [AGENTS.md](../AGENTS.md) now makes these checks
+a standing requirement for every new generator/model/asset version. This is not YouTube
+monetization eligibility or source-art/music approval.
+
+One neutral RGBA input was generated with the built-in imagegen tool from the supplied profile
+and full-body reference. It remains a draft, with the exact prompt, path and SHA-256 in the
+evidence. Existing art was not overwritten. Colab Pro+ supplied an L4 with 22.03 GiB VRAM,
+Python 3.11.13 and Torch 2.6.0+cu124. TripoSR code and weights were pinned and reviewed as MIT;
+the 1,677,246,742-byte checkpoint was hash-verified before loading. Only DINO's architecture
+config was downloaded separately. No background-removal model or NVIDIA research renderer ran.
+
+Setup was not turnkey: notebook quoting, virtualenv bootstrap, a native extension build,
+mixed CUDA packages and config lookup required corrections. BSD-licensed scikit-image replaced
+the failed torchmcubes build; a non-symmetric ellipsoid checked the mesh axes. One successful
+inference took **11.475 seconds**, peaking at **2.323 GiB allocated GPU memory**, and exported a
+1,842,928-byte GLB with 46,044 vertices and 92,100 triangles. These figures exclude setup and
+downloads. Total hands-on time and consumed Colab compute units were not instrumented; no
+claim of cost-free or almost-automatic end-to-end preparation is made.
+
+The downloaded bundle and GLB hashes matched the cloud records. Installed Blender **5.2.2 LTS,
+build d13f752e3b9c**, imported the same mesh and rendered eight transparent 640×640 views using
+Cycles CPU. Only coordinate orientation, cameras and lighting were set; no mesh/weight/frame
+repair, rig or animation was added. Sandbox startup crashed, while a scoped outside-sandbox
+Blender run completed. [The actual comparison](evidence/p01-character-comparison.jpg) shows
+why this candidate fails: relief-like side depth, soft/merged frill roots, weak face marks and
+lost coat detail. A watertight mesh is not acceptance of anatomy or likeness.
+
+Local diagnostic material is in `.local/p01-character-pipeline/`: the input draft,
+`tabi-p01-trial-record.ipynb`, result GLB, generation script/patches/configs/package versions,
+logs, and `result/blender-review/tabi-triposr-v1-review.blend`. The saved notebook includes failed
+setup history and is an execution record, not a Run All production interface. The
+[cloud notebook](https://colab.research.google.com/drive/1elmBLvNc05fVgSBeRMXaKIpKfDOaHjNd)
+remains saved; final UI showed Reconnect and [no active sessions](evidence/p01-colab-runtime-stopped.jpg).
+
+No breathing/head turn, walk, deep breath, cup contact, second garment, train/café reuse,
+restart rehearsal or app integration was performed with the rejected mesh. No 90-second
+replacement was generated. P02–P04 stay blocked; T40 is independent engineering. This one
+candidate does not prove that every possible 3D route will fail. A further trial must address
+depth and detail before moving to a rig, within P01's bounded candidate budget.
+
+Verification: `scripts/verify_character_pipeline.py --report docs/evidence/p01-character-pipeline.json`
+under `.venv/bin/python` verifies **32 local artifact identities**, image dimensions, GLB header,
+same-master references and the unchanged baseline's **2700 frames / 1080p / 30 fps**. It reports
+**no_go**, not creative acceptance. Nine focused verifier tests pass, including rejection of
+changed sources, incorrect dimensions, missing gates, unapproved go decisions, different
+master hashes, escaping paths and unknown fields/versions. Ruff and `git diff --check` pass.
+The preferred video retains SHA-256 `a0d56de1ca30056ba9744c167aa2ae36c7185f1519afa2ce4b3ee1bfd60424e3`.
+No MP4 is tracked; unrelated staged IDE files are preserved.
+
 ## Next work
 
-Review the bounded upper-ear comparison against the selected calm-window baseline. Finish
-the remaining damaged painted outlines in a small set of complete source frames, keeping the
-same ear design and motion; do not apply broader automatic alpha expansion or reconstruct
-body parts. Require preserved cup/hands, neck/collar, timing and continuous scenery before
-promoting a new pack. Keep the original calm video as the reference. Extra actions and stronger
-breathing follow separately after this narrow repair.
-Music polish remains deferred. All earlier experiments are preserved for comparison.
+P01 remains the production decision: qualify a materially better reusable character through
+the required motion, wardrobe, prop and scene-reuse cases before starting P02–P04. The first
+candidate is a no-go, not a base for more per-frame repairs. A second bounded candidate or a
+higher-detail route requires the same model/dependency/output licence checks; the standard
+TRELLIS.2 setup is not commercially cleared by its main MIT licence alone.
 
-T40 remains the first unblocked application implementation task: infer safe import parameters from actual media
-and explain the remaining choices. T41 exposes that as a simple importer. Scene preparation,
-animation binding and a visual builder follow before the wider workflow/navigation work.
-See [T40–T48](tasks/INDEX.md) for dependencies and verification commands.
+Preserve the calm-window baseline, original art and deferred music work. T40 remains the first
+independent application engineering task, but cannot qualify character generation. The
+[active index](tasks/INDEX.md) now includes P01–P04 and the updated T40–T48 dependencies.
 
 The complete V1 history is retained separately to avoid confusing completed build steps with
 the current queue. Creative gates are summarized in the index and detailed in the acceptance

@@ -1,24 +1,29 @@
 # Active task index
 
-Marco requested a documentation cleanup and a plan before further implementation on
-4 October 2026. His priority is **importing existing Tabi images/animation files and building
-a scene from them**, with defaults for standard videos. The proposal is in [docs/tasks.md](../tasks.md).
-The redesigned app is not implemented yet. Start with T40 when implementation resumes.
+Marco's latest priority is a reusable TABI workflow with **almost entirely automatic setup**,
+commercial-compatible tools and train/café/walking, outfit and action reuse. The proposal is in
+[docs/tasks.md](../tasks.md). P01 is the current feasibility gate. The authorized Colab/Blender
+trial generated a real model, but [that candidate failed](../progress.md#p01--commercial-licence-review-and-colabblender-trial).
+The redesigned app is not implemented; T40 remains independent import engineering.
 
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
-| [T40](../tasks.md#t40) | Derive safe import choices in Python | Existing asset probe/import services | planned; first unblocked |
-| [T41](../tasks.md#t41) | Guide file import with defaults and examples | T40 | planned |
-| [T42](../tasks.md#t42) | Build still/layered scene drafts from selected assets | T40 | planned |
-| [T43](../tasks.md#t43) | Turn prepared character animation into a compatible scene pack | T42 | planned |
-| [T44](../tasks.md#t44) | Add the visual scene builder and reusable scene library | T41, T42, T43 | planned |
+| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | trial recorded; candidate no-go; overall feasibility open |
+| [P02](../tasks.md#p02) | Define the prepared character-library handoff | P01 passes | blocked on P01 |
+| [P03](../tasks.md#p03) | Implement repeatable Blender preparation | P01, P02 | blocked on P01/P02 |
+| [P04](../tasks.md#p04) | Connect preparation to durable app jobs | P02, P03 | blocked on preparation proof |
+| [T40](../tasks.md#t40) | Derive safe import choices in Python | Existing asset probe/import services | planned; independently unblocked engineering |
+| [T41](../tasks.md#t41) | Guide file import with defaults and examples | T40, P02 | planned |
+| [T42](../tasks.md#t42) | Build still/layered scene drafts from selected assets | T40, P02 | planned |
+| [T43](../tasks.md#t43) | Turn prepared character animation into a compatible scene pack | T42, P04 | planned |
+| [T44](../tasks.md#t44) | Add the visual scene builder and reusable scene library | T41, T42, T43, P04 | planned |
 | [T45](../tasks.md#t45) | Add standard video defaults and fit duration to music | T42, T43 | planned |
 | [T46](../tasks.md#t46) | Connect steps with readiness, context and useful next actions | T41, T44, T45 | planned |
 | [T47](../tasks.md#t47) | Simplify preview and export over the existing services | T45, T46 | planned |
-| [T48](../tasks.md#t48) | Verify the guided workflow on the target Mac and update operations | T40, T41, T42, T43, T44, T45, T46, T47 | planned |
+| [T48](../tasks.md#t48) | Verify the guided workflow on the target Mac and update operations | P01–P04, T40–T47 | planned |
 
-Dependencies are explicit prerequisites, not authorization to implement in this planning pass.
+Dependencies are explicit prerequisites, not evidence that a production route works.
 For each implementation step, update this index and [progress](../progress.md) with behavior,
 checks and remaining limits; commit with the task ID as required by [AGENTS.md](../../AGENTS.md).
 
@@ -27,9 +32,11 @@ checks and remaining limits; commit with the task ID as required by [AGENTS.md](
 **Current working baseline:** Marco selected
 [the calm-window 90-second video](../progress.md#t14--return-to-the-calm-window-baseline)
 as the last good result and rejected the direction of later variants. Preserve its original
-artwork, poses, timing, scenery and soundtrack; next address only the local ear-edge flicker.
+artwork, poses, timing, scenery and soundtrack. The new feasibility investigation supersedes
+the earlier instruction to repair local ear flicker first.
 The records below are chronological evidence, not instructions to resume the later rigs or
-generated replacement ears. Earlier extra-motion requests are deferred during this repair.
+generated replacement ears. Earlier extra-motion requests are acceptance cases for the
+reusable workflow.
 The [bounded upper-ear comparison](../progress.md#t14--bounded-ear-comparison-and-app-workflow-assessment)
 is technically verified but remains a review candidate with residual source-art distortion;
 it does not promote a new creative baseline.

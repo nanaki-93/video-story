@@ -10,18 +10,25 @@ The V1 software is implemented and its engineering gates are recorded in
 [V1 acceptance](docs/38-v1-acceptance.md). The interface still exposes too many technical tools
 and gives too little guidance between importing media and making a scene.
 
-Marco's 4 October 2026 request takes priority over the original build order: simplify asset
-import, help him **assemble scenes from his existing Tabi images and animation files**, and
-provide reusable defaults for standard videos. This request is for documentation cleanup and
-a plan; the redesigned workflow is not implemented yet.
+Marco now requires an **almost entirely automatic, reusable character workflow**, covering
+train/café/walking scenes, different interiors/exteriors, real garment changes and actions.
+Another isolated ear repair or a simpler importer cannot establish that this works. The
+[production plan](docs/tasks.md) makes P01's real-character feasibility proof the current
+priority, before integrating preparation through P02–P04. T40 remains independent import
+engineering; the redesigned normal workflow is not implemented yet.
 
-Read the [guided workflow plan](docs/tasks.md), then select the first unblocked item in the
-[active task index](docs/tasks/INDEX.md). Begin with import and scene creation. The guided
-application plan does not add artwork generation. Marco separately authorized matching
-generated components for earlier animation experiments; the selected baseline below now
-governs further polish. The
-[documentation guide](docs/README.md) separates current instructions, technical references
-and historical records.
+The authorized **5 October Colab/Blender trial** produced one real TripoSR mesh and eight
+local Blender views. [Evidence and licence review](docs/evidence/p01-character-pipeline.json)
+record a **no-go for that candidate**: shallow geometry and lost face/frill/outfit detail.
+There is no qualified rig or animation. P01 remains open; P02–P04 stay blocked. The standard
+TRELLIS.2 setup was excluded because some dependencies have non-commercial terms despite its
+MIT main code/weights. No new purchase, subscription or private-music upload occurred.
+The runtime is closed and diagnostic files are saved locally.
+
+Read the [active task index](docs/tasks/INDEX.md) and [documentation guide](docs/README.md).
+Check the exact model, weights, dependencies, hosted service and output terms before every
+new route/version. Commercial-use terms do not approve source artwork or guarantee YouTube
+monetization. This is now a standing rule in [AGENTS.md](AGENTS.md).
 
 The current creative baseline is Marco's selected
 [calm-window 90-second video](docs/progress.md#t14--return-to-the-calm-window-baseline),
@@ -31,25 +38,22 @@ pack `pack.tabi.calm-ride` at 1.0 and the original `sources/train-polish-v3/` pr
 Preserve this version's TABI artwork, original ear shapes, poses, cup, timing, 36–48-second
 coffee break, calm window holds, continuous 72-pixel/second scenery and existing soundtrack.
 
-Creative repair remains limited to the existing ear-edge flicker. Compare source RGB and
-alpha through the head turn, repair only the affected ear region, and compare against this exact
-baseline. Review moving outlines as well as opacity; technically valid frames did not make the
-later experiments look better. The separate parts rigs and generated replacement-ear master
-remain historical experiments and are not the starting point. Earlier requests for extra cues
-and stronger breathing remain recorded as future work after this baseline is stable. Music
-polish is deferred. Original assets and all previous versions remain preserved.
+This remains the visual comparison baseline. Marco's newer request supersedes the instruction
+to keep repairing its ear edges before addressing the production strategy. Do not resume
+frame repairs or promote a new design merely to make a rig pass. The separate parts rigs and
+replacement-ear experiments remain historical. Music polish is deferred; all originals and
+previous versions remain preserved.
 The [bounded upper-ear comparison](docs/progress.md#t14--bounded-ear-comparison-and-app-workflow-assessment)
 is technically verified but retains source-outline distortion; it does not replace Marco's
 selected baseline or close the visual gate.
-T40 remains the first task when application workflow implementation resumes.
 
 The [workflow feasibility assessment](docs/tasks.md#can-the-normal-app-workflow-produce-this-video)
 distinguishes the working compositor/exporter from the missing guided preparation/binding flow.
-The product strategy is to prepare and review a reusable complete-character train pack once,
-then use named routines, compatible exterior choices and duration defaults for normal videos.
-The acceptance test must reproduce the ride and a second scenery/duration variant through the
-UI in a fresh project, without scripts or hand-written JSON. Source-art retouching is a separate
-preparation step; importing files or making PNG proxies does not perform it.
+The proposed strategy is one persistent master, compatible scene/outfit/action libraries and
+automatic Blender preparation, feeding complete-character frames to the existing Python
+compositor. This is contingent on P01, including cup contact, walking and a genuinely different
+garment. Normal production should use named routines and defaults through the UI, with no
+scripts or metadata editing. The failed diagnostic does not establish that handoff.
 
 ## Product boundaries
 
@@ -63,7 +67,7 @@ preparation step; importing files or making PNG proxies does not perform it.
 | Normal production | Import prepared media, build/reuse a scene, add finished music, preview and export |
 | Defaults | Fill technical settings where evidence permits; keep creative review and unknown source facts explicit |
 | Delivery | Verified local video and release preparation folder; manual external upload |
-| Optional generation | Existing local ComfyUI adapter remains an advanced utility; no new models or generation workflow required |
+| Character preparation | P01 feasibility open; P02–P04 conditional on a qualified master and almost-automatic operations. Existing ComfyUI adapter remains an advanced utility. |
 
 Target machine: Marco's Apple Silicon M5 Pro MacBook Pro with 48 GB unified memory. The
 [measured long-form checks](docs/36-longform.md) qualify synthetic 45-minute native 1080p

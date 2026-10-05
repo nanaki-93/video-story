@@ -1,8 +1,9 @@
 # Documentation guide
 
 Use the current guides below. The original V1 implementation is finished as software; its
-remaining art/music reviews are still open. The guided import and scene workflow is a proposal,
-not a description of controls already present in the app.
+remaining art/music reviews are still open. The reusable-character and guided app workflow is
+not implemented. Its first Colab/Blender candidate failed the real-art gate; the evidence below
+records the result without promoting it to a production asset.
 
 ## Start here
 
@@ -12,6 +13,7 @@ not a description of controls already present in the app.
 | Import an image and make a first scene today | [First scene walkthrough](37-operations.md#first-scene-from-an-existing-image) |
 | Normal production, CLI and troubleshooting | [Operations](37-operations.md) |
 | Simpler import, scene builder and default settings proposal | [Guided workflow plan](tasks.md) |
+| Actual character-generation trial and commercial-use review | [P01 findings](progress.md#p01--commercial-licence-review-and-colabblender-trial), [comparison](evidence/p01-character-comparison.jpg), [exact evidence/licences](evidence/p01-character-pipeline.json) |
 | What to implement next | [Active task index](tasks/INDEX.md) |
 | Current status and latest checks | [Progress](progress.md) |
 | What passed V1 and what still needs creative input | [V1 acceptance](38-v1-acceptance.md) |

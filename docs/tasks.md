@@ -1,6 +1,6 @@
 # Repeatable TABI production with an almost automatic workflow
 
-Revised 5 October 2026; **proposal, not implemented or proven with a reusable TABI master**.
+Revised 5 October 2026; **P01 trial recorded, no reusable TABI master qualified**.
 Build videos from a persistent character, reusable motions and compatible scene templates.
 Cover train interiors/exteriors, outfits, actions, a café and walking without repairing frames
 or writing scripts for each video.
@@ -13,12 +13,12 @@ applications. Do not assume he will draw layers, paint skin weights, learn riggi
 an animator. The existing calm-window video remains the preferred visual reference; it is not
 a reusable character master and its unresolved flicker is not accepted.
 
-This revision supersedes this file's previous instruction to repair the ears before addressing
-the product. Existing PLAN/progress/index entries retain the prior queue and historical state;
-they do not mean this proposed pipeline has been adopted or implemented. P01 is the next
-production decision. T40 remains independent engineering work, but import improvements cannot
-establish that character creation works. When implementation is authorized, reconcile the active
-index and product boundaries with the selected route as part of P01's evidence update.
+This revision supersedes the previous instruction to repair the ears before addressing the
+product. PLAN/progress/index now place P01 first. Marco authorized a Colab/Blender trial and
+required monetization licence checks. [The first candidate](evidence/p01-character-pipeline.json)
+was generated and rendered, but failed likeness/anatomy; no preparation integration is approved
+by that result. P01 remains the next production decision. T40 is independent engineering work,
+but import improvements cannot establish that character creation works.
 
 **Recommended investigation:** create one 3D TABI master with assisted image-to-3D and automatic
 rigging, reuse it for every animation, and test an illustration-like render in Blender. This is
@@ -39,10 +39,12 @@ independent AI video clips is not the fallback for a consistent continuous chara
 ## Tools and responsibility
 
 Official documentation checked on 5 October 2026. Feature availability is vendor evidence;
-the proposed fit to TABI is an engineering inference and remains untested.
+the TripoSR diagnostic is recorded below, while the remaining proposed routes are untested
+with TABI.
 
 | Tool | Proposed responsibility | Evidence and limit |
 | --- | --- | --- |
+| TripoSR on Colab, tested diagnostic | Generate one persistent mesh without a paid image-to-3D service | [Actual trial and licence record](evidence/p01-character-pipeline.json): MIT code/weights, CPU mesh extraction with scikit-image, eight Blender views. First candidate rejected for shallow geometry and lost TABI details; no rig or production workflow qualified. |
 | Meshy, initial candidate | Convert selected character references into one persistent textured model; auto-rig and obtain reusable motion candidates | [Image-to-3D](https://docs.meshy.ai/en/api/image-to-3d), [rigging API](https://docs.meshy.ai/en/api/rigging), [animation guide](https://docs.meshy.ai/en/webapp/guides/animate). The API limits reliable rigging to clear standard humanoids; custom motion/facial work is not guaranteed. TABI's shape is a specific acceptance risk. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
 | video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
@@ -52,9 +54,11 @@ Moho Pro supports [PSD-based 2D rigging and Smart Bones](https://moho.lostmarble
 on macOS, but authoring the character is substantial setup, so it is not the default under the
 latest constraint. Cartoon Animator's current download lists
 [Windows requirements](https://www.reallusion.com/cartoon-animator/download.html), so it is not
-the native Mac route. No subscription, provider account, upload or installation is performed
-by this planning change. A provider trial needs an explicit service/input/budget decision;
-there is no authorized credit budget. No private music is needed by character generation.
+the native Mac route. The authorized trial used existing Colab Pro+ resources and local Blender;
+only the generated TABI PNG was uploaded to Colab. No new purchase, subscription or private-music
+upload occurred. Compute-unit consumption was not measured. New paid-provider trials still need
+a service/input/budget decision. The standard TRELLIS.2 setup is excluded pending replacement
+of its non-commercial dependencies; main-repository MIT licensing alone does not clear it.
 
 ## What becomes reusable
 
@@ -269,8 +273,9 @@ promote pending rights, copy snapshot approval to a new video, or silently updat
 
 ## Implementation conventions
 
-All tasks below are **planned**. P01–P04 are the proposed preparation track; their adoption
-must be reflected in the [active index](tasks/INDEX.md) at implementation. T40–T48 retain their
+P01 has one executed diagnostic and a candidate no-go; **overall feasibility remains open**.
+P02–P04 remain blocked on that proof, as reflected in the [active index](tasks/INDEX.md).
+T40–T48 retain their
 identifiers and useful engineering work, with expanded production gates. Domain operations
 belong in Python; API and CLI call the same service. Retain strict unknown-field/version checks,
 integer frames/samples, immutable versions and revision guards. New optional preference fields
@@ -288,10 +293,17 @@ generated validators. Each implementation task also updates `docs/progress.md` a
 
 ## P01 — Decide whether automatic character preparation meets the real requirements
 
+Status: first candidate trial recorded on 5 October. TripoSR produced a real GLB, but its
+Blender views failed likeness/frill/anatomy checks. No rig, motion, contact, wardrobe or scene
+reuse was attempted after that failure. [Comparison](evidence/p01-character-comparison.jpg),
+[licences, exact hashes and operations](evidence/p01-character-pipeline.json). The verifier
+checks evidence integrity and explicitly reports that production feasibility has not passed.
+
 **Target files**
 - `docs/evidence/p01-character-pipeline.json` (new) — reference/master hashes, exact tool versions, operations, manual intervention, local clip paths, timing/cost and each pass/fail decision.
 - `docs/evidence/p01-character-comparison.jpg` (new) — supplied reference and actual rendered candidate, clearly labeled.
 - `scripts/verify_character_pipeline.py` (new) — verify recorded media identity, dimensions, frame counts and reuse evidence; never grant visual approval.
+- `tests/unit/test_character_pipeline_evidence.py` (new) — reject changed inputs, wrong dimensions, omitted gates, false go decisions and mismatched master identities.
 - `PLAN.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — record the selected route, current queue, measured automation and any failed requirements before further integration.
 
 **Inputs / dependencies**
