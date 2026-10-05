@@ -405,6 +405,26 @@
       "sha256": "8a6ee6950b8636254c8c4c4f50218c82e122f92aab66a39f4084e0d944fa4db6",
       "kind": "file",
       "role": "historical_preflight"
+    },
+    {
+      "path": ".local/p01-spar3d/session-final.json",
+      "sha256": "d87e08755e7b65227d3dc3a75c96f112844ab6d7e751026e8926ecd8c618e787",
+      "kind": "file",
+      "role": "runtime_release_measurement"
+    },
+    {
+      "path": ".local/p01-spar3d/runtime-stopped-ui.txt",
+      "sha256": "174331409c2b397e75188c023995156a19ebcb8b8058dc2ee643d24c93b118cb",
+      "kind": "file",
+      "role": "runtime_status"
+    },
+    {
+      "path": ".local/p01-spar3d/colab-runtime-stopped.png",
+      "sha256": "db96e9fd4c3ea7773443bafa21d32e388199ae9cdc163b921b53ecb3cd3871ec",
+      "kind": "image",
+      "role": "runtime_stopped",
+      "width": 1512,
+      "height": 684
     }
   ],
   "gates": {
@@ -575,14 +595,14 @@
     "balance_before": 2499.4,
     "balance_at_bundle": 2498.63,
     "observed_units_at_bundle": 0.77,
-    "balance_after_release": null,
-    "whole_session_observed_compute_units": null,
-    "runtime_released": false,
+    "balance_after_release": 2498.11,
+    "whole_session_observed_compute_units": 1.29,
+    "runtime_released": true,
     "first_observed_connected_at_utc": "2026-10-05T08:44:04Z",
     "connection_requested_at_utc": "2026-10-05T08:42:34Z",
     "released_at_utc": null,
-    "connected_seconds_upper_bound": null,
-    "connected_seconds_lower_bound": null,
+    "connected_seconds_upper_bound": 3226.0,
+    "connected_seconds_lower_bound": 2528.624,
     "displayed_units_per_hour": 1.54,
     "monthly_compute_units": 2000,
     "production_budget_units_after_reserve": 1600,
@@ -591,7 +611,8 @@
     "end_to_end_monthly_capacity_proven": false,
     "extra_purchase": false,
     "hands_on_minutes": null,
-    "measurement_limit": "Whole-session delta includes setup, failed attempts, token entry, licence checks, browser delays and idle time. Successful-stage timing does not include all process/import/UI overhead. No finished-video cost measured."
+    "measurement_limit": "Whole-session delta includes setup, failed attempts, token entry, licence checks, browser delays and idle time. Successful-stage timing does not include all process/import/UI overhead. No finished-video cost measured.",
+    "zero_sessions_verified_by_utc": "2026-10-05T09:36:20+00:00"
   },
   "operations": [
     "Reused the unchanged neutral RGBA draft and preserved the preferred 90-second video.",
@@ -605,7 +626,8 @@
     "Exported bundle with allowlisted paths, hashes and secret-pattern check. Verified all 28 entries locally before extraction.",
     "Sandboxed Blender launch crashed before import; installed Blender succeeded outside sandbox, rendering eight standard glTF camera views without geometry changes.",
     "Reviewed all views against the supplied profile and walking reference. Stopped at depth/anatomy failure before rigging or another video.",
-    "Downloaded executed notebook separately; private token absent from source and evidence."
+    "Downloaded executed notebook separately; private token absent from source and evidence.",
+    "User disconnected the trial. Confirmed zero active sessions, zero units/hour and displayed final balance 2498.11; whole-session displayed delta 1.29 units. Exact release time unobserved; conservative connection bounds remain below 60 minutes."
   ],
   "unresolved": [
     "No qualified reusable character, rig, animation library or app integration.",

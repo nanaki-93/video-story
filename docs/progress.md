@@ -731,11 +731,15 @@ Blender startup crashed before importing the model; the installed Blender render
 outside the sandbox. The eight views were reviewed on light and dark backgrounds; this is
 static inspection and does not establish temporal alpha or ear stability.
 
-Runtime release confirmation has been requested after local verification. Final balance and
-connected-time bounds will be recorded after release; the intermediate 0.77-unit delta is not
-the completed session cost. There was no purchase or credit top-up. The trial's setup, private
-entry, licence inspection, browser transfer delays and idle intervals count toward the full
-session. Hands-on time and recurring episode preparation remain unmeasured.
+Marco subsequently disconnected the runtime. The UI confirms **zero active sessions and
+zero units/hour**, with a final displayed balance of **2,498.11 units**: **1.29 units consumed**
+across the whole trial. This supersedes the intermediate 0.77-unit checkpoint above. Exact
+shutdown time was not captured; preserved active/zero-session observations bound the connected
+duration to approximately 42–54 minutes, below the 60-minute ceiling. The trial also stayed
+below its 30-unit ceiling. Final measurements and the status screenshot are hashed in the
+evidence. There was no purchase or credit top-up. Setup, private entry, licence inspection,
+browser transfer delays and idle intervals all count toward the full session. Hands-on time
+and recurring episode preparation remain unmeasured.
 
 The existing evidence verifier checks the second report without granting artistic approval.
 No application behavior changed and no application tests are claimed. The preferred 90-second
@@ -748,7 +752,16 @@ P01 remains the production decision. Both tested models from the illustrated neu
 fail the depth/anatomy gate; neither should become a base for more frame repairs. At most one
 bounded correction round remains. A reference that explicitly depicts TABI's volume could
 test whether the shared flat input caused the shallow reconstruction, but that is a hypothesis
-and needs its own comparison. Do not promise automatic rigging, new garments or a reliable
+and needs its own comparison. Prepare one full-body three-quarter reference with explicit head,
+torso and limb volume, visible connected tail and clear frill roots while preserving TABI's
+identity, outfit and proportions. Compare it with the supplied references before reconnecting
+Colab. Use one image, not a turnaround collage, for the single-image model. Retry the same
+reviewed model/configuration with that corrected input once, then inspect front, side and
+back views. Proceed to automatic-rigging feasibility only if both likeness and anatomy pass;
+otherwise stop this conversion route and make the required one-time authored-master tradeoff
+explicit. No correction image or new generation has been made yet.
+
+Do not promise automatic rigging, new garments or a reliable
 app workflow from these static results. Qualify the required motion, wardrobe, prop and
 scene-reuse cases before starting P02–P04. The standard TRELLIS.2 setup remains uncleared by
 its main MIT licence alone.
