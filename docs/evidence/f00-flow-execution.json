@@ -1,0 +1,91 @@
+{
+  "task_id": "F00",
+  "review_date": "2026-10-06",
+  "status": "complete_assisted_path_selected",
+  "app_generation_mode": "assisted",
+  "automatic_execution_qualified": false,
+  "project_url": "https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781",
+  "read_only_account_observation": {
+    "date": "2026-10-06",
+    "agent_available": true,
+    "agent_enabled": false,
+    "tools_create_available": true,
+    "displayed_settings": [
+      "Video",
+      "720p",
+      "8s",
+      "x1"
+    ],
+    "settings_changed": false
+  },
+  "execution_decision": {
+    "supported_handoff": [
+      "copy focused prompt",
+      "open user-owned Flow project",
+      "select accepted parent in Flow",
+      "download native result",
+      "import result into pending app attempt",
+      "review before next extension"
+    ],
+    "external_api": "not established for consumer Flow entitlement",
+    "custom_tool_native_extend": "untested",
+    "callbacks": "not established",
+    "authentication": "stays in Flow; no cookies or credentials stored by app",
+    "unknown_submission": "needs reconciliation before another attempt",
+    "credit_enforcement": "local attempt reservation and stop conditions; does not prevent independent spending in Flow"
+  },
+  "existing_media_evidence": {
+    "record": "docs/evidence/p01-flow-tokyo-001-review.json",
+    "native_frames": [
+      192,
+      168,
+      168
+    ],
+    "fps": {
+      "num": 24,
+      "den": 1
+    },
+    "actual_seconds": 22,
+    "scene_download_has_timestamp_gap": true,
+    "native_model_revision": "unknown; editor settings do not identify source model"
+  },
+  "trial": {
+    "new_generation_calls": 0,
+    "credits_spent": 0,
+    "allowance_current": null,
+    "automatic_bridge_tested": false,
+    "reason": "Zero-credit review qualifies the assisted route only. Existing native media can verify local workflow without additional generation."
+  },
+  "commercial_review": {
+    "provider": "Google Flow hosted service",
+    "candidate_model": "Veo 3.1 / supported native Extend mode; record actual mode for each imported result",
+    "exact_hosted_revision": "not publicly pinned; remains unknown",
+    "disposition": "commercial evaluation under applicable Google terms and lawful inputs; no ownership claim over generated original content",
+    "attribution": "No separate mandatory textual attribution identified in reviewed Flow FAQ; preserve provider watermarks and any source attribution requirements",
+    "dependencies": "Existing locked local Python/FFmpeg toolchain; no new model, weights or paid service",
+    "restrictions": [
+      "Applicable account terms and lawful source artwork remain required",
+      "Model or provider changes require a fresh review",
+      "No commercial-use review establishes YouTube monetization eligibility",
+      "Do not remove provider watermarks"
+    ],
+    "sources": [
+      "https://support.google.com/flow/answer/16353333?hl=en",
+      "https://policies.google.com/terms",
+      "https://one.google.com/terms-of-service",
+      "https://policies.google.com/terms/generative-ai/use-policy"
+    ],
+    "previous_terms_evidence": "docs/evidence/p01-flow-continuity-review.json"
+  },
+  "capability_sources": [
+    "https://support.google.com/flow/answer/17093911?hl=en",
+    "https://support.google.com/flow/answer/17104535?hl=en",
+    "https://support.google.com/flow/answer/16352836?hl=en",
+    "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "remaining_gates": [
+    "Automatic app-controlled generation is unqualified",
+    "Final real-art continuity and a second episode remain human creative gates",
+    "Current included allowance must be checked by the user before reserving a generation"
+  ]
+}

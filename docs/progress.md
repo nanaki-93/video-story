@@ -2,6 +2,23 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F00 — supported Flow handoff selected
+
+6 October 2026. The [dated execution review](evidence/f00-flow-execution.json) qualifies
+**Copy prompt → Open Flow → Import native result → Review** for the initial app implementation.
+Agent and Tools are present in the account; a supported consumer external API, Tool-based
+native Extend, callbacks and automatic spending control remain unqualified. No new generation
+or credits were used. The existing Tokyo native clips provide actual local timing fixtures.
+
+Official Agent, Tools, commercial-use FAQ and API pricing pages were rechecked. Generation
+stays inside the existing Flow account. Authentication stays there; no paid API, extracted
+credential, music upload or top-up is introduced. Hosted model revisions are not publicly pinned;
+source model and rights remain explicit facts rather than inferred from the editor badge.
+
+Verification: the evidence parses with the task's JSON command; its source records and native
+frame counts match the preserved Tokyo review. The Flow queue is now registered. This closes
+F00's bounded investigation, not automatic generation or creative acceptance.
+
 ## P01 — Tokyo scene timing and prop conflicts
 
 6 October 2026. Marco supplied the three-clip **Test Tokyo 001** Flow scene to investigate

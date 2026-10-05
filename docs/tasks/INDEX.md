@@ -1,5 +1,28 @@
 # Active task index
 
+The current implementation queue is **F00–F12** in [the Flow plan](../tasks.md).
+One train/Tokyo/90-second workflow comes first. Implement and verify one step, then commit it.
+The older P/T queue below is historical and is not a second implementation queue.
+
+| Task | Outcome | Status |
+| --- | --- | --- |
+| [F00](../tasks.md#f00--qualify-flows-supported-execution-path) | Qualify supported Flow handoff | complete; assisted route |
+| [F01](../tasks.md#f01--define-strict-flow-episode-and-execution-contracts) | Define Flow contracts | planned |
+| [F02](../tasks.md#f02--persist-resumable-sequences-and-accepted-branches) | Persist accepted branches | planned |
+| [F03](../tasks.md#f03--compile-focused-prompts-from-confirmed-state) | Compile focused prompts | planned |
+| [F04](../tasks.md#f04--import-native-results-with-measured-timing-and-lineage) | Import native clips | planned |
+| [F05](../tasks.md#f05--review-technical-defects-and-visual-continuity-separately) | Review continuity | planned |
+| [F06](../tasks.md#f06--advance-the-bounded-generation-and-review-cycle) | Bound retries and progress | planned |
+| [F07](../tasks.md#f07--assemble-a-verified-silent-video-from-accepted-footage) | Assemble verified video | planned |
+| [F08](../tasks.md#f08--add-one-continuous-local-soundtrack-at-finish) | Add local music | planned |
+| [F09](../tasks.md#f09--expose-flow-workflow-services-through-cli-and-authenticated-api) | Expose shared CLI/API | planned |
+| [F10](../tasks.md#f10--present-setup-opening-continue-and-finish-as-the-normal-ui) | Guide the app workflow | planned |
+| [F11](../tasks.md#f11--prepare-a-youtube-delivery-with-existing-review-rules) | Prepare YouTube delivery | planned |
+| [F12](../tasks.md#f12--verify-repeatable-production-and-document-the-remaining-automation-gap) | Verify full production workflow | planned |
+
+## Earlier production investigations
+
+
 Marco's latest priority is a reusable TABI workflow with **almost entirely automatic setup**,
 commercial-compatible tools and train/café/walking, outfit and action reuse. The proposal is in
 [docs/tasks.md](../tasks.md). P01 is the current feasibility gate. The authorized Colab/Blender

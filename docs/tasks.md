@@ -139,6 +139,8 @@ continuity. A completed action takes priority over blindly cutting at the durati
 
 ## F00 — Qualify Flow's supported execution path
 
+**Status** [x] Complete: assisted route qualified by the dated zero-credit review; automatic execution remains unqualified. See `docs/evidence/f00-flow-execution.json`.
+
 **Target files**
 - `docs/evidence/f00-flow-execution.json` (new) — dated capabilities, terms, measurements and go/no-go evidence.
 - `docs/tasks.md` — record the supported handoff and, only if qualified, specify a connector task.
