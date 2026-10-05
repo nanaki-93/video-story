@@ -2,6 +2,18 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F01 — strict Flow contracts
+
+6 October 2026. Added Flow episode, attempt and export documents. Actual clip timing, parent
+hashes, immutable references, observed prop/hand state, focused prompt hashes, credit limits and
+frozen export inputs are explicit. Invalid lineage, cycles, stale review hashes, unverified
+acceptance, noninteger frames and unknown fields fail validation. Existing document formats
+remain unchanged; the closed registry test now includes the three new types.
+
+Verification: **73 tests pass** in `test_flow_contracts.py` and `test_contracts.py`. Generated
+67 Python/browser schemas; schema drift, Ruff and `make web-check` pass. No UI behavior or
+creative approval is claimed by this contract step.
+
 ## F00 — supported Flow handoff selected
 
 6 October 2026. The [dated execution review](evidence/f00-flow-execution.json) qualifies

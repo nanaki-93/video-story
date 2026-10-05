@@ -1,0 +1,873 @@
+{
+  "$defs": {
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "exclusiveMinimum": 0,
+          "title": "Height",
+          "type": "integer"
+        },
+        "width": {
+          "exclusiveMinimum": 0,
+          "title": "Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "width",
+        "height"
+      ],
+      "title": "Canvas",
+      "type": "object"
+    },
+    "FlowAttempt": {
+      "additionalProperties": false,
+      "properties": {
+        "beat": {
+          "$ref": "#/$defs/FlowBeat"
+        },
+        "diagnostic": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Diagnostic"
+        },
+        "document_type": {
+          "const": "flow_attempt",
+          "default": "flow_attempt",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "episode_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Episode Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "text_reference",
+            "image_motion",
+            "extend"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "observed_credits": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Observed Credits"
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Id"
+        },
+        "parent_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Sha256"
+        },
+        "prompt": {
+          "minLength": 1,
+          "title": "Prompt",
+          "type": "string"
+        },
+        "prompt_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Prompt Sha256",
+          "type": "string"
+        },
+        "provider_clip_id": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Clip Id"
+        },
+        "provider_model": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Model"
+        },
+        "recipe_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Recipe Sha256",
+          "type": "string"
+        },
+        "references_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "References Sha256",
+          "type": "string"
+        },
+        "reserved_credits": {
+          "minimum": 0,
+          "title": "Reserved Credits",
+          "type": "integer"
+        },
+        "retry_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Retry Index",
+          "type": "integer"
+        },
+        "retry_reason": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retry Reason"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "prepared",
+            "awaiting_external",
+            "submitted",
+            "unknown",
+            "received",
+            "failed"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "template_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Template Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "episode_id",
+        "recipe_sha256",
+        "references_sha256",
+        "beat",
+        "mode",
+        "prompt",
+        "prompt_sha256",
+        "state",
+        "reserved_credits"
+      ],
+      "title": "FlowAttempt",
+      "type": "object"
+    },
+    "FlowBeat": {
+      "additionalProperties": false,
+      "properties": {
+        "district": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "District"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "rest",
+            "look",
+            "pickup",
+            "sip",
+            "return_cup",
+            "sway",
+            "deep_breath",
+            "district"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "target_frame": {
+          "minimum": 0,
+          "title": "Target Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "target_frame"
+      ],
+      "title": "FlowBeat",
+      "type": "object"
+    },
+    "FlowCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Attempt Id",
+          "type": "string"
+        },
+        "canvas": {
+          "$ref": "#/$defs/Canvas"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "frame_count": {
+          "exclusiveMinimum": 0,
+          "title": "Frame Count",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "media": {
+          "$ref": "#/$defs/HashedFile"
+        },
+        "observed_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FlowState"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "original": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HashedFile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parent Id"
+        },
+        "parent_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Parent Sha256"
+        },
+        "preparation": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Preparation"
+        },
+        "review": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected"
+          ],
+          "title": "Review",
+          "type": "string"
+        },
+        "review_note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Note"
+        },
+        "review_packet": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Packet"
+        },
+        "reviewed_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewed Sha256"
+        },
+        "safe_end_frame": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Safe End Frame"
+        },
+        "technical_notes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Technical Notes",
+          "type": "array"
+        },
+        "technical_ok": {
+          "title": "Technical Ok",
+          "type": "boolean"
+        },
+        "trim": {
+          "$ref": "#/$defs/FrameInterval"
+        }
+      },
+      "required": [
+        "id",
+        "attempt_id",
+        "parent_id",
+        "parent_sha256",
+        "media",
+        "fps",
+        "canvas",
+        "frame_count",
+        "trim",
+        "technical_ok"
+      ],
+      "title": "FlowCandidate",
+      "type": "object"
+    },
+    "FlowLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "allowance_checked_at": {
+          "minLength": 1,
+          "title": "Allowance Checked At",
+          "type": "string"
+        },
+        "credit_ceiling": {
+          "minimum": 0,
+          "title": "Credit Ceiling",
+          "type": "integer"
+        },
+        "estimated_credit_per_attempt": {
+          "minimum": 0,
+          "title": "Estimated Credit Per Attempt",
+          "type": "integer"
+        },
+        "max_attempts": {
+          "default": 30,
+          "exclusiveMinimum": 0,
+          "maximum": 100,
+          "title": "Max Attempts",
+          "type": "integer"
+        },
+        "max_retries_per_beat": {
+          "default": 1,
+          "maximum": 3,
+          "minimum": 0,
+          "title": "Max Retries Per Beat",
+          "type": "integer"
+        },
+        "remaining_allowance": {
+          "minimum": 0,
+          "title": "Remaining Allowance",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "credit_ceiling",
+        "remaining_allowance",
+        "estimated_credit_per_attempt",
+        "allowance_checked_at"
+      ],
+      "title": "FlowLimits",
+      "type": "object"
+    },
+    "FlowRecipe": {
+      "additionalProperties": false,
+      "properties": {
+        "beats": {
+          "items": {
+            "$ref": "#/$defs/FlowBeat"
+          },
+          "title": "Beats",
+          "type": "array"
+        },
+        "camera": {
+          "default": "A fixed wide view across the aisle, at seated eye level.",
+          "minLength": 1,
+          "title": "Camera",
+          "type": "string"
+        },
+        "exterior": {
+          "default": "Tokyo scenery moves continuously from right to left with natural parallax.",
+          "minLength": 1,
+          "title": "Exterior",
+          "type": "string"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "identity": {
+          "default": "TABI, the pink-lavender axolotl in the supplied approved reference, with dark-brown eyes, attached pink gills and purple headphones.",
+          "minLength": 1,
+          "title": "Identity",
+          "type": "string"
+        },
+        "opening_inventory": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Opening Inventory",
+          "type": "array"
+        },
+        "opening_mode": {
+          "default": "image_motion",
+          "enum": [
+            "text_reference",
+            "image_motion"
+          ],
+          "title": "Opening Mode",
+          "type": "string"
+        },
+        "outfit": {
+          "default": "The reference's green coat with leopard-patterned trim.",
+          "minLength": 1,
+          "title": "Outfit",
+          "type": "string"
+        },
+        "project_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Project Url"
+        },
+        "setting": {
+          "default": "A warm wooden sightseeing train carriage travelling through Tokyo at sunset.",
+          "minLength": 1,
+          "title": "Setting",
+          "type": "string"
+        },
+        "target_frames": {
+          "default": 2160,
+          "exclusiveMinimum": 0,
+          "title": "Target Frames",
+          "type": "integer"
+        }
+      },
+      "title": "FlowRecipe",
+      "type": "object"
+    },
+    "FlowReference": {
+      "additionalProperties": false,
+      "properties": {
+        "media": {
+          "$ref": "#/$defs/HashedFile"
+        },
+        "rights": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "confirmed",
+            "not-permitted"
+          ],
+          "title": "Rights",
+          "type": "string"
+        },
+        "synthetic": {
+          "default": false,
+          "title": "Synthetic",
+          "type": "boolean"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "media"
+      ],
+      "title": "FlowReference",
+      "type": "object"
+    },
+    "FlowState": {
+      "additionalProperties": false,
+      "description": "User-confirmed facts, independent of the recipe's intended appearance.",
+      "properties": {
+        "cup_kind": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "none",
+            "takeaway",
+            "ceramic"
+          ],
+          "title": "Cup Kind",
+          "type": "string"
+        },
+        "cup_position": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "table",
+            "held"
+          ],
+          "title": "Cup Position",
+          "type": "string"
+        },
+        "district": {
+          "default": "Tokyo",
+          "minLength": 1,
+          "title": "District",
+          "type": "string"
+        },
+        "hands": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "resting",
+            "holding_cup"
+          ],
+          "title": "Hands",
+          "type": "string"
+        },
+        "has_handle": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Has Handle"
+        },
+        "has_saucer": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Has Saucer"
+        },
+        "inventory": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Inventory",
+          "type": "array"
+        },
+        "pose": {
+          "default": "unknown",
+          "enum": [
+            "unknown",
+            "resting",
+            "watching",
+            "sipping"
+          ],
+          "title": "Pose",
+          "type": "string"
+        }
+      },
+      "title": "FlowState",
+      "type": "object"
+    },
+    "FrameInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame"
+      ],
+      "title": "FrameInterval",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "HashedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/MediaPath"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 0,
+          "title": "Size Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "location",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "HashedFile",
+      "type": "object"
+    },
+    "MediaPath": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "root_id": {
+          "default": "project",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Root Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "MediaPath",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:schema:1.0:flow_episode",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+        "type": "string"
+      },
+      "title": "Accepted Ids",
+      "type": "array"
+    },
+    "attempts": {
+      "items": {
+        "$ref": "#/$defs/FlowAttempt"
+      },
+      "title": "Attempts",
+      "type": "array"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/FlowCandidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "document_type": {
+      "const": "flow_episode",
+      "default": "flow_episode",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "limits": {
+      "$ref": "#/$defs/FlowLimits"
+    },
+    "paused": {
+      "default": false,
+      "title": "Paused",
+      "type": "boolean"
+    },
+    "recipe": {
+      "$ref": "#/$defs/FlowRecipe"
+    },
+    "references": {
+      "items": {
+        "$ref": "#/$defs/FlowReference"
+      },
+      "title": "References",
+      "type": "array"
+    },
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "recipe",
+    "limits"
+  ],
+  "title": "FlowEpisode",
+  "type": "object"
+}

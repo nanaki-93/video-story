@@ -7,7 +7,7 @@ The older P/T queue below is historical and is not a second implementation queue
 | Task | Outcome | Status |
 | --- | --- | --- |
 | [F00](../tasks.md#f00--qualify-flows-supported-execution-path) | Qualify supported Flow handoff | complete; assisted route |
-| [F01](../tasks.md#f01--define-strict-flow-episode-and-execution-contracts) | Define Flow contracts | planned |
+| [F01](../tasks.md#f01--define-strict-flow-episode-and-execution-contracts) | Define Flow contracts | complete |
 | [F02](../tasks.md#f02--persist-resumable-sequences-and-accepted-branches) | Persist accepted branches | planned |
 | [F03](../tasks.md#f03--compile-focused-prompts-from-confirmed-state) | Compile focused prompts | planned |
 | [F04](../tasks.md#f04--import-native-results-with-measured-timing-and-lineage) | Import native clips | planned |

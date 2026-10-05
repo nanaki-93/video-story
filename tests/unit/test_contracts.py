@@ -288,6 +288,9 @@ def test_landmark_repeat_is_a_strict_false_boolean(episode_data, repeat):
 
 def test_root_registry_is_complete(project_data, snapshot_data):
     assert {
+        "flow_episode",
+        "flow_attempt",
+        "flow_export",
         "comfy_workflow",
         "generation_run",
         "generation_status",

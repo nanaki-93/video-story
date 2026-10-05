@@ -178,6 +178,8 @@ observed allowance delta and UI evidence. A valid JSON file is not evidence that
 
 ## F01 — Define strict Flow episode and execution contracts
 
+**Status** [x] Complete. Strict contracts and generated browser schemas verified: 73 Python tests, schema drift and web checks pass.
+
 **Target files**
 - `src/tabi/core/models/flow.py` (new) — FlowEpisode, FlowAttempt and FlowExport documents with nested recipe, beat, candidate, state, review, limits and frozen export inputs.
 - `src/tabi/core/models/__init__.py` — register the new documents without changing existing types.
@@ -185,6 +187,7 @@ observed allowance delta and UI evidence. A valid JSON file is not evidence that
 - `web/src/generated/flow_episode.ts` (new), `web/src/generated/flow_attempt.ts` (new), `web/src/generated/flow_export.ts` (new) — generated browser types.
 - `web/src/generated/documents.ts`, `web/src/generated/validators.cjs`, `web/src/generated/validators.d.cts` — regenerated registries.
 - `tests/unit/test_flow_contracts.py` (new) — substantive invalid-state and compatibility cases.
+- `tests/unit/test_contracts.py` — extend the existing closed document-registry assertion.
 
 **Inputs / dependencies**
 - Existing Model/DraftDocument/AssetRef/HashedFile/FrameRate/TrackPlacement/OutputProfile contracts.
