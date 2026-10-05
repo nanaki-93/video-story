@@ -13,6 +13,12 @@ applications. Do not assume he will draw layers, paint skin weights, learn riggi
 an animator. The existing calm-window video remains the preferred visual reference; it is not
 a reusable character master and its unresolved flicker is not accepted.
 
+The latest constraint is **no additional paid apps**. The next investigation must use free
+commercial-compatible tools and existing Blender/Google entitlements, with no new subscriptions,
+paid plugins, licences or credit top-ups. Existing Colab allowance is finite; an exhausted
+allowance is not permission to buy more. Paid Meshy/Tripo Studio generation is outside the
+current route. This changes tool selection without relaxing the likeness or automation gates.
+
 This revision supersedes the previous instruction to repair the ears before addressing the
 product. PLAN/progress/index now place P01 first. Marco authorized a Colab/Blender trial and
 required monetization licence checks. [The first candidate](evidence/p01-character-pipeline.json)
@@ -45,7 +51,8 @@ with TABI.
 | Tool | Proposed responsibility | Evidence and limit |
 | --- | --- | --- |
 | TripoSR on Colab, tested diagnostic | Generate one persistent mesh without a paid image-to-3D service | [Actual trial and licence record](evidence/p01-character-pipeline.json): MIT code/weights, CPU mesh extraction with scikit-image, eight Blender views. First candidate rejected for shallow geometry and lost TABI details; no rig or production workflow qualified. |
-| Meshy, initial candidate | Convert selected character references into one persistent textured model; auto-rig and obtain reusable motion candidates | [Image-to-3D](https://docs.meshy.ai/en/api/image-to-3d), [rigging API](https://docs.meshy.ai/en/api/rigging), [animation guide](https://docs.meshy.ai/en/webapp/guides/animate). The API limits reliable rigging to clear standard humanoids; custom motion/facial work is not guaranteed. TABI's shape is a specific acceptance risk. |
+| SPAR3D, preliminary candidate to audit | Investigate image-to-mesh with point-cloud conditioning for depth/backside reconstruction; reuse Blender for inspection | [Official implementation](https://github.com/Stability-AI/stable-point-aware-3d) supports CUDA and experimental Apple Silicon MPS. The [repository licence](https://github.com/Stability-AI/stable-point-aware-3d/blob/main/LICENSE.md) permits qualifying commercial use without fees below US $1 million annual revenue, including affiliates, and requires registration. User eligibility, gated weight terms, dependencies, likeness, texture and animation remain unverified. No install, model download or trial has occurred. |
+| Meshy / Tripo Studio, previous paid candidates | Historical alternatives | Excluded from the current route by the no-additional-paid-apps preference. No paid trial or subscription authorized. |
 | Blender, local preparation | Apply a tested illustration-like material/camera, reusable motions, compatible wardrobe and prop contacts; render clean frames through a repeatable template | [Manual](https://docs.blender.org/manual/en/5.0/), [reusable Actions](https://docs.blender.org/manual/de/5.0/animation/actions.html), [toon shading](https://docs.blender.org/manual/sl/4.5/render/shader_nodes/converter/shader_to_rgb.html). These capabilities do not imply an existing automatic TABI template or verified performance on this Mac. |
 | video-story | Library, compatible scene/outfit/action choices, routine timing, continuous exterior travel, preview, music and verified export | Existing core is useful; P02–P04 and T40–T48 below close the handoff. Normal production must not require opening Blender or editing metadata. |
 | Logic | Finish original music and supply its local master when needed | Keep the selected master intact. Picture can be tested silently; music polish remains deferred. |
@@ -56,9 +63,15 @@ latest constraint. Cartoon Animator's current download lists
 [Windows requirements](https://www.reallusion.com/cartoon-animator/download.html), so it is not
 the native Mac route. The authorized trial used existing Colab Pro+ resources and local Blender;
 only the generated TABI PNG was uploaded to Colab. No new purchase, subscription or private-music
-upload occurred. Compute-unit consumption was not measured. New paid-provider trials still need
-a service/input/budget decision. The standard TRELLIS.2 setup is excluded pending replacement
+upload occurred. Compute-unit consumption was not measured. Paid-provider trials are outside
+the current route. The standard TRELLIS.2 setup is excluded pending replacement
 of its non-commercial dependencies; main-repository MIT licensing alone does not clear it.
+
+TripoSG also remains unqualified: its [NOTICE](https://github.com/VAST-AI-Research/TripoSG/blob/main/NOTICE)
+identifies BRIA and Tencent-derived components despite the MIT top-level licence. Transparent
+input could avoid background removal but does not resolve the other component terms. Do not
+promote either stock pipeline as commercially cleared or replace one dependency and assume
+the whole route is cleared. These are preliminary source checks, not executed candidates.
 
 ## What becomes reusable
 
@@ -109,8 +122,10 @@ generation and diagnostics. A new user should not need to discover an order amon
 ## A bounded proof before more product promises
 
 P01 is a single feasibility decision with predefined outputs, not an open-ended series of
-90-second repairs. Start with at most two candidate masters and one correction round, subject
-to a separately agreed provider budget. Stop if the route needs frame painting or manual
+90-second repairs. Start with at most two candidate masters and one correction round, using
+zero additional software/service spend and only the existing available compute allowance.
+Complete the exact model/dependency/output licence check before another model download or run.
+Stop if the route needs frame painting or manual
 mesh/weight editing to meet the baseline. Record user clicks, preparation operations, elapsed
 time and cost; do not label an assistant performing hidden manual repairs as automation.
 

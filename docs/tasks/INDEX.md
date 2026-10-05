@@ -6,6 +6,11 @@ commercial-compatible tools and train/café/walking, outfit and action reuse. Th
 trial generated a real model, but [that candidate failed](../progress.md#p01--commercial-licence-review-and-colabblender-trial).
 The redesigned app is not implemented; T40 remains independent import engineering.
 
+The latest tool-selection constraint is **no additional paid apps**: free commercial-compatible
+tools, installed Blender and existing Google/Colab allowance only. SPAR3D is a preliminary
+candidate for licence/dependency and hardware review; it has not been downloaded or run.
+Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
+
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |

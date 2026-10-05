@@ -17,6 +17,13 @@ Another isolated ear repair or a simpler importer cannot establish that this wor
 priority, before integrating preparation through P02–P04. T40 remains independent import
 engineering; the redesigned normal workflow is not implemented yet.
 
+Marco's latest cost constraint is **no additional paid apps**. Investigate free tools with
+commercial-compatible terms, the installed Blender and existing Google/Colab allowance.
+Exclude new subscriptions, paid plugins and credit top-ups from the proposed route. Meshy and
+Tripo Studio are no longer the recommended next trial. SPAR3D is a preliminary candidate to
+audit, not a qualified replacement: its community licence has revenue/registration conditions,
+its Mac support is experimental, and exact weights/dependencies still require review.
+
 The authorized **5 October Colab/Blender trial** produced one real TripoSR mesh and eight
 local Blender views. [Evidence and licence review](docs/evidence/p01-character-pipeline.json)
 record a **no-go for that candidate**: shallow geometry and lost face/frill/outfit detail.

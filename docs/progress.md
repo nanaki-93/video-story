@@ -595,12 +595,38 @@ master hashes, escaping paths and unknown fields/versions. Ruff and `git diff --
 The preferred video retains SHA-256 `a0d56de1ca30056ba9744c167aa2ae36c7185f1519afa2ce4b3ee1bfd60424e3`.
 No MP4 is tracked; unrelated staged IDE files are preserved.
 
+## P01 — no additional paid apps
+
+5 October 2026. Marco prefers to avoid apps with pricing. The standing instructions, product
+plan and active tasks now target zero additional software/service spend: no new subscriptions,
+paid plugins, licence purchases or credit top-ups. Existing Blender and Google/Colab allowance
+remain options; this does not make cloud compute unlimited. The preceding suggestion to use
+paid Tripo Studio is superseded. No app behavior, assets or trial evidence were changed.
+
+Preliminary official-source screening found another reason not to rely on a main MIT label:
+[TripoSG's NOTICE](https://github.com/VAST-AI-Research/TripoSG/blob/main/NOTICE) names BRIA,
+HunyuanDiT and FlashVDM-derived components with their own terms. Its stock route is unqualified.
+SPAR3D is the next candidate to audit, not a selected production generator. Its
+[official implementation](https://github.com/Stability-AI/stable-point-aware-3d) describes
+point-cloud-conditioned reconstruction and experimental Apple Silicon support. Its repository
+[licence dated 5 July 2024](https://github.com/Stability-AI/stable-point-aware-3d/blob/main/LICENSE.md)
+permits qualifying commercial use without fees below US $1 million annual revenue across
+the user/entity and affiliates, requires commercial registration, and specifies distribution
+and attribution obligations. Eligibility, exact gated weight terms and full dependencies are
+still pending. The public model-card fetch required access; no access gate was bypassed.
+
+This pass used documentation only. No second candidate was generated, no model was installed
+or downloaded, no cloud runtime was started, and no service terms were accepted. The original
+TripoSR no-go report stays unchanged. Verification is the local documentation/link/history
+check and `git diff --check`; application tests are not required for this scope-only update.
+
 ## Next work
 
-P01 remains the production decision: qualify a materially better reusable character through
+P01 remains the production decision: first finish the exact licence/dependency and hardware
+review of a candidate that fits zero additional spend, then qualify a reusable character through
 the required motion, wardrobe, prop and scene-reuse cases before starting P02–P04. The first
-candidate is a no-go, not a base for more per-frame repairs. A second bounded candidate or a
-higher-detail route requires the same model/dependency/output licence checks; the standard
+candidate is a no-go, not a base for more per-frame repairs. A second bounded candidate requires
+the same model/dependency/output licence checks; the standard
 TRELLIS.2 setup is not commercially cleared by its main MIT licence alone.
 
 Preserve the calm-window baseline, original art and deferred music work. T40 remains the first

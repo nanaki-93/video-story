@@ -18,6 +18,8 @@ Do not generate a new Tabi design because the reference is unavailable. Do not i
 
 Marco requires a monetizable production workflow. Before using a new generator, model, checkpoint, motion, font or asset, check the official commercial-use and output terms, including dependencies and hosted-service terms. Record the exact version/revision, source links, review date, attribution requirements and unresolved restrictions with the preparation evidence. A repository's code licence does not automatically cover its weights or bundled models. Exclude non-commercial/research-only or territorially incompatible components from the production route; unknown rights remain pending. Recheck on version/provider changes and before release. Commercial-use permission does not establish YouTube Partner Program eligibility or approve the supplied artwork/music.
 
+Marco prefers a workflow with no additional paid apps. Plan for zero new subscriptions, paid plugins, commercial-licence purchases or credit top-ups. Prefer free tools that permit commercial outputs, plus already-owned tools and existing Google/Colab entitlements within their available allowance. Do not describe included compute as unlimited or cost-free. Paid generators are outside the current proposed route; if the free route cannot meet quality and automation requirements, report the gap rather than silently adding a paid dependency.
+
 Approved asset versions are immutable; edits create a new version. Draft project files can change atomically. Never erase source artwork when clearing caches. Approval applies to the content hash and is invalidated by edits.
 
 ## Engineering rules
