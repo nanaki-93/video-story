@@ -58,6 +58,14 @@ alone cannot establish artistic correctness. A parts rig may author the frames o
 hidden torso, shoulder joints, collar overlaps and replacement-limb ownership are reviewed.
 The app consumes prepared clips and does not add a body-part editor or runtime limb assembly.
 
+**Current creative direction, 5 October:** Marco subsequently says the later variants are worse
+and selects the [calm-window 90-second video](progress.md#t14--return-to-the-calm-window-baseline)
+as the last good result. Its existing animations, poses, artwork and timing are the baseline.
+Repair the local ear-edge flicker first, using the original source movement and ear shapes;
+compare directly against that video. The generated replacement ears and parts rigs are
+superseded experiments. Earlier extra-action/breathing requests remain future work, separate
+from this limited repair. This selection changes the creative baseline, not T40–T48's scope.
+
 ```mermaid
 flowchart LR
     A[1 · Add assets] --> B[2 · Build scene]

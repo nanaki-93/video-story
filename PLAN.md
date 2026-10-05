@@ -18,26 +18,26 @@ a plan; the redesigned workflow is not implemented yet.
 Read the [guided workflow plan](docs/tasks.md), then select the first unblocked item in the
 [active task index](docs/tasks/INDEX.md). Begin with import and scene creation. The guided
 application plan does not add artwork generation. Marco separately authorized matching
-generated components for the current animation-polish test. The
+generated components for earlier animation experiments; the selected baseline below now
+governs further polish. The
 [documentation guide](docs/README.md) separates current instructions, technical references
 and historical records.
 
-The current creative priority is [ear stability in the complete-frame coffee test](docs/progress.md#t14--ear-stability-correction).
-Marco found ear flicker in the native-coffee anatomy diagnostic. The correction fits one shared
-five-frill master behind the preserved native head and bakes it into complete foreground frames;
-it changes the ear artwork/cutout rather than repainting the collar, arms or cup. Review the
-corrected 12-second lift/hold/return with scenery moving before preparing the full routine.
-The earlier [anatomy review](docs/progress.md#t14--anatomy-review-and-complete-character-frames)
-still governs character preparation.
-Marco rejected the latest parts rig's neck/collar join, table cup and duplicated arm shapes.
-The earlier opacity and render-fidelity checks did not validate those details. Prefer complete
-transparent TABI frames authored from one coherent master, with separate cabin and continuous
-scenery. A parts rig needs proper hidden artwork, joints and prop ownership before it can author
-those frames. The short correction test does not replace the 90-second video or establish
-creative approval, consistent native face geometry or matching window-rest endpoints.
-Preserve `06-looking-out-window.png` for eventual resting pose, continuous visible breathing,
-the requested 15/30/45/60/75-second actions and independent 72-pixel/second scenery. Music polish
-remains deferred. Earlier drafts and original assets stay saved; no creative approval is inferred.
+The current creative baseline is Marco's selected
+[calm-window 90-second video](docs/progress.md#t14--return-to-the-calm-window-baseline),
+`docs/assets/clip-tests/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4`.
+He says its animations are good and later versions are worse. Use episode `tabi-train-calm-90s`,
+pack `pack.tabi.calm-ride` at 1.0 and the original `sources/train-polish-v3/` preparation.
+Preserve this version's TABI artwork, original ear shapes, poses, cup, timing, 36–48-second
+coffee break, calm window holds, continuous 72-pixel/second scenery and existing soundtrack.
+
+The next creative change is limited to the existing ear-edge flicker. Compare source RGB and
+alpha through the head turn, repair only the affected ear region, and compare against this exact
+baseline. Review moving outlines as well as opacity; technically valid frames did not make the
+later experiments look better. The separate parts rigs and generated replacement-ear master
+remain historical experiments and are not the starting point. Earlier requests for extra cues
+and stronger breathing remain recorded as future work after this baseline is stable. Music
+polish is deferred. Original assets and all previous versions remain preserved.
 T40 remains the first task when application workflow implementation resumes.
 
 ## Product boundaries

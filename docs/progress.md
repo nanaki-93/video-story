@@ -13,6 +13,11 @@ recorded T38 results, not new test runs for the documentation change.
 Approved real character/environment packs, original music, pilot/story listening and visual
 review, and publication decisions remain pending. Simplifying the app does not approve them.
 
+The current creative baseline is Marco's selected [calm-window 90-second
+video](#t14--return-to-the-calm-window-baseline). He prefers its animations and rejects the
+later direction. Preserve its existing artwork and motion; the next repair is limited to ear
+edges. Later technical test results remain historical evidence, not a preferred creative result.
+
 ## T39 — documentation cleanup and workflow plan
 
 Status: complete; application redesign remains planned.
@@ -420,14 +425,55 @@ and texture still vary. Coffee-ready rest still differs from the requested06 win
 This diagnostic adds no breathing and does not replace the90-second routine. Matching complete
 window-rest/action masters, the full cue schedule and human creative approval remain required.
 
+## T14 — return to the calm-window baseline
+
+Status: working baseline selected by Marco and verified intact on 5 October 2026. The local
+ear-flicker defect remains open. This pass records the correction in direction and inspects the
+source; it creates no new animation variant, generated artwork or replacement export.
+
+Marco says the later versions are getting worse and identifies
+[Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4](assets/clip-tests/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4)
+as the last good point: its animations are good, with some flickering around the ears. That
+specific file is now the reference for further polish. Its SHA-256 is
+`a0d56de1ca30056ba9744c167aa2ae36c7185f1519afa2ce4b3ee1bfd60424e3`, identical to the original
+verified project export. Episode `tabi-train-calm-90s`, revision 0, and pack
+`pack.tabi.calm-ride` at 1.0 remain valid and intact, with the original
+`sources/train-polish-v3/` assets. The saved snapshot is
+`c8ebfbd8987d42500adb5b9fcdbfe7b9cb327a5fc48687bb1694cb59ee427e1d`.
+
+Preserve the entire existing 90-second composition: 36 seconds watching, one 12-second coffee
+break and 42 seconds watching, the same native TABI/ear artwork and poses, head/outfit/arms/cup,
+subtle six-second idle motion, fixed cabin, independently scrolling scenery at 72 pixels/second
+and the existing Lo-Fi-Walz soundtrack. Later parts rigs and the generated replacement-ear
+master are superseded experiments. Earlier extra-action and stronger-breathing requests remain
+recorded as future work and are deferred while stabilizing this baseline.
+
+Twenty export frames covering the rest, turn, sip and return were inspected. Comparing source
+look frames 0, 25 and 40 in RGB, composited cutout and alpha confirms that the cutout removes
+part of the lower right fringe in frame0 and trims the outline during the head turn. Frame25
+also has ragged ink in the RGB source. A local matte correction should be evaluated first, but
+alpha coverage alone cannot establish that all visible edge damage is repaired. Preserve the
+original painted shape and motion; changing TABI's design or reassembling body parts is outside
+this repair. Compare moving outlines against this exact baseline and retain non-ear pixels.
+
+[Baseline selection, exact identities and inspection evidence](evidence/t14-calm-baseline-selection.json).
+Review images and read-only validation evidence are saved in `.local/calm-baseline-review-v9/`.
+The selected local video matches the original job's hash, size and 90-second/2700-frame
+1080p30 metadata. Shared Python episode validation passes. Existing source assets, episode,
+media and soundtrack are unchanged. Documentation links/archive/task checks and
+`git diff --check` pass; no MP4 is tracked and the unrelated staged IDE patch is preserved.
+No claim that the ear flicker is fixed, no new app implementation, and no final creative or
+publication acceptance is made by this baseline selection.
+
 ## Next work
 
-Prepare complete character action frames from one coherent master, with the requested
-window-facing rest at both ends. Review neck/collar continuity, two-arm anatomy, upright cup
-contact, ears and complete gestures before another 90-second replacement. Preserve continuous
-visible breathing, the 15/30/45/60/75-second cues and independent scenery travel. The corrected
-12-second coffee test above establishes a preparation direction, not final action masters.
-Music polish is deferred until the picture is settled. All earlier drafts remain saved for comparison.
+Repair only the local ear-edge flicker in the selected calm-window baseline. Work from its
+original native RGB/alpha and exact prepared motion; review the whole head-turn/coffee return
+with the independently moving window, compare to the unchanged baseline, and require preserved
+non-ear pixels and timing. Start with the cutout edges and inspect any source RGB damage before
+choosing a correction. Keep the existing artwork, poses, cup, scenery and soundtrack as the
+reference. Extra actions and stronger breathing follow separately after this narrow repair.
+Music polish remains deferred. All earlier experiments are preserved for comparison.
 
 T40 remains the first unblocked application implementation task: infer safe import parameters from actual media
 and explain the remaining choices. T41 exposes that as a simple importer. Scene preparation,

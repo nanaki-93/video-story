@@ -161,10 +161,19 @@ and lower body; actual app playback and rendered ear-core comparisons support re
 still need human review. The 90-second picture, matching window-rest endpoints and coherent
 breathing/action masters remain open; the existing music is unchanged.
 
+**Latest user selection:** Marco says those later variants are getting worse and chooses
+`Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4` as the last good result. The
+[baseline reset](progress.md#t14--return-to-the-calm-window-baseline) records the exact video
+hash and its original episode/pack. Its animations are the preferred starting point; the next
+repair is limited to ear-edge flicker while retaining the existing appearance and schedule.
+Later generated ears and separate parts rigs are superseded. The ear defect remains open;
+choosing the best draft does not claim it is fully finished. Extra actions and stronger breathing
+are deferred during this repair, and music polish remains deferred.
+
 | Input | Exact remaining decision or delivery |
 | --- | --- |
 | Tabi style/seated reference | Select the original hashes in the [review packet](12-tabi-art-review.md), or identify replacements. The existing profile and train still were inspected and retained unchanged. |
-| Character/action masters | Coherent complete foreground frames with reviewed neck/collar anatomy, two arms, cup/table contact, ear/identity consistency and matching window-rest endpoints; actual source rates/loop intervals and face/prop ownership. If authored with a parts rig, repair hidden regions and review joints/overlaps before baking the frames. |
+| Character/action masters | Preserve the selected calm-window 1.0 animation as the current working baseline and repair its local ear-edge flicker first. Review source RGB/alpha and moving outlines without changing its artwork, poses, cup or timing. Any later expanded actions need coherent anatomy, prop ownership and matching endpoints; earlier generated rigs are not the starting point. |
 | Train/Tokyo environment | Separated cabin/window/foreground and three prepared depth layers, completed hidden regions, wrap/landmark choices, normalized canvases and day/dusk looks. |
 | Music | Finished original WAV masters with enough material for the intended story length; factual titles/credits and rights evidence. Synthetic tones do not satisfy this input. |
 | Reviews | Actual alpha/likeness/motion/pilot, full story/audio, effects, thumbnail, rights and public metadata/disclosure review. Every approval binds the reviewed content hash. |

@@ -24,6 +24,13 @@ checks and remaining limits; commit with the task ID as required by [AGENTS.md](
 
 ## Creative gates carried forward
 
+**Current working baseline:** Marco selected
+[the calm-window 90-second video](../progress.md#t14--return-to-the-calm-window-baseline)
+as the last good result and rejected the direction of later variants. Preserve its original
+artwork, poses, timing, scenery and soundtrack; next address only the local ear-edge flicker.
+The records below are chronological evidence, not instructions to resume the later rigs or
+generated replacement ears. Earlier extra-motion requests are deferred during this repair.
+
 | Original tasks | Remaining input/review |
 | --- | --- |
 | T06–T08, T10–T11 | Reference selection; separated/matching real art; authored animation timing, loops, transitions and compatibility |
@@ -75,6 +82,9 @@ five-frill master into the same complete-frame 12-second action. Face/prop cores
 lower-body pixels are preserved; the test is rendered and reviewed with continuous scenery.
 It is a new draft asset version, not creative acceptance or a 90-second replacement. Review
 temporal ear roots/outlines as well as opacity before the remaining action masters.
+
+That candidate is subsequently superseded by Marco's explicit return to the calm-window
+baseline above. Its technical checks are retained as evidence and do not override his review.
 
 ## V1 records
 
