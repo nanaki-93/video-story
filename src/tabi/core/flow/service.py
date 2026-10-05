@@ -223,6 +223,17 @@ class FlowService:
         self._immutable(f"flow/inputs/{export.inputs_sha256}.json", export.inputs)
         return self.store.save_draft(export, expected_revision=expected_revision)
 
+    def preview_prompt(self, episode_id: str, beat: FlowBeat, *, parent_id: str | None = None):
+        from .prompts import compile_prompt
+
+        episode = self.get(episode_id)
+        parent = self.candidate(episode, parent_id) if parent_id else None
+        if parent:
+            self.verify_file(parent.media)
+        for reference in episode.references:
+            self.verify_file(reference.media)
+        return compile_prompt(episode, beat, parent)
+
     def get_export(self, identity: str) -> FlowExport:
         from pydantic import TypeAdapter
 

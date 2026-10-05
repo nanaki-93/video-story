@@ -241,6 +241,8 @@ Regenerate with `make schemas` and `npm --prefix web run schemas`; verify with
 
 ## F03 — Compile focused prompts from confirmed state
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/flow/prompts.py` (new) — deterministic prompt modes and compatible action templates.
 - `src/tabi/core/flow/service.py` — produce the next prompt with its parent/state/template hashes.

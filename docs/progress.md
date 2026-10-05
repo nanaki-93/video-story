@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F03 — focused prompts from observed state
+
+6 October 2026. Opening image prompts focus on motion; text/reference openings describe identity and scene. Continuations use confirmed props and hands, one action and ongoing exterior movement. Cup pickup, sip and return have separate prerequisites and ending instructions. Missing cups, invented handle/saucer overrides and conflicting lap instructions are explained. A targeted retry keeps the clean parent and current action. Verification: 10 prompt/service tests pass; Ruff passes. Semantic checks are limited compatibility guards, not automatic visual approval.
+
 ## F02 — resumable reviewed branches
 
 6 October 2026. Flow drafts now save atomically with immutable history and attempt evidence. Reviews bind the actual source and reference hashes; stale revisions, changed media and rewritten attempts fail. Backtracking keeps old descendants while excluding them from active progress; cloning starts a fresh review chain. Frozen export inputs have independent immutable storage. Verification: 26 tests pass in test_flow_service.py and test_persistence.py, including an interruption before draft publication. Ruff passes. Full UI/media acceptance remains for F12.
