@@ -1,4 +1,524 @@
-# Repeatable TABI production with an almost automatic workflow
+# Flow generation and review workflow in video-story
+
+Plan prepared 6 October 2026. Add a guided, resumable cycle that prepares one Flow prompt,
+imports and reviews its result, continues from the accepted parent, and exports the requested
+duration with local music and release checks. The loop advances the story; it does not repeat
+old footage to fill the duration.
+
+## Flow implementation scope and decision
+
+**Feasible now:** Python can own the recipe, observed prop/pose state, focused prompts,
+continuation history, technical checks, bounded retries, measured duration and local export.
+The first usable app version has four steps: **Setup → Opening → Continue → Finish**.
+Generation initially has an honest **Open Flow / Copy prompt / Import result** handoff.
+
+**Separate feasibility gate:** direct, unattended control of Flow from this local application
+is unverified. Google's current [Flow Agent](https://support.google.com/flow/answer/17093911?hl=en)
+can use project instructions, reference media and generation defaults. Its media consumes Flow
+credits; conversational requests have a daily quota. Google also documents
+[reusable Tools](https://support.google.com/flow/answer/17104535?hl=en) built inside Flow.
+Neither document establishes an external API, native Extend support inside a custom Tool,
+reliable parent selection, callback/download integration or an enforceable credit cap.
+F00 tests those boundaries before a direct connector is specified. The browser capabilities
+available to an assistant in this chat are not automatically part of the installed app.
+
+The official [Veo API pricing](https://ai.google.dev/gemini-api/docs/pricing) lists video
+generation on a paid tier. The [API billing model](https://ai.google.dev/gemini-api/docs/billing)
+does not establish coverage by Marco's consumer Flow allowance. Do not substitute an API key,
+Cloud billing, paid vision reviewer, subscription or top-up for the existing entitlement.
+Do not make an undocumented private endpoint or extracted browser credential a product dependency.
+
+F00 is a bounded investigation, F01–F11 are the proposed assisted app implementation, and F12
+is its acceptance gate. These are **planned**, with no new generation or app code in this
+planning turn. F01–F11 can use synthetic media and existing downloads without closing P01's
+creative gate. They do not depend on the rejected Blender master or P02–P04. The earlier task
+records below retain their anchors and history; they do not imply that a Flow video is an
+editable character action pack. At implementation start, register this queue in
+`docs/tasks/INDEX.md` and record each verified step in `docs/progress.md`.
+
+### Prompt and state policy
+
+The [Google guidance](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/video/best-practice),
+checked 6 October 2026, recommends one focused moment per short clip and motion-focused prompts
+when a source image already supplies appearance. It separately recommends stable identity
+descriptions across new scenes. Apply those as different prompt modes, not a single long block:
+
+| Situation | Prompt produced by Python |
+| --- | --- |
+| New scene from text/references | Stable TABI identity and selected outfit, setting, camera and actual intended props; one opening action |
+| Animate an approved opening image | Subject motion and environmental motion; do not redundantly redesign the supplied image |
+| Native continuation | Current observed pose/prop state, one next action, ongoing camera/exterior constraints and a compatible ending state |
+| Retry | Same clean parent and beat, one targeted correction; never append contradictory old action blocks |
+
+Applying image-to-video motion guidance to native Extend is our design recommendation, not a
+Google guarantee. Do not expose a seed or any other control unless the chosen live Flow mode
+actually supports it. Preserve the reference hashes and compare each candidate to both the
+original reference and the immediate parent; a late frame must not become the new identity.
+
+The accepted opening establishes the actual prop inventory. Desired and observed state are
+separate: a requested white cup does not override an observed takeaway cup. An action template
+requiring a handle or saucer is incompatible when those objects are absent. During pickup,
+the moving hands cannot also be required to stay on the lap. A sip, cup return, music sway and
+district transition are separate beats. Gentle breathing and existing scenery motion can
+continue under a beat. Requested ending state is only confirmed after reviewing actual footage.
+
+### Default behavior and stop conditions
+
+| Choice | Proposed default |
+| --- | --- |
+| Episode | 90 seconds, 16:9; train/Tokyo recipe saved for reuse |
+| Picture | Native 720p review, preserve measured frame rate; 24/1 only for the tested sources |
+| Provider | Eligible eight-second Veo opening and native Lite Extend, subject to current capability/cost checks |
+| Routine | Breathing and window rest; look near 15s, cup sequence near 30s, sway near 45s, look near 60s, larger breath near 75s |
+| Beat timing | Approximate targets; show actual placement and any shift needed to finish an action |
+| Generation | One candidate at a time; one focused retry per failed beat, then Needs attention |
+| Review | Technical checks automatic; Accept / Retry / Stop for appearance; no automatic visual approval from passing media checks |
+| Credit budget | Required per-run ceiling within a freshly checked remaining allowance; reserve in-flight estimates; no top-ups |
+| Sound | Silent visual draft; add the selected local master at Finish when requested |
+| Output | Exact approved frame range, H.264 MP4; AAC stereo 48 kHz if audio is selected; preserve native resolution unless scaling is explicitly chosen |
+
+Google's [current feature matrix](https://support.google.com/flow/answer/16352836?hl=en) permits
+native extension of eligible eight-second Veo sources using Lite; Omni extension is listed as
+coming soon. Record the actual source mode/model instead of inferring it from the current editor
+badge. Costs and capabilities are dated observations, not permanent constants.
+
+The measured trial added seven actual seconds per extension. If that remains true, one opening
+plus twelve accepted extensions yields 92 seconds, from which a reviewed quiet ending can be
+trimmed to 90. This is an estimate, not a fixed clip count or credit promise. Progress is the sum
+of accepted, usable frames only. Rejected candidates and nominal eight-second slots do not count.
+Stop at the target, budget/retry limit, unknown submission result, lost access or unresolved
+continuity. A completed action takes priority over blindly cutting at the duration target.
+
+### Repository boundaries inspected
+
+- `src/tabi/core/assets/probe.py` already counts decoded frames and checks every timestamp;
+  it rejects variable/inconsistent schedules. Retain that strict importer. The Tokyo scene
+  download requires diagnosed preparation or individual clips, not a relaxed validation rule.
+- `src/tabi/core/generation.py` and `src/tabi/api/generation.py` implement a loopback ComfyUI
+  still-image adapter. Flow needs its own typed workflow; do not reinterpret this adapter.
+- `src/tabi/core/jobs/service.py` and `src/tabi/core/render/assembly.py` are bound to compiled
+  layered episodes and verified render chunks. Extract only useful media primitives; introduce
+  an explicit complete-scene sequence and export record rather than fabricating an ActionPack.
+- `src/tabi/core/publishing.py` currently resolves a layered render job. Add a verified Flow
+  export source adapter while retaining its rights, hash-bound review and public/private rules.
+- `src/tabi/api/runtime.py` owns one render lane. New local Flow preparation/export work must
+  share its ownership/cancellation rules. Waiting for a remote generation must not occupy it.
+- `web/src/main.ts` exposes tool pages. The new workflow should have one next action and a
+  visible accepted-duration bar; advanced tools remain accessible without dominating the flow.
+
+## F00 — Qualify Flow's supported execution path
+
+**Target files**
+- `docs/evidence/f00-flow-execution.json` (new) — dated capabilities, terms, measurements and go/no-go evidence.
+- `docs/tasks.md` — record the supported handoff and, only if qualified, specify a connector task.
+- `docs/tasks/INDEX.md` — register the Flow queue and its provider dependency at implementation start.
+- `docs/progress.md` — record what was actually tested and what remains unavailable.
+
+**Inputs / dependencies**
+- Existing Flow account and selected TABI project; no app implementation dependency.
+- For any generation, a concrete trial authorization and included-credit ceiling; this plan
+  itself does not spend credits. Reuse session authorization when it already covers the test.
+
+**Implementation rules**
+- Check availability of native Agent/project instructions/Tools, permitted automation and exact
+  provider/output terms. Record review date, displayed model, official URLs, attribution and
+  unresolved rights. Reuse existing licence evidence only where its scope still matches.
+- Test at most four candidates within the agreed cap: an opening, two serial accepted
+  continuations and one rejected attempt. Test explicit parent selection, result identity,
+  native download and resume after an interrupted handoff. Do not generate dependent clips
+  as independent batch variations.
+- Establish whether a Tool can extend the chosen parent and return durable output references.
+  UI documentation alone is not success. A credit limit written in a prompt is not an
+  enforceable budget. Leave global generation-confirmation settings unchanged in this trial.
+- Qualify external control only if its supported interface, authentication, result reconciliation,
+  download and spending boundaries are demonstrated. Do not call private endpoints or extract
+  cookies. If none qualifies, record assisted handoff as usable and full automation as unresolved.
+- Keep account authentication in Flow. No private music upload, public Tool sharing or purchase.
+  No model, quota or payment fallback on failure. A zero-credit review may finish with a
+  documented unverified capability; it cannot mark automatic execution qualified.
+
+**Verification command**
+`.tools/bin/uv run --frozen python -m json.tool docs/evidence/f00-flow-execution.json`
+
+Additionally inspect the actual saved parent/result IDs, source hashes, downloaded frame counts,
+observed allowance delta and UI evidence. A valid JSON file is not evidence that the bridge works.
+
+## F01 — Define strict Flow episode and execution contracts
+
+**Target files**
+- `src/tabi/core/models/flow.py` (new) — FlowEpisode, FlowAttempt and FlowExport documents with nested recipe, beat, candidate, state, review, limits and frozen export inputs.
+- `src/tabi/core/models/__init__.py` — register the new documents without changing existing types.
+- `schemas/flow_episode.schema.json` (new), `schemas/flow_attempt.schema.json` (new), `schemas/flow_export.schema.json` (new) — generated schema contracts.
+- `web/src/generated/flow_episode.ts` (new), `web/src/generated/flow_attempt.ts` (new), `web/src/generated/flow_export.ts` (new) — generated browser types.
+- `web/src/generated/documents.ts`, `web/src/generated/validators.cjs`, `web/src/generated/validators.d.cts` — regenerated registries.
+- `tests/unit/test_flow_contracts.py` (new) — substantive invalid-state and compatibility cases.
+
+**Inputs / dependencies**
+- Existing Model/DraftDocument/AssetRef/HashedFile/FrameRate/TrackPlacement/OutputProfile contracts.
+- No F00 result needed for the assisted route; provider capability remains explicit and unverified.
+
+**Implementation rules**
+- Use integer frames and samples, reduced rational fps, content hashes and normalized media paths.
+  Reject unknown fields, unsupported versions, cycles, missing parents and invalid intervals.
+- Store immutable reference locks, desired recipe, confirmed observed inventory/pose, one beat
+  type, prompt/version/hash, provider scene/clip references and exact result association.
+  External URLs are context only, never trusted filesystem paths or executable instructions.
+- Candidate acceptance binds media hash, parent hash, reviewed frame range and observed ending
+  state. Requested state cannot masquerade as observed state. Preserve rejected branches.
+- Attempts distinguish prepared, awaiting external action, submitted, unknown, received and
+  failed. Exports distinguish queued/running/interrupted/failed/verified and bind immutable
+  ordered source trims, audio placements, profile and pipeline/toolchain fingerprints.
+- Model safe final trim ranges, unresolved beats, review decisions and reserved/observed credit
+  units explicitly. Local technical verification is distinct from creative and release approval.
+
+**Verification command**
+`.tools/bin/uv run --frozen pytest tests/unit/test_flow_contracts.py tests/unit/test_contracts.py`
+
+Regenerate with `make schemas` and `npm --prefix web run schemas`; verify with
+`.tools/bin/uv run --frozen python scripts/export_schemas.py --check` and `make web-check`.
+
+## F02 — Persist resumable sequences and accepted branches
+
+**Target files**
+- `src/tabi/core/flow/__init__.py` (new), `src/tabi/core/flow/service.py` (new) — shared episode, attempt, branch and frozen-export storage operations.
+- `src/tabi/core/persistence.py` — explicit Flow document paths and immutable export-input storage.
+- `tests/unit/test_flow_service.py` (new) — revisions, crash boundaries, stale hashes and branch changes.
+
+**Inputs / dependencies**
+- F01; ProjectStore atomic writes, locks, backups and immutable asset registry.
+
+**Implementation rules**
+- Create/read/save/clone Flow drafts using expected revisions. Clone settings and references,
+  never approval, credit receipts or accepted clip state for a different episode.
+- Accept only the exact reviewed candidate under its matching active parent. A concurrent edit,
+  replaced source or stale review refuses the transition. Keep append-only decision/attempt
+  evidence and reconstructible draft state; do not introduce a database or distributed queue.
+- Replacing an earlier accepted clip creates a branch. Old descendants remain available but
+  are excluded from progress/export until continuity is explicitly reviewed or regenerated.
+- Frozen export inputs never follow subsequent recipe edits. Preserve prior snapshots and
+  outputs. Add document dispatch without weakening old ProjectStore immutability or migrations.
+
+**Verification command**
+`.tools/bin/uv run --frozen pytest tests/unit/test_flow_service.py tests/unit/test_persistence.py`
+
+## F03 — Compile focused prompts from confirmed state
+
+**Target files**
+- `src/tabi/core/flow/prompts.py` (new) — deterministic prompt modes and compatible action templates.
+- `src/tabi/core/flow/service.py` — produce the next prompt with its parent/state/template hashes.
+- `tests/unit/test_flow_prompts.py` (new) — missing props, contradictory hands, mode selection and carried scenery.
+
+**Inputs / dependencies**
+- F01, F02; the prompt/state policy above and confirmed opening inventory.
+
+**Implementation rules**
+- Support text/reference opening, approved-image motion and native continuation separately.
+  Store the stable identity specification; include detailed appearance where appropriate for a
+  new scene, and concise motion/state instructions for conditioned continuation.
+- Compile one typed action or district transition. Validate its prerequisites and intended
+  postcondition. Breathing and existing exterior travel remain ongoing background behavior.
+- Select cup interaction from actual cup type and ownership. Never request a nonexistent
+  handle/saucer, reset a held cup to the table, or add hands-on-lap to a reaching/sipping beat.
+- Reject incompatible free-text overrides with an explanation; overrides cannot silently
+  bypass typed state rules. Do not claim a text linter detects every semantic contradiction.
+- Keep the existing district until a transition is scheduled. Store retry reasons and generate
+  one targeted correction against the clean parent. No paid LLM or new local weights required.
+- Do not silently remove user-requested actions; report an incompatible action or unresolved
+  inventory. Editing a prompt after submission creates a new attempt rather than rewriting it.
+
+**Verification command**
+`.tools/bin/uv run --frozen pytest tests/unit/test_flow_prompts.py tests/unit/test_flow_service.py`
+
+## F04 — Import native results with measured timing and lineage
+
+**Target files**
+- `src/tabi/core/flow/media.py` (new) — source inspection, bounded preparation and candidate registration.
+- `src/tabi/core/flow/service.py` — associate one imported candidate with the exact pending attempt.
+- `tests/integration/test_flow_import.py` (new) — actual-media source preservation and timestamp cases.
+
+**Inputs / dependencies**
+- F01, F02; AssetService, probe_media, digest_file and registered-root/upload staging boundaries.
+
+**Implementation rules**
+- Default to separate native clips. Detect whether an input is a new segment or a cumulative
+  scene download; ambiguous cases require an explicit source range/association before progress.
+  A filename or download time alone cannot establish the parent or accepted order.
+- Fully decode, measure frames/fps/dimensions/PTS and hash before registration. Copy originals
+  immutably; distinguish raw source and any prepared derivative with a mapping and recipe hash.
+- Retain strict AssetService import. A diagnosed timestamp-gap correction is explicit preparation
+  that writes a new version. Do not compress genuine variable-speed footage or discard frozen
+  content automatically. Prefer requesting native segments when a combined download is unclear.
+- Generate hash-bound first/last and seam review images. Reject partial files, changed sources,
+  unexpected fps/aspect or content duplicates presented as a new continuation. Technical import
+  never confers creative approval or commercial rights.
+
+**Verification command**
+`TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_flow_import.py tests/integration/test_asset_import.py`
+
+Use small generated fixtures that reproduce the 192/168/168-frame sequence and missing PTS at
+the second join. Do not commit the Tokyo MP4s or use copyrighted media as CI fixtures.
+
+## F05 — Review technical defects and visual continuity separately
+
+**Target files**
+- `src/tabi/core/flow/review.py` (new) — measured diagnostics, review packet and hash-bound decisions.
+- `src/tabi/core/flow/service.py` — guarded Accept/Retry transitions and confirmed ending state.
+- `tests/unit/test_flow_review.py` (new), `tests/integration/test_flow_review_media.py` (new) — stale review, joins, holds and source-state cases.
+
+**Inputs / dependencies**
+- F02, F04; original identity/reference locks and immediate accepted parent.
+
+**Implementation rules**
+- Hard-fail corrupt/truncated media and incompatible time/canvas contracts. Flag long repeated
+  frames, unexpected cuts and suspicious seam differences as diagnostics with exact frame ranges.
+  Distinguish a missing timestamp interval from duplicates already encoded in the video.
+- Stillness is not automatically a defect. Use a confirmed window region when evaluating
+  exterior motion; missing region or ambiguous motion leaves the result unassessed.
+- Present parent ending → candidate beginning, full candidate playback, source reference and
+  relevant samples for eyes/mouth/gills, hands/cup, book/bag, camera and scenery continuity.
+- Check requested action completion and record actual final pose, hand occupancy and prop
+  positions. A model's stated intent or a pass from FFmpeg cannot supply these facts.
+- Initially require a human Accept/Retry for appearance. A future vision reviewer must be
+  separately qualified for missed ear/prop defects, terms, privacy and available allowance.
+  Treat its findings as advisory until measured evidence supports a narrower automatic policy.
+
+**Verification command**
+`.tools/bin/uv run --frozen pytest tests/unit/test_flow_review.py tests/unit/test_flow_service.py`
+
+`TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_flow_review_media.py`
+
+## F06 — Advance the bounded generation and review cycle
+
+**Target files**
+- `src/tabi/core/flow/runner.py` (new) — next-step decision, progress, retry accounting and recovery.
+- `src/tabi/core/flow/service.py` — persisted attempt transitions and idempotent result association.
+- `tests/unit/test_flow_runner.py` (new) — target completion, failure recovery, credits and uncertain submissions.
+
+**Inputs / dependencies**
+- F02, F03, F04, F05; concrete per-run limits and observed provider capability.
+- A direct provider adapter is not assumed. Assisted mode uses externally completed requests.
+
+**Implementation rules**
+- Compute progress and next beat in Python from the active accepted branch's usable frames.
+  Plan one continuation, then wait for its result and review. Never batch dependent clips.
+- Persist an attempt ID and prompt/parent/configuration hash before an external submission.
+  Reopening or refreshing resumes the existing attempt; it cannot trigger another generation.
+  Unknown outcomes require reconciliation, not an automatic duplicate request.
+- Use one focused retry per failed beat by default. Retry from the last accepted parent;
+  after exhaustion expose Needs attention with the evidence and simpler-action/stop choices.
+  Fix local import/timing failures locally before proposing another credit-consuming generation.
+- Reserve estimated credits for in-flight attempts; reconcile observed costs/refunds instead
+  of assuming them. Block the next request if the remaining run/account allowance is unknown
+  or insufficient. Changing model/cost requires updating the observation before continuation.
+- Finish when accepted footage covers the target and all required beats have a reviewed ending.
+  Trim only an approved quiet tail; insufficient safe coverage plans another rest continuation
+  within limits. No repetition, reversal, speed change or interpolated filler by default.
+- Keep Pause/Resume/Stop durable. Pausing local orchestration does not claim to cancel a remote
+  generation. Do not turn on recurring background runs or change Flow's global permissions.
+
+**Verification command**
+`.tools/bin/uv run --frozen pytest tests/unit/test_flow_runner.py tests/unit/test_flow_service.py`
+
+Test unknown response followed by late import, stale-parent completion, repeated receipt,
+rejected branches excluded from duration, 92s to safe 90s trim, unfinished sip, and budget exhaustion.
+
+## F07 — Assemble a verified silent video from accepted footage
+
+**Target files**
+- `src/tabi/core/flow/assembly.py` (new) — frozen complete-scene export preparation and verification.
+- `src/tabi/core/render/assembly.py` — extract reusable verified video concat primitives while retaining the existing renderer behavior.
+- `src/tabi/core/flow/service.py` — immutable export-input publication and verified output records.
+- `tests/integration/test_flow_assembly.py` (new) — exact duration, PTS, trims, failures and source preservation.
+
+**Inputs / dependencies**
+- F04, F05, F06; existing OutputProfile, verify_video, run_tool and atomic publication helpers.
+
+**Implementation rules**
+- Freeze ordered source hashes, reviewed half-open trims, frame rate, profile and target frames.
+  Reject obsolete branches and source changes. Generate video-only prepared chunks with global
+  contiguous timestamps, then reuse extracted concat/verification primitives.
+- Extract bounded media functions, not a second general timeline engine. Do not construct fake
+  layered CompiledSnapshots or expose complete-scene footage as transparent character actions.
+- Verify exact frame order/count, rational cadence, every PTS, dimensions and full decode before
+  atomic publication. Record re-encoding, scaling and source color preparation explicitly.
+- Retain native resolution by default. An explicit 1080p upscale of 720p footage must be labeled
+  as scaling, not recovered detail. Keep source rates; do not force 30fps for the YouTube preset.
+- Preserve cancellation checkpoints, source hashes, unique output paths, owned temporary files
+  and subprocess argument arrays. Keep every MP4 out of Git.
+
+**Verification command**
+`TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_flow_assembly.py tests/integration/test_chunk_assembly.py`
+
+Include 8+7+7 → 22s without a hold, safe end trim, fractional fps, Unicode paths, altered source,
+failed verification and comparison samples on both sides of every join.
+
+## F08 — Add one continuous local soundtrack at Finish
+
+**Target files**
+- `src/tabi/core/audio/mix.py` — extract shared locked-track mixing entry point from layered snapshot orchestration.
+- `src/tabi/core/flow/assembly.py` — selected local audio placements, one final AAC mux and verification.
+- `tests/integration/test_flow_audio.py` (new) — exact samples, audio joins, source hashes and silent mode.
+
+**Inputs / dependencies**
+- F07; existing TrackPlacement, PCM preparation, mixer, loudness diagnostics and mux_aac.
+
+**Implementation rules**
+- Refactor only the shared audio-input boundary; keep existing AudioMixer behavior and frozen
+  asset validation. Use the Flow export's locked local TrackPlacements and exact sample interval.
+- Music is optional during visual work and selected explicitly at Finish. Keep masters local
+  and unchanged. Do not infer rights from a file path or upload audio to Flow.
+- Show any duration mismatch and require a recorded trim/duration choice. Do not automatically
+  stretch or repeat a song, add fades, remaster it or replace it with generated audio.
+- Assemble continuous PCM and encode AAC once, not per clip. Verify exact intended samples,
+  clipping diagnostics and final A/V duration. A silent draft remains labeled as such.
+
+**Verification command**
+`TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_flow_audio.py tests/integration/test_audio_mix.py tests/integration/test_chunk_assembly.py`
+
+## F09 — Expose Flow workflow services through CLI and authenticated API
+
+**Target files**
+- `src/tabi/api/flow.py` (new), `src/tabi/cli/flow.py` (new) — thin adapters over shared Flow services.
+- `src/tabi/api/app.py`, `src/tabi/api/runtime.py`, `src/tabi/api/files.py`, `src/tabi/api/contracts.py`, `src/tabi/cli/main.py` — routing, one owned local work lane and authenticated artifacts.
+- `schemas/web_flow.schema.json` (new), `web/src/generated/web_flow.ts` (new) — generated next-step/status DTO.
+- `web/src/generated/documents.ts`, `web/src/generated/validators.cjs`, `web/src/generated/validators.d.cts` — regenerated registries.
+- `tests/unit/test_web_flow.py` (new), `tests/unit/test_flow_cli.py` (new), `tests/integration/test_web_flow.py` (new) — parity, security and real-media recovery.
+
+**Inputs / dependencies**
+- F01–F08; existing worker, upload, session, filesystem and cancellation contracts.
+
+**Implementation rules**
+- Expose create/clone, prompt, import, inspect, review, next-step, pause/resume and export using
+  IDs/hashes/revisions. WebFlow returns one recommended action and factual progress; TypeScript
+  does not determine the next beat, count usable frames or produce media commands.
+- Schedule local inspection/export on the existing owned worker lane with explicit Flow job
+  dispatch. Persist current state before work; recover interrupted exports without adopting
+  unrelated PIDs or repeating external submissions. Waiting on Flow/review releases the lane.
+- Stream hash-verified clip/review/export media through authenticated range endpoints. Preserve
+  Host/Origin, CSRF, session expiry, root restrictions, bounded uploads and cancellation ownership.
+- Opening Flow is a user-driven link. No arbitrary server-side URL fetch, credential import,
+  public callback, wildcard CORS or permission for a Flow Tool to call the local service.
+- Add schema drift checks and maintain old CLI/API behavior. Export remains available when Flow
+  is offline. Track verified local work separately from external work with unknown progress.
+
+**Verification command**
+`.tools/bin/uv run --frozen pytest tests/unit/test_web_flow.py tests/unit/test_flow_cli.py tests/unit/test_web_service.py`
+
+`TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_web_flow.py tests/integration/test_web_worker.py`
+
+## F10 — Present Setup, Opening, Continue and Finish as the normal UI
+
+**Target files**
+- `web/src/flow.ts` (new), `web/src/flow-state.ts` (new) — guided pages and request/reconnect state only.
+- `web/src/main.ts`, `web/src/wireframes.ts`, `web/src/style.css` — navigation and workflow layout.
+- `web/src/contracts.ts` — use the generated Flow DTO in existing validation dispatch.
+- `web/tests/flow-state.test.mjs` (new) — stale requests, reconnect and repeated clicks.
+
+**Inputs / dependencies**
+- F09; current local app session, chooser/upload and media controls.
+
+**Implementation rules**
+- New video asks for saved character/reference, setting/outfit, duration and routine. Preselect
+  train/Tokyo/90s/calm defaults; fps, codec and IDs stay under Advanced. Existing projects remain
+  accessible. A saved variation starts with new reviews rather than copying approval.
+- Opening shows its actual reference and a compact editable inventory. Continue shows parent,
+  next action, accepted duration, remaining beats and one candidate with Accept / Retry / Stop.
+  Surface unresolved facts; do not make a screen of technical configuration mandatory.
+- Assisted mode explicitly shows Copy prompt, Open Flow and Import result. Display Waiting for
+  Flow rather than a fake in-app Generate button. A direct automation control stays absent until
+  an F00-qualified connector is implemented and verified.
+- Finish offers full playback, optional local music and export. Show retry/credit consumption
+  and real job state. Preserve browser refresh recovery and suppress duplicate submissions.
+- Plain-language warnings distinguish technical failure, visual retry and pending final review.
+  No manual JSON, terminal or per-frame repair is part of the normal journey. Keyboard access,
+  focus, clear error recovery and mobile-width layout must remain usable.
+
+**Verification command**
+`make web-check` and `make web-build`
+
+On the target Mac, complete the four steps against a running worker with actual synthetic clips,
+including stale-tab acceptance, rejected candidate, reconnect and export playback; save UI evidence.
+
+## F11 — Prepare a YouTube delivery with existing review rules
+
+**Target files**
+- `src/tabi/core/models/publishing.py` — explicit Flow/render export source selection preserving legacy serialization.
+- `src/tabi/core/publishing.py` — verified Flow source adapter and shared readiness/bundle logic.
+- `src/tabi/api/release.py`, `web/src/release.ts`, `web/src/flow.ts` — Finish-to-release handoff.
+- `schemas/release_preparation.schema.json`, `schemas/web_releases.schema.json`, `web/src/generated/release_preparation.ts`, `web/src/generated/web_releases.ts`, `web/src/generated/documents.ts`, `web/src/generated/validators.cjs`, `web/src/generated/validators.d.cts` — regenerated contracts.
+- `tests/unit/test_flow_release.py` (new), `tests/integration/test_flow_release.py` (new) — source verification, hash-bound reviews and private data boundaries.
+
+**Inputs / dependencies**
+- F08, F09, F10; existing release inspection/public allowlist/review_status behavior.
+
+**Implementation rules**
+- Add a source-kind field defaulting to the current layered render, excluded from serialization
+  at that default so existing hashes remain stable. For Flow, resolve a verified FlowExport and
+  its immutable inputs instead of fabricating a JobService/CompiledSnapshot record.
+- Reuse the same technically verified → creatively reviewed → rights reviewed → ready for
+  manual upload progression. Check every used visual/reference/audio dependency, actual model
+  and dated commercial-use evidence. Unknown facts remain pending; stale hashes invalidate review.
+- Export MP4 and selected local soundtrack, factual metadata/credits, an approved thumbnail if
+  supplied and private preparation evidence. Prompt history, credentials and filesystem paths
+  cannot leak into public files. Do not invent licences, music IDs or publication permission.
+- Match the [YouTube encoding guidance](https://support.google.com/youtube/answer/1722171?hl=en):
+  native cadence, progressive H.264/4:2:0, fast-start MP4 and 48kHz stereo AAC when audio is used.
+  Report source quality honestly; a 720p export can be uploaded without pretending it is 1080p.
+- Commercial-use permission and technical upload readiness do not establish monetization.
+  YouTube's [channel policy](https://support.google.com/youtube/answer/1311392?hl=en) evaluates
+  originality and substantive variation. Reusing a production tool does not justify releasing
+  interchangeable episodes. Keep a distinct episode concept/routine review; do not promise YPP.
+- Manual upload remains the final external step. No automatic publishing or monetization badge.
+
+**Verification command**
+`.tools/bin/uv run --frozen pytest tests/unit/test_flow_release.py tests/unit/test_publishing.py`
+
+`TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_flow_release.py tests/integration/test_release_export.py tests/integration/test_web_release.py`
+
+Also run `make schemas`, `npm --prefix web run schemas` and `make web-check` after contract changes.
+
+## F12 — Verify repeatable production and document the remaining automation gap
+
+**Target files**
+- `tests/integration/test_flow_workflow.py` (new) — complete assisted workflow and interruption regression.
+- `docs/evidence/f12-flow-workflow.json` (new) — measured synthetic/real journeys and remaining limits.
+- `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md`, `PLAN.md` — verified operations, current queue and honest production status.
+
+**Inputs / dependencies**
+- F01–F11. F00's actual outcome determines assisted versus automatically controlled generation;
+  an unresolved connector does not block honest assisted-mode engineering acceptance.
+- Real creative acceptance uses approved sources and separately authorized Flow allowance.
+
+**Implementation rules**
+- From a fresh project, use the UI to import synthetic opening/continuations, review a failure,
+  retry, reopen the app, reach exactly 90 seconds, add test audio and export a labeled draft.
+  Verify all frames/PTS/samples and every join; assert no synthetic production approval.
+- Run the actual Tokyo 8/7/7-second import as local evidence: 528 frames/22s with no inherited
+  one-second hold, and the saucer defect still flagged for review. Preserve original files.
+- Qualify one real 90-second train episode, then a second with a changed setting/outfit recipe.
+  Record review effort, rejected generations, actual credits, time and source rights. The second
+  is a fresh opening from stable identity references, not a late drifted frame from the first.
+- View the entire output for character/prop/scenery continuity and listen after music is added.
+  A passing test suite cannot close this gate. Café and walking require separate visual trials.
+- State clearly whether generation was manual, assistant-operated or app-controlled. A human
+  clicking Flow successfully does not prove unattended app control. If F00 fails, preserve the
+  usable assisted workflow and report the unmet almost-automatic requirement without paid fallback.
+- Preserve unrelated staged work and old projects. Commit each verified step using its F-task ID.
+  No MP4 enters Git. Update the task index as each behavior actually becomes usable.
+
+**Verification command**
+`TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_flow_workflow.py`
+
+Final milestone gates: `make check`, `make web-check`, `make web-build`, `make package` and
+`TABI_CONFIG=examples/settings.macos.toml make test-media`, followed by the documented target-Mac
+journeys and real-art review. Do not claim the almost-automatic production target achieved until
+generation control, visual quality and observed human effort all meet it.
+
+## Retained production plan and earlier task references
+
+The sections below preserve the previous investigations and task anchors. The Flow-specific
+F00–F12 proposal above now defines the proposed app work for this request; legacy Blender and
+layered-scene tasks are retained for existing projects and are not prerequisites for Flow footage.
 
 Revised 5 October 2026; **Flow train draft selected as the best result so far; production workflow still open**.
 Build videos with a consistent character, reusable visual references and coherent scene motion.
