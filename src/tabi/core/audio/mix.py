@@ -96,13 +96,35 @@ def measure_loudness(settings, path):
     return finite("input_i"), finite("input_tp"), finite("input_lra")
 
 
+class LockedAudioRegistry:
+    def __init__(self, assets, locks):
+        self.assets, self.locks = assets, locks
+        self.documents = {}
+        self.verify()
+
+    def verify(self):
+        documents = {}
+        for lock in self.locks:
+            asset = self.assets.require_valid(AssetRef(id=lock.id, version=lock.version))
+            if asset.kind != "audio" or content_hash(asset) != lock.sha256:
+                raise ValueError("locked soundtrack asset changed or is not audio")
+            documents[(lock.id, lock.version)] = asset
+        self.documents = documents
+
+    def get(self, reference, kind):
+        asset = self.documents.get((reference.id, reference.version))
+        if kind != "asset" or asset is None:
+            raise ValueError("soundtrack placement has no matching immutable audio lock")
+        return asset
+
+
 class AudioMixer:
     def __init__(self, assets, settings):
         self.assets, self.settings = assets, settings
 
-    def _prepare(self, registry, root, stack):
+    def _prepare(self, registry, root, stack, placements):
         readers, preparations = {}, []
-        for track in registry.snapshot.audio_placements:
+        for track in placements:
             key = (track.asset.id, track.asset.version)
             asset = registry.get(track.asset, "asset")
             validate_placement(track, asset)
@@ -164,7 +186,47 @@ class AudioMixer:
         return readers, preparations
 
     def render(self, snapshot, output: Path, *, start_sample=0, end_sample=None, gain_db=0.0):
-        duration = snapshot.episode.fps.sample_at(snapshot.episode.duration_frames)
+        registry = FrozenRegistry(self.assets, snapshot)
+        return self._render_locked(
+            registry,
+            snapshot.audio_placements,
+            snapshot.episode.fps.sample_at(snapshot.episode.duration_frames),
+            content_hash(snapshot),
+            snapshot.purpose,
+            output,
+            start_sample=start_sample,
+            end_sample=end_sample,
+            gain_db=gain_db,
+        )
+
+    def render_tracks(
+        self, placements, locks, duration_samples, context_sha256, output, *, gain_db=0.0
+    ):
+        """Independent locked PCM input boundary for reviewed complete-scene exports."""
+        registry = LockedAudioRegistry(self.assets, locks)
+        return self._render_locked(
+            registry,
+            placements,
+            duration_samples,
+            context_sha256,
+            "preview",
+            output,
+            gain_db=gain_db,
+        )
+
+    def _render_locked(
+        self,
+        registry,
+        placements,
+        duration,
+        context_sha256,
+        purpose,
+        output,
+        *,
+        start_sample=0,
+        end_sample=None,
+        gain_db=0.0,
+    ):
         end_sample = duration if end_sample is None else end_sample
         if (
             type(start_sample) is not int
@@ -177,7 +239,6 @@ class AudioMixer:
         output = output.expanduser().absolute()
         if output.suffix.lower() != ".wav" or output.exists() or output.is_symlink():
             raise ValueError("audio mix requires a new WAV output path")
-        registry = FrozenRegistry(self.assets, snapshot)
         output.parent.mkdir(parents=True, exist_ok=True)
         capabilities = doctor(self.settings, output.parent)
         if not capabilities.ready:
@@ -187,11 +248,11 @@ class AudioMixer:
             ExitStack() as stack,
         ):
             root = Path(scratch)
-            readers, preparations = self._prepare(registry, root, stack)
+            readers, preparations = self._prepare(registry, root, stack, placements)
             raw, temporary = root / "continuous.f32", root / "mix.wav"
             peak, over = 0.0, 0
             digest = hashlib.sha256()
-            placements = sorted(snapshot.audio_placements, key=lambda t: (t.start_sample, t.id))
+            placements = sorted(placements, key=lambda t: (t.start_sample, t.id))
             with raw.open("xb") as stream:
                 for start in range(start_sample, end_sample, BLOCK_SAMPLES):
                     checkpoint()
@@ -294,8 +355,8 @@ class AudioMixer:
             registry.verify()
             report = AudioMixReport(
                 schema_version="1.0",
-                snapshot_sha256=content_hash(snapshot),
-                purpose=snapshot.purpose,
+                snapshot_sha256=context_sha256,
+                purpose=purpose,
                 first_sample=start_sample,
                 sample_count=expected,
                 output=str(output),

@@ -2,6 +2,10 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F08 — optional continuous local soundtrack
+
+6 October 2026. The existing mixer now exposes a locked-track input boundary shared by layered and Flow exports. Optional music uses explicit sample trims, unchanged local PCM masters, continuous stereo PCM and one final AAC encode. Frozen audio metadata and content hashes are checked; overload blocks publication. Silent export remains available. Verification: 12 actual-media Flow/audio/chunk tests pass. The Flow fixture preserves all 96000 selected PCM samples exactly before AAC, verifies final audio/video timing, retains the original WAV bytes and rejects a changed soundtrack copy. Existing resampling, ambience, overload and chunk audio checks pass. Ruff passes. No private music was uploaded or remastered.
+
 ## F07 — verified complete-scene export
 
 6 October 2026. Flow export now freezes ordered reviewed trims, source hashes, references, profile and toolchain. It reuses an extracted verified concat primitive from the existing assembler, preserves native cadence and publishes only after full frame/PTS/decode checks. Each export retains its source episode and report; interruption after output publication reconciles the existing verified file. Verification: 3 Flow actual-media tests and 5 shared chunk-assembly cases pass. The 8+7+7 fixture exports 528 frames/22 seconds; RGB samples on both sides of both joins match the source within encoding tolerance. Exact safe trim, changed-source failure, 30000/1001 fps and Unicode paths pass. Ruff passes. Synthetic exports remain drafts with creative approval pending.

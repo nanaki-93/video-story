@@ -402,6 +402,8 @@ failed verification and comparison samples on both sides of every join.
 
 ## F08 — Add one continuous local soundtrack at Finish
 
+**Status** [x] Complete. Evidence recorded in `docs/progress.md`.
+
 **Target files**
 - `src/tabi/core/audio/mix.py` — extract shared locked-track mixing entry point from layered snapshot orchestration.
 - `src/tabi/core/flow/assembly.py` — selected local audio placements, one final AAC mux and verification.

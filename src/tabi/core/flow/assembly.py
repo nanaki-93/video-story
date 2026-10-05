@@ -6,9 +6,16 @@ import tempfile
 from pathlib import Path
 from uuid import uuid4
 
+from ..assets import AssetService
 from ..assets.service import digest_file
-from ..audio.mix import publish_media
-from ..models.base import FrameInterval, HashedFile, MediaPath, content_hash
+from ..audio.mix import AudioMixer, mux_aac, publish_media
+from ..models.base import (
+    FrameInterval,
+    HashedFile,
+    MediaPath,
+    ResolvedAssetLock,
+    content_hash,
+)
 from ..models.flow import FlowExport, FlowExportInputs, FlowSegment
 from ..models.production import OutputProfile
 from ..process import OperationCancelled, checkpoint, run_tool
@@ -22,7 +29,11 @@ from .service import FlowError, updated
 
 def flow_fingerprint():
     digest = hashlib.sha256()
-    for path in [Path(__file__), Path(__file__).parents[1] / "render/assembly.py"]:
+    for path in [
+        Path(__file__),
+        Path(__file__).parents[1] / "render/assembly.py",
+        Path(__file__).parents[1] / "audio/mix.py",
+    ]:
         digest.update(path.name.encode() + b"\0" + path.read_bytes())
     return digest.hexdigest()
 
@@ -31,7 +42,7 @@ class FlowAssembler:
     def __init__(self, service, settings):
         self.service, self.settings = service, settings
 
-    def freeze(self, episode_id, *, revision, profile=None):
+    def freeze(self, episode_id, *, revision, profile=None, tracks=None):
         episode = self.service.get(episode_id)
         if episode.revision != revision:
             raise FlowError("Video changed; reload before exporting.")
@@ -46,8 +57,24 @@ class FlowAssembler:
             pixel_format="yuv420p",
             color_space="bt709",
         )
-        if profile.fps != episode.recipe.fps or profile.audio_codec:
-            raise FlowError("Use the native frame rate and a silent profile for this export.")
+        tracks = tracks or []
+        if profile.fps != episode.recipe.fps or profile.audio_codec not in {None, "aac"}:
+            raise FlowError("Use the native frame rate and AAC for an optional soundtrack.")
+        profile = updated(profile, audio_codec="aac" if tracks else None)
+        assets = AssetService(
+            self.service.store,
+            roots=self.service.media_roots,
+            ffmpeg=self.settings.ffmpeg,
+            ffprobe=self.settings.ffprobe,
+        )
+        locked_audio = {}
+        for track in tracks:
+            asset = assets.require_valid(track.asset)
+            if asset.kind != "audio":
+                raise FlowError("Choose a local PCM WAV master for the soundtrack.")
+            locked_audio[(asset.id, asset.version)] = ResolvedAssetLock(
+                id=asset.id, version=asset.version, sha256=content_hash(asset)
+            )
         for candidate, _, _ in ranges:
             self.service.verify_file(candidate.media)
             if candidate.canvas != first.canvas or candidate.fps != first.fps:
@@ -74,6 +101,8 @@ class FlowAssembler:
             ],
             profile=profile,
             duration_frames=episode.recipe.target_frames,
+            tracks=tracks,
+            audio_locks=list(locked_audio.values()),
             pipeline_sha256=flow_fingerprint(),
             toolchain_sha256=capabilities.fingerprint,
         )
@@ -143,6 +172,7 @@ class FlowAssembler:
         with tempfile.TemporaryDirectory(prefix=".flow-export-", dir=output.parent) as temporary:
             root = Path(temporary)
             chunks = []
+            video_profile = updated(inputs.profile, audio_codec=None)
             for index, segment in enumerate(inputs.segments):
                 checkpoint()
                 source = self.service.verify_file(segment.media)
@@ -179,11 +209,45 @@ class FlowAssembler:
                     ],
                     timeout=3600,
                 )
-                verify_video(self.settings, local, profile, frames)
+                verify_video(self.settings, local, video_profile, frames)
                 chunks.append((local, frames, digest_file(local)[0]))
             video, mode, reason, manifest = concatenate_video(
-                self.settings, inputs.profile, chunks, root, inputs.duration_frames
+                self.settings, video_profile, chunks, root, inputs.duration_frames
             )
+            audio = None
+            if inputs.tracks:
+                assets = AssetService(
+                    self.service.store,
+                    roots=self.service.media_roots,
+                    ffmpeg=self.settings.ffmpeg,
+                    ffprobe=self.settings.ffprobe,
+                )
+                mix_path = root / "continuous.wav"
+                mix = AudioMixer(assets, self.settings).render_tracks(
+                    inputs.tracks,
+                    inputs.audio_locks,
+                    inputs.profile.fps.sample_at(inputs.duration_frames),
+                    export.inputs_sha256,
+                    mix_path,
+                    gain_db=inputs.profile.audio_gain_db,
+                )
+                if mix.over_full_scale_samples:
+                    raise FlowError("Soundtrack exceeds full scale; review its explicit gain.")
+                final = root / "with-audio.mp4"
+                audio_verification = mux_aac(
+                    self.settings,
+                    video,
+                    mix_path,
+                    final,
+                    expected_samples=mix.sample_count,
+                    scratch=root,
+                    bitrate=inputs.profile.audio_bitrate,
+                )
+                video = final
+                audio = {
+                    "mix": {**mix.model_dump(mode="json"), "output": None},
+                    "verification": audio_verification.model_dump(mode="json"),
+                }
             verification = verify_video(
                 self.settings, video, inputs.profile, inputs.duration_frames
             )
@@ -211,7 +275,7 @@ class FlowAssembler:
                 "scaling": inputs.profile.canvas.model_dump(mode="json"),
                 "synthetic": self._synthetic(export),
                 "creative_approval": "pending",
-                "audio": None,
+                "audio": audio,
             }
             with self.service.store.writer_lock():
                 self.service.store._atomic_write(

@@ -14,7 +14,7 @@ The older P/T queue below is historical and is not a second implementation queue
 | [F05](../tasks.md#f05--review-technical-defects-and-visual-continuity-separately) | Review continuity | complete |
 | [F06](../tasks.md#f06--advance-the-bounded-generation-and-review-cycle) | Bound retries and progress | complete |
 | [F07](../tasks.md#f07--assemble-a-verified-silent-video-from-accepted-footage) | Assemble verified video | complete |
-| [F08](../tasks.md#f08--add-one-continuous-local-soundtrack-at-finish) | Add local music | planned |
+| [F08](../tasks.md#f08--add-one-continuous-local-soundtrack-at-finish) | Add local music | complete |
 | [F09](../tasks.md#f09--expose-flow-workflow-services-through-cli-and-authenticated-api) | Expose shared CLI/API | planned |
 | [F10](../tasks.md#f10--present-setup-opening-continue-and-finish-as-the-normal-ui) | Guide the app workflow | planned |
 | [F11](../tasks.md#f11--prepare-a-youtube-delivery-with-existing-review-rules) | Prepare YouTube delivery | planned |
