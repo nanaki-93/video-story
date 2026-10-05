@@ -5,6 +5,31 @@ imports and reviews its result, continues from the accepted parent, and exports 
 duration with local music and release checks. The loop advances the story; it does not repeat
 old footage to fill the duration.
 
+## First working version: one simple train workflow
+
+Marco's priority, confirmed 6 October 2026: **keep it as simple as possible and make the
+workflow work from start to finish**. The initial experience opens on the saved TABI train /
+Tokyo / 90-second preset, with the existing character references, a fixed camera, continuous
+outside travel and the calm action routine below. Reuse those defaults on the next video.
+
+The normal path is **Start video → Copy prompt / Open Flow → Import and review → Export**.
+After each accepted clip, prepare the next focused prompt and show the measured progress toward
+90 seconds. At review, show one candidate and its join to the previous clip; keep Accept and
+Retry clear, with a specific reason if progress needs attention. Save progress automatically.
+Show one recommended next action at a time. Advanced parameters remain optional.
+
+Prove import, join playback and export with the existing Tokyo 8/7/7-second clips first, then
+complete a fresh 90-second train video through the same app path. The earlier combined scene's
+timestamp gap must not reappear; visual defects still require review. Completion means a usable
+video produced through the UI, without per-video scripts, JSON edits or manual timeline repair.
+
+Keep the implementation focused on that path. A general recipe editor, preset gallery, custom
+Flow Tool, additional provider and automatic visual critic are not prerequisites. New interiors,
+outfits, café and walking remain later variations after the train workflow passes. Music stays
+optional at Finish; music polishing is deferred. Reuse existing security, media verification
+and release checks. The F tasks below describe the supporting work, not extra screens or
+settings the user must navigate.
+
 ## Flow implementation scope and decision
 
 **Feasible now:** Python can own the recipe, observed prop/pose state, focused prompts,
@@ -21,6 +46,12 @@ Neither document establishes an external API, native Extend support inside a cus
 reliable parent selection, callback/download integration or an enforceable credit cap.
 F00 tests those boundaries before a direct connector is specified. The browser capabilities
 available to an assistant in this chat are not automatically part of the installed app.
+
+Read-only account check on 6 October 2026: the selected TABI project exposes an **Agent** switch
+(off) and **Tools → My creations → Create new**. The generation controls displayed Video,
+720p, 8s and x1. No generation was submitted and no setting was changed. This establishes UI
+availability only; native continuation from a Tool and app integration remain untested. Keep
+F00 bounded so that this investigation does not delay the assisted import/review/export path.
 
 The official [Veo API pricing](https://ai.google.dev/gemini-api/docs/pricing) lists video
 generation on a paid tier. The [API billing model](https://ai.google.dev/gemini-api/docs/billing)
@@ -418,9 +449,11 @@ failed verification and comparison samples on both sides of every join.
 - F09; current local app session, chooser/upload and media controls.
 
 **Implementation rules**
-- New video asks for saved character/reference, setting/outfit, duration and routine. Preselect
-  train/Tokyo/90s/calm defaults; fps, codec and IDs stay under Advanced. Existing projects remain
-  accessible. A saved variation starts with new reviews rather than copying approval.
+- New video opens on the saved train/Tokyo/90s/calm preset and displays its character reference.
+  Starting with the defaults does not require choosing a setting, outfit, duration or routine
+  again. Put changes behind an optional Edit settings control; fps, codec and IDs stay under
+  Advanced. Existing projects remain accessible. A saved variation starts with new reviews
+  rather than copying approval.
 - Opening shows its actual reference and a compact editable inventory. Continue shows parent,
   next action, accepted duration, remaining beats and one candidate with Accept / Retry / Stop.
   Surface unresolved facts; do not make a screen of technical configuration mandatory.
