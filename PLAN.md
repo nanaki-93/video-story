@@ -26,6 +26,11 @@ Its actual Blender views show a recognizable front, very shallow side geometry a
 tail gap. Exact code/model/dependency checks, private token entry and the measured generation
 are complete. Neither tested candidate qualifies as the reusable production character.
 
+Marco has now authorized the remaining correction round using multiple body references.
+[Eight separate views and their prompts](docs/evidence/p01-turnaround-reference-pack.json)
+are saved. A paired SPAR3D retry will compare the new front image with and without an
+experimental shape prior derived from all eight views; its result is not yet available.
+
 The current production target is **30 × 90-second videos per month**, with some new assets
 and a new combination for each. The [verified account allowance](docs/evidence/p01-colab-capacity.json)
 is 2,000 Colab compute units monthly; 2,499.4 were available on 5 October. The

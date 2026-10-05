@@ -746,20 +746,57 @@ No application behavior changed and no application tests are claimed. The prefer
 video, source artwork, first failed candidate and unrelated staged IDE files remain preserved.
 P01 stays open; P02–P04 remain blocked.
 
+### P01 — eight-view reference pack and prepared correction
+
+Marco authorized generating views around TABI's whole body before trying reconstruction again.
+Eight separate 1254×1254 native-alpha PNGs now exist in
+`assets-source/tabi/turnaround-v2-draft/`: front, both profiles, back and four three-quarter
+views. Built-in image generation used the supplied character profile and walking reference,
+then the first volumetric draft as the shared identity anchor. The
+[review sheet](evidence/p01-turnaround-reference-sheet.jpg) and
+[prompt/provenance record](evidence/p01-turnaround-reference-pack.json) preserve the exact
+prompts, source roles, hashes and rights review. Source images and the preferred video are
+unchanged. Generated views are drafts, not approved artwork or calibrated camera observations;
+tail silhouettes, gill occlusion and camera angles vary somewhat between views.
+
+The prepared correction compares the same frontal reference and random seed with and without
+an approximate 512-point shape prior derived automatically from all eight alpha silhouettes.
+SPAR3D's normal image-list argument produces separate meshes, not joint multiview reconstruction.
+Its supported point-cloud input provides a way to test the extra shape information without
+claiming native multiview image support. This experimental prior uses fixed approximate angles,
+height/head-axis alignment, a 2.5%-height silhouette tolerance and seven-of-eight agreement.
+No hand sculpting or frame repair was used. It can be wrong when the generated views disagree;
+the paired result must be visually reviewed, including side depth and tail/frill attachment.
+
+The separate [correction notebook](https://colab.research.google.com/drive/18-ajPt8mS_E2zcMBwCqJJnsyx6GB82fo?authuser=1)
+uses the same reviewed SPAR3D code/checkpoint and pins the previously reviewed dependency
+versions. It does not install a new background remover or a research-only AlphaCLIP checkpoint.
+OpenAI's checked output terms assign generated-output rights to the user as between the parties,
+subject to applicable law and input rights. SPAR3D's recorded eligibility and registration
+conditions still apply; these checks do not approve publication or establish YouTube eligibility.
+
+Local verification: eight PNG hashes and native alpha checked; all six notebook code cells and
+helper scripts parse; the 9,716,920-byte input archive has 18 hash-verified payload entries,
+no duplicate paths and no secret-like text. The shape prior is finite 512×6 float data with
+normalized coordinates/colors. All scripts, immutable reference copies, notebook and diagnostic
+projections are saved under `.local/p01-tabi-turnaround-v2/`. No app behavior changed.
+
+The new L4 session was requested at 09:58:57 UTC on 5 October and first recorded connected at
+10:00:57 UTC, with 2,498.11 units and 1.54 units/hour. Marco entered the existing read token
+in the private field; it was not retained after the previous runtime was deleted. The prepared
+inputs are being transferred. No new mesh has been generated in this correction yet; its
+final cost and outcome remain unmeasured.
+
 ## Next work
 
-P01 remains the production decision. Both tested models from the illustrated neutral input
-fail the depth/anatomy gate; neither should become a base for more frame repairs. At most one
-bounded correction round remains. A reference that explicitly depicts TABI's volume could
-test whether the shared flat input caused the shallow reconstruction, but that is a hypothesis
-and needs its own comparison. Prepare one full-body three-quarter reference with explicit head,
-torso and limb volume, visible connected tail and clear frill roots while preserving TABI's
-identity, outfit and proportions. Compare it with the supplied references before reconnecting
-Colab. Use one image, not a turnaround collage, for the single-image model. Retry the same
-reviewed model/configuration with that corrected input once, then inspect front, side and
-back views. Proceed to automatic-rigging feasibility only if both likeness and anatomy pass;
-otherwise stop this conversion route and make the required one-time authored-master tradeoff
-explicit. No correction image or new generation has been made yet.
+P01 remains the production decision. Finish the single authorized correction round from the
+eight-view reference pack, download/hash-check both comparison variants, and inspect real
+Blender front, side and back views against the original design and the generated reference
+pack. Record the whole Colab session cost and release it after saving outputs. Proceed to
+automatic-rigging feasibility only if both likeness and anatomy pass. A failed approximate
+visual-hull prior would not prove that every genuine multiview reconstruction method fails;
+it would show the limits of this tested adapter. Do not repeat unbounded generation or repair
+cycles if this route still fails.
 
 Do not promise automatic rigging, new garments or a reliable
 app workflow from these static results. Qualify the required motion, wardrobe, prop and

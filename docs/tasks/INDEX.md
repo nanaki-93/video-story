@@ -12,7 +12,10 @@ tools, installed Blender and existing Google/Colab allowance only. SPAR3D's
 [measured trial](../evidence/p01-spar3d-trial.json) records reviewed code/model/dependencies,
 confirmed commercial eligibility/registration, actual inference and local Blender review.
 The model is unsuitable for the requested motion/reuse, so no rig or app integration follows
-from this result. Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
+from this result. Marco subsequently authorized an eight-view reference pack and the bounded
+correction: [references and exact prompts](../evidence/p01-turnaround-reference-pack.json) are
+saved, and the paired image-only/shape-prior retry is prepared with private authentication complete.
+Paid Meshy/Tripo Studio trials are outside the current route. P01 remains open.
 
 The [monthly capacity check](../evidence/p01-colab-capacity.json) verifies an existing 2,000-unit
 Colab monthly grant against the clarified target of 30 × 90-second videos with new assets.
@@ -22,7 +25,7 @@ The [budget and measurement plan](../tasks.md#monthly-production-and-compute-bud
 | Task | Outcome | Dependencies | Status |
 | --- | --- | --- | --- |
 | [T39](../progress.md#t39--documentation-cleanup-and-workflow-plan) | Clean docs and prepare the guided workflow plan | Existing V1 records and user clarification | complete |
-| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | two candidates tested; both no-go; overall feasibility open |
+| [P01](../tasks.md#p01) | Qualify automatic preparation with actual TABI, hard actions and scene/outfit reuse | Real references, approved trial scope, licences, Blender | two candidates no-go; eight references saved; bounded correction prepared |
 | [P02](../tasks.md#p02) | Define the prepared character-library handoff | P01 passes | blocked on P01 |
 | [P03](../tasks.md#p03) | Implement repeatable Blender preparation | P01, P02 | blocked on P01/P02 |
 | [P04](../tasks.md#p04) | Connect preparation to durable app jobs | P02, P03 | blocked on preparation proof |
