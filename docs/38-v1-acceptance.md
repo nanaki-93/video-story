@@ -25,6 +25,13 @@ provider commercial rights. Café/walking, Safari's new workflow and Marco's usa
 are pending. Thirty monthly videos and almost entirely automatic preparation are not qualified.
 The preserved best Flow draft does not close these gates.
 
+The [real Tokyo guided-workflow trial](evidence/f12-tokyo-real-trial.json) used three new native
+Veo 3.1 Lite extensions and 15 included credits. It stopped at 22 accepted seconds because
+both an idle continuation and its one correction introduced particles and mouth changes.
+A separate shortened variation exported 528 verified frames at 1280×720 / 24 fps and played
+to the end in the app. The original 90-second recipe and rejected evidence are preserved;
+this preview does not close the real full-length, creative or unattended-control gates.
+
 F13 retires the unqualified ComfyUI execution bridge and the replaced browser prototype.
 Legacy data contracts and the working layered renderer remain. Bulk source variants are
 preserved locally with hashes and excluded from the tracked tree; previous proposals and

@@ -2,6 +2,23 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## F12 — Real Tokyo trial and accepted app preview
+
+6 October 2026. Ran the Tokyo recipe in Create video using two preserved native clips and
+three new assistant-operated native Veo 3.1 Lite extensions. One window-looking extension
+was accepted; the following idle extension and its single correction added floating dots and
+mouth changes. The app retained 528 accepted frames / 22 seconds and stopped at its retry
+limit. The original 90-second target and both rejected branches are saved.
+
+A separate, explicitly shortened variation reuses the identical reviewed sources through the
+authenticated app API. Finish exported a silent 1280×720 preview at 24 fps; strict full decode,
+all timestamps, original hashes and four source/output join-frame comparisons pass. Chrome
+played all 22 seconds to the end. Flow allowance changed from 24,449 to 24,434 credits; no
+purchase or top-up occurred. [Trial evidence](evidence/f12-tokyo-real-trial.json) includes the
+local project, playable output and screenshots. Full-length creative acceptance, representative
+human effort, source rights and unattended generation remain open. Small inherited floor
+highlights remain in this draft; it is not a publication approval.
+
 ## F13 — Reduced repository and retired unused execution paths
 
 6 October 2026. Final cleanup gates pass: 319 unit tests, 73 actual-media tests (one optional private Tokyo fixture skipped), seven frontend tests, 68 schemas, web build and package. Removed the unqualified ComfyUI execution bridge/settings and replaced playback prototype; kept legacy data contracts and working layered renderer/audio/jobs. All 296 untracked media files match their original hashes locally. Superseded plans/progress are archived with preserved links and source text. Final evidence: docs/evidence/f13-repository-cleanup.json. No artwork was deleted, no MP4 is tracked, and Git history is unchanged.

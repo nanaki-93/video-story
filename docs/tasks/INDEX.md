@@ -27,6 +27,10 @@ The guided assisted workflow is implemented. [F12 evidence](../evidence/f12-flow
 separates the synthetic 90-second authenticated service run, the short fresh UI journey and
 full-length Chrome playback from real creative approval.
 
+The [real Tokyo trial](../evidence/f12-tokyo-real-trial.json) preserves a 90-second recipe
+blocked at 22 accepted seconds after a failed correction. A separate 22-second preview is
+verified and playable through Finish; real full-length acceptance remains open.
+
 - Review one real 90-second train episode and a fresh setting/outfit variation through the app,
   recording rejects, credits and human effort. Café and walking remain separate trials.
 - Qualify source artwork/music, exact provider/model commercial terms, disclosure and the

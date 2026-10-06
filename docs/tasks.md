@@ -544,6 +544,11 @@ Also run `make schemas`, `npm --prefix web run schemas` and `make web-check` aft
 **Status** [x] Engineering implementation and assisted-workflow regression complete.
 **Real acceptance** [ ] Train/variation creative review, measured human effort and unattended Flow control remain open; see `docs/evidence/f12-flow-workflow.json`.
 
+The [real Tokyo trial](evidence/f12-tokyo-real-trial.json) reached 22 accepted seconds and
+stopped after a failed particle/mouth correction. Its separately shortened, silent preview
+was exported and played through the app. The 90-second target is preserved; this trial does
+not close full-length or variation acceptance.
+
 **Target files**
 - `tests/integration/test_flow_workflow.py` (new) — complete assisted workflow and interruption regression.
 - `tests/unit/test_flow_release.py` → `tests/unit/test_flow_release_contracts.py`, `tests/unit/test_web_flow.py` → `tests/unit/test_web_flow_contracts.py`, `pyproject.toml` — avoid unit/integration collection collisions and make repository test helpers importable in the full gate.
