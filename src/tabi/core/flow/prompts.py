@@ -81,9 +81,11 @@ def action_text(state: FlowState, beat: FlowBeat) -> str:
         )
     if beat.kind == "deep_breath":
         return (
-            "The character takes one slow deep breath: chest and shoulders rise, pause, then "
-            "settle on a long relaxed exhale. The mouth keeps its closed smile. Complete the "
-            "exhale and return to quiet breathing."
+            "The seated character takes one unhurried breath. Shoulders and chest lift slightly "
+            "on the inhale, pause, then lower slowly through a complete relaxed exhale. "
+            "Hips stay on the seat and hands keep their current position. Clothing stays in "
+            "place and covers the same parts of the body throughout. The mouth keeps its small "
+            "closed smile. End in the original seated pose with quiet breathing."
         )
     if beat.kind == "district":
         if state.district == beat.district:

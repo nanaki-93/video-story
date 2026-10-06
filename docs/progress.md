@@ -2,6 +2,15 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U02f — Constrain the closing breath
+
+Two real closing breaths opened the coat and invented belly/tail markings, including after
+an identity correction. Newly compiled prompts now describe a slight chest/shoulder rise,
+seated hips, unchanged clothing coverage and resting hands, followed by a complete exhale.
+Saved prompts, footage and budgets remain unchanged. Thirty-six focused checks and the full
+375-test core gate pass; Ruff, schema checks and package build pass. The real correction is
+still subject to U03 visual review; passing software checks cannot approve generated anatomy.
+
 ## U02e — Restart a partial shot without rebuilding the video
 
 The normal UI now offers “Start this shot again” for an idle partial planned shot. Python finds

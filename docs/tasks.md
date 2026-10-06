@@ -159,6 +159,26 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 
 Also regenerate schemas/browser contracts, run `make web-check web-build`, then exercise the actual saved drink-shot restart in U03.
 
+## U02f — Keep the closing breath within the seated outfit
+
+**Status** [x] — 36 focused checks and the full 375-test core/package gate pass; real generated anatomy remains part of U03 review.
+
+**Target files**
+- `src/tabi/core/flow/prompts.py` — constrain the breath to a modest seated chest/shoulder rise with unchanged clothing coverage and hand position.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — record verification and the remaining real-media check.
+
+**Inputs / dependencies**
+- U02e. Two U03 deep-breath takes inflated the torso, opened the closed coat and invented belly/tail markings, including after the identity correction.
+
+**Implementation rules**
+- Keep one inhale, pause and complete exhale, with hips seated, the same clothing coverage and current hand position. Avoid suggesting a whole-body expansion or inventing a garment type.
+- Change only newly compiled breath prompts; saved attempts, source pixels, schedules and all limits remain unchanged.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_prompts.py tests/unit/test_flow_shot_runner.py`
+
+Also run Ruff and the core/package gates; then review the real correction in U03. Tests cannot qualify generated anatomy.
+
 ## U03 — Run the full 90-second journey through the app
 
 **Status** [ ]
