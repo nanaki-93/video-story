@@ -35,9 +35,12 @@ The archived P/T plans are historical and are not a second implementation queue.
 
 The [planned-shot evidence](../evidence/s04-planned-shots.json) verifies six independent clean
 starts, bounded in-shot extensions, camera-cut review, retry/reopen, exact 90-second assembly
-and Chrome playback. S01–S04 engineering is complete. The next production gate is a real TABI
-wide/close/wide trial through this workflow before attempting a full 90-second creative review.
-Clean starting references and camera cuts reduce inherited drift; they do not prove dots gone.
+and Chrome playback. S01–S04 engineering is complete. The [real TABI camera trial](../evidence/s04-tabi-camera-trial.json)
+used five fresh takes and 500 included credits; four full takes failed creative review. It produced
+a verified 14-second trimmed camera sample, while the original 24-second and revised 20-second
+plans remain incomplete. The short sample does not prove dots eliminated, reliable breathing or
+a continuously progressing panorama. Its range imports required the existing API; a simple UI
+for retaining a good section is still missing. Full 90-second creative review remains open.
 
 The guided assisted workflow is implemented. [F12 evidence](../evidence/f12-flow-workflow.json)
 separates the synthetic 90-second authenticated service run, the short fresh UI journey and

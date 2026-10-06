@@ -93,6 +93,14 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 
 **Status** [x] Five focused media tests; final 344 core and 74 actual-media passes (one optional private-media case skipped), eight frontend tests, build/package and target-Mac Chrome workflow/playback pass. Real creative/automation gates remain open in the evidence.
 
+**Real-media follow-up, 6 October 2026:** [TABI camera-trial evidence](evidence/s04-tabi-camera-trial.json)
+records five fresh Quality takes, four complete-take rejections and 500 included credits.
+The app exported a separate 14-second trimmed wide/close/wide sample (336 verified frames and
+timestamps, six checked boundary frames, full Chrome playback). The 24-second and 20-second
+plans remain incomplete; breathing/identity control and continuous exterior progression failed
+qualification. Safe range selection required the existing API and needs a normal UI control.
+This follow-up changes the creative findings, not the earlier engineering acceptance.
+
 **Target files**
 - `src/tabi/core/flow/prompts.py`, `tests/unit/test_flow_prompts.py` — final review fix: mouth corrections must permit the requested sip, with a regression check.
 - `tests/integration/test_flow_shot_workflow.py` (new) — real 90-second synthetic media through authenticated API, independent shot references, retry/reopen, exact cuts, soundtrack and verified export.

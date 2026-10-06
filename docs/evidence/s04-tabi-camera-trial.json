@@ -1,0 +1,393 @@
+{
+  "task_id": "S04",
+  "review_date": "2026-10-06",
+  "code_revision": "cc078ca",
+  "purpose": "Real TABI wide/close/wide creative and workflow trial",
+  "result": "Creative gate not passed; a technically verified 14-second camera-only draft was salvaged. Original 24s and revised 20s targets remain incomplete.",
+  "project": ".local/tabi-camera-trial/TABI camera trial project",
+  "app_flow_project": "https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781",
+  "commercial_review": {
+    "reviewed_on": "2026-10-06",
+    "provider": "Google Flow under existing Google AI Ultra entitlement",
+    "sources": [
+      "https://support.google.com/flow/answer/16353333?hl=en",
+      "https://support.google.com/flow/answer/16352836?hl=en",
+      "https://policies.google.com/terms",
+      "https://one.google.com/terms-of-service",
+      "https://policies.google.com/terms/generative-ai/use-policy"
+    ],
+    "findings": [
+      "Official Flow commercial-use FAQ points to Google Terms; Google does not claim ownership of original generated content. No non-commercial-only restriction or separate mandatory text attribution identified for this hosted route.",
+      "Keep provider watermark/SynthID. Source-art rights, publication review and YouTube monetization eligibility remain pending.",
+      "Hosted model immutable revisions are not exposed; record visible model label and actual cost for each attempt. No model downloads or new subscription."
+    ],
+    "references_model": "Nano Banana 2",
+    "references_displayed_cost": 0
+  },
+  "reference_origin": {
+    "path": ".local/tokyo-flow-example/Tokyo-opening-reference.png",
+    "sha256": "5cf03abdec812995af9b4a74b97e040f808a3f863cd38316dbab7eec9aa48ea7",
+    "cloud_source": "Saved first frame from Test Tokyo 001 at 00:00:00; generated opening source clip, original model metadata unavailable."
+  },
+  "references": [
+    {
+      "key": "wide",
+      "path": ".local/tabi-camera-trial/TABI-Tokyo-wide-v1.jpeg",
+      "sha256": "90e5789708dd7e0dfaf5860266b05b8c577173d739ba25c88cd781da4f50d335",
+      "asset_id": "d0e55c8e-b946-4cc2-b40c-b606b83abd6e",
+      "media_id": "74ffa1a6-2af1-4fe1-80f8-3c5f2dde64e2",
+      "model": "Nano Banana 2",
+      "displayed_cost": 0,
+      "review": "Assistant compared to Tokyo source. Pink axolotl, attached gills/neck, matching green leopard-trim coat, red-purple headphones, plum bench, sunset window on right. Both hands resting on table. Same takeaway cup/open book/pen/bag. Suitable starting image for draft motion trial; user final approval pending.",
+      "image_prompt": "Use the attached approved train image as the visual source. Prepare one clean starting image for the same journey. A fixed wide view across the aisle, showing TABI, the table and the window. Keep the same character design and markings, outfit, train layout, cup, book, pen, bag, sunset and side of the window. Carriage air is clear; highlights remain painted on solid surfaces. The subject rests with a small closed-mouth smile and the cup on the table. Keep the travel direction consistent. Preserve the source image; save this as a new reference version.",
+      "immutable_hosted_revision": null,
+      "byte_identity_note": "Local downloaded rendition and observed Flow asset ID recorded; provider internal image encoding is not exposed."
+    },
+    {
+      "key": "close",
+      "path": ".local/tabi-camera-trial/TABI-Tokyo-close-v1.jpg",
+      "sha256": "2d7ccf29a7231806745e8bcb5ec3b1ff4e08301876d82e5f1d1397720a323214",
+      "asset_id": "2771b59f-01c7-4610-91ab-4d6c74c6164f",
+      "media_id": "620a68d5-f1fb-4ac8-b316-88fb8b4e461b",
+      "model": "Nano Banana 2",
+      "displayed_cost": 0,
+      "review": "Assistant compared to Tokyo source. Pink axolotl, attached gills/neck, matching green leopard-trim coat, red-purple headphones, plum bench, sunset window on right. Both hands resting on table. Same takeaway cup/open book/pen/bag. Suitable starting image for draft motion trial; user final approval pending.",
+      "image_prompt": "Use the attached approved train image as the visual source. Prepare one clean starting image for the same journey. A fixed closer view of the complete head, every gill and connected shoulders, with window context. Keep the same character design and markings, outfit, train layout, cup, book, pen, bag, sunset and side of the window. Carriage air is clear; highlights remain painted on solid surfaces. The subject rests with a small closed-mouth smile and the cup on the table. Keep the travel direction consistent. Preserve the source image; save this as a new reference version.",
+      "immutable_hosted_revision": null,
+      "byte_identity_note": "Local downloaded rendition and observed Flow asset ID recorded; provider internal image encoding is not exposed."
+    }
+  ],
+  "model_revision_note": "Hosted model labels Nano Banana 2 and Veo 3.1 - Quality observed on 2026-10-06; immutable service revisions are unavailable. No new model downloads or paid dependency.",
+  "credits": {
+    "before": 24434,
+    "after_two_wide_takes": 24234,
+    "after": 23934,
+    "total_used": 500,
+    "video_takes": 5,
+    "per_video_take": 100,
+    "new_image_generations": 2,
+    "per_image_generation": 0,
+    "new_subscriptions_topups_or_purchases": 0,
+    "preview_reuse_additional_cost": 0,
+    "configured_trial_maximum": 600
+  },
+  "original_trials": [
+    {
+      "episode_id": "b9903728c600410f95a33f4b68360a71",
+      "revision": 12,
+      "target_frames": 576,
+      "accepted_frames": 0,
+      "state": "retry limit reached",
+      "preserved": true
+    },
+    {
+      "episode_id": "b398f8eeceb64b00a581e72d1e758fdc",
+      "revision": 20,
+      "target_frames": 480,
+      "accepted_frames": 288,
+      "state": "retry limit reached",
+      "preserved": true
+    }
+  ],
+  "unused_preparation": {
+    "episode_id": "d8ceef722dfa45efa049cc4092b615c4",
+    "state": "paused",
+    "reason": "Imported full source before selecting the retained range; no extra external generation or credits."
+  },
+  "new_generations": [
+    {
+      "episode_id": "b9903728c600410f95a33f4b68360a71",
+      "attempt_id": "64e4704f85c14dee8e72254cb95b0053",
+      "candidate_id": "114d7515210644138af5d15575c68d41",
+      "shot": "settle",
+      "beat": "rest",
+      "retry_index": 0,
+      "model": "Veo 3.1 - Quality",
+      "provider_clip_id": "c6e4d9ed-8a3a-401e-ad86-3c569f9cf924",
+      "provider_url": "https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781/edit/c6e4d9ed-8a3a-401e-ad86-3c569f9cf924",
+      "prompt": "Animate the supplied clean starting image. The character breathes with a slow visible rise and fall of chest and shoulders, and blinks once. The mouth holds its resting smile. Hands and table objects stay in place. The camera stays fixed. Tokyo scenery moves continuously from right to left with natural parallax. The outside view keeps moving through the final frame.",
+      "prompt_sha256": "be9b16c9338053a450ccdc0dc5e473950f19921c3333cdd85ab6dc53ab02cc33",
+      "exact_prompt_sent": true,
+      "credits": 100,
+      "native_media": {
+        "location": {
+          "path": "sources/flow-64e4704f85c14dee8e72254cb95b0053/1.0-18229126db8e4069bc89db599c1ed4a9/000000-shot-01-wide.mp4",
+          "root_id": "project"
+        },
+        "sha256": "2c47a50547230b7ecba40d8859e4a426f6385579f6300df5f2010d95cfd8747b",
+        "size_bytes": 2867141
+      },
+      "native_frames": 192,
+      "technical_ok": true,
+      "review": "rejected",
+      "review_note": "Reject: TABI opens his mouth into a talking-like smile around 0.5\u20132.5s instead of keeping the resting mouth. Long closed eyes instead of one blink. Gills/neck remain connected, cup/book/pen/bag stable and exterior keeps moving; no obvious floating particles in half-second samples. Focus this single correction on the mouth."
+    },
+    {
+      "episode_id": "b9903728c600410f95a33f4b68360a71",
+      "attempt_id": "ae38febca0ca42de9f960ad5dda6cc00",
+      "candidate_id": "0074ead7541a4c84bc295570efc11242",
+      "shot": "settle",
+      "beat": "rest",
+      "retry_index": 1,
+      "model": "Veo 3.1 - Quality",
+      "provider_clip_id": "40181672-8623-4b21-95b1-c73e733564ea",
+      "provider_url": "https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781/edit/40181672-8623-4b21-95b1-c73e733564ea",
+      "prompt": "Animate the supplied clean starting image. The character breathes with a slow visible rise and fall of chest and shoulders, and blinks once. The mouth holds its resting smile. Hands and table objects stay in place. The camera stays fixed. Tokyo scenery moves continuously from right to left with natural parallax. The outside view keeps moving through the final frame. The mouth holds the same small closed smile throughout the movement.",
+      "prompt_sha256": "801ed616510d80c4d58cf40effcbd87f9f48a3f6d3e22a8e819c73fe8a99a9a0",
+      "exact_prompt_sent": true,
+      "credits": 100,
+      "native_media": {
+        "location": {
+          "path": "sources/flow-ae38febca0ca42de9f960ad5dda6cc00/1.0-cb07d6066e0c4ca789c9bb07b899bce6/000000-shot-01b-wide-mouth-correction.mp4",
+          "root_id": "project"
+        },
+        "sha256": "aa13cc244502e0308d526a779a48a4f2210a2a70d5d34a19dfa007268d1368e5",
+        "size_bytes": 3132443
+      },
+      "native_frames": 192,
+      "technical_ok": true,
+      "review": "rejected",
+      "review_note": "Reject: the single mouth correction still opens TABI's mouth around 1\u20132s and introduces both hands lifting. It violates the resting pose and still closed mouth request. Preserve this take; no further retries of this eight-second wide shot."
+    },
+    {
+      "episode_id": "b398f8eeceb64b00a581e72d1e758fdc",
+      "attempt_id": "c99e69213d9845f68614c80be224e825",
+      "candidate_id": "e16f3d143a454e65ae49d0f9dff1ea16",
+      "shot": "watch",
+      "beat": "look",
+      "retry_index": 0,
+      "model": "Veo 3.1 - Quality",
+      "provider_clip_id": "fec0144c-339d-431f-96e6-f02eac2baf54",
+      "provider_url": "https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781/edit/fec0144c-339d-431f-96e6-f02eac2baf54",
+      "prompt": "Animate the supplied clean starting image. The character slowly shifts the eyes and turns the head slightly toward the window. End quietly watching the view, breathing gently, with hands in their current position. The camera stays fixed. Tokyo scenery moves continuously from right to left with natural parallax. The outside view keeps moving through the final frame.",
+      "prompt_sha256": "1762365b7cf4aa8ef67a8ac735c2ce19f0a634aae534e0e66e2fa8d26840af61",
+      "exact_prompt_sent": true,
+      "credits": 100,
+      "native_media": {
+        "location": {
+          "path": "sources/flow-c99e69213d9845f68614c80be224e825/1.0-876fc8325ef3425380f17695c94cb91c/000000-shot-02-close.mp4",
+          "root_id": "project"
+        },
+        "sha256": "d7db56406fb835d2559f29f7c83089260fe05e98eed0c54c4a14c38f344ede58",
+        "size_bytes": 3343793
+      },
+      "native_frames": 192,
+      "technical_ok": true,
+      "review": "accepted",
+      "review_note": "Accepted for draft camera-cut preview. Full native 8s and 2s wide-to-close cut played to end in app; 17 temporal samples inspected. Closed mouth, one relaxed blink, small turn toward the moving window, connected gills/neck and two resting hands. Cup/book/pen/bag remain consistent; no obvious airborne dots in samples. The cut changes framing and exterior position deliberately; this is an edited journey, not continuous pixel-matched scenery. Small pose/eye change at cut remains for user review."
+    },
+    {
+      "episode_id": "b398f8eeceb64b00a581e72d1e758fdc",
+      "attempt_id": "b0e00b02193042d490813a3ba897d224",
+      "candidate_id": "bbc77a6bd1644e22b0163354f9318702",
+      "shot": "breathe",
+      "beat": "deep_breath",
+      "retry_index": 0,
+      "model": "Veo 3.1 - Quality",
+      "provider_clip_id": "a24c85c7-124a-4367-8554-36706ca2d9fd",
+      "provider_url": "https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781/edit/a24c85c7-124a-4367-8554-36706ca2d9fd",
+      "prompt": "Animate the supplied clean starting image. The character takes one slow deep breath: chest and shoulders rise, pause, then settle on a long relaxed exhale. The mouth keeps its closed smile. Complete the exhale and return to quiet breathing. The camera stays fixed. Tokyo scenery moves continuously from right to left with natural parallax. The outside view keeps moving through the final frame.",
+      "prompt_sha256": "ef3870e9ba9b80979c11625db054ff089ffcf5915296aef8d00002c06a586d3d",
+      "exact_prompt_sent": true,
+      "credits": 100,
+      "native_media": {
+        "location": {
+          "path": "sources/flow-b0e00b02193042d490813a3ba897d224/1.0-2c781c1680ef404094a37ef91db05ed0/000000-shot-03-wide-breath.mp4",
+          "root_id": "project"
+        },
+        "sha256": "7b5a31850ec38b06dd4104ae82ff6f70474e63c44581d068757566b7dc534606",
+        "size_bytes": 3072448
+      },
+      "native_frames": 192,
+      "technical_ok": true,
+      "review": "rejected",
+      "review_note": "Reject deep-breath take: around 1.5\u20134.5s TABI opens his mouth broadly, raises both hands and pulls his coat open, exposing his chest. This reads as laughing/stretching rather than the quiet breath. Final pose settles and exterior moves, but the action is unsuitable. One mouth correction allowed; preserve this source and do not extend it."
+    },
+    {
+      "episode_id": "b398f8eeceb64b00a581e72d1e758fdc",
+      "attempt_id": "09c1c4c6e6e24840b176bdcd1db5f03a",
+      "candidate_id": "c9e0c9e845a341bc81375ff279376e84",
+      "shot": "breathe",
+      "beat": "deep_breath",
+      "retry_index": 1,
+      "model": "Veo 3.1 - Quality",
+      "provider_clip_id": "25be97f1-6394-4bab-8a86-f58685c2ffac",
+      "provider_url": "https://flow.google.com/u/1/project/6b8a8a71-a9d3-4884-9ec7-87c77573b781/edit/25be97f1-6394-4bab-8a86-f58685c2ffac",
+      "prompt": "Animate the supplied clean starting image. The character takes one slow deep breath: chest and shoulders rise, pause, then settle on a long relaxed exhale. The mouth keeps its closed smile. Complete the exhale and return to quiet breathing. The camera stays fixed. Tokyo scenery moves continuously from right to left with natural parallax. The outside view keeps moving through the final frame. The mouth holds the same small closed smile throughout the movement.",
+      "prompt_sha256": "043a6b7e49c5a5c684d8d03915517cbf6ad79b7cc35df44a550746e4ca7e20c6",
+      "exact_prompt_sent": true,
+      "credits": 100,
+      "native_media": {
+        "location": {
+          "path": "sources/flow-09c1c4c6e6e24840b176bdcd1db5f03a/1.0-9934c5df7150479098c5d83f02218281/000000-shot-03b-breath-correction.mp4",
+          "root_id": "project"
+        },
+        "sha256": "59ba1250a9c2be925333bc68d96f61257ba080f0c2443505216ba06dc14bccae",
+        "size_bytes": 3085549
+      },
+      "native_frames": 192,
+      "technical_ok": true,
+      "review": "rejected",
+      "review_note": "Reject final correction: mouth opens again, coat opens, torso shape/markings change and tail gains large purple spots during the breath. It settles but fails identity and clothing continuity. Single allowed correction exhausted; stop this action. Retain both native sources and the 20s plan as failed creative evidence."
+    }
+  ],
+  "final_preview": {
+    "episode_id": "9c537d343b1d4b3db248984e2c9c5aa8",
+    "revision": 13,
+    "title": "TABI Tokyo - 14s camera sample (trimmed)",
+    "target_frames": 336,
+    "duration_seconds": 14,
+    "export_id": "9c9adce683a744e4bb73406e42324c28",
+    "export_state": "verified",
+    "output": ".local/tabi-camera-trial/TABI-Tokyo-Camera-Test-14s-DRAFT.mp4",
+    "sha256": "421930a9310934d83fbdb27be168a7469c7e9a649f87f9c69686db37a2a2186e",
+    "source_ranges": [
+      {
+        "candidate_id": "7f1b021d61024a738a192b61fc28d48a",
+        "attempt_id": "f8d5bb9fba3c44d39bc648a69e589fd3",
+        "media_sha256": "2c47a50547230b7ecba40d8859e4a426f6385579f6300df5f2010d95cfd8747b",
+        "trim": {
+          "end_frame": 192,
+          "start_frame": 96
+        },
+        "review_note": "Reuse only native frames 96:192 from original attempt 64e4704f85c14dee8e72254cb95b0053, no new generation/credits. Same prompt and clean reference. Previously played and reviewed retained calm section: closed smile/eyes, attached gills/neck, resting hands, unchanged props and moving exterior. Accept as a four-second camera sample; excludes the failed mouth section and does not establish the full breathing routine or publication approval."
+      },
+      {
+        "candidate_id": "dd1231145a3b410e9615acf286db514c",
+        "attempt_id": "e50eb4ffadd34d9e8b0c0b0096af1a32",
+        "media_sha256": "d7db56406fb835d2559f29f7c83089260fe05e98eed0c54c4a14c38f344ede58",
+        "trim": {
+          "end_frame": 192,
+          "start_frame": 0
+        },
+        "review_note": "Reuse accepted full close take from c99e69213d9845f68614c80be224e825. No new generation; identical source and wide-to-close cut already played and reviewed. One blink and a small window glance, mouth closed, attached gills/neck and resting hands; props stable, exterior moving. No obvious airborne dots in 17 samples. Accept for camera-only draft; exterior position and eye pose reset across the deliberate cut, so continuous panorama remains unproven."
+      },
+      {
+        "candidate_id": "67e1be0cea5f41f6821527d17ac72eec",
+        "attempt_id": "1a6637c154bd45bb8d16b50cebdc63c7",
+        "media_sha256": "7b5a31850ec38b06dd4104ae82ff6f70474e63c44581d068757566b7dc534606",
+        "trim": {
+          "end_frame": 192,
+          "start_frame": 144
+        },
+        "review_note": "Camera-only draft: reuse source b0e00b02193042d490813a3ba897d224 at frames 144:192, after the failed deep breath. No new generation and no successful deep-breath claim. Retained section and close-to-wide join reviewed: closed mouth, connected gills/neck, coat closed, resting hands and unchanged cup/book/pen/bag; window moves to the last frame. Tail is more extended than in opening reference, and eyes close at cut; keep these as visible draft limitations. Exclude all earlier overacting frames; original source stays rejected."
+      }
+    ],
+    "source_prompt_note": "No final-preview prompt was sent to Flow. These are zero-cost receipts of the preserved native takes above. The last settled range comes from the rejected deep-breath source; it is repurposed as rest, with original generation recorded in its diagnostic."
+  },
+  "verification": {
+    "export_id": "9c9adce683a744e4bb73406e42324c28",
+    "episode_id": "9c537d343b1d4b3db248984e2c9c5aa8",
+    "output_sha256": "421930a9310934d83fbdb27be168a7469c7e9a649f87f9c69686db37a2a2186e",
+    "frames": 336,
+    "seconds": 14,
+    "fps": {
+      "num": 24,
+      "den": 1
+    },
+    "canvas": {
+      "width": 1280,
+      "height": 720
+    },
+    "audio": "silent",
+    "verified_by_core": {
+      "codec": "h264",
+      "profile": "High",
+      "level": 31,
+      "pixel_format": "yuv420p",
+      "canvas": {
+        "width": 1280,
+        "height": 720
+      },
+      "fps": {
+        "num": 24,
+        "den": 1
+      },
+      "frame_count": 336,
+      "duration_seconds": 14.0,
+      "container_duration_seconds": 14.0,
+      "bit_rate": 8254229,
+      "color_space": "bt709",
+      "color_range": "tv",
+      "progressive": true,
+      "timestamps_verified": true,
+      "full_decode_passed": true,
+      "mp4": {
+        "moov_offset": 32,
+        "first_mdat_offset": 4519,
+        "fast_start": true
+      }
+    },
+    "six_boundary_frame_comparisons": [
+      {
+        "export_frame": 0,
+        "source_frame": 96,
+        "candidate": "7f1b021d61024a738a192b61fc28d48a",
+        "mean_rgb_difference": 1.8046639901620372
+      },
+      {
+        "export_frame": 95,
+        "source_frame": 191,
+        "candidate": "7f1b021d61024a738a192b61fc28d48a",
+        "mean_rgb_difference": 1.8646509693287037
+      },
+      {
+        "export_frame": 96,
+        "source_frame": 0,
+        "candidate": "dd1231145a3b410e9615acf286db514c",
+        "mean_rgb_difference": 1.690379050925926
+      },
+      {
+        "export_frame": 287,
+        "source_frame": 191,
+        "candidate": "dd1231145a3b410e9615acf286db514c",
+        "mean_rgb_difference": 1.9399833622685183
+      },
+      {
+        "export_frame": 288,
+        "source_frame": 144,
+        "candidate": "67e1be0cea5f41f6821527d17ac72eec",
+        "mean_rgb_difference": 1.7521412037037036
+      },
+      {
+        "export_frame": 335,
+        "source_frame": 191,
+        "candidate": "67e1be0cea5f41f6821527d17ac72eec",
+        "mean_rgb_difference": 1.8435677083333335
+      }
+    ],
+    "source_reference_hashes": "unchanged and verified"
+  },
+  "chrome_playback": {
+    "duration": 14,
+    "current_time": 14,
+    "ended": true,
+    "ready_state": 4,
+    "canvas": [
+      1280,
+      720
+    ],
+    "clip_and_cut_playback": "Close take (8s), first camera cut (2s), second camera cut (2s), and final 14s export completed in Chrome. Temporal samples and exact endings also reviewed.",
+    "screen": "docs/evidence/s04-tabi-camera-trial.jpg"
+  },
+  "findings": [
+    "Fresh clean starts did not reproduce the earlier spreading airborne dots in the reviewed half-second temporal samples. This short test does not prove their elimination or absence between samples.",
+    "Four of five complete takes were rejected. Resting and deep-breath actions opened the mouth; deep-breath takes changed the coat, torso or markings. A selected mouth correction did not reliably fix the problem.",
+    "The close window-looking clip was the only full eight-second take accepted for this draft. Gills/neck and props remained visually coherent in its samples; final user creative review is still pending.",
+    "The final 14-second sample is an editorial salvage: 4s from the first wide take, the full 8s close take, and 2s from the settled ending of the first deep-breath take. It does not demonstrate a successful deep breath or the original 24-second plan.",
+    "The same clean exterior reappears on fresh starts. Camera cuts mask some pose differences but do not establish a continuously progressing panorama. The final wide tail is more extended and the eyes close at the cut.",
+    "App service import supports an explicit source frame range; the normal UI lacks that selection. A review-time start change was correctly refused; a separate range import created the correct packet. The source player still displays the full native source while review samples/join/export use the imported range.",
+    "The current selected correction template omits much of the recorded failure detail. After a mouth correction it does not also constrain unwanted hand or coat motion. Calm action control needs further qualification rather than repeated blind generation.",
+    "The app runs persisted prompts, bounded retries, authenticated imports, reviewed cut packets and exact export. Custom short recipes and source-range selection in this test used its existing authenticated API. No per-video FFmpeg repair, retiming, loops or padding were used.",
+    "Generation and image preparation remain assistant-operated in the Flow UI. Native Save dialogs require handling; one downloadMedia call stalled about 16 minutes. Monthly human effort, 30 videos/month and unattended control remain unqualified."
+  ],
+  "remaining_acceptance": [
+    "Marco visual approval of the camera sample",
+    "Reliable resting and deep-breath actions without mouth/clothing drift",
+    "Continuous exterior progression across shot references",
+    "A complete 90-second train episode and a fresh variation using the ordinary UI",
+    "Input-artwork/music rights, final release review and YouTube eligibility",
+    "Measured monthly credits/human effort and unattended control"
+  ],
+  "repository_scope": "Evidence/documentation only; no product code or generated videos committed."
+}

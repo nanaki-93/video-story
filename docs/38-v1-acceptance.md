@@ -15,11 +15,18 @@ samples and every side of eleven joins, retry/reopen and safe shot cuts. Chrome 
 screens and plays the saved 90-second output to the end. Original Tokyo documents, source media
 and export hashes remain valid. No external generation credits or new paid dependencies were used.
 
-This is engineering acceptance. A real TABI wide/close/wide sequence must still establish visual
-quality, followed by a complete 90-second episode and variation. No claim that particles are
-eliminated, source rights are cleared, or unattended generation/monthly throughput is qualified.
-The browser automation file-picker delay is recorded separately from app behavior; human effort
-is not yet measured. Existing delivery rights and creative checks remain required.
+This is engineering acceptance. The [subsequent real TABI trial](evidence/s04-tabi-camera-trial.json)
+used five fresh Veo 3.1 Quality takes and 500 included credits. Four full takes failed mouth,
+hand, clothing or identity review. The 24-second and revised 20-second plans remain incomplete.
+A separate trimmed 14-second wide/close/wide sample exports through the app and passes all
+336-frame/timestamp checks, six boundary comparisons and Chrome playback. Range selection used
+the authenticated API; it is not yet available in the ordinary UI. No custom media repair was used.
+
+The sample has no obvious airborne dots in the inspected temporal samples, but fresh starts
+reset the exterior and pose changes remain. It does not demonstrate reliable breathing or a
+continuous panorama. A complete 90-second episode and variation, source rights, final creative
+approval and unattended/monthly throughput remain open. Browser Save-dialog delays are recorded
+separately from app behavior; representative human effort is not yet measured.
 
 ## Flow workflow engineering acceptance — 6 October 2026
 

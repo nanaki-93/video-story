@@ -2,6 +2,31 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## S04 — Real TABI camera trial: creative gate remains open
+
+6 October 2026. Generated two clean wide/close references with Nano Banana 2 and five native
+eight-second Veo 3.1 Quality takes from the app's exact saved prompts. Four complete takes
+failed mouth, hand, coat or identity review; their single corrections did not resolve the
+breathing actions. The original 24-second trial stops at its retry limit. A revised 20-second
+plan preserves 12 accepted seconds and also stops at the failed deep breath.
+
+A separate **14-second camera-only draft** retains four calm seconds from the first wide take,
+the complete eight-second window-looking close shot, and a settled two-second wide ending.
+It uses the authenticated app import/review services and Finish export. Explicit source ranges
+needed the API because the normal UI does not yet expose them; no custom FFmpeg repair or
+assembly was used. Full decode, all 336 timestamps, source/reference hashes and six boundary
+frame comparisons pass; Chrome plays the export to the end. [Evidence](evidence/s04-tabi-camera-trial.json)
+and [app screen](evidence/s04-tabi-camera-trial.jpg) retain the exact attempts, ranges and limits.
+Playable local file: `.local/tabi-camera-trial/TABI-Tokyo-Camera-Test-14s-DRAFT.mp4`.
+
+Flow allowance changed from 24,434 to 23,934: **500 included credits**, with no purchase or
+top-up. Official hosted-model commercial terms were rechecked; input rights and publication
+approval stay pending. No obvious airborne dots appeared in the reviewed temporal samples,
+but this does not establish their elimination. Exterior positions reset at fresh starts;
+eye/tail pose changes remain visible across cuts. Reliable breathing, a continuous panorama,
+ordinary-UI range selection, a real 90-second episode and monthly/unattended throughput remain
+unqualified. This is a useful camera sample, not a passed creative production gate.
+
 ## S04 — Complete planned-shot engineering verification
 
 6 October 2026. The authenticated six-shot synthetic run verifies all 2160 frames/PTS,
