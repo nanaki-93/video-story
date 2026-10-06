@@ -37,6 +37,7 @@ S01–S04 planned-shot engineering is complete. Its actual creative limits remai
 | [F11](../tasks.md#f11--prepare-a-youtube-delivery-with-existing-review-rules) | Prepare YouTube delivery | complete |
 | [F12](../tasks.md#f12--verify-repeatable-production-and-document-the-remaining-automation-gap) | Verify full production workflow | engineering complete; creative/control gates open |
 | [F13](../tasks.md#f13--retire-unused-routes-and-reduce-the-tracked-repository) | Retire obsolete code and untrack preserved bulk media | complete |
+| [F14](../tasks.md#f14--clean-obsolete-local-test-and-video-artifacts) | Remove obsolete local test runs, preparation copies and video comparisons | complete; 18.50 GB removed, protected hashes and core checks pass |
 
 ## Remaining acceptance
 

@@ -957,6 +957,39 @@ generation control, visual quality and observed human effort all meet it.
 Also run `make web-check`, `make web-build`, `make package`, and the target-Mac `make test-media`.
 Check all retained local media hashes, zero tracked MP4s, Markdown links, retired CLI/API routes and packaged Python source parity. Report tracked-tree reduction separately from local media and existing Git history.
 
+## F14 — Clean obsolete local test and video artifacts
+
+**Status** [x] Complete. [Evidence](evidence/f14-local-artifact-cleanup.json) records 61 obsolete
+run folders, 464 videos and 18.50 GB removed; source/test hashes and the core gate pass.
+
+**Target files**
+- Obsolete `.local` synthetic test runs, redundant/superseded train preparation, standalone
+  experiment outputs, Python/test/lint/package caches and Finder metadata.
+- Three superseded ear-comparison videos in `docs/assets/clip-tests/`.
+- `docs/evidence/f14-local-artifact-cleanup.json`, `docs/assets/README.md`, task index and progress.
+
+**Inputs / dependencies**
+- F13's source-preservation policy and current workflow/acceptance records.
+- Marco explicitly requests cleanup of obsolete tests and video experiments.
+
+**Implementation rules**
+- Inventory exact paths and hashes before removing local artifacts. Reject tracked-file cleanup.
+- Preserve maintained test sources, original artwork/clips, selected comparison drafts, generation
+  archives, immutable durable project sources and the current TABI/Tokyo workflow projects.
+- Verify redundant preparation/export copies against durable source hashes. Remove only completed
+  test outputs, obsolete derivative experiments and regenerable caches.
+- Exclude active render directories; distinguish independently changing runtime/evidence records
+  from stable source hashes. Preserve unrelated staged IDE changes and concurrent U03 work.
+- Keep the full hash manifest compressed locally; commit only concise cleanup evidence/documentation.
+  Do not alter Git history, external projects or application behavior.
+
+**Verification command**
+`make check`
+
+Also verify retained source/test hashes, removal-path absence, staged IDE preservation and zero
+tracked MP4s. Owned loopback tests require an unsandboxed run on this Mac. No rendering changes
+or new creative acceptance are part of this housekeeping step.
+
 ## Retained production plan and earlier task references
 
 The previous P01–P04/T40–T48 proposals and trial procedures are retained in the

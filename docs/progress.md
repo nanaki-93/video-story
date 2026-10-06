@@ -196,6 +196,24 @@ local project, playable output and screenshots. Full-length creative acceptance,
 human effort, source rights and unattended generation remain open. Small inherited floor
 highlights remain in this draft; it is not a publication approval.
 
+## F14 — Cleaned obsolete local test and video artifacts
+
+7 October 2026. Removed 61 obsolete run/preparation folders, standalone test outputs and
+regenerable caches: 22,548 files/symlinks, including 464 videos and 18.50 GB of file content.
+Three superseded ear-comparison videos were removed from `docs/assets/clip-tests`; the five
+original clips, selected Flow/calm drafts, original artwork and generation/master archives remain.
+Before removal, 11,675 preparation/export copies matched their durable train-project copies.
+Afterward, all 3,214 stable protected hashes matched, including 83 maintained test/fixture files.
+
+`make check` passes: 375 tests, Ruff/formatting and 68 schemas; 76 media cases are skipped by
+that gate. Three sandbox-blocked socket/worker tests passed in the full unsandboxed rerun.
+No runtime code changed. The concurrent U03 export, evidence and documentation were preserved;
+its temporary export files and mutable completion records are distinguished in the inventory.
+Staged IDE entries remain unchanged, no MP4 is tracked, and external project sources/Git history
+were untouched. [Cleanup evidence](evidence/f14-local-artifact-cleanup.json) records every removal
+group and the compressed local hash manifest. Historical removed paths identify past runs;
+maintained tests and source archives remain available. No new creative approval is implied.
+
 ## F13 — Reduced repository and retired unused execution paths
 
 6 October 2026. Final cleanup gates pass: 319 unit tests, 73 actual-media tests (one optional private Tokyo fixture skipped), seven frontend tests, 68 schemas, web build and package. Removed the unqualified ComfyUI execution bridge/settings and replaced playback prototype; kept legacy data contracts and working layered renderer/audio/jobs. All 296 untracked media files match their original hashes locally. Superseded plans/progress are archived with preserved links and source text. Final evidence: docs/evidence/f13-repository-cleanup.json. No artwork was deleted, no MP4 is tracked, and Git history is unchanged.

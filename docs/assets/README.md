@@ -18,3 +18,10 @@ F13 does not rewrite existing Git history or reduce the disk used by preserved l
 The [source audit](../09-implementation-review.md) and original [inventory](../asset-inventory.json)
 retain earlier provenance/preparation findings. Artwork timing, likeness and commercial rights
 still require review.
+
+F14's 7 October 2026 [local cleanup](../evidence/f14-local-artifact-cleanup.json) removed obsolete
+`.local` test runs, redundant/superseded preparation and three rendered ear-comparison videos.
+The five supplied native clips, selected Flow 90-second draft and earlier calm-window draft
+remain here unchanged. Current TABI/Tokyo projects, durable train-project sources and original
+generation/master archives were preserved. Historical evidence may name removed experiment
+paths; the cleanup inventory records them without changing the earlier review results.
