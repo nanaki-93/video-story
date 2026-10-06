@@ -2,6 +2,15 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## S01 — Compatible planned-shot contracts
+
+6 October 2026. Added strict shot duration/routine contracts, reviewed keyed starting images,
+fresh-shot attempts with separate editorial lineage, selected retry corrections and optional
+fresh-shot credit estimates. Old recipes, references and attempts retain their canonical bytes
+and hashes. Accepted clips cannot cross a shot boundary or extend across a camera cut.
+Verification: 22 contract/release tests pass; 68 schemas and browser contracts regenerate without
+drift, and TypeScript compiles. Real media and target-Mac shot UI checks follow in S04.
+
 ## F12 — Real Tokyo trial and accepted app preview
 
 6 October 2026. Ran the Tokyo recipe in Create video using two preserved native clips and

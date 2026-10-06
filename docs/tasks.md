@@ -1,3 +1,123 @@
+# Planned shots with clean starting references
+
+Active implementation queue: S01–S04. Build a 90-second train story from independently started
+shots and short local extension chains. Keep the assisted Flow handoff, reviewed cuts, existing
+exports and local soundtrack; this engineering change does not claim to eliminate generated defects.
+
+The simple default uses three reviewed images (wide, medium/table, close), reused across six
+shots. Durations are 15 + 15 + 22 + 8 + 15 + 15 seconds; the 22-second drink shot accommodates
+separate pickup, sip and return clips. Each camera cut restarts from its assigned clean image.
+All reference images are collected before generation, and existing single-shot drafts keep
+working without migrations or changed hashes. New generation costs distinguish a fresh shot
+from an extension. Technical checks cannot approve appearance or establish output rights.
+
+## S01 — Define compatible shot and reference contracts
+
+**Status** [x] 22 contract/compatibility tests pass; 68 schemas and browser contracts regenerated, drift checked and TypeScript compiled.
+
+**Target files**
+- `src/tabi/core/models/flow.py` — strict shots, keyed reference state/review, shot-start attempts, bounded corrections and optional opening cost; omit new defaults from old hashes.
+- `tests/unit/test_flow_shot_contracts.py` — invalid schedules/lineage/reference bindings and legacy hash compatibility.
+- `schemas/flow_episode.schema.json`, `schemas/flow_attempt.schema.json`, `schemas/flow_export.schema.json`, `schemas/web_flow.schema.json` — generated affected schemas.
+- `web/src/generated/flow_episode.ts`, `web/src/generated/flow_attempt.ts`, `web/src/generated/flow_export.ts`, `web/src/generated/web_flow.ts`, `web/src/generated/validators.cjs` — generated affected browser contracts.
+- `schemas/web_releases.schema.json`, `web/src/generated/web_releases.ts` — generated delivery contracts containing the same frozen Flow references.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — activate and record the shot queue.
+
+**Inputs / dependencies**
+- F01–F13 and the preserved F12 real Tokyo trial. No new provider calls or artwork needed.
+
+**Implementation rules**
+- Python owns ordered shot duration/beat validation, rational fps, immutable hashes and strict fields.
+- Preserve canonical hashes for old recipes, references, attempts and frozen exports; never edit approved snapshots.
+- A new shot's previous clip is its editorial predecessor, not its generation input. Explicit `shot_start` mode and shot ID distinguish it from Extend.
+- Reject duplicate keys/IDs, missing shot associations, cross-shot Extend and accepted footage that crosses an unreviewed shot boundary.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_contracts.py tests/unit/test_flow_shot_contracts.py tests/unit/test_flow_release_contracts.py`
+
+Also regenerate Python/browser contracts and run their drift checks and TypeScript compilation.
+
+## S02 — Generate and review bounded shots from clean references
+
+**Status** [ ]
+
+**Target files**
+- `src/tabi/core/flow/shots.py` (new) — shot progress, default plan, reference instructions and clean-cut state compatibility.
+- `src/tabi/core/flow/service.py`, `src/tabi/core/flow/runner.py`, `src/tabi/core/flow/prompts.py`, `src/tabi/core/flow/review.py`, `src/tabi/core/flow/media.py` — keyed immutable references, fresh-shot handoff, action/extension limits, motion-only prompts, focused retry corrections and reviewed exact shot trims.
+- `tests/unit/test_flow_shot_runner.py` (new), `tests/unit/test_flow_prompts.py`, `tests/unit/test_flow_service.py`, `tests/unit/test_flow_runner.py` — substantive progression, retry/cost/unknown state, backtracking and compatibility tests.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — verification evidence.
+
+**Inputs / dependencies**
+- S01; reuse existing importer, review packets, assembly and owned worker.
+
+**Implementation rules**
+- Keep old explicit recipes usable; expose a new default planned recipe without silently converting saved episodes.
+- Require all three keyed clean reference images and confirmed visible starting facts before new shots begin. Keep reference rights pending.
+- Save each attempt before handoff; retries use the same clean reference or same accepted in-shot parent. Unknown remote results block another submission.
+- Bound accepted extensions per shot, and keep per-action retry/credit limits. Count actual trimmed frames, not nominal Flow duration.
+- At every shot boundary require a completed routine, explicit safe cut when needed, and compatible visible cup/hand state. Preview the editorial cut but never instruct Flow to extend the preceding shot.
+- Motion prompts omit repeated appearance inventories and rejection paragraphs; store full review notes separately and compile one selected correction.
+- Reuse the verified assembler and continuous audio route. No looping, padded frames, new dependency or automatic visual approval.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_shot_runner.py tests/unit/test_flow_prompts.py tests/unit/test_flow_runner.py tests/unit/test_flow_service.py`
+
+## S03 — Guide reference preparation, shot generation and cut review in the app
+
+**Status** [ ]
+
+**Target files**
+- `src/tabi/api/contracts.py`, `src/tabi/api/flow.py`, `src/tabi/cli/flow.py` — expose the same keyed-reference, shot progress, handoff and review services.
+- `web/src/flow.ts`, `web/src/flow-state.ts`, `web/src/style.css`, `web/tests/flow-state.test.mjs` — simple shot overview, reference preparation/upload, explicit Start new shot versus Extend, correction choice and cut confirmation.
+- `tests/unit/test_flow_shot_api.py` (new), `tests/unit/test_flow_cli.py` — authenticated API and CLI workflow coverage.
+- `schemas/web_flow.schema.json`, `web/src/generated/web_flow.ts`, `web/src/generated/validators.cjs` — regenerated transport contracts.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — verification evidence.
+
+**Inputs / dependencies**
+- S02. Existing browser session security, registered roots, uploads, output player and release handoff.
+
+**Implementation rules**
+- New videos default to the six-shot plan. Existing videos retain their actual next step and old workflow.
+- Show one reference/action at a time, a compact shot list and measured progress. Keep state/config details collapsible.
+- Supply copyable image-preparation instructions and a download of the exact starting reference for each fresh shot.
+- Confirm reference cleanliness and observed starting facts, show both sides of a camera cut, and distinguish shot ending from whole-video ending.
+- Collect separate checked Flow costs for fresh shots and extensions; record actual model at import. No account connection, API key or new purchase flow.
+- No browser timeline semantics or duplicated FFmpeg logic; Python supplies progress, next action, review bounds and reference selection.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_shot_api.py tests/unit/test_flow_cli.py tests/unit/test_web_flow_contracts.py`
+
+Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `make web-build` with the local offline uv cache.
+
+## S04 — Verify complete shot assembly and document the usable workflow
+
+**Status** [ ]
+
+**Target files**
+- `tests/integration/test_flow_shot_workflow.py` (new) — real 90-second synthetic media through authenticated API, independent shot references, retry/reopen, exact cuts, soundtrack and verified export.
+- `docs/evidence/s04-planned-shots.json` (new), `docs/evidence/s04-shot-workflow.jpg` (new) — bounded target-Mac UI and export evidence.
+- `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — current defaults, operations and remaining real creative/automation gates.
+
+**Inputs / dependencies**
+- S03; installed FFmpeg and browser. Use small synthetic fixtures and preserve original Tokyo media.
+
+**Implementation rules**
+- Render and strictly verify all 2160 frames, PTS, shot boundaries and continuous soundtrack through the existing app services. No external credits required for engineering acceptance.
+- Verify old local Tokyo episode/export documents still load with their hashes; do not mutate them.
+- Exercise the new reference/shot/cut UI on the target Mac, reopen saved progress, play a verified output and save a screenshot.
+- Keep real TABI wide/close/wide quality, 90-second creative acceptance and unattended Flow control open until actually demonstrated.
+- Complete the broader repository gates, preserve unrelated staged changes, and never commit MP4s.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/integration/test_flow_shot_workflow.py tests/integration/test_flow_assembly.py tests/integration/test_flow_release.py`
+
+Final gates: `make check`, `make web-check`, `make web-build`, `make package` and target-Mac `make test-media` with the same offline cache/config environment.
+
+---
+
+The following F/P/T plan is retained implementation history. Its open creative gates are not
+additional engineering tasks and do not block S01–S04.
+
 # Flow generation and review workflow in video-story
 
 Plan prepared 6 October 2026. Add a guided, resumable cycle that prepares one Flow prompt,

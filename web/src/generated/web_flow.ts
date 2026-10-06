@@ -70,7 +70,7 @@ export type Diagnostic = string | null;
 export type DocumentType2 = "flow_attempt";
 export type EpisodeId = string;
 export type Id3 = string;
-export type Mode = "text_reference" | "image_motion" | "extend";
+export type Mode = "text_reference" | "image_motion" | "extend" | "shot_start";
 export type ObservedCredits = number | null;
 export type ParentId = string | null;
 export type ParentSha256 = string | null;
@@ -85,8 +85,9 @@ export type RetryIndex = number;
 export type RetryReason = string | null;
 export type Revision1 = number;
 export type SchemaVersion1 = "1.0";
+export type ShotId = string | null;
 export type State = "prepared" | "awaiting_external" | "submitted" | "unknown" | "received" | "failed";
-export type TemplateVersion = "1";
+export type TemplateVersion = "1" | "2";
 export type Attempts = FlowAttempt[];
 export type AttemptId = string;
 export type FrameCount1 = number;
@@ -102,6 +103,7 @@ export type Pose = "unknown" | "resting" | "watching" | "sipping";
 export type ParentId1 = string | null;
 export type ParentSha2561 = string | null;
 export type Preparation = string | null;
+export type RetryFocus = ("particles" | "mouth" | "identity" | "props" | "motion" | "action") | null;
 export type Review = "pending" | "accepted" | "rejected";
 export type ReviewNote = string | null;
 export type ReviewPacket = string | null;
@@ -117,6 +119,7 @@ export type Id5 = string;
 export type AllowanceCheckedAt = string;
 export type CreditCeiling = number;
 export type EstimatedCreditPerAttempt = number;
+export type EstimatedStartCredit = number | null;
 export type MaxAttempts = number;
 export type MaxRetriesPerBeat = number;
 export type RemainingAllowance = number;
@@ -130,25 +133,38 @@ export type OpeningMode = "text_reference" | "image_motion";
 export type Outfit = string;
 export type ProjectUrl = string | null;
 export type Setting = string;
+/**
+ * @minItems 1
+ */
+export type Beats1 = [FlowBeat, ...FlowBeat[]];
+export type DurationFrames = number;
+export type Framing = "wide" | "medium" | "close";
+export type Id6 = string;
+export type MaxExtensions = number;
+export type ReferenceKey = string;
+export type Title = string;
+export type Shots = FlowShot[];
 export type TargetFrames = number;
+export type Key = string | null;
+export type ReviewNote1 = string | null;
 export type Rights = "pending" | "confirmed" | "not-permitted";
 export type Synthetic = boolean;
-export type Title = string;
+export type Title1 = string;
 export type References = FlowReference[];
 export type Revision2 = number;
 export type SchemaVersion2 = "1.0";
-export type Title1 = string;
+export type Title2 = string;
 export type Episodes = FlowEpisode[];
 export type CancelRequested = boolean;
 export type Diagnostic1 = string | null;
 export type DocumentType4 = "flow_export";
 export type EpisodeId1 = string;
-export type Id6 = string;
 export type Id7 = string;
+export type Id8 = string;
 export type Sha2561 = string;
 export type Version2 = string;
 export type AudioLocks = ResolvedAssetLock[];
-export type DurationFrames = number;
+export type DurationFrames1 = number;
 export type EpisodeId2 = string;
 export type EpisodeRevision = number;
 export type PipelineSha256 = string;
@@ -157,7 +173,7 @@ export type AudioCodec = string | null;
 export type AudioGainDb = number;
 export type ColorSpace1 = "bt709";
 export type Container = "mp4" | "mkv";
-export type Id8 = string;
+export type Id9 = string;
 export type PixelFormat1 = string;
 export type SampleRate1 = 48000;
 export type VideoBitrate = number | null;
@@ -173,7 +189,7 @@ export type ToolchainSha256 = string;
 export type FadeInSamples = number;
 export type FadeOutSamples = number;
 export type GainDb = number;
-export type Id9 = string;
+export type Id10 = string;
 export type LoopCrossfadeSamples = number;
 export type LoopDurationSamples = number | null;
 export type ReleaseId = string | null;
@@ -404,7 +420,7 @@ export interface FlowEpisode {
   references?: References;
   revision?: Revision2;
   schema_version: SchemaVersion2;
-  title: Title1;
+  title: Title2;
 }
 /**
  * This interface was referenced by `WebFlow`'s JSON-Schema
@@ -431,6 +447,7 @@ export interface FlowAttempt {
   retry_reason?: RetryReason;
   revision?: Revision1;
   schema_version: SchemaVersion1;
+  shot_id?: ShotId;
   state: State;
   template_version?: TemplateVersion;
 }
@@ -460,6 +477,7 @@ export interface FlowCandidate {
   parent_id: ParentId1;
   parent_sha256: ParentSha2561;
   preparation?: Preparation;
+  retry_focus?: RetryFocus;
   review?: Review;
   review_note?: ReviewNote;
   review_packet?: ReviewPacket;
@@ -501,6 +519,7 @@ export interface FlowLimits {
   allowance_checked_at: AllowanceCheckedAt;
   credit_ceiling: CreditCeiling;
   estimated_credit_per_attempt: EstimatedCreditPerAttempt;
+  estimated_start_credit?: EstimatedStartCredit;
   max_attempts?: MaxAttempts;
   max_retries_per_beat?: MaxRetriesPerBeat;
   remaining_allowance: RemainingAllowance;
@@ -520,17 +539,34 @@ export interface FlowRecipe {
   outfit?: Outfit;
   project_url?: ProjectUrl;
   setting?: Setting;
+  shots?: Shots;
   target_frames?: TargetFrames;
+}
+/**
+ * This interface was referenced by `WebFlow`'s JSON-Schema
+ * via the `definition` "FlowShot".
+ */
+export interface FlowShot {
+  beats: Beats1;
+  duration_frames: DurationFrames;
+  framing: Framing;
+  id: Id6;
+  max_extensions?: MaxExtensions;
+  reference_key: ReferenceKey;
+  title: Title;
 }
 /**
  * This interface was referenced by `WebFlow`'s JSON-Schema
  * via the `definition` "FlowReference".
  */
 export interface FlowReference {
+  key?: Key;
   media: HashedFile;
+  review_note?: ReviewNote1;
   rights?: Rights;
+  starting_state?: FlowState | null;
   synthetic?: Synthetic;
-  title: Title;
+  title: Title1;
 }
 /**
  * This interface was referenced by `WebFlow`'s JSON-Schema
@@ -541,7 +577,7 @@ export interface FlowExport {
   diagnostic?: Diagnostic1;
   document_type?: DocumentType4;
   episode_id: EpisodeId1;
-  id: Id6;
+  id: Id7;
   inputs: FlowExportInputs;
   inputs_sha256: InputsSha256;
   output?: HashedFile | null;
@@ -557,7 +593,7 @@ export interface FlowExport {
  */
 export interface FlowExportInputs {
   audio_locks?: AudioLocks;
-  duration_frames: DurationFrames;
+  duration_frames: DurationFrames1;
   episode_id: EpisodeId2;
   episode_revision: EpisodeRevision;
   pipeline_sha256: PipelineSha256;
@@ -573,7 +609,7 @@ export interface FlowExportInputs {
  * via the `definition` "ResolvedAssetLock".
  */
 export interface ResolvedAssetLock {
-  id: Id7;
+  id: Id8;
   sha256: Sha2561;
   version: Version2;
 }
@@ -589,7 +625,7 @@ export interface OutputProfile {
   color_space: ColorSpace1;
   container: Container;
   fps: FrameRate;
-  id: Id8;
+  id: Id9;
   pixel_format: PixelFormat1;
   sample_rate?: SampleRate1;
   video_bitrate?: VideoBitrate;
@@ -614,7 +650,7 @@ export interface TrackPlacement {
   fade_in_samples?: FadeInSamples;
   fade_out_samples?: FadeOutSamples;
   gain_db?: GainDb;
-  id: Id9;
+  id: Id10;
   loop_crossfade_samples?: LoopCrossfadeSamples;
   loop_duration_samples?: LoopDurationSamples;
   release_id?: ReleaseId;

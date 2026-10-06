@@ -1,8 +1,18 @@
 # Active task index
 
-The current implementation queue is **F00–F13** in [the Flow plan](../tasks.md).
-One train/Tokyo/90-second workflow comes first. Implement and verify one step, then commit it.
+The current implementation queue is **S01–S04** in [the planned-shot workflow](../tasks.md).
+Build short shots from clean references and review deliberate camera cuts. Implement and verify
+one step, then commit it. The existing assisted handoff and saved videos remain supported.
 The archived P/T plans are historical and are not a second implementation queue.
+
+| Task | Outcome | Status |
+| --- | --- | --- |
+| [S01](../tasks.md#s01--define-compatible-shot-and-reference-contracts) | Define compatible shot contracts | complete |
+| [S02](../tasks.md#s02--generate-and-review-bounded-shots-from-clean-references) | Bound fresh shots, prompts and reviewed cuts | pending |
+| [S03](../tasks.md#s03--guide-reference-preparation-shot-generation-and-cut-review-in-the-app) | Guide the shot workflow in the app | pending |
+| [S04](../tasks.md#s04--verify-complete-shot-assembly-and-document-the-usable-workflow) | Verify full assembly and target-Mac UI | pending |
+
+## Previous implementation
 
 | Task | Outcome | Status |
 | --- | --- | --- |

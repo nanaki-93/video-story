@@ -125,8 +125,34 @@
     "FlowReference": {
       "additionalProperties": false,
       "properties": {
+        "key": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Key"
+        },
         "media": {
           "$ref": "#/$defs/HashedFile"
+        },
+        "review_note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Note"
         },
         "rights": {
           "default": "pending",
@@ -137,6 +163,17 @@
           ],
           "title": "Rights",
           "type": "string"
+        },
+        "starting_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FlowState"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "synthetic": {
           "default": false,

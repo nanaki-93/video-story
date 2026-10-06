@@ -8,7 +8,7 @@ export type Diagnostic = string | null;
 export type DocumentType = "flow_attempt";
 export type EpisodeId = string;
 export type Id1 = string;
-export type Mode = "text_reference" | "image_motion" | "extend";
+export type Mode = "text_reference" | "image_motion" | "extend" | "shot_start";
 export type ObservedCredits = number | null;
 export type ParentId = string | null;
 export type ParentSha256 = string | null;
@@ -23,8 +23,9 @@ export type RetryIndex = number;
 export type RetryReason = string | null;
 export type Revision = number;
 export type SchemaVersion = "1.0";
+export type ShotId = string | null;
 export type State = "prepared" | "awaiting_external" | "submitted" | "unknown" | "received" | "failed";
-export type TemplateVersion = "1";
+export type TemplateVersion = "1" | "2";
 
 export interface FlowAttempt {
   beat: FlowBeat;
@@ -47,6 +48,7 @@ export interface FlowAttempt {
   retry_reason?: RetryReason;
   revision?: Revision;
   schema_version: SchemaVersion;
+  shot_id?: ShotId;
   state: State;
   template_version?: TemplateVersion;
 }

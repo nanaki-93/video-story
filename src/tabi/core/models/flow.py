@@ -26,13 +26,7 @@ from .episode import TrackPlacement
 from .production import OutputProfile
 
 BeatKind = Literal["rest", "look", "pickup", "sip", "return_cup", "sway", "deep_breath", "district"]
-
-
-class FlowReference(Model):
-    title: Text
-    media: HashedFile
-    rights: Literal["pending", "confirmed", "not-permitted"] = "pending"
-    synthetic: bool = False
+Correction = Literal["particles", "mouth", "identity", "props", "motion", "action"]
 
 
 class FlowState(Model):
@@ -72,6 +66,43 @@ class FlowBeat(Model):
         return self
 
 
+class FlowReference(Model):
+    title: Text
+    media: HashedFile
+    rights: Literal["pending", "confirmed", "not-permitted"] = "pending"
+    synthetic: bool = False
+    key: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
+    starting_state: FlowState | None = Field(default=None, exclude_if=lambda value: value is None)
+    review_note: Text | None = Field(default=None, exclude_if=lambda value: value is None)
+
+    @model_validator(mode="after")
+    def reviewed_frame(self) -> Self:
+        if self.key is not None and (self.starting_state is None or self.review_note is None):
+            raise ValueError("a clean starting reference needs reviewed visible starting facts")
+        return self
+
+
+class FlowShot(Model):
+    id: Identifier
+    title: Text
+    reference_key: Identifier
+    framing: Literal["wide", "medium", "close"]
+    duration_frames: PositiveInt
+    max_extensions: Frame = Field(default=1, le=2)
+    beats: list[FlowBeat] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def routine(self) -> Self:
+        unique([beat.id for beat in self.beats], "shot beat IDs")
+        if self.beats[0].target_frame != 0 or any(
+            beat.target_frame >= self.duration_frames for beat in self.beats
+        ):
+            raise ValueError("shot routine starts at zero and stays inside its duration")
+        if self.beats != sorted(self.beats, key=lambda beat: beat.target_frame):
+            raise ValueError("shot beats must be ordered by local frame")
+        return self
+
+
 class FlowRecipe(Model):
     identity: Text = (
         "TABI, the pink-lavender axolotl in the supplied approved reference, "
@@ -89,10 +120,18 @@ class FlowRecipe(Model):
     fps: FrameRate = Field(default_factory=lambda: FrameRate(num=24, den=1))
     target_frames: PositiveInt = 2160
     beats: list[FlowBeat] = Field(default_factory=list)
+    shots: list[FlowShot] = Field(default_factory=list, exclude_if=lambda value: not value)
 
     @model_validator(mode="after")
     def settings(self) -> Self:
         unique([beat.id for beat in self.beats], "beat IDs")
+        if self.shots:
+            unique([shot.id for shot in self.shots], "shot IDs")
+            unique([b.id for s in self.shots for b in s.beats], "planned beat IDs")
+            if self.beats or self.opening_mode != "image_motion":
+                raise ValueError("planned shots use clean image openings and local shot beats")
+            if sum(s.duration_frames for s in self.shots) != self.target_frames:
+                raise ValueError("shot durations must cover the exact video target")
         if any(beat.target_frame >= self.target_frames for beat in self.beats):
             raise ValueError("beat must start inside the target video")
         if self.beats != sorted(self.beats, key=lambda beat: beat.target_frame):
@@ -114,6 +153,9 @@ class FlowLimits(Model):
     max_retries_per_beat: Frame = Field(default=1, le=3)
     max_attempts: PositiveInt = Field(default=30, le=100)
     allowance_checked_at: Text
+    estimated_start_credit: Frame | None = Field(
+        default=None, exclude_if=lambda value: value is None
+    )
 
     @model_validator(mode="after")
     def allowance(self) -> Self:
@@ -130,10 +172,12 @@ class FlowAttempt(DraftDocument):
     recipe_sha256: SHA256
     references_sha256: SHA256
     beat: FlowBeat
-    mode: Literal["text_reference", "image_motion", "extend"]
+    # parent is the editorial predecessor; only Extend sends it to the generator.
+    shot_id: Identifier | None = Field(default=None, exclude_if=lambda value: value is None)
+    mode: Literal["text_reference", "image_motion", "extend", "shot_start"]
     prompt: Text
     prompt_sha256: SHA256
-    template_version: Literal["1"] = "1"
+    template_version: Literal["1", "2"] = "1"
     state: Literal["prepared", "awaiting_external", "submitted", "unknown", "received", "failed"]
     reserved_credits: Frame
     observed_credits: Frame | None = None
@@ -147,8 +191,12 @@ class FlowAttempt(DraftDocument):
     def binding(self) -> Self:
         if (self.parent_id is None) != (self.parent_sha256 is None):
             raise ValueError("parent identity and hash must be provided together")
-        if (self.mode == "extend") != (self.parent_id is not None):
+        if self.mode != "shot_start" and ((self.mode == "extend") != (self.parent_id is not None)):
             raise ValueError("native continuation requires a parent; opening must have none")
+        if self.mode == "shot_start" and self.shot_id is None:
+            raise ValueError("a fresh shot requires its shot ID")
+        if self.shot_id is not None and self.mode not in {"shot_start", "extend"}:
+            raise ValueError("a planned shot must use its reference or extend within the shot")
         if hashlib.sha256(self.prompt.encode()).hexdigest() != self.prompt_sha256:
             raise ValueError("prompt hash does not match the submitted text")
         if self.retry_index and self.retry_reason is None:
@@ -175,6 +223,7 @@ class FlowCandidate(Model):
     review: Literal["pending", "accepted", "rejected"] = "pending"
     reviewed_sha256: SHA256 | None = None
     review_note: Text | None = None
+    retry_focus: Correction | None = Field(default=None, exclude_if=lambda value: value is None)
     observed_state: FlowState | None = None
     safe_end_frame: Frame | None = None
     review_packet: RelativePath | None = None
@@ -195,6 +244,8 @@ class FlowCandidate(Model):
             raise ValueError("review must bind the exact candidate content hash")
         if self.review != "pending" and self.review_note is None:
             raise ValueError("review requires a note")
+        if self.retry_focus is not None and self.review != "rejected":
+            raise ValueError("a correction belongs only to a rejected candidate")
         if self.review == "accepted" and (not self.technical_ok or self.observed_state is None):
             raise ValueError("acceptance requires technical verification and observed ending state")
         if self.safe_end_frame is not None and not (
@@ -228,6 +279,9 @@ class FlowEpisode(DraftDocument):
         unique(self.accepted_ids, "accepted IDs")
         attempts = {item.id: item for item in self.attempts}
         candidates = {item.id: item for item in self.candidates}
+        shots = {shot.id: shot for shot in self.recipe.shots}
+        keyed_refs = {ref.key: ref for ref in self.references if ref.key is not None}
+        unique([ref.key for ref in self.references if ref.key is not None], "reference keys")
         for attempt in self.attempts:
             if attempt.episode_id != self.id:
                 raise ValueError("attempt belongs to a different episode")
@@ -235,6 +289,16 @@ class FlowEpisode(DraftDocument):
                 parent = candidates.get(attempt.parent_id)
                 if parent is None or parent.media.sha256 != attempt.parent_sha256:
                     raise ValueError("attempt parent is missing or changed")
+            if bool(shots) != (attempt.shot_id is not None):
+                raise ValueError("attempt must identify its planned shot")
+            if attempt.shot_id is not None:
+                shot = shots.get(attempt.shot_id)
+                if shot is None or shot.reference_key not in keyed_refs:
+                    raise ValueError("attempt shot or clean reference is missing")
+                if attempt.mode == "extend":
+                    parent_attempt = attempts.get(candidates[attempt.parent_id].attempt_id)
+                    if parent_attempt is None or parent_attempt.shot_id != attempt.shot_id:
+                        raise ValueError("Extend cannot cross a camera cut")
         for candidate in self.candidates:
             attempt = attempts.get(candidate.attempt_id)
             if attempt is None or attempt.state != "received":
@@ -252,12 +316,28 @@ class FlowEpisode(DraftDocument):
                 path.add(parent_id)
                 parent_id = candidates[parent_id].parent_id
         previous = None
+        shot_index, shot_frames = 0, 0
         for key in self.accepted_ids:
             candidate = candidates.get(key)
             if candidate is None or candidate.review != "accepted":
                 raise ValueError("active branch requires accepted candidates")
             if candidate.parent_id != previous or candidate.fps != self.recipe.fps:
                 raise ValueError("active branch must be contiguous and use the recipe frame rate")
+            if self.recipe.shots:
+                if shot_index >= len(self.recipe.shots):
+                    raise ValueError("accepted footage exceeds the shot plan")
+                shot = self.recipe.shots[shot_index]
+                attempt = attempts[candidate.attempt_id]
+                if attempt.shot_id != shot.id or (shot_frames == 0) != (
+                    attempt.mode == "shot_start"
+                ):
+                    raise ValueError("active shots must start from their clean reference in order")
+                shot_frames += candidate.usable_frames
+                if shot_frames > shot.duration_frames:
+                    raise ValueError("accepted trim crosses the shot boundary")
+                if shot_frames == shot.duration_frames:
+                    shot_index += 1
+                    shot_frames = 0
             previous = key
         return self
 

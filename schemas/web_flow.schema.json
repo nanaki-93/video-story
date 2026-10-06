@@ -362,7 +362,8 @@
           "enum": [
             "text_reference",
             "image_motion",
-            "extend"
+            "extend",
+            "shot_start"
           ],
           "title": "Mode",
           "type": "string"
@@ -487,6 +488,19 @@
           "title": "Schema Version",
           "type": "string"
         },
+        "shot_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Shot Id"
+        },
         "state": {
           "enum": [
             "prepared",
@@ -500,8 +514,11 @@
           "type": "string"
         },
         "template_version": {
-          "const": "1",
           "default": "1",
+          "enum": [
+            "1",
+            "2"
+          ],
           "title": "Template Version",
           "type": "string"
         }
@@ -656,6 +673,26 @@
           ],
           "default": null,
           "title": "Preparation"
+        },
+        "retry_focus": {
+          "anyOf": [
+            {
+              "enum": [
+                "particles",
+                "mouth",
+                "identity",
+                "props",
+                "motion",
+                "action"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retry Focus"
         },
         "review": {
           "default": "pending",
@@ -1071,6 +1108,19 @@
           "title": "Estimated Credit Per Attempt",
           "type": "integer"
         },
+        "estimated_start_credit": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Estimated Start Credit"
+        },
         "max_attempts": {
           "default": 30,
           "exclusiveMinimum": 0,
@@ -1272,6 +1322,13 @@
           "title": "Setting",
           "type": "string"
         },
+        "shots": {
+          "items": {
+            "$ref": "#/$defs/FlowShot"
+          },
+          "title": "Shots",
+          "type": "array"
+        },
         "target_frames": {
           "default": 2160,
           "exclusiveMinimum": 0,
@@ -1285,8 +1342,34 @@
     "FlowReference": {
       "additionalProperties": false,
       "properties": {
+        "key": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Key"
+        },
         "media": {
           "$ref": "#/$defs/HashedFile"
+        },
+        "review_note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Note"
         },
         "rights": {
           "default": "pending",
@@ -1297,6 +1380,17 @@
           ],
           "title": "Rights",
           "type": "string"
+        },
+        "starting_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FlowState"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "synthetic": {
           "default": false,
@@ -1389,6 +1483,65 @@
         "observed_state"
       ],
       "title": "FlowSegment",
+      "type": "object"
+    },
+    "FlowShot": {
+      "additionalProperties": false,
+      "properties": {
+        "beats": {
+          "items": {
+            "$ref": "#/$defs/FlowBeat"
+          },
+          "minItems": 1,
+          "title": "Beats",
+          "type": "array"
+        },
+        "duration_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "framing": {
+          "enum": [
+            "wide",
+            "medium",
+            "close"
+          ],
+          "title": "Framing",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "max_extensions": {
+          "default": 1,
+          "maximum": 2,
+          "minimum": 0,
+          "title": "Max Extensions",
+          "type": "integer"
+        },
+        "reference_key": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Reference Key",
+          "type": "string"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "reference_key",
+        "framing",
+        "duration_frames",
+        "beats"
+      ],
+      "title": "FlowShot",
       "type": "object"
     },
     "FlowState": {

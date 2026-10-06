@@ -90,7 +90,8 @@
       "enum": [
         "text_reference",
         "image_motion",
-        "extend"
+        "extend",
+        "shot_start"
       ],
       "title": "Mode",
       "type": "string"
@@ -215,6 +216,19 @@
       "title": "Schema Version",
       "type": "string"
     },
+    "shot_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Shot Id"
+    },
     "state": {
       "enum": [
         "prepared",
@@ -228,8 +242,11 @@
       "type": "string"
     },
     "template_version": {
-      "const": "1",
       "default": "1",
+      "enum": [
+        "1",
+        "2"
+      ],
       "title": "Template Version",
       "type": "string"
     }

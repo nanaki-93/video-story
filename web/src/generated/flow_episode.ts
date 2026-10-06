@@ -9,7 +9,7 @@ export type Diagnostic = string | null;
 export type DocumentType = "flow_attempt";
 export type EpisodeId = string;
 export type Id1 = string;
-export type Mode = "text_reference" | "image_motion" | "extend";
+export type Mode = "text_reference" | "image_motion" | "extend" | "shot_start";
 export type ObservedCredits = number | null;
 export type ParentId = string | null;
 export type ParentSha256 = string | null;
@@ -24,8 +24,9 @@ export type RetryIndex = number;
 export type RetryReason = string | null;
 export type Revision = number;
 export type SchemaVersion = "1.0";
+export type ShotId = string | null;
 export type State = "prepared" | "awaiting_external" | "submitted" | "unknown" | "received" | "failed";
-export type TemplateVersion = "1";
+export type TemplateVersion = "1" | "2";
 export type Attempts = FlowAttempt[];
 export type AttemptId = string;
 export type Height = number;
@@ -49,6 +50,7 @@ export type Pose = "unknown" | "resting" | "watching" | "sipping";
 export type ParentId1 = string | null;
 export type ParentSha2561 = string | null;
 export type Preparation = string | null;
+export type RetryFocus = ("particles" | "mouth" | "identity" | "props" | "motion" | "action") | null;
 export type Review = "pending" | "accepted" | "rejected";
 export type ReviewNote = string | null;
 export type ReviewPacket = string | null;
@@ -64,6 +66,7 @@ export type Id3 = string;
 export type AllowanceCheckedAt = string;
 export type CreditCeiling = number;
 export type EstimatedCreditPerAttempt = number;
+export type EstimatedStartCredit = number | null;
 export type MaxAttempts = number;
 export type MaxRetriesPerBeat = number;
 export type RemainingAllowance = number;
@@ -77,14 +80,27 @@ export type OpeningMode = "text_reference" | "image_motion";
 export type Outfit = string;
 export type ProjectUrl = string | null;
 export type Setting = string;
+/**
+ * @minItems 1
+ */
+export type Beats1 = [FlowBeat, ...FlowBeat[]];
+export type DurationFrames = number;
+export type Framing = "wide" | "medium" | "close";
+export type Id4 = string;
+export type MaxExtensions = number;
+export type ReferenceKey = string;
+export type Title = string;
+export type Shots = FlowShot[];
 export type TargetFrames = number;
+export type Key = string | null;
+export type ReviewNote1 = string | null;
 export type Rights = "pending" | "confirmed" | "not-permitted";
 export type Synthetic = boolean;
-export type Title = string;
+export type Title1 = string;
 export type References = FlowReference[];
 export type Revision1 = number;
 export type SchemaVersion1 = "1.0";
-export type Title1 = string;
+export type Title2 = string;
 
 export interface FlowEpisode {
   accepted_ids?: AcceptedIds;
@@ -98,7 +114,7 @@ export interface FlowEpisode {
   references?: References;
   revision?: Revision1;
   schema_version: SchemaVersion1;
-  title: Title1;
+  title: Title2;
 }
 /**
  * This interface was referenced by `FlowEpisode`'s JSON-Schema
@@ -125,6 +141,7 @@ export interface FlowAttempt {
   retry_reason?: RetryReason;
   revision?: Revision;
   schema_version: SchemaVersion;
+  shot_id?: ShotId;
   state: State;
   template_version?: TemplateVersion;
 }
@@ -154,6 +171,7 @@ export interface FlowCandidate {
   parent_id: ParentId1;
   parent_sha256: ParentSha2561;
   preparation?: Preparation;
+  retry_focus?: RetryFocus;
   review?: Review;
   review_note?: ReviewNote;
   review_packet?: ReviewPacket;
@@ -228,6 +246,7 @@ export interface FlowLimits {
   allowance_checked_at: AllowanceCheckedAt;
   credit_ceiling: CreditCeiling;
   estimated_credit_per_attempt: EstimatedCreditPerAttempt;
+  estimated_start_credit?: EstimatedStartCredit;
   max_attempts?: MaxAttempts;
   max_retries_per_beat?: MaxRetriesPerBeat;
   remaining_allowance: RemainingAllowance;
@@ -247,15 +266,32 @@ export interface FlowRecipe {
   outfit?: Outfit;
   project_url?: ProjectUrl;
   setting?: Setting;
+  shots?: Shots;
   target_frames?: TargetFrames;
+}
+/**
+ * This interface was referenced by `FlowEpisode`'s JSON-Schema
+ * via the `definition` "FlowShot".
+ */
+export interface FlowShot {
+  beats: Beats1;
+  duration_frames: DurationFrames;
+  framing: Framing;
+  id: Id4;
+  max_extensions?: MaxExtensions;
+  reference_key: ReferenceKey;
+  title: Title;
 }
 /**
  * This interface was referenced by `FlowEpisode`'s JSON-Schema
  * via the `definition` "FlowReference".
  */
 export interface FlowReference {
+  key?: Key;
   media: HashedFile;
+  review_note?: ReviewNote1;
   rights?: Rights;
+  starting_state?: FlowState | null;
   synthetic?: Synthetic;
-  title: Title;
+  title: Title1;
 }

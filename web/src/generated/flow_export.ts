@@ -28,19 +28,13 @@ export type SampleRate = 48000;
 export type VideoBitrate = number | null;
 export type VideoCodec = string;
 export type RecipeSha256 = string;
+export type Key = string | null;
 export type Path = string;
 export type RootId = string;
 export type Sha2561 = string;
 export type SizeBytes = number;
+export type ReviewNote = string | null;
 export type Rights = "pending" | "confirmed" | "not-permitted";
-export type Synthetic = boolean;
-export type Title = string;
-export type References = FlowReference[];
-/**
- * @minItems 1
- */
-export type Segments = [FlowSegment, ...FlowSegment[]];
-export type CandidateId = string;
 export type CupKind = "unknown" | "none" | "takeaway" | "ceramic";
 export type CupPosition = "unknown" | "table" | "held";
 export type District = string;
@@ -49,6 +43,14 @@ export type HasHandle = boolean | null;
 export type HasSaucer = boolean | null;
 export type Inventory = string[];
 export type Pose = "unknown" | "resting" | "watching" | "sipping";
+export type Synthetic = boolean;
+export type Title = string;
+export type References = FlowReference[];
+/**
+ * @minItems 1
+ */
+export type Segments = [FlowSegment, ...FlowSegment[]];
+export type CandidateId = string;
 export type EndFrame = number;
 export type StartFrame = number;
 export type ToolchainSha256 = string;
@@ -154,8 +156,11 @@ export interface FrameRate {
  * via the `definition` "FlowReference".
  */
 export interface FlowReference {
+  key?: Key;
   media: HashedFile;
+  review_note?: ReviewNote;
   rights?: Rights;
+  starting_state?: FlowState | null;
   synthetic?: Synthetic;
   title: Title;
 }
@@ -177,16 +182,6 @@ export interface MediaPath {
   root_id?: RootId;
 }
 /**
- * This interface was referenced by `FlowExport`'s JSON-Schema
- * via the `definition` "FlowSegment".
- */
-export interface FlowSegment {
-  candidate_id: CandidateId;
-  media: HashedFile;
-  observed_state: FlowState;
-  trim: FrameInterval;
-}
-/**
  * User-confirmed facts, independent of the recipe's intended appearance.
  *
  * This interface was referenced by `FlowExport`'s JSON-Schema
@@ -201,6 +196,16 @@ export interface FlowState {
   has_saucer?: HasSaucer;
   inventory?: Inventory;
   pose?: Pose;
+}
+/**
+ * This interface was referenced by `FlowExport`'s JSON-Schema
+ * via the `definition` "FlowSegment".
+ */
+export interface FlowSegment {
+  candidate_id: CandidateId;
+  media: HashedFile;
+  observed_state: FlowState;
+  trim: FrameInterval;
 }
 /**
  * This interface was referenced by `FlowExport`'s JSON-Schema
