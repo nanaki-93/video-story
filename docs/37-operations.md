@@ -50,6 +50,11 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
    across the cut. Reject visible dots, distorted gills/mouth, changing objects, freezes or an
    incomplete action. Choose one correction for Retry; the full note remains in history.
    A retry uses the same clean image or in-shot parent. The app never approves appearance.
+   **Keep a section of this clip** offers integer start/end frames (end exclusive). Choose
+   **Use this section**, then watch the rebuilt selected player and join before accepting.
+   The original remains available separately. A native continuation must retain its opening;
+   an early ending can be kept only when it completes the shot or video, so Extend cannot
+   silently continue from a different, discarded parent ending.
 6. **Finish:** keep silent or import/select a local WAV. A longer master needs the explicit
    first-video-length trim confirmation; a short master is not automatically looped. Export
    and watch the complete verified draft. Output preserves the measured picture resolution
@@ -64,9 +69,29 @@ keeps all three cup actions together. Gentle breathing is prompted between actio
 counts actual reviewed frames; it never loops old footage or pads a freeze to fill a duration.
 
 Stop saves progress; reopening resumes the same attempt. Reconcile an unknown Flow result
-before submitting again. If retry, extension or credit limits stop progress, retain the evidence
-and return to a previously accepted clip or start a fresh variation. Do not label a short
-accepted run as a finished 90-second video.
+before submitting again. During the real trial, Flow sometimes showed “Prompt must be provided”
+while its first Extend was actually generating. Wait for a definitive result and inspect the
+saved scene before submitting again; the app cannot see duplicate requests made in Flow.
+
+At a retry limit, **Raise retry limit** allows one more correction per action, up to three,
+if the next request fits the existing credit and attempt caps. It does not generate or change
+the credit ceiling. For persistent drift within an idle partial shot, expand **Start this shot
+again** and restart from its clean image. Earlier completed shots stay active; all old takes,
+reviews and credit reservations remain in history. The new opening still counts as a retry.
+Unknown results and pending reviews must be resolved first. A changed cup may require restarting
+pickup, rather than repeatedly extending a sip with hidden prop drift. Confirmed handle-free
+cup actions now use both existing hands around the body and explicitly preserve the absent handle.
+
+If the hard retry, extension or credit limits still stop progress, retain the evidence and
+review the plan. Do not label a short accepted run as a finished 90-second video.
+
+The [U03 target-Mac trial](evidence/u03-tabi-app-trial.json) completed and downloaded a silent
+90-second draft through this path. It used 12 native clips, 24 app attempts and 1085 actual
+included credits, including 15 from earlier duplicate Flow submissions. All 2160 frames and
+timestamps were independently checked; the complete video played in Chrome. The closing
+breath now keeps seated hips, resting hands and unchanged clothing coverage. Generated acting
+and cup prints can still vary, and clean camera starts reset the exterior. Review these
+visually; this run does not establish automatic quality or 30-video monthly capacity.
 
 For another setting/outfit, use **New variation** and enter fresh allowance/cost observations.
 It copies stable settings and resets the review chain. Appearance changes clear references so

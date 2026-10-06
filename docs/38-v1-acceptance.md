@@ -1,5 +1,32 @@
 # V1 implementation and acceptance
 
+## Real app workflow trial — 7 October 2026
+
+[U03 evidence](evidence/u03-tabi-app-trial.json) records a complete real 90-second silent TABI
+Tokyo draft. Normal UI handled project/episode setup, references, compiled prompts, imports,
+clip and join review, corrections, partial-shot restart, export and download; Flow handled
+generation. No per-video service calls, project JSON edits, bespoke assembly, looping or
+freeze padding were used. U01/U02 added normal source-section controls; full native ranges
+were sufficient in this trial, so real partial trimming remains covered by separate media tests.
+
+The saved output has 2160 frames at 1280×720/24 fps, no audio, exact n/24 timestamps and verified
+source/reference/output hashes. All 36 sampled source-range comparisons pass; the maximum
+mean RGB difference is 1.998. Full Chrome playback reaches 90 seconds, and the UI-downloaded copy is
+hash-identical. Final gates pass 375 core, 75 actual-media and 8 frontend checks, 68 contracts,
+Ruff/schema checks and build/package. One optional private-media fixture is skipped.
+
+Twenty-four app attempts produced 12 active clips, 10 rejections and 2 accepted superseded
+clips. Actual Flow usage was 1085 included credits, reconciled as 1070 in the app plus 15 from
+three earlier duplicate submissions following misleading Flow errors. No new purchase was made.
+The revised drink uses both hands and returns a handle-free cup. The revised breath keeps
+the coat closed; a final white wisp was rejected and corrected through the same workflow.
+
+This closes the real full-length **draft workflow** gate. It does not grant final creative
+or publication approval. Broad facial/body acting, cup-print variation, two distinct framings
+and exterior resets across clean starts remain. Marco's review, source/music rights, a fresh
+setting/outfit, café/walking and representative human/monthly throughput remain open. Flow
+still requires a browser handoff; no supported unattended consumer connector was established.
+
 ## Planned-shot workflow — 6 October 2026
 
 S01–S04 implement **Setup → References → Shots → Finish** for new videos. Three clean image
@@ -20,12 +47,12 @@ used five fresh Veo 3.1 Quality takes and 500 included credits. Four full takes 
 hand, clothing or identity review. The 24-second and revised 20-second plans remain incomplete.
 A separate trimmed 14-second wide/close/wide sample exports through the app and passes all
 336-frame/timestamp checks, six boundary comparisons and Chrome playback. Range selection used
-the authenticated API; it is not yet available in the ordinary UI. No custom media repair was used.
+the authenticated API; U01/U02 later added it to the ordinary UI. No custom media repair was used.
 
 The sample has no obvious airborne dots in the inspected temporal samples, but fresh starts
 reset the exterior and pose changes remain. It does not demonstrate reliable breathing or a
-continuous panorama. A complete 90-second episode and variation, source rights, final creative
-approval and unattended/monthly throughput remain open. Browser Save-dialog delays are recorded
+continuous panorama. U03 above subsequently completes a 90-second draft; variation, source rights,
+final creative approval and unattended/monthly throughput remain open. Browser Save-dialog delays are recorded
 separately from app behavior; representative human effort is not yet measured.
 
 ## Flow workflow engineering acceptance — 6 October 2026

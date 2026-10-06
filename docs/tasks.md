@@ -181,7 +181,7 @@ Also run Ruff and the core/package gates; then review the real correction in U03
 
 ## U03 — Run the full 90-second journey through the app
 
-**Status** [ ]
+**Status** [x] — Real silent 90-second draft exported and downloaded through the normal app; all 2160 frames/PTS and 36 source-range comparisons pass, full Chrome playback reaches the end. Marco's final creative/publication approval remains open. See `docs/evidence/u03-tabi-app-trial.json`.
 
 **Target files**
 - `docs/evidence/u03-tabi-app-trial.json` (new) — actual UI steps, verified source/output paths, costs, provider boundaries and unresolved quality findings.
@@ -189,7 +189,7 @@ Also run Ruff and the core/package gates; then review the real correction in U03
 - `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — measured outcome and remaining generation dependency.
 
 **Inputs / dependencies**
-- U02–U02e. Marco confirmed: allow Flow for generation; everything else must use video-story.
+- U02–U02f. Marco confirmed: allow Flow for generation; everything else must use video-story.
 - Direct generation solely inside video-story is blocked on a supported consumer-Flow connector within the existing allowance. Official Flow Agent documentation does not establish this; Gemini video API pricing is separate. No new purchase is authorized.
 
 **Implementation rules**

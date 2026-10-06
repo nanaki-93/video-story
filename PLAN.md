@@ -21,6 +21,12 @@ selected correction; full rejection notes stay in history. Refresh and an unknow
 result do not create another generation request. This reduces inherited drift; it does not
 guarantee clean mouths, stable gills, props or particle-free footage.
 
+Review plays the selected source section, with optional frame controls and the complete original
+kept separately. Recovery can raise the per-action retry allowance within the existing maximum
+and budget, or restart only the current partial shot from its clean image. Earlier completed
+shots and all attempt evidence remain saved. Handle-free cup actions explicitly use both hands
+around the same cup body; generated prop consistency still requires visual review.
+
 The default timeline is 0–15s settle, 15–30s watch, 30–52s pickup/sip/return, 52–60s sway,
 60–75s watch and 75–90s deep breath. Drink gets three separate clips so the cup returns before
 the next camera cut. Every boundary needs completed actions and compatible visible cup/hand
@@ -34,6 +40,12 @@ enter the existing YouTube delivery review and public/private bundle workflow.
 records full-length engineering verification and target-Mac UI observations. A synthetic
 90-second video verifies software behavior, not TABI likeness or release approval.
 
+The [U03 real app trial](docs/evidence/u03-tabi-app-trial.json) now completes a silent 90-second
+TABI Tokyo draft using normal UI for every step except Flow generation. It verifies 2160 real
+frames, exact timing and complete Chrome playback. Twelve native clips survived 24 app attempts;
+actual usage was 1085 included credits. Two-hand drinking and the closed-coat breath improved,
+while acting, cup-print variation and panorama resets still need creative review.
+
 ## Remaining production gates
 
 Marco wants almost entirely automatic preparation for 30 × 90-second videos per month, with
@@ -42,8 +54,8 @@ new combinations and some new assets each time. That full target remains unquali
 - No supported external consumer Flow connector, unattended native continuation or enforceable
   account-wide spending cap was established in [F00](docs/evidence/f00-flow-execution.json).
   The installed app does not include this chat's browser automation.
-- A real 90-second episode and a fresh setting/outfit variation still need full visual/listening
-  review, measured rejected generations, credits and human effort through the guided workflow.
+- The real U03 draft still needs Marco's final visual review and later listening review. A fresh
+  setting/outfit variation and representative human effort remain unmeasured through the workflow.
   Café and walking require separate creative trials.
 - Source art, original music, exact provider/model commercial terms, disclosure and release
   metadata need current evidence. Commercial output permission does not guarantee YouTube

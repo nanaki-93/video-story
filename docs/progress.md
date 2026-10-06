@@ -1,6 +1,36 @@
 # Current progress
 
-Updated 6 October 2026 (Asia/Manila).
+Updated 7 October 2026 (Asia/Manila).
+
+## U03 — Real 90-second video completed through the app
+
+The normal app exported and downloaded **TABI Tokyo — full 90s app test**, a silent 1280×720,
+24 fps draft. Flow handled generation; all setup, reference imports, prompts, clip imports,
+reviews, retries, shot restart and export used the UI. No per-video API/JSON edits or custom
+assembly were used. The source clips were not repeated or padded to reach the target.
+
+Twelve native clips form 2160 frames. The 24 app attempts retain ten rejections and two
+superseded accepted takes. Actual account usage is 1085 included credits: 1070 in the app ledger
+and 15 from earlier duplicate Lite submissions after misleading Flow errors. The original 1300
+ceiling was preserved, with no top-up, new subscription or paid API. The final account balance
+was 22849. This debugging trial does not establish a monthly production rate.
+
+Two-hand pickup/sip/return now ends with a handle-free cup. Two breaths that opened the coat
+were rejected; U02f's seated breath keeps it closed. A white tail-side wisp in the last
+continuation was rejected and corrected. Minor cup-print changes, broad facial/body acting,
+two distinct framings and exterior resets at camera cuts remain visible creative limits.
+
+Independent verification passes full decode, every frame timestamp, source/reference/output
+hashes and 36 first/middle/last source-range comparisons (maximum mean RGB difference 1.998).
+Chrome played 0–90 seconds to the end; the app-downloaded copy has the same hash. Final gates: 375 core,
+75 actual-media and 8 frontend passes, 68 contracts, Ruff, schema, build and package checks.
+One optional private-media test is skipped. See [the complete evidence](evidence/u03-tabi-app-trial.json)
+and [app screenshot](evidence/u03-tabi-app-trial.jpg).
+
+Local named draft: `.local/tabi-camera-trial/full-90s/TABI-Tokyo-90s-APP-DRAFT.mp4`.
+Marco's final creative approval, source rights/music/publication review, variation and
+unattended/monthly throughput remain open. All accepted ranges here were full native clips;
+partial UI trimming is implemented and tested separately, not claimed as exercised in U03.
 
 ## U02f — Constrain the closing breath
 

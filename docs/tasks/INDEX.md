@@ -1,6 +1,7 @@
 # Active task index
 
-The current implementation queue is **U01–U03** in [the app workflow trial](../tasks.md).
+The **U01–U03** [app workflow trial](../tasks.md) is complete as a real silent draft.
+Marco's final creative approval and the production gates below remain open.
 Marco permits Flow for generation; setup, trimming, review and export must use video-story.
 Implement and verify one step, then commit it. Preserve existing projects and source media.
 
@@ -14,7 +15,7 @@ Implement and verify one step, then commit it. Preserve existing projects and so
 | U02d | Keep both hands around the confirmed handle-free cup | complete; 30 focused checks pass |
 | U02e | Restart only the current partial shot from its clean image | complete; 35 focused checks and frontend/build pass |
 | U02f | Keep the closing breath seated with unchanged clothing coverage | complete; 36 focused checks and core/package pass |
-| U03 | Full 90-second real TABI app workflow | active |
+| U03 | Full 90-second real TABI app workflow | complete draft; 2160 real frames and full playback verified |
 
 S01–S04 planned-shot engineering is complete. Its actual creative limits remain recorded below.
 
@@ -39,14 +40,28 @@ S01–S04 planned-shot engineering is complete. Its actual creative limits remai
 
 ## Remaining acceptance
 
+The [U03 real app trial](../evidence/u03-tabi-app-trial.json) completed a 90-second silent
+train draft through Setup, References, Shots, Finish and Download. Twelve native clips are
+active; 24 app attempts include ten rejections and two superseded accepted takes. Actual Flow
+usage was 1085 included credits (1070 app ledger plus 15 earlier duplicate submissions).
+No custom assembly, looping, padding, new subscription or credit purchase was used. Exact
+frames/PTS, all hashes and 36 source-range comparisons pass; full Chrome playback reaches 90 seconds.
+The app now exposes source-section controls, bounded retry recovery and partial-shot restart.
+The real trial used complete native ranges; partial trimming has separate actual-media tests.
+
+Remaining creative limits include broad facial/body acting, minor cup-print changes, two
+visibly distinct framings instead of three, and exterior resets at fresh camera cuts. The
+closed-coat breath and corrected handle-free drinking are draft evidence, not deterministic
+generation quality. Marco's final visual approval and a fresh setting/outfit trial remain open.
+
 The [planned-shot evidence](../evidence/s04-planned-shots.json) verifies six independent clean
 starts, bounded in-shot extensions, camera-cut review, retry/reopen, exact 90-second assembly
 and Chrome playback. S01–S04 engineering is complete. The [real TABI camera trial](../evidence/s04-tabi-camera-trial.json)
 used five fresh takes and 500 included credits; four full takes failed creative review. It produced
 a verified 14-second trimmed camera sample, while the original 24-second and revised 20-second
 plans remain incomplete. The short sample does not prove dots eliminated, reliable breathing or
-a continuously progressing panorama. Its range imports required the existing API; a simple UI
-for retaining a good section is still missing. Full 90-second creative review remains open.
+a continuously progressing panorama. Its historical range imports required the API; U01/U02
+subsequently added ordinary UI controls. U03 above supersedes its incomplete full-length trial.
 
 The guided assisted workflow is implemented. [F12 evidence](../evidence/f12-flow-workflow.json)
 separates the synthetic 90-second authenticated service run, the short fresh UI journey and
@@ -56,8 +71,8 @@ The [real Tokyo trial](../evidence/f12-tokyo-real-trial.json) preserves a 90-sec
 blocked at 22 accepted seconds after a failed correction. A separate 22-second preview is
 verified and playable through Finish; real full-length acceptance remains open.
 
-- Review one real 90-second train episode and a fresh setting/outfit variation through the app,
-  recording rejects, credits and human effort. Café and walking remain separate trials.
+- Obtain Marco's creative review of the real U03 train draft; run a fresh setting/outfit
+  variation and measure representative human effort. Café and walking remain separate trials.
 - Qualify source artwork/music, exact provider/model commercial terms, disclosure and the
   final picture/sound before publication. No fixture or old comparison grants that approval.
 - Direct unattended Flow control and the target of 30 videos monthly remain unqualified.
