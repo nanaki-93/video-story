@@ -6,7 +6,7 @@ from uuid import uuid4
 
 from ..assets.probe import probe_media
 from ..assets.service import digest_file
-from ..models.base import Crop, HashedFile, MediaPath
+from ..models.base import Crop, FrameInterval, HashedFile, MediaPath
 from ..process import run_tool
 from .service import FlowError, updated
 from .shots import remaining_frames
@@ -31,11 +31,23 @@ class FlowReview:
     def __init__(self, service, settings):
         self.service, self.settings = service, settings
 
-    def prepare(self, episode_id, candidate_id, *, revision: int, window: Crop | None = None):
+    def prepare(
+        self,
+        episode_id,
+        candidate_id,
+        *,
+        revision: int,
+        window: Crop | None = None,
+        trim: FrameInterval | None = None,
+        media_sha256: str | None = None,
+    ):
         episode = self.service.get(episode_id)
         if episode.revision != revision:
             raise FlowError("Video changed; reload its review.")
         candidate = self.service.candidate(episode, candidate_id)
+        if trim is not None:
+            self._validate_section(episode, candidate, trim, media_sha256)
+            candidate = updated(candidate, trim=trim, review_packet=None)
         path = self.service.verify_file(candidate.media)
         probe = probe_media(
             [path], "video", fps=None, ffmpeg=self.settings.ffmpeg, ffprobe=self.settings.ffprobe
@@ -61,6 +73,47 @@ class FlowReview:
             pass
         root = self.service.store.root / folder
         first, end = candidate.trim.start_frame, candidate.trim.end_frame
+        selected = candidate.media.model_dump(mode="json")
+        if first != 0 or end != candidate.frame_count:
+            selected_path = root / "selected.mp4"
+            run_tool(
+                [
+                    self.settings.ffmpeg,
+                    "-v",
+                    "error",
+                    "-xerror",
+                    "-nostdin",
+                    "-protocol_whitelist",
+                    "file,pipe",
+                    "-i",
+                    str(path),
+                    "-vf",
+                    f"trim=start_frame={first}:end_frame={end},setpts=PTS-STARTPTS",
+                    "-an",
+                    "-c:v",
+                    "libx264",
+                    "-pix_fmt",
+                    "yuv420p",
+                    "-movflags",
+                    "+faststart",
+                    str(selected_path),
+                ],
+                timeout=300,
+            )
+            selected_probe = probe_media(
+                [selected_path],
+                "video",
+                fps=None,
+                ffmpeg=self.settings.ffmpeg,
+                ffprobe=self.settings.ffprobe,
+            )
+            if (selected_probe.frame_count, selected_probe.fps, selected_probe.canvas) != (
+                end - first,
+                candidate.fps,
+                candidate.canvas,
+            ):
+                raise FlowError("Selected preview does not match the requested section.")
+            selected = self._record(selected_path, f"{folder}/selected.mp4")
         samples = sorted(
             {
                 first,
@@ -169,6 +222,8 @@ class FlowReview:
             "episode_id": episode.id,
             "candidate_id": candidate.id,
             "candidate_sha256": candidate.media.sha256,
+            "candidate_trim": candidate.trim.model_dump(mode="json"),
+            "selected_video": selected,
             "parent_sha256": candidate.parent_sha256,
             "reference_hashes": [item.media.sha256 for item in episode.references],
             "images": images,
@@ -220,9 +275,34 @@ class FlowReview:
         if not candidate.review_packet:
             raise FlowError("Prepare the clip review first.")
         packet = json.loads(self.service.store._read_bytes(candidate.review_packet))
-        if packet["candidate_sha256"] != candidate.media.sha256:
+        if packet["candidate_sha256"] != candidate.media.sha256 or (
+            "candidate_trim" in packet
+            and packet["candidate_trim"] != candidate.trim.model_dump(mode="json")
+            and candidate.review == "pending"
+        ):
             raise FlowError("Review packet is stale.")
         return packet
+
+    @staticmethod
+    def _validate_section(episode, candidate, trim, media_sha256):
+        if candidate.review != "pending" or candidate.media.sha256 != media_sha256:
+            raise FlowError("Section is stale or this clip has already been reviewed.")
+        parent = episode.accepted_ids[-1] if episode.accepted_ids else None
+        if candidate.parent_id != parent:
+            raise FlowError("This clip belongs to an old branch; reload the active clip.")
+        if trim.end_frame > candidate.frame_count:
+            raise FlowError("Section exceeds the decoded source frames.")
+        attempt = next(a for a in episode.attempts if a.id == candidate.attempt_id)
+        if attempt.mode == "extend" and trim.start_frame != candidate.trim.start_frame:
+            raise FlowError("Keep the opening of a continuation to preserve its join.")
+        if (
+            trim.end_frame < candidate.frame_count
+            and trim.end_frame - trim.start_frame < remaining_frames(episode)
+        ):
+            raise FlowError(
+                "Keep the source ending while this shot still needs an extension. "
+                "An early ending is available when the section completes the shot."
+            )
 
     def _record(self, path, relative):
         digest, size = digest_file(path)

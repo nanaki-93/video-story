@@ -1,3 +1,84 @@
+# App-only review and full TABI workflow trial
+
+Make the existing Flow workflow usable without per-video API calls, JSON edits or render
+scripts. Keep generation honestly identified as assisted until a supported connector using
+the existing entitlement is established; do not substitute a paid API or private endpoint.
+The previous S/F/P/T task bodies below remain implementation history.
+
+## U01 — Select and verify a usable clip section
+
+**Status** [x] Seven focused unit/media checks pass, including the complete synthetic 90-second shot workflow. Section rendering, atomic failure recovery, original preservation and continuation safeguards verified.
+
+**Target files**
+- `src/tabi/core/flow/review.py` — prepare a frame-exact section preview and fresh evidence atomically for an unreviewed candidate.
+- `src/tabi/core/flow/service.py` — verify new range-bound packets while keeping old evidence readable.
+- `tests/integration/test_flow_review_media.py` — verify rendered section frames, immutable originals, stale edits, reviewed-clip refusal and recovery after a failed prepare.
+- `tests/unit/test_flow_review.py` — range boundary validation where no media is needed.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — record the active queue and verified behavior.
+
+**Inputs / dependencies**
+- S04 real trial: usable source ranges required the API; the normal player showed excluded footage.
+
+**Implementation rules**
+- Python owns integer frame intervals. Only pending candidates in the active branch may change; stale revision/hash requests fail.
+- Keep original media and immutable history. Rebuild selected playback, sample images and join together before publishing the draft revision; a failed render leaves the old candidate unchanged.
+- Bind new packets to source hash and selected range. Preserve legacy packet compatibility.
+- An in-shot continuation cannot discard its opening. An early ending cannot become a native Extend parent unless the selected section finishes the shot/video. Never loop or pad to reach the target.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/unit/test_flow_review.py tests/integration/test_flow_review_media.py tests/integration/test_flow_shot_workflow.py`
+
+## U02 — Expose section review in the normal app
+
+**Status** [ ]
+
+**Target files**
+- `src/tabi/api/contracts.py`, `src/tabi/api/flow.py` — authenticated section preparation using the U01 service, selected playback and clear source/frame bounds.
+- `web/src/flow.ts` — simple optional section controls; the main review player shows the selected footage, and original footage stays available separately.
+- `tests/unit/test_flow_shot_api.py` — authenticated range requests, stale/foreign media checks and selected-preview transport.
+- `schemas/web_flow.schema.json`, `web/src/generated/web_flow.ts`, `web/src/generated/validators.cjs` — generated affected contracts.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — verification evidence.
+
+**Inputs / dependencies**
+- U01; reuse local uploads, session security, existing review and Finish services.
+
+**Implementation rules**
+- Start with the whole clip. Let the user adjust start/end frames and rebuild the review before accepting. Show seconds as presentation only; Python owns range validity and preview rendering.
+- Clear unsaved review confirmations on a range change. Never silently accept, shorten the 90-second target, modify approved clips or reserve extra provider credits for local trimming.
+- Keep the source filename/hash and actual provider model attached. No mock generation button or claimed Flow account connection.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_shot_api.py tests/unit/test_web_flow_contracts.py`
+
+Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `make web-build` with the local offline uv cache.
+
+## U03 — Run the full 90-second journey through the app
+
+**Status** [ ]
+
+**Target files**
+- `docs/evidence/u03-tabi-app-trial.json` (new) — actual UI steps, verified source/output paths, costs, provider boundaries and unresolved quality findings.
+- `docs/evidence/u03-tabi-app-trial.jpg` (new) — target-Mac app screenshot.
+- `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — measured outcome and remaining generation dependency.
+
+**Inputs / dependencies**
+- U02. Marco confirmed: allow Flow for generation; everything else must use video-story.
+- Direct generation solely inside video-story is blocked on a supported consumer-Flow connector within the existing allowance. Official Flow Agent documentation does not establish this; Gemini video API pricing is separate. No new purchase is authorized.
+
+**Implementation rules**
+- Use normal UI for project/episode setup, references, generation handoff, import, section selection, review and export. Tools may inspect output independently; no per-video API or JSON shortcuts to produce it.
+- Keep the full 2160-frame target. A shorter salvage or repeated/padded footage cannot pass this test.
+- Check current allowance and hosted-model terms before new generation; preserve exact prompts, source identities, actual model and rejected takes. Silent visual draft; music and publication remain deferred.
+- Record a concrete blocker if the required generation mode or creative quality cannot be qualified. Do not mark this task complete just because a synthetic render passed.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml make check web-check web-build package test-media`
+
+Also exercise the target-Mac UI, inspect every accepted clip and join, play the full export,
+and independently verify all 2160 decoded frames/PTS and the frozen input ranges.
+
+---
+
 # Planned shots with clean starting references
 
 Active implementation queue: S01–S04. Build a 90-second train story from independently started

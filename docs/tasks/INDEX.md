@@ -1,16 +1,16 @@
 # Active task index
 
-The current implementation queue is **S01–S04** in [the planned-shot workflow](../tasks.md).
-Build short shots from clean references and review deliberate camera cuts. Implement and verify
-one step, then commit it. The existing assisted handoff and saved videos remain supported.
-The archived P/T plans are historical and are not a second implementation queue.
+The current implementation queue is **U01–U03** in [the app workflow trial](../tasks.md).
+Marco permits Flow for generation; setup, trimming, review and export must use video-story.
+Implement and verify one step, then commit it. Preserve existing projects and source media.
 
 | Task | Outcome | Status |
 | --- | --- | --- |
-| [S01](../tasks.md#s01--define-compatible-shot-and-reference-contracts) | Define compatible shot contracts | complete |
-| [S02](../tasks.md#s02--generate-and-review-bounded-shots-from-clean-references) | Bound fresh shots, prompts and reviewed cuts | complete |
-| [S03](../tasks.md#s03--guide-reference-preparation-shot-generation-and-cut-review-in-the-app) | Guide the shot workflow in the app | complete |
-| [S04](../tasks.md#s04--verify-complete-shot-assembly-and-document-the-usable-workflow) | Verify full assembly and target-Mac UI | complete; real creative/control gates open |
+| U01 | Frame-exact pending clip sections and matching review playback | complete; seven focused checks pass |
+| U02 | Normal UI section controls and authenticated preview | next |
+| U03 | Full 90-second real TABI app workflow | pending U02 |
+
+S01–S04 planned-shot engineering is complete. Its actual creative limits remain recorded below.
 
 ## Previous implementation
 

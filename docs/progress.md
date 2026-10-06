@@ -2,6 +2,16 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U01 — Frame-exact clip sections without changing sources
+
+6 October 2026. Pending clips can now prepare a selected section with matching playback,
+samples and join evidence. Preparation publishes atomically after media succeeds; stale edits,
+reviewed clips and unsafe native-extension boundaries are refused. New review packets bind the
+selected range and preview hash, while previous packets remain readable. Seven focused checks
+pass, including actual section-frame comparisons, failed-render recovery and the full synthetic
+90-second shot workflow. The worker test required an unsandboxed owned-loopback launch after
+the sandbox refused its readiness handshake. Normal UI controls are U02; no new generation yet.
+
 ## S04 — Real TABI camera trial: creative gate remains open
 
 6 October 2026. Generated two clean wide/close references with Nano Banana 2 and five native

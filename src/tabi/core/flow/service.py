@@ -219,12 +219,18 @@ class FlowService:
                 or packet.get("parent_sha256") != candidate.parent_sha256
                 or packet.get("reference_hashes")
                 != [item.media.sha256 for item in episode.references]
+                or (
+                    "candidate_trim" in packet
+                    and packet["candidate_trim"] != candidate.trim.model_dump(mode="json")
+                )
             ):
                 raise FlowError("review packet no longer matches the clip, parent or references")
             for image in packet["images"]:
                 self.verify_file(HashedFile.model_validate(image["media"]))
             if packet.get("join_video"):
                 self.verify_file(HashedFile.model_validate(packet["join_video"]))
+            if packet.get("selected_video"):
+                self.verify_file(HashedFile.model_validate(packet["selected_video"]))
         attempt = next(item for item in episode.attempts if item.id == candidate.attempt_id)
         if attempt.recipe_sha256 != content_hash(episode.recipe) or (
             attempt.references_sha256 != references_hash(episode)
