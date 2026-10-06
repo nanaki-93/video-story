@@ -217,6 +217,7 @@ export type CreditUnits = number;
 export type Message = string;
 export type NextRetryLimit = number | null;
 export type ParentId2 = string | null;
+export type RestartShotId = string | null;
 export type TargetFrames1 = number;
 export type ParentUrl = string | null;
 export type Framing1 = "wide" | "medium" | "close";
@@ -698,6 +699,7 @@ export interface FlowNext {
   message: Message;
   next_retry_limit?: NextRetryLimit;
   parent_id: ParentId2;
+  restart_shot_id?: RestartShotId;
   target_frames: TargetFrames1;
 }
 /**

@@ -89,9 +89,14 @@ class FlowRunner:
             "candidate_id": None,
             "beat": None,
             "next_retry_limit": None,
+            "restart_shot_id": None,
         }
 
         def result(action, message, **values):
+            if action in {"prepare", "needs_attention"}:
+                shot = current_shot(episode)
+                if shot and frames_in_shot(episode, shot):
+                    values["restart_shot_id"] = shot.id
             return {**base, "action": action, "message": message, **values}
 
         if episode.paused:
@@ -223,6 +228,22 @@ class FlowRunner:
             ),
             expected_revision=revision,
         )
+
+    def restart_shot(self, episode_id, revision):
+        episode = self.service.get(episode_id)
+        if revision != episode.revision:
+            raise FlowError("Video changed; reload its next action.")
+        shot_id = self.status(episode)["restart_shot_id"]
+        if shot_id is None:
+            raise FlowError("Only an idle partial shot can restart from its clean image.")
+        attempts = {item.id: item for item in episode.attempts}
+        parent_id = None
+        for identity in episode.accepted_ids:
+            candidate = self.service.candidate(episode, identity)
+            if attempts[candidate.attempt_id].shot_id == shot_id:
+                break
+            parent_id = identity
+        return self.service.branch_from(episode.id, parent_id, revision)
 
     def prepare(self, episode_id, revision):
         episode = self.service.get(episode_id)

@@ -201,6 +201,12 @@ def routes(runtime):
         FlowRunner(service).increase_retry_limit(identity, body.expected_revision)
         return view(handle, identity)
 
+    @router.post("/{identity}/restart-shot", response_model=WebFlow)
+    def restart_shot(handle: str, identity: str, body: FlowRevision):
+        _, service = services(handle)
+        FlowRunner(service).restart_shot(identity, body.expected_revision)
+        return view(handle, identity)
+
     @router.post("/{identity}/import", response_model=WebFlow)
     def import_result(handle: str, identity: str, body: FlowImport):
         item, service = services(handle)

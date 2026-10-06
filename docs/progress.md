@@ -2,6 +2,15 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U02e — Restart a partial shot without rebuilding the video
+
+The normal UI now offers “Start this shot again” for an idle partial planned shot. Python finds
+the prior completed-shot boundary and uses the existing branch service. Earlier shots remain
+active, all takes/reviews stay in history, and credit/attempt/retry limits remain unchanged.
+Unresolved results, pending review, pauses, empty shots and stale revisions cannot use it.
+Thirty-five core/API checks, eight frontend checks, 68 contracts, TypeScript, Ruff and build
+pass (one formatting correction). The restarted opening counts as a retry, not a new budget.
+
 ## U02d — Marco's two-hand cup instruction
 
 After four rejected cup returns, Marco requested both hands around the cup and an explicit

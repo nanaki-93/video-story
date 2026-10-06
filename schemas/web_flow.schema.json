@@ -1241,6 +1241,19 @@
           ],
           "title": "Parent Id"
         },
+        "restart_shot_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Restart Shot Id"
+        },
         "target_frames": {
           "minimum": 0,
           "title": "Target Frames",

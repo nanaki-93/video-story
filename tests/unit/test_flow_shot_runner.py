@@ -126,6 +126,57 @@ def test_default_plan_is_90_seconds_with_a_complete_drink_sequence():
     assert recipe.shots[2].max_extensions == 2
 
 
+def test_restart_partial_shot_keeps_earlier_shots_history_and_retry_accounting(tmp_path):
+    service, episode, runner = context(tmp_path)
+    episode = review(
+        service,
+        receipt(service, runner.prepare(episode.id, episode.revision), 12),
+        safe_end_frame=12,
+    )
+    first = episode.accepted_ids[:]
+    episode = review(service, receipt(service, runner.prepare(episode.id, episode.revision), 4))
+    previous = episode
+    assert runner.status(episode)["restart_shot_id"] == "close"
+    episode = runner.restart_shot(episode.id, episode.revision)
+    assert episode.accepted_ids == first and episode.accepted_frames == 12
+    assert episode.candidates == previous.candidates and episode.attempts == previous.attempts
+    assert episode.references == previous.references and episode.recipe == previous.recipe
+    assert episode.limits == previous.limits and credited_units(episode) == credited_units(previous)
+    assert runner.status(episode)["restart_shot_id"] is None
+    with pytest.raises(FlowError, match="changed"):
+        runner.restart_shot(episode.id, previous.revision)
+    episode = runner.prepare(episode.id, episode.revision)
+    attempt = episode.attempts[-1]
+    assert attempt.mode == "shot_start" and attempt.shot_id == "close" and attempt.retry_index == 1
+    assert attempt.parent_id == first[-1]
+    assert service.get(episode.id) == episode
+
+
+@pytest.mark.parametrize("state", ["empty", "paused", "awaiting_external", "unknown", "review"])
+def test_restart_shot_refuses_unresolved_work_and_empty_shots(tmp_path, state):
+    service, episode, runner = context(tmp_path)
+    if state != "empty":
+        episode = review(service, receipt(service, runner.prepare(episode.id, episode.revision), 4))
+    if state == "paused":
+        episode = runner.pause(episode.id, episode.revision)
+    elif state in {"awaiting_external", "unknown", "review"}:
+        episode = runner.prepare(episode.id, episode.revision)
+        if state == "unknown":
+            episode = runner.transition(
+                episode.id,
+                episode.attempts[-1].id,
+                revision=episode.revision,
+                state="unknown",
+                diagnostic="Unresolved remote result",
+            )
+        elif state == "review":
+            episode = receipt(service, episode, 4)
+    assert runner.status(episode)["restart_shot_id"] is None
+    with pytest.raises(FlowError, match="idle partial"):
+        runner.restart_shot(episode.id, episode.revision)
+    assert service.get(episode.id) == episode
+
+
 def test_changed_outfit_variation_requires_fresh_references(tmp_path):
     service, episode, _ = context(tmp_path)
     same = service.clone(episode.id, "Same journey")

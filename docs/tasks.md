@@ -136,7 +136,7 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 
 ## U02e — Restart a troubled shot from its clean image
 
-**Status** [ ]
+**Status** [x] Thirty-five focused core/API checks, eight frontend checks, 68 contracts, TypeScript, Ruff and production build pass. Preserved-history shot restart is available through the normal UI; U03 exercises the actual drink recovery.
 
 **Target files**
 - `src/tabi/core/flow/runner.py` — identify and restart the current partial shot through the existing preserved-history branching service.

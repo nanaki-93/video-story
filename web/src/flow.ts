@@ -791,6 +791,22 @@ export function flowPage(): Panel {
       );
       body.append(attention);
     }
+    if (step.restart_shot_id)
+      body.append(
+        details(
+          "Start this shot again",
+          element("p", {
+            text: "Keep earlier completed shots and restart this partial shot from its clean image. All previous takes stay in history. Credit and retry limits remain unchanged.",
+          }),
+          button(
+            "Restart this shot from its clean image",
+            () =>
+              void change("/restart-shot", {
+                expected_revision: episode.revision,
+              }),
+          ),
+        ),
+      );
     for (const exportItem of view.exports || []) {
       const box = section(
         `Video export · ${exportItem.state}`,

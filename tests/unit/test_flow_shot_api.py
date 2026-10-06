@@ -207,6 +207,46 @@ def test_retry_limit_recovery_is_explicit_authenticated_and_preserves_attempts(
     assert client.get(path).json()["episode"] == current["episode"]
 
 
+def test_restart_shot_route_preserves_sources_and_requires_current_authenticated_state(
+    workspace, monkeypatch
+):
+    service, client, headers, path, view = create(workspace, monkeypatch)
+    for _ in range(3):
+        view = upload(client, headers, path, view)
+    episode = service.get(view["episode"]["id"])
+    runner = FlowRunner(service)
+    episode = receipt(service, runner.prepare(episode.id, episode.revision), frames=192)
+    candidate = episode.candidates[-1]
+    episode = service.review(
+        episode.id,
+        candidate.id,
+        revision=episode.revision,
+        media_sha256=candidate.media.sha256,
+        decision="accepted",
+        note="Unit fixture only",
+        observed_state=facts(),
+    )
+    assert client.get(path).json()["next_step"]["restart_shot_id"] == "settle"
+    body = {"expected_revision": episode.revision}
+    route = path + "/restart-shot"
+    assert client.post(route, json=body).status_code == 403
+    response = client.post(route, json=body, headers=headers)
+    assert response.status_code == 200, response.text
+    current = response.json()
+    assert not current["episode"]["accepted_ids"]
+    assert current["next_step"]["action"] == "prepare"
+    assert current["next_step"]["restart_shot_id"] is None
+    for field in ("candidates", "attempts", "limits", "recipe", "references"):
+        assert current["episode"][field] == episode.model_dump(mode="json")[field]
+    assert client.post(route, json=body, headers=headers).status_code == 400
+    assert (
+        client.post(
+            route, json={"expected_revision": current["episode"]["revision"]}, headers=headers
+        ).status_code
+        == 400
+    )
+
+
 def test_section_controls_keep_source_and_selected_playback_distinct(workspace, monkeypatch):
     service, client, headers, path, view = create(workspace, monkeypatch)
     for _ in range(3):
