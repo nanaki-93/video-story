@@ -92,7 +92,7 @@ CORRECTIONS = {
 }
 
 
-def correction_text(focus, reason, beat):
+def correction_text(focus, reason, beat, state):
     if focus is None:
         # Older rejection notes have no selected focus. Do not send their paragraphs to Flow.
         text = (reason or "").lower()
@@ -115,6 +115,18 @@ def correction_text(focus, reason, beat):
             "During the sip, the lips meet the rim naturally and return to the same resting "
             "shape as the cup lowers."
         )
+    if focus == "props" and beat.kind in {"pickup", "sip", "return_cup"}:
+        cup = f"{state.cup_kind} cup" if state.cup_kind in {"takeaway", "ceramic"} else "cup"
+        if state.has_handle is False:
+            cup = "handle-free " + cup
+        elif state.has_handle is True:
+            cup = "handled " + cup
+        correction = f"The same {cup} keeps its original rigid shape and markings throughout."
+        if state.has_saucer is True:
+            correction += " Its existing saucer stays in place."
+        elif state.has_saucer is False:
+            correction += " The table keeps its original saucer-free arrangement."
+        return correction
     return CORRECTIONS[focus]
 
 
@@ -173,7 +185,7 @@ def compile_prompt(
         ]
     )
     if retry_reason or retry_focus:
-        prompt += " " + correction_text(retry_focus, retry_reason, beat)
+        prompt += " " + correction_text(retry_focus, retry_reason, beat, state)
     if override:
         if (not state.has_handle and re.search(r"(?:grip|hold|grab).*handle", override, re.I)) or (
             not state.has_saucer and re.search(r"(?:on|empty|matching).*saucer", override, re.I)

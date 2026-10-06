@@ -71,6 +71,50 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 **Verification command**
 `UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_prompts.py tests/unit/test_flow_shot_runner.py`
 
+## U02b — Use confirmed cup facts in a prop correction
+
+**Status** [x] Twenty-one focused prompt/runner checks pass. Cup-action corrections use confirmed type/handle/saucer facts and preserve unknowns, unrelated actions and immutable saved prompts.
+
+**Target files**
+- `src/tabi/core/flow/prompts.py` — focus cup-action retries on the confirmed cup kind and handle/saucer facts.
+- `tests/unit/test_flow_prompts.py` — cover known and unknown facts without repeating the entire inventory or replacing the action.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — record the two rejected cup returns and verified correction behavior.
+
+**Inputs / dependencies**
+- U02a. At 45 accepted seconds, both return takes changed the handle-free takeaway cup into a handled cup. The generic rigid-object correction omitted facts already confirmed in the app.
+
+**Implementation rules**
+- Add only known cup facts for pickup, sip or return corrections. Unknown handle/saucer facts stay unknown; unrelated actions retain the generic prop correction.
+- Preserve existing saved prompts, hashes, accepted parents and reviews. No new provider or generation is part of this implementation step.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_prompts.py tests/unit/test_flow_shot_runner.py`
+
+## U02c — Recover from a retry limit without losing accepted footage
+
+**Status** [ ]
+
+**Target files**
+- `src/tabi/core/flow/runner.py` — expose and apply an explicit one-step retry-limit increase, within the existing hard maximum and unchanged global caps.
+- `src/tabi/api/contracts.py`, `src/tabi/api/flow.py` — typed next-action metadata and revision-guarded authenticated recovery route.
+- `web/src/flow.ts` — one recovery button when Python permits it; explain that the credit ceiling remains unchanged.
+- `tests/unit/test_flow_runner.py`, `tests/unit/test_flow_shot_api.py` — preserve accepted history and parent identity; refuse stale, unresolved, budget-exhausted and hard-limit changes.
+- `schemas/web_flow.schema.json`, `web/src/generated/web_flow.ts`, `web/src/generated/validators.cjs` — regenerated affected transport contracts.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — verified recovery and remaining real-media gate.
+
+**Inputs / dependencies**
+- U02b. U03 reaches the default one-retry limit with 45 seconds accepted; the current UI offers only backtracking or a new video.
+
+**Implementation rules**
+- Increase the configured per-action retry allowance by exactly one, at most three. Keep the episode, recipe, references, accepted footage, immutable attempts, max-attempt limit and credit ceiling.
+- Offer recovery only when the next request would otherwise be valid and fit the existing budget. Do not bypass unknown provider results, pending review or paused state.
+- Save the changed limit atomically; do not reserve credits or submit a generation. Preparing the next prompt remains a separate explicit action.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_runner.py tests/unit/test_flow_shot_api.py tests/unit/test_web_flow_contracts.py`
+
+Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `make web-build` with the local offline uv cache.
+
 ## U03 — Run the full 90-second journey through the app
 
 **Status** [ ]
@@ -81,7 +125,7 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 - `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — measured outcome and remaining generation dependency.
 
 **Inputs / dependencies**
-- U02 and U02a. Marco confirmed: allow Flow for generation; everything else must use video-story.
+- U02, U02a, U02b and U02c. Marco confirmed: allow Flow for generation; everything else must use video-story.
 - Direct generation solely inside video-story is blocked on a supported consumer-Flow connector within the existing allowance. Official Flow Agent documentation does not establish this; Gemini video API pricing is separate. No new purchase is authorized.
 
 **Implementation rules**

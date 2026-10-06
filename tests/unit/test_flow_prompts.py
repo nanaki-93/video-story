@@ -102,3 +102,42 @@ def test_identity_retry_protects_accessories_without_replacing_the_current_actio
         "Markings, clothing and accessories keep exactly their starting shapes and colors" in prompt
     )
     assert "Invented headphone emblem" not in prompt
+
+
+@pytest.mark.parametrize("kind", ["pickup", "sip", "return_cup"])
+def test_cup_correction_uses_confirmed_facts_and_keeps_the_requested_action(kind):
+    episode, parent = setup_state(
+        cup_position="table" if kind == "pickup" else "held",
+        hands="resting" if kind == "pickup" else "holding_cup",
+    )
+    beat = FlowBeat(id=kind, kind=kind, target_frame=720)
+    original = compile_prompt(episode, beat, parent)[1]
+    _, corrected = compile_prompt(
+        episode, beat, parent, retry_focus="props", retry_reason="A handle appeared, plus dots"
+    )
+    assert corrected.startswith(original)
+    assert "same handle-free takeaway cup" in corrected
+    assert "original rigid shape and markings" in corrected
+    assert "saucer-free" in corrected
+    assert "plus dots" not in corrected and "one brown bag" not in corrected
+
+
+def test_cup_correction_does_not_invent_unknown_facts_or_affect_other_actions():
+    episode, parent = setup_state(
+        cup_kind="unknown",
+        cup_position="held",
+        hands="holding_cup",
+        has_handle=None,
+        has_saucer=None,
+    )
+    beat = FlowBeat(id="return", kind="return_cup", target_frame=1080)
+    prompt = compile_prompt(episode, beat, parent, retry_focus="props")[1]
+    assert "same cup keeps" in prompt
+    assert not any(word in prompt for word in ("takeaway", "ceramic", "handle", "saucer"))
+    episode, parent = setup_state(cup_kind="ceramic", has_handle=True, has_saucer=True)
+    beat = updated(beat, kind="pickup")
+    prompt = compile_prompt(episode, beat, parent, retry_focus="props")[1]
+    assert "same handled ceramic cup" in prompt and "existing saucer stays in place" in prompt
+    beat = updated(beat, kind="look")
+    prompt = compile_prompt(episode, beat, parent, retry_focus="props")[1]
+    assert "Only the object involved" in prompt and "ceramic" not in prompt

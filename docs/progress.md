@@ -2,6 +2,14 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U02b — Cup retries use the confirmed prop facts
+
+The real trial reached 45 accepted seconds, then rejected two cup-return takes: both invented
+a handle, and the second also added bright airborne stars. Prop corrections for cup actions
+now use confirmed cup type, handle and saucer facts. Unknowns are omitted and unrelated actions
+keep their focused correction. Twenty-one prompt/runner checks pass; saved attempt text and
+hashes remain unchanged. U02c adds recovery from the default retry limit before U03 continues.
+
 ## U02a — Identity retries include clothing and accessories
 
 6 October 2026. The first U03 Quality opening added a yellow star to the reference's plain
