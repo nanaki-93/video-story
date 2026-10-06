@@ -1,3 +1,40 @@
+# Independent cinematic shots without generated joins
+
+Marco reviewed U04 and explicitly selected independent cinematic shots with deliberate camera
+cuts. He does not want repeated attempts to find footage that matches the preceding clip.
+U04 improves scenery but still requires six native extensions. U05 removes that dependency
+from the next-video preset. Original episodes, clips and approved hashes remain unchanged.
+
+## U05 — Remove Flow extensions from the new Tokyo preset
+
+**Status** [x] Engineering verified: 30 focused, 383 core, 76 actual-media and eight frontend passes, 68 contracts, Ruff/schema/build/package checks and target-Mac embedded-browser observation. One optional private-media test is skipped. Individual generated-shot quality and real preparation/time/credit effort remain unqualified. [Evidence](evidence/u05-independent-flow.json).
+
+**Target files**
+- `src/tabi/core/flow/shots.py` — two independent framings per district, twelve 180-frame shots, zero extensions and clear independent-reference instructions.
+- `web/src/flow.ts` — explain fixed camera cuts and independent generation, display a single fresh-shot credit estimate for the new preset while keeping saved extension workflows usable.
+- `tests/unit/test_flow_shot_runner.py`, `tests/unit/test_flow_shot_api.py`, `tests/unit/test_flow_cli.py` — default plan, refusal to extend an incomplete independent shot, exact fixed cuts, keyed references, cost/clone compatibility and original preservation.
+- `tests/integration/test_flow_workflow.py`, `tests/integration/test_flow_shot_workflow.py` — twelve fresh starts, all predetermined 180-frame ranges, retry/reopen, no extension input, exact 90-second media; retain a separate saved six-shot extension regression.
+- `tests/fixtures/flow-u04-recipe.json` (new) — immutable six-shot compatibility input copied from U04 evidence, included with source-distribution tests.
+- `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md`, `docs/evidence/u05-independent-flow.json` (new) — decision, dated official Flow capabilities, verified behavior, trade-offs and remaining production gates.
+- `.local/u05-independent-flow/**` (ignored verification artifacts) — synthetic UI fixtures, owned worker helper, screenshots and hash-verified local test media; never commit these or any MP4.
+
+**Inputs / dependencies**
+- U04 and Marco's explicit choice in this chat on 7 October 2026. Existing Veo route only; no new model/provider, footage requests, credits, subscription or weights.
+- Official Flow documentation confirms eight-second Veo frames-to-video inputs and start/end-frame controls. The Agent supports batch variations; the local app's supported consumer-account bridge remains assisted.
+
+**Implementation rules**
+- Keep 2160 frames at 24/1 fps. Each new shot uses an eight-second independent source with a predetermined first 180-frame cut (7.5 seconds); no generated end-to-start match, native Extend, loop, freeze padding or interpolation.
+- Two complementary wide/medium images per district create deliberate camera cuts. Preserve the six original district reference keys/framing where possible so an explicitly constructed variation can retain matching U04 references.
+- Carry each assigned exterior and quiet rest/watch action. Individual character/scenery quality still needs human review. Do not bypass review or claim zero generative failures.
+- Existing saved recipes retain their durations, extensions, credit/history semantics and canonical bytes. Python alone supplies the schedule; no new schema is needed.
+- Keep explicit safe-outpoint review; imported originals remain immutable. An undersized new shot stops or restarts, never silently re-enables Extend.
+- Explain increased initial reference preparation and fresh-shot costs. No lower total time/credits, unattended batching or 30-video monthly capacity claim without measurements.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml TABI_FLOW_EVIDENCE_DIR=.local/u05-independent-flow .tools/bin/uv run --frozen pytest --run-media tests/unit/test_flow_shot_runner.py tests/unit/test_flow_shot_api.py tests/unit/test_flow_cli.py tests/integration/test_flow_shot_workflow.py`
+
+Run `make check web-check web-build package` and the target-Mac `make test-media` gate, observe the new Setup/reference/cost controls in the embedded browser, compare preserved U03 media hashes, and commit U05 without the unrelated staged IDE files or any MP4.
+
 # Distinct Tokyo views and a calmer production preset
 
 Marco finds the U03 draft interesting but rejects its closing panorama and repetitive exterior,

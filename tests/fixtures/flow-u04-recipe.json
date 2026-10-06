@@ -1,0 +1,124 @@
+{
+  "identity": "TABI, the pink-lavender axolotl in the supplied approved reference, with dark-brown eyes, attached pink gills and purple headphones.",
+  "outfit": "The reference's green coat with leopard-patterned trim.",
+  "setting": "A warm wooden sightseeing train carriage travelling through Tokyo at sunset.",
+  "camera": "A fixed wide view across the aisle, at seated eye level.",
+  "exterior": "Tokyo scenery moves continuously from right to left with natural parallax.",
+  "opening_inventory": [
+    "one takeaway cup on the table",
+    "one open book",
+    "one pen"
+  ],
+  "opening_mode": "image_motion",
+  "project_url": null,
+  "fps": {
+    "num": 24,
+    "den": 1
+  },
+  "target_frames": 2160,
+  "beats": [],
+  "shots": [
+    {
+      "id": "sumida",
+      "title": "Sumida River and a distant Skytree",
+      "reference_key": "sumida",
+      "framing": "wide",
+      "exterior": "A Sumida River-inspired view: broad water with sunset reflections, a riverside bridge and Tokyo Skytree small in the distant skyline.",
+      "duration_frames": 360,
+      "max_extensions": 1,
+      "beats": [
+        {
+          "id": "sumida-rest",
+          "kind": "rest",
+          "target_frame": 0,
+          "district": null
+        }
+      ]
+    },
+    {
+      "id": "yanaka",
+      "title": "Yanaka's old rooftops",
+      "reference_key": "yanaka",
+      "framing": "medium",
+      "exterior": "A Yanaka-inspired view: varied low tiled rooftops, a quiet lane, small wooden storefronts and trees, with open sky between the buildings.",
+      "duration_frames": 360,
+      "max_extensions": 1,
+      "beats": [
+        {
+          "id": "yanaka-look",
+          "kind": "look",
+          "target_frame": 0,
+          "district": null
+        }
+      ]
+    },
+    {
+      "id": "akihabara",
+      "title": "Akihabara's colorful shopping streets",
+      "reference_key": "akihabara",
+      "framing": "wide",
+      "exterior": "An Akihabara-inspired view: colorful electronics storefronts and vertical signboards along a busy shopping street, with different building silhouettes.",
+      "duration_frames": 360,
+      "max_extensions": 1,
+      "beats": [
+        {
+          "id": "akihabara-rest",
+          "kind": "rest",
+          "target_frame": 0,
+          "district": null
+        }
+      ]
+    },
+    {
+      "id": "ueno",
+      "title": "Ueno's trees and pond",
+      "reference_key": "ueno",
+      "framing": "medium",
+      "exterior": "A Ueno-inspired park view: leafy trees, pond water catching warm light and a distant pavilion, with spacious gaps instead of a wall of apartments.",
+      "duration_frames": 360,
+      "max_extensions": 1,
+      "beats": [
+        {
+          "id": "ueno-look",
+          "kind": "look",
+          "target_frame": 0,
+          "district": null
+        }
+      ]
+    },
+    {
+      "id": "shinjuku",
+      "title": "Shinjuku's evening skyline",
+      "reference_key": "shinjuku",
+      "framing": "wide",
+      "exterior": "A Shinjuku-inspired view: a varied cluster of tall modern towers catching sunset light above smaller streets and rooftops.",
+      "duration_frames": 360,
+      "max_extensions": 1,
+      "beats": [
+        {
+          "id": "shinjuku-rest",
+          "kind": "rest",
+          "target_frame": 0,
+          "district": null
+        }
+      ]
+    },
+    {
+      "id": "odaiba",
+      "title": "Tokyo Bay and Rainbow Bridge",
+      "reference_key": "odaiba",
+      "framing": "wide",
+      "exterior": "An Odaiba-inspired closing view: broad Tokyo Bay water, Rainbow Bridge in the middle distance and a low waterfront skyline under the warm evening sky.",
+      "duration_frames": 360,
+      "max_extensions": 1,
+      "beats": [
+        {
+          "id": "odaiba-look",
+          "kind": "look",
+          "target_frame": 0,
+          "district": null
+        }
+      ]
+    }
+  ]
+}

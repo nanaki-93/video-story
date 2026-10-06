@@ -53,7 +53,9 @@ function referenceImage(url: string, title: string) {
   box.append(img, download);
   return box;
 }
-function flowAllowance() {
+function flowAllowance(recipe: Recipe) {
+  const independent =
+    !!recipe.shots?.length && recipe.shots.every((s) => s.max_extensions === 0);
   const allowance = input("", "number");
   const start = input("", "number");
   const extension = input("", "number");
@@ -65,7 +67,13 @@ function flowAllowance() {
     }),
     field("Credits currently remaining", allowance),
     field("Displayed credits for a fresh 8-second shot", start),
-    field("Displayed credits for an extension", extension),
+    ...(independent
+      ? [
+          element("p", {
+            text: "Every shot starts independently. This plan uses no Flow extensions. More fresh shots can cost more; check the full video budget.",
+          }),
+        ]
+      : [field("Displayed credits for an extension", extension)]),
     field("Maximum credits for this video", ceiling),
   );
   return {
@@ -74,7 +82,7 @@ function flowAllowance() {
       credit_ceiling: number(ceiling),
       remaining_allowance: number(allowance),
       estimated_start_credit: number(start),
-      estimated_credit_per_attempt: number(extension),
+      estimated_credit_per_attempt: number(independent ? start : extension),
       max_retries_per_beat: 1,
       max_attempts: 30,
       allowance_checked_at: new Date().toISOString(),
@@ -278,10 +286,10 @@ export function flowPage(): Panel {
     if (!episode) {
       const setup = section(
         "1 · Setup",
-        "Train · Tokyo · 90 seconds. Six calm shots explore six distinct window views. TABI rests and watches while the cup stays on the table. District cuts form an illustrated journey. Music comes at Finish.",
+        "Train · Tokyo · 90 seconds. Twelve independent shots explore six Tokyo districts in two framings each. Generate an 8-second clip from each reviewed image; the app sets a 7.5-second cut. No Flow Extend or matching generated endings. TABI rests and watches; music comes at Finish.",
       );
       const title = input("TABI in Tokyo");
-      const allowance = flowAllowance();
+      const allowance = flowAllowance(view.preset);
       const settings = recipeFields(view.preset);
       setup.append(
         field("Video title", title),
@@ -900,7 +908,7 @@ export function flowPage(): Panel {
       body.append(box);
     }
     const variation = recipeFields(episode.recipe);
-    const variationAllowance = flowAllowance();
+    const variationAllowance = flowAllowance(episode.recipe);
     const title = input(`${episode.title} · variation`);
     body.append(
       details(
@@ -920,7 +928,7 @@ export function flowPage(): Panel {
             });
           } catch {
             status.textContent =
-              "Enter the current Flow balance and both costs for this variation.";
+              "Enter the current Flow balance and displayed costs for this variation.";
           }
         }),
       ),
@@ -933,6 +941,46 @@ export function flowPage(): Panel {
         ),
       ),
     );
+    if (
+      !episode.recipe.shots?.length ||
+      episode.recipe.shots.some((s) => s.max_extensions! > 0)
+    ) {
+      const current = recipeFields({
+        ...view.preset,
+        identity: episode.recipe.identity,
+        outfit: episode.recipe.outfit,
+        setting: episode.recipe.setting,
+        camera: episode.recipe.camera,
+        exterior: episode.recipe.exterior,
+        opening_inventory: episode.recipe.opening_inventory,
+        project_url: episode.recipe.project_url,
+      });
+      const costs = flowAllowance(view.preset);
+      const name = input(`${episode.title} · independent shots`);
+      body.append(
+        details(
+          "New Tokyo video without Flow extensions",
+          element("p", {
+            text: "Use the current twelve-shot plan with fixed camera cuts. Matching reviewed references are reused; additional framings and districts need their own images. The saved video keeps its existing plan.",
+          }),
+          field("Video title", name),
+          current.node,
+          costs.node,
+          button("Create independent-shot variation", () => {
+            try {
+              void change("/clone", {
+                title: name.value,
+                recipe: current.value(),
+                limits: costs.value(),
+              });
+            } catch {
+              status.textContent =
+                "Enter the current Flow balance and fresh-shot cost for this variation.";
+            }
+          }),
+        ),
+      );
+    }
     if (step.action !== "paused")
       body.append(
         button(

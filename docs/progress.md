@@ -2,6 +2,45 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## U05 — Independent cinematic cuts without Flow extensions
+
+Marco explicitly selected independent cinematic shots with deliberate camera cuts. U04 still
+required six native extensions; the new preset replaces them with twelve 7.5-second shots,
+two wide/medium views for each of its six districts. All twelve start from assigned reviewed
+images and normally use the first 180 frames of an eight-second source. Outpoints still need
+explicit review. An undersized shot stops or restarts, never silently enabling Extend, looping
+or padding. Cup-on-table rest/watch actions remain. Python supplies the entire schedule.
+
+The UI asks only the observed fresh-shot cost for independent plans. Saved extension recipes
+keep their original schedules, budgets and separate costs. **New Tokyo video without Flow
+extensions** explicitly creates the new plan from a saved episode; matching U04 references
+remain reusable and six additional framings need their own images. Ordinary variations still
+copy the saved recipe. The original real draft and all 31 checked media hashes are preserved.
+
+The full actual-media gate passes 76 tests, with one optional private fixture skipped. New,
+saved six-shot and earlier unplanned 90-second recipes verify all 2160 frames/PTS, 4320000
+samples and 22 join-side comparisons. The new run uses twelve accepted 180-frame sections,
+13 fresh attempts including one synthetic rejection, and zero extensions. Core/frontend gates
+pass 383 and eight checks respectively; 68 contracts, Ruff, TypeScript, web build and package
+pass. Thirty final focused checks pass. The wheel matches all 111 Python modules; the source
+package includes the unchanged U04 compatibility fixture and affected tests, with no media/fonts.
+A sandbox-only rerun failed three socket tests; the final gate with required localhost access
+passes without code changes. The auxiliary preservation audit was narrowed to the three
+recorded staged IDE files after initially including an unrelated already-tracked IDE file.
+Target-Mac embedded-browser observation verifies explicit new-plan creation, save/reload,
+twelve named cards, independent reference guidance, fresh-only costs and unchanged saved plan.
+The temporary owned worker and browser are stopped. Native Chrome/Safari checks remain pending.
+[U05 evidence](evidence/u05-independent-flow.json) records commands, outputs, source hashes,
+official documentation and local screenshots.
+
+Official Flow docs were rechecked on 7 October: Veo supports eight-second Frames to Video;
+the native Agent supports batch variations using generation credits. This does not establish
+an external consumer-account connector or automatic visual approval. No new generation,
+credits or dependency were used. Twelve starting images and more fresh requests may increase
+preparation and credits; reduced total effort is not yet measured. Actual new scenery/TABI
+quality, especially the Tokyo Bay ending, needs a short creative trial with current commercial
+terms before another full-length generation. Unattended production and monthly capacity stay open.
+
 ## U04 — Distinct Tokyo views with quieter actions
 
 Marco selected a stylized journey after finding U03's exterior repetitive and its closing

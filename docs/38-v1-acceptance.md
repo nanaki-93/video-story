@@ -1,5 +1,32 @@
 # V1 implementation and acceptance
 
+## U05 independent-shot workflow — 7 October 2026
+
+Marco selected independent cinematic shots with deliberate cuts to remove repeated matching
+attempts. The current default uses twelve separate 180-frame shots at 24 fps, two framings
+for each of six Tokyo districts, with zero native extensions. An eight-second source normally
+contributes its first reviewed 7.5 seconds. Incomplete shots stop or restart; existing saved
+extension recipes, media and hashes remain unchanged. An explicit UI variation can adopt the
+new plan and reuse matching references. Independent Setup and variations ask only fresh-shot
+costs; saved extension plans retain both costs.
+
+The full actual-media gate passes 76 tests, with one optional private fixture skipped. New and
+saved 90-second workflows verify every frame/PTS, 4320000 samples and 22 join-side comparisons.
+The new sequence has twelve accepted 180-frame ranges, one exercised rejection/retry and no
+extension requests. Core/frontend gates pass 383 and eight checks; Ruff, 68 contracts,
+TypeScript, web build and package pass; 30 final focused checks pass. The wheel matches all
+111 Python modules and the source package contains the preserved U04 fixture and affected tests.
+Neither package contains media or fonts. [U05 evidence](evidence/u05-independent-flow.json)
+records all final gates, the sandbox-only socket failure and passing authorized rerun.
+Target-Mac embedded-browser observations verify normal UI new-plan creation, reload, all twelve
+shot cards, starting-image guidance, fresh-only costs and the preserved six-shot source plan.
+
+This is engineering verification with synthetic media. Twelve real starting images, character
+and scenery quality, the closing panorama, preparation time, actual credits and human effort
+remain unqualified. More fresh generations may cost more. Current generation/output terms
+must be rechecked before another real trial; no new provider, credit use or dependency entered
+this change. Native Chrome/Safari observation, unattended production and 30 videos/month remain open.
+
 ## U04 scenery preparation — 7 October 2026
 
 Marco finds the U03 draft interesting but rejects its closing panorama and repetitive exterior,

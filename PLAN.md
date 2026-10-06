@@ -7,19 +7,22 @@ composition and publishing remain separate.
 ## Current workflow
 
 The normal app starts at **Create video → Setup → References → Shots → Finish**. The train /
-Tokyo / 90-second preset uses six 15-second shots, each with its own reviewed window image:
+Tokyo / 90-second preset uses twelve independent 7.5-second shots, each with its own reviewed
+window image:
 Sumida River/Skytree, Yanaka rooftops, Akihabara shops, Ueno park/pond, Shinjuku towers and
 Tokyo Bay/Rainbow Bridge. This is an illustrated journey with time passing at district cuts,
-not a verified real train route. Wide/medium views keep the window readable. Each camera cut
-begins again from its assigned image; the district stays consistent through its continuation.
+not a verified real train route. Two wide/medium views per district keep the window readable.
+Each shot begins from its assigned image and uses a reviewed 180-frame section of an eight-second
+source. Deliberate camera cuts require no generated ending-to-starting match or Flow Extend.
 TABI rests and watches, with the cup on the table and quiet breathing. Existing drafts keep
 their saved routines and references; existing scene tools are under Advanced.
 
 Generation uses **Copy prompt → Open Flow → Import native result → Review**. The app saves
 reference hashes, prompts, parent lineage, attempts, confirmed prop states, reviews and credit
-reservations. Each fresh shot uses Frames to Video with its assigned image. Native Extend stays
-inside that shot, once in the new preset and twice for saved three-part drink actions. The previous shot is
-used only to review the editorial cut. Retry uses the same image or in-shot parent with one
+reservations. Each fresh shot uses Frames to Video with its assigned image. Native Extend remains
+available only where a saved recipe allows it, including U04's six-shot plan and three-part
+drink actions. The previous shot is used only to review the editorial cut. Retry uses the same
+image or in-shot parent with one
 selected correction; full rejection notes stay in history. Refresh and an unknown external
 result do not create another generation request. This reduces inherited drift; it does not
 guarantee clean mouths, stable gills, props or particle-free footage.
@@ -30,7 +33,8 @@ and budget, or restart only the current partial shot from its clean image. Earli
 shots and all attempt evidence remain saved. Handle-free cup actions explicitly use both hands
 around the same cup body; generated prop consistency still requires visual review.
 
-The default timeline advances through the six distinct views at 0, 15, 30, 45, 60 and 75 seconds.
+The default timeline advances through six districts at 0, 15, 30, 45, 60 and 75 seconds, with
+an additional framing cut halfway through each district. Python schedules all shot timings.
 Shot scenery is editable at Setup, included in image preparation and every new motion prompt,
 and checked during review for perspective, travel direction, parallax and progress. Changing
 one view through New variation clears that reference while retaining unaffected images; a
@@ -56,7 +60,12 @@ Marco finds that draft interesting, but rejects the final panorama and repetitiv
 view and considers the trial-and-error effort too high. Eight of its ten rejected takes
 involved drinking or deep breathing. [U04](docs/tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view)
 addresses the next video's preparation: distinct window references and calmer default actions.
-It does not repair the saved draft or establish lower real retry costs before a new trial.
+Marco then explicitly selected independent cinematic shots with deliberate camera cuts.
+[U05](docs/tasks.md#u05--remove-flow-extensions-from-the-new-tokyo-preset) removes all native
+extensions from the new preset. Saved episodes offer an explicit independent-shot variation;
+matching references can be reused. Twelve starting images and more fresh generations add
+preparation and may increase credits. Neither change repairs the saved draft or establishes
+lower total time or real retry costs before a new trial.
 
 ## Remaining production gates
 
@@ -87,7 +96,8 @@ require visual rejection; fixing timestamps does not repair those pixels.
 
 Use existing Google entitlement and local tools. No new subscriptions, paid API, plugins,
 licence purchases or credit top-ups are part of the route. Record a freshly observed Flow
-allowance and displayed fresh-shot/extension costs for each run; included compute is limited.
+allowance and displayed fresh-shot cost for each independent run, plus extension costs for saved
+plans that use them; included compute is limited.
 Local reservations cannot prevent independent spending inside Flow.
 
 The earlier Colab/Blender character trials failed their appearance/depth gates. Their exact

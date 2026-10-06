@@ -52,7 +52,7 @@ def rgb_frame(settings, path, frame):
     return np.frombuffer(raw, dtype=np.uint8).astype(np.int16)
 
 
-def exercise_90s_workflow(tmp_path, *, planned=False):
+def exercise_90s_workflow(tmp_path, *, planned=False, legacy_planned=False):
     started = time.monotonic()
     settings, sources, service, _ = media_context(tmp_path)
     original_hashes = {}
@@ -68,6 +68,11 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
 
         handle = open_project()["handle"]
         base = f"/api/v1/projects/{handle}/flow"
+        saved_recipe = (
+            json.loads((REPO / "tests/fixtures/flow-u04-recipe.json").read_text())
+            if legacy_planned
+            else None
+        )
         view = worker.request(
             "POST",
             base,
@@ -75,7 +80,7 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
                 "title": "SYNTHETIC 90s planned shots"
                 if planned
                 else "Synthetic 90s legacy workflow",
-                "recipe": None
+                "recipe": saved_recipe
                 if planned
                 else FlowRecipe(
                     beats=[
@@ -127,7 +132,7 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
                     "-i",
                     "testsrc2=size=96x54:rate=24",
                     "-vf",
-                    f"hue=h={index * 40}",
+                    f"hue=h={index * 20}",
                     "-frames:v",
                     "1",
                     str(reference),
@@ -184,7 +189,7 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
                 assert all(
                     other["exterior"] not in attempt["prompt"]
                     for other in view["episode"]["recipe"]["shots"]
-                    if other["id"] != shot["id"]
+                    if other["exterior"] != shot["exterior"]
                 )
                 # Exercise an oversized native result at the first shot's exact safe outpoint.
                 frames = 192 if attempt["mode"] == "shot_start" or index == 1 else 168
@@ -216,13 +221,18 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
             )
             candidate = view["episode"]["candidates"][-1]
             if planned:
+                if not legacy_planned:
+                    assert attempt["mode"] == "shot_start"
+                    assert "selected clip" not in attempt["prompt"]
+                    assert view["safe_cut_frame"] == 180
+                    assert any(i["frame"] == 179 for i in view["review"]["images"])
                 assert "Planned window view: " + shot["exterior"] in view["review"]["checklist"]
                 assert any("Level horizon" in check for check in view["review"]["checklist"])
             if planned and attempt["parent_id"]:
                 assert view["review"]["join_url"]
                 kind = "camera cut" if attempt["mode"] == "shot_start" else "continuation"
                 assert f'join_kind: "{kind}"' in view["review"]["diagnostics"]
-            if planned and index == 1:
+            if legacy_planned and index == 1:
                 assert view["safe_cut_frame"] == 168
                 assert any(i["frame"] == 167 for i in view["review"]["images"])
             body = {
@@ -250,8 +260,19 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
         assert not view["remaining_beats"] and retried and reopened
         if planned:
             assert all(s["state"] == "complete" for s in view["shots"])
-            assert [s["accepted_frames"] for s in view["shots"]] == [360] * 6
-            assert len({r["media"]["sha256"] for r in view["episode"]["references"]}) == 6
+            assert [s["accepted_frames"] for s in view["shots"]] == (
+                [360] * 6 if legacy_planned else [180] * 12
+            )
+            assert len({r["media"]["sha256"] for r in view["episode"]["references"]}) == (
+                6 if legacy_planned else 12
+            )
+            if not legacy_planned:
+                assert all(a["mode"] == "shot_start" for a in view["episode"]["attempts"])
+                assert all(
+                    c["trim"] == {"start_frame": 0, "end_frame": 180}
+                    for c in view["episode"]["candidates"]
+                    if c["id"] in view["episode"]["accepted_ids"]
+                )
             retry = view["episode"]["attempts"][3]
             assert retry["mode"] == "shot_start" and retry["shot_id"] == "yanaka"
             assert "Carriage air stays clear" in retry["prompt"]
@@ -350,7 +371,11 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
         )
         assert "synthetic_assets" in inspection["blockers"]
         save_evidence(
-            "shot-workflow.json" if planned else "synthetic-workflow.json",
+            "shot-extensions-workflow.json"
+            if legacy_planned
+            else "shot-workflow.json"
+            if planned
+            else "synthetic-workflow.json",
             {
                 "project_path": str(service.store.root),
                 "episode_id": view["episode"]["id"],
@@ -358,6 +383,12 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
                 "output_path": str(service.verify_file(frozen.output)),
                 "planned_shots": view["shots"],
                 "fresh_starts": sum(a["mode"] == "shot_start" for a in view["episode"]["attempts"]),
+                "extensions": sum(a["mode"] == "extend" for a in view["episode"]["attempts"]),
+                "accepted_source_ranges": [
+                    c["trim"]
+                    for c in view["episode"]["candidates"]
+                    if c["id"] in view["episode"]["accepted_ids"]
+                ],
                 "duration_frames": 2160,
                 "fps": {"num": 24, "den": 1},
                 "duration_seconds": 90,

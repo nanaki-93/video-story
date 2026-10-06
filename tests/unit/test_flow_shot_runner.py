@@ -1,4 +1,6 @@
 import hashlib
+import json
+from pathlib import Path
 
 import pytest
 from test_flow_service import new_service
@@ -118,18 +120,55 @@ def review(service, episode, decision="accepted", **values):
     )
 
 
-def test_default_plan_is_90_seconds_with_six_distinct_views_and_quiet_actions():
+def test_default_plan_is_90_seconds_with_independent_views_and_quiet_actions():
     recipe = default_recipe()
-    assert [s.duration_frames // 24 for s in recipe.shots] == [15] * 6
+    assert [s.duration_frames for s in recipe.shots] == [180] * 12
     assert sum(s.duration_frames for s in recipe.shots) == 2160
-    assert len({s.reference_key for s in recipe.shots}) == 6
+    assert len({s.reference_key for s in recipe.shots}) == 12
     assert len({s.exterior for s in recipe.shots}) == 6
     assert {b.kind for s in recipe.shots for b in s.beats} == {"rest", "look"}
-    assert all(s.max_extensions == 1 for s in recipe.shots)
+    assert all(s.max_extensions == 0 for s in recipe.shots)
+    for first, second in zip(recipe.shots[::2], recipe.shots[1::2], strict=True):
+        assert first.exterior == second.exterior
+        assert {first.framing, second.framing} == {"wide", "medium"}
     for shot in recipe.shots:
         instruction = reference_instruction(recipe, shot.reference_key)
         assert shot.exterior in instruction and "fixed window frame" in instruction
         assert "not a verified real railway route" in instruction
+        assert "independent camera shot" in instruction
+
+
+def test_independent_shot_uses_fixed_cut_and_never_extends_a_short_source(tmp_path):
+    service, episode, runner = context(tmp_path)
+    episode = service.save(
+        updated(
+            episode,
+            recipe=updated(
+                episode.recipe,
+                shots=[updated(s, max_extensions=0) for s in episode.recipe.shots],
+            ),
+        ),
+        expected_revision=episode.revision,
+    )
+    episode = review(service, receipt(service, runner.prepare(episode.id, episode.revision), 8))
+    assert runner.status(episode)["action"] == "needs_attention"
+    previous = episode
+    with pytest.raises(FlowError, match="extension"):
+        runner.prepare(episode.id, episode.revision)
+    assert service.get(episode.id) == previous
+    episode = runner.restart_shot(episode.id, episode.revision)
+    for _ in range(2):
+        episode = receipt(service, runner.prepare(episode.id, episode.revision), 16)
+        assert episode.attempts[-1].mode == "shot_start"
+        assert "selected clip" not in episode.attempts[-1].prompt
+        with pytest.raises(FlowError, match="ending at clip frame 12"):
+            review(service, episode)
+        episode = review(service, episode, safe_end_frame=12)
+    assert runner.status(episode)["action"] == "finish"
+    assert episode.accepted_frames == 24
+    assert all(a.mode == "shot_start" for a in episode.attempts)
+    assert all(c.frame_count == 16 and c.trim.end_frame == 12 for c, _, _ in export_ranges(episode))
+    assert sum(end - start for _, start, end in export_ranges(episode)) == 24
 
 
 def test_shot_scenery_survives_retry_continuation_and_only_changes_at_the_cut(tmp_path):
@@ -188,6 +227,42 @@ def test_changed_window_view_variation_requires_fresh_references(tmp_path):
     )
     assert [r.key for r in changed.references] == ["close"]
     assert changed.references[0] == episode.references[1] and not changed.attempts
+    assert service.get(episode.id) == episode
+
+
+def test_independent_variation_reuses_the_six_matching_saved_u04_views(tmp_path):
+    service, episode = new_service(tmp_path)
+    recipe = FlowRecipe.model_validate(
+        json.loads(
+            (Path(__file__).resolve().parents[1] / "fixtures/flow-u04-recipe.json").read_text()
+        )
+    )
+    episode = service.save(updated(episode, recipe=recipe), expected_revision=episode.revision)
+    for shot in recipe.shots:
+        data = shot.reference_key.encode()
+        path = service.store.root / f"sources/{shot.reference_key}.png"
+        path.write_bytes(data)
+        episode = service.add_reference(
+            episode.id,
+            FlowReference(
+                title=shot.title,
+                key=shot.reference_key,
+                starting_state=facts(),
+                review_note="Unit fixture only",
+                synthetic=True,
+                media=HashedFile(
+                    location=MediaPath(path=f"sources/{path.name}"),
+                    sha256=hashlib.sha256(data).hexdigest(),
+                    size_bytes=len(data),
+                ),
+            ),
+            episode.revision,
+        )
+    clone = service.clone(episode.id, "Independent variation", recipe=default_recipe())
+    assert clone.references == episode.references
+    assert len(clone.references) == 6 and len(clone.recipe.shots) == 12
+    assert FlowRunner(service).status(clone)["action"] == "choose_reference"
+    assert not clone.attempts and not clone.accepted_ids
     assert service.get(episode.id) == episode
 
 

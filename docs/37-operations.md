@@ -28,11 +28,13 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
 
 1. Launch the app, choose **Projects**, and create/open a local working folder. Return to
    **Create video**. Setup starts with the train/Tokyo/90-second preset; optional changes are
-   under Edit settings. Enter the actual remaining Flow allowance, displayed fresh-shot and
-   extension costs, and a spending ceiling. The app cannot read your account or buy credits.
+   under Edit settings. Enter the actual remaining Flow allowance, displayed fresh-shot cost
+   and a spending ceiling. The app cannot read your account or buy credits.
 2. **References:** use your approved train image as the source for the copyable image prompts.
-   Prepare/import each named window view: Sumida, Yanaka, Akihabara, Ueno, Shinjuku and Odaiba.
-   All six are reviewed before video begins. Optional window descriptions are editable in Setup.
+   Prepare/import two named wide/medium views for each district: Sumida, Yanaka, Akihabara, Ueno,
+   Shinjuku and Odaiba. All twelve are reviewed before video begins. Optional window descriptions
+   are editable in Setup. Each image comes from the approved art; it does not need the preceding
+   generated clip's ending.
    Keep TABI's full gills, connected neck, markings, outfit, train layout and cup design; check
    the air is clear. Confirm the planned scenery, window perspective and visible starting facts.
    The cup starts on the table with hands resting. Hidden facts stay unknown. These image reviews do
@@ -41,11 +43,8 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
    it and select an 8-second landscape result. Copy the saved motion prompt. Download and import
    the new native clip; record the actual model shown in Flow. A preceding-shot player is cut
    context, not the input to this generation. The app saves the attempt before the handoff.
-4. **Extend this shot in Flow:** select the exact accepted clip shown and use its focused next
-   prompt. Native Extend currently requires a supported Veo Lite model; check the current UI
-   and cost. Import only the new clip. New shots allow one accepted extension; saved drink shots
-   still allow two for separate pickup, sip and return actions. Do not keep extending past the cap.
-5. **Review:** watch the entire candidate and the join/camera-cut player. Confirm the actual
+4. **Review:** the app proposes the first 180 frames (7.5 seconds) of each eight-second source.
+   Watch the entire selected candidate and the join/camera-cut player. Confirm the actual
    ending facts and compare TABI/props with the assigned reference. Check the expected district,
    level horizon, fixed window/table occlusion, travel direction and foreground/background
    parallax. Scenery must progress through the ending rather than repeat or reset within a shot.
@@ -53,28 +52,35 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
    offered; the app trims to that reviewed outpoint. A cup still held cannot jump to a table
    across the cut. Reject visible dots, distorted gills/mouth, changing objects, freezes or an
    incomplete action. Choose one correction for Retry; the full note remains in history.
-   A retry uses the same clean image or in-shot parent. The app never approves appearance.
+   A retry uses the same clean image. The app never approves appearance. An undersized independent
+   shot stops for attention or an explicit restart; it cannot continue with Extend.
    **Keep a section of this clip** offers integer start/end frames (end exclusive). Choose
    **Use this section**, then watch the rebuilt selected player and join before accepting.
    The original remains available separately. A native continuation must retain its opening;
    an early ending can be kept only when it completes the shot or video, so Extend cannot
    silently continue from a different, discarded parent ending.
-6. **Finish:** keep silent or import/select a local WAV. A longer master needs the explicit
+5. **Finish:** keep silent or import/select a local WAV. A longer master needs the explicit
    first-video-length trim confirmation; a short master is not automatically looped. Export
    and watch the complete verified draft. Output preserves the measured picture resolution
    and frame rate, using H.264 and optional stereo 48 kHz AAC. Music is never uploaded to Flow.
-7. **Prepare YouTube delivery:** record factual title, concept, rights, exact model/terms,
+6. **Prepare YouTube delivery:** record factual title, concept, rights, exact model/terms,
    disclosure, thumbnail and listening/creative reviews. Inspect blockers and export the
    existing public/private bundle. Publication remains manual. Keep private evidence private.
 
-The default story is six 15-second illustrated views: Sumida River/Skytree, Yanaka rooftops,
+The default story is twelve independent 7.5-second shots, with two framings for each illustrated
+district: Sumida River/Skytree, Yanaka rooftops,
 Akihabara shopping streets, Ueno trees/pond, Shinjuku skyline and Tokyo Bay/Rainbow Bridge.
 TABI alternates quiet rest and watching with barely perceptible breathing; the cup stays on
 the table. District cuts compress travel time rather than claim a surveyed railway journey.
 Descriptions draw on the [official Tokyo district guide](https://www.gotokyo.org/en/destinations/index.html),
 not imported photographs. Each starting image must contain its own planned view; assigning
 different keys to identical image bytes is refused when the exterior descriptions differ.
-Existing six-shot drink/breathing projects retain their original plan, media and hashes.
+There are no native extensions or generated end-to-start matches in this preset. Existing
+six-shot scenery and drink/breathing projects retain their original plan, media and hashes.
+Where a saved recipe allows **Extend this shot in Flow**, use the exact accepted in-shot parent,
+its focused prompt and the currently supported model/cost. Import only the new clip. The cap
+remains one extension in U04 and two for saved pickup/sip/return actions. Review its opening
+and ending before accepting; a discarded native ending cannot become an Extend parent.
 The app counts actual reviewed frames; it never loops old footage or pads a freeze to fill a duration.
 
 Stop saves progress; reopening resumes the same attempt. Reconcile an unknown Flow result
@@ -105,9 +111,11 @@ visually; this run does not establish automatic quality or 30-video monthly capa
 Marco finds U03 interesting but rejects its final panorama and repetitive exterior, and
 requests different Tokyo districts with less trial and error. Eight of the ten rejected takes
 were cup handling or deep breathing. The new default avoids those actions; the reduction in
-real retries, image-preparation effort and total credits remains to be measured. Its six
-reference images need initial preparation, but an unchanged variation can reuse their reviewed
-versions. The U03 MP4 is preserved; new guidance does not repair its pixels.
+real retries, image-preparation effort and total credits remains to be measured. Marco selected
+independent cinematic shots with deliberate cuts; U05 therefore removes all extensions from
+new videos. Twelve reference images need initial preparation and twelve fresh generations may
+cost more than six starts with cheaper continuations. Unchanged variations can reuse reviewed
+images. The U03 MP4 is preserved; new guidance does not repair its pixels.
 
 For another setting/outfit, use **New variation** and enter fresh allowance/cost observations.
 It copies stable settings and resets the review chain. Changing one shot's scenery or framing
@@ -117,14 +125,24 @@ Café/walking and each new outfit need visual
 qualification. Almost entirely automatic Flow control has not been established; the handoff
 above is the supported assisted workflow. No additional paid provider is configured.
 
+On a saved extension-based video, **New Tokyo video without Flow extensions** creates the current
+twelve-shot plan as a separate variation. Review its settings and fresh-shot allowance before
+creating it. Matching U04 references retain their reviews; the six additional framings need
+their own starting images. Changed identity, outfit, carriage, framing or scenery invalidates
+affected reuse as usual. Ordinary **New variation** still copies the saved plan.
+
 Existing saved single-shot episodes retain Opening/Continue and their original hashes. For
 CLI automation, `flow status` returns shot progress and the next reference instructions;
 `flow reference --key sumida --state facts.json --note 'review findings'` imports a reviewed
 view (also supply project, source, title and revision). `flow review --correction particles`
 stores one focused retry selection with the full review note.
 
-Prompt/model guidance checked 6 October 2026: [Google's focused image/video guidance](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/video/best-practice)
-and [Flow model support](https://support.google.com/flow/answer/16352836?hl=en). Camera cuts and
+Flow workflow checked 7 October 2026: [Flow model support](https://support.google.com/flow/answer/16352836?hl=en)
+documents eight-second Veo Frames to Video and model-specific Extend support;
+[Flow input guidance](https://support.google.com/flow/answer/16353334?hl=en) describes starting/ending
+frames. The [Flow Agent](https://support.google.com/flow/answer/17093911?hl=en) supports planning
+and batch variations inside Flow, with generation consuming credits. This does not establish
+an external consumer-account connector for the local app or remove visual review. Camera cuts and
 clean starts reduce dependence on an imperfect preceding clip; they cannot repair existing
 damaged pixels or guarantee a usable generation. Commercial terms and source rights are checked
 again at delivery; no provider change or new paid dependency is part of this update.

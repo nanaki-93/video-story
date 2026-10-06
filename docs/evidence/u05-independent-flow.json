@@ -1,0 +1,983 @@
+{
+  "task_id": "U05",
+  "review_date": "2026-10-07",
+  "timezone": "Asia/Manila",
+  "code_revision_before": "1bcfae8",
+  "status": "Engineering complete; real independent-shot quality and preparation/time/credit effort pending",
+  "user_choice": {
+    "selected_direction": "Independent cinematic shots with deliberate camera cuts",
+    "source": "Direct user choice in this chat on 7 October 2026",
+    "reason": "Avoid repeated attempts to match one generated clip ending to another; retain distinct stylized Tokyo districts."
+  },
+  "behavior": [
+    "Twelve 180-frame shots at 24/1 fps, 2160 frames total, two complementary wide/medium views per district.",
+    "Twelve reviewed image keys, six distinct district descriptions, rest/watch actions and cup on table.",
+    "Every new shot is a fresh Frames to Video input; zero native extensions or generated end-to-start matching.",
+    "An eight-second native source normally contributes its first explicitly reviewed 180-frame section. Original media remains immutable.",
+    "An undersized independent shot stops for attention or an explicit restart; it cannot silently resume Extend, loop or pad.",
+    "Independent Setup/variation uses one observed fresh-shot cost; saved extension plans retain both cost controls.",
+    "Explicit independent-shot variation uses the Python preset and existing clone service, preserving matching references and saved source episode.",
+    "Existing recipes, canonical hashes, native extension/retry rules, budgets and history remain usable.",
+    "The browser does not compile schedules or FFmpeg commands."
+  ],
+  "verification": {
+    "focused": {
+      "command": "UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml TABI_FLOW_EVIDENCE_DIR=.local/u05-independent-flow .tools/bin/uv run --frozen pytest --run-media tests/unit/test_flow_shot_runner.py tests/unit/test_flow_shot_api.py tests/unit/test_flow_cli.py tests/integration/test_flow_shot_workflow.py",
+      "result": "30 passed in 49.45s, including independent and saved-extension 90-second exports. Owned worker requires authorized localhost access.",
+      "earlier_run": "30 passed in 53.43s before copying the identical static U04 recipe into the packaged test fixture."
+    },
+    "core": {
+      "command": "UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml make check",
+      "result": "383 passed, 77 media skipped in 39.57s; Ruff and all 68 schema checks pass.",
+      "sandbox_rerun": "Three existing localhost socket/worker tests failed with Operation not permitted: 380 passed, 3 failed, 77 skipped in 37.06s. Required localhost access was restored and the full gate passed without code changes.",
+      "initial_run": "383 passed, 77 media skipped in 43.56s before static fixture relocation."
+    },
+    "frontend": {
+      "command": "make web-check",
+      "result": "Eight frontend checks, 68 contract drift checks, TypeScript and Prettier pass."
+    },
+    "web_build": {
+      "command": "make web-build",
+      "result": "Pass; production JS index-D7Ieq7pS.js. Existing large-chunk advisory remains."
+    },
+    "package": {
+      "command": "UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=0 npm_config_offline=true make package",
+      "result": "Verified frontend, source distribution, wheel and locked runtime requirements built using existing pinned dependencies."
+    },
+    "full_media": {
+      "command": "UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml TABI_FLOW_EVIDENCE_DIR=.local/u05-independent-flow make test-media",
+      "result": "76 passed, one optional private-media fixture skipped in 360.24s; full target-Mac actual-media gate passes.",
+      "fixture_note": "The U04 compatibility recipe was subsequently copied unchanged from immutable evidence into tests/fixtures so source-package tests remain self-contained. The 30-check focused gate was rerun on the final fixture."
+    },
+    "audit": {
+      "command": ".venv/bin/python .local/u05-independent-flow/final-audit.py",
+      "result": "31 original media hashes and three staged IDE blobs preserved; 111 packaged Python modules and affected source tests match; no media/fonts in either distribution; three synthetic 90-second exports copied and hash-checked locally.",
+      "correction": "Initial auxiliary audit included all tracked .idea files, causing a KeyError on the already-tracked modules.xml. The check was narrowed to the three recorded unrelated staged files and passes; no user files were changed."
+    },
+    "ui": {
+      "project_path": ".local/u05-independent-flow/studio/U05 independent cuts test",
+      "old_episode_id": "ef5935ffc90c4bb2940be3cfeae1bfbc",
+      "new_episode_id": "1055cb3587684a10a6b29f5e6a484d35",
+      "old_episode_unchanged": true,
+      "new_recipe_sha256": "81e3040f8e78e9b6aa320b6895c79037b94c39d31d1cb51566e216ada78e3f59",
+      "new_shots": 12,
+      "extensions_per_shot": 0,
+      "observed_generation_requests": 0,
+      "temporary_worker_stopped": true,
+      "console_errors": [],
+      "browser": "Codex In-app Browser on target Mac",
+      "observed": [
+        "Fresh Setup explains twelve independent eight-second sources, predetermined 7.5-second cuts, six districts and two framings each.",
+        "Fresh Setup shows current balance, fresh-shot cost and ceiling; no extension-cost field.",
+        "Saved U04 plan still shows six 15-second shots and separate fresh/extension costs.",
+        "Explicit New Tokyo video without Flow extensions creates a separate twelve-shot variation through the normal UI.",
+        "Created plan survives reload and has twelve named 7.5-second cards and twelve-image guidance.",
+        "Reference preparation uses approved artwork; no preceding generated ending is needed.",
+        "Switching back to the saved source shows its original six-shot schedule; source recipe and revision stay unchanged.",
+        "No console errors, generation requests or reference uploads."
+      ],
+      "screenshots": [
+        ".local/u05-independent-flow/u05-independent-plan.png",
+        ".local/u05-independent-flow/u05-independent-plan-full.png",
+        ".local/u05-independent-flow/u05-setup-costs.png"
+      ]
+    }
+  },
+  "flow_capabilities_review": {
+    "review_date": "2026-10-07",
+    "sources": [
+      {
+        "url": "https://support.google.com/flow/answer/16352836?hl=en",
+        "finding": "Veo 3.1 Frames to Video supports eight-second sources. Native Extend is model-specific and is a separate generation; U05 avoids it."
+      },
+      {
+        "url": "https://support.google.com/flow/answer/16353334?hl=en",
+        "finding": "Flow supports clean reference inputs and starting/ending frames. U05 uses reviewed starting images and independent editorial cuts."
+      },
+      {
+        "url": "https://support.google.com/flow/answer/17093911?hl=en",
+        "finding": "Native Flow Agent supports planning, storyboards, prompting and batch variations. Media generation consumes credits and queries have a daily quota."
+      },
+      {
+        "url": "https://support.google.com/flow/answer/17104535?hl=en",
+        "finding": "Native Flow Tools offer reusable workflows inside Flow; media operations use generation credits."
+      },
+      {
+        "url": "https://support.google.com/flow/answer/16935718",
+        "finding": "Scene tools support arrange/trim/preview and Extend. Native Extend generates additional footage rather than merely assembling an edit."
+      }
+    ],
+    "inference": "Native Agent/Tools can reduce operations inside Flow, but their documented availability does not establish a supported external consumer-account connector for video-story or automatic TABI/scenery quality approval.",
+    "commercial_review_scope": "No generator, model, checkpoint, font, asset provider or hosted-service route was added or invoked. Current exact visible model/output terms and input rights must be rechecked before future generation/release; hosted immutable revisions were not exposed in the prior trial."
+  },
+  "external_generation_requests": 0,
+  "generation_credits_used": 0,
+  "new_dependencies": [],
+  "production_status": "Synthetic engineering outputs only; the U03 MP4 is unchanged. No new real TABI artwork/footage or art/music/rights/publication approval.",
+  "pending": [
+    "Prepare and compare twelve real starting images to approved TABI artwork; matching U04 images may be reused only when the new recipe still matches.",
+    "Qualify a short real multi-district sample and its Tokyo Bay ending before another full-length generation.",
+    "Measure starting-image preparation, fresh-generation costs, retries and human effort. More fresh requests may cost more; lower total time/credits are not established.",
+    "Recheck current exact model/output commercial terms and input rights before future generation and release.",
+    "Native Chrome/Safari checks for the changed controls remain pending; embedded browser was observed.",
+    "Almost unattended production and 30 videos per month remain unqualified."
+  ],
+  "preservation": {
+    "legacy_episode_id": "116337eaad9244ae9db8d6c21257a920",
+    "legacy_recipe_sha256": "6660f07ca3980bcbe3b8415de5e3314d02b101d2912c882945e2d0c6e5d25339",
+    "checked_media_hashes": 31,
+    "media": [
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-reference-5b8b9fb79da04620bd10730a0e281483/1.0-23c4f5c7bba84502ab9fa82ddec9a13d/000000-TABI-Tokyo-wide-v1.jpeg",
+        "sha256": "90e5789708dd7e0dfaf5860266b05b8c577173d739ba25c88cd781da4f50d335"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-reference-05b73b0952d84dd5a5fa658c69caac43/1.0-cc57838565b34014be17d0365731bc86/000000-TABI-Tokyo-close-v1.jpg",
+        "sha256": "2d7ccf29a7231806745e8bcb5ec3b1ff4e08301876d82e5f1d1397720a323214"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-reference-f4866721b1f04d8f886ef0e5a62f6f60/1.0-42748b24a92642939aa1fb97c334e47c/000000-TABI-Tokyo-medium-v1.jpg",
+        "sha256": "f298aac7504b27ec1cac38de02eeda86b4e48c8c094ddc51a4999dd1df4b6e6c"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-42d3d2d6b24d4c5abec20eaa8e9e24c7/1.0-96ed931c4cd044c8b1b5638b66b821bd/000000-01-wide-opening.mp4",
+        "sha256": "6769d920011981540144a0d68149076b6a1e089d27a2756b330dfff328de7b17"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-f7f4b81cc94d4749a039e1ab6652488a/1.0-9fc060dea255468199070b19212a14cd/000000-01b-wide-identity-retry.mp4",
+        "sha256": "22e8ea7e209d650ebd13675335711392c805d8605de63116b0caf3779963bdbf"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-96bb9198cf6f429b8c906c0e236a1d9e/1.0-ae762f7579534f13abfee52efa7895f3/000000-02-wide-extension.mp4",
+        "sha256": "b5c68cc3c487380e4bf8fb9a188d88893a60be782fd8537592406d64ae36ba00"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-e1376ad80abc4183968b62fecc53c6cd/1.0-d83132a5bca34bc481290eb3d67e6941/000000-03-close-window-look.mp4",
+        "sha256": "32fe98ff533a5aaefcb25499f47f1919490d423632589abe6eb940eceee6c43e"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-e0b7c62d454c4345a0605d56f9028618/1.0-dd4098dc39064ee5989c0c2c3b96df89/000000-04-close-extension.mp4",
+        "sha256": "693f7e40ab0db783e9578770c315cd10eadd109fd842150f8c80e550bc82bc5b"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-80e96226c56349e99d916039d8982357/1.0-155c7e4b73ee42fb942f87cf5e3cb7c9/000000-05-cup-pickup.mp4",
+        "sha256": "e172c5dd0c4e42625bfadb0285fe2f4f74e4111ce1b8448889242c50c5825d2e"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-3a4b1e101fef43e09fa172fcac7b4f6c/1.0-b65d13389bf34d6f8e5199a0e6adf523/000000-06-cup-sip.mp4",
+        "sha256": "eb6655de9d6e4223e89513255dd3328ae05602b63b24936b1d5f752603a8524a"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-16956b8c143f43b0b0138459f523fcc1/1.0-f72e7e18dfdb4a09b782ea500288f634/000000-07-cup-return.mp4",
+        "sha256": "c64c3a101fb16455d50ff1049dc176119362088ea427ae004598e94833a84713"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-20d6f9cbc8ce420aa392a675a1fc3785/1.0-43182dda73ed4d8c9d68edbfbfcbbeb3/000000-07b-cup-return-correction.mp4",
+        "sha256": "4ff1c1477e7a5eb5e54cd4126f763b8387fd6a4abda54670b637afd29b4880a9"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-a240730e303a45d0add825cb40dc98e1/1.0-4e7ad053603a4d1bb8921dae22e69661/000000-07c-cup-return-factual.mp4",
+        "sha256": "17cd05b527e3d8ab94d795c0d4982a25cb81f06413bf58d038a674e5f0894b99"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-47a767af45e64117b788745b83dfb150/1.0-2f423f8127c74111871046fddca82aa2/000000-07d-cup-return-final.mp4",
+        "sha256": "90daa10e59b014c58d1d6b52b8f9ad9b1ae2cbbee914e886177520b29df3b0a5"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-904e5cb25c524098938a22e45abe8a7d/1.0-e98696b60de54f2e982cf23fc538d3a9/000000-U03_05b_-_two_hand_20261006225509.mp4",
+        "sha256": "911bd0f185b0b7eec9c86cd6ac5962cdc36a29c07e4dc3c02ec9d5e43cf1bce1"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-54631c0cf9bf4ce78fe56f299044a3e4/1.0-0b264002d87749afa938f2ec7065861e/000000-06b-two-hand-sip.mp4",
+        "sha256": "c6cc2eea35ed220c74c4dd9e2634e53c61f135ee5b055935db55cf845d1155fc"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-849ef088f55f4d9ca2b1fecefc67bfcd/1.0-e71fd34640ee4db0962b55a2d223165d/000000-06c-two-hand-sip-correction.mp4",
+        "sha256": "0a67e15efe3b27fbd16a8567c0373795ec7651bbadad166d0c84c07c35eeb3e1"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-3b1cffc183ac4d84bde1135aa0aec95a/1.0-852fbf539a434880aa4b51a58f6f78ef/000000-07e-two-hand-cup-return.mp4",
+        "sha256": "dc7928ea1f72ebf322fd9bc31a5df31f4bcb81d8c30c407ab82e2082dc854428"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-6b3c56fe5c9044efbab409ee248e808d/1.0-c60dbfe39ee44f3f9aa5632ad81b25c3/000000-07f-two-hand-return-correction.mp4",
+        "sha256": "0aa985364e435c3f440189fae8e3e9208987122c7beb6453979d0fcba2040a53"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-facd523c1422450e856992ab6a9ab3b5/1.0-fde67fc209d944898aa1b3328e9af143/000000-08-close-music-sway.mp4",
+        "sha256": "ae3980d22774e0a1074089b8ed18091db35fe107d536b7c9be82466d9598bdf1"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-4ecdfede383242c6aaf02334f8bb5547/1.0-e62380c3b56d4e80aa9bce251001f2fe/000000-09-wide-window-look.mp4",
+        "sha256": "b9c46c5d52908780a67f67064933a227e78bae0100e8a34e1d8fdf3e61fce746"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-9d7be446600240c89184c5a26cfa95e8/1.0-ad86fc6f0f3d447eaf18bf557bf39ea0/000000-10-wide-window-rest.mp4",
+        "sha256": "4885e36207f610a2d4ff0ec531150a4be1cd5aa436b6d6c577245d416d51faa5"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-3b865fd87b204fbf96ef5b0486889763/1.0-889e6660afa54a0c8079a60978bf9272/000000-11-deep-breath.mp4",
+        "sha256": "08640d23d4a079230cc3451f837d6642ce0582fc3523c46ea520af442cffeae0"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-82fd87ec686b445ea639dedca822851a/1.0-1dbbb85f8e2b4debb7ee80fb426cc4ac/000000-11b-breath-outfit-correction.mp4",
+        "sha256": "eea3600b24e3eba4ecb4199a6ca335a1f3dc669f83d17d81027d0f25f1a87493"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-c9ecdd0b1c64427eb8a3f63e47e66a1c/1.0-6855cf8d2b4c4e29ac63e8b6f5288633/000000-11c-seated-breath.mp4",
+        "sha256": "fba785efb63eff56ecd69358b948ea21c5c0bad8826d9bd37c9d11353b87c51e"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-7e01d3cb37cf4be38439cc7dd638e112/1.0-e7bdadc914a84bd7b78e6657c60ea9fd/000000-12-final-breathing-rest.mp4",
+        "sha256": "c8e07192ae923b719a1eff4609a7b333ffa96026f968f96b03c4babef6a7a716"
+      },
+      {
+        "path": ".local/tabi-camera-trial/TABI camera trial project/sources/flow-b9633d2a901941a38608652179eb70f5/1.0-4fd82fc0b460452f934e73b23eb25583/000000-12b-clear-air-ending.mp4",
+        "sha256": "f63a8b994e804afa21cc285ac742765fb16489e061d290293586df9957d33a94"
+      },
+      {
+        "path": "/Users/marcoandreose/DEV/lab/video-story/.local/tabi-camera-trial/TABI camera trial project/exports/ed35ae72f8d640ac86e7864a5f9ce38c.mp4",
+        "sha256": "3dc4efb8c890f87ecf2951e8b44d950da68b077b8edbc23f6288b32c4379a426"
+      },
+      {
+        "path": "/Users/marcoandreose/DEV/lab/video-story/.local/tabi-camera-trial/full-90s/TABI-Tokyo-90s-APP-DRAFT.mp4",
+        "sha256": "3dc4efb8c890f87ecf2951e8b44d950da68b077b8edbc23f6288b32c4379a426"
+      },
+      {
+        "path": "docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4",
+        "sha256": "7e45fd8faf4b2cfe7556ee248bb2da90a63f6ac92024edf2dccb6f7a58917e0b"
+      },
+      {
+        "path": "docs/assets/clip-tests/Tabi-Calm-Window-Ride-90s-Lo-Fi-Walz-DRAFT.mp4",
+        "sha256": "a0d56de1ca30056ba9744c167aa2ae36c7185f1519afa2ce4b3ee1bfd60424e3"
+      }
+    ],
+    "legacy_optional_field_omitted": true,
+    "unrelated_staged_ide_blobs": {
+      ".idea/.gitignore": "30cf57ed7cba5157ad5f7c05ede08adde945ada6",
+      ".idea/vcs.xml": "35eb1ddfbbc029bcab630581847471d7f238ec53",
+      ".idea/video-story.iml": "5e764c4f0b9a64bb78a5babfdd583713b2df47bf"
+    }
+  },
+  "package_audit": {
+    "wheel": ".local/packages/tabi_story_studio-0.1.0-py3-none-any.whl",
+    "source_distribution": ".local/packages/tabi_story_studio-0.1.0.tar.gz",
+    "wheel_python_modules_matching_source": 111,
+    "packaged_legacy_fixture_matches_u04": true,
+    "packaged_affected_tests_match_source": true,
+    "media_and_fonts_absent": true,
+    "wheel_sha256": "b0956b001e4cac76567b7de6b6b153f5b3387637ae66f6612c227bcd142e2c73",
+    "source_distribution_sha256": "bd29cdc97d755cf6133d9515cbd61d4afbde2bdbeee36b54dcab686c77a69c04",
+    "fixture_sha256": "f15c25e5817f430d2dfea4cbd3148a438b499f60f54a917b69702d7344af440b"
+  },
+  "media_workflows": {
+    "independent": {
+      "project_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-41/test_twelve_independent_starts0/project",
+      "episode_id": "7209b670fa6347f8add9df6a907b4302",
+      "export_id": "ebeb0be5c99f4f0ea9d02dd600ee057c",
+      "output_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-41/test_twelve_independent_starts0/project/exports/ebeb0be5c99f4f0ea9d02dd600ee057c.mp4",
+      "planned_shots": [
+        {
+          "id": "sumida",
+          "title": "Sumida River and a distant Skytree \u00b7 wide view",
+          "framing": "wide",
+          "reference_key": "sumida",
+          "index": 1,
+          "start_frame": 0,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "sumida-medium",
+          "title": "Sumida River and a distant Skytree \u00b7 medium view",
+          "framing": "medium",
+          "reference_key": "sumida-medium",
+          "index": 2,
+          "start_frame": 180,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "yanaka",
+          "title": "Yanaka's old rooftops \u00b7 medium view",
+          "framing": "medium",
+          "reference_key": "yanaka",
+          "index": 3,
+          "start_frame": 360,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "yanaka-wide",
+          "title": "Yanaka's old rooftops \u00b7 wide view",
+          "framing": "wide",
+          "reference_key": "yanaka-wide",
+          "index": 4,
+          "start_frame": 540,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "akihabara",
+          "title": "Akihabara's colorful shopping streets \u00b7 wide view",
+          "framing": "wide",
+          "reference_key": "akihabara",
+          "index": 5,
+          "start_frame": 720,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "akihabara-medium",
+          "title": "Akihabara's colorful shopping streets \u00b7 medium view",
+          "framing": "medium",
+          "reference_key": "akihabara-medium",
+          "index": 6,
+          "start_frame": 900,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "ueno",
+          "title": "Ueno's trees and pond \u00b7 medium view",
+          "framing": "medium",
+          "reference_key": "ueno",
+          "index": 7,
+          "start_frame": 1080,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "ueno-wide",
+          "title": "Ueno's trees and pond \u00b7 wide view",
+          "framing": "wide",
+          "reference_key": "ueno-wide",
+          "index": 8,
+          "start_frame": 1260,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "shinjuku",
+          "title": "Shinjuku's evening skyline \u00b7 wide view",
+          "framing": "wide",
+          "reference_key": "shinjuku",
+          "index": 9,
+          "start_frame": 1440,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "shinjuku-medium",
+          "title": "Shinjuku's evening skyline \u00b7 medium view",
+          "framing": "medium",
+          "reference_key": "shinjuku-medium",
+          "index": 10,
+          "start_frame": 1620,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "odaiba",
+          "title": "Tokyo Bay and Rainbow Bridge \u00b7 wide view",
+          "framing": "wide",
+          "reference_key": "odaiba",
+          "index": 11,
+          "start_frame": 1800,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        },
+        {
+          "id": "odaiba-medium",
+          "title": "Tokyo Bay and Rainbow Bridge \u00b7 medium view",
+          "framing": "medium",
+          "reference_key": "odaiba-medium",
+          "index": 12,
+          "start_frame": 1980,
+          "duration_frames": 180,
+          "accepted_frames": 180,
+          "state": "complete"
+        }
+      ],
+      "fresh_starts": 13,
+      "extensions": 0,
+      "accepted_source_ranges": [
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 180
+        }
+      ],
+      "duration_frames": 2160,
+      "fps": {
+        "num": 24,
+        "den": 1
+      },
+      "duration_seconds": 90,
+      "accepted_clips": 12,
+      "attempts": 13,
+      "rejected_clips": 1,
+      "reopen_pending_attempt": true,
+      "samples": 4320000,
+      "output_sha256": "74ac5c5b5a07e0f9e88e7e0714ce3a9851ba31b70922447e4fa802cab4f373a7",
+      "source_audio_unchanged": true,
+      "all_frames_and_pts": "strict full decode verified",
+      "source_hashes_rechecked": true,
+      "join_boundaries_compared": 22,
+      "creative_approval": "pending",
+      "production_blockers": [
+        "asset_rights_or_approval_pending",
+        "creative_review_pending_or_stale",
+        "episode_concept_review_pending",
+        "flow_commercial_terms_pending_or_stale",
+        "metadata_and_disclosure_review_pending_or_stale",
+        "music_metadata_pending",
+        "synthetic_assets"
+      ],
+      "external_generation_requests": 0,
+      "elapsed_seconds": 23.49,
+      "preserved_local_output": ".local/u05-independent-flow/U05-SYNTHETIC-independent.mp4"
+    },
+    "saved_six_shot": {
+      "project_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-41/test_saved_six_shot_recipe_kee0/project",
+      "episode_id": "1a7a06cf2a7c4eb1bfedaa6b1e42179d",
+      "export_id": "ae22268ffadf4150999b200e463f5a0f",
+      "output_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-41/test_saved_six_shot_recipe_kee0/project/exports/ae22268ffadf4150999b200e463f5a0f.mp4",
+      "planned_shots": [
+        {
+          "id": "sumida",
+          "title": "Sumida River and a distant Skytree",
+          "framing": "wide",
+          "reference_key": "sumida",
+          "index": 1,
+          "start_frame": 0,
+          "duration_frames": 360,
+          "accepted_frames": 360,
+          "state": "complete"
+        },
+        {
+          "id": "yanaka",
+          "title": "Yanaka's old rooftops",
+          "framing": "medium",
+          "reference_key": "yanaka",
+          "index": 2,
+          "start_frame": 360,
+          "duration_frames": 360,
+          "accepted_frames": 360,
+          "state": "complete"
+        },
+        {
+          "id": "akihabara",
+          "title": "Akihabara's colorful shopping streets",
+          "framing": "wide",
+          "reference_key": "akihabara",
+          "index": 3,
+          "start_frame": 720,
+          "duration_frames": 360,
+          "accepted_frames": 360,
+          "state": "complete"
+        },
+        {
+          "id": "ueno",
+          "title": "Ueno's trees and pond",
+          "framing": "medium",
+          "reference_key": "ueno",
+          "index": 4,
+          "start_frame": 1080,
+          "duration_frames": 360,
+          "accepted_frames": 360,
+          "state": "complete"
+        },
+        {
+          "id": "shinjuku",
+          "title": "Shinjuku's evening skyline",
+          "framing": "wide",
+          "reference_key": "shinjuku",
+          "index": 5,
+          "start_frame": 1440,
+          "duration_frames": 360,
+          "accepted_frames": 360,
+          "state": "complete"
+        },
+        {
+          "id": "odaiba",
+          "title": "Tokyo Bay and Rainbow Bridge",
+          "framing": "wide",
+          "reference_key": "odaiba",
+          "index": 6,
+          "start_frame": 1800,
+          "duration_frames": 360,
+          "accepted_frames": 360,
+          "state": "complete"
+        }
+      ],
+      "fresh_starts": 7,
+      "extensions": 6,
+      "accepted_source_ranges": [
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 168
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 168
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 168
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 168
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 168
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 168
+        }
+      ],
+      "duration_frames": 2160,
+      "fps": {
+        "num": 24,
+        "den": 1
+      },
+      "duration_seconds": 90,
+      "accepted_clips": 12,
+      "attempts": 13,
+      "rejected_clips": 1,
+      "reopen_pending_attempt": true,
+      "samples": 4320000,
+      "output_sha256": "a2f89d65a1a04419c5406026ee5f3e3e30230aede154cc8a419502faf4f4afe2",
+      "source_audio_unchanged": true,
+      "all_frames_and_pts": "strict full decode verified",
+      "source_hashes_rechecked": true,
+      "join_boundaries_compared": 22,
+      "creative_approval": "pending",
+      "production_blockers": [
+        "asset_rights_or_approval_pending",
+        "creative_review_pending_or_stale",
+        "episode_concept_review_pending",
+        "flow_commercial_terms_pending_or_stale",
+        "metadata_and_disclosure_review_pending_or_stale",
+        "music_metadata_pending",
+        "synthetic_assets"
+      ],
+      "external_generation_requests": 0,
+      "elapsed_seconds": 23.13,
+      "preserved_local_output": ".local/u05-independent-flow/U05-SYNTHETIC-saved_six_shot.mp4"
+    },
+    "legacy_unplanned": {
+      "project_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-40/test_legacy_90s_recipe_reject_0/project",
+      "episode_id": "ad61e3cfd272466bbae5864689be6974",
+      "export_id": "d4a04a14b02d414ab3ef5bce47bcdad9",
+      "output_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-40/test_legacy_90s_recipe_reject_0/project/exports/d4a04a14b02d414ab3ef5bce47bcdad9.mp4",
+      "planned_shots": [],
+      "fresh_starts": 0,
+      "extensions": 12,
+      "accepted_source_ranges": [
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 192
+        },
+        {
+          "start_frame": 0,
+          "end_frame": 48
+        }
+      ],
+      "duration_frames": 2160,
+      "fps": {
+        "num": 24,
+        "den": 1
+      },
+      "duration_seconds": 90,
+      "accepted_clips": 12,
+      "attempts": 13,
+      "rejected_clips": 1,
+      "reopen_pending_attempt": true,
+      "samples": 4320000,
+      "output_sha256": "169a80f061ee801055aaac55b1d4ee77aa6524c63eb01bdbf7351e469e1a5ea6",
+      "source_audio_unchanged": true,
+      "all_frames_and_pts": "strict full decode verified",
+      "source_hashes_rechecked": true,
+      "join_boundaries_compared": 22,
+      "creative_approval": "pending",
+      "production_blockers": [
+        "asset_rights_or_approval_pending",
+        "creative_review_pending_or_stale",
+        "episode_concept_review_pending",
+        "flow_commercial_terms_pending_or_stale",
+        "metadata_and_disclosure_review_pending_or_stale",
+        "music_metadata_pending",
+        "synthetic_assets"
+      ],
+      "external_generation_requests": 0,
+      "elapsed_seconds": 22.48,
+      "preserved_local_output": ".local/u05-independent-flow/U05-SYNTHETIC-legacy_unplanned.mp4"
+    }
+  },
+  "old_real_trial_stats": {
+    "attempts": 24,
+    "attempt_modes": {
+      "shot_start": 10,
+      "extend": 14
+    },
+    "rejected_modes": {
+      "shot_start": 3,
+      "extend": 7
+    },
+    "rejected_action_kinds": {
+      "rest": 2,
+      "return_cup": 5,
+      "sip": 1,
+      "deep_breath": 2
+    }
+  },
+  "new_preset": {
+    "identity": "TABI, the pink-lavender axolotl in the supplied approved reference, with dark-brown eyes, attached pink gills and purple headphones.",
+    "outfit": "The reference's green coat with leopard-patterned trim.",
+    "setting": "A warm wooden sightseeing train carriage travelling through Tokyo at sunset.",
+    "camera": "A fixed wide view across the aisle, at seated eye level.",
+    "exterior": "Tokyo scenery moves continuously from right to left with natural parallax.",
+    "opening_inventory": [
+      "one takeaway cup on the table",
+      "one open book",
+      "one pen"
+    ],
+    "opening_mode": "image_motion",
+    "project_url": null,
+    "fps": {
+      "num": 24,
+      "den": 1
+    },
+    "target_frames": 2160,
+    "beats": [],
+    "shots": [
+      {
+        "id": "sumida",
+        "title": "Sumida River and a distant Skytree \u00b7 wide view",
+        "reference_key": "sumida",
+        "framing": "wide",
+        "exterior": "A Sumida River-inspired view: broad water with sunset reflections, a riverside bridge and Tokyo Skytree small in the distant skyline.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "sumida-wide-rest",
+            "kind": "rest",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "sumida-medium",
+        "title": "Sumida River and a distant Skytree \u00b7 medium view",
+        "reference_key": "sumida-medium",
+        "framing": "medium",
+        "exterior": "A Sumida River-inspired view: broad water with sunset reflections, a riverside bridge and Tokyo Skytree small in the distant skyline.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "sumida-medium-rest",
+            "kind": "rest",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "yanaka",
+        "title": "Yanaka's old rooftops \u00b7 medium view",
+        "reference_key": "yanaka",
+        "framing": "medium",
+        "exterior": "A Yanaka-inspired view: varied low tiled rooftops, a quiet lane, small wooden storefronts and trees, with open sky between the buildings.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "yanaka-medium-look",
+            "kind": "look",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "yanaka-wide",
+        "title": "Yanaka's old rooftops \u00b7 wide view",
+        "reference_key": "yanaka-wide",
+        "framing": "wide",
+        "exterior": "A Yanaka-inspired view: varied low tiled rooftops, a quiet lane, small wooden storefronts and trees, with open sky between the buildings.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "yanaka-wide-look",
+            "kind": "look",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "akihabara",
+        "title": "Akihabara's colorful shopping streets \u00b7 wide view",
+        "reference_key": "akihabara",
+        "framing": "wide",
+        "exterior": "An Akihabara-inspired view: colorful electronics storefronts and vertical signboards along a busy shopping street, with different building silhouettes.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "akihabara-wide-rest",
+            "kind": "rest",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "akihabara-medium",
+        "title": "Akihabara's colorful shopping streets \u00b7 medium view",
+        "reference_key": "akihabara-medium",
+        "framing": "medium",
+        "exterior": "An Akihabara-inspired view: colorful electronics storefronts and vertical signboards along a busy shopping street, with different building silhouettes.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "akihabara-medium-rest",
+            "kind": "rest",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "ueno",
+        "title": "Ueno's trees and pond \u00b7 medium view",
+        "reference_key": "ueno",
+        "framing": "medium",
+        "exterior": "A Ueno-inspired park view: leafy trees, pond water catching warm light and a distant pavilion, with spacious gaps instead of a wall of apartments.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "ueno-medium-look",
+            "kind": "look",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "ueno-wide",
+        "title": "Ueno's trees and pond \u00b7 wide view",
+        "reference_key": "ueno-wide",
+        "framing": "wide",
+        "exterior": "A Ueno-inspired park view: leafy trees, pond water catching warm light and a distant pavilion, with spacious gaps instead of a wall of apartments.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "ueno-wide-look",
+            "kind": "look",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "shinjuku",
+        "title": "Shinjuku's evening skyline \u00b7 wide view",
+        "reference_key": "shinjuku",
+        "framing": "wide",
+        "exterior": "A Shinjuku-inspired view: a varied cluster of tall modern towers catching sunset light above smaller streets and rooftops.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "shinjuku-wide-rest",
+            "kind": "rest",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "shinjuku-medium",
+        "title": "Shinjuku's evening skyline \u00b7 medium view",
+        "reference_key": "shinjuku-medium",
+        "framing": "medium",
+        "exterior": "A Shinjuku-inspired view: a varied cluster of tall modern towers catching sunset light above smaller streets and rooftops.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "shinjuku-medium-rest",
+            "kind": "rest",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "odaiba",
+        "title": "Tokyo Bay and Rainbow Bridge \u00b7 wide view",
+        "reference_key": "odaiba",
+        "framing": "wide",
+        "exterior": "An Odaiba-inspired closing view: broad Tokyo Bay water, Rainbow Bridge in the middle distance and a low waterfront skyline under the warm evening sky.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "odaiba-wide-look",
+            "kind": "look",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      },
+      {
+        "id": "odaiba-medium",
+        "title": "Tokyo Bay and Rainbow Bridge \u00b7 medium view",
+        "reference_key": "odaiba-medium",
+        "framing": "medium",
+        "exterior": "An Odaiba-inspired closing view: broad Tokyo Bay water, Rainbow Bridge in the middle distance and a low waterfront skyline under the warm evening sky.",
+        "duration_frames": 180,
+        "max_extensions": 0,
+        "beats": [
+          {
+            "id": "odaiba-medium-look",
+            "kind": "look",
+            "target_frame": 0,
+            "district": null
+          }
+        ]
+      }
+    ]
+  },
+  "recipe_sha256": "81e3040f8e78e9b6aa320b6895c79037b94c39d31d1cb51566e216ada78e3f59"
+}

@@ -57,16 +57,20 @@ def planned_recipe() -> FlowRecipe:
     return FlowRecipe(
         shots=[
             FlowShot(
-                id=identity,
-                title=title,
-                framing=framing,
-                reference_key=identity,
+                id=identity if first else f"{identity}-{view}",
+                title=f"{title} · {view} view",
+                framing=view,
+                reference_key=identity if first else f"{identity}-{view}",
                 exterior=exterior,
-                duration_frames=15 * 24,
-                max_extensions=1,
-                beats=[FlowBeat(id=f"{identity}-{kind}", kind=kind, target_frame=0)],
+                duration_frames=180,
+                max_extensions=0,
+                beats=[FlowBeat(id=f"{identity}-{view}-{kind}", kind=kind, target_frame=0)],
             )
             for identity, title, framing, kind, exterior in views
+            for first, view in (
+                (True, framing),
+                (False, "medium" if framing == "wide" else "wide"),
+            )
         ]
     )
 
@@ -164,7 +168,14 @@ def reference_instruction(recipe, key):
         "outfit, train layout, cup, book, pen, bag, sunset and side of the window. Carriage air "
         "is clear; highlights remain painted on solid surfaces. The subject rests with a small "
         "closed-mouth smile and the cup on the table. Keep the travel direction consistent. "
-        "Preserve the source image; save this as a new reference version." + scenery
+        "Preserve the source image; save this as a new reference version."
+        + scenery
+        + (
+            " This is an independent camera shot. Prepare its composition from the approved "
+            "image; no preceding generated ending is needed."
+            if shot.max_extensions == 0
+            else ""
+        )
     )
 
 

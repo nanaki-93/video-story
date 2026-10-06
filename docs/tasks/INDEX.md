@@ -5,14 +5,15 @@ Marco's final creative approval and the production gates below remain open.
 Marco permits Flow for generation; setup, trimming, review and export must use video-story.
 Implement and verify one step, then commit it. Preserve existing projects and source media.
 
-**U04 is implemented and verified:** six distinct Tokyo window references with calmer actions
-address Marco's repetitive/incorrect panorama feedback and lengthy retry concern.
-Existing drafts remain unchanged. The next acceptance check is a short real multi-district
-sample including the closing view, measuring image preparation, retries, credits and human
-effort before another full 90-second trial. New scenery quality and lower effort remain open.
+**Latest step:** [U05](../tasks.md#u05--remove-flow-extensions-from-the-new-tokyo-preset) is
+engineering complete. Marco explicitly selected independent cinematic shots with deliberate
+camera cuts. New videos use twelve 7.5-second shots without native extensions or generated end-to-start
+matches. U04's distinct district descriptions remain. Existing drafts stay unchanged; real
+shot quality, preparation, credits and human effort still need measurement.
 
 | Task | Outcome | Status |
 | --- | --- | --- |
+| U05 | Independent short Tokyo shots and fixed editorial cuts; no Flow Extend | engineering complete; real quality/effort trial pending |
 | [U04](../tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view) | Distinct Tokyo window views and a calmer default routine | engineering complete; real quality/effort trial pending |
 | U01 | Frame-exact pending clip sections and matching review playback | complete; seven focused checks pass |
 | U02 | Normal UI section controls and authenticated preview | complete; API/frontend/build checks pass |
@@ -81,6 +82,10 @@ verified and playable through Finish; real full-length acceptance remains open.
 
 - Obtain Marco's creative review of the real U03 train draft; run a fresh setting/outfit
   variation and measure representative human effort. Café and walking remain separate trials.
+- Qualify the U05 independent plan with a short real multi-district sample, especially the
+  Tokyo Bay ending, before another full-length generation. Measure twelve-image preparation,
+  fresh-generation costs, retries and human effort; zero extensions does not establish lower
+  total cost or reliable generated shots. See [U05 evidence](../evidence/u05-independent-flow.json).
 - Qualify source artwork/music, exact provider/model commercial terms, disclosure and the
   final picture/sound before publication. No fixture or old comparison grants that approval.
 - Direct unattended Flow control and the target of 30 videos monthly remain unqualified.

@@ -64,9 +64,9 @@ def upload(client, headers, path, view):
 
 def test_reference_guidance_requires_all_views_and_atomic_variation_reset(workspace, monkeypatch):
     service, client, headers, path, view = create(workspace, monkeypatch)
-    assert len(view["shots"]) == 6 and view["shots"][-1]["start_frame"] == 1800
+    assert len(view["shots"]) == 12 and view["shots"][-1]["start_frame"] == 1980
     keys = [shot["reference_key"] for shot in view["episode"]["recipe"]["shots"]]
-    assert len(set(keys)) == 6 and view["next_reference_key"] == "sumida"
+    assert len(set(keys)) == 12 and view["next_reference_key"] == "sumida"
     assert {b["kind"] for b in view["remaining_beats"]} == {"rest", "look"}
     for shot in view["episode"]["recipe"]["shots"]:
         key = shot["reference_key"]
@@ -83,7 +83,7 @@ def test_reference_guidance_requires_all_views_and_atomic_variation_reset(worksp
     ).json()
     assert not clone["episode"]["references"]
     assert clone["next_step"]["action"] == "choose_reference"
-    assert len(service.get(view["episode"]["id"]).references) == 6
+    assert len(service.get(view["episode"]["id"]).references) == 12
     scenic = view["episode"]["recipe"]
     scenic["shots"][-1]["exterior"] = "A new waterfront with a pier."
     changed_view = client.post(
@@ -92,7 +92,7 @@ def test_reference_guidance_requires_all_views_and_atomic_variation_reset(worksp
     assert changed_view.status_code == 200, changed_view.text
     changed = changed_view.json()
     assert changed["episode"]["references"] == view["episode"]["references"][:-1]
-    assert changed["next_reference_key"] == "odaiba"
+    assert changed["next_reference_key"] == "odaiba-medium"
 
 
 def test_shot_review_cut_boundary_and_focused_retry_survive_api_reopen(workspace, monkeypatch):
@@ -227,7 +227,7 @@ def test_restart_shot_route_preserves_sources_and_requires_current_authenticated
         view = upload(client, headers, path, view)
     episode = service.get(view["episode"]["id"])
     runner = FlowRunner(service)
-    episode = receipt(service, runner.prepare(episode.id, episode.revision), frames=192)
+    episode = receipt(service, runner.prepare(episode.id, episode.revision), frames=96)
     candidate = episode.candidates[-1]
     episode = service.review(
         episode.id,
