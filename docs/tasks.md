@@ -52,6 +52,25 @@ The previous S/F/P/T task bodies below remain implementation history.
 
 Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `make web-build` with the local offline uv cache.
 
+## U02a — Correct all character details after an identity rejection
+
+**Status** [x] Seventeen focused prompt/runner checks pass. New identity retries preserve markings, clothing and accessories; existing attempt hashes remain unchanged.
+
+**Target files**
+- `src/tabi/core/flow/prompts.py` — identity retry protects markings, clothing and accessories as well as gills and neck.
+- `tests/unit/test_flow_prompts.py` — focused correction covers accessories and keeps the current action.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — record the first real take's headphone mutation and verification.
+
+**Inputs / dependencies**
+- U02; the U03 opening added a yellow star to the reference's plain headphone earcup. The app's existing identity correction covered only gills and neck.
+
+**Implementation rules**
+- Keep one focused correction and the same clean starting reference. Protect original appearance without inventing a new inventory or replacing the requested action.
+- Existing saved attempt text/hashes remain immutable. Only newly prepared identity retries use the corrected template; same attempt/credit/retry caps.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_prompts.py tests/unit/test_flow_shot_runner.py`
+
 ## U03 — Run the full 90-second journey through the app
 
 **Status** [ ]
@@ -62,7 +81,7 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 - `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — measured outcome and remaining generation dependency.
 
 **Inputs / dependencies**
-- U02. Marco confirmed: allow Flow for generation; everything else must use video-story.
+- U02 and U02a. Marco confirmed: allow Flow for generation; everything else must use video-story.
 - Direct generation solely inside video-story is blocked on a supported consumer-Flow connector within the existing allowance. Official Flow Agent documentation does not establish this; Gemini video API pricing is separate. No new purchase is authorized.
 
 **Implementation rules**

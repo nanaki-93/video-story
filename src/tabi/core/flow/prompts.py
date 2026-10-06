@@ -82,7 +82,10 @@ def action_text(state: FlowState, beat: FlowBeat) -> str:
 CORRECTIONS = {
     "particles": "Carriage air stays clear, with stable painted highlights on solid surfaces.",
     "mouth": "The mouth holds the same small closed smile throughout the movement.",
-    "identity": "The gills stay attached and the neck stays connected to the outfit.",
+    "identity": (
+        "The gills stay attached and the neck stays connected to the outfit. "
+        "Markings, clothing and accessories keep exactly their starting shapes and colors."
+    ),
     "props": "Only the object involved in this action moves; its shape stays rigid.",
     "motion": "The exterior keeps scrolling smoothly through the final frame.",
     "action": "Complete this single action and settle comfortably before the shot ends.",

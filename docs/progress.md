@@ -2,6 +2,14 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U02a — Identity retries include clothing and accessories
+
+6 October 2026. The first U03 Quality opening added a yellow star to the reference's plain
+headphone earcup. It was rejected through the app. The selected identity retry previously
+protected only gills and neck; it now also protects original markings, clothing and accessories.
+Seventeen focused prompt/runner checks pass. Existing saved prompts and references are unchanged.
+The real retry and full 90-second creative gate remain U03 work.
+
 ## U02 — Section controls in the guided review screen
 
 6 October 2026. Review now plays the selected section and offers optional source-frame controls,

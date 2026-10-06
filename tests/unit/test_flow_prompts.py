@@ -88,3 +88,17 @@ def test_mouth_retry_allows_the_requested_sip_and_returns_to_resting_shape():
         _, prompt = compile_prompt(episode, beat, parent, **options)
         assert "one small sip" in prompt and "lips meet the rim" in prompt
         assert "closed smile throughout" not in prompt and "resting shape" in prompt
+
+
+def test_identity_retry_protects_accessories_without_replacing_the_current_action():
+    episode, parent = setup_state()
+    beat = FlowBeat(id="look", kind="look", target_frame=360)
+    _, prompt = compile_prompt(
+        episode, beat, parent, retry_focus="identity", retry_reason="Invented headphone emblem"
+    )
+    assert "turns the head slightly toward the window" in prompt
+    assert "gills stay attached" in prompt and "neck stays connected" in prompt
+    assert (
+        "Markings, clothing and accessories keep exactly their starting shapes and colors" in prompt
+    )
+    assert "Invented headphone emblem" not in prompt
