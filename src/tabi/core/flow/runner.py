@@ -7,6 +7,7 @@ from ..models.base import content_hash
 from ..models.flow import FlowAttempt, FlowBeat, FlowEpisode, FlowState
 from .prompts import compile_prompt
 from .service import FlowError, references_hash, updated
+from .shots import all_beats, current_shot, frames_in_shot, missing_reference
 
 
 def action_complete(beat: FlowBeat, state: FlowState | None) -> bool:
@@ -44,18 +45,18 @@ def completed_beats(episode: FlowEpisode) -> set[str]:
 
 def next_beat(episode: FlowEpisode) -> FlowBeat:
     completed = completed_beats(episode)
-    for beat in episode.recipe.beats:
-        if beat.id not in completed and beat.target_frame <= episode.accepted_frames:
+    shot = current_shot(episode)
+    frames = frames_in_shot(episode, shot) if shot else episode.accepted_frames
+    for beat in shot.beats if shot else episode.recipe.beats:
+        if beat.id not in completed and beat.target_frame <= frames:
             return beat
-    return FlowBeat(
-        id=f"rest-{episode.accepted_frames}", kind="rest", target_frame=episode.accepted_frames
-    )
+    return FlowBeat(id=f"{shot.id if shot else 'rest'}-{frames}", kind="rest", target_frame=frames)
 
 
 def export_ranges(episode: FlowEpisode) -> list[tuple]:
     """Only an explicitly reviewed final ending may shorten the target-crossing clip."""
     completed = completed_beats(episode)
-    if any(beat.id not in completed for beat in episode.recipe.beats):
+    if any(beat.id not in completed for beat in all_beats(episode.recipe)):
         raise FlowError("Complete the remaining actions before finishing the video.")
     remaining, result = episode.recipe.target_frames, []
     for identity in episode.accepted_ids:
@@ -133,12 +134,17 @@ class FlowRunner:
             try:
                 export_ranges(episode)
             except FlowError as error:
-                if all(beat.id in completed_beats(episode) for beat in episode.recipe.beats):
+                if all(beat.id in completed_beats(episode) for beat in all_beats(episode.recipe)):
                     return result("needs_attention", str(error))
             else:
                 return result(
                     "finish", "The reviewed footage covers the target. Preview and export."
                 )
+        missing = missing_reference(episode)
+        if missing:
+            return result(
+                "choose_reference", f"Choose and review the clean {missing} starting image."
+            )
         if (
             not parent_id
             and episode.recipe.opening_mode == "image_motion"
@@ -146,6 +152,21 @@ class FlowRunner:
         ):
             return result("choose_reference", "Choose TABI's opening reference image.")
         beat = next_beat(episode)
+        shot = current_shot(episode)
+        fresh_shot = shot is not None and frames_in_shot(episode, shot) == 0
+        if shot and not fresh_shot:
+            attempts = {a.id: a for a in episode.attempts}
+            extensions = sum(
+                attempts[c.attempt_id].mode == "extend"
+                for c in episode.candidates
+                if c.id in episode.accepted_ids and attempts[c.attempt_id].shot_id == shot.id
+            )
+            if extensions >= shot.max_extensions:
+                return result(
+                    "needs_attention",
+                    "This shot reached its extension limit. "
+                    "Keep the saved footage and review the shot.",
+                )
         related = [
             item
             for item in episode.attempts
@@ -156,7 +177,13 @@ class FlowRunner:
                 "needs_attention",
                 "Retry limit reached. Review the evidence or return to a clean parent.",
             )
-        cost = credited_units(episode) + episode.limits.estimated_credit_per_attempt
+        next_cost = (
+            episode.limits.estimated_start_credit
+            if (fresh_shot or parent_id is None)
+            and episode.limits.estimated_start_credit is not None
+            else episode.limits.estimated_credit_per_attempt
+        )
+        cost = credited_units(episode) + next_cost
         if len(episode.attempts) >= episode.limits.max_attempts or cost > min(
             episode.limits.credit_ceiling, episode.limits.remaining_allowance
         ):
@@ -170,7 +197,11 @@ class FlowRunner:
         except FlowError as error:
             return result("needs_attention", str(error), beat=beat.model_dump(mode="json"))
         return result(
-            "prepare", "Prepare the next focused prompt.", beat=beat.model_dump(mode="json")
+            "prepare",
+            "Start the next shot from its clean reference."
+            if fresh_shot
+            else "Prepare the next focused prompt.",
+            beat=beat.model_dump(mode="json"),
         )
 
     def prepare(self, episode_id, revision):
@@ -196,13 +227,21 @@ class FlowRunner:
             if item.parent_id == status["parent_id"] and item.beat.id == beat.id
         ]
         reason = None
+        focus = None
         if previous:
             candidate = next(
                 (item for item in episode.candidates if item.attempt_id == previous[-1].id), None
             )
             reason = candidate.review_note if candidate else previous[-1].diagnostic
+            focus = candidate.retry_focus if candidate else None
             reason = reason or "Keep the current action and continuity stable."
-        mode, prompt = compile_prompt(episode, beat, parent, retry_reason=reason)
+        mode, prompt = compile_prompt(episode, beat, parent, retry_reason=reason, retry_focus=focus)
+        shot = current_shot(episode)
+        cost = (
+            episode.limits.estimated_start_credit
+            if mode != "extend" and episode.limits.estimated_start_credit is not None
+            else episode.limits.estimated_credit_per_attempt
+        )
         attempt = FlowAttempt(
             schema_version="1.0",
             id=uuid4().hex,
@@ -212,11 +251,13 @@ class FlowRunner:
             recipe_sha256=content_hash(episode.recipe),
             references_sha256=references_hash(episode),
             beat=beat,
+            shot_id=shot.id if shot else None,
             mode=mode,
             prompt=prompt,
             prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
             state="awaiting_external",
-            reserved_credits=episode.limits.estimated_credit_per_attempt,
+            template_version="2",
+            reserved_credits=cost,
             retry_index=len(previous),
             retry_reason=reason,
         )

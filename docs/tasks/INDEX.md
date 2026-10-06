@@ -8,7 +8,7 @@ The archived P/T plans are historical and are not a second implementation queue.
 | Task | Outcome | Status |
 | --- | --- | --- |
 | [S01](../tasks.md#s01--define-compatible-shot-and-reference-contracts) | Define compatible shot contracts | complete |
-| [S02](../tasks.md#s02--generate-and-review-bounded-shots-from-clean-references) | Bound fresh shots, prompts and reviewed cuts | pending |
+| [S02](../tasks.md#s02--generate-and-review-bounded-shots-from-clean-references) | Bound fresh shots, prompts and reviewed cuts | complete |
 | [S03](../tasks.md#s03--guide-reference-preparation-shot-generation-and-cut-review-in-the-app) | Guide the shot workflow in the app | pending |
 | [S04](../tasks.md#s04--verify-complete-shot-assembly-and-document-the-usable-workflow) | Verify full assembly and target-Mac UI | pending |
 

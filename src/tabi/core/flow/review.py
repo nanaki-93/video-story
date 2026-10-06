@@ -9,6 +9,7 @@ from ..assets.service import digest_file
 from ..models.base import Crop, HashedFile, MediaPath
 from ..process import run_tool
 from .service import FlowError, updated
+from .shots import remaining_frames
 
 
 def repeated_ranges(frames: list[bytes], *, minimum: int) -> list[dict]:
@@ -80,6 +81,19 @@ class FlowReview:
                     "media": self._record(output, f"{folder}/{output.name}"),
                 }
             )
+        cut = first + remaining_frames(episode)
+        if episode.recipe.shots and first < cut <= end:
+            output = root / "planned-ending.png"
+            self._image(path, cut - 1, output)
+            images.append(
+                {
+                    "role": "planned ending",
+                    "frame": cut - 1,
+                    "media": self._record(output, f"{folder}/{output.name}"),
+                }
+            )
+        attempt = next(a for a in episode.attempts if a.id == candidate.attempt_id)
+        camera_cut = attempt.mode == "shot_start" and parent is not None
         seam = None
         seam_difference = None
         if parent:
@@ -160,6 +174,11 @@ class FlowReview:
             "images": images,
             "join_video": seam,
             "diagnostics": {
+                "join_kind": "camera cut"
+                if camera_cut
+                else "continuation"
+                if parent
+                else "opening",
                 "timestamp_schedule": "verified",
                 "repeated_scaled_frames": repeats,
                 "possible_cut_ranges": cuts,
@@ -174,7 +193,10 @@ class FlowReview:
                 "Original identity and attached gills",
                 "Connected neck and two arms",
                 "Cup, hands, book and bag",
-                "Fixed camera and continuous exterior",
+                "Matched character/props, travel direction and lighting across the camera cut"
+                if camera_cut
+                else "Fixed camera and continuous exterior",
+                "Clear cabin air and stable mouth; no spreading particles",
                 "Requested action completion and actual ending state",
             ],
         }

@@ -28,7 +28,16 @@ class FlowMedia:
             ffprobe=settings.ffprobe,
         )
 
-    def reference(self, source: MediaPath, *, title: str, synthetic: bool = False) -> FlowReference:
+    def reference(
+        self,
+        source: MediaPath,
+        *,
+        title: str,
+        synthetic: bool = False,
+        key=None,
+        starting_state=None,
+        review_note=None,
+    ) -> FlowReference:
         asset = self.assets.import_asset(
             ImportRequest(
                 id=f"flow-reference-{uuid4().hex}",
@@ -38,7 +47,14 @@ class FlowMedia:
                 provenance=Provenance(origin="synthetic" if synthetic else "user_supplied"),
             )
         )
-        return FlowReference(title=title, media=asset.files[0], synthetic=synthetic)
+        return FlowReference(
+            title=title,
+            media=asset.files[0],
+            synthetic=synthetic,
+            key=key,
+            starting_state=starting_state,
+            review_note=review_note,
+        )
 
     def import_result(
         self,

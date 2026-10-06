@@ -4,7 +4,14 @@ import pytest
 
 from tabi.core.flow.service import FlowError, FlowService, references_hash, updated
 from tabi.core.models.base import Canvas, FrameInterval, HashedFile, MediaPath, content_hash
-from tabi.core.models.flow import FlowAttempt, FlowBeat, FlowCandidate, FlowLimits, FlowState
+from tabi.core.models.flow import (
+    FlowAttempt,
+    FlowBeat,
+    FlowCandidate,
+    FlowLimits,
+    FlowRecipe,
+    FlowState,
+)
 from tabi.core.persistence import ProjectStore, RevisionConflict
 
 
@@ -19,6 +26,7 @@ def new_service(tmp_path):
             estimated_credit_per_attempt=5,
             allowance_checked_at="2026-10-06",
         ),
+        recipe=FlowRecipe(),
     )
     return service, episode
 

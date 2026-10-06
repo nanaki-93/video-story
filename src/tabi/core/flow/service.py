@@ -25,6 +25,14 @@ from ..persistence import (
     StorageError,
     resolve_media_path,
 )
+from .shots import (
+    continuity_issue,
+    frames_in_shot,
+    planned_recipe,
+    reference_for,
+    required_references,
+    shot_by_id,
+)
 
 
 class FlowError(StorageError):
@@ -42,21 +50,7 @@ def references_hash(episode: FlowEpisode) -> str:
 
 
 def default_recipe() -> FlowRecipe:
-    routine = [
-        ("look-15", "look", 15),
-        ("pickup-30", "pickup", 30),
-        ("sip", "sip", 37),
-        ("return", "return_cup", 42),
-        ("sway-45", "sway", 45),
-        ("look-60", "look", 60),
-        ("breath-75", "deep_breath", 75),
-    ]
-    return FlowRecipe(
-        beats=[
-            FlowBeat(id=identity, kind=kind, target_frame=seconds * 24)
-            for identity, kind, seconds in routine
-        ]
-    )
+    return planned_recipe()
 
 
 class FlowService:
@@ -101,10 +95,32 @@ class FlowService:
             self.verify_file(reference.media)
         return self.save(episode, expected_revision=None)
 
-    def clone(self, episode_id: str, title: str) -> FlowEpisode:
+    def clone(self, episode_id: str, title: str, *, recipe=None, limits=None) -> FlowEpisode:
         episode = self.get(episode_id)
+        recipe = recipe or episode.recipe
+        same_picture = all(
+            getattr(recipe, key) == getattr(episode.recipe, key)
+            for key in ("identity", "outfit", "setting", "camera", "exterior", "opening_inventory")
+        ) and {(s.reference_key, s.framing) for s in recipe.shots} == {
+            (s.reference_key, s.framing) for s in episode.recipe.shots
+        }
         return self.create(
-            title, episode.limits, recipe=episode.recipe, references=episode.references
+            title,
+            limits or episode.limits,
+            recipe=recipe,
+            references=episode.references if same_picture else [],
+        )
+
+    def add_reference(self, episode_id, reference, revision):
+        episode = self.get(episode_id)
+        if episode.attempts:
+            raise FlowError("Start a variation to change references after generation began.")
+        if episode.recipe.shots and reference.key not in required_references(episode.recipe):
+            raise FlowError("Choose a reference view from the shot plan.")
+        self.verify_file(reference.media)
+        refs = [r for r in episode.references if reference.key is None or r.key != reference.key]
+        return self.save(
+            updated(episode, references=[*refs, reference]), expected_revision=revision
         )
 
     def save(self, episode: FlowEpisode, *, expected_revision: int | None) -> FlowEpisode:
@@ -113,6 +129,10 @@ class FlowService:
             previous = self.get(episode.id)
             if previous.revision != expected_revision:
                 raise RevisionConflict("Flow draft changed; reload before continuing")
+            if previous.attempts and (
+                previous.references != episode.references or previous.recipe != episode.recipe
+            ):
+                raise FlowError("Started recipes and references are immutable; create a variation.")
             before = {item.id: item for item in previous.attempts}
             for attempt in episode.attempts:
                 old = before.get(attempt.id)
@@ -120,6 +140,10 @@ class FlowService:
                     old.prompt_sha256 != attempt.prompt_sha256
                     or old.parent_sha256 != attempt.parent_sha256
                     or old.beat != attempt.beat
+                    or old.shot_id != attempt.shot_id
+                    or old.mode != attempt.mode
+                    or old.recipe_sha256 != attempt.recipe_sha256
+                    or old.references_sha256 != attempt.references_sha256
                 ):
                     raise FlowError("an attempt's prompt, beat and parent are immutable")
             if not set(before).issubset({item.id for item in episode.attempts}):
@@ -181,6 +205,7 @@ class FlowService:
         observed_state: FlowState | None = None,
         trim: FrameInterval | None = None,
         safe_end_frame: int | None = None,
+        retry_focus: str | None = None,
     ) -> FlowEpisode:
         episode = self.get(episode_id)
         candidate = self.candidate(episode, candidate_id)
@@ -210,14 +235,47 @@ class FlowService:
         if decision not in {"accepted", "rejected"}:
             raise FlowError("choose Accept or Retry")
         active = episode.accepted_ids
+        chosen_trim = trim or candidate.trim
         if decision == "accepted":
-            from .runner import action_complete
+            from .runner import action_complete, completed_beats
 
             if not action_complete(attempt.beat, observed_state):
                 raise FlowError("the requested action is incomplete; retry from the clean parent")
             parent = active[-1] if active else None
             if candidate.parent_id != parent:
                 raise FlowError("clip belongs to an old branch; choose its parent explicitly")
+            if episode.recipe.shots:
+                shot = shot_by_id(episode, attempt.shot_id)
+                remaining = shot.duration_frames - frames_in_shot(episode, shot)
+                cut = candidate.trim.start_frame + remaining
+                if chosen_trim.start_frame != candidate.trim.start_frame:
+                    raise FlowError("Keep the imported starting frame for this shot.")
+                if chosen_trim != candidate.trim and chosen_trim.end_frame != cut:
+                    raise FlowError("Trim only at the planned shot boundary.")
+                if chosen_trim.end_frame > cut:
+                    if safe_end_frame != cut:
+                        raise FlowError(
+                            f"Review the shot ending at clip frame {cut} before accepting."
+                        )
+                    chosen_trim = FrameInterval(start_frame=chosen_trim.start_frame, end_frame=cut)
+                if chosen_trim.end_frame < candidate.trim.end_frame and safe_end_frame != cut:
+                    raise FlowError("A shortened shot needs its exact reviewed ending.")
+                if chosen_trim.end_frame == cut:
+                    done = completed_beats(episode) | {attempt.beat.id}
+                    if any(b.id not in done for b in shot.beats):
+                        raise FlowError(
+                            "Complete this shot's remaining actions before its final cut."
+                        )
+                    index = episode.recipe.shots.index(shot)
+                    if index + 1 < len(episode.recipe.shots):
+                        next_ref = reference_for(episode, episode.recipe.shots[index + 1])
+                        if next_ref is None:
+                            raise FlowError(
+                                "Prepare the next shot's clean reference before accepting."
+                            )
+                        issue = continuity_issue(observed_state, next_ref.starting_state)
+                        if issue:
+                            raise FlowError(issue)
             active = [*active, candidate.id]
         candidate = updated(
             candidate,
@@ -225,8 +283,9 @@ class FlowService:
             review_note=note,
             reviewed_sha256=media_sha256,
             observed_state=observed_state,
-            trim=trim or candidate.trim,
+            trim=chosen_trim,
             safe_end_frame=safe_end_frame,
+            retry_focus=retry_focus,
         )
         return self.save(
             updated(

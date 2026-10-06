@@ -2,6 +2,16 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## S02 — Clean starts, bounded extensions and deliberate cuts
+
+6 October 2026. The default plan now totals 90 seconds across six shots and three reference
+views. Each shot starts from its clean image; extensions remain inside that shot. Reviewed
+exact trims close shot boundaries, unfinished actions and visible cup/hand jumps block a cut,
+and fresh-shot costs are reserved separately. Retry prompts use one selected correction while
+full notes remain saved. Unknown requests, retry/extension caps, old recipes and reopening keep
+their existing protections. Changed-outfit variations require fresh references. Verification:
+26 focused core tests and Ruff pass. Full decode/cut rendering and browser checks remain for S04.
+
 ## S01 — Compatible planned-shot contracts
 
 6 October 2026. Added strict shot duration/routine contracts, reviewed keyed starting images,

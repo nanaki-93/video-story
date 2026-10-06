@@ -1,9 +1,10 @@
-"""Focused prompt templates; no model calls or hidden generation parameters."""
+"""Motion-first prompts; appearance and defect history stay in reference/review records."""
 
 import re
 
 from ..models.flow import FlowBeat, FlowCandidate, FlowEpisode, FlowState
 from .service import FlowError, updated
+from .shots import continuity_issue, current_shot, frames_in_shot, reference_for
 
 
 def expected_ending(state: FlowState, beat: FlowBeat) -> FlowState:
@@ -28,58 +29,85 @@ def action_text(state: FlowState, beat: FlowBeat) -> str:
             raise FlowError("Pickup needs a confirmed cup on the table and resting hands.")
         grip = "its existing handle" if state.has_handle else "the body of that same cup"
         return (
-            f"TABI gently reaches with his existing hand and grips {grip}. "
-            "Lift it smoothly to chest height, below his mouth. His hand leaves its resting "
-            "position and follows the cup. End holding the cup steadily; do not sip yet."
+            f"The character gently grips {grip} and lifts it to chest height. "
+            "The existing hand follows the cup. End holding it steadily below the mouth."
         )
     if beat.kind in {"sip", "return_cup"} and state.cup_position != "held":
-        raise FlowError("This action needs the confirmed cup already held in TABI's hands.")
+        raise FlowError(
+            "This action needs the confirmed cup already held in the character's hands."
+        )
     if beat.kind == "sip":
         return (
-            "From the current held position, TABI brings the same cup to his mouth for one "
-            "small sip. Keep a continuous natural grip and the cup rigid. End still holding "
-            "the cup comfortably below his mouth. Do not put it down yet."
+            "The character brings the held cup to the mouth for one small sip, maintaining a "
+            "continuous grip and rigid cup shape. End still holding the cup below the mouth."
         )
     if beat.kind == "return_cup":
         return (
-            "TABI slowly lowers the held cup and puts it back in its original place on the "
-            "table. His existing hand follows it until contact, then relaxes. End with the "
-            "cup stationary on the table and both hands resting."
+            "The character lowers the held cup to its original place on the table. The hand "
+            "follows it until contact, then relaxes. End with the cup on the table "
+            "and hands resting."
         )
     if beat.kind == "look":
         return (
-            "TABI slowly shifts his eyes and makes a small head turn toward the existing "
-            "window. His seated body and current hand positions remain stable. End quietly "
-            "watching the passing view with visible gentle breathing."
+            "The character slowly shifts the eyes and turns the head slightly toward the window. "
+            "End quietly watching the view, breathing gently, with hands in their current position."
         )
     if beat.kind == "sway":
-        if state.hands != "resting":
+        if state.hands not in {"resting", "unknown"}:
             raise FlowError("Music sway needs resting hands; finish the cup action first.")
         return (
-            "TABI enjoys an imagined relaxed beat with a tiny rhythmic head and shoulder "
-            "sway. Keep his body seated and hands resting. End relaxed, breathing naturally."
+            "The character makes a tiny rhythmic head and shoulder sway while seated. "
+            "Hands rest in place. End relaxed with gentle breathing and the same closed smile."
         )
     if beat.kind == "deep_breath":
         return (
-            "TABI takes one clearly visible slow deep breath: his chest and shoulders rise "
-            "smoothly, pause comfortably, then settle on a long relaxed exhale. Keep his "
-            "current hands and seated body stable. Complete the exhale and return to "
-            "quiet breathing."
+            "The character takes one slow deep breath: chest and shoulders rise, pause, then "
+            "settle on a long relaxed exhale. The mouth keeps its closed smile. Complete the "
+            "exhale and return to quiet breathing."
         )
     if beat.kind == "district":
         if state.district == beat.district:
             raise FlowError("That district is already established; keep its ongoing scenery.")
         return (
-            f"As the current {state.district} buildings naturally leave the window, "
-            f"a {beat.district}-inspired streetscape gradually enters building by building. "
-            "Preserve existing landmarks until they leave view. Keep exposure, sunset, travel "
-            "speed and depth consistent. TABI maintains his current pose and gentle breathing."
+            f"A {beat.district}-inspired streetscape gradually enters building by building as "
+            "the existing view leaves the window. Keep speed and sunset steady. "
+            "The character stays relaxed and breathes gently."
         )
     return (
-        "TABI holds his current relaxed pose, breathes visibly with a smooth rise and fall "
-        "of chest and shoulders, and blinks once. Keep hands and objects in their current "
-        "positions. Continue quietly through the final frame."
+        "The character breathes with a slow visible rise and fall of chest and shoulders, "
+        "and blinks once. The mouth holds its resting smile. Hands and table objects stay in place."
     )
+
+
+CORRECTIONS = {
+    "particles": "Carriage air stays clear, with stable painted highlights on solid surfaces.",
+    "mouth": "The mouth holds the same small closed smile throughout the movement.",
+    "identity": "The gills stay attached and the neck stays connected to the outfit.",
+    "props": "Only the object involved in this action moves; its shape stays rigid.",
+    "motion": "The exterior keeps scrolling smoothly through the final frame.",
+    "action": "Complete this single action and settle comfortably before the shot ends.",
+}
+
+
+def correction_text(focus, reason):
+    if focus is None:
+        # Older rejection notes have no selected focus. Do not send their paragraphs to Flow.
+        text = (reason or "").lower()
+        focus = next(
+            (
+                key
+                for key, words in [
+                    ("particles", ("dot", "particle", "fleck")),
+                    ("mouth", ("mouth",)),
+                    ("identity", ("gill", "ear", "neck", "identity")),
+                    ("props", ("cup", "object", "hand")),
+                    ("motion", ("freeze", "motion", "scenery")),
+                ]
+                if any(word in text for word in words)
+            ),
+            "action",
+        )
+    return CORRECTIONS[focus]
 
 
 def compile_prompt(
@@ -88,71 +116,64 @@ def compile_prompt(
     parent: FlowCandidate | None,
     *,
     retry_reason: str | None = None,
+    retry_focus: str | None = None,
     override: str | None = None,
 ) -> tuple[str, str]:
-    if parent is None:
+    shot = current_shot(episode)
+    fresh_shot = shot is not None and frames_in_shot(episode, shot) == 0
+    if parent is not None and (parent.review != "accepted" or parent.observed_state is None):
+        raise FlowError("Continue only from a visually accepted parent.")
+    if fresh_shot:
+        reference = reference_for(episode, shot)
+        if reference is None:
+            raise FlowError("Choose the clean starting reference image for this shot.")
+        state = reference.starting_state
+        issue = continuity_issue(parent.observed_state if parent else None, state)
+        if issue:
+            raise FlowError(issue)
+        mode, opening = "shot_start", "Animate the supplied clean starting image."
+    elif parent is not None:
+        state = parent.observed_state
+        mode, opening = "extend", "Continue the selected clip's current movement."
+    else:
         if beat.kind != "rest":
             raise FlowError("Establish a quiet opening before scheduling an action.")
-        if episode.recipe.opening_mode == "image_motion":
+        state = FlowState()
+        mode = episode.recipe.opening_mode
+        if mode == "image_motion":
             if not episode.references:
                 raise FlowError("Choose the opening reference image before preparing its prompt.")
-            prompt = (
-                "Animate the supplied image as one continuous shot. TABI quietly watches the "
-                "window, breathing visibly through a small smooth rise and fall of chest and "
-                "shoulders, with one relaxed blink. Keep his mouth in its resting expression. "
-                "The camera stays fixed relative to the carriage. "
-                + episode.recipe.exterior
-                + " Keep the pictured objects stationary. End while the view is still moving."
-            )
+            opening = "Animate the supplied image."
         else:
             recipe = episode.recipe
-            prompt = " ".join(
+            opening = " ".join(
                 [
                     recipe.identity,
                     recipe.outfit,
                     recipe.setting,
                     recipe.camera,
                     "Objects: " + "; ".join(recipe.opening_inventory) + ".",
-                    recipe.exterior,
-                    action_text(FlowState(), beat),
                 ]
             )
-        mode = episode.recipe.opening_mode
-    else:
-        if parent.review != "accepted" or parent.observed_state is None:
-            raise FlowError("Continue only from a visually accepted parent.")
-        state = parent.observed_state
-        props = "; ".join(state.inventory) or "only the objects already visible"
-        cup = f"Cup: {state.cup_kind}, position: {state.cup_position}."
-        if state.has_handle is not None:
-            cup += " Existing handle." if state.has_handle else " No handle."
-        if state.has_saucer is not None:
-            cup += " Existing saucer stays stationary." if state.has_saucer else " No saucer."
-        prompt = (
-            "Continue directly from the selected parent's final moment as one uninterrupted "
-            "shot. Preserve the original referenced TABI identity, connected neck/outfit, "
-            "attached gills and exactly two existing arms. Keep camera and interior fixed. "
-            f"Confirmed objects: {props}. {cup} Current hands: {state.hands}; "
-            f"pose: {state.pose}; outside: {state.district}. "
-            "Continue the current exterior positions, direction and speed without reset. "
-            "Gentle visible breathing continues. " + action_text(state, beat)
-        )
-        mode = "extend"
-        if override:
-            # A small compatibility guard, not a general semantic classifier.
-            if (
-                not state.has_handle and re.search(r"(?:grip|hold|grab).*handle", override, re.I)
-            ) or (
-                not state.has_saucer and re.search(r"(?:on|empty|matching).*saucer", override, re.I)
-            ):
-                raise FlowError("The override requires a handle or saucer not present in the clip.")
-            if beat.kind in {"pickup", "sip", "return_cup"} and re.search(
-                r"hands? (?:remain|stay|rest).*lap", override, re.I
-            ):
-                raise FlowError("Moving hands cannot simultaneously stay on the lap.")
-    prompt += " Clear cabin air; no floating particles, new objects, cuts, dialogue or music."
-    if retry_reason:
-        prompt += " Focused correction for this same action: " + retry_reason.strip()
+    prompt = " ".join(
+        [
+            opening,
+            action_text(state, beat),
+            "The camera stays fixed.",
+            episode.recipe.exterior,
+            "The outside view keeps moving through the final frame.",
+        ]
+    )
+    if retry_reason or retry_focus:
+        prompt += " " + correction_text(retry_focus, retry_reason)
     if override:
-        prompt += " Additional instruction for this action: " + override.strip()
+        if (not state.has_handle and re.search(r"(?:grip|hold|grab).*handle", override, re.I)) or (
+            not state.has_saucer and re.search(r"(?:on|empty|matching).*saucer", override, re.I)
+        ):
+            raise FlowError("The override requires a handle or saucer not present in the clip.")
+        if beat.kind in {"pickup", "sip", "return_cup"} and re.search(
+            r"hands? (?:remain|stay|rest).*lap", override, re.I
+        ):
+            raise FlowError("Moving hands cannot simultaneously stay on the lap.")
+        prompt += " " + override.strip()
     return mode, prompt

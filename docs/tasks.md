@@ -39,7 +39,7 @@ Also regenerate Python/browser contracts and run their drift checks and TypeScri
 
 ## S02 — Generate and review bounded shots from clean references
 
-**Status** [ ]
+**Status** [x] 26 runner/prompt/persistence checks and Ruff pass. Clean-reference starts, reviewed shot cuts, separate costs, retry/extension caps and changed-outfit reference reset are verified.
 
 **Target files**
 - `src/tabi/core/flow/shots.py` (new) — shot progress, default plan, reference instructions and clean-cut state compatibility.
@@ -95,6 +95,7 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 
 **Target files**
 - `tests/integration/test_flow_shot_workflow.py` (new) — real 90-second synthetic media through authenticated API, independent shot references, retry/reopen, exact cuts, soundtrack and verified export.
+- `tests/integration/test_flow_workflow.py` — retain the existing continuous-shot regression with its explicit legacy recipe now that new videos use planned shots.
 - `docs/evidence/s04-planned-shots.json` (new), `docs/evidence/s04-shot-workflow.jpg` (new) — bounded target-Mac UI and export evidence.
 - `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — current defaults, operations and remaining real creative/automation gates.
 
