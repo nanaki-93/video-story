@@ -506,6 +506,29 @@ pre {
 .flow-next {
   font-size: 18px;
 }
+.flow-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.flow-shots li {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid #343640;
+  border-radius: 8px;
+}
+.flow-shots small {
+  color: var(--muted);
+}
+.flow-shot-current {
+  outline: 2px solid #b3a1d4;
+}
+.flow-shot-complete {
+  border-left: 4px solid #70a982 !important;
+}
 .flow-workflow input[type="checkbox"] {
   width: auto;
 }

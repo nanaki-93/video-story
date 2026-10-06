@@ -1,4 +1,33 @@
-// Request ordering only. Python owns the video state and the next action.
+// Presentation and request ordering only. Python owns timing and the next action.
+export function flowHandoff(mode: string) {
+  if (mode === "shot_start")
+    return {
+      title: "Start new shot in Flow",
+      instruction:
+        "Choose Frames to Video, attach this clean starting image, and select 8 seconds, landscape 16:9. Use the saved prompt once and import the downloaded native clip.",
+      useReference: true,
+      extendParent: false,
+      retry: "Retry from clean starting image",
+    };
+  if (mode === "extend")
+    return {
+      title: "Extend this shot in Flow",
+      instruction:
+        "Select the accepted clip below and use Extend. Check the supported model and displayed cost in Flow (currently Veo Lite for native Extend). Import only the new native clip.",
+      useReference: false,
+      extendParent: true,
+      retry: "Retry from accepted parent",
+    };
+  return {
+    title: "Opening in Flow",
+    instruction:
+      "Use this saved prompt once with your opening reference, then import the downloaded native clip.",
+    useReference: true,
+    extendParent: false,
+    retry: "Retry opening",
+  };
+}
+
 export class FlowRequests<T> {
   current: T | undefined;
   busy = false;

@@ -64,7 +64,7 @@ Also regenerate Python/browser contracts and run their drift checks and TypeScri
 
 ## S03 — Guide reference preparation, shot generation and cut review in the app
 
-**Status** [ ]
+**Status** [x] Eight API/CLI checks and eight frontend tests pass; 68 schemas, TypeScript, formatting and production build pass. Target-Mac visual checks follow in S04.
 
 **Target files**
 - `src/tabi/api/contracts.py`, `src/tabi/api/flow.py`, `src/tabi/cli/flow.py` — expose the same keyed-reference, shot progress, handoff and review services.

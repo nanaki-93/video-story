@@ -1,6 +1,7 @@
 """Assisted Flow handoffs; all timing, reviews and media work stay in Python."""
 
 import json
+import mimetypes
 from uuid import uuid4
 
 from fastapi import APIRouter, Request
@@ -11,6 +12,16 @@ from tabi.core.flow.media import FlowMedia
 from tabi.core.flow.review import FlowReview
 from tabi.core.flow.runner import FlowRunner, completed_beats
 from tabi.core.flow.service import default_recipe, updated
+from tabi.core.flow.shots import (
+    all_beats,
+    current_shot,
+    missing_reference,
+    reference_instruction,
+    remaining_frames,
+    required_references,
+    shot_by_id,
+    shot_progress,
+)
 from tabi.core.models.assets import Provenance
 from tabi.core.models.base import HashedFile
 from tabi.core.models.registry import ImportRequest
@@ -55,10 +66,32 @@ def routes(runtime):
                 service.candidate(episode, step["candidate_id"]) if step["candidate_id"] else None
             )
             parent = service.candidate(episode, step["parent_id"]) if step["parent_id"] else None
+            attempt = next((a for a in episode.attempts if a.id == step["attempt_id"]), None)
+            shot = shot_by_id(episode, attempt.shot_id) if attempt else current_shot(episode)
+            slots = []
+            for key in required_references(episode.recipe):
+                ref = next((r for r in episode.references if r.key == key), None)
+                slots.append(
+                    {
+                        "key": key,
+                        "framing": next(
+                            s.framing for s in episode.recipe.shots if s.reference_key == key
+                        ),
+                        "instruction": reference_instruction(episode.recipe, key),
+                        "url": f"{base}/references/{episode.references.index(ref)}"
+                        if ref
+                        else None,
+                        "starting_state": ref.starting_state if ref else None,
+                    }
+                )
             data.update(
                 next_step=step,
+                shots=shot_progress(episode),
+                reference_slots=slots,
+                next_reference_key=missing_reference(episode),
+                starting_reference_key=shot.reference_key if shot else None,
                 remaining_beats=[
-                    b for b in episode.recipe.beats if b.id not in completed_beats(episode)
+                    b for b in all_beats(episode.recipe) if b.id not in completed_beats(episode)
                 ],
                 exports=service.exports(identity),
                 reference_urls=[f"{base}/references/{i}" for i in range(len(episode.references))],
@@ -72,7 +105,7 @@ def routes(runtime):
                 ],
             )
             if candidate:
-                remaining = episode.recipe.target_frames - episode.accepted_frames
+                remaining = remaining_frames(episode)
                 if 0 < remaining <= candidate.trim.end_frame - candidate.trim.start_frame:
                     data["safe_cut_frame"] = candidate.trim.start_frame + remaining
                 if candidate.review_packet:
@@ -129,16 +162,7 @@ def routes(runtime):
     @router.post("/{identity}/clone", response_model=WebFlow)
     def clone(handle: str, identity: str, body: FlowClone):
         _, service = services(handle)
-        episode = service.clone(identity, body.title)
-        if body.recipe or body.limits:
-            episode = service.save(
-                updated(
-                    episode,
-                    recipe=body.recipe or episode.recipe,
-                    limits=body.limits or episode.limits,
-                ),
-                expected_revision=episode.revision,
-            )
+        episode = service.clone(identity, body.title, recipe=body.recipe, limits=body.limits)
         return view(handle, episode.id)
 
     @router.post("/{identity}/reference", response_model=WebFlow)
@@ -148,13 +172,17 @@ def routes(runtime):
         if episode.attempts:
             raise ValueError("Start a variation to change references after generation began.")
         with runtime.local_operation(item):
+            if episode.recipe.shots and body.key not in required_references(episode.recipe):
+                raise ValueError("Choose a reference key from this shot plan")
             ref = FlowMedia(service, runtime.settings).reference(
-                source(item, body), title=body.title, synthetic=body.synthetic
+                source(item, body),
+                title=body.title,
+                synthetic=body.synthetic,
+                key=body.key,
+                starting_state=body.starting_state,
+                review_note=body.review_note,
             )
-            service.save(
-                updated(episode, references=[*episode.references, ref]),
-                expected_revision=body.expected_revision,
-            )
+            service.add_reference(identity, ref, body.expected_revision)
         return view(handle, identity)
 
     @router.post("/{identity}/prepare", response_model=WebFlow)
@@ -284,7 +312,9 @@ def routes(runtime):
         if not 0 <= index < len(refs):
             raise ValueError("Reference is missing")
         media = refs[index].media
-        return media_response(item, media, request, "image/png")
+        return media_response(
+            item, media, request, mimetypes.guess_type(media.location.path)[0] or "image/png"
+        )
 
     @router.api_route("/{identity}/clips/{candidate_id}/{kind}", methods=["GET", "HEAD"])
     def clip_media(handle: str, identity: str, candidate_id: str, kind: str, request: Request):

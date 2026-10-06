@@ -2,6 +2,17 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## S03 — Guided references, shots and cut reviews
+
+6 October 2026. Create video now shows the six-shot plan, collects three reviewed references
+one at a time, and supplies copyable image-preparation instructions. Fresh-shot handoffs download
+the exact starting reference; only Extend handoffs identify a clip as generation input. Reviews
+distinguish camera cuts from continuous joins, show the exact shot ending and select one retry
+correction. Setup and variations collect separate checked opening/extension costs. API and CLI
+share keyed reference handling and immutable services; changed appearances reset references
+atomically. Eight API/CLI tests, eight frontend tests, 68 schema drift checks, TypeScript, Ruff,
+formatting and production build pass. Target-Mac visual review and full media assembly are S04.
+
 ## S02 — Clean starts, bounded extensions and deliberate cuts
 
 6 October 2026. The default plan now totals 90 seconds across six shots and three reference

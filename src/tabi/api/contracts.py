@@ -29,6 +29,7 @@ from tabi.core.models.base import (
 from tabi.core.models.cache import CacheInventory, StorageEstimate
 from tabi.core.models.episode import TrackPlacement
 from tabi.core.models.flow import (
+    Correction,
     FlowBeat,
     FlowEpisode,
     FlowExport,
@@ -82,6 +83,26 @@ class FlowReviewView(Model):
     checklist: list[Text]
 
 
+class FlowShotView(Model):
+    id: Identifier
+    title: Text
+    framing: Literal["wide", "medium", "close"]
+    reference_key: Identifier
+    index: int = Field(ge=1)
+    start_frame: Frame
+    duration_frames: int = Field(gt=0)
+    accepted_frames: Frame
+    state: Literal["complete", "current", "pending"]
+
+
+class FlowReferenceSlot(Model):
+    key: Identifier
+    framing: Literal["wide", "medium", "close"]
+    instruction: Text
+    url: Text | None
+    starting_state: FlowState | None
+
+
 class WebFlow(Document):
     document_type: Literal["web_flow"] = "web_flow"
     episodes: list[FlowEpisode]
@@ -97,6 +118,10 @@ class WebFlow(Document):
     safe_cut_frame: Frame | None = None
     audio_sources: list[AudioSource] = Field(default_factory=list)
     target_samples: Frame = 0
+    shots: list[FlowShotView] = Field(default_factory=list)
+    reference_slots: list[FlowReferenceSlot] = Field(default_factory=list)
+    next_reference_key: Identifier | None = None
+    starting_reference_key: Identifier | None = None
 
 
 class FlowRevision(Model):
@@ -129,6 +154,15 @@ class FlowSource(FlowRevision):
 
 class FlowReferenceRequest(FlowSource):
     title: Text = "TABI opening reference"
+    key: Identifier | None = None
+    starting_state: FlowState | None = None
+    review_note: Text | None = None
+
+    @model_validator(mode="after")
+    def reviewed_reference(self):
+        if self.key is not None and (self.starting_state is None or self.review_note is None):
+            raise ValueError("A keyed reference needs reviewed starting facts and a review note")
+        return self
 
 
 class FlowImport(FlowSource):
@@ -148,6 +182,7 @@ class FlowReviewRequest(FlowRevision):
     observed_state: FlowState | None = None
     trim: FrameInterval | None = None
     safe_end_frame: Frame | None = None
+    retry_focus: Correction | None = None
 
 
 class FlowTransition(FlowRevision):

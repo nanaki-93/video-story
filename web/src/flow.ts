@@ -11,7 +11,7 @@ import {
   projectsPage,
 } from "./workspace";
 import type { Panel, Project } from "./workspace";
-import { FlowRequests } from "./flow-state";
+import { flowHandoff, FlowRequests } from "./flow-state";
 
 type View = Documents["web_flow"];
 type Recipe = Documents["flow_episode"]["recipe"];
@@ -38,6 +38,48 @@ function checkbox(label: string, initial = false) {
   const control = input("", "checkbox");
   control.checked = initial;
   return { control, node: field(label, control) };
+}
+function referenceImage(url: string, title: string) {
+  const box = section(title);
+  const img = element("img", { className: "flow-reference" });
+  img.src = url;
+  img.alt = title;
+  const download = element("a", {
+    className: "button",
+    text: "Download starting image",
+  });
+  download.href = url;
+  download.download = title;
+  box.append(img, download);
+  return box;
+}
+function flowAllowance() {
+  const allowance = input("", "number");
+  const start = input("", "number");
+  const extension = input("", "number");
+  const ceiling = input("70", "number");
+  const node = details(
+    "Flow allowance",
+    element("p", {
+      text: "Check your balance and the displayed costs in Flow. These limits guide manual requests; the app cannot enforce spending in Flow.",
+    }),
+    field("Credits currently remaining", allowance),
+    field("Displayed credits for a fresh 8-second shot", start),
+    field("Displayed credits for an extension", extension),
+    field("Maximum credits for this video", ceiling),
+  );
+  return {
+    node,
+    value: () => ({
+      credit_ceiling: number(ceiling),
+      remaining_allowance: number(allowance),
+      estimated_start_credit: number(start),
+      estimated_credit_per_attempt: number(extension),
+      max_retries_per_beat: 1,
+      max_attempts: 30,
+      allowance_checked_at: new Date().toISOString(),
+    }),
+  };
 }
 function recipeFields(recipe: Recipe) {
   const outfit = input(recipe.outfit);
@@ -175,10 +217,11 @@ export function flowPage(): Panel {
         body.inert = true;
         void requests
           .change(async () => {
+            const values = extra();
             const id = await upload(source);
             return api(`${path()}${route}`, "web_flow", {
               ...payload,
-              ...extra(),
+              ...values,
               upload_id: id,
               synthetic: synthetic.control.checked,
             });
@@ -225,43 +268,23 @@ export function flowPage(): Panel {
     if (!episode) {
       const setup = section(
         "1 · Setup",
-        "Train · Tokyo · 90 seconds · calm TABI. Look outside, drink, sway and take a deep breath. Music comes at Finish.",
+        "Train · Tokyo · 90 seconds. Six short shots share three clean camera references. TABI watches, drinks, sways and takes a deep breath. Music comes at Finish.",
       );
       const title = input("TABI in Tokyo");
-      const allowance = input("", "number");
-      const cost = input("", "number");
-      const ceiling = input("70", "number");
+      const allowance = flowAllowance();
       const settings = recipeFields(view.preset);
       setup.append(
         field("Video title", title),
         settings.node,
-        details(
-          "Flow allowance",
-          element("p", {
-            text: "Check your current balance and the displayed cost in Flow. These limits guide manual requests; the app cannot enforce spending inside Google Flow.",
-          }),
-          field("Credits currently remaining", allowance),
-          field("Displayed credits per clip", cost),
-          field("Maximum credits for this video", ceiling),
-        ),
+        allowance.node,
         button("Start video", () => {
           try {
-            const remaining = number(allowance),
-              limit = number(ceiling),
-              estimated = number(cost);
             void change(
               base(),
               {
                 title: title.value,
                 recipe: settings.value(),
-                limits: {
-                  credit_ceiling: limit,
-                  remaining_allowance: remaining,
-                  estimated_credit_per_attempt: estimated,
-                  max_retries_per_beat: 1,
-                  max_attempts: 30,
-                  allowance_checked_at: new Date().toISOString(),
-                },
+                limits: allowance.value(),
               },
               true,
             );
@@ -275,6 +298,10 @@ export function flowPage(): Panel {
       return;
     }
     const step = view.next_step!;
+    const planned = !!episode.recipe.shots?.length;
+    const starting = view.reference_slots?.find(
+      (r) => r.key === view.starting_reference_key,
+    );
     const seconds = (frames: number) =>
       ((frames * episode.recipe.fps!.den) / episode.recipe.fps!.num).toFixed(1);
     const progress = element("progress");
@@ -290,9 +317,29 @@ export function flowPage(): Panel {
       element("p", { text: step.message, className: "flow-next" }),
     );
     const steps = element("ol", { className: "flow-steps" });
-    for (const label of ["Setup", "Opening", "Continue", "Finish"])
+    for (const label of planned
+      ? ["Setup", "References", "Shots", "Finish"]
+      : ["Setup", "Opening", "Continue", "Finish"])
       steps.append(element("li", { text: label }));
     body.append(steps);
+    if (view.shots?.length) {
+      const shots = element("ol", { className: "flow-shots" });
+      for (const shot of view.shots) {
+        const item = element("li", { className: `flow-shot-${shot.state}` });
+        if (shot.state === "current") item.setAttribute("aria-current", "step");
+        item.append(
+          element("strong", {
+            text: `${seconds(shot.start_frame)}–${seconds(shot.start_frame + shot.duration_frames)}s · ${shot.framing}`,
+          }),
+          element("span", { text: shot.title }),
+          element("small", {
+            text: `${seconds(shot.accepted_frames)} / ${seconds(shot.duration_frames)}s reviewed`,
+          }),
+        );
+        shots.append(item);
+      }
+      body.append(shots);
+    }
     if ((view.reference_urls || []).length) {
       const refs = details("TABI reference");
       for (const [i, url] of (view.reference_urls || []).entries()) {
@@ -303,16 +350,80 @@ export function flowPage(): Panel {
       }
       body.append(refs);
     }
-    if (step.action === "choose_reference")
-      body.append(
-        importControl(
-          "Import TABI reference",
-          "image/png,image/jpeg,image/webp",
-          "/reference",
-          { expected_revision: episode.revision },
-        ),
+    if (step.action === "choose_reference") {
+      const slot = view.reference_slots?.find(
+        (r) => r.key === view.next_reference_key,
       );
-    else if (step.action === "prepare")
+      if (slot) {
+        const preparation = section(
+          `2 · Prepare the ${slot.framing} reference`,
+          "Use your approved train image in Flow to prepare this view. Review all three images before generating video.",
+        );
+        const instructions = element("textarea");
+        instructions.value = slot.instruction;
+        instructions.rows = 6;
+        instructions.readOnly = true;
+        instructions.setAttribute("aria-label", "Reference preparation prompt");
+        const facts = stateFields(undefined, "Confirm visible starting facts");
+        const clean = checkbox(
+          "I checked the whole image: TABI, gills, connected neck, outfit and objects are correct; the air is clear",
+        );
+        preparation.append(
+          instructions,
+          button("Copy reference prompt", () => {
+            void navigator.clipboard
+              .writeText(slot.instruction)
+              .then(() => {
+                status.textContent =
+                  "Reference prompt copied. Attach your approved train image in Flow.";
+              })
+              .catch(error);
+          }),
+        );
+        const master = view.reference_slots?.find((r) => r.url);
+        if (master?.url)
+          preparation.append(
+            referenceImage(
+              master.url,
+              "Approved camera reference for this journey",
+            ),
+          );
+        preparation.append(
+          facts.node,
+          clean.node,
+          importControl(
+            `Import ${slot.framing} reference`,
+            "image/png,image/jpeg,image/webp",
+            "/reference",
+            {
+              expected_revision: episode.revision,
+              key: slot.key,
+              title: `${episode.title} · ${slot.framing}`,
+            },
+            () => {
+              if (!clean.control.checked)
+                throw new Error(
+                  "Review the image and confirm its starting facts before importing.",
+                );
+              return {
+                starting_state: facts.value(),
+                review_note:
+                  "Starting image, visible facts, character, gills and props reviewed; air is clear",
+              };
+            },
+          ),
+        );
+        body.append(preparation);
+      } else
+        body.append(
+          importControl(
+            "Import TABI reference",
+            "image/png,image/jpeg,image/webp",
+            "/reference",
+            { expected_revision: episode.revision },
+          ),
+        );
+    } else if (step.action === "prepare")
       body.append(
         button(
           "Prepare next prompt",
@@ -331,12 +442,8 @@ export function flowPage(): Panel {
       const attempt = (episode.attempts || []).find(
         (a) => a.id === step.attempt_id,
       )!;
-      const handoff = section(
-        (episode.accepted_ids || []).length
-          ? "3 · Continue in Flow"
-          : "2 · Opening in Flow",
-        "Use this saved prompt once. Download the new native clip, rather than the full scene, and import it below.",
-      );
+      const guide = flowHandoff(attempt.mode);
+      const handoff = section(`3 · ${guide.title}`, guide.instruction);
       const prompt = element("textarea");
       prompt.value = attempt.prompt;
       prompt.rows = 7;
@@ -355,16 +462,32 @@ export function flowPage(): Panel {
           void navigator.clipboard
             .writeText(attempt.prompt)
             .then(() => {
-              status.textContent =
-                "Prompt copied. Attach the reference for the opening, or extend the accepted parent.";
+              status.textContent = guide.instruction;
             })
             .catch(error);
         }),
         link,
       );
-      if (view.parent_url)
+      if (guide.useReference) {
+        const url = starting?.url || view.reference_urls?.[0];
+        if (url)
+          handoff.append(
+            referenceImage(
+              url,
+              `${starting?.framing || "Opening"} starting reference`,
+            ),
+          );
+      }
+      if (view.parent_url && guide.extendParent)
         handoff.append(
           video(view.parent_url, "Accepted parent · extend this clip"),
+        );
+      else if (view.parent_url)
+        handoff.append(
+          details(
+            "Previous shot · review the camera cut",
+            video(view.parent_url, "Editorial predecessor"),
+          ),
         );
       const providerModel = input("");
       handoff.append(
@@ -414,6 +537,10 @@ export function flowPage(): Panel {
       const parent = (episode.candidates || []).find(
         (c) => c.id === candidate.parent_id,
       );
+      const attempt = (episode.attempts || []).find(
+        (a) => a.id === candidate.attempt_id,
+      )!;
+      const guide = flowHandoff(attempt.mode);
       const review = section(
         "Review this clip",
         "Watch the whole clip and its ending. Check TABI, objects, outside motion and the requested action before accepting.",
@@ -421,7 +548,14 @@ export function flowPage(): Panel {
       if (view.candidate_url)
         review.append(video(view.candidate_url, "New clip"));
       if (view.review?.join_url)
-        review.append(video(view.review.join_url, "Join with accepted parent"));
+        review.append(
+          video(
+            view.review.join_url,
+            attempt.mode === "shot_start"
+              ? "Camera cut · previous shot to clean new shot"
+              : "Continuous join with accepted parent",
+          ),
+        );
       const frames = element("div", { className: "flow-filmstrip" });
       for (const img of view.review?.images || []) {
         const image = element("img");
@@ -430,20 +564,33 @@ export function flowPage(): Panel {
         frames.append(image);
       }
       review.append(frames);
-      const facts = stateFields(parent?.observed_state || undefined);
+      const facts = stateFields(
+        (attempt.mode === "shot_start"
+          ? starting?.starting_state
+          : parent?.observed_state) || undefined,
+      );
       const checked = checkbox(
         "I watched the clip and join; the action finishes and continuity is good",
       );
       const cut =
         view.safe_cut_frame != null
           ? checkbox(
-              `I checked the final cut at clip frame ${view.safe_cut_frame}: TABI is settled`,
+              `I checked the ${planned ? "shot ending" : "final cut"} at clip frame ${view.safe_cut_frame}: the action is complete and TABI is settled`,
             )
           : undefined;
       const note = input("");
+      const correction = choice([
+        ["particles", "Floating dots / particles"],
+        ["mouth", "Mouth"],
+        ["identity", "Character / gills / outfit"],
+        ["props", "Objects / hands"],
+        ["motion", "Outside motion / freeze"],
+        ["action", "Action incomplete"],
+      ]);
       review.append(
         facts.node,
         field("Review note / reason for retry", note),
+        field("One correction for a retry", correction),
         checked.node,
       );
       if (cut) review.append(cut.node);
@@ -463,7 +610,7 @@ export function flowPage(): Panel {
             safe_end_frame: cut?.control.checked ? view.safe_cut_frame : null,
           });
         }),
-        button("Retry from accepted parent", () => {
+        button(guide.retry, () => {
           if (!note.value.trim()) {
             status.textContent =
               "Describe the visible defect so the retry prompt stays focused.";
@@ -474,11 +621,16 @@ export function flowPage(): Panel {
             media_sha256: candidate.media.sha256,
             decision: "rejected",
             note: note.value,
+            retry_focus: correction.value,
           });
         }),
       );
       if (view.review)
         review.append(
+          details(
+            "What to check",
+            ...view.review.checklist.map((text) => element("p", { text })),
+          ),
           details(
             "Technical review (advisory)",
             ...view.review.diagnostics.map((text) => element("p", { text })),
@@ -649,20 +801,29 @@ export function flowPage(): Panel {
       body.append(box);
     }
     const variation = recipeFields(episode.recipe);
+    const variationAllowance = flowAllowance();
     const title = input(`${episode.title} · variation`);
     body.append(
       details(
         "New variation",
         field("Title", title),
         variation.node,
-        button(
-          "Start a fresh variation",
-          () =>
+        element("p", {
+          text: "Changing the outfit, interior or view requires new clean references. Check the Flow balance and costs for this new run.",
+        }),
+        variationAllowance.node,
+        button("Start a fresh variation", () => {
+          try {
             void change("/clone", {
               title: title.value,
               recipe: variation.value(),
-            }),
-        ),
+              limits: variationAllowance.value(),
+            });
+          } catch {
+            status.textContent =
+              "Enter the current Flow balance and both costs for this variation.";
+          }
+        }),
       ),
       details(
         "Remaining routine",
@@ -692,7 +853,10 @@ export function flowPage(): Panel {
           .catch(error);
       }, 1500);
   }
-  function stateFields(initial: State | undefined) {
+  function stateFields(
+    initial: State | undefined,
+    title = "Confirm actual ending state",
+  ) {
     const state = initial || {
       cup_kind: "unknown",
       cup_position: "unknown",
@@ -743,7 +907,7 @@ export function flowPage(): Panel {
     const inventory = input((state.inventory || []).join("; "));
     const district = input(state.district || "Tokyo");
     const node = details(
-      "Confirm actual ending state",
+      title,
       field("Cup type", cup),
       field("Cup position", position),
       field("Cup has a handle", handle),

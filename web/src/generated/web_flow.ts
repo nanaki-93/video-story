@@ -206,6 +206,7 @@ export type Revision3 = number;
 export type SchemaVersion3 = "1.0";
 export type State1 = "queued" | "running" | "interrupted" | "cancelled" | "failed" | "verified";
 export type Exports = FlowExport[];
+export type NextReferenceKey = string | null;
 export type AcceptedFrames = number;
 export type Action =
   "paused" | "waiting_flow" | "review" | "finish" | "choose_reference" | "needs_attention" | "prepare";
@@ -216,17 +217,33 @@ export type Message = string;
 export type ParentId2 = string | null;
 export type TargetFrames1 = number;
 export type ParentUrl = string | null;
+export type Framing1 = "wide" | "medium" | "close";
+export type Instruction = string;
+export type Key1 = string;
+export type Url = string | null;
+export type ReferenceSlots = FlowReferenceSlot[];
 export type ReferenceUrls = string[];
 export type RemainingBeats = FlowBeat[];
 export type Checklist = string[];
 export type Diagnostics = string[];
 export type Frame = number;
 export type Role1 = string;
-export type Url = string;
+export type Url1 = string;
 export type Images = FlowImage[];
 export type JoinUrl = string | null;
 export type SafeCutFrame = number | null;
 export type SchemaVersion4 = "1.0";
+export type AcceptedFrames1 = number;
+export type DurationFrames2 = number;
+export type Framing2 = "wide" | "medium" | "close";
+export type Id11 = string;
+export type Index = number;
+export type ReferenceKey1 = string;
+export type StartFrame1 = number;
+export type State2 = "complete" | "current" | "pending";
+export type Title3 = string;
+export type Shots1 = FlowShotView[];
+export type StartingReferenceKey = string | null;
 export type TargetSamples = number;
 
 export interface WebFlow {
@@ -236,14 +253,18 @@ export interface WebFlow {
   episode?: FlowEpisode | null;
   episodes: Episodes;
   exports?: Exports;
+  next_reference_key?: NextReferenceKey;
   next_step?: FlowNext | null;
   parent_url?: ParentUrl;
   preset: FlowRecipe;
+  reference_slots?: ReferenceSlots;
   reference_urls?: ReferenceUrls;
   remaining_beats?: RemainingBeats;
   review?: FlowReviewView | null;
   safe_cut_frame?: SafeCutFrame;
   schema_version: SchemaVersion4;
+  shots?: Shots1;
+  starting_reference_key?: StartingReferenceKey;
   target_samples?: TargetSamples;
 }
 /**
@@ -677,6 +698,17 @@ export interface FlowNext {
 }
 /**
  * This interface was referenced by `WebFlow`'s JSON-Schema
+ * via the `definition` "FlowReferenceSlot".
+ */
+export interface FlowReferenceSlot {
+  framing: Framing1;
+  instruction: Instruction;
+  key: Key1;
+  starting_state: FlowState | null;
+  url: Url;
+}
+/**
+ * This interface was referenced by `WebFlow`'s JSON-Schema
  * via the `definition` "FlowReviewView".
  */
 export interface FlowReviewView {
@@ -692,5 +724,20 @@ export interface FlowReviewView {
 export interface FlowImage {
   frame: Frame;
   role: Role1;
-  url: Url;
+  url: Url1;
+}
+/**
+ * This interface was referenced by `WebFlow`'s JSON-Schema
+ * via the `definition` "FlowShotView".
+ */
+export interface FlowShotView {
+  accepted_frames: AcceptedFrames1;
+  duration_frames: DurationFrames2;
+  framing: Framing2;
+  id: Id11;
+  index: Index;
+  reference_key: ReferenceKey1;
+  start_frame: StartFrame1;
+  state: State2;
+  title: Title3;
 }

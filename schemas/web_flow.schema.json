@@ -1410,6 +1410,61 @@
       "title": "FlowReference",
       "type": "object"
     },
+    "FlowReferenceSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "framing": {
+          "enum": [
+            "wide",
+            "medium",
+            "close"
+          ],
+          "title": "Framing",
+          "type": "string"
+        },
+        "instruction": {
+          "minLength": 1,
+          "title": "Instruction",
+          "type": "string"
+        },
+        "key": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "starting_state": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FlowState"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "url": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Url"
+        }
+      },
+      "required": [
+        "key",
+        "framing",
+        "instruction",
+        "url",
+        "starting_state"
+      ],
+      "title": "FlowReferenceSlot",
+      "type": "object"
+    },
     "FlowReviewView": {
       "additionalProperties": false,
       "properties": {
@@ -1542,6 +1597,77 @@
         "beats"
       ],
       "title": "FlowShot",
+      "type": "object"
+    },
+    "FlowShotView": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_frames": {
+          "minimum": 0,
+          "title": "Accepted Frames",
+          "type": "integer"
+        },
+        "duration_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Duration Frames",
+          "type": "integer"
+        },
+        "framing": {
+          "enum": [
+            "wide",
+            "medium",
+            "close"
+          ],
+          "title": "Framing",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "index": {
+          "minimum": 1,
+          "title": "Index",
+          "type": "integer"
+        },
+        "reference_key": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Reference Key",
+          "type": "string"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        },
+        "state": {
+          "enum": [
+            "complete",
+            "current",
+            "pending"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "framing",
+        "reference_key",
+        "index",
+        "start_frame",
+        "duration_frames",
+        "accepted_frames",
+        "state"
+      ],
+      "title": "FlowShotView",
       "type": "object"
     },
     "FlowState": {
@@ -2352,6 +2478,19 @@
       "title": "Exports",
       "type": "array"
     },
+    "next_reference_key": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Next Reference Key"
+    },
     "next_step": {
       "anyOf": [
         {
@@ -2378,6 +2517,13 @@
     },
     "preset": {
       "$ref": "#/$defs/FlowRecipe"
+    },
+    "reference_slots": {
+      "items": {
+        "$ref": "#/$defs/FlowReferenceSlot"
+      },
+      "title": "Reference Slots",
+      "type": "array"
     },
     "reference_urls": {
       "items": {
@@ -2422,6 +2568,26 @@
       "const": "1.0",
       "title": "Schema Version",
       "type": "string"
+    },
+    "shots": {
+      "items": {
+        "$ref": "#/$defs/FlowShotView"
+      },
+      "title": "Shots",
+      "type": "array"
+    },
+    "starting_reference_key": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Starting Reference Key"
     },
     "target_samples": {
       "default": 0,

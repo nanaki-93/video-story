@@ -7,7 +7,8 @@ from tabi.core.flow.assembly import FlowAssembler
 from tabi.core.flow.media import FlowMedia
 from tabi.core.flow.review import FlowReview
 from tabi.core.flow.runner import FlowRunner
-from tabi.core.flow.service import FlowService, updated
+from tabi.core.flow.service import FlowService
+from tabi.core.flow.shots import missing_reference, reference_instruction, shot_progress
 from tabi.core.models.base import MediaPath
 from tabi.core.models.flow import FlowLimits, FlowRecipe, FlowState
 from tabi.core.persistence import ProjectStore
@@ -68,6 +69,14 @@ def add_flow_commands(commands):
             command.add_argument("--note", required=True)
             command.add_argument("--state", type=Path)
             command.add_argument("--safe-end", type=int)
+            command.add_argument(
+                "--correction",
+                choices=["particles", "mouth", "identity", "props", "motion", "action"],
+            )
+        if name == "reference":
+            command.add_argument("--key")
+            command.add_argument("--state", type=Path)
+            command.add_argument("--note")
         if name in {"clone", "reference"}:
             command.add_argument("--title", required=True)
         if name == "branch":
@@ -94,9 +103,20 @@ def run_flow_command(args, settings):
         )
     elif name == "status":
         episode = service.get(args.identity)
+        key = missing_reference(episode)
         print(
             json.dumps(
-                {"episode": episode.model_dump(mode="json"), "next_step": runner.status(episode)},
+                {
+                    "episode": episode.model_dump(mode="json"),
+                    "next_step": runner.status(episode),
+                    "shots": shot_progress(episode),
+                    "next_reference": {
+                        "key": key,
+                        "instruction": reference_instruction(episode.recipe, key),
+                    }
+                    if key
+                    else None,
+                },
                 indent=2,
             )
         )
@@ -118,12 +138,17 @@ def run_flow_command(args, settings):
                 synthetic=args.synthetic,
             )
         else:
-            episode = service.get(args.identity)
-            reference = media.reference(source, title=args.title, synthetic=args.synthetic)
-            result = service.save(
-                updated(episode, references=[*episode.references, reference]),
-                expected_revision=args.revision,
+            reference = media.reference(
+                source,
+                title=args.title,
+                synthetic=args.synthetic,
+                key=args.key,
+                starting_state=FlowState.model_validate_json(args.state.read_bytes())
+                if args.state
+                else None,
+                review_note=args.note,
             )
+            result = service.add_reference(args.identity, reference, args.revision)
     elif name == "inspect":
         result = FlowReview(service, settings).prepare(
             args.identity, args.candidate, revision=args.revision
@@ -140,6 +165,7 @@ def run_flow_command(args, settings):
             if args.state
             else None,
             safe_end_frame=args.safe_end,
+            retry_focus=args.correction,
         )
     elif name in {"pause", "resume"}:
         result = runner.pause(args.identity, args.revision, paused=name == "pause")

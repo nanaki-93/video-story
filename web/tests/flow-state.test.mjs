@@ -1,6 +1,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { FlowRequests } from "../src/flow-state.ts";
+import { flowHandoff, FlowRequests } from "../src/flow-state.ts";
+test("a camera cut attaches a clean reference instead of extending its editorial predecessor", () => {
+  const fresh = flowHandoff("shot_start");
+  assert.equal(fresh.useReference, true);
+  assert.equal(fresh.extendParent, false);
+  assert.match(fresh.instruction, /Frames to Video/);
+  const extension = flowHandoff("extend");
+  assert.equal(extension.useReference, false);
+  assert.equal(extension.extendParent, true);
+  assert.notEqual(fresh.retry, extension.retry);
+  assert.equal(flowHandoff("image_motion").extendParent, false);
+});
 function deferred() {
   let resolve;
   const promise = new Promise((r) => {
