@@ -68,6 +68,7 @@ class FlowNext(Model):
     attempt_id: Identifier | None
     candidate_id: Identifier | None
     beat: FlowBeat | None
+    next_retry_limit: int | None = Field(default=None, ge=1, le=3)
 
 
 class FlowImage(Model):

@@ -135,3 +135,84 @@ def test_late_result_closes_unknown_attempt_without_another_reservation(tmp_path
     episode = accept(service, episode)
     assert episode.accepted_frames == 192
     assert len(episode.attempts) == 1 and credited_units(episode) == 5
+
+
+def failed_attempt(runner, episode):
+    episode = runner.prepare(episode.id, episode.revision)
+    return runner.transition(
+        episode.id,
+        episode.attempts[-1].id,
+        revision=episode.revision,
+        state="failed",
+        diagnostic="Confirmed provider failure",
+    )
+
+
+def test_retry_recovery_preserves_accepted_history_parent_and_global_caps(tmp_path):
+    service, episode, runner = context(tmp_path)
+    episode = accept(service, add_candidate(service, episode))
+    parent = episode.candidates[0]
+    episode = failed_attempt(runner, failed_attempt(runner, episode))
+    assert runner.status(episode)["next_retry_limit"] == 2
+    previous = episode
+    episode = runner.increase_retry_limit(episode.id, episode.revision)
+    assert service.get(episode.id) == episode
+    assert episode.accepted_ids == previous.accepted_ids and episode.accepted_frames == 192
+    assert episode.attempts == previous.attempts and episode.candidates == previous.candidates
+    assert episode.recipe == previous.recipe and episode.references == previous.references
+    assert episode.limits == updated(previous.limits, max_retries_per_beat=2)
+    assert credited_units(episode) == credited_units(previous)
+    assert runner.status(episode)["action"] == "prepare"
+    with pytest.raises(FlowError, match="changed"):
+        runner.increase_retry_limit(episode.id, previous.revision)
+    episode = runner.prepare(episode.id, episode.revision)
+    attempt = episode.attempts[-1]
+    assert attempt.retry_index == 2
+    assert attempt.parent_id == parent.id and attempt.parent_sha256 == parent.media.sha256
+    assert episode.accepted_ids == previous.accepted_ids
+
+
+def test_retry_recovery_stops_at_hard_maximum_and_cannot_bypass_budget(tmp_path):
+    service, episode, runner = context(tmp_path)
+    episode = failed_attempt(runner, failed_attempt(runner, episode))
+    for changes in ({"credit_ceiling": 10}, {"max_attempts": 2}):
+        blocked = service.save(
+            updated(episode, limits=updated(episode.limits, **changes)),
+            expected_revision=episode.revision,
+        )
+        assert runner.status(blocked)["next_retry_limit"] is None
+        with pytest.raises(FlowError, match="not available"):
+            runner.increase_retry_limit(blocked.id, blocked.revision)
+        episode = service.save(
+            updated(blocked, limits=episode.limits), expected_revision=blocked.revision
+        )
+    for expected_limit in (2, 3):
+        episode = runner.increase_retry_limit(episode.id, episode.revision)
+        assert episode.limits.max_retries_per_beat == expected_limit
+        episode = failed_attempt(runner, episode)
+    assert runner.status(episode)["next_retry_limit"] is None
+    with pytest.raises(FlowError, match="not available"):
+        runner.increase_retry_limit(episode.id, episode.revision)
+
+
+@pytest.mark.parametrize("state", ["ready", "paused", "awaiting_external", "unknown", "review"])
+def test_retry_recovery_refuses_other_workflow_states(tmp_path, state):
+    service, episode, runner = context(tmp_path)
+    if state == "paused":
+        episode = runner.pause(episode.id, episode.revision)
+    elif state in {"awaiting_external", "unknown"}:
+        episode = runner.prepare(episode.id, episode.revision)
+        if state == "unknown":
+            episode = runner.transition(
+                episode.id,
+                episode.attempts[-1].id,
+                revision=episode.revision,
+                state="unknown",
+                diagnostic="No known provider outcome",
+            )
+    elif state == "review":
+        episode = add_candidate(service, episode)
+    assert runner.status(episode)["next_retry_limit"] is None
+    with pytest.raises(FlowError, match="not available"):
+        runner.increase_retry_limit(episode.id, episode.revision)
+    assert service.get(episode.id) == episode

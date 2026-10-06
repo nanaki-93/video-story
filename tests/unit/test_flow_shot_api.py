@@ -9,6 +9,7 @@ from test_web_service import workspace as workspace
 
 from tabi.core.flow.media import FlowMedia
 from tabi.core.flow.review import FlowReview
+from tabi.core.flow.runner import FlowRunner
 from tabi.core.flow.service import FlowError, updated
 from tabi.core.models.base import HashedFile, MediaPath
 from tabi.core.models.flow import FlowBeat, FlowRecipe, FlowReference, FlowShot
@@ -163,6 +164,47 @@ def test_reference_review_and_mutation_security_are_required(workspace, monkeypa
     assert client.get(view["reference_slots"][0]["url"]).status_code == 200
     client.cookies.clear()
     assert client.get(view["reference_slots"][0]["url"]).status_code == 401
+
+
+def test_retry_limit_recovery_is_explicit_authenticated_and_preserves_attempts(
+    workspace, monkeypatch
+):
+    service, client, headers, path, view = create(workspace, monkeypatch)
+    for _ in range(3):
+        view = upload(client, headers, path, view)
+    episode = service.get(view["episode"]["id"])
+    runner = FlowRunner(service)
+    for _ in range(2):
+        episode = runner.prepare(episode.id, episode.revision)
+        episode = runner.transition(
+            episode.id,
+            episode.attempts[-1].id,
+            revision=episode.revision,
+            state="failed",
+            diagnostic="Confirmed failure",
+        )
+    assert client.get(path).json()["next_step"]["next_retry_limit"] == 2
+    body = {"expected_revision": episode.revision}
+    route = path + "/increase-retry-limit"
+    assert client.post(route, json=body).status_code == 403
+    result = client.post(route, json=body, headers=headers)
+    assert result.status_code == 200, result.text
+    current = result.json()
+    assert current["next_step"]["action"] == "prepare"
+    assert current["next_step"]["next_retry_limit"] is None
+    assert current["episode"]["limits"]["max_retries_per_beat"] == 2
+    assert current["episode"]["limits"]["credit_ceiling"] == episode.limits.credit_ceiling
+    assert current["episode"]["attempts"] == episode.model_dump(mode="json")["attempts"]
+    assert client.post(route, json=body, headers=headers).status_code == 400
+    assert (
+        client.post(
+            route,
+            json={"expected_revision": current["episode"]["revision"]},
+            headers=headers,
+        ).status_code
+        == 400
+    )
+    assert client.get(path).json()["episode"] == current["episode"]
 
 
 def test_section_controls_keep_source_and_selected_playback_distinct(workspace, monkeypatch):

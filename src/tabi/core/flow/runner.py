@@ -88,6 +88,7 @@ class FlowRunner:
             "attempt_id": None,
             "candidate_id": None,
             "beat": None,
+            "next_retry_limit": None,
         }
 
         def result(action, message, **values):
@@ -172,11 +173,6 @@ class FlowRunner:
             for item in episode.attempts
             if item.parent_id == parent_id and item.beat.id == beat.id
         ]
-        if related and len(related) > episode.limits.max_retries_per_beat:
-            return result(
-                "needs_attention",
-                "Retry limit reached. Review the evidence or return to a clean parent.",
-            )
         next_cost = (
             episode.limits.estimated_start_credit
             if (fresh_shot or parent_id is None)
@@ -196,12 +192,36 @@ class FlowRunner:
             compile_prompt(episode, beat, parent)
         except FlowError as error:
             return result("needs_attention", str(error), beat=beat.model_dump(mode="json"))
+        if related and len(related) > episode.limits.max_retries_per_beat:
+            next_limit = episode.limits.max_retries_per_beat + 1
+            return result(
+                "needs_attention",
+                "Retry limit reached. Review the evidence or return to a clean parent.",
+                next_retry_limit=next_limit
+                if next_limit <= 3 and len(related) <= next_limit
+                else None,
+            )
         return result(
             "prepare",
             "Start the next shot from its clean reference."
             if fresh_shot
             else "Prepare the next focused prompt.",
             beat=beat.model_dump(mode="json"),
+        )
+
+    def increase_retry_limit(self, episode_id, revision):
+        episode = self.service.get(episode_id)
+        if revision != episode.revision:
+            raise FlowError("Video changed; reload its next action.")
+        next_limit = self.status(episode)["next_retry_limit"]
+        if next_limit is None:
+            raise FlowError("A retry-limit increase is not available for this next action.")
+        return self.service.save(
+            updated(
+                episode,
+                limits=updated(episode.limits, max_retries_per_beat=next_limit),
+            ),
+            expected_revision=revision,
         )
 
     def prepare(self, episode_id, revision):

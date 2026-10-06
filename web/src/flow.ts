@@ -766,6 +766,19 @@ export function flowPage(): Panel {
       body.append(finish);
     } else {
       const attention = section("Progress needs your review", step.message);
+      if (step.next_retry_limit != null)
+        attention.append(
+          element("p", {
+            text: "Keep the accepted footage and allow another correction. Your credit ceiling stays unchanged; this does not start a generation.",
+          }),
+          button(
+            `Raise retry limit to ${step.next_retry_limit} per action`,
+            () =>
+              void change("/increase-retry-limit", {
+                expected_revision: episode.revision,
+              }),
+          ),
+        );
       attention.append(
         button(
           "Return to previous accepted clip",

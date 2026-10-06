@@ -92,7 +92,7 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 
 ## U02c — Recover from a retry limit without losing accepted footage
 
-**Status** [ ]
+**Status** [x] Twenty-one core/API checks, eight frontend checks, 68 contracts, TypeScript, formatting and production build pass. Recovery preserves accepted history and caps; the actual 45-second episode resumes in U03.
 
 **Target files**
 - `src/tabi/core/flow/runner.py` — expose and apply an explicit one-step retry-limit increase, within the existing hard maximum and unchanged global caps.

@@ -1215,6 +1215,20 @@
           "title": "Message",
           "type": "string"
         },
+        "next_retry_limit": {
+          "anyOf": [
+            {
+              "maximum": 3,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Retry Limit"
+        },
         "parent_id": {
           "anyOf": [
             {

@@ -215,6 +215,7 @@ export type AttemptId1 = string | null;
 export type CandidateId1 = string | null;
 export type CreditUnits = number;
 export type Message = string;
+export type NextRetryLimit = number | null;
 export type ParentId2 = string | null;
 export type TargetFrames1 = number;
 export type ParentUrl = string | null;
@@ -695,6 +696,7 @@ export interface FlowNext {
   candidate_id: CandidateId1;
   credit_units: CreditUnits;
   message: Message;
+  next_retry_limit?: NextRetryLimit;
   parent_id: ParentId2;
   target_frames: TargetFrames1;
 }

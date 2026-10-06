@@ -2,6 +2,17 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U02c — Retry recovery keeps the existing video
+
+At the retry limit, the app can explicitly raise the per-action allowance by one, up to the
+existing maximum of three. Python offers this only when the next attempt otherwise fits the
+unchanged credit/attempt caps and workflow state. It preserves accepted footage, parents,
+references and attempt history; no credits are reserved and no generation starts until the
+next prompt is prepared. Stale requests, unresolved results, pending review, pauses, exhausted
+budgets and the hard maximum are refused. Twenty-one core/API checks, eight frontend checks,
+68 contracts, TypeScript, formatting and production build pass. U03 resumes the saved real
+45-second journey through this control.
+
 ## U02b — Cup retries use the confirmed prop facts
 
 The real trial reached 45 accepted seconds, then rejected two cup-return takes: both invented
