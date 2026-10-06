@@ -59,6 +59,7 @@ export type SchemaVersion = "1.0";
 export type Version1 = string;
 export type PreparedSamples = number;
 export type AudioSources = AudioSource[];
+export type CandidateSourceUrl = string | null;
 export type CandidateUrl = string | null;
 export type DocumentType1 = "web_flow";
 export type AcceptedIds = string[];
@@ -248,6 +249,7 @@ export type TargetSamples = number;
 
 export interface WebFlow {
   audio_sources?: AudioSources;
+  candidate_source_url?: CandidateSourceUrl;
   candidate_url?: CandidateUrl;
   document_type?: DocumentType1;
   episode?: FlowEpisode | null;

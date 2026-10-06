@@ -7,8 +7,8 @@ Implement and verify one step, then commit it. Preserve existing projects and so
 | Task | Outcome | Status |
 | --- | --- | --- |
 | U01 | Frame-exact pending clip sections and matching review playback | complete; seven focused checks pass |
-| U02 | Normal UI section controls and authenticated preview | next |
-| U03 | Full 90-second real TABI app workflow | pending U02 |
+| U02 | Normal UI section controls and authenticated preview | complete; API/frontend/build checks pass |
+| U03 | Full 90-second real TABI app workflow | active |
 
 S01–S04 planned-shot engineering is complete. Its actual creative limits remain recorded below.
 

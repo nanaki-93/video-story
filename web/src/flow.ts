@@ -546,7 +546,44 @@ export function flowPage(): Panel {
         "Watch the whole clip and its ending. Check TABI, objects, outside motion and the requested action before accepting.",
       );
       if (view.candidate_url)
-        review.append(video(view.candidate_url, "New clip"));
+        review.append(video(view.candidate_url, "Selected clip section"));
+      const startFrame = input(String(candidate.trim.start_frame), "number");
+      const endFrame = input(String(candidate.trim.end_frame), "number");
+      startFrame.min = "0";
+      startFrame.max = String(candidate.frame_count - 1);
+      endFrame.min = "1";
+      endFrame.max = String(candidate.frame_count);
+      startFrame.step = endFrame.step = "1";
+      const selection = details(
+        "Keep a section of this clip",
+        element("p", {
+          text: `Selected source frames ${candidate.trim.start_frame}–${candidate.trim.end_frame} · ${seconds(candidate.trim.start_frame)}–${seconds(candidate.trim.end_frame)}s. Source: ${candidate.frame_count} frames. The end frame is excluded.`,
+        }),
+        element("p", {
+          text: "The whole clip is selected by default. Adjust these only to exclude an unwanted opening or ending, then watch the rebuilt section and join. Original files stay unchanged.",
+        }),
+        field("Start at source frame", startFrame),
+        field("End before source frame", endFrame),
+        button("Use this section", () => {
+          try {
+            void change(`/clips/${candidate.id}/section`, {
+              expected_revision: episode.revision,
+              media_sha256: candidate.media.sha256,
+              trim: {
+                start_frame: number(startFrame),
+                end_frame: number(endFrame),
+              },
+            });
+          } catch (e) {
+            status.textContent = String(e);
+          }
+        }),
+      );
+      if (view.candidate_source_url)
+        selection.append(
+          video(view.candidate_source_url, "Original complete clip"),
+        );
+      review.append(selection);
       if (view.review?.join_url)
         review.append(
           video(
@@ -572,6 +609,11 @@ export function flowPage(): Panel {
       const checked = checkbox(
         "I watched the clip and join; the action finishes and continuity is good",
       );
+      for (const control of [startFrame, endFrame])
+        control.addEventListener("input", () => {
+          checked.control.checked = false;
+          if (cut) cut.control.checked = false;
+        });
       const cut =
         view.safe_cut_frame != null
           ? checkbox(
@@ -596,6 +638,14 @@ export function flowPage(): Panel {
       if (cut) review.append(cut.node);
       review.append(
         button("Accept clip", () => {
+          if (
+            startFrame.value !== String(candidate.trim.start_frame) ||
+            endFrame.value !== String(candidate.trim.end_frame)
+          ) {
+            status.textContent =
+              "Use this section and watch its rebuilt review before accepting.";
+            return;
+          }
           if (!checked.control.checked) {
             status.textContent =
               "Watch the clip, confirm the ending facts, then tick the review box.";

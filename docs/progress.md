@@ -2,6 +2,16 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U02 — Section controls in the guided review screen
+
+6 October 2026. Review now plays the selected section and offers optional source-frame controls,
+with the complete original available separately. Applying a change rebuilds playback/samples/join
+through the shared Python service. Editing range inputs clears review confirmations and blocks
+Accept until the new section is prepared. The authenticated API retains CSRF/session/registered-root
+protections. Seven API/security checks, eight frontend checks, 68 schemas, TypeScript, formatting
+and production build pass. Marco confirmed Flow may handle generation; all other production
+steps must use video-story. The full 90-second UI trial is U03.
+
 ## U01 — Frame-exact clip sections without changing sources
 
 6 October 2026. Pending clips can now prepare a selected section with matching playback,

@@ -1,12 +1,15 @@
 """Transport coverage; unit receipts stand in for independently tested media decoding."""
 
 import hashlib
+import json
 
 from test_flow_shot_runner import facts, receipt
 from test_web_flow_contracts import setup
 from test_web_service import workspace as workspace
 
 from tabi.core.flow.media import FlowMedia
+from tabi.core.flow.review import FlowReview
+from tabi.core.flow.service import FlowError, updated
 from tabi.core.models.base import HashedFile, MediaPath
 from tabi.core.models.flow import FlowBeat, FlowRecipe, FlowReference, FlowShot
 
@@ -160,3 +163,81 @@ def test_reference_review_and_mutation_security_are_required(workspace, monkeypa
     assert client.get(view["reference_slots"][0]["url"]).status_code == 200
     client.cookies.clear()
     assert client.get(view["reference_slots"][0]["url"]).status_code == 401
+
+
+def test_section_controls_keep_source_and_selected_playback_distinct(workspace, monkeypatch):
+    service, client, headers, path, view = create(workspace, monkeypatch)
+    for _ in range(3):
+        view = upload(client, headers, path, view)
+    identity = view["episode"]["id"]
+    view = client.post(
+        path + "/prepare",
+        json={"expected_revision": view["episode"]["revision"]},
+        headers=headers,
+    ).json()
+    episode = receipt(service, service.get(identity), frames=192)
+    candidate = episode.candidates[-1]
+    route = path + f"/clips/{candidate.id}/section"
+    payload = {
+        "expected_revision": episode.revision,
+        "media_sha256": candidate.media.sha256,
+        "trim": {"start_frame": 24, "end_frame": 192},
+    }
+    assert client.post(route, json=payload).status_code == 403
+    assert (
+        client.post(route, json={**payload, "expected_revision": 0}, headers=headers).status_code
+        == 400
+    )
+    assert (
+        client.post(route, json={**payload, "media_sha256": "0" * 64}, headers=headers).status_code
+        == 400
+    )
+    assert (
+        client.post(
+            route, json={**payload, "trim": {"start_frame": 30, "end_frame": 20}}, headers=headers
+        ).status_code
+        == 422
+    )
+    calls = []
+
+    def prepare(self, episode_id, candidate_id, **kwargs):
+        calls.append((episode_id, candidate_id, kwargs))
+        current = self.service.get(episode_id)
+        if current.revision != kwargs["revision"]:
+            raise FlowError("Stale request")
+        clip = self.service.candidate(current, candidate_id)
+        self._validate_section(current, clip, kwargs["trim"], kwargs["media_sha256"])
+        packet_path = "sources/section-unit-packet.json"
+        packet = {
+            "candidate_sha256": clip.media.sha256,
+            "candidate_trim": kwargs["trim"].model_dump(),
+            "selected_video": clip.media.model_dump(mode="json"),
+            "join_video": None,
+            "images": [],
+            "diagnostics": {"fixture": "unit transport only"},
+            "review_checklist": [],
+        }
+        (service.store.root / packet_path).write_text(json.dumps(packet))
+        return service.save(
+            updated(
+                current, candidates=[updated(clip, trim=kwargs["trim"], review_packet=packet_path)]
+            ),
+            expected_revision=current.revision,
+        )
+
+    monkeypatch.setattr(FlowReview, "prepare", prepare)
+    response = client.post(route, json=payload, headers=headers)
+    assert response.status_code == 200, response.text
+    view = response.json()
+    assert calls[0][:2] == (identity, candidate.id)
+    assert view["candidate_url"].endswith("/selected")
+    assert view["candidate_source_url"].endswith("/video")
+    assert view["episode"]["candidates"][-1]["trim"] == payload["trim"]
+    assert client.get(view["candidate_url"]).status_code == 200
+    assert client.post(route, json=payload, headers=headers).status_code == 400
+    assert (
+        client.post(path + "/clips/foreign/section", json=payload, headers=headers).status_code
+        == 400
+    )
+    client.cookies.clear()
+    assert client.get(view["candidate_url"]).status_code == 401

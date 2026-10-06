@@ -36,6 +36,7 @@ from .contracts import (
     FlowReferenceRequest,
     FlowReviewRequest,
     FlowRevision,
+    FlowSectionRequest,
     FlowSource,
     FlowTransition,
     WebFlow,
@@ -97,6 +98,7 @@ def routes(runtime):
                 reference_urls=[f"{base}/references/{i}" for i in range(len(episode.references))],
                 parent_url=f"{base}/clips/{parent.id}/video" if parent else None,
                 candidate_url=f"{base}/clips/{candidate.id}/video" if candidate else None,
+                candidate_source_url=f"{base}/clips/{candidate.id}/video" if candidate else None,
                 target_samples=episode.recipe.fps.sample_at(episode.recipe.target_frames),
                 audio_sources=[
                     {"asset": a, "prepared_samples": prepared_samples(a)}
@@ -110,6 +112,8 @@ def routes(runtime):
                     data["safe_cut_frame"] = candidate.trim.start_frame + remaining
                 if candidate.review_packet:
                     packet = FlowReview(service, runtime.settings).read(candidate)
+                    if packet.get("selected_video"):
+                        data["candidate_url"] = f"{base}/clips/{candidate.id}/selected"
                     data["review"] = {
                         "images": [
                             {
@@ -231,6 +235,19 @@ def routes(runtime):
         )
         return view(handle, identity)
 
+    @router.post("/{identity}/clips/{candidate_id}/section", response_model=WebFlow)
+    def section(handle: str, identity: str, candidate_id: str, body: FlowSectionRequest):
+        item, service = services(handle)
+        with runtime.local_operation(item):
+            FlowReview(service, runtime.settings).prepare(
+                identity,
+                candidate_id,
+                revision=body.expected_revision,
+                media_sha256=body.media_sha256,
+                trim=body.trim,
+            )
+        return view(handle, identity)
+
     @router.post("/{identity}/attempts/{attempt_id}", response_model=WebFlow)
     def transition(handle: str, identity: str, attempt_id: str, body: FlowTransition):
         _, service = services(handle)
@@ -322,10 +339,11 @@ def routes(runtime):
         candidate = service.candidate(service.get(identity), candidate_id)
         if kind == "video":
             media = candidate.media
-        elif kind == "join":
-            raw = FlowReview(service, runtime.settings).read(candidate)["join_video"]
+        elif kind in {"join", "selected"}:
+            packet = FlowReview(service, runtime.settings).read(candidate)
+            raw = packet.get("join_video" if kind == "join" else "selected_video")
             if raw is None:
-                raise ValueError("An opening has no previous join")
+                raise ValueError("Prepare this clip's review artifact first")
             media = HashedFile.model_validate(raw)
         else:
             raise ValueError("Unknown clip artifact")

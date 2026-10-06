@@ -30,7 +30,7 @@ The previous S/F/P/T task bodies below remain implementation history.
 
 ## U02 — Expose section review in the normal app
 
-**Status** [ ]
+**Status** [x] Seven API/security checks, eight frontend checks, 68 contract drift checks, TypeScript, formatting and production build pass. Target-Mac section playback follows in U03.
 
 **Target files**
 - `src/tabi/api/contracts.py`, `src/tabi/api/flow.py` — authenticated section preparation using the U01 service, selected playback and clear source/frame bounds.

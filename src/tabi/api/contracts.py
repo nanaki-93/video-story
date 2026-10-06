@@ -113,6 +113,7 @@ class WebFlow(Document):
     exports: list[FlowExport] = Field(default_factory=list)
     reference_urls: list[Text] = Field(default_factory=list)
     candidate_url: Text | None = None
+    candidate_source_url: Text | None = None
     parent_url: Text | None = None
     review: FlowReviewView | None = None
     safe_cut_frame: Frame | None = None
@@ -183,6 +184,11 @@ class FlowReviewRequest(FlowRevision):
     trim: FrameInterval | None = None
     safe_end_frame: Frame | None = None
     retry_focus: Correction | None = None
+
+
+class FlowSectionRequest(FlowRevision):
+    media_sha256: SHA256
+    trim: FrameInterval
 
 
 class FlowTransition(FlowRevision):
