@@ -27,7 +27,7 @@ def test_pickup_uses_real_cup_and_does_not_reset_scenery_or_hands():
     beat = FlowBeat(id="pickup", kind="pickup", target_frame=720)
     mode, prompt = compile_prompt(episode, beat, parent)
     assert mode == "extend"
-    assert "body of that same cup" in prompt
+    assert "both existing hands around the body of that same cup" in prompt
     assert "Existing handle" not in prompt and "white ceramic" not in prompt
     assert "outside: Ginza" not in prompt and "enters building" not in prompt
     assert "hands on" not in prompt and "below the mouth" in prompt
@@ -141,3 +141,21 @@ def test_cup_correction_does_not_invent_unknown_facts_or_affect_other_actions():
     beat = updated(beat, kind="look")
     prompt = compile_prompt(episode, beat, parent, retry_focus="props")[1]
     assert "Only the object involved" in prompt and "ceramic" not in prompt
+
+
+@pytest.mark.parametrize("kind", ["pickup", "sip", "return_cup"])
+@pytest.mark.parametrize("handle", [False, True, None])
+def test_cup_actions_use_two_hands_only_for_confirmed_handle_free_cup(kind, handle):
+    episode, parent = setup_state(
+        cup_position="table" if kind == "pickup" else "held",
+        hands="resting" if kind == "pickup" else "holding_cup",
+        has_handle=handle,
+    )
+    beat = FlowBeat(id=kind, kind=kind, target_frame=720)
+    prompt = compile_prompt(episode, beat, parent)[1]
+    if handle is False:
+        assert "both existing hands" in prompt.lower()
+        assert "cup has no handle" in prompt and "smooth" in prompt
+    else:
+        assert "both existing hands" not in prompt.lower()
+        assert "no handle" not in prompt

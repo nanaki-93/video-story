@@ -115,6 +115,50 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 
 Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `make web-build` with the local offline uv cache.
 
+## U02d — Keep both hands around a handle-free cup
+
+**Status** [x] Thirty focused prompt/runner checks pass. New handle-free pickup/sip/return prompts use both hands and explicitly preserve the absent handle; known handled and unknown facts retain their previous behavior.
+
+**Target files**
+- `src/tabi/core/flow/prompts.py` — make confirmed handle-free pickup/sip/return use both existing hands around the cup body and explicitly keep the cup without a handle.
+- `tests/unit/test_flow_prompts.py` — verify the complete two-hand routine while preserving handled and unknown cases.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — record Marco's requested correction and verification.
+
+**Inputs / dependencies**
+- U02c. Marco explicitly requested both hands and no handle after four returns inherited or introduced a handle from the sip parent.
+
+**Implementation rules**
+- Apply the instruction to the whole new cup routine from its clean starting image. Keep existing saved takes and prompts immutable; use known facts only.
+- Keep the original action ordering and ending states. Do not reset retry or credit limits.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_prompts.py tests/unit/test_flow_shot_runner.py`
+
+## U02e — Restart a troubled shot from its clean image
+
+**Status** [ ]
+
+**Target files**
+- `src/tabi/core/flow/runner.py` — identify and restart the current partial shot through the existing preserved-history branching service.
+- `src/tabi/api/contracts.py`, `src/tabi/api/flow.py` — typed recovery availability and revision-guarded route.
+- `web/src/flow.ts` — one clearly labelled shot restart control, without browser timeline logic.
+- `tests/unit/test_flow_shot_runner.py`, `tests/unit/test_flow_shot_api.py` — verify earlier shots/history/caps survive and unresolved work cannot be bypassed.
+- `schemas/web_flow.schema.json`, `web/src/generated/web_flow.ts`, `web/src/generated/validators.cjs` — regenerate the affected transport contract.
+- `docs/progress.md`, `docs/tasks/INDEX.md` — verification and target-Mac recovery evidence.
+
+**Inputs / dependencies**
+- U02d. The existing attention button backtracks only one clip; restarting the three-part drink shot must be possible through the app without JSON/API shortcuts.
+
+**Implementation rules**
+- Keep completed earlier shots, immutable sources/attempts/reviews and the original credit/attempt/retry caps. Remove only the current partial shot from the active branch; do not erase it.
+- Python selects the clean-shot boundary. Allow only an idle partial planned shot; block pending provider outcomes, pending review and pauses. A fresh shot still counts as a retry of its existing starting beat.
+- Do not prepare or generate automatically. The next ordinary Prepare action uses the same reviewed starting image.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 .tools/bin/uv run --frozen pytest tests/unit/test_flow_shot_runner.py tests/unit/test_flow_shot_api.py tests/unit/test_flow_runner.py`
+
+Also regenerate schemas/browser contracts, run `make web-check web-build`, then exercise the actual saved drink-shot restart in U03.
+
 ## U03 — Run the full 90-second journey through the app
 
 **Status** [ ]
@@ -125,7 +169,7 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 - `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md` — measured outcome and remaining generation dependency.
 
 **Inputs / dependencies**
-- U02, U02a, U02b and U02c. Marco confirmed: allow Flow for generation; everything else must use video-story.
+- U02–U02e. Marco confirmed: allow Flow for generation; everything else must use video-story.
 - Direct generation solely inside video-story is blocked on a supported consumer-Flow connector within the existing allowance. Official Flow Agent documentation does not establish this; Gemini video API pricing is separate. No new purchase is authorized.
 
 **Implementation rules**

@@ -11,6 +11,8 @@ Implement and verify one step, then commit it. Preserve existing projects and so
 | U02a | Correct accessory/marking identity drift on retry | complete; 17 focused checks pass |
 | U02b | Use confirmed cup facts in prop corrections | complete; 21 focused checks pass |
 | U02c | Recover from a retry limit while preserving accepted footage and budget | complete; core/API/frontend/build checks pass |
+| U02d | Keep both hands around the confirmed handle-free cup | complete; 30 focused checks pass |
+| U02e | Restart only the current partial shot from its clean image | next |
 | U03 | Full 90-second real TABI app workflow | active |
 
 S01–S04 planned-shot engineering is complete. Its actual creative limits remain recorded below.

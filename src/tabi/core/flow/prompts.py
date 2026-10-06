@@ -27,6 +27,12 @@ def action_text(state: FlowState, beat: FlowBeat) -> str:
             state.cup_position != "table" or state.hands != "resting"
         ):
             raise FlowError("Pickup needs a confirmed cup on the table and resting hands.")
+        if state.has_handle is False:
+            return (
+                "The character gently wraps both existing hands around the body of that same "
+                "cup and lifts it to chest height. The cup has no handle. Both hands support "
+                "its smooth sides. End holding it steadily below the mouth."
+            )
         grip = "its existing handle" if state.has_handle else "the body of that same cup"
         return (
             f"The character gently grips {grip} and lifts it to chest height. "
@@ -37,11 +43,25 @@ def action_text(state: FlowState, beat: FlowBeat) -> str:
             "This action needs the confirmed cup already held in the character's hands."
         )
     if beat.kind == "sip":
+        grip = (
+            " Both existing hands stay wrapped around its smooth body; the cup has no handle."
+            if state.has_handle is False
+            else ""
+        )
         return (
             "The character brings the held cup to the mouth for one small sip, maintaining a "
-            "continuous grip and rigid cup shape. End still holding the cup below the mouth."
+            "continuous grip and rigid cup shape."
+            + grip
+            + " End still holding the cup below the mouth."
         )
     if beat.kind == "return_cup":
+        if state.has_handle is False:
+            return (
+                "The character lowers the held cup to its original place on the table using "
+                "both existing hands around its smooth body. The cup has no handle. Both hands "
+                "support it until its base rests on the table, then release and rest beside it. "
+                "End with the same cup on the table and both hands resting."
+            )
         return (
             "The character lowers the held cup to its original place on the table. The hand "
             "follows it until contact, then relaxes. End with the cup on the table "

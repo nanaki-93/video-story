@@ -2,6 +2,14 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## U02d — Marco's two-hand cup instruction
+
+After four rejected cup returns, Marco requested both hands around the cup and an explicit
+instruction that it has no handle. New pickup, sip and return prompts now use both existing
+hands on its smooth body when the absence of a handle is confirmed. Handled and unknown
+cases remain distinct. Thirty focused prompt/runner checks pass. This changes future prompts;
+it cannot repair saved pixels. The drink shot will restart from its clean reference in U03.
+
 ## U02c — Retry recovery keeps the existing video
 
 At the retry limit, the app can explicitly raise the per-action allowance by one, up to the
