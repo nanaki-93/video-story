@@ -11,10 +11,11 @@ import pytest
 from test_flow_import import accept_last, make_clip, media_context, pending
 
 from tabi.api.launcher import OwnedWorker
+from tabi.core.assets.service import digest_file
 from tabi.core.flow.media import FlowMedia
 from tabi.core.flow.prompts import expected_ending
 from tabi.core.models.base import MediaPath
-from tabi.core.models.flow import FlowState
+from tabi.core.models.flow import FlowBeat, FlowRecipe, FlowState
 from tabi.core.process import run_tool
 from tabi.core.render.ffmpeg import verify_video
 
@@ -51,25 +52,10 @@ def rgb_frame(settings, path, frame):
     return np.frombuffer(raw, dtype=np.uint8).astype(np.int16)
 
 
-def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_export(tmp_path):
+def exercise_90s_workflow(tmp_path, *, planned=False):
     started = time.monotonic()
     settings, sources, service, _ = media_context(tmp_path)
-    reference = sources / "Synthetic reference.png"
-    run_tool(
-        [
-            settings.ffmpeg,
-            "-v",
-            "error",
-            "-nostdin",
-            "-f",
-            "lavfi",
-            "-i",
-            "testsrc2=size=96x54:rate=24",
-            "-frames:v",
-            "1",
-            str(reference),
-        ]
-    )
+    original_hashes = {}
     worker = OwnedWorker(settings, {"work": tmp_path}, REPO / "web/dist")
     try:
 
@@ -86,7 +72,25 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
             "POST",
             base,
             {
-                "title": "Synthetic 90s full workflow",
+                "title": "SYNTHETIC 90s planned shots"
+                if planned
+                else "Synthetic 90s legacy workflow",
+                "recipe": None
+                if planned
+                else FlowRecipe(
+                    beats=[
+                        FlowBeat(id=kind, kind=kind, target_frame=second * 24)
+                        for kind, second in [
+                            ("rest", 0),
+                            ("look", 15),
+                            ("pickup", 30),
+                            ("sip", 38),
+                            ("return_cup", 45),
+                            ("sway", 52),
+                            ("deep_breath", 75),
+                        ]
+                    ]
+                ).model_dump(mode="json"),
                 "limits": {
                     "credit_ceiling": 0,
                     "remaining_allowance": 0,
@@ -96,15 +100,6 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
             },
         )
         path = base + "/" + view["episode"]["id"]
-        view = worker.request(
-            "POST",
-            path + "/reference",
-            {
-                "expected_revision": view["episode"]["revision"],
-                "source": {"root_id": "work", "path": reference.relative_to(tmp_path).as_posix()},
-                "synthetic": True,
-            },
-        )
         state = FlowState(
             cup_kind="takeaway",
             cup_position="table",
@@ -114,6 +109,41 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
             pose="watching",
             inventory=["takeaway cup", "open book", "pen"],
         )
+        for index, key in enumerate(("wide", "close", "medium") if planned else (None,)):
+            reference = sources / f"Synthetic reference {key or 'opening'}.png"
+            run_tool(
+                [
+                    settings.ffmpeg,
+                    "-v",
+                    "error",
+                    "-nostdin",
+                    "-f",
+                    "lavfi",
+                    "-i",
+                    "testsrc2=size=96x54:rate=24",
+                    "-vf",
+                    f"hue=h={index * 40}",
+                    "-frames:v",
+                    "1",
+                    str(reference),
+                ]
+            )
+            original_hashes[reference] = digest_file(reference)
+            assert view["next_step"]["action"] == "choose_reference"
+            body = {
+                "expected_revision": view["episode"]["revision"],
+                "source": {"root_id": "work", "path": reference.relative_to(tmp_path).as_posix()},
+                "synthetic": True,
+            }
+            if planned:
+                assert view["next_reference_key"] == key
+                body.update(
+                    key=key,
+                    title=f"Synthetic {key}",
+                    starting_state=state.model_dump(),
+                    review_note="Synthetic reference only; no character approval",
+                )
+            view = worker.request("POST", path + "/reference", body)
         index = 0
         retried = False
         reopened = False
@@ -141,11 +171,24 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
                 assert len(restored["episode"]["attempts"]) == len(view["episode"]["attempts"])
                 view = restored
                 reopened = True
-            frames = min(
-                192, view["next_step"]["target_frames"] - view["next_step"]["accepted_frames"]
-            )
+            if planned:
+                # Exercise an oversized native result at the first shot's exact safe outpoint.
+                frames = 192 if attempt["mode"] == "shot_start" or index == 1 else 168
+                if attempt["mode"] == "shot_start":
+                    slot = next(
+                        s
+                        for s in view["reference_slots"]
+                        if s["key"] == view["starting_reference_key"]
+                    )
+                    assert slot["url"] and "supplied clean starting image" in attempt["prompt"]
+                    state = FlowState.model_validate(slot["starting_state"])
+            else:
+                frames = min(
+                    192, view["next_step"]["target_frames"] - view["next_step"]["accepted_frames"]
+                )
             clip = sources / f"clip {index} 東京.mp4"
             make_clip(settings, clip, frames=frames, hue=index * 7)
+            original_hashes[clip] = digest_file(clip)
             view = worker.request(
                 "POST",
                 path + "/import",
@@ -158,6 +201,13 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
                 },
             )
             candidate = view["episode"]["candidates"][-1]
+            if planned and attempt["parent_id"]:
+                assert view["review"]["join_url"]
+                kind = "camera cut" if attempt["mode"] == "shot_start" else "continuation"
+                assert f'join_kind: "{kind}"' in view["review"]["diagnostics"]
+            if planned and index == 1:
+                assert view["safe_cut_frame"] == 168
+                assert any(i["frame"] == 167 for i in view["review"]["images"])
             body = {
                 "expected_revision": view["episode"]["revision"],
                 "media_sha256": candidate["media"]["sha256"],
@@ -165,11 +215,13 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
                 "note": "Synthetic state/timing test only; not publication approval",
             }
             if index == 2 and not retried:
-                body.update(decision="rejected", note="Synthetic visible join mismatch")
+                body.update(
+                    decision="rejected",
+                    retry_focus="particles" if planned else None,
+                    note="Synthetic dots and mouth mismatch; full history stays out of the prompt",
+                )
                 retried = True
             else:
-                from tabi.core.models.flow import FlowBeat
-
                 state = expected_ending(state, FlowBeat.model_validate(attempt["beat"]))
                 body.update(
                     observed_state=state.model_dump(mode="json"),
@@ -179,6 +231,14 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
             index += 1
         assert view["next_step"]["accepted_frames"] == 2160
         assert not view["remaining_beats"] and retried and reopened
+        if planned:
+            assert all(s["state"] == "complete" for s in view["shots"])
+            assert [s["accepted_frames"] for s in view["shots"]] == [360, 360, 528, 192, 360, 360]
+            retry = view["episode"]["attempts"][3]
+            assert retry["mode"] == "shot_start" and retry["shot_id"] == "watch"
+            assert "Carriage air stays clear" in retry["prompt"]
+            assert "full history" not in retry["prompt"] and "full history" in retry["retry_reason"]
+            assert retry["references_sha256"] == view["episode"]["attempts"][2]["references_sha256"]
         source = sources / "Synthetic master.wav"
         samples = (np.sin(np.arange(4320000) * 2 * np.pi * 220 / 48000) * 1000).astype("<i2")
         with wave.open(str(source), "wb") as output:
@@ -232,6 +292,7 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
         assert report["audio"]["verification"]["intended_samples"] == 4320000
         assert report["synthetic"] and report["creative_approval"] == "pending"
         assert source.read_bytes() == original
+        assert all(digest_file(p) == value for p, value in original_hashes.items())
         assert len(view["episode"]["accepted_ids"]) == 12 and len(view["episode"]["attempts"]) == 13
         offset = 0
         comparisons = 0
@@ -271,9 +332,14 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
         )
         assert "synthetic_assets" in inspection["blockers"]
         save_evidence(
-            "synthetic-workflow.json",
+            "shot-workflow.json" if planned else "synthetic-workflow.json",
             {
                 "project_path": str(service.store.root),
+                "episode_id": view["episode"]["id"],
+                "export_id": frozen.id,
+                "output_path": str(service.verify_file(frozen.output)),
+                "planned_shots": view["shots"],
+                "fresh_starts": sum(a["mode"] == "shot_start" for a in view["episode"]["attempts"]),
                 "duration_frames": 2160,
                 "fps": {"num": 24, "den": 1},
                 "duration_seconds": 90,
@@ -296,6 +362,10 @@ def test_fresh_90s_preset_reject_retry_unknown_reopen_local_music_and_exact_expo
         )
     finally:
         worker.stop(cancel=True)
+
+
+def test_legacy_90s_recipe_reject_retry_unknown_reopen_local_music_and_exact_export(tmp_path):
+    exercise_90s_workflow(tmp_path)
 
 
 def test_actual_tokyo_native_import_has_no_inherited_hold_and_keeps_visual_gate(tmp_path):

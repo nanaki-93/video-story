@@ -1,6 +1,6 @@
 # Operating Tabi Story Studio
 
-The normal app guides **Setup → Opening → Continue → Finish** from Create video.
+The normal app guides **Setup → References → Shots → Finish** from Create video.
 The app and CLI share Python services; generation happens in Google Flow. Assets and music
 stay on this Mac. [Acceptance](38-v1-acceptance.md) separates tested engineering from real
 TABI appearance, original music and publication reviews still pending.
@@ -28,23 +28,28 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
 
 1. Launch the app, choose **Projects**, and create/open a local working folder. Return to
    **Create video**. Setup starts with the train/Tokyo/90-second preset; optional changes are
-   under Scene details. Enter the actual remaining Flow allowance and displayed candidate
-   cost in the allowance section. The app cannot read your account or buy more credits.
-2. **Opening:** import the selected TABI/train reference. Click Prepare opening prompt,
-   then Copy prompt and Open Flow. Generate one candidate in your existing account using
-   the appropriate reference mode. Download its native clip, not a combined scene with repeats.
-   Return and import it; record the actual model shown by Flow when known.
-3. Review the clip, selected frames and ending state. Confirm the actual cup, hands, objects
-   and pose rather than the desired prompt. Accept only after watching. Unknown facts stay
-   unknown. Reference comparison remains necessary; a decoded MP4 is not visual approval.
-4. **Continue:** use the next saved focused prompt with native Extend from the exact accepted
-   parent in Flow. Import and review the candidate and its join. Retry rejects that candidate
-   and prepares one focused correction from the clean parent. Stop saves progress. Reopening
-   resumes the same attempt; reconcile an unknown outcome before submitting again.
-5. The routine includes breathing/window rest, looking around 15s, cup pickup/sip/return near
-   30s, music sway near 45s, looking near 60s and a bigger breath near 75s. Actual action timing
-   follows reviewed native clip boundaries. Complete actions and confirm the exact final cut;
-   the app neither loops old footage nor pads a freeze to reach 90 seconds.
+   under Edit settings. Enter the actual remaining Flow allowance, displayed fresh-shot and
+   extension costs, and a spending ceiling. The app cannot read your account or buy credits.
+2. **References:** use your approved train image as the source for the copyable image prompts.
+   Prepare/import wide, close and medium/table views in that order. All three are reviewed before
+   video begins. Keep TABI's full gills, connected neck, markings, outfit, train layout and cup
+   design; check the air is clear. Confirm visible starting facts. For the drink view, the cup
+   starts on the table with hands resting. Hidden facts stay unknown. These image reviews do
+   not establish commercial rights. Original artwork remains unchanged.
+3. **Start new shot in Flow:** download the exact image shown, choose Frames to Video, attach
+   it and select an 8-second landscape result. Copy the saved motion prompt. Download and import
+   the new native clip; record the actual model shown in Flow. A preceding-shot player is cut
+   context, not the input to this generation. The app saves the attempt before the handoff.
+4. **Extend this shot in Flow:** select the exact accepted clip shown and use its focused next
+   prompt. Native Extend currently requires a supported Veo Lite model; check the current UI
+   and cost. Import only the new clip. Most shots allow one accepted extension; the drink shot
+   allows two for separate pickup, sip and return actions. Do not keep extending past the cap.
+5. **Review:** watch the entire candidate and the join/camera-cut player. Confirm the actual
+   ending facts and compare TABI/props with the reference. Check the shot-ending frame when
+   offered; the app trims to that reviewed outpoint. A cup still held cannot jump to a table
+   across the cut. Reject visible dots, distorted gills/mouth, changing objects, freezes or an
+   incomplete action. Choose one correction for Retry; the full note remains in history.
+   A retry uses the same clean image or in-shot parent. The app never approves appearance.
 6. **Finish:** keep silent or import/select a local WAV. A longer master needs the explicit
    first-video-length trim confirmation; a short master is not automatically looped. Export
    and watch the complete verified draft. Output preserves the measured picture resolution
@@ -53,10 +58,33 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
    disclosure, thumbnail and listening/creative reviews. Inspect blockers and export the
    existing public/private bundle. Publication remains manual. Keep private evidence private.
 
-For another setting/outfit, use **New variation**. It copies the recipe and stable references,
-starts a new opening and resets reviews. Café/walking and each new outfit still need visual
+The default story is 0–15s settle/wide, 15–30s watch/close, 30–52s pickup–sip–return/medium,
+52–60s sway/close, 60–75s watch/wide and 75–90s deep breath/medium. The 22-second drink shot
+keeps all three cup actions together. Gentle breathing is prompted between actions. The app
+counts actual reviewed frames; it never loops old footage or pads a freeze to fill a duration.
+
+Stop saves progress; reopening resumes the same attempt. Reconcile an unknown Flow result
+before submitting again. If retry, extension or credit limits stop progress, retain the evidence
+and return to a previously accepted clip or start a fresh variation. Do not label a short
+accepted run as a finished 90-second video.
+
+For another setting/outfit, use **New variation** and enter fresh allowance/cost observations.
+It copies stable settings and resets the review chain. Appearance changes clear references so
+new matching views must be imported before generation. Café/walking and each new outfit need visual
 qualification. Almost entirely automatic Flow control has not been established; the handoff
 above is the supported assisted workflow. No additional paid provider is configured.
+
+Existing saved single-shot episodes retain Opening/Continue and their original hashes. For
+CLI automation, `flow status` returns shot progress and the next reference instructions;
+`flow reference --key wide --state facts.json --note 'review findings'` imports a reviewed
+view (also supply project, source, title and revision). `flow review --correction particles`
+stores one focused retry selection with the full review note.
+
+Prompt/model guidance checked 6 October 2026: [Google's focused image/video guidance](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/video/best-practice)
+and [Flow model support](https://support.google.com/flow/answer/16352836?hl=en). Camera cuts and
+clean starts reduce dependence on an imperfect preceding clip; they cannot repair existing
+damaged pixels or guarantee a usable generation. Commercial terms and source rights are checked
+again at delivery; no provider change or new paid dependency is part of this update.
 
 ## First scene from an existing image
 

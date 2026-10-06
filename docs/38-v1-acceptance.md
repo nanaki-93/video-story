@@ -1,8 +1,29 @@
 # V1 implementation and acceptance
 
+## Planned-shot workflow — 6 October 2026
+
+S01–S04 implement **Setup → References → Shots → Finish** for new videos. Three clean image
+views feed six short shots with deliberate camera cuts. Native Extend stays within each shot;
+the drink shot allows pickup, sip and return before cutting. Actual reviewed frames determine
+progress, with one focused correction, separate opening/extension costs and retained attempt
+history. Existing single-shot episodes and frozen exports keep their hashes and workflow.
+
+[S04 evidence](evidence/s04-planned-shots.json) records **344 core passes, 74 actual-media passes**
+(one optional private-media test skipped), eight frontend passes, 68 contract drift checks and
+successful web/package builds. The full synthetic run proves 2160 frames/PTS, 4320000 audio
+samples and every side of eleven joins, retry/reopen and safe shot cuts. Chrome tests the new
+screens and plays the saved 90-second output to the end. Original Tokyo documents, source media
+and export hashes remain valid. No external generation credits or new paid dependencies were used.
+
+This is engineering acceptance. A real TABI wide/close/wide sequence must still establish visual
+quality, followed by a complete 90-second episode and variation. No claim that particles are
+eliminated, source rights are cleared, or unattended generation/monthly throughput is qualified.
+The browser automation file-picker delay is recorded separately from app behavior; human effort
+is not yet measured. Existing delivery rights and creative checks remain required.
+
 ## Flow workflow engineering acceptance — 6 October 2026
 
-The normal app now implements **Setup → Opening → Continue → Finish**, with shared CLI/API,
+The earlier continuous-shot app implemented **Setup → Opening → Continue → Finish**, with shared CLI/API,
 focused prompts, immutable references/attempts, native clip import, join review, bounded retries,
 resume, verified export, continuous local music and YouTube delivery. F00 qualifies the assisted
 Copy prompt / Open Flow / Import result handoff; unattended app control remains unqualified.

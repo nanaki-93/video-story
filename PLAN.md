@@ -6,20 +6,31 @@ composition and publishing remain separate.
 
 ## Current workflow
 
-The normal app starts at **Create video → Setup → Opening → Continue → Finish**. The train /
-Tokyo / 90-second preset supplies character, outfit, fixed camera, continuous scenery and a
-calm routine. Each step shows the next useful action. Existing scene tools are under Advanced.
+The normal app starts at **Create video → Setup → References → Shots → Finish**. The train /
+Tokyo / 90-second preset uses six short shots and three reviewed starting images (wide, close,
+medium/table). Each camera cut begins again from its clean image. A fixed camera within each
+shot, ongoing outside travel and a calm routine keep the journey readable. Existing continuous
+drafts retain their old workflow; existing scene tools are under Advanced.
 
 Generation uses **Copy prompt → Open Flow → Import native result → Review**. The app saves
 reference hashes, prompts, parent lineage, attempts, confirmed prop states, reviews and credit
-reservations. Accept continues from the clean reviewed parent; Retry makes one focused
-correction. Refresh and an unknown external result do not create another generation request.
+reservations. Each fresh shot uses Frames to Video with its assigned image. Native Extend stays
+inside that shot, normally once and twice for the three-part drink action. The previous shot is
+used only to review the editorial cut. Retry uses the same image or in-shot parent with one
+selected correction; full rejection notes stay in history. Refresh and an unknown external
+result do not create another generation request. This reduces inherited drift; it does not
+guarantee clean mouths, stable gills, props or particle-free footage.
+
+The default timeline is 0–15s settle, 15–30s watch, 30–52s pickup/sip/return, 52–60s sway,
+60–75s watch and 75–90s deep breath. Drink gets three separate clips so the cup returns before
+the next camera cut. Every boundary needs completed actions and compatible visible cup/hand
+state. Actual native frame counts and an explicitly reviewed outpoint determine the cut.
 
 Finish assembles only accepted footage at its measured native cadence, trims to an explicitly
 reviewed exact ending, and can add one continuous local soundtrack. The verified export can
 enter the existing YouTube delivery review and public/private bundle workflow.
 
-[F00–F11](docs/tasks.md) are implemented. [F12 evidence](docs/evidence/f12-flow-workflow.json)
+[S01–S04](docs/tasks.md) add the planned-shot workflow. [F12 evidence](docs/evidence/f12-flow-workflow.json)
 records full-length engineering verification and target-Mac UI observations. A synthetic
 90-second video verifies software behavior, not TABI likeness or release approval.
 
@@ -52,7 +63,7 @@ require visual rejection; fixing timestamps does not repair those pixels.
 
 Use existing Google entitlement and local tools. No new subscriptions, paid API, plugins,
 licence purchases or credit top-ups are part of the route. Record a freshly observed Flow
-allowance and displayed per-attempt cost for each run; included compute is limited.
+allowance and displayed fresh-shot/extension costs for each run; included compute is limited.
 Local reservations cannot prevent independent spending inside Flow.
 
 The earlier Colab/Blender character trials failed their appearance/depth gates. Their exact

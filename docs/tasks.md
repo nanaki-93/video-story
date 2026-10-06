@@ -91,9 +91,10 @@ Also run `make schemas`, `npm --prefix web run schemas`, `make web-check` and `m
 
 ## S04 — Verify complete shot assembly and document the usable workflow
 
-**Status** [ ]
+**Status** [x] Five focused media tests; final 344 core and 74 actual-media passes (one optional private-media case skipped), eight frontend tests, build/package and target-Mac Chrome workflow/playback pass. Real creative/automation gates remain open in the evidence.
 
 **Target files**
+- `src/tabi/core/flow/prompts.py`, `tests/unit/test_flow_prompts.py` — final review fix: mouth corrections must permit the requested sip, with a regression check.
 - `tests/integration/test_flow_shot_workflow.py` (new) — real 90-second synthetic media through authenticated API, independent shot references, retry/reopen, exact cuts, soundtrack and verified export.
 - `tests/integration/test_flow_workflow.py` — retain the existing continuous-shot regression with its explicit legacy recipe now that new videos use planned shots.
 - `docs/evidence/s04-planned-shots.json` (new), `docs/evidence/s04-shot-workflow.jpg` (new) — bounded target-Mac UI and export evidence.

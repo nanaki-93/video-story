@@ -1,0 +1,207 @@
+{
+  "task": "S04",
+  "reviewed_at": "2026-10-06",
+  "scope": "Planned-shot app engineering; no real TABI generation or publication approval",
+  "default_shots_seconds": [
+    15,
+    15,
+    22,
+    8,
+    15,
+    15
+  ],
+  "default_reference_keys": [
+    "wide",
+    "close",
+    "medium"
+  ],
+  "gates": {
+    "focused_media": "5 passed in 28.61s; authenticated worker requires loopback access outside restricted sandbox",
+    "final_check": "344 passed, 75 media cases skipped; Ruff, formatting and 68 schema drift checks pass",
+    "full_actual_media": "74 passed, 1 optional private Tokyo fixture skipped in 267.00s; old Tokyo hashes checked separately below",
+    "final_sip_regression": "16 prompt/shot-runner tests passed; mouth correction permits rim contact during sip",
+    "web_check": "8 passed; TypeScript, 68 generated browser contracts and Prettier pass",
+    "web_build": "passed",
+    "package": "wheel and source distribution built; 111 Python modules byte-audited",
+    "logs": {
+      "check": "/Users/marcoandreose/DEV/lab/video-story/.local/shot-workflow/check.log",
+      "media": "/Users/marcoandreose/DEV/lab/video-story/.local/shot-workflow/media.log",
+      "web-check": "/Users/marcoandreose/DEV/lab/video-story/.local/shot-workflow/web-check.log",
+      "web-build": "/Users/marcoandreose/DEV/lab/video-story/.local/shot-workflow/web-build.log",
+      "package": "/Users/marcoandreose/DEV/lab/video-story/.local/shot-workflow/package.log"
+    },
+    "warnings": [
+      "Existing Starlette/httpx TestClient deprecation",
+      "Existing large frontend validator bundle advisory"
+    ]
+  },
+  "synthetic_media_run": {
+    "project_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-4/test_six_clean_starts_focused_0/project",
+    "episode_id": "851a500ac754442685fc58f55d85a5b8",
+    "export_id": "d19edbe7760242869e5b0fd927581226",
+    "output_path": "/private/var/folders/lz/20cqfx4x2k98r89q68w3q3ch0000gn/T/pytest-of-marcoandreose/pytest-4/test_six_clean_starts_focused_0/project/exports/d19edbe7760242869e5b0fd927581226.mp4",
+    "planned_shots": [
+      {
+        "id": "settle",
+        "title": "Settle into the journey",
+        "framing": "wide",
+        "reference_key": "wide",
+        "index": 1,
+        "start_frame": 0,
+        "duration_frames": 360,
+        "accepted_frames": 360,
+        "state": "complete"
+      },
+      {
+        "id": "watch",
+        "title": "Watch Tokyo pass",
+        "framing": "close",
+        "reference_key": "close",
+        "index": 2,
+        "start_frame": 360,
+        "duration_frames": 360,
+        "accepted_frames": 360,
+        "state": "complete"
+      },
+      {
+        "id": "drink",
+        "title": "Pick up, sip and return the cup",
+        "framing": "medium",
+        "reference_key": "medium",
+        "index": 3,
+        "start_frame": 720,
+        "duration_frames": 528,
+        "accepted_frames": 528,
+        "state": "complete"
+      },
+      {
+        "id": "vibe",
+        "title": "Enjoy the music",
+        "framing": "close",
+        "reference_key": "close",
+        "index": 4,
+        "start_frame": 1248,
+        "duration_frames": 192,
+        "accepted_frames": 192,
+        "state": "complete"
+      },
+      {
+        "id": "view",
+        "title": "Watch the passing view",
+        "framing": "wide",
+        "reference_key": "wide",
+        "index": 5,
+        "start_frame": 1440,
+        "duration_frames": 360,
+        "accepted_frames": 360,
+        "state": "complete"
+      },
+      {
+        "id": "breathe",
+        "title": "Deep breath and settle",
+        "framing": "medium",
+        "reference_key": "medium",
+        "index": 6,
+        "start_frame": 1800,
+        "duration_frames": 360,
+        "accepted_frames": 360,
+        "state": "complete"
+      }
+    ],
+    "fresh_starts": 7,
+    "duration_frames": 2160,
+    "fps": {
+      "num": 24,
+      "den": 1
+    },
+    "duration_seconds": 90,
+    "accepted_clips": 12,
+    "attempts": 13,
+    "rejected_clips": 1,
+    "reopen_pending_attempt": true,
+    "samples": 4320000,
+    "output_sha256": "e62fcdf65c9a780517ec1b7392cff96fd47acd500f4e273638091d67453fba5c",
+    "source_audio_unchanged": true,
+    "all_frames_and_pts": "strict full decode verified",
+    "source_hashes_rechecked": true,
+    "join_boundaries_compared": 22,
+    "creative_approval": "pending",
+    "production_blockers": [
+      "asset_rights_or_approval_pending",
+      "creative_review_pending_or_stale",
+      "episode_concept_review_pending",
+      "flow_commercial_terms_pending_or_stale",
+      "metadata_and_disclosure_review_pending_or_stale",
+      "music_metadata_pending",
+      "synthetic_assets"
+    ],
+    "external_generation_requests": 0,
+    "elapsed_seconds": 21.18,
+    "preserved_project_path": "/Users/marcoandreose/DEV/lab/video-story/.local/shot-workflow/Verified synthetic project"
+  },
+  "target_mac_ui": {
+    "browser": "Chrome 154 on target Mac",
+    "project": "/Users/marcoandreose/DEV/lab/video-story/.local/shot-workflow/Verified synthetic project",
+    "ui_episode_id": "2e52e7fc4549465ea206e8c54324163d",
+    "observations": [
+      "Created new 90-second plan in Setup, with zero synthetic fresh-shot and extension costs",
+      "Uploaded wide PNG through the browser file picker and app upload/import path; advanced to close reference",
+      "Imported the other two reference fixtures and three native videos through the authenticated app API",
+      "Prepared and displayed clean wide starting image; no previous clip as generation input",
+      "Played opening 8-second clip to ended=true and accepted through UI",
+      "Displayed Extend handoff with accepted parent and no new starting-image input",
+      "Played second 8-second fixture and 2-second continuous join to ended=true",
+      "Confirmed explicit frame-168 shot outpoint; accepted progress became exactly 15 seconds",
+      "Prepared next close shot from its own clean reference; predecessor only under camera-cut context",
+      "Played 2-second camera-cut preview to ended=true; rejected using particles correction",
+      "Prepared same clean-reference retry; one correction added and full review paragraph excluded",
+      "Reloaded browser and restored same pending attempt and 15-second progress",
+      "Opened verified six-shot 90-second export and played normally to end without media/console errors"
+    ],
+    "playback": {
+      "currentTime": 90,
+      "duration": 90,
+      "ended": true,
+      "error": null,
+      "readyState": 4
+    },
+    "screenshot": "docs/evidence/s04-shot-workflow.jpg",
+    "screenshot_sha256": "037e92f46eb2d5a6e9fb9516bbef89223eeeb648ed032df7a08e119bff600dd3",
+    "limit": "Browser file-chooser automation stalled for about 26 minutes before completing; this is not a measured representative human-effort run. Full production generation was not performed in the browser."
+  },
+  "compatibility_and_repository": {
+    "episodes": [
+      {
+        "id": "1bbd0cb0cf2b4d148e4bda5d3e44b8ef",
+        "document_sha256": "53ad5b9e17f4ed428e995f1a3d62221c375c4e413865e6e6b3c4b734e9a23adf",
+        "accepted_frames": 528,
+        "attempts": 5,
+        "legacy_hashes_preserved": true
+      },
+      {
+        "id": "58b79ec9b49147f399b5f95fbdf6a72f",
+        "document_sha256": "8f41a6c0a53f3b13a9962f18172cdacae5033e75f1c78e6a33daa684b2edbebb",
+        "accepted_frames": 528,
+        "attempts": 3,
+        "legacy_hashes_preserved": true
+      }
+    ],
+    "verified_legacy_export": "c14cd9a6c01743e0ab3f54767e29f39e",
+    "export_sha256": "51550d8cdfe1d6156cd8a90deb0e681e2402ce0c3added01c9b1020286d12810",
+    "wheel_modules_identical": 111,
+    "tracked_mp4s": 0,
+    "wheel_mp4s": 0,
+    "unrelated_staged_patch_unchanged": true
+  },
+  "external_generation_requests": 0,
+  "credits_spent": 0,
+  "new_dependencies": [],
+  "remaining_gates": [
+    "Real TABI wide/close/wide consistency, gills/mouth/props and particle-free clips",
+    "Real 90-second episode and changed outfit/setting full creative and soundtrack review",
+    "Actual provider/model/source commercial terms and rights for release",
+    "Representative credits, rejected generations and human effort for 30 videos/month",
+    "Unattended Flow control; current app remains copy/open/import assisted",
+    "Safari planned-shot UI and user usability acceptance"
+  ]
+}

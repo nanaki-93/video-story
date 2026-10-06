@@ -79,3 +79,12 @@ def test_retry_changes_only_current_focus_and_rejected_parent_is_refused():
     parent = updated(parent, review="rejected")
     with pytest.raises(FlowError, match="accepted parent"):
         compile_prompt(episode, beat, parent)
+
+
+def test_mouth_retry_allows_the_requested_sip_and_returns_to_resting_shape():
+    episode, parent = setup_state(cup_position="held", hands="holding_cup")
+    beat = FlowBeat(id="sip", kind="sip", target_frame=900)
+    for options in ({"retry_focus": "mouth"}, {"retry_reason": "Mouth changed at the end"}):
+        _, prompt = compile_prompt(episode, beat, parent, **options)
+        assert "one small sip" in prompt and "lips meet the rim" in prompt
+        assert "closed smile throughout" not in prompt and "resting shape" in prompt

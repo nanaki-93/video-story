@@ -10,7 +10,7 @@ The archived P/T plans are historical and are not a second implementation queue.
 | [S01](../tasks.md#s01--define-compatible-shot-and-reference-contracts) | Define compatible shot contracts | complete |
 | [S02](../tasks.md#s02--generate-and-review-bounded-shots-from-clean-references) | Bound fresh shots, prompts and reviewed cuts | complete |
 | [S03](../tasks.md#s03--guide-reference-preparation-shot-generation-and-cut-review-in-the-app) | Guide the shot workflow in the app | complete |
-| [S04](../tasks.md#s04--verify-complete-shot-assembly-and-document-the-usable-workflow) | Verify full assembly and target-Mac UI | pending |
+| [S04](../tasks.md#s04--verify-complete-shot-assembly-and-document-the-usable-workflow) | Verify full assembly and target-Mac UI | complete; real creative/control gates open |
 
 ## Previous implementation
 
@@ -32,6 +32,12 @@ The archived P/T plans are historical and are not a second implementation queue.
 | [F13](../tasks.md#f13--retire-unused-routes-and-reduce-the-tracked-repository) | Retire obsolete code and untrack preserved bulk media | complete |
 
 ## Remaining acceptance
+
+The [planned-shot evidence](../evidence/s04-planned-shots.json) verifies six independent clean
+starts, bounded in-shot extensions, camera-cut review, retry/reopen, exact 90-second assembly
+and Chrome playback. S01–S04 engineering is complete. The next production gate is a real TABI
+wide/close/wide trial through this workflow before attempting a full 90-second creative review.
+Clean starting references and camera cuts reduce inherited drift; they do not prove dots gone.
 
 The guided assisted workflow is implemented. [F12 evidence](../evidence/f12-flow-workflow.json)
 separates the synthetic 90-second authenticated service run, the short fresh UI journey and

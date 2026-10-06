@@ -2,6 +2,25 @@
 
 Updated 6 October 2026 (Asia/Manila).
 
+## S04 — Complete planned-shot engineering verification
+
+6 October 2026. The authenticated six-shot synthetic run verifies all 2160 frames/PTS,
+4320000 audio samples, all 22 sides of eleven joins, a reviewed oversized-clip trim, independent
+clean starts, one rejected fresh shot, focused retry and unknown-attempt worker recovery.
+Chrome exercises setup, reference upload, Start/Extend, exact shot ending, camera-cut playback,
+retry and reload, then plays the complete 90-second export to the end. A final prompt correction
+allows natural rim contact during a sip instead of requiring a closed smile throughout.
+
+Final gates: **344 core tests, 74 actual-media tests** (one optional private case skipped),
+eight frontend tests, 68 schema drift checks, build and package pass. The final wheel matches
+all 111 Python modules. The original Tokyo projects/export and staged IDE patch remain unchanged;
+no MP4 is tracked or packaged. [Evidence](evidence/s04-planned-shots.json) and
+[screen](evidence/s04-shot-workflow.jpg) distinguish synthetic software verification from real
+TABI quality. No external generations, credits or new dependencies were used. Browser automation's
+file picker had a long tooling delay; monthly human effort remains unmeasured. Real multi-camera
+TABI/particle quality, full creative acceptance, current release rights and unattended control
+remain open. The next production test is a real wide/close/wide sequence using this app path.
+
 ## S03 — Guided references, shots and cut reviews
 
 6 October 2026. Create video now shows the six-shot plan, collects three reviewed references
