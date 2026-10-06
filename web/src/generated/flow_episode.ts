@@ -85,6 +85,7 @@ export type Setting = string;
  */
 export type Beats1 = [FlowBeat, ...FlowBeat[]];
 export type DurationFrames = number;
+export type Exterior1 = string | null;
 export type Framing = "wide" | "medium" | "close";
 export type Id4 = string;
 export type MaxExtensions = number;
@@ -276,6 +277,7 @@ export interface FlowRecipe {
 export interface FlowShot {
   beats: Beats1;
   duration_frames: DurationFrames;
+  exterior?: Exterior1;
   framing: Framing;
   id: Id4;
   max_extensions?: MaxExtensions;

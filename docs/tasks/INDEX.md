@@ -5,8 +5,15 @@ Marco's final creative approval and the production gates below remain open.
 Marco permits Flow for generation; setup, trimming, review and export must use video-story.
 Implement and verify one step, then commit it. Preserve existing projects and source media.
 
+**U04 is implemented and verified:** six distinct Tokyo window references with calmer actions
+address Marco's repetitive/incorrect panorama feedback and lengthy retry concern.
+Existing drafts remain unchanged. The next acceptance check is a short real multi-district
+sample including the closing view, measuring image preparation, retries, credits and human
+effort before another full 90-second trial. New scenery quality and lower effort remain open.
+
 | Task | Outcome | Status |
 | --- | --- | --- |
+| [U04](../tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view) | Distinct Tokyo window views and a calmer default routine | engineering complete; real quality/effort trial pending |
 | U01 | Frame-exact pending clip sections and matching review playback | complete; seven focused checks pass |
 | U02 | Normal UI section controls and authenticated preview | complete; API/frontend/build checks pass |
 | U02a | Correct accessory/marking identity drift on retry | complete; 17 focused checks pass |

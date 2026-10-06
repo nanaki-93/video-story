@@ -67,9 +67,11 @@ def test_cli_imports_keyed_reviewed_references_and_starts_planned_shot(
         )
 
     monkeypatch.setattr(FlowMedia, "reference", reference)
-    for key in ("wide", "close", "medium"):
+    for shot in episode.recipe.shots:
+        key = shot.reference_key
         assert main(["flow", "status", episode.id, *common]) == 0
-        assert json.loads(capsys.readouterr().out)["next_reference"]["key"] == key
+        guidance = json.loads(capsys.readouterr().out)["next_reference"]
+        assert guidance["key"] == key and shot.exterior in guidance["instruction"]
         assert (
             main(
                 [

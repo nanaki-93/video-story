@@ -87,6 +87,7 @@ class FlowShot(Model):
     title: Text
     reference_key: Identifier
     framing: Literal["wide", "medium", "close"]
+    exterior: Text | None = Field(default=None, exclude_if=lambda value: value is None)
     duration_frames: PositiveInt
     max_extensions: Frame = Field(default=1, le=2)
     beats: list[FlowBeat] = Field(min_length=1)
@@ -100,6 +101,8 @@ class FlowShot(Model):
             raise ValueError("shot routine starts at zero and stays inside its duration")
         if self.beats != sorted(self.beats, key=lambda beat: beat.target_frame):
             raise ValueError("shot beats must be ordered by local frame")
+        if self.exterior is not None and any(beat.kind == "district" for beat in self.beats):
+            raise ValueError("a planned shot exterior changes only at a new camera cut")
         return self
 
 
@@ -132,6 +135,16 @@ class FlowRecipe(Model):
                 raise ValueError("planned shots use clean image openings and local shot beats")
             if sum(s.duration_frames for s in self.shots) != self.target_frames:
                 raise ValueError("shot durations must cover the exact video target")
+            reference_exteriors = {}
+            for shot in self.shots:
+                if (
+                    shot.reference_key in reference_exteriors
+                    and reference_exteriors[shot.reference_key] != shot.exterior
+                ):
+                    raise ValueError(
+                        "different shot exteriors require distinct starting references"
+                    )
+                reference_exteriors[shot.reference_key] = shot.exterior
         if any(beat.target_frame >= self.target_frames for beat in self.beats):
             raise ValueError("beat must start inside the target video")
         if self.beats != sorted(self.beats, key=lambda beat: beat.target_frame):
@@ -282,6 +295,14 @@ class FlowEpisode(DraftDocument):
         shots = {shot.id: shot for shot in self.recipe.shots}
         keyed_refs = {ref.key: ref for ref in self.references if ref.key is not None}
         unique([ref.key for ref in self.references if ref.key is not None], "reference keys")
+        image_exteriors = {}
+        for shot in self.recipe.shots:
+            ref = keyed_refs.get(shot.reference_key)
+            if ref is not None and shot.exterior is not None:
+                digest = ref.media.sha256
+                if digest in image_exteriors and image_exteriors[digest] != shot.exterior:
+                    raise ValueError("different shot exteriors cannot reuse the same image content")
+                image_exteriors[digest] = shot.exterior
         for attempt in self.attempts:
             if attempt.episode_id != self.id:
                 raise ValueError("attempt belongs to a different episode")

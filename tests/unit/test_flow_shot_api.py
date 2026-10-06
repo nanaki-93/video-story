@@ -65,12 +65,15 @@ def upload(client, headers, path, view):
 def test_reference_guidance_requires_all_views_and_atomic_variation_reset(workspace, monkeypatch):
     service, client, headers, path, view = create(workspace, monkeypatch)
     assert len(view["shots"]) == 6 and view["shots"][-1]["start_frame"] == 1800
-    assert view["next_reference_key"] == "wide"
-    assert [b["kind"] for b in view["remaining_beats"]][2:5] == ["pickup", "sip", "return_cup"]
-    for key in ("wide", "close", "medium"):
+    keys = [shot["reference_key"] for shot in view["episode"]["recipe"]["shots"]]
+    assert len(set(keys)) == 6 and view["next_reference_key"] == "sumida"
+    assert {b["kind"] for b in view["remaining_beats"]} == {"rest", "look"}
+    for shot in view["episode"]["recipe"]["shots"]:
+        key = shot["reference_key"]
         assert view["next_reference_key"] == key
         slot = next(s for s in view["reference_slots"] if s["key"] == key)
         assert slot["url"] is None and "clear" in slot["instruction"]
+        assert shot["exterior"] in slot["instruction"]
         view = upload(client, headers, path, view)
     assert view["next_step"]["action"] == "prepare"
     assert all(s["url"] for s in view["reference_slots"])
@@ -80,7 +83,16 @@ def test_reference_guidance_requires_all_views_and_atomic_variation_reset(worksp
     ).json()
     assert not clone["episode"]["references"]
     assert clone["next_step"]["action"] == "choose_reference"
-    assert len(service.get(view["episode"]["id"]).references) == 3
+    assert len(service.get(view["episode"]["id"]).references) == 6
+    scenic = view["episode"]["recipe"]
+    scenic["shots"][-1]["exterior"] = "A new waterfront with a pier."
+    changed_view = client.post(
+        path + "/clone", json={"title": "Different closing view", "recipe": scenic}, headers=headers
+    )
+    assert changed_view.status_code == 200, changed_view.text
+    changed = changed_view.json()
+    assert changed["episode"]["references"] == view["episode"]["references"][:-1]
+    assert changed["next_reference_key"] == "odaiba"
 
 
 def test_shot_review_cut_boundary_and_focused_retry_survive_api_reopen(workspace, monkeypatch):
@@ -170,7 +182,7 @@ def test_retry_limit_recovery_is_explicit_authenticated_and_preserves_attempts(
     workspace, monkeypatch
 ):
     service, client, headers, path, view = create(workspace, monkeypatch)
-    for _ in range(3):
+    for _ in range(len(view["reference_slots"])):
         view = upload(client, headers, path, view)
     episode = service.get(view["episode"]["id"])
     runner = FlowRunner(service)
@@ -211,7 +223,7 @@ def test_restart_shot_route_preserves_sources_and_requires_current_authenticated
     workspace, monkeypatch
 ):
     service, client, headers, path, view = create(workspace, monkeypatch)
-    for _ in range(3):
+    for _ in range(len(view["reference_slots"])):
         view = upload(client, headers, path, view)
     episode = service.get(view["episode"]["id"])
     runner = FlowRunner(service)
@@ -226,7 +238,7 @@ def test_restart_shot_route_preserves_sources_and_requires_current_authenticated
         note="Unit fixture only",
         observed_state=facts(),
     )
-    assert client.get(path).json()["next_step"]["restart_shot_id"] == "settle"
+    assert client.get(path).json()["next_step"]["restart_shot_id"] == "sumida"
     body = {"expected_revision": episode.revision}
     route = path + "/restart-shot"
     assert client.post(route, json=body).status_code == 403
@@ -249,7 +261,7 @@ def test_restart_shot_route_preserves_sources_and_requires_current_authenticated
 
 def test_section_controls_keep_source_and_selected_playback_distinct(workspace, monkeypatch):
     service, client, headers, path, view = create(workspace, monkeypatch)
-    for _ in range(3):
+    for _ in range(len(view["reference_slots"])):
         view = upload(client, headers, path, view)
     identity = view["episode"]["id"]
     view = client.post(

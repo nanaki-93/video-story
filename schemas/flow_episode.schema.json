@@ -723,6 +723,19 @@
           "title": "Duration Frames",
           "type": "integer"
         },
+        "exterior": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exterior"
+        },
         "framing": {
           "enum": [
             "wide",

@@ -5,7 +5,7 @@ from test_flow_service import new_service
 
 from tabi.core.flow.runner import FlowRunner, credited_units, export_ranges
 from tabi.core.flow.service import FlowError, default_recipe, updated
-from tabi.core.flow.shots import current_shot, reference_for
+from tabi.core.flow.shots import current_shot, reference_for, reference_instruction
 from tabi.core.models.base import Canvas, FrameInterval, HashedFile, MediaPath
 from tabi.core.models.flow import (
     FlowBeat,
@@ -118,12 +118,77 @@ def review(service, episode, decision="accepted", **values):
     )
 
 
-def test_default_plan_is_90_seconds_with_a_complete_drink_sequence():
+def test_default_plan_is_90_seconds_with_six_distinct_views_and_quiet_actions():
     recipe = default_recipe()
-    assert [s.duration_frames // 24 for s in recipe.shots] == [15, 15, 22, 8, 15, 15]
+    assert [s.duration_frames // 24 for s in recipe.shots] == [15] * 6
     assert sum(s.duration_frames for s in recipe.shots) == 2160
-    assert [b.kind for b in recipe.shots[2].beats] == ["pickup", "sip", "return_cup"]
-    assert recipe.shots[2].max_extensions == 2
+    assert len({s.reference_key for s in recipe.shots}) == 6
+    assert len({s.exterior for s in recipe.shots}) == 6
+    assert {b.kind for s in recipe.shots for b in s.beats} == {"rest", "look"}
+    assert all(s.max_extensions == 1 for s in recipe.shots)
+    for shot in recipe.shots:
+        instruction = reference_instruction(recipe, shot.reference_key)
+        assert shot.exterior in instruction and "fixed window frame" in instruction
+        assert "not a verified real railway route" in instruction
+
+
+def test_shot_scenery_survives_retry_continuation_and_only_changes_at_the_cut(tmp_path):
+    service, episode, runner = context(tmp_path)
+    episode = service.save(
+        updated(
+            episode,
+            recipe=updated(
+                episode.recipe,
+                shots=[
+                    updated(shot, exterior=scenery)
+                    for shot, scenery in zip(
+                        episode.recipe.shots,
+                        ["River and bridge.", "Shopping street."],
+                        strict=True,
+                    )
+                ],
+            ),
+        ),
+        expected_revision=episode.revision,
+    )
+    episode = runner.prepare(episode.id, episode.revision)
+    opening = episode.attempts[-1]
+    assert "River and bridge." in opening.prompt and "Shopping street." not in opening.prompt
+    assert "breathes subtly" in opening.prompt and "slow visible rise" not in opening.prompt
+    episode = review(
+        service, receipt(service, episode), "rejected", retry_focus="motion", note="Wrong panorama"
+    )
+    episode = runner.prepare(episode.id, episode.revision)
+    assert episode.attempts[-1].prompt.startswith(opening.prompt)
+    assert "scrolling smoothly through the final frame" in episode.attempts[-1].prompt
+    episode = review(service, receipt(service, episode))
+    episode = runner.prepare(episode.id, episode.revision)
+    assert episode.attempts[-1].mode == "extend"
+    assert "River and bridge." in episode.attempts[-1].prompt
+    assert "Shopping street." not in episode.attempts[-1].prompt
+    episode = review(service, receipt(service, episode), safe_end_frame=4)
+    episode = runner.prepare(episode.id, episode.revision)
+    assert episode.attempts[-1].mode == "shot_start"
+    assert "Shopping street." in episode.attempts[-1].prompt
+    assert "River and bridge." not in episode.attempts[-1].prompt
+
+
+def test_changed_window_view_variation_requires_fresh_references(tmp_path):
+    service, episode, _ = context(tmp_path)
+    changed = service.clone(
+        episode.id,
+        "River version",
+        recipe=updated(
+            episode.recipe,
+            shots=[
+                updated(episode.recipe.shots[0], exterior="River and bridge."),
+                episode.recipe.shots[1],
+            ],
+        ),
+    )
+    assert [r.key for r in changed.references] == ["close"]
+    assert changed.references[0] == episode.references[1] and not changed.attempts
+    assert service.get(episode.id) == episode
 
 
 def test_restart_partial_shot_keeps_earlier_shots_history_and_retry_accounting(tmp_path):

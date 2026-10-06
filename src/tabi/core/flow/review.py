@@ -9,7 +9,7 @@ from ..assets.service import digest_file
 from ..models.base import Crop, FrameInterval, HashedFile, MediaPath
 from ..process import run_tool
 from .service import FlowError, updated
-from .shots import remaining_frames
+from .shots import remaining_frames, shot_by_id
 
 
 def repeated_ranges(frames: list[bytes], *, minimum: int) -> list[dict]:
@@ -146,6 +146,7 @@ class FlowReview:
                 }
             )
         attempt = next(a for a in episode.attempts if a.id == candidate.attempt_id)
+        shot = shot_by_id(episode, attempt.shot_id)
         camera_cut = attempt.mode == "shot_start" and parent is not None
         seam = None
         seam_difference = None
@@ -255,6 +256,18 @@ class FlowReview:
                 "Requested action completion and actual ending state",
             ],
         }
+        if shot is not None and shot.exterior:
+            packet["review_checklist"].extend(
+                [
+                    "Planned window view: " + shot.exterior,
+                    "Level horizon, correct window perspective and foreground occlusion; "
+                    "consistent travel direction and parallax through the final frame",
+                    "The district advances at this camera cut; the view stays consistent "
+                    "within the shot"
+                    if camera_cut
+                    else "The assigned scenery keeps progressing without repeating or resetting",
+                ]
+            )
         packet_path = f"{folder}/packet.json"
         with self.service.store.writer_lock():
             self.service.store._atomic_write(

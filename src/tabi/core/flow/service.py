@@ -98,17 +98,27 @@ class FlowService:
     def clone(self, episode_id: str, title: str, *, recipe=None, limits=None) -> FlowEpisode:
         episode = self.get(episode_id)
         recipe = recipe or episode.recipe
-        same_picture = all(
+        same_base = all(
             getattr(recipe, key) == getattr(episode.recipe, key)
             for key in ("identity", "outfit", "setting", "camera", "exterior", "opening_inventory")
-        ) and {(s.reference_key, s.framing) for s in recipe.shots} == {
-            (s.reference_key, s.framing) for s in episode.recipe.shots
-        }
+        )
+        references = []
+        if same_base:
+            if not recipe.shots and not episode.recipe.shots:
+                references = episode.references
+            elif recipe.shots and episode.recipe.shots:
+                old_views = {s.reference_key: (s.framing, s.exterior) for s in episode.recipe.shots}
+                matching = {
+                    s.reference_key
+                    for s in recipe.shots
+                    if old_views.get(s.reference_key) == (s.framing, s.exterior)
+                }
+                references = [r for r in episode.references if r.key in matching]
         return self.create(
             title,
             limits or episode.limits,
             recipe=recipe,
-            references=episode.references if same_picture else [],
+            references=references,
         )
 
     def add_reference(self, episode_id, reference, revision):

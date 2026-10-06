@@ -87,12 +87,18 @@ function recipeFields(recipe: Recipe) {
   const exterior = input(recipe.exterior);
   const url = input(recipe.project_url || "", "url");
   const inventory = input((recipe.opening_inventory || []).join("; "));
+  const scenes = (recipe.shots || [])
+    .filter((shot) => shot.exterior)
+    .map((shot) => ({ shot, control: input(shot.exterior || "") }));
   return {
     node: details(
       "Edit settings",
       field("Outfit", outfit),
       field("Interior", setting),
       field("Outside movement", exterior),
+      ...scenes.map(({ shot, control }) =>
+        field(`Window view · ${shot.title}`, control),
+      ),
       field("Opening objects (separate with semicolons)", inventory),
       field("Your Google Flow project link", url),
     ),
@@ -101,6 +107,10 @@ function recipeFields(recipe: Recipe) {
       outfit: outfit.value,
       setting: setting.value,
       exterior: exterior.value,
+      shots: recipe.shots?.map((shot) => {
+        const scene = scenes.find((item) => item.shot.id === shot.id);
+        return scene ? { ...shot, exterior: scene.control.value } : shot;
+      }),
       opening_inventory: inventory.value
         .split(";")
         .map((v) => v.trim())
@@ -268,7 +278,7 @@ export function flowPage(): Panel {
     if (!episode) {
       const setup = section(
         "1 · Setup",
-        "Train · Tokyo · 90 seconds. Six short shots share three clean camera references. TABI watches, drinks, sways and takes a deep breath. Music comes at Finish.",
+        "Train · Tokyo · 90 seconds. Six calm shots explore six distinct window views. TABI rests and watches while the cup stays on the table. District cuts form an illustrated journey. Music comes at Finish.",
       );
       const title = input("TABI in Tokyo");
       const allowance = flowAllowance();
@@ -355,9 +365,13 @@ export function flowPage(): Panel {
         (r) => r.key === view.next_reference_key,
       );
       if (slot) {
+        const shot = episode.recipe.shots?.find(
+          (item) => item.reference_key === slot.key,
+        );
+        const title = shot?.title || slot.framing;
         const preparation = section(
-          `2 · Prepare the ${slot.framing} reference`,
-          "Use your approved train image in Flow to prepare this view. Review all three images before generating video.",
+          `2 · Prepare reference: ${title}`,
+          `Use your approved train image in Flow to prepare this ${slot.framing} view. Review all ${view.reference_slots?.length || 0} starting images before generating video.`,
         );
         const instructions = element("textarea");
         instructions.value = slot.instruction;
@@ -366,7 +380,10 @@ export function flowPage(): Panel {
         instructions.setAttribute("aria-label", "Reference preparation prompt");
         const facts = stateFields(undefined, "Confirm visible starting facts");
         const clean = checkbox(
-          "I checked the whole image: TABI, gills, connected neck, outfit and objects are correct; the air is clear",
+          "I checked the whole image: TABI, gills, connected neck, outfit and objects are correct; the air is clear" +
+            (shot?.exterior
+              ? "; the planned scenery is visible outside the window with correct perspective"
+              : ""),
         );
         preparation.append(
           instructions,
@@ -392,13 +409,13 @@ export function flowPage(): Panel {
           facts.node,
           clean.node,
           importControl(
-            `Import ${slot.framing} reference`,
+            `Import reference: ${title}`,
             "image/png,image/jpeg,image/webp",
             "/reference",
             {
               expected_revision: episode.revision,
               key: slot.key,
-              title: `${episode.title} · ${slot.framing}`,
+              title: `${episode.title} · ${title}`,
             },
             () => {
               if (!clean.control.checked)
@@ -408,7 +425,10 @@ export function flowPage(): Panel {
               return {
                 starting_state: facts.value(),
                 review_note:
-                  "Starting image, visible facts, character, gills and props reviewed; air is clear",
+                  "Starting image, visible facts, character, gills and props reviewed; air is clear" +
+                  (shot?.exterior
+                    ? "; assigned window scenery and perspective reviewed"
+                    : ""),
               };
             },
           ),
@@ -888,7 +908,7 @@ export function flowPage(): Panel {
         field("Title", title),
         variation.node,
         element("p", {
-          text: "Changing the outfit, interior or view requires new clean references. Check the Flow balance and costs for this new run.",
+          text: "Changing one window view keeps the other reviewed images. Outfit or interior changes require new references. Check the Flow balance and costs for this new run.",
         }),
         variationAllowance.node,
         button("Start a fresh variation", () => {

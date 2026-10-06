@@ -4,35 +4,69 @@ from ..models.flow import FlowBeat, FlowEpisode, FlowRecipe, FlowShot, FlowState
 
 
 def planned_recipe() -> FlowRecipe:
-    def shot(identity, title, framing, seconds, routine, extensions=1):
-        return FlowShot(
-            id=identity,
-            title=title,
-            framing=framing,
-            reference_key=framing,
-            duration_frames=seconds * 24,
-            max_extensions=extensions,
-            beats=[
-                FlowBeat(id=f"{identity}-{kind}", kind=kind, target_frame=at * 24)
-                for kind, at in routine
-            ],
-        )
-
+    views = [
+        (
+            "sumida",
+            "Sumida River and a distant Skytree",
+            "wide",
+            "rest",
+            "A Sumida River-inspired view: broad water with sunset reflections, "
+            "a riverside bridge and Tokyo Skytree small in the distant skyline.",
+        ),
+        (
+            "yanaka",
+            "Yanaka's old rooftops",
+            "medium",
+            "look",
+            "A Yanaka-inspired view: varied low tiled rooftops, a quiet lane, "
+            "small wooden storefronts and trees, with open sky between the buildings.",
+        ),
+        (
+            "akihabara",
+            "Akihabara's colorful shopping streets",
+            "wide",
+            "rest",
+            "An Akihabara-inspired view: colorful electronics storefronts and vertical "
+            "signboards along a busy shopping street, with different building silhouettes.",
+        ),
+        (
+            "ueno",
+            "Ueno's trees and pond",
+            "medium",
+            "look",
+            "A Ueno-inspired park view: leafy trees, pond water catching warm light "
+            "and a distant pavilion, with spacious gaps instead of a wall of apartments.",
+        ),
+        (
+            "shinjuku",
+            "Shinjuku's evening skyline",
+            "wide",
+            "rest",
+            "A Shinjuku-inspired view: a varied cluster of tall modern towers "
+            "catching sunset light above smaller streets and rooftops.",
+        ),
+        (
+            "odaiba",
+            "Tokyo Bay and Rainbow Bridge",
+            "wide",
+            "look",
+            "An Odaiba-inspired closing view: broad Tokyo Bay water, Rainbow Bridge "
+            "in the middle distance and a low waterfront skyline under the warm evening sky.",
+        ),
+    ]
     return FlowRecipe(
         shots=[
-            shot("settle", "Settle into the journey", "wide", 15, [("rest", 0)]),
-            shot("watch", "Watch Tokyo pass", "close", 15, [("look", 0)]),
-            shot(
-                "drink",
-                "Pick up, sip and return the cup",
-                "medium",
-                22,
-                [("pickup", 0), ("sip", 8), ("return_cup", 15)],
-                extensions=2,
-            ),
-            shot("vibe", "Enjoy the music", "close", 8, [("sway", 0)], extensions=0),
-            shot("view", "Watch the passing view", "wide", 15, [("look", 0)]),
-            shot("breathe", "Deep breath and settle", "medium", 15, [("deep_breath", 0)]),
+            FlowShot(
+                id=identity,
+                title=title,
+                framing=framing,
+                reference_key=identity,
+                exterior=exterior,
+                duration_frames=15 * 24,
+                max_extensions=1,
+                beats=[FlowBeat(id=f"{identity}-{kind}", kind=kind, target_frame=0)],
+            )
+            for identity, title, framing, kind, exterior in views
         ]
     )
 
@@ -114,13 +148,23 @@ def reference_instruction(recipe, key):
         "close": "A fixed closer view of the complete head, every gill and connected shoulders, "
         "with window context.",
     }[shot.framing]
+    scenery = (
+        " Prepare this specific view outside the window: "
+        + shot.exterior
+        + " Keep a generous visible window area so the location reads clearly. "
+        "The exterior stays behind the fixed window frame and table, with a level horizon "
+        "and perspective consistent with the carriage. This is an illustrated Tokyo journey "
+        "with time passing at district cuts, not a verified real railway route."
+        if shot.exterior
+        else ""
+    )
     return (
         "Use the attached approved train image as the visual source. Prepare one clean starting "
         "image for the same journey. " + framing + " Keep the same character design and markings, "
         "outfit, train layout, cup, book, pen, bag, sunset and side of the window. Carriage air "
         "is clear; highlights remain painted on solid surfaces. The subject rests with a small "
         "closed-mouth smile and the cup on the table. Keep the travel direction consistent. "
-        "Preserve the source image; save this as a new reference version."
+        "Preserve the source image; save this as a new reference version." + scenery
     )
 
 

@@ -2,6 +2,38 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## U04 — Distinct Tokyo views with quieter actions
+
+Marco selected a stylized journey after finding U03's exterior repetitive and its closing
+panorama incorrect. New 90-second videos now plan six 15-second views: Sumida River/Skytree,
+Yanaka rooftops, Akihabara shops, Ueno trees/pond, Shinjuku skyline and Tokyo Bay/Rainbow Bridge.
+Each shot has its own starting-image key and editable window description. Preparation, fresh
+and continued prompts, and visual review carry that assigned scenery. Continuation keeps the
+same district; a new camera cut advances the illustrated journey. Perspective, occlusion,
+direction, parallax and movement through the ending are explicit review checks.
+
+The preset uses rest/watch actions with subtle breathing and resting hands. Drinking and deep
+breathing accounted for eight of U03's ten rejected takes; removing them targets an observed
+source of retries, without establishing a reduced failure rate. Six images add initial
+preparation. They are reusable, and changing one exterior in a variation retains the other
+matching references. Different exteriors cannot share identical starting-image content.
+Old recipes retain absent-field serialization and all 31 checked media hashes remain valid.
+
+Verification: 61 focused checks including a complete actual-media synthetic 90-second export,
+381 core passes, 75 actual-media passes (one optional private fixture skipped), eight frontend
+checks, 68 contracts, Ruff, TypeScript, web build and package checks. The wheel matches all
+111 Python modules and contains no media/fonts. Both new and legacy 90-second exports verify
+all frames/PTS, 4320000 samples and 22 join-side comparisons. An old-recipe assumption in the
+shared test setup was corrected before the final passing gate.
+The target-Mac embedded browser exercises scene editing, save/reload, six named shot cards and
+reference guidance. [Evidence](evidence/u04-tokyo-scenery.json) records the exact gates and local
+screenshots; native Chrome/Safari review of these changed controls is still pending.
+
+No external generation, credits or new dependency were used. The existing real draft is
+unchanged. Actual TABI starting views, a short multi-district sample including its ending,
+current generation/output rights, total image preparation and retry/credit/human effort need
+a real trial. Final creative, publication and unattended/monthly throughput remain open.
+
 ## U03 — Real 90-second video completed through the app
 
 The normal app exported and downloaded **TABI Tokyo — full 90s app test**, a silent 1280×720,

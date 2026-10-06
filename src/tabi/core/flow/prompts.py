@@ -197,15 +197,35 @@ def compile_prompt(
                     "Objects: " + "; ".join(recipe.opening_inventory) + ".",
                 ]
             )
+    action = action_text(state, beat)
+    if shot is not None and shot.exterior and beat.kind == "rest":
+        action = (
+            "The character rests comfortably in the original seated pose, blinks once "
+            "and breathes subtly. The mouth keeps its small closed smile. "
+            "Hands and table objects stay in their current positions."
+        )
     prompt = " ".join(
         [
             opening,
-            action_text(state, beat),
+            action,
             "The camera stays fixed.",
             episode.recipe.exterior,
             "The outside view keeps moving through the final frame.",
         ]
     )
+    if shot is not None and shot.exterior:
+        prompt += (
+            " The planned window view is: "
+            + shot.exterior
+            + " Keep this district through the shot. New foreground scenery passes faster "
+            "than the distant skyline. The horizon stays level; the window frame, table "
+            "occlusion and carriage perspective stay fixed."
+        )
+        if beat.kind in {"rest", "look"}:
+            prompt += (
+                " Breathing remains barely perceptible, with the original clothing coverage "
+                "and hands keeping their current positions."
+            )
     if retry_reason or retry_focus:
         prompt += " " + correction_text(retry_focus, retry_reason, beat, state)
     if override:

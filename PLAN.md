@@ -7,15 +7,18 @@ composition and publishing remain separate.
 ## Current workflow
 
 The normal app starts at **Create video → Setup → References → Shots → Finish**. The train /
-Tokyo / 90-second preset uses six short shots and three reviewed starting images (wide, close,
-medium/table). Each camera cut begins again from its clean image. A fixed camera within each
-shot, ongoing outside travel and a calm routine keep the journey readable. Existing continuous
-drafts retain their old workflow; existing scene tools are under Advanced.
+Tokyo / 90-second preset uses six 15-second shots, each with its own reviewed window image:
+Sumida River/Skytree, Yanaka rooftops, Akihabara shops, Ueno park/pond, Shinjuku towers and
+Tokyo Bay/Rainbow Bridge. This is an illustrated journey with time passing at district cuts,
+not a verified real train route. Wide/medium views keep the window readable. Each camera cut
+begins again from its assigned image; the district stays consistent through its continuation.
+TABI rests and watches, with the cup on the table and quiet breathing. Existing drafts keep
+their saved routines and references; existing scene tools are under Advanced.
 
 Generation uses **Copy prompt → Open Flow → Import native result → Review**. The app saves
 reference hashes, prompts, parent lineage, attempts, confirmed prop states, reviews and credit
 reservations. Each fresh shot uses Frames to Video with its assigned image. Native Extend stays
-inside that shot, normally once and twice for the three-part drink action. The previous shot is
+inside that shot, once in the new preset and twice for saved three-part drink actions. The previous shot is
 used only to review the editorial cut. Retry uses the same image or in-shot parent with one
 selected correction; full rejection notes stay in history. Refresh and an unknown external
 result do not create another generation request. This reduces inherited drift; it does not
@@ -27,10 +30,13 @@ and budget, or restart only the current partial shot from its clean image. Earli
 shots and all attempt evidence remain saved. Handle-free cup actions explicitly use both hands
 around the same cup body; generated prop consistency still requires visual review.
 
-The default timeline is 0–15s settle, 15–30s watch, 30–52s pickup/sip/return, 52–60s sway,
-60–75s watch and 75–90s deep breath. Drink gets three separate clips so the cup returns before
-the next camera cut. Every boundary needs completed actions and compatible visible cup/hand
-state. Actual native frame counts and an explicitly reviewed outpoint determine the cut.
+The default timeline advances through the six distinct views at 0, 15, 30, 45, 60 and 75 seconds.
+Shot scenery is editable at Setup, included in image preparation and every new motion prompt,
+and checked during review for perspective, travel direction, parallax and progress. Changing
+one view through New variation clears that reference while retaining unaffected images; a
+changed character, outfit or interior clears them all. Every boundary needs completed actions
+and compatible visible cup/hand state. Actual native frame counts and an explicitly reviewed
+outpoint determine the cut. Existing drink routines still finish pickup/sip/return before cutting.
 
 Finish assembles only accepted footage at its measured native cadence, trims to an explicitly
 reviewed exact ending, and can add one continuous local soundtrack. The verified export can
@@ -45,6 +51,12 @@ TABI Tokyo draft using normal UI for every step except Flow generation. It verif
 frames, exact timing and complete Chrome playback. Twelve native clips survived 24 app attempts;
 actual usage was 1085 included credits. Two-hand drinking and the closed-coat breath improved,
 while acting, cup-print variation and panorama resets still need creative review.
+
+Marco finds that draft interesting, but rejects the final panorama and repetitive outside
+view and considers the trial-and-error effort too high. Eight of its ten rejected takes
+involved drinking or deep breathing. [U04](docs/tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view)
+addresses the next video's preparation: distinct window references and calmer default actions.
+It does not repair the saved draft or establish lower real retry costs before a new trial.
 
 ## Remaining production gates
 

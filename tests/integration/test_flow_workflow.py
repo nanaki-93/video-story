@@ -109,7 +109,12 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
             pose="watching",
             inventory=["takeaway cup", "open book", "pen"],
         )
-        for index, key in enumerate(("wide", "close", "medium") if planned else (None,)):
+        keys = (
+            [shot["reference_key"] for shot in view["episode"]["recipe"]["shots"]]
+            if planned
+            else [None]
+        )
+        for index, key in enumerate(keys):
             reference = sources / f"Synthetic reference {key or 'opening'}.png"
             run_tool(
                 [
@@ -172,6 +177,15 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
                 view = restored
                 reopened = True
             if planned:
+                shot = next(
+                    s for s in view["episode"]["recipe"]["shots"] if s["id"] == attempt["shot_id"]
+                )
+                assert shot["exterior"] in attempt["prompt"]
+                assert all(
+                    other["exterior"] not in attempt["prompt"]
+                    for other in view["episode"]["recipe"]["shots"]
+                    if other["id"] != shot["id"]
+                )
                 # Exercise an oversized native result at the first shot's exact safe outpoint.
                 frames = 192 if attempt["mode"] == "shot_start" or index == 1 else 168
                 if attempt["mode"] == "shot_start":
@@ -201,6 +215,9 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
                 },
             )
             candidate = view["episode"]["candidates"][-1]
+            if planned:
+                assert "Planned window view: " + shot["exterior"] in view["review"]["checklist"]
+                assert any("Level horizon" in check for check in view["review"]["checklist"])
             if planned and attempt["parent_id"]:
                 assert view["review"]["join_url"]
                 kind = "camera cut" if attempt["mode"] == "shot_start" else "continuation"
@@ -233,9 +250,10 @@ def exercise_90s_workflow(tmp_path, *, planned=False):
         assert not view["remaining_beats"] and retried and reopened
         if planned:
             assert all(s["state"] == "complete" for s in view["shots"])
-            assert [s["accepted_frames"] for s in view["shots"]] == [360, 360, 528, 192, 360, 360]
+            assert [s["accepted_frames"] for s in view["shots"]] == [360] * 6
+            assert len({r["media"]["sha256"] for r in view["episode"]["references"]}) == 6
             retry = view["episode"]["attempts"][3]
-            assert retry["mode"] == "shot_start" and retry["shot_id"] == "watch"
+            assert retry["mode"] == "shot_start" and retry["shot_id"] == "yanaka"
             assert "Carriage air stays clear" in retry["prompt"]
             assert "full history" not in retry["prompt"] and "full history" in retry["retry_reason"]
             assert retry["references_sha256"] == view["episode"]["attempts"][2]["references_sha256"]

@@ -1,5 +1,26 @@
 # V1 implementation and acceptance
 
+## U04 scenery preparation — 7 October 2026
+
+Marco finds the U03 draft interesting but rejects its closing panorama and repetitive exterior,
+and requests a stylized Tokyo journey with distinct districts and less trial and error.
+The next-video preset assigns six separate window images to six 15-second rest/watch shots.
+Shot exterior descriptions drive Setup editing, reference preparation, fresh/continuation
+prompts and perspective/parallax review. Changed window scenery invalidates that reference in
+a new variation; unaffected references stay reusable. Identical image content cannot stand in
+for different planned exteriors. Legacy absent fields retain their canonical serialization.
+
+[U04 evidence](evidence/u04-tokyo-scenery.json) records 381 core, 75 actual-media and eight
+frontend passes, 68 contracts, Ruff/schema/build/package checks and target-Mac embedded-browser
+observation. One optional private-media fixture is skipped. New and legacy 90-second workflows
+verify all 2160 frames/PTS, 4320000 samples and 22 join-side comparisons. The wheel matches
+all 111 Python modules; original draft/source hashes remain valid.
+
+Real new scenery, corrected final panorama, total reference preparation and reduced
+retry/credit effort need a short creative trial before another full-length generation. Native
+Chrome/Safari observation of these changed controls remains pending. Existing U03 media and
+its technical evidence remain intact; this change does not approve or repair that draft.
+
 ## Real app workflow trial — 7 October 2026
 
 [U03 evidence](evidence/u03-tabi-app-trial.json) records a complete real 90-second silent TABI

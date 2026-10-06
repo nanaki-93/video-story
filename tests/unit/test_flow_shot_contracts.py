@@ -5,7 +5,7 @@ from pydantic import ValidationError
 from test_flow_contracts import episode_data
 
 from tabi.core.models.base import content_hash
-from tabi.core.models.flow import FlowEpisode, FlowReference
+from tabi.core.models.flow import FlowEpisode, FlowRecipe, FlowReference
 
 
 def shot_episode_data():
@@ -113,3 +113,55 @@ def test_legacy_hashes_and_optional_reference_serialization_are_unchanged():
     assert FlowReference.model_validate(raw).model_dump(mode="json") == raw
     assert "shots" not in episode.recipe.model_dump()
     assert "estimated_start_credit" not in episode.limits.model_dump()
+
+
+def test_shot_exterior_is_optional_strict_and_does_not_change_old_recipe_hashes():
+    data = shot_episode_data()
+    legacy = FlowRecipe.model_validate(data["recipe"])
+    assert all("exterior" not in shot for shot in legacy.model_dump()["shots"])
+    explicit_none = deepcopy(data["recipe"])
+    for shot in explicit_none["shots"]:
+        shot["exterior"] = None
+    assert content_hash(FlowRecipe.model_validate(explicit_none)) == content_hash(legacy)
+    scenic = deepcopy(data["recipe"])
+    scenic["shots"][0]["exterior"] = "Sumida River, reflections and a distant skyline."
+    assert content_hash(FlowRecipe.model_validate(scenic)) != content_hash(legacy)
+    scenic["shots"][0]["exterior"] = ""
+    with pytest.raises(ValidationError):
+        FlowRecipe.model_validate(scenic)
+    scenic["shots"][0]["exterior"] = 123
+    with pytest.raises(ValidationError):
+        FlowRecipe.model_validate(scenic)
+
+
+def test_different_window_views_cannot_share_one_starting_image_key():
+    data = shot_episode_data()["recipe"]
+    data["shots"][1]["reference_key"] = data["shots"][0]["reference_key"]
+    data["shots"][0]["exterior"] = "River and bridge."
+    data["shots"][1]["exterior"] = "Shopping street."
+    with pytest.raises(ValidationError, match="distinct starting references"):
+        FlowRecipe.model_validate(data)
+    data["shots"][1]["exterior"] = "River and bridge."
+    assert FlowRecipe.model_validate(data).shots[1].exterior == "River and bridge."
+
+
+def test_distinct_reference_keys_cannot_disguise_one_reused_exterior_image():
+    data = shot_episode_data()
+    for shot, exterior in zip(
+        data["recipe"]["shots"], ["River and bridge.", "Shopping street."], strict=True
+    ):
+        shot["exterior"] = exterior
+    with pytest.raises(ValidationError, match="same image content"):
+        FlowEpisode.model_validate(data)
+    data["references"][1]["media"]["sha256"] = "e" * 64
+    assert len(FlowEpisode.model_validate(data).references) == 2
+
+
+def test_assigned_scenery_does_not_allow_a_district_change_inside_the_shot():
+    data = shot_episode_data()["recipe"]
+    data["shots"][0]["exterior"] = "River and bridge."
+    data["shots"][0]["beats"].append(
+        {"id": "district-change", "kind": "district", "target_frame": 96, "district": "Ginza"}
+    )
+    with pytest.raises(ValidationError, match="new camera cut"):
+        FlowRecipe.model_validate(data)

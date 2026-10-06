@@ -1,3 +1,42 @@
+# Distinct Tokyo views and a calmer production preset
+
+Marco finds the U03 draft interesting but rejects its closing panorama and repetitive exterior,
+and worries about lengthy trial and error. New videos should plan distinct window views before
+generation, with quiet rest/watch actions. Preserve the real draft and all saved recipes.
+
+## U04 — Bind each Tokyo shot to its own window view
+
+**Status** [x] Engineering verified: 381 core, 75 actual-media and eight frontend passes, 68 contracts, Ruff/schema/build/package checks and target-Mac embedded-browser observation. One optional private-media test is skipped. Real scenery and reduced retry effort need a later trial.
+
+**Target files**
+- `src/tabi/core/models/flow.py` — optional hash-compatible shot exterior and consistent shared-reference scenery.
+- `src/tabi/core/flow/shots.py` — six distinct illustrated Tokyo views, six 15-second rest/watch shots, assigned reference preparation.
+- `src/tabi/core/flow/prompts.py` — carry the assigned exterior through fresh starts and in-shot continuation.
+- `src/tabi/core/flow/service.py` — invalidate reference reuse when a shot's exterior changes.
+- `src/tabi/core/flow/review.py` — include the planned exterior and window-motion checks in actual clip review.
+- `web/src/flow.ts` — editable shot scenery, clear reference titles/counts and scenery confirmation in normal UI.
+- `tests/unit/test_flow_shot_contracts.py`, `tests/unit/test_flow_shot_runner.py`, `tests/unit/test_flow_shot_api.py`, `tests/unit/test_flow_cli.py` — reference selection, clone invalidation, fresh/continued prompts, strict inputs and legacy hash checks.
+- `tests/integration/test_flow_workflow.py` — exercise six distinct references, per-shot scenery review, native sections and exact 90-second assembly with actual synthetic media.
+- `schemas/flow_episode.schema.json`, `schemas/web_flow.schema.json` — generated affected contracts.
+- `web/src/generated/flow_episode.ts`, `web/src/generated/web_flow.ts`, `web/src/generated/validators.cjs` — generated browser contracts.
+- `PLAN.md`, `docs/37-operations.md`, `docs/38-v1-acceptance.md`, `docs/progress.md`, `docs/tasks/INDEX.md`, `docs/evidence/u04-tokyo-scenery.json` (new) — feedback, implementation evidence, current defaults and remaining creative/throughput gates.
+
+**Inputs / dependencies**
+- U03 and Marco's feedback on 7 October 2026. Use the existing local engine and assisted Flow handoff; no new provider, paid app or generation request.
+- Marco selected a stylized Tokyo journey with distinct districts. Source district descriptions from the official Tokyo tourism guide; this does not licence photographs or imply actual rail visibility.
+
+**Implementation rules**
+- Schema first: optional shot exterior is omitted when absent, preserving existing canonical hashes and immutable approved/saved files. Unknown fields and noninteger timing remain rejected.
+- Keep six shots and 2160 frames, each with a distinct starting-image key. Use calm rest/watch actions and at most one extension per shot; saved drinking/breathing plans keep working.
+- Prepare each planned exterior in its starting image. Describe window geometry, travel direction and parallax consistently; a fresh camera cut may advance to a new district while continuation stays within that district.
+- Display/edit the shot descriptions during Setup and show them during image/clip review. Python supplies all schedules and prompts. A changed exterior requires fresh image reviews through an explicit variation.
+- Keep budgets, retry caps, human approval, secure transport and owned exports. Do not claim prompt changes repair the current MP4, eliminate retry needs, or qualify 30 videos/month.
+
+**Verification command**
+`UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml .tools/bin/uv run --frozen pytest --run-media tests/unit/test_flow_shot_contracts.py tests/unit/test_flow_shot_runner.py tests/unit/test_flow_shot_api.py tests/unit/test_flow_cli.py tests/unit/test_flow_prompts.py tests/integration/test_flow_shot_workflow.py`
+
+Also regenerate affected contracts; run `make check web-check web-build package` and the target-Mac `make test-media` gate. Observe Setup and reference guidance in the UI; preserve original draft hashes and staged IDE files. Commit the verified U04 step.
+
 # App-only review and full TABI workflow trial
 
 Make the existing Flow workflow usable without per-video API calls, JSON edits or render

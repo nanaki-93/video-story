@@ -31,10 +31,11 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
    under Edit settings. Enter the actual remaining Flow allowance, displayed fresh-shot and
    extension costs, and a spending ceiling. The app cannot read your account or buy credits.
 2. **References:** use your approved train image as the source for the copyable image prompts.
-   Prepare/import wide, close and medium/table views in that order. All three are reviewed before
-   video begins. Keep TABI's full gills, connected neck, markings, outfit, train layout and cup
-   design; check the air is clear. Confirm visible starting facts. For the drink view, the cup
-   starts on the table with hands resting. Hidden facts stay unknown. These image reviews do
+   Prepare/import each named window view: Sumida, Yanaka, Akihabara, Ueno, Shinjuku and Odaiba.
+   All six are reviewed before video begins. Optional window descriptions are editable in Setup.
+   Keep TABI's full gills, connected neck, markings, outfit, train layout and cup design; check
+   the air is clear. Confirm the planned scenery, window perspective and visible starting facts.
+   The cup starts on the table with hands resting. Hidden facts stay unknown. These image reviews do
    not establish commercial rights. Original artwork remains unchanged.
 3. **Start new shot in Flow:** download the exact image shown, choose Frames to Video, attach
    it and select an 8-second landscape result. Copy the saved motion prompt. Download and import
@@ -42,10 +43,13 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
    context, not the input to this generation. The app saves the attempt before the handoff.
 4. **Extend this shot in Flow:** select the exact accepted clip shown and use its focused next
    prompt. Native Extend currently requires a supported Veo Lite model; check the current UI
-   and cost. Import only the new clip. Most shots allow one accepted extension; the drink shot
-   allows two for separate pickup, sip and return actions. Do not keep extending past the cap.
+   and cost. Import only the new clip. New shots allow one accepted extension; saved drink shots
+   still allow two for separate pickup, sip and return actions. Do not keep extending past the cap.
 5. **Review:** watch the entire candidate and the join/camera-cut player. Confirm the actual
-   ending facts and compare TABI/props with the reference. Check the shot-ending frame when
+   ending facts and compare TABI/props with the assigned reference. Check the expected district,
+   level horizon, fixed window/table occlusion, travel direction and foreground/background
+   parallax. Scenery must progress through the ending rather than repeat or reset within a shot.
+   Check the shot-ending frame when
    offered; the app trims to that reviewed outpoint. A cup still held cannot jump to a table
    across the cut. Reject visible dots, distorted gills/mouth, changing objects, freezes or an
    incomplete action. Choose one correction for Retry; the full note remains in history.
@@ -63,10 +67,15 @@ In development, prefix the examples below with `.venv/bin/` if `tabi` is not on 
    disclosure, thumbnail and listening/creative reviews. Inspect blockers and export the
    existing public/private bundle. Publication remains manual. Keep private evidence private.
 
-The default story is 0–15s settle/wide, 15–30s watch/close, 30–52s pickup–sip–return/medium,
-52–60s sway/close, 60–75s watch/wide and 75–90s deep breath/medium. The 22-second drink shot
-keeps all three cup actions together. Gentle breathing is prompted between actions. The app
-counts actual reviewed frames; it never loops old footage or pads a freeze to fill a duration.
+The default story is six 15-second illustrated views: Sumida River/Skytree, Yanaka rooftops,
+Akihabara shopping streets, Ueno trees/pond, Shinjuku skyline and Tokyo Bay/Rainbow Bridge.
+TABI alternates quiet rest and watching with barely perceptible breathing; the cup stays on
+the table. District cuts compress travel time rather than claim a surveyed railway journey.
+Descriptions draw on the [official Tokyo district guide](https://www.gotokyo.org/en/destinations/index.html),
+not imported photographs. Each starting image must contain its own planned view; assigning
+different keys to identical image bytes is refused when the exterior descriptions differ.
+Existing six-shot drink/breathing projects retain their original plan, media and hashes.
+The app counts actual reviewed frames; it never loops old footage or pads a freeze to fill a duration.
 
 Stop saves progress; reopening resumes the same attempt. Reconcile an unknown Flow result
 before submitting again. During the real trial, Flow sometimes showed “Prompt must be provided”
@@ -93,15 +102,24 @@ breath now keeps seated hips, resting hands and unchanged clothing coverage. Gen
 and cup prints can still vary, and clean camera starts reset the exterior. Review these
 visually; this run does not establish automatic quality or 30-video monthly capacity.
 
+Marco finds U03 interesting but rejects its final panorama and repetitive exterior, and
+requests different Tokyo districts with less trial and error. Eight of the ten rejected takes
+were cup handling or deep breathing. The new default avoids those actions; the reduction in
+real retries, image-preparation effort and total credits remains to be measured. Its six
+reference images need initial preparation, but an unchanged variation can reuse their reviewed
+versions. The U03 MP4 is preserved; new guidance does not repair its pixels.
+
 For another setting/outfit, use **New variation** and enter fresh allowance/cost observations.
-It copies stable settings and resets the review chain. Appearance changes clear references so
-new matching views must be imported before generation. Café/walking and each new outfit need visual
+It copies stable settings and resets the review chain. Changing one shot's scenery or framing
+clears only that reference and retains unaffected images. Character/outfit/interior or shared
+outside-movement changes clear references so new matching views must be imported before generation.
+Café/walking and each new outfit need visual
 qualification. Almost entirely automatic Flow control has not been established; the handoff
 above is the supported assisted workflow. No additional paid provider is configured.
 
 Existing saved single-shot episodes retain Opening/Continue and their original hashes. For
 CLI automation, `flow status` returns shot progress and the next reference instructions;
-`flow reference --key wide --state facts.json --note 'review findings'` imports a reviewed
+`flow reference --key sumida --state facts.json --note 'review findings'` imports a reviewed
 view (also supply project, source, title and revision). `flow review --correction particles`
 stores one focused retry selection with the full review note.
 
