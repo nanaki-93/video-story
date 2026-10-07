@@ -6,7 +6,10 @@ Marco permits Flow for generation; setup, trimming, review and export must use v
 Implement and verify one step, then commit it. Preserve existing projects and source media.
 
 **Current trial:** [U06](../tasks.md#u06--test-the-independent-plan-with-real-tabi-footage) stopped
-at 45 accepted seconds after nine video requests and 900 credits. Two focused retries corrected mouths;
+at 45 operator-accepted seconds after nine video requests and 900 credits. Marco subsequently
+rejected the sample's exterior jumps and eye issue near ten seconds; the creative gate failed.
+[Follow-up review](../evidence/u06-user-review.json) supersedes the recommendation for another
+whole-scene Flow pilot. Further generation is held for workflow reassessment. Two focused retries corrected mouths;
 a third quality rejection exceeded the predeclared extra-attempt allowance. The 90-second target
 remains unmet. All twelve references and all takes are preserved.
 
@@ -22,9 +25,9 @@ shot quality, preparation, credits and human effort still need measurement.
 | --- | --- | --- |
 | U06b | Labeled partial preview of a paused run's active accepted footage; original plan preserved | complete; core/media/frontend and real Chrome checks pass |
 | U06a | Content-versioned review previews refresh after selecting a different source section | complete; core/media/frontend and real Chrome checks pass |
-| U06 | Real TABI independent-shot trial, measured quality/credits/effort and partial playback | bounded trial concluded; 45-second preview verified, full target unmet |
-| U05 | Independent short Tokyo shots and fixed editorial cuts; no Flow Extend | engineering complete; real quality/effort trial pending |
-| [U04](../tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view) | Distinct Tokyo window views and a calmer default routine | engineering complete; real quality/effort trial pending |
+| U06 | Real TABI independent-shot trial, measured quality/credits/effort and partial playback | bounded trial concluded; user rejects visual consistency; full target unmet |
+| U05 | Independent short Tokyo shots and fixed editorial cuts; no Flow Extend | engineering complete; U06 fails creative gate |
+| [U04](../tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view) | Distinct Tokyo window views and a calmer default routine | engineering complete; U06 fails creative gate |
 | U01 | Frame-exact pending clip sections and matching review playback | complete; seven focused checks pass |
 | U02 | Normal UI section controls and authenticated preview | complete; API/frontend/build checks pass |
 | U02a | Correct accessory/marking identity drift on retry | complete; 17 focused checks pass |
@@ -65,8 +68,10 @@ action failed after the two extra attempts had already been used. All twelve ref
 nine takes are saved. The partial export plays fully and keeps the 90-second plan unchanged.
 Three districts are represented; Tokyo Bay motion is untested. The observed 1200-credit
 no-retry baseline per video also exceeds the included allowance for 30 new videos per month.
-The next recommended creative test is a short fixed-pose/ambient-motion pilot including the
-closing Bay view, before another full generation run. No additional request has started.
+Marco's subsequent visual rejection supersedes the earlier recommendation for another short
+Flow pilot. Further generation is held. A controlled character/interior and shared exterior
+timeline is a proposed alternative, with asset preparation and visual quality still unresolved;
+no replacement implementation has started.
 
 The [U03 real app trial](../evidence/u03-tabi-app-trial.json) completed a 90-second silent
 train draft through Setup, References, Shots, Finish and Download. Twelve native clips are

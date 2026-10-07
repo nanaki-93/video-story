@@ -1,5 +1,17 @@
 # V1 implementation and acceptance
 
+## U06 subsequent user review — creative gate failed, 7 October 2026
+
+Marco rejects the 45-second partial preview for exterior jumps and an eye issue around ten
+seconds. The eye closure occurs abruptly between consecutive native source frames; district
+changes at 15 and 30 seconds retain nearly the same camera composition while replacing the
+window view. Independent generation avoids endpoint matching but has not met the requested
+consistency or low-iteration workflow. [Follow-up evidence](evidence/u06-user-review.json).
+Earlier accepted-shot counts are operator-review history, not final user approval. Export,
+timing and playback checks still pass; they do not override this visual rejection. Further
+generation is held while the workflow is reassessed. A controlled compositing alternative
+is only a recommendation; its assets, motion and final quality have not been qualified.
+
 ## U06 real independent-shot trial — target unmet, 7 October 2026
 
 Nine real video requests produced six accepted shots / 45 seconds at 900 credits. Two mouth

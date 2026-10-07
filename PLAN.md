@@ -75,11 +75,18 @@ lower total time or real retry costs before a new trial.
 The [U06 real independent-shot trial](docs/evidence/u06-real-independent.json) stopped at
 45 accepted seconds after nine video requests and 900 confirmed credits. Two mouth corrections
 worked; Ueno's required watching ending failed after the two extra attempts were already used.
-The app exports a verified partial preview while retaining the 90-second plan. Distinct district
-cuts work without endpoint matching, but Tokyo Bay motion and the full target are unqualified.
+The app exports a verified partial preview while retaining the 90-second plan. Marco subsequently
+rejected its exterior jumps and eye change near ten seconds. The [follow-up review](docs/evidence/u06-user-review.json)
+finds an abrupt eye closure in the native clip and district replacements under nearly unchanged
+camera framing. Independent shots remove endpoint matching but have failed this creative gate.
+Tokyo Bay motion and the full target remain unqualified.
 At the observed Quality price, the no-retry baseline for 30 videos is 36000 credits, above the
-displayed 25000 monthly plus 50 daily allowance. A short ambient-motion/fixed-pose test using
-the prepared references, especially the Bay ending, is recommended before another full run.
+displayed 25000 monthly plus 50 daily allowance. The earlier recommendation for another
+whole-scene Flow pilot is withdrawn; further generation is held during the workflow reassessment.
+The proposed alternative is controlled compositing of prepared TABI/interior assets, authored
+eye motion and an exterior timeline shared across camera framings. This is a recommendation,
+not an implemented or approved replacement. Asset preparation, natural movement and final visual
+quality remain unresolved; previously rejected character/rig trials are not revived.
 
 Marco wants almost entirely automatic preparation for 30 × 90-second videos per month, with
 new combinations and some new assets each time. That full target remains unqualified:

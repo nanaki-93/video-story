@@ -20,6 +20,8 @@
 
 **Status** [ ] Bounded trial concluded; the 90-second target is unmet. Twelve references were reviewed from thirteen image requests (zero displayed credits). Nine video requests cost 900 credits, confirmed in Google history; six accepted shots form a verified 45-second silent partial preview. Two mouth corrections succeeded. Ueno's return to a forward pose failed the required watching ending, so the run stopped after its two allowed extra attempts. All takes and the original plan remain saved. [Evidence](evidence/u06-real-independent.json). Tokyo Bay motion and final creative/release approval remain open.
 
+**Subsequent user review** Marco rejects the partial sample for exterior jumps and an eye issue near ten seconds. Read-only inspection confirms an abrupt native eye closure and district replacements under nearly unchanged camera framing. Operator-accepted ranges do not constitute user approval. Further whole-scene Flow generation is held; the earlier short-pilot recommendation is withdrawn. [Review evidence](evidence/u06-user-review.json). No alternative implementation or new generation is authorized by this reassessment alone.
+
 **Target files**
 - `.local/u06-real-independent/**` (ignored) — preparation/terms, task-owned worker, native references and clips, screenshots, read-only verification and output evidence; no MP4 enters Git.
 - `docs/evidence/u06-real-independent.json` (new), `docs/progress.md`, `docs/38-v1-acceptance.md`, `docs/tasks/INDEX.md` — actual attempt/credit/time results, full playback and remaining creative limits.

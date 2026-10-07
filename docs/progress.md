@@ -2,6 +2,27 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## U06 — User rejects the partial sample's visual consistency
+
+Marco reports exterior scenario jumps and an eye problem around ten seconds, and questions
+continuing the Flow workflow. The 45-second preview is **creatively rejected**. Earlier
+"accepted" shot counts describe the saved operator reviews, not Marco's approval.
+
+Read-only source inspection finds the eyes open at output frame 238 (9.9167 seconds) and
+closed at frame 239 (9.9583 seconds), matching native Sumida-medium retry frames 58–59.
+Twenty-five source/output samples around the blink differ only by the export's small encoding
+changes (maximum mean RGB difference 1.9162 on a 0–255 scale). The eye transition is already
+in the generation. At 15 and 30 seconds the view changes district while camera framing remains
+nearly the same; the intermediate wide/medium cuts also use separately generated scenery.
+The assistant's earlier visual review missed the eye issue and overestimated the editorial cuts.
+
+Further whole-scene Flow generation is held. The previous suggestion for another short Flow
+pilot is withdrawn. Recommend separating reusable character/interior animation from an authored
+exterior timeline; this requires suitable assets and does not establish that the desired motion
+or appearance is achievable with the existing material. No replacement workflow is selected or
+implemented, and rejected rig/3D routes remain rejected. Source clips, project state and exports
+are unchanged. [Review and frame evidence](evidence/u06-user-review.json).
+
 ## U06 — Real independent-shot trial stopped at 45 seconds
 
 The bounded trial confirms that separate cinematic shots avoid generated endpoint matching,
@@ -27,10 +48,9 @@ for 30 twelve-shot videos is 36000 credits. The account shows 25000 monthly plus
 even using every daily addition over 30 days gives 26500. The no-top-up monthly target is
 therefore unqualified at this price before retries or other use.
 
-Keep the independent cuts and prepared references. A short fixed-pose/ambient-motion pilot,
-including the Bay ending, is the recommended next creative test before another full run.
-No such generation has started. Final artwork/signage, music and creative/publication approval
-remain open; generated advertising and held eye closures need Marco's review.
+The later user review above supersedes the initial recommendation for another fixed-pose/
+ambient-motion Flow pilot. No such generation has started. Final artwork/signage, music and
+creative/publication approval remain open.
 
 ## U06b — Export the accepted portion of a stopped run
 
