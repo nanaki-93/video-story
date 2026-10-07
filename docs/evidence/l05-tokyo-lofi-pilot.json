@@ -1,0 +1,201 @@
+{
+  "task": "L05",
+  "verified_on": "2026-10-08",
+  "status": "silent pilot rendered; creative acceptance pending",
+  "request": "Prepare assets and a full Tabi Tokyo video, no music; established 90-second trial length",
+  "project": "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/prepared-v3/projects/Tabi Tokyo Sunset",
+  "scene": "tokyo.sunset@1.0",
+  "snapshot_sha256": "32046b3b07fb52b96908ef551bbd26c7f2f56f21675df4391799d6c17c3e62f2",
+  "output": "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/prepared-v3/projects/Tabi Tokyo Sunset/exports/Tabi-Tokyo-90s-Silent-1080p-DRAFT.mp4",
+  "preparation_script": "scripts/prepare_tokyo_lofi.py",
+  "assets": {
+    "original_master": "docs/assets/scenario/tabi-train-example.png",
+    "master_dimensions": [
+      1664,
+      936
+    ],
+    "district_order": [
+      "04-yanaka-residential-rooftops-panorama.png",
+      "01-asakusa-sensoji-panorama.png",
+      "02-sumida-river-skytree-panorama.png",
+      "03-ueno-shinobazu-pond-panorama.png",
+      "05-shinjuku-skyline-panorama.png",
+      "06-tokyo-bay-rainbow-bridge-panorama.png"
+    ],
+    "strip_dimensions": [
+      11360,
+      936
+    ],
+    "repeat_width": 9696,
+    "speed_design_pixels_per_second": 107.73333333333333,
+    "blink_frames": 9,
+    "blink_repeat_frames": 225,
+    "blink_first_frame": 78,
+    "window_mask": "generated matte, aligned/thresholded and restricted to measured glass regions",
+    "joins": "240px spatial feathers covered by a reusable transparent foliage patch",
+    "audio": "No music, ambience, sound effects or audio stream"
+  },
+  "generation": {
+    "tool": "built-in image_gen__imagegen",
+    "model_revision": "not exposed",
+    "seed": "not exposed",
+    "image_calls": 4,
+    "outputs_used": [
+      "corrected window matte",
+      "closed eyes keyframe restricted to tiny eye patches",
+      "transparent foliage"
+    ],
+    "rejected_output": "first mask exposed cabin/table regions",
+    "prompt_files": [
+      "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/prepared-v3/evidence/preparation.json",
+      "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/prepared-v3/evidence/mask-correction-prompt.txt",
+      "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/prepared-v3/evidence/foliage-prompt.txt"
+    ],
+    "new_subscriptions_purchases_topups": 0
+  },
+  "commercial_terms_review": {
+    "terms": "https://openai.com/policies/terms-of-use/",
+    "terms_effective": "2026-01-01",
+    "service_terms": "https://openai.com/policies/service-terms/",
+    "service_terms_updated": "2026-09-29",
+    "finding": "Output assigned to user as between user and OpenAI, subject to law and terms. No noncommercial-only limitation found for image outputs. No additional attribution requirement identified in these terms. Input rights remain user responsibility. Exact model revision unavailable; provider must be rechecked if changed.",
+    "source_art_rights": "pending; supplied local artwork is not release-approved by this task",
+    "additional_purchases": "none",
+    "third_party_models_fonts": "none added"
+  },
+  "verification": {
+    "source_files_unchanged": true,
+    "reviewed_frame_count": 10,
+    "fixed_region_pixel_count": 935558,
+    "fixed_region_max_channel_delta": 0,
+    "loop_next_frame_vs_opening_max_channel_delta": 0,
+    "audio_stream_count": 0,
+    "duration_seconds": 90.0,
+    "video_frame_count": 2700,
+    "output_sha256": "d67dfb61b704c303039b762fe7dffc79f4d141d0eeaabaeed82164b7c821bca8",
+    "technical_export_verification": {
+      "schema_version": "1.0",
+      "document_type": "export_verification",
+      "job_id": "job-488743ec56134275bd04634872147796",
+      "snapshot_sha256": "32046b3b07fb52b96908ef551bbd26c7f2f56f21675df4391799d6c17c3e62f2",
+      "output": {
+        "location": {
+          "root_id": "project",
+          "path": "exports/Tabi-Tokyo-90s-Silent-1080p-DRAFT.mp4"
+        },
+        "sha256": "d67dfb61b704c303039b762fe7dffc79f4d141d0eeaabaeed82164b7c821bca8",
+        "size_bytes": 95134876
+      },
+      "profile": {
+        "id": "1080p-libx264",
+        "canvas": {
+          "width": 1920,
+          "height": 1080
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "container": "mp4",
+        "video_codec": "libx264",
+        "pixel_format": "yuv420p",
+        "color_space": "bt709",
+        "audio_codec": null,
+        "audio_bitrate": 384000,
+        "sample_rate": 48000,
+        "video_bitrate": 8000000
+      },
+      "video": {
+        "codec": "h264",
+        "profile": "High",
+        "level": 40,
+        "pixel_format": "yuv420p",
+        "canvas": {
+          "width": 1920,
+          "height": 1080
+        },
+        "fps": {
+          "num": 30,
+          "den": 1
+        },
+        "frame_count": 2700,
+        "duration_seconds": 90.0,
+        "container_duration_seconds": 90.0,
+        "bit_rate": 8453628,
+        "color_space": "bt709",
+        "color_range": "tv",
+        "progressive": true,
+        "timestamps_verified": true,
+        "full_decode_passed": true,
+        "mp4": {
+          "moov_offset": 32,
+          "first_mdat_offset": 31548,
+          "fast_start": true
+        }
+      },
+      "audio": null
+    },
+    "visual_acceptance": "pending Marco review; numeric checks do not approve artwork"
+  },
+  "tests": {
+    "focused_lofi_unit_and_real_media": "14 passed",
+    "ruff": "check and format pass",
+    "full_refactor_gate": "L04 remains the previous full engineering acceptance; no runtime/schema/UI changes in L05"
+  },
+  "preservation": {
+    "count": 669,
+    "bytes": 1556776706,
+    "changes": [],
+    "staged_ide_unchanged": true,
+    "tracked_mp4": []
+  },
+  "visual_review": {
+    "frames": [
+      0,
+      80,
+      300,
+      306,
+      450,
+      900,
+      1350,
+      1800,
+      2250,
+      2699
+    ],
+    "contact_sheet": "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/prepared-v3/review/full-video-contact.jpg",
+    "result": "Stable source character/cabin, clean closed-eye patches, six distinct districts, continuous travel. Foliage reduces ghosted building joins. Illustrative journey, not geographic route.",
+    "user_followup": "Marco requests orienting the sketchbook toward Tabi. This is NOT corrected in this pilot. L06 tracks the correction.",
+    "release_approval": "not asserted; source rights and Marco creative acceptance pending"
+  },
+  "browser": {
+    "browser": "Chrome",
+    "page": "Export",
+    "verified_queue_frames": "2700/2700",
+    "playback_start_seconds": 0.179906,
+    "playback_mid_seconds": 57.870364,
+    "playback_end_seconds": 90,
+    "duration_seconds": 90,
+    "ended": true,
+    "media_error": null,
+    "console_errors_or_warnings": []
+  },
+  "next_step": "Correct book, approve stable visual loop, then test a longer silent session using the saved assets; add cleared music after visual review.",
+  "known_limits": [
+    "Repeated foliage appears between districts; motion is deliberately limited to panorama and eyelids.",
+    "Native design is 1664×936, scaled to 1920×1080.",
+    "Small pane matte and detailed window/gill edges remain subject to creative review.",
+    "Safari, native 4K and representative long-form resource checks remain pending.",
+    "Built-in image editing became unavailable on the book-correction follow-up; no paid/API fallback used."
+  ],
+  "deliverables": {
+    "video": "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/deliverables/Tabi-Tokyo-90s-Silent-v1-DRAFT.mp4",
+    "video_sha256": "d67dfb61b704c303039b762fe7dffc79f4d141d0eeaabaeed82164b7c821bca8",
+    "video_bytes": 95134876,
+    "asset_project_zip": "/Users/marcoandreose/DEV/lab/video-story/.local/tokyo-lofi-pilot-v1/deliverables/Tabi-Tokyo-asset-project-v1.zip",
+    "asset_project_zip_sha256": "61eb496010e7cc568f961a139d22073da2b30a0bb44921995290d7d151e153eb",
+    "asset_project_zip_bytes": 106069003,
+    "zip_files": 58,
+    "zip_crc_check": "passed",
+    "book_correction": "pending; not included"
+  }
+}

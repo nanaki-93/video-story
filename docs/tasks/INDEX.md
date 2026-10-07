@@ -11,5 +11,11 @@ Marco authorizes the asset-based refactor and removal of unnecessary old code. P
 
 Read [tasks](../tasks.md) in order. [Earlier Flow tasks](../archive/flow-tasks.md) and [trial history](../progress.md) remain evidence, not active instructions.
 
-No implementation task remains in this refactor. Real asset preparation, visual acceptance and
-release readiness remain explicit gates in [acceptance](../38-v1-acceptance.md).
+The refactor is complete. Marco now authorizes preparation and a complete silent Tokyo trial.
+
+| Task | Outcome | Status |
+| --- | --- | --- |
+| L05 | Prepare reusable real TABI/Tokyo assets, render and inspect a complete silent 90-second draft | complete; creative review pending |
+| L06 | Correct the book orientation and rebuild the same silent pilot | next; built-in image tool unavailable after recheck |
+
+Visual acceptance and release readiness remain separate gates in [acceptance](../38-v1-acceptance.md).

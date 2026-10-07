@@ -460,3 +460,55 @@ Run all engineering gates and actual-media checks, verify representative normal 
 
 **Verification command**
 `UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml make check web-check web-build package test-media`
+
+## L05 — Prepare and test a complete silent TABI Tokyo video
+
+**Status** [x] Prepared real master/mask/six-district strip/blink assets; 2,700-frame silent 1080p
+export passes full decode/timestamps. Fixed regions and next-cycle frame match exactly.
+14 focused tests and source-preservation checks pass. Creative review remains pending; the
+user's subsequent book-orientation correction is L06. Evidence: `docs/evidence/l05-tokyo-lofi-pilot.json`.
+
+**Target files**
+- `scripts/prepare_tokyo_lofi.py`
+- `docs/evidence/l05-tokyo-lofi-pilot.json`
+- `docs/tasks.md`
+- `docs/tasks/INDEX.md`
+- `docs/progress.md`
+- `docs/38-v1-acceptance.md`
+- `.local/tokyo-lofi-pilot-v1/` (prepared media, project, prompts, evidence and exports; untracked)
+
+**Inputs / dependencies**
+L01–L04. User request on 8 October: prepare all assets and try a full TABI Tokyo video, no music.
+Use the original train still/profile and matching six Tokyo panoramas. Ninety seconds follows
+the established trial length. Do not alter originals, invent source rights or approve artwork.
+
+**Implementation rules**
+Prepare a stable master, exact exterior mask, compatible varied scenery and restrained aligned
+eye loops if they pass visual review. Reuse existing local rendering services; no new paid
+dependency or video generator. Check official output terms before new image generation, record
+exposed model/revision facts and unknowns. Preserve original content hashes. Save a reusable
+scene and render the complete silent video through Python, verify timing, full decode, source
+regions, motion/loop/chunk joins and actual visual playback. Keep all MP4s out of Git.
+
+**Verification**
+Asset dimensions/alpha/fps/hash checks; representative exact frames and contact sheets; full
+90-second render/decode with zero audible content; normal-app preview/playback; preservation
+audit. Record every limit honestly and commit verified scripts/evidence without media.
+
+## L06 — Orient the sketchbook toward Tabi
+
+**Status** [ ] Built-in image edit tool unavailable on the follow-up turn. Marco requested a
+recheck; it remains absent from the current callable tools. A local perspective edit was offered
+but not selected. No API fallback or image correction has been executed or claimed.
+
+**Inputs / dependencies**
+L05 original master and completed silent pilot. User asks to correct the upside-down book in
+the train image and consider the next step. Preserve every original and existing asset version.
+
+**Implementation rules**
+Turn page content/book to face Tabi, keeping the table perspective, character, cup, pen and
+lighting intact. Save a new master asset version and reusable scene; reuse the validated
+window/panorama/blink timing. Do not rerun whole-scene video generation. Rebuild the silent
+90-second pilot and inspect the corrected book, static regions, video decode and loop seam.
+Source rights/creative approval remain separate. A longer silent playback test follows visual
+acceptance; music stays absent from the current requested output.

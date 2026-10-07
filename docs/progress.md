@@ -2,6 +2,31 @@
 
 Updated 8 October 2026 (Asia/Manila).
 
+## L05 — Complete silent Tokyo asset pilot, 8 October 2026
+
+Prepared the original Tabi train master, a window matte, a continuous six-district Tokyo strip,
+a small closed-eye sequence and foliage for the scenery joins. The shared Python scene/compiler/
+job services rendered **90 seconds, 2,700 frames at 30 fps, 1920×1080, with no audio stream**.
+The original character/cabin stay fixed; only the window view and eyelids animate.
+
+Full decode, timestamps and fast-start checks pass. Across ten inspected source frames,
+935,558 protected pixels have zero variation. The next-cycle frame is pixel-identical to the
+opening frame. Fourteen focused unit/actual-media tests and Ruff pass. All 669 previously
+protected files and unrelated staged IDE entries remain unchanged; no MP4 is tracked.
+Chrome played the complete export from 0 to 90 seconds with no media or console errors.
+[Preparation and verification evidence](evidence/l05-tokyo-lofi-pilot.json).
+
+The project and complete draft remain under `.local/tokyo-lofi-pilot-v1/prepared-v3/`.
+This is a real-art draft, not release approval. Source commercial rights and Marco's creative
+acceptance are pending. The foliage intentionally repeats between six distinct districts.
+The 1664×936 illustration is scaled to 1080p; native 4K, Safari and long-form checks remain open.
+
+**L06 remains pending:** Marco requested turning the sketchbook toward Tabi. The built-in image
+editing tool disappeared on that follow-up and was still absent after he requested a recheck.
+The correction prompt is saved, but the book is not corrected in this export. No paid/API
+fallback was used. Once corrected and visually accepted, reuse the same scene for a longer
+silent playback test before adding cleared music.
+
 ## L04 — Asset workflow refactor complete, 8 October 2026
 
 The normal app now saves reusable fixed illustrations, masked scenery and independently timed
