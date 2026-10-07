@@ -4,6 +4,61 @@ Tabi Story Studio is a local app for making reviewed TABI videos. Python owns pr
 media, timing, rendering and delivery; the TypeScript interface guides the work. Music
 composition and publishing remain separate.
 
+## Proposed asset route for the lo-fi channel
+
+On 7 October Marco confirmed the channel is for lo-fi music and accepts reduced movement
+and loops. This changes the creative target toward a reusable illustrated scene. The strategy
+below is proposed; the implemented guided workflow described afterward has not been changed.
+Whole-scene Flow generation remains held following U06's creative rejection.
+
+Start with one selected train illustration. Keep TABI, cabin, table, hands, book and cup together
+as a stable foreground plate. Prepare a fixed exterior-visibility mask that preserves the
+window frame and every overlapping character/prop edge. This avoids requiring a moving matte
+or separated body rig for the first version. The current supplied scene is 1664×936 RGB, so
+it is a reference candidate, not an existing layered or native-4K master.
+
+Prepare only what will move:
+
+- Aligned eye patches with a clean underlying face patch and authored intermediate eyelid states.
+  Start with a small blink; keep head, gills, hands and body still. Breathing is optional later
+  and must preserve contact points and silhouette. Existing generated action defects are not
+  automatically reusable or repaired by looping them.
+- Tokyo exterior strips with a common horizon, perspective and light direction. Generic
+  architecture can tile; landmark passes are separately scheduled. Use one shared travel
+  timeline for all exterior layers, with slower distant movement and faster nearby movement.
+- Optional low-intensity window reflection or rain loops with independent phases. No new
+  effect is required to make the first asset pack usable.
+
+Author short loops once and inspect their last-to-first movement, alpha edges and eye shapes.
+Drive each layer from the full video's timeline so rendering chunks do not restart motion.
+Continuous exterior translation wraps prepared scenery tiles rather than reversing the train.
+Weather can repeat independently; landmarks should not recur on a short character-loop cycle.
+
+Preserve the request for distinct Tokyo districts: prepare compatible Sumida, Yanaka and
+Akihabara passages with connective scenery or a planned full-window occlusion between them.
+For a long mix, districts can last minutes; exact pacing and total runtime are not yet selected.
+A second framing, if wanted, must crop the same composition and timeline. The first version
+should hold one calm camera view.
+
+One-time preparation produces the selected master, masks, aligned eye sequence, scenery strips,
+compatible lighting/effects and reviewed loop evidence. Recurring production should become
+scene selection, district order, music/duration selection, a short preview and local export.
+The existing Python renderer supports these underlying primitives, including independent
+body/face channels and global scenery phase; a finished asset-first guided UI and real artwork
+pack are not established by that support. The old calm-window export is a style/motion reference,
+with its known ear defect retained, not an approved pack to reuse unchanged.
+
+The first proposed validation is a 20–30-second train scene played over several loop boundaries,
+with one prepared blink and continuous exterior movement, followed by a short two-district
+transition check. These are local renders of prepared assets; no generation has started.
+Final pack acceptance requires visual likeness, clean edges, readable motion and reviewed source
+rights. Optional still-image assistance must stay within existing entitlements and current terms;
+no new paid app, model or subscription is selected. Up-front artwork cleanup remains necessary.
+
+Build each episode around its music and a distinct scene concept. Reusing animation is a
+production technique, not a monetization qualification. YouTube reviews originality and material
+variation across videos ([official policy, reviewed 7 October 2026](https://support.google.com/youtube/answer/1311392?hl=en)).
+
 ## Current workflow
 
 The normal app starts at **Create video → Setup → References → Shots → Finish**. The train /

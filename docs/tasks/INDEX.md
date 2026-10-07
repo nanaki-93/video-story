@@ -5,6 +5,12 @@ Marco's final creative approval and the production gates below remain open.
 Marco permits Flow for generation; setup, trimming, review and export must use video-story.
 Implement and verify one step, then commit it. Preserve existing projects and source media.
 
+**New creative direction:** Marco accepts reduced movement and loops for the lo-fi music
+channel. [Asset-based strategy](../../PLAN.md#proposed-asset-route-for-the-lo-fi-channel) proposes
+a stable TABI/cabin plate, prepared blinks and independently moving Tokyo scenery. This is
+planning, not a completed asset pack or guided app implementation. Whole-scene Flow generation
+remains held; exact long-form episode duration and final pack appearance remain open.
+
 **Current trial:** [U06](../tasks.md#u06--test-the-independent-plan-with-real-tabi-footage) stopped
 at 45 operator-accepted seconds after nine video requests and 900 credits. Marco subsequently
 rejected the sample's exterior jumps and eye issue near ten seconds; the creative gate failed.

@@ -2,6 +2,26 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## Lo-fi asset strategy — reduced movement and loops accepted as a direction
+
+Marco clarifies that the channel is for lo-fi music and accepts less movement and loops.
+The [proposed strategy](../PLAN.md#proposed-asset-route-for-the-lo-fi-channel) starts from one
+stable TABI/cabin illustration, a fixed window mask, prepared blink patches and separately
+moving Tokyo scenery. The first version keeps body, gills, hands and props still; a body rig
+is unnecessary for this scope. Distinct districts remain part of the proposal, with prepared
+connections and slower pacing for longer music mixes.
+
+Read-only review confirms the existing renderer's masks, independent body/face channels,
+global scenery travel and long-form rendering evidence. The selected scene reference is a
+1664×936 RGB image, not a layered production master. Clean masks, eyelid artwork, compatible
+scenery and final visual acceptance still need preparation; current software checks do not
+approve them. Earlier calm-window and rejected rig trials remain reference/history only.
+
+This pass supplies a strategy and records the relaxed movement requirement. No image/video
+generation, asset alteration, new dependency, app change or credit use occurred. The proposed
+20–30-second loop/transition validation is not yet performed. Full episode length is unspecified;
+90-second previews and long music mixes must not be treated as the same creative brief.
+
 ## U06 — User rejects the partial sample's visual consistency
 
 Marco reports exterior scenario jumps and an eye problem around ten seconds, and questions
