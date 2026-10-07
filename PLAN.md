@@ -1,226 +1,117 @@
 # Tabi Story Studio product plan
 
-Tabi Story Studio is a local app for making reviewed TABI videos. Python owns prompts,
-media, timing, rendering and delivery; the TypeScript interface guides the work. Music
-composition and publishing remain separate.
+Tabi Story Studio makes local lo-fi music videos from reusable illustrated assets. Python owns
+asset validation, composition, frame/sample timing, audio, rendering and delivery. A TypeScript
+web UI guides scene setup, music selection, preview and export. Music composition and publishing
+remain separate.
 
-## Asset refactor in progress
-
-Marco authorizes this refactor on 7 October 2026, including deletion of unnecessary old code.
-L01 removes the Flow execution path; L02–L04 implement and verify the asset workflow. The
-[active task index](docs/tasks/INDEX.md) supersedes the historical Flow instructions below.
-
-## Proposed asset route for the lo-fi channel
-
-On 7 October Marco confirmed the channel is for lo-fi music and accepts reduced movement
-and loops. This changes the creative target toward a reusable illustrated scene. The strategy
-below is proposed; the implemented guided workflow described afterward has not been changed.
-Whole-scene Flow generation remains held following U06's creative rejection.
-
-Start with one selected train illustration. Keep TABI, cabin, table, hands, book and cup together
-as a stable foreground plate. Prepare a fixed exterior-visibility mask that preserves the
-window frame and every overlapping character/prop edge. This avoids requiring a moving matte
-or separated body rig for the first version. The current supplied scene is 1664×936 RGB, so
-it is a reference candidate, not an existing layered or native-4K master.
-
-Prepare only what will move:
-
-- Aligned eye patches with a clean underlying face patch and authored intermediate eyelid states.
-  Start with a small blink; keep head, gills, hands and body still. Breathing is optional later
-  and must preserve contact points and silhouette. Existing generated action defects are not
-  automatically reusable or repaired by looping them.
-- Tokyo exterior strips with a common horizon, perspective and light direction. Generic
-  architecture can tile; landmark passes are separately scheduled. Use one shared travel
-  timeline for all exterior layers, with slower distant movement and faster nearby movement.
-- Optional low-intensity window reflection or rain loops with independent phases. No new
-  effect is required to make the first asset pack usable.
-
-Author short loops once and inspect their last-to-first movement, alpha edges and eye shapes.
-Drive each layer from the full video's timeline so rendering chunks do not restart motion.
-Continuous exterior translation wraps prepared scenery tiles rather than reversing the train.
-Weather can repeat independently; landmarks should not recur on a short character-loop cycle.
-
-Preserve the request for distinct Tokyo districts: prepare compatible Sumida, Yanaka and
-Akihabara passages with connective scenery or a planned full-window occlusion between them.
-For a long mix, districts can last minutes; exact pacing and total runtime are not yet selected.
-A second framing, if wanted, must crop the same composition and timeline. The first version
-should hold one calm camera view.
-
-One-time preparation produces the selected master, masks, aligned eye sequence, scenery strips,
-compatible lighting/effects and reviewed loop evidence. Recurring production should become
-scene selection, district order, music/duration selection, a short preview and local export.
-The existing Python renderer supports these underlying primitives, including independent
-body/face channels and global scenery phase; a finished asset-first guided UI and real artwork
-pack are not established by that support. The old calm-window export is a style/motion reference,
-with its known ear defect retained, not an approved pack to reuse unchanged.
-
-The first proposed validation is a 20–30-second train scene played over several loop boundaries,
-with one prepared blink and continuous exterior movement, followed by a short two-district
-transition check. These are local renders of prepared assets; no generation has started.
-Final pack acceptance requires visual likeness, clean edges, readable motion and reviewed source
-rights. Optional still-image assistance must stay within existing entitlements and current terms;
-no new paid app, model or subscription is selected. Up-front artwork cleanup remains necessary.
-
-Build each episode around its music and a distinct scene concept. Reusing animation is a
-production technique, not a monetization qualification. YouTube reviews originality and material
-variation across videos ([official policy, reviewed 7 October 2026](https://support.google.com/youtube/answer/1311392?hl=en)).
+Marco authorized this refactor on 7 October 2026, including removal of unnecessary old code.
+Flow whole-scene generation was rejected for exterior jumps, eye defects and repeated attempts.
+Its prompting, credits, retries, clip-chain workflow and separate queue are removed. Earlier
+source artwork, music, native clips, project records and exports remain preserved on disk.
 
 ## Current workflow
 
-The normal app starts at **Create video → Setup → References → Shots → Finish**. The train /
-Tokyo / 90-second preset uses twelve independent 7.5-second shots, each with its own reviewed
-window image:
-Sumida River/Skytree, Yanaka rooftops, Akihabara shops, Ueno park/pond, Shinjuku towers and
-Tokyo Bay/Rainbow Bridge. This is an illustrated journey with time passing at district cuts,
-not a verified real train route. Two wide/medium views per district keep the window readable.
-Each shot begins from its assigned image and uses a reviewed 180-frame section of an eight-second
-source. Deliberate camera cuts require no generated ending-to-starting match or Flow Extend.
-TABI rests and watches, with the cup on the table and quiet breathing. Existing drafts keep
-their saved routines and references; existing scene tools are under Advanced.
+1. Import the master illustration and any prepared masks, scrolling strips, transparent PNG
+   animations and finished music into **Asset library**. Keep factual provenance and immutable
+   versions. No generator is required by this route.
+2. In **Create video**, save a reusable scene: fixed master, rational frame rate, optional window
+   mask and scenery layers, optional independent overlay loops. The UI accepts repeat/delay in
+   seconds; Python persists exact integer frames. The master determines the canvas.
+3. Choose the saved scene, title and ordered music. Set a duration or fit the complete tracks.
+   Python compiles an ordinary episode through the same core used by the CLI. It saves the scene
+   configuration into a content-addressed template so later recipe edits leave existing videos
+   unchanged.
+4. Render a short **Preview**, inspect exact frames and loop/mask boundaries, then **Export**
+   through the shared frozen-snapshot job service. Adjust music in **Music** as needed.
+5. Reuse the scene for subsequent music videos. Prepare a new version only when assets or motion
+   need to change. Production approval and manual publishing remain explicit separate steps.
 
-Generation uses **Copy prompt → Open Flow → Import native result → Review**. The app saves
-reference hashes, prompts, parent lineage, attempts, confirmed prop states, reviews and credit
-reservations. Each fresh shot uses Frames to Video with its assigned image. Native Extend remains
-available only where a saved recipe allows it, including U04's six-shot plan and three-part
-drink actions. The previous shot is used only to review the editorial cut. Retry uses the same
-image or in-shot parent with one
-selected correction; full rejection notes stay in history. Refresh and an unknown external
-result do not create another generation request. This reduces inherited drift; it does not
-guarantee clean mouths, stable gills, props or particle-free footage.
+The primary workflow is asset selection and timing, not per-video JSON editing. Existing story,
+action-pack, continuity and precise audio tools remain under Advanced where useful. They use the
+same renderer and do not introduce a second timeline compiler or general-purpose editor.
 
-Review plays the selected source section, with optional frame controls and the complete original
-kept separately. Recovery can raise the per-action retry allowance within the existing maximum
-and budget, or restart only the current partial shot from its clean image. Earlier completed
-shots and all attempt evidence remain saved. Handle-free cup actions explicitly use both hands
-around the same cup body; generated prop consistency still requires visual review.
+## Asset route for the lo-fi channel
 
-The default timeline advances through six districts at 0, 15, 30, 45, 60 and 75 seconds, with
-an additional framing cut halfway through each district. Python schedules all shot timings.
-Shot scenery is editable at Setup, included in image preparation and every new motion prompt,
-and checked during review for perspective, travel direction, parallax and progress. Changing
-one view through New variation clears that reference while retaining unaffected images; a
-changed character, outfit or interior clears them all. Every boundary needs completed actions
-and compatible visible cup/hand state. Actual native frame counts and an explicitly reviewed
-outpoint determine the cut. Existing drink routines still finish pickup/sip/return before cutting.
+<a id="proposed-asset-route-for-the-lo-fi-channel"></a>
+Start with one selected TABI/train illustration. Keep TABI, cabin, furniture, gills, hands,
+book and cup stable. Prepare a fixed white-visible exterior mask preserving all overlapping
+edges. This avoids needing a body rig or changing camera for the first pack. The supplied
+1664×936 RGB train reference is a candidate, not an approved layered or native-4K master.
 
-Finish assembles only accepted footage at its measured native cadence, trims to an explicitly
-reviewed exact ending, and can add one continuous local soundtrack. The verified export can
-enter the existing YouTube delivery review and public/private bundle workflow.
-When a run stops before its target, **Export reviewed portion** produces a clearly labeled,
-silent partial preview of accepted footage while preserving the full plan and all attempt
-history. It does not complete the video or relax its action and visual-review gates.
+Prepare only the intended motion:
 
-[S01–S04](docs/tasks.md) add the planned-shot workflow. [F12 evidence](docs/evidence/f12-flow-workflow.json)
-records full-length engineering verification and target-Mac UI observations. A synthetic
-90-second video verifies software behavior, not TABI likeness or release approval.
+- Small aligned full-canvas RGBA blink sequences, including clean coverage of the open eyes and
+  authored intermediate eyelid states. The master is visible during gaps. Existing generated eye
+  defects are not repaired merely by looping them.
+- Long Tokyo panorama strips with varied interesting districts, a shared horizon/perspective and
+  consistent light. They can represent a stylized journey. Their repeated padding must match the
+  opening pixels exactly; up to three depth layers share a travel-speed curve.
+- Optional restrained rain, reflections or similar prepared overlay loops. Every overlay uses
+  independent global-frame timing, so short blinks do not restart the scenery.
 
-The [U03 real app trial](docs/evidence/u03-tabi-app-trial.json) now completes a silent 90-second
-TABI Tokyo draft using normal UI for every step except Flow generation. It verifies 2160 real
-frames, exact timing and complete Chrome playback. Twelve native clips survived 24 app attempts;
-actual usage was 1085 included credits. Two-hand drinking and the closed-coat breath improved,
-while acting, cup-print variation and panorama resets still need creative review.
+The scene recipe supports a still-only composition, up to three cyclic scrolling layers, and up
+to eight aligned PNG overlay loops. Source dimensions, fps, alpha, hashes, sequence bounds and
+scenery padding are validated. There is no automatic image segmentation, inpainting, blinking,
+city generation or district matching. Asset creation happens before reuse.
 
-Marco finds that draft interesting, but rejects the final panorama and repetitive outside
-view and considers the trial-and-error effort too high. Eight of its ten rejected takes
-involved drinking or deep breathing. [U04](docs/tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view)
-addresses the next video's preparation: distinct window references and calmer default actions.
-Marco then explicitly selected independent cinematic shots with deliberate camera cuts.
-[U05](docs/tasks.md#u05--remove-flow-extensions-from-the-new-tokyo-preset) removes all native
-extensions from the new preset. Saved episodes offer an explicit independent-shot variation;
-matching references can be reused. Twelve starting images and more fresh generations add
-preparation and may increase credits. Neither change repairs the saved draft or establishes
-lower total time or real retry costs before a new trial.
+Chunk boundaries and nonzero render ranges preserve the same global schedule. Arbitrary final
+video lengths are not promised to be seamless at the full video's last-to-first join. Review
+that join if the whole output will repeat. A prepared cyclic strip can still look repetitive or
+have a poorly designed boundary; pixel validation is not artistic approval.
 
-## Remaining production gates
+## Production gates
 
-The [U06 real independent-shot trial](docs/evidence/u06-real-independent.json) stopped at
-45 accepted seconds after nine video requests and 900 confirmed credits. Two mouth corrections
-worked; Ueno's required watching ending failed after the two extra attempts were already used.
-The app exports a verified partial preview while retaining the 90-second plan. Marco subsequently
-rejected its exterior jumps and eye change near ten seconds. The [follow-up review](docs/evidence/u06-user-review.json)
-finds an abrupt eye closure in the native clip and district replacements under nearly unchanged
-camera framing. Independent shots remove endpoint matching but have failed this creative gate.
-Tokyo Bay motion and the full target remain unqualified.
-At the observed Quality price, the no-retry baseline for 30 videos is 36000 credits, above the
-displayed 25000 monthly plus 50 daily allowance. The earlier recommendation for another
-whole-scene Flow pilot is withdrawn; further generation is held during the workflow reassessment.
-The proposed alternative is controlled compositing of prepared TABI/interior assets, authored
-eye motion and an exterior timeline shared across camera framings. This is a recommendation,
-not an implemented or approved replacement. Asset preparation, natural movement and final visual
-quality remain unresolved; previously rejected character/rig trials are not revived.
+| Input or review | Remaining work |
+| --- | --- |
+| Approved art | Select the actual master/reference hashes and compare likeness; never create a substitute TABI design because a reference is missing |
+| Window mask | Prepare and inspect window edges, character overlaps, props and reflections |
+| Eye animation | Prepare clean, aligned authored states and inspect closing/opening, coverage and return to the master |
+| Tokyo scenery | Prepare diverse compatible strips; review perspective, pacing, district joins, wrap and repetition |
+| Music | Supply original/cleared finished masters, enough material for the requested length, credits and rights evidence |
+| Creative pilot | Review full picture and sound, then a representative long-form video using the final assets |
+| Release | Recheck commercial terms, source rights, approved hashes, creative review and factual public metadata before manual upload |
 
-Marco wants almost entirely automatic preparation for 30 × 90-second videos per month, with
-new combinations and some new assets each time. That full target remains unqualified:
+Engineering fixtures are synthetic geometry and silence, never approved TABI artwork or music.
+A passed test does not approve production art. Monthly throughput and full native-4K long-form
+resource demands require measurement with the final pack; previous workload timings apply only
+to their recorded fixtures.
 
-- No supported external consumer Flow connector, unattended native continuation or enforceable
-  account-wide spending cap was established in [F00](docs/evidence/f00-flow-execution.json).
-  The installed app does not include this chat's browser automation.
-- The real U03 draft still needs Marco's final visual review and later listening review. A fresh
-  setting/outfit variation and representative human effort remain unmeasured through the workflow.
-  Café and walking require separate creative trials.
-- Source art, original music, exact provider/model commercial terms, disclosure and release
-  metadata need current evidence. Commercial output permission does not guarantee YouTube
-  monetization.
-
-The selected creative comparison is `docs/assets/clip-tests/TABI-Flow-Train-90s-DRAFT.mp4`.
-Marco calls it the best result so far, with a mouth defect near 10 seconds and later particles.
-It is preserved with its [review history](docs/archive/production-progress.md#p01--flow-baseline-selected-and-repeatable-workflow-review).
-The earlier calm-window draft and rejected preparation experiments remain historical evidence.
-Their passing technical checks do not override Marco's visual feedback.
-
-The existing Tokyo 8/7/7-second native sources import as **528 frames / 22 seconds** without
-inheriting the combined scene's one-second timestamp gap. Invented props and particles still
-require visual rejection; fixing timestamps does not repair those pixels.
-
-## Cost and tool boundaries
-
-Use existing Google entitlement and local tools. No new subscriptions, paid API, plugins,
-licence purchases or credit top-ups are part of the route. Record a freshly observed Flow
-allowance and displayed fresh-shot cost for each independent run, plus extension costs for saved
-plans that use them; included compute is limited.
-Local reservations cannot prevent independent spending inside Flow.
-
-The earlier Colab/Blender character trials failed their appearance/depth gates. Their exact
-model/licence evidence stays in the [historical progress](docs/progress.md); do not resume those
-routes or introduce another generator without reviewing its weights, dependencies, hosted
-terms and commercial output rights. The earlier monthly Colab estimate is not a Flow capacity
-qualification. Thirty production videos per month have not been demonstrated.
-
-## Product boundaries
+## Runtime and storage boundaries
 
 | Area | Decision |
 | --- | --- |
-| Runtime | Local Python/FastAPI worker and bundled TypeScript UI on authenticated loopback |
-| Engine | Shared Python services for CLI and API; no browser timeline compiler or FFmpeg commands |
-| Storage | Versioned local documents/media, atomic drafts and immutable approved hashes; no database |
-| Timing | Integer frames/samples and rational frame rates; preserve native clip cadence |
-| Review | Automatic technical checks, explicit human appearance/ending-state and release reviews |
-| Safety | Registered roots, Host/Origin/CSRF checks, authenticated media, owned cancellation and recovery |
-| Media | Original artwork/music remain local; never commit MP4 files or erase masters with cache cleanup |
-| Delivery | Verified local export, factual release bundle and manual upload |
-| Variations | Fresh opening from stable references; previous reviews do not approve a changed outfit/scene |
+| Runtime | Local Python/FastAPI worker with bundled TypeScript UI, authenticated loopback only |
+| Ownership | Shared Python compiler/render/audio services for API and CLI; no FFmpeg or timeline semantics in the browser |
+| Time | Integer frames/samples and rational fps; music retains complete sample ranges |
+| Documents | Strict versioned schemas, stable references, content hashes, atomic draft writes and revision guards |
+| Approved content | Immutable approved versions; edits create new versions and invalidate old approval for new content |
+| Worker | Registered roots, Host/Origin/CSRF checks, authenticated media, readiness handshake, owned cancellation/recovery |
+| Media | Retain source artwork/music separately from disposable caches; never commit MP4 files |
+| Delivery | Verified local export, explicit review/public-private bundles and manual publishing |
 
-The target Mac is Apple M5 Pro with 48 GB unified memory. Existing layered projects remain
-supported through Advanced, with the same compositor, audio mixer, owned job services and
-release checks. Their [long-form measurements](docs/36-longform.md) remain workload-specific.
+The target Mac is Apple M5 Pro with 48 GB memory. The app needs externally installed Python and
+FFmpeg; Node is a build dependency. No database, cloud rendering, native Kotlin/Compose packaging,
+new paid subscription/plugin/licence purchase or credit top-up is introduced.
+
+Before any future generator/model/font/asset is adopted, check official commercial-output terms,
+weights, dependencies, hosted terms, attribution and territorial restrictions. Record the exact
+version/revision, source links, date and unresolved restrictions. Unknown rights remain pending.
+Commercial permission does not establish YouTube Partner Program eligibility. Do not resume old
+character-generation experiments or infer unlimited compute from existing Google entitlements.
 
 ## Implementation and verification
 
-Follow [AGENTS.md](AGENTS.md), the [active index](docs/tasks/INDEX.md) and each task's dependencies.
-Implement one coherent step, run its required checks, record evidence in
-[progress](docs/progress.md), then commit with its task ID. Preserve unrelated staged changes.
+Follow [AGENTS.md](AGENTS.md) and the [task index](docs/tasks/INDEX.md). Each verified coherent step
+has a task-scoped commit and evidence. Run core/schema checks, frontend checks/build, package
+verification, actual FFmpeg integrations and normal-browser scene → preview → export acceptance.
+Check source hashes and unrelated staged files remain unchanged.
 
-Run `make check`, `make web-check`, `make web-build`, `make package` and the target-Mac
-`make test-media` milestone gate. Review full real picture/sound separately. No mock preview,
-stub generation job or passing fixture may be called a production-ready video.
+[Operations](docs/37-operations.md) describes the controls. [Progress](docs/progress.md) and
+[acceptance](docs/38-v1-acceptance.md) separate current results from creative gates. Earlier Flow
+[tasks](docs/archive/flow-tasks.md), [V1 history](docs/archive/v1-progress.md) and
+[production trials](docs/archive/production-progress.md) are historical evidence.
 
-Use the [operations guide](docs/37-operations.md) for the current guided path, recovery and
-Advanced workflows. [V1 acceptance](docs/38-v1-acceptance.md),
-[V1 tasks](docs/archive/v1-tasks.md) and [V1 history](docs/archive/v1-progress.md) retain earlier
-engineering results. Old plans are evidence, not another active implementation queue.
-
-## Deferred scope
-
-Direct unattended Flow control, automatic visual approval, new providers, a general rig/editor,
-native Kotlin/Compose packaging, signing/notarization, dialogue/lip-sync, collaboration,
-analytics and automatic publishing remain outside this verified release.
+Direct Flow control, automatic visual approval, new providers, a body rig editor, automatic image
+preparation, native app signing, dialogue/lip-sync, collaboration, analytics and publishing are
+outside this refactor.

@@ -67,7 +67,7 @@ cannot establish character likeness or make damaged generated frames look correc
 4. Open **Music** if tracks need arrangement, fades or loudness adjustments. Changed videos need
    a new preview. The soundtrack uses the shared sample-accurate mixer.
 5. **Continue to export**: choose draft or production purpose, **Freeze saved episode**, choose
-   output size/encoder/destination, **Estimate export**, then **Queue frozen export**. Jobs continue
+   output size/encoder/destination, **Estimate export storage**, then **Queue frozen export**. Jobs continue
    while the browser is closed; verified output has a player and download link. A production export
    requires real approved inputs, template and frozen snapshot review. Synthetic assets cannot be
    production approved.

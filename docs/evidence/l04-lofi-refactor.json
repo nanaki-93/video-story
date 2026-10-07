@@ -1,0 +1,104 @@
+{
+  "task": "L04",
+  "date": "2026-10-08",
+  "status": "engineering_passed",
+  "checks": {
+    "core": "298 passed; Ruff, format and 63 schemas pass; 62 media checks skipped by this command and run separately",
+    "media": "62 passed in 262.36 seconds; no skipped integration checks",
+    "frontend": "6 passed; TypeScript, Prettier, generated contracts and build pass",
+    "package": {
+      "wheel": ".local/packages/tabi_story_studio-0.1.0-py3-none-any.whl",
+      "sha256": "ea1403e3feb0d2982f8386e5dcbe6dbb686a0d20cd057a580e74d7f03d33b565",
+      "files": 113,
+      "lofi_core_api_present": true,
+      "built_web_present": true,
+      "retired_flow_absent": true,
+      "mp4_absent": true
+    }
+  },
+  "browser": {
+    "browser": "Chrome on target Mac",
+    "workflow": [
+      "Imported fixture assets were prepared with the same AssetService used by ordinary imports; scene/video assembly used only normal UI controls.",
+      "Save new master + grayscale mask + cyclic panorama + aligned PNG blink scene.",
+      "Create 144-frame/6-second video with selected music; generate proxy; full playback ended at 6 seconds with no decoder error.",
+      "Freeze and export 1080p with maximum 47 frames per chunk (four chunks); verify all 144 frames; full export playback ended at 6 seconds with no decoder error.",
+      "Download MP4 through authenticated UI link; downloaded SHA-256 equals the verified export; full FFmpeg decode passes.",
+      "Reopen scene after reload; create a second video using Fit selected music (48 frames / 96000 samples).",
+      "Create scene v1.1 with slower scenery; v1.0 remains revision 0 and both previous videos retain their original template."
+    ],
+    "console_errors": [],
+    "screenshot": ".local/l03-lofi-ui/reusable-scene.jpg"
+  },
+  "export": {
+    "source": ".local/l03-lofi-ui/projects/asset-demo/exports/SYNTHETIC-lofi-scene-6s.mp4",
+    "download": ".local/l03-lofi-ui/downloads/SYNTHETIC-lofi-scene-6s.mp4",
+    "matching_sha256": "d590e434863fb07837dd77f87bb50fe3564c97df40cfa905ae6b79a5e2c47b47",
+    "frames": 144,
+    "fps": "24/1",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": "6.000000",
+    "audio_sample_rate": "48000",
+    "full_decode": "passed"
+  },
+  "reuse": {
+    "scenes": [
+      {
+        "id": "scene.1791388457322",
+        "version": "1.0",
+        "speed": 24.0,
+        "revision": 0
+      },
+      {
+        "id": "scene.1791388457322",
+        "version": "1.1",
+        "speed": 12.0,
+        "revision": 0
+      }
+    ],
+    "episodes": [
+      {
+        "id": "video.7e6aad64-27e8-4d2a-b65b-2d8d80d2745e",
+        "frames": 48,
+        "template": {
+          "id": "lofi.985cacd94b81f4a5c1d77387",
+          "version": "1.0"
+        }
+      },
+      {
+        "id": "video.4a3534a2-de38-4bcd-bd5a-9793b415357e",
+        "frames": 144,
+        "template": {
+          "id": "lofi.985cacd94b81f4a5c1d77387",
+          "version": "1.0"
+        }
+      }
+    ],
+    "fit_music_samples": 96000,
+    "original_template_preserved": true
+  },
+  "preservation": {
+    "files": 669,
+    "bytes": 1556776706,
+    "changed": [],
+    "tracked_mp4": 0,
+    "staged_ide_index_unchanged": true
+  },
+  "final_acceptance_fix": "Added an explicit Download MP4 link to verified shared render jobs; the browser previously exposed only player download controls. Frontend checks/build/package and actual download reverified after the change.",
+  "dependencies": "No generator, model, provider, font, paid app or dependency added. Existing locked local media toolchain reused.",
+  "limits": [
+    "All new visual acceptance used clearly synthetic geometric assets and test silence; this does not approve TABI art or music.",
+    "Actual master/window mask/blink sequences/diverse Tokyo strips and music need preparation and human visual/rights review.",
+    "This refactor was browser-tested in Chrome; Safari remains pending.",
+    "Long-form and native 4K resource/creative qualification with final assets remains pending.",
+    "An arbitrary whole-video end-to-start loop is not guaranteed; inspect the selected duration and asset cycles.",
+    "Vite warns about the 3.05 MB generated-validator bundle; Python test client emits a Starlette/httpx deprecation warning. Both gates pass."
+  ],
+  "logs": [
+    ".local/l03-lofi-ui/l04-core-web-package.log",
+    ".local/l03-lofi-ui/l04-media.log",
+    ".local/l03-lofi-ui/l04-package-final.log",
+    ".local/l03-lofi-ui/l04-final-build.log"
+  ]
+}

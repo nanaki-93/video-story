@@ -436,9 +436,12 @@ Start on the reusable scene/video workflow, not Flow. Support loading/editing sc
 
 ## L04 — Verify the full refactor and preservation
 
-**Status** [ ]
+**Status** [x] 298 core, 62 actual-media and six frontend checks pass; package, normal Chrome preview/export/download/reuse, all 669 protected hashes and staged IDE preservation verified. See `docs/evidence/l04-lofi-refactor.json`.
 
 **Target files**
+- `web/src/production.ts`
+- `docs/02-architecture.md`
+- `docs/03-contracts.md`
 - `docs/evidence/l04-lofi-refactor.json`
 - `README.md`
 - `docs/37-operations.md`

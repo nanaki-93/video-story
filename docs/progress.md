@@ -1,6 +1,38 @@
 # Current progress
 
-Updated 7 October 2026 (Asia/Manila).
+Updated 8 October 2026 (Asia/Manila).
+
+## L04 — Asset workflow refactor complete, 8 October 2026
+
+The normal app now saves reusable fixed illustrations, masked scenery and independently timed
+transparent PNG loops, then creates music videos through the shared Python compiler/renderer.
+Flow prompting, credits, retries, native-clip chain review and its separate queue are removed.
+All original artwork, music, clips, exports and project records remain preserved.
+
+Verification: **298 core checks, 62 actual-media integrations and six frontend checks pass**.
+Ruff, formatting, 63 schemas/contracts, TypeScript, production web build and wheel/sdist pass.
+The final wheel contains the new lo-fi service and built UI, with no Flow runtime or MP4 files.
+The only advisories are the generated-validator bundle size and existing test-client deprecation.
+
+Normal Chrome controls saved the synthetic scene, created and played a six-second proxy, then
+exported 144 frames at 24 fps/1080p across four chunks. The MP4 played completely and downloaded;
+its hash matches the verified export and full independent decode passes. The saved scene was
+reused for a 48-frame music-fit video. A slower scene v1.1 preserved v1.0 and both existing video
+templates. Browser console errors: none. [Full evidence](evidence/l04-lofi-refactor.json).
+
+All **669 protected files / 1,556,776,706 bytes** match their original SHA-256 hashes. Unrelated
+staged IDE files are unchanged. No MP4 is tracked. The reproducible test project, screenshot,
+export and downloaded copy remain under `.local/l03-lofi-ui/`; all new visuals/audio are clearly
+synthetic geometry and silence, never an approved TABI asset pack.
+
+Remaining production work: select/approve the real master; prepare and review the fixed window
+mask, authored blink patches and varied Tokyo strips; supply cleared music; review the complete
+real-art pilot and a representative long-form export. Safari and full native-4K/final-asset resource
+checks remain pending. No new paid tool, generator, model, font or dependency was introduced.
+Whole-output seamless looping still needs end-to-start review for the chosen duration.
+
+The implementation queue is complete. [Operations](37-operations.md) is the current guide.
+The checkpoints below are historical; their older next-step statements do not override L04.
 
 ## L03 — Normal scene-to-video interface
 

@@ -193,6 +193,7 @@ export function rendersPage() {
       resume: HTMLButtonElement;
       verify: HTMLButtonElement;
       link: HTMLButtonElement;
+      download: HTMLAnchorElement;
       revision: number;
     };
     const rows = new Map<string, Row>();
@@ -229,6 +230,13 @@ export function rendersPage() {
       const link = button("Open verified export", () => {});
       const source = `/api/v1${base}/jobs/${job.id}/video`;
       link.hidden = true;
+      const download = element("a", {
+        className: "button",
+        text: "Download MP4",
+      });
+      download.href = source;
+      download.download = job.destination?.split("/").at(-1) || `${job.id}.mp4`;
+      download.hidden = true;
       const playback = element("div");
       playback.hidden = true;
       const video = element("video", { className: "preview-media" });
@@ -288,6 +296,7 @@ export function rendersPage() {
         resume,
         verify,
         link,
+        download,
         playback,
         diagnostic,
       );
@@ -301,6 +310,7 @@ export function rendersPage() {
         resume,
         verify,
         link,
+        download,
         revision: -1,
       };
       rows.set(job.id, result);
@@ -347,6 +357,7 @@ export function rendersPage() {
           ].includes(job.state);
           row.verify.disabled = job.state !== "verified";
           row.link.hidden = job.state !== "verified";
+          row.download.hidden = job.state !== "verified";
           if (row.revision !== job.revision) {
             row.details.textContent = JSON.stringify(job, null, 2);
             row.revision = job.revision || 0;

@@ -53,7 +53,7 @@ with detailed [asset](11-asset-registry.md), [preview](15-preview-workflow.md),
 
 The actual `/api/v1` routes and typed request/response boundaries are defined in
 `src/tabi/api/app.py`, `workspace.py`, `uploads.py`, `preview.py`, `audio.py`, `production.py`,
-`release.py`, `generation.py` and `contracts.py`. The [service guide](25-local-service.md)
+`release.py`, `lofi.py` and `contracts.py`. The [service guide](25-local-service.md)
 covers authenticated startup, media and worker lifecycle; the browser invokes these same
 Python core services rather than constructing renderer commands.
 
@@ -99,3 +99,20 @@ Verified on this Mac's local filesystem, including process termination during a 
 ## Fixture manifest (T04)
 
 The `fixture_manifest` document records the generator identity and hash, synthetic/publication flags, project and episode paths, and unique project-relative SHA-256/size records. T04 brings the generated schema count to 17. A fixture manifest is reproducibility evidence, never production approval.
+
+## Reusable lo-fi scenes (L02)
+
+`lofi_scene` is a strict versioned registry document at `registry/lofi/<id>/<version>.json`.
+It holds a still master, rational fps, optional window mask, up to three scrolling scenery
+layers and up to eight aligned transparent PNG overlays. Loop source ranges, repeat intervals
+and first-frame offsets are integer frames; gaps reveal the unchanged master.
+
+`SaveLofiScene` accepts optional per-overlay seconds as transport convenience. Python rounds
+those using the rational fps and validates the resulting complete intervals before atomic save.
+`CreateLofiVideo` accepts whole duration seconds or null to fit complete selected music samples.
+It validates and compiles before the episode is first persisted. The resulting content-addressed
+template leaves already-created episodes unchanged when the scene draft changes.
+
+The authenticated `/api/v1/projects/{handle}/lofi` catalog, `/lofi/scenes` save and `/lofi/videos`
+create endpoints use `LofiService`, as do the CLI adapters. Old Flow documents remain on disk
+but no longer belong to the executable schema registry; no worker resumes their queues.

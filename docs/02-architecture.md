@@ -15,6 +15,7 @@ Logical flow: approved assets + music + episode document → validation → comp
 | `src/tabi/core/models/` | Versioned asset, scene, episode, job and release models |
 | `src/tabi/core/documents.py`, `src/tabi/core/persistence.py` | Strict document loading, atomic local storage, revisions, locks, snapshots and migration backups (T03) |
 | `src/tabi/core/toolchain.py`, `src/tabi/core/process.py` | Tool identity/capability/storage checks and bounded subprocess execution (T02) |
+| `src/tabi/core/lofi.py`, `models/lofi.py` | Reusable master/scenery/overlay recipes, validation and scene-to-episode compilation |
 | `src/tabi/core/assets/` | Import, probing, normalization, approval, registry |
 | `src/tabi/core/timeline/` | Curves, scheduling, transitions, state evaluation |
 | `src/tabi/core/render/`, `src/tabi/core/cache/` | Renderer interface, FFmpeg backend, normalization and caches |
@@ -40,6 +41,7 @@ T03 implements the document storage foundation with `.tabi.lock`, `.backups/`, r
 
 ## Core services
 
+- `LofiService`: validate/save versioned scene recipes; convert input seconds to integer frames; create content-addressed templates and ordinary episodes through shared services.
 - `AssetService`: import/probe/normalize/approve/version/relink.
 - `EpisodeService`: load/save/migrate/validate/compile and calculate duration.
 - `TimelineEvaluator`: deterministic pose, props, curves, visibility and positions for a global frame.

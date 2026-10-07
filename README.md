@@ -13,6 +13,10 @@ media and project files remain on disk. This route uses the existing local tools
 paid apps, models or credit top-ups. Real TABI artwork, masks, loops, Tokyo strips and music
 still need preparation and visual/rights approval before publication.
 
+The refactor passes 298 core checks, 62 actual-media integrations and six frontend checks.
+Normal Chrome scene creation, playback, 1080p export/download and reuse are verified with
+synthetic assets. See [acceptance evidence](docs/evidence/l04-lofi-refactor.json).
+
 | Start here | |
 | --- | --- |
 | Make a video | [Installation](docs/32-installation.md), [asset workflow](docs/37-operations.md#make-a-lo-fi-video) |
