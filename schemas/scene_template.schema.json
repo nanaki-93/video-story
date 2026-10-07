@@ -250,10 +250,22 @@
             "tile_strip",
             "scheduled_sprite",
             "character",
-            "effect"
+            "effect",
+            "loop_overlay"
           ],
           "title": "Kind",
           "type": "string"
+        },
+        "loop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LoopTiming"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "mask": {
           "anyOf": [
@@ -298,6 +310,31 @@
         "kind"
       ],
       "title": "LayerSlot",
+      "type": "object"
+    },
+    "LoopTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "first_frame": {
+          "default": 0,
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "repeat_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Repeat Frames",
+          "type": "integer"
+        },
+        "source": {
+          "$ref": "#/$defs/FrameInterval"
+        }
+      },
+      "required": [
+        "source",
+        "repeat_frames"
+      ],
+      "title": "LoopTiming",
       "type": "object"
     },
     "ParameterLimit": {

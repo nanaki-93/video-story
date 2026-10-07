@@ -217,9 +217,12 @@ Delete Flow prompting, credits, retries, native imports, queue, release adapter,
 
 ## L02 — Compile reusable lo-fi scenes through the shared renderer
 
-**Status** [ ]
+**Status** [x] 298 core checks, 14 focused core/actual-media checks, 63 schemas and four frontend checks pass. See `docs/evidence/l02-lofi-render.json`.
 
 **Target files**
+- `src/tabi/core/authoring.py`
+- `src/tabi/core/fixture_lofi.py`
+- `tests/unit/test_contracts.py`
 - `src/tabi/core/models/lofi.py`
 - `src/tabi/core/models/scenes.py`
 - `src/tabi/core/models/__init__.py`
@@ -452,4 +455,3 @@ Run all engineering gates and actual-media checks, verify representative normal 
 
 **Verification command**
 `UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml make check web-check web-build package test-media`
-

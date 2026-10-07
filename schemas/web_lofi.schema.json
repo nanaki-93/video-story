@@ -1,0 +1,363 @@
+{
+  "$defs": {
+    "Approval": {
+      "additionalProperties": false,
+      "properties": {
+        "content_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Content Sha256"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "reviewed_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewed At"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        },
+        "status": {
+          "default": "draft",
+          "enum": [
+            "draft",
+            "review",
+            "approved",
+            "rejected"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "title": "Approval",
+      "type": "object"
+    },
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "FrameInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_frame": {
+          "minimum": 0,
+          "title": "End Frame",
+          "type": "integer"
+        },
+        "start_frame": {
+          "minimum": 0,
+          "title": "Start Frame",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_frame",
+        "end_frame"
+      ],
+      "title": "FrameInterval",
+      "type": "object"
+    },
+    "FrameRate": {
+      "additionalProperties": false,
+      "properties": {
+        "den": {
+          "exclusiveMinimum": 0,
+          "title": "Den",
+          "type": "integer"
+        },
+        "num": {
+          "exclusiveMinimum": 0,
+          "title": "Num",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ],
+      "title": "FrameRate",
+      "type": "object"
+    },
+    "LofiScene": {
+      "additionalProperties": false,
+      "properties": {
+        "approval": {
+          "$ref": "#/$defs/Approval"
+        },
+        "document_type": {
+          "const": "lofi_scene",
+          "default": "lofi_scene",
+          "title": "Document Type",
+          "type": "string"
+        },
+        "fps": {
+          "$ref": "#/$defs/FrameRate"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "master": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        },
+        "overlays": {
+          "items": {
+            "$ref": "#/$defs/OverlayLayer"
+          },
+          "maxItems": 8,
+          "title": "Overlays",
+          "type": "array"
+        },
+        "revision": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "scenery": {
+          "items": {
+            "$ref": "#/$defs/SceneryLayer"
+          },
+          "maxItems": 3,
+          "title": "Scenery",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "speed": {
+          "default": 24.0,
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Speed",
+          "type": "number"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "version": {
+          "default": "1.0",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+          "title": "Version",
+          "type": "string"
+        },
+        "window_mask": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "title",
+        "master"
+      ],
+      "title": "LofiScene",
+      "type": "object"
+    },
+    "LoopTiming": {
+      "additionalProperties": false,
+      "properties": {
+        "first_frame": {
+          "default": 0,
+          "minimum": 0,
+          "title": "First Frame",
+          "type": "integer"
+        },
+        "repeat_frames": {
+          "exclusiveMinimum": 0,
+          "title": "Repeat Frames",
+          "type": "integer"
+        },
+        "source": {
+          "$ref": "#/$defs/FrameInterval"
+        }
+      },
+      "required": [
+        "source",
+        "repeat_frames"
+      ],
+      "title": "LoopTiming",
+      "type": "object"
+    },
+    "OverlayLayer": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "mask": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "opacity": {
+          "default": 1.0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Opacity",
+          "type": "number"
+        },
+        "timing": {
+          "$ref": "#/$defs/LoopTiming"
+        }
+      },
+      "required": [
+        "id",
+        "asset",
+        "timing"
+      ],
+      "title": "OverlayLayer",
+      "type": "object"
+    },
+    "SceneryLayer": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/AssetRef"
+        },
+        "depth": {
+          "default": 1.0,
+          "maximum": 4,
+          "minimum": 0,
+          "title": "Depth",
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "repeat_width": {
+          "exclusiveMinimum": 0,
+          "title": "Repeat Width",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "asset",
+        "repeat_width"
+      ],
+      "title": "SceneryLayer",
+      "type": "object"
+    }
+  },
+  "$id": "urn:tabi:web:1:web_lofi",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "archived_flow_present": {
+      "default": false,
+      "title": "Archived Flow Present",
+      "type": "boolean"
+    },
+    "document_type": {
+      "const": "web_lofi",
+      "default": "web_lofi",
+      "title": "Document Type",
+      "type": "string"
+    },
+    "scenes": {
+      "items": {
+        "$ref": "#/$defs/LofiScene"
+      },
+      "title": "Scenes",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "scenes"
+  ],
+  "title": "WebLofi",
+  "type": "object"
+}

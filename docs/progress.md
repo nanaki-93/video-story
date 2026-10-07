@@ -2,6 +2,20 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## L02 — Reusable scenes and independent loops
+
+The new scene service saves reusable master/mask/scenery/overlay configurations and creates
+ordinary episodes through the shared compiler and jobs. Python converts timing seconds to
+frames and fits complete selected music in samples. Overlay gaps and repeats use global time;
+chunk boundaries and nonzero seeks do not reset them. Changing a recipe preserves existing
+video snapshots. API and CLI use the same strict, revision-guarded service.
+
+Verification: 298 core checks, 14 focused core/actual-FFmpeg checks, four frontend checks,
+63 schemas, formatting, TypeScript and build pass. Pixel comparisons cover stable artwork,
+independent scenery/blinks and nonzero chunk joins. [Evidence](evidence/l02-lofi-render.json).
+Fixtures are synthetic geometry and silence; real-art quality remains pending. L03 supplies
+the normal UI and L04 verifies browser export, packaging and preservation.
+
 ## L01 — Retired Flow execution; shared asset engine retained
 
 Marco authorizes the lo-fi refactor and deleting unnecessary old code. Removed Flow prompting,

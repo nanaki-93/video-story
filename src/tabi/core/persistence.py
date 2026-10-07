@@ -87,6 +87,7 @@ def document_path(document: DraftDocument) -> str:
     if kind in folders:
         return f"{folders[kind]}/{document.id}.json"
     versioned = {
+        "lofi_scene": "lofi",
         "asset": "assets",
         "scene_template": "templates",
         "action_pack": "actions",

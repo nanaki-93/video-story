@@ -294,6 +294,7 @@ def test_root_registry_is_complete(project_data, snapshot_data):
         "job_progress",
         "audio_edit_plan",
         "preview_selection",
+        "lofi_scene",
         "project",
         "asset",
         "episode",

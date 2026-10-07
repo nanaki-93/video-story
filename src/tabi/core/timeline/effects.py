@@ -11,6 +11,22 @@ def visible_canvas(asset):
 def validate_effects(scene, template, timeline, resolve):
     targets = {slot.effect.strength_target for slot in template.slots if slot.effect}
     for slot in template.slots:
+        if slot.loop is not None:
+            source = resolve(scene.slot_assignments.get(slot.id, slot.asset), "asset")
+            if (
+                source.kind != "sequence"
+                or visible_canvas(source) != template.design_canvas
+                or source.probe.fps != timeline.episode.fps
+                or source.probe.alpha_mode not in {"straight", "premultiplied"}
+                or slot.loop.source.end_frame > source.probe.frame_count
+            ):
+                raise ValueError(
+                    "loop overlay needs aligned transparent PNG frames and matching fps"
+                )
+            if slot.mask:
+                mask = resolve(slot.mask, "asset")
+                if mask.kind != "mask" or visible_canvas(mask) != template.design_canvas:
+                    raise ValueError("loop overlay mask must match the scene canvas")
         effect = slot.effect
         if effect is None:
             continue

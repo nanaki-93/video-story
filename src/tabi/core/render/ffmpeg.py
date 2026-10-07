@@ -245,6 +245,8 @@ class GraphBuilder:
                 base = self.overlay(base, self.landmarks(scene, slot, start, end, width, height))
             elif slot.kind == "effect":
                 base = self.overlay(base, self.effect(scene, slot, start, end, width, height))
+            elif slot.kind == "loop_overlay":
+                base = self.overlay(base, self.loop_overlay(scene, slot, start, end, width, height))
             elif slot.kind == "character":
                 if scene.slot_assignments.get(slot.id) is not None or slot.asset is not None:
                     raise RenderError(
@@ -300,6 +302,21 @@ class GraphBuilder:
             f"setsar=1,trim=end_frame={end - start},setpts=PTS-STARTPTS[{out}]"
         )
         return out
+
+    def loop_overlay(self, scene, slot, start, end, width, height):
+        asset = self.registry.get(scene.slot_assignments.get(slot.id, slot.asset), "asset")
+        folder = self.root / f"overlay-{self.counter}-{len(self.inputs)}"
+        folder.mkdir()
+        blank = folder / "blank.png"
+        Image.new("RGBA", (width, height), (0, 0, 0, 0)).save(blank)
+        for local, frame in enumerate(range(start, end)):
+            checkpoint()
+            source = slot.loop.source_at(frame)
+            prepared = blank if source is None else self.normalizer.prepare(asset, source)
+            os.link(prepared, folder / f"{local:06}.png")
+        raw, layer = self.input(folder / "%06d.png", loop=False), self.label()
+        self.filter(f"[{raw}]format=rgba,setparams=alpha_mode=straight[{layer}]")
+        return self.mask_and_opacity(layer, slot, (width, height))
 
     def effect(self, scene, slot, start, end, width, height):
         spec = slot.effect
@@ -532,6 +549,7 @@ class FFmpegRenderer:
     capabilities = frozenset(
         {
             "still",
+            "loop_overlay",
             "character",
             "grayscale_mask",
             "straight_alpha",

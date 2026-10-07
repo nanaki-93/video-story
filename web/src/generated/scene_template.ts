@@ -35,7 +35,9 @@ export type EndFrame = number;
 export type StartFrame = number;
 export type StrengthTarget = string;
 export type Id2 = string;
-export type Kind1 = "still" | "tile_strip" | "scheduled_sprite" | "character" | "effect";
+export type Kind1 = "still" | "tile_strip" | "scheduled_sprite" | "character" | "effect" | "loop_overlay";
+export type FirstFrame = number;
+export type RepeatFrames = number;
 export type Opacity = number;
 export type TilePeriod = number | null;
 export type Z = number;
@@ -116,6 +118,7 @@ export interface LayerSlot {
   effect?: EffectSpec | null;
   id: Id2;
   kind: Kind1;
+  loop?: LoopTiming | null;
   mask?: AssetRef | null;
   opacity?: Opacity;
   tile_period?: TilePeriod;
@@ -147,4 +150,13 @@ export interface EffectSpec {
 export interface FrameInterval {
   end_frame: EndFrame;
   start_frame: StartFrame;
+}
+/**
+ * This interface was referenced by `SceneTemplate`'s JSON-Schema
+ * via the `definition` "LoopTiming".
+ */
+export interface LoopTiming {
+  first_frame?: FirstFrame;
+  repeat_frames: RepeatFrames;
+  source: FrameInterval;
 }

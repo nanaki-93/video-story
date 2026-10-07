@@ -13,6 +13,7 @@ from tabi.cli.backup import add_backup_commands, run_backup_command
 from tabi.cli.cache import add_cache_commands, run_cache_command
 from tabi.cli.episodes import add_episode_commands, run_episode_command
 from tabi.cli.jobs import add_job_commands, run_job_command
+from tabi.cli.lofi import add_lofi_command, run_lofi_command
 from tabi.cli.logging import configure_logging
 from tabi.cli.preferences import add_preferences_commands, run_preferences_command
 from tabi.cli.publishing import add_release_commands, run_release_command
@@ -45,6 +46,7 @@ def main(argv: list[str] | None = None) -> int:
     add_cache_commands(commands)
     add_episode_commands(commands)
     add_job_commands(commands)
+    add_lofi_command(commands)
     add_release_commands(commands)
     add_preferences_commands(commands)
     web = commands.add_parser("web", help="Launch the owned, authenticated local web workspace")
@@ -181,9 +183,13 @@ def main(argv: list[str] | None = None) -> int:
         logger.error("configuration_error: %s", error)
         return 2
     logger.info("configuration_resolved")
-    if args.command in {"author", "preferences"}:
+    if args.command in {"author", "preferences", "lofi"}:
         try:
-            adapter = run_author_command if args.command == "author" else run_preferences_command
+            adapter = {
+                "author": run_author_command,
+                "preferences": run_preferences_command,
+                "lofi": run_lofi_command,
+            }[args.command]
             return adapter(args, settings)
         except (ValueError, DocumentError, StorageError, OSError, ToolError) as error:
             logger.error("authoring_operation_failed: %s", error)

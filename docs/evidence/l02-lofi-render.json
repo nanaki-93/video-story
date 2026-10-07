@@ -1,0 +1,25 @@
+{
+  "task": "L02",
+  "date": "2026-10-07",
+  "status": "passed",
+  "behavior": [
+    "Versioned reusable scene recipes validate fixed illustration, white-visible masks, cyclic scenery padding and aligned transparent PNG loops.",
+    "Python compiles duration and timing seconds into integer frames, fits full music at sample precision, and reuses the shared renderer and queue.",
+    "Existing videos keep content-addressed scene templates when a recipe draft changes. Stale writes and invalid media fail before episode creation."
+  ],
+  "checks": {
+    "core": "298 passed, 62 media checks skipped; Ruff and 63 schemas pass",
+    "focused_actual_media": "14 passed (12 core/API/CLI, 2 actual FFmpeg pixel/chunk tests)",
+    "web": "4 tests, contracts, TypeScript, formatting and production build pass"
+  },
+  "render_evidence": "tests/integration/test_lofi_render.py compares master, blink and scenery pixels at nine global frames, plus all frames in nonzero range 11\u201335 against two independently rendered chunks.",
+  "limits": [
+    "Fixtures are original synthetic geometry and silence, never approved TABI artwork.",
+    "Real art, mask edge quality, authored blink quality and diverse Tokyo strips still require preparation and visual review.",
+    "Normal browser workflow and package acceptance are L03\u2013L04."
+  ],
+  "logs": [
+    ".local/l01-lofi-refactor/l02-check.log",
+    ".local/l01-lofi-refactor/l02-web-check.log"
+  ]
+}

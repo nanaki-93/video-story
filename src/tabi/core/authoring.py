@@ -161,6 +161,9 @@ class AuthoringService:
         return self.store.save_draft(doc, expected_revision=None)
 
     def create_episode(self, request: NewEpisode):
+        return self.store.save_draft(self.prepare_episode(request), expected_revision=None)
+
+    def prepare_episode(self, request: NewEpisode):
         request = NewEpisode.model_validate(request)
         template = self.store.read(
             f"registry/templates/{request.template.id}/{request.template.version}.json"
@@ -208,7 +211,7 @@ class AuthoringService:
         )
         # Episode files are authoritative. A crash between independent index writes must not
         # hide a saved draft, so the catalog enumerates these files rather than episode_ids.
-        return self.store.save_draft(doc, expected_revision=None)
+        return doc
 
     def asset_version(
         self, reference, *, version, provenance: Provenance, compatibility: Compatibility

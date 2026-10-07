@@ -26,12 +26,19 @@ from tabi.core.models.base import (
     Version,
 )
 from tabi.core.models.cache import CacheInventory, StorageEstimate
+from tabi.core.models.lofi import LofiScene
 from tabi.core.models.portability import BackupManifest
 from tabi.core.models.preview import PreviewSelection
 from tabi.core.models.production import OutputProfile, RenderJob
 from tabi.core.models.publishing import ReleasePreparation
 from tabi.core.models.rendering import RenderReport
 from tabi.core.models.settings import AppPreferences
+
+
+class WebLofi(Document):
+    document_type: Literal["web_lofi"] = "web_lofi"
+    scenes: list[LofiScene]
+    archived_flow_present: bool = False
 
 
 class AudioSource(Model):
@@ -370,6 +377,7 @@ class WorkerReady(Model):
 
 
 WEB_SCHEMAS = {
+    "web_lofi": WebLofi,
     "web_releases": WebReleases,
     "web_backup": WebBackup,
     "web_render_plan": WebRenderPlan,

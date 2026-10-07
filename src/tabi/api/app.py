@@ -209,6 +209,9 @@ def create_app(runtime, origin, web_root, *, drive_jobs=True):
     from .release import routes as release_routes
 
     app.include_router(release_routes(runtime))
+    from .lofi import routes as lofi_routes
+
+    app.include_router(lofi_routes(runtime))
 
     @app.api_route("/{path:path}", methods=["GET", "HEAD"])
     def static(path: str, request: Request):

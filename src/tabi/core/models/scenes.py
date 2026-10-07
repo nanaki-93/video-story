@@ -81,10 +81,30 @@ class EffectSpec(Model):
         return self
 
 
+class LoopTiming(Model):
+    source: FrameInterval
+    repeat_frames: PositiveInt
+    first_frame: Frame = 0
+
+    @model_validator(mode="after")
+    def whole_source(self) -> Self:
+        if self.repeat_frames < self.source.end_frame - self.source.start_frame:
+            raise ValueError("repeat interval cannot truncate the prepared animation")
+        return self
+
+    def source_at(self, global_frame: int) -> int | None:
+        if global_frame < self.first_frame:
+            return None
+        phase = (global_frame - self.first_frame) % self.repeat_frames
+        if phase >= self.source.end_frame - self.source.start_frame:
+            return None
+        return self.source.start_frame + phase
+
+
 class LayerSlot(Model):
     id: Identifier
     z: Frame
-    kind: Literal["still", "tile_strip", "scheduled_sprite", "character", "effect"]
+    kind: Literal["still", "tile_strip", "scheduled_sprite", "character", "effect", "loop_overlay"]
     asset: AssetRef | None = None
     mask: AssetRef | None = None
     anchor: Identifier | None = None
@@ -92,9 +112,14 @@ class LayerSlot(Model):
     tile_period: PositiveInt | None = None
     opacity: FractionValue = 1.0
     effect: EffectSpec | None = Field(default=None, exclude_if=lambda value: value is None)
+    loop: LoopTiming | None = Field(default=None, exclude_if=lambda value: value is None)
 
     @model_validator(mode="after")
     def slot_requirements(self) -> Self:
+        if (self.kind == "loop_overlay") != (self.loop is not None):
+            raise ValueError("loop overlays require explicit source and repeat timing")
+        if self.loop is not None and (self.asset is None or self.anchor is not None):
+            raise ValueError("loop overlays use an aligned scene-sized source")
         if self.kind == "character" and self.anchor is None:
             raise ValueError("character slot requires a declared anchor")
         if self.kind == "tile_strip" and self.tile_period is None:

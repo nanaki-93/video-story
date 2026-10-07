@@ -259,7 +259,9 @@ export type DefaultStrength = number;
 export type Kind3 = "tint" | "rain" | "reflection";
 export type StrengthTarget = string;
 export type Id15 = string;
-export type Kind4 = "still" | "tile_strip" | "scheduled_sprite" | "character" | "effect";
+export type Kind4 = "still" | "tile_strip" | "scheduled_sprite" | "character" | "effect" | "loop_overlay";
+export type FirstFrame = number;
+export type RepeatFrames = number;
 export type Opacity = number;
 export type TilePeriod = number | null;
 export type Z = number;
@@ -835,6 +837,7 @@ export interface LayerSlot {
   effect?: EffectSpec | null;
   id: Id15;
   kind: Kind4;
+  loop?: LoopTiming | null;
   mask?: AssetRef | null;
   opacity?: Opacity;
   tile_period?: TilePeriod;
@@ -850,4 +853,13 @@ export interface EffectSpec {
   kind: Kind3;
   loop?: FrameInterval | null;
   strength_target: StrengthTarget;
+}
+/**
+ * This interface was referenced by `WebCatalog`'s JSON-Schema
+ * via the `definition` "LoopTiming".
+ */
+export interface LoopTiming {
+  first_frame?: FirstFrame;
+  repeat_frames: RepeatFrames;
+  source: FrameInterval;
 }
