@@ -1,9 +1,5 @@
 // Navigation metadata. Every listed page is backed by the local worker.
 export const layouts = {
-  flow: {
-    title: "Create video",
-    subtitle: "A saved workflow from TABI reference to finished video.",
-  },
   projects: {
     title: "Projects",
     subtitle: "Your local videos and working folders.",

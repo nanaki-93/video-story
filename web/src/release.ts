@@ -22,7 +22,6 @@ export function releasePage() {
     ]);
     if (!active()) return;
     const verified = jobs.jobs.filter((j) => j.state === "verified");
-    const flow = saved.flow_exports || [];
     const select = choice(
       [
         ["", "New release preparation"],
@@ -48,13 +47,6 @@ export function releasePage() {
       identity.disabled = !!prep;
       const job = choice(
         [
-          ...flow.map(
-            (e) =>
-              [
-                `flow:${e.id}`,
-                `Flow video · ${e.inputs.duration_frames} verified frames`,
-              ] as [string, string],
-          ),
           ...verified.map(
             (j) =>
               [
@@ -95,32 +87,6 @@ export function releasePage() {
       claims.rows = 3;
       claims.value = prep?.claim_notes || "";
       const concept = input(prep?.concept_notes || "");
-      const models = input(
-        (prep?.flow_terms?.provider_models || []).join("; "),
-      );
-      const termsReviewer = input(prep?.flow_terms?.reviewer || "");
-      const termsNote = input(prep?.flow_terms?.note || "");
-      const termsLinks = element("textarea");
-      termsLinks.value = (
-        prep?.flow_terms?.source_links || [
-          "https://support.google.com/flow/answer/16353333?hl=en",
-          "https://policies.google.com/terms",
-        ]
-      ).join("\n");
-      const termsChecked = input("", "checkbox");
-      termsChecked.checked = prep?.flow_terms?.commercial_use === "confirmed";
-      const terms = element("details");
-      terms.append(
-        element("summary", { text: "Flow commercial-use review" }),
-        element("p", {
-          text: "Review current official terms for the exact models used and your existing entitlement. This records your review; the app does not grant rights or YouTube monetization.",
-        }),
-        field("Models actually used (semicolons)", models),
-        field("Official sources (one Google link per line)", termsLinks),
-        field("Terms reviewer", termsReviewer),
-        field("Terms review note", termsNote),
-        field("I checked commercial-use permission today", termsChecked),
-      );
       const outcome = element("div");
       const fields = [
         identity,
@@ -133,11 +99,6 @@ export function releasePage() {
         links,
         claims,
         concept,
-        models,
-        termsReviewer,
-        termsNote,
-        termsLinks,
-        termsChecked,
       ];
       for (const item of fields)
         item.addEventListener("input", () => {
@@ -157,7 +118,6 @@ export function releasePage() {
           field("Public title", title),
           field("Public description", description),
           field("Public disclosure notes", disclosure),
-          terms,
           field("Approved thumbnail", thumbnail),
         ],
         async () => {
@@ -181,28 +141,6 @@ export function releasePage() {
                   job_id: job.value.split(":")[1],
                   source_kind: job.value.split(":")[0],
                   concept_notes: concept.value,
-                  flow_terms:
-                    job.value.startsWith("flow:") &&
-                    models.value.trim() &&
-                    termsReviewer.value.trim() &&
-                    termsNote.value.trim()
-                      ? {
-                          provider_models: models.value
-                            .split(";")
-                            .map((v) => v.trim())
-                            .filter(Boolean),
-                          commercial_use: termsChecked.checked
-                            ? "confirmed"
-                            : "pending",
-                          reviewed_at: new Date().toISOString(),
-                          reviewer: termsReviewer.value,
-                          note: termsNote.value,
-                          source_links: termsLinks.value
-                            .split("\n")
-                            .map((v) => v.trim())
-                            .filter(Boolean),
-                        }
-                      : null,
                   title: title.value,
                   description: description.value,
                   disclosure_notes: disclosure.value,
@@ -358,7 +296,7 @@ export function releasePage() {
         field("Private claim notes", claims),
       );
       edit.append(advanced);
-      if (!verified.length && !flow.length)
+      if (!verified.length)
         content.replaceChildren(
           element("p", {
             text: "No verified video yet. Finish a render before preparing a release.",

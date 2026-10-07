@@ -10,7 +10,6 @@ import { previewPage } from "./preview";
 import { audioPage } from "./audio";
 import { rendersPage, settingsPage } from "./production";
 import { releasePage } from "./release";
-import { flowPage } from "./flow";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -27,7 +26,7 @@ for (const [id, layout] of Object.entries(layouts)) {
   const link = element("a", { text: layout.title });
   link.href = `#${id}`;
   links.set(id as PageId, link);
-  if (["flow", "projects"].includes(id)) navigation.append(link);
+  if (["setup", "projects"].includes(id)) navigation.append(link);
   else advanced.append(link);
 }
 navigation.append(advanced);
@@ -35,7 +34,7 @@ sidebar.append(
   navigation,
   element("p", {
     className: "sidebar-note",
-    text: "Files and music stay on this Mac.\nGeneration happens in Google Flow.",
+    text: "Reusable artwork and music.\nRendered locally on this Mac.",
   }),
 );
 const main = element("main", { id: "workspace" });
@@ -49,7 +48,6 @@ document
     main.focus();
   });
 const pages = {
-  flow: flowPage,
   projects: projectsPage,
   setup: setupPage,
   assets: assetsPage,
@@ -71,7 +69,7 @@ function navigate() {
   const requested = location.hash.slice(1);
   const page: PageId = Object.hasOwn(layouts, requested)
     ? (requested as PageId)
-    : "flow";
+    : "projects";
   for (const [id, link] of links) {
     if (id === page) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");

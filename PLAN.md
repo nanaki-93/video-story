@@ -4,6 +4,12 @@ Tabi Story Studio is a local app for making reviewed TABI videos. Python owns pr
 media, timing, rendering and delivery; the TypeScript interface guides the work. Music
 composition and publishing remain separate.
 
+## Asset refactor in progress
+
+Marco authorizes this refactor on 7 October 2026, including deletion of unnecessary old code.
+L01 removes the Flow execution path; L02–L04 implement and verify the asset workflow. The
+[active task index](docs/tasks/INDEX.md) supersedes the historical Flow instructions below.
+
 ## Proposed asset route for the lo-fi channel
 
 On 7 October Marco confirmed the channel is for lo-fi music and accepts reduced movement

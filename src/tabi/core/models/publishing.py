@@ -2,7 +2,7 @@
 
 from typing import Literal, Self
 
-from pydantic import AwareDatetime, Field, HttpUrl, model_validator
+from pydantic import Field, HttpUrl, model_validator
 
 from .assets import CommercialUse
 from .base import (
@@ -29,33 +29,11 @@ class Chapter(Model):
     title: Text
 
 
-class FlowCommercialReview(Model):
-    provider_models: list[Text] = Field(min_length=1)
-    commercial_use: CommercialUse = "pending"
-    reviewed_at: AwareDatetime
-    reviewer: Text
-    source_links: list[HttpUrl] = Field(min_length=1)
-    note: Text
-
-    @model_validator(mode="after")
-    def official_sources(self):
-        if any(
-            link.host not in {"support.google.com", "policies.google.com"}
-            for link in self.source_links
-        ):
-            raise ValueError("Flow terms evidence must link to official Google sources")
-        unique(self.provider_models, "reviewed provider models")
-        return self
-
-
 class ReleasePreparation(DraftDocument):
     document_type: Literal["release_preparation"] = "release_preparation"
     job_id: Identifier
-    source_kind: Literal["layered", "flow"] = Field(
+    source_kind: Literal["layered"] = Field(
         default="layered", exclude_if=lambda value: value == "layered"
-    )
-    flow_terms: FlowCommercialReview | None = Field(
-        default=None, exclude_if=lambda value: value is None
     )
     concept_notes: str = Field(default="", exclude_if=lambda value: not value)
     title: Text

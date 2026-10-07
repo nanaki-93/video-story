@@ -2,6 +2,21 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## L01 — Retired Flow execution; shared asset engine retained
+
+Marco authorizes the lo-fi refactor and deleting unnecessary old code. Removed Flow prompting,
+credits, retries, native clip review/import, separate export queue and release adapter, plus
+obsolete generation document types and their dedicated tests. Earlier task history is archived.
+Saved Flow data is never resumed or rewritten; its exports and media remain local. A small
+read-only preference type preserves older settings without executing a generator.
+
+Verification: 286 core checks, 61 schemas, four frontend checks and production build pass.
+Three loopback tests first hit sandbox restrictions and passed with authorized local sockets.
+The retirement test opens an old project without mutating its saved records or queued exports.
+All 669 protected artwork/media/project files (1,556,776,706 bytes) match the preparation hashes
+in `.local/l01-lofi-refactor/preservation.json`. No MP4 is tracked. L02 adds the new scene recipes;
+the asset UI and full real-media/browser acceptance remain pending.
+
 ## Lo-fi asset strategy — reduced movement and loops accepted as a direction
 
 Marco clarifies that the channel is for lo-fi music and accepts less movement and loops.

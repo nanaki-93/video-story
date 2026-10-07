@@ -1,5 +1,5 @@
 // Generate both browser types and precompiled validators from Python-owned schemas.
-import { readFile, readdir, mkdir, writeFile } from "node:fs/promises";
+import { readFile, readdir, mkdir, writeFile, unlink } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { compile } from "json-schema-to-typescript";
 import Ajv2020 from "ajv/dist/2020.js";
@@ -62,3 +62,15 @@ await emit(
 console.log(
   `${checking ? "Checked" : "Generated"} ${names.length} browser contracts and validators`,
 );
+
+const expected = new Set([
+  ...names.map((name) => name.replace(".schema.json", ".ts")),
+  "documents.ts",
+  "validators.cjs",
+  "validators.d.cts",
+]);
+for (const name of await readdir(output)) {
+  if (expected.has(name)) continue;
+  if (checking) throw new Error(`Retired generated contract remains: ${name}`);
+  await unlink(new URL(name, output));
+}

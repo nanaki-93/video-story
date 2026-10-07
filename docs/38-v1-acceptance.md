@@ -1,5 +1,13 @@
 # V1 implementation and acceptance
 
+## L01 asset refactor foundation — 7 October 2026
+
+Retired Flow execution and its dedicated contracts/UI/tests. Shared renderer, asset registry,
+audio, jobs, security and release review remain. 286 core checks, four frontend checks, 61
+schemas and web build pass. The new reusable-scene workflow still needs L02–L04 verification.
+All 669 protected input/project/media files retain their hashes. The old creative rejections
+below remain valid; software retirement does not create an approved real-art pack.
+
 ## U06 subsequent user review — creative gate failed, 7 October 2026
 
 Marco rejects the 45-second partial preview for exterior jumps and an eye issue around ten

@@ -77,16 +77,12 @@ def document_path(document: DraftDocument) -> str:
     if kind == "project":
         return "project.json"
     folders = {
-        "flow_episode": "flow/episodes",
-        "flow_attempt": "flow/attempts",
-        "flow_export": "flow/exports",
         "app_preferences": "preferences",
         "preview_selection": "previews",
         "episode": "episodes",
         "render_job": "jobs",
         "release_record": "releases",
         "release_preparation": "publishing",
-        "generation_run": "generation/runs",
     }
     if kind in folders:
         return f"{folders[kind]}/{document.id}.json"
@@ -94,7 +90,6 @@ def document_path(document: DraftDocument) -> str:
         "asset": "assets",
         "scene_template": "templates",
         "action_pack": "actions",
-        "comfy_workflow": "workflows",
     }
     if kind in versioned:
         return f"registry/{versioned[kind]}/{document.id}/{document.version}.json"

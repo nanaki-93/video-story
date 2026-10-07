@@ -5,9 +5,8 @@ import mimetypes
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import TypeAdapter
 
-from tabi.core.authoring import AuthoringService
 from tabi.core.models.base import Identifier
-from tabi.core.models.publishing import ReleaseBundleReport, ReleasePreparation
+from tabi.core.models.publishing import ReleaseBundleReport
 from tabi.core.portability import BackupService
 from tabi.core.publishing import ReleaseService
 
@@ -32,14 +31,7 @@ def routes(runtime):
     def preparations(handle: str):
         return WebReleases(
             schema_version="1.0",
-            flow_exports=[
-                e
-                for e in runtime.flow_service(runtime.get(handle)).exports()
-                if e.state == "verified"
-            ],
-            preparations=AuthoringService(runtime.get(handle).assets).documents(
-                "publishing", ReleasePreparation
-            ),
+            preparations=service(handle).preparations(),
         )
 
     @router.post("/projects/{handle}/releases")
