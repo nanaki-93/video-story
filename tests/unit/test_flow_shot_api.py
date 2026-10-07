@@ -301,13 +301,31 @@ def test_section_controls_keep_source_and_selected_playback_distinct(workspace, 
             raise FlowError("Stale request")
         clip = self.service.candidate(current, candidate_id)
         self._validate_section(current, clip, kwargs["trim"], kwargs["media_sha256"])
-        packet_path = "sources/section-unit-packet.json"
+        suffix = f"{kwargs['trim'].start_frame}-{kwargs['trim'].end_frame}"
+        packet_path = f"sources/section-unit-packet-{suffix}.json"
+
+        def artifact(kind, extension):
+            content = f"{kind}-{suffix}".encode()  # Unit transport bytes, not media.
+            location = f"sources/{kind}-{suffix}.{extension}"
+            (service.store.root / location).write_bytes(content)
+            return HashedFile(
+                location=MediaPath(path=location),
+                sha256=hashlib.sha256(content).hexdigest(),
+                size_bytes=len(content),
+            ).model_dump(mode="json")
+
         packet = {
             "candidate_sha256": clip.media.sha256,
             "candidate_trim": kwargs["trim"].model_dump(),
-            "selected_video": clip.media.model_dump(mode="json"),
-            "join_video": None,
-            "images": [],
+            "selected_video": artifact("selected", "mp4"),
+            "join_video": artifact("join", "mp4"),
+            "images": [
+                {
+                    "role": "candidate",
+                    "frame": kwargs["trim"].start_frame,
+                    "media": artifact("image", "png"),
+                }
+            ],
             "diagnostics": {"fixture": "unit transport only"},
             "review_checklist": [],
         }
@@ -324,7 +342,7 @@ def test_section_controls_keep_source_and_selected_playback_distinct(workspace, 
     assert response.status_code == 200, response.text
     view = response.json()
     assert calls[0][:2] == (identity, candidate.id)
-    assert view["candidate_url"].endswith("/selected")
+    assert view["candidate_url"].split("?")[0].endswith("/selected")
     assert view["candidate_source_url"].endswith("/video")
     assert view["episode"]["candidates"][-1]["trim"] == payload["trim"]
     assert client.get(view["candidate_url"]).status_code == 200
@@ -333,5 +351,36 @@ def test_section_controls_keep_source_and_selected_playback_distinct(workspace, 
         client.post(path + "/clips/foreign/section", json=payload, headers=headers).status_code
         == 400
     )
+    previous = view
+    response = client.post(
+        route,
+        json={
+            **payload,
+            "expected_revision": view["episode"]["revision"],
+            "trim": {"start_frame": 0, "end_frame": 180},
+        },
+        headers=headers,
+    )
+    assert response.status_code == 200, response.text
+    view = response.json()
+    old_urls = [
+        previous["candidate_url"],
+        previous["review"]["join_url"],
+        previous["review"]["images"][0]["url"],
+    ]
+    new_urls = [
+        view["candidate_url"],
+        view["review"]["join_url"],
+        view["review"]["images"][0]["url"],
+    ]
+    for old, new, kind in zip(old_urls, new_urls, ("selected", "join", "image"), strict=True):
+        assert old != new
+        content = f"{kind}-0-180".encode()
+        assert new.endswith(f"?v={hashlib.sha256(content).hexdigest()}")
+        assert client.get(new).content == content
+        assert client.get(old).status_code == 400
+        # Existing unversioned links remain usable, with the current bytes.
+        assert client.get(new.split("?")[0]).content == content
+    assert view["candidate_source_url"] == previous["candidate_source_url"]
     client.cookies.clear()
     assert client.get(view["candidate_url"]).status_code == 401

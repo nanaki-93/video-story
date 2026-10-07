@@ -2,6 +2,21 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## U06a — Refresh the selected review after trimming
+
+The real U06 trial found Chrome retaining an eight-second loaded preview after the app saved
+a correct 180-frame section. A page refresh loaded 7.5 seconds. Review video, join and image
+URLs now include their content hashes, so rebuilt artifacts get fresh browser identities.
+Stale requested hashes are rejected; authenticated unversioned links remain compatible.
+
+Six focused API checks, 383 core checks, 76 actual-media checks, eight frontend checks,
+68 contracts, Ruff, TypeScript, build and package pass. One optional private-media fixture
+is skipped. Real Chrome changes Yanaka from eight seconds to source frames 12–192 and plays
+the resulting 7.5 seconds without refreshing. Its two-second camera cut also plays to the end.
+Original sources remain unchanged. [Evidence](evidence/u06a-review-preview.json) includes
+the browser observation and logs. Safari remains untested. U06's full real video trial continues;
+this correction does not establish final creative approval or production throughput.
+
 ## U05 — Independent cinematic cuts without Flow extensions
 
 Marco explicitly selected independent cinematic shots with deliberate camera cuts. U04 still

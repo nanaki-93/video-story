@@ -1,5 +1,15 @@
 # V1 implementation and acceptance
 
+## U06a review-preview correction — 7 October 2026
+
+The real trial reproduced stale Chrome playback after a source-section edit. Review videos,
+joins and images now use content-versioned URLs; stale versions fail and authentication stays
+required. Six focused API checks, 383 core, 76 actual-media and eight frontend checks pass,
+with one optional private-media fixture skipped. Ruff, 68 contracts, TypeScript, build and
+package pass. Real Chrome loads and plays a 7.5-second Yanaka section after an eight-second
+source without a page refresh. [Evidence](evidence/u06a-review-preview.json) records the result.
+Safari and U06's final full-video creative/effort gates remain open.
+
 ## U05 independent-shot workflow — 7 October 2026
 
 Marco selected independent cinematic shots with deliberate cuts to remove repeated matching

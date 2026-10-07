@@ -113,17 +113,25 @@ def routes(runtime):
                 if candidate.review_packet:
                     packet = FlowReview(service, runtime.settings).read(candidate)
                     if packet.get("selected_video"):
-                        data["candidate_url"] = f"{base}/clips/{candidate.id}/selected"
+                        data["candidate_url"] = (
+                            f"{base}/clips/{candidate.id}/selected"
+                            f"?v={packet['selected_video']['sha256']}"
+                        )
                     data["review"] = {
                         "images": [
                             {
                                 "role": image["role"],
                                 "frame": image["frame"],
-                                "url": f"{base}/clips/{candidate.id}/images/{index}",
+                                "url": (
+                                    f"{base}/clips/{candidate.id}/images/{index}"
+                                    f"?v={image['media']['sha256']}"
+                                ),
                             }
                             for index, image in enumerate(packet["images"])
                         ],
-                        "join_url": f"{base}/clips/{candidate.id}/join"
+                        "join_url": (
+                            f"{base}/clips/{candidate.id}/join?v={packet['join_video']['sha256']}"
+                        )
                         if packet["join_video"]
                         else None,
                         "diagnostics": [
@@ -140,6 +148,11 @@ def routes(runtime):
         )
 
     def media_response(item, media, request, media_type="video/mp4"):
+        # Chrome can retain a loaded media resource even when a new player uses
+        # the same no-store URL. Bind rebuilt review URLs to their actual bytes.
+        version = request.query_params.get("v")
+        if version is not None and version != media.sha256:
+            raise ValueError("Review media changed; reload the saved review")
         store = (
             item.assets.store
             if media.location.root_id == "project"

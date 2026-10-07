@@ -1,5 +1,36 @@
 # Independent cinematic shots without generated joins
 
+## U06a — Refresh rebuilt review media in Chrome
+
+**Status** [x] Verified. Six section/API checks, 383 core checks, 76 actual-media checks (one optional private fixture skipped), eight frontend checks, 68 contracts, Ruff, TypeScript, build and package pass. Real Chrome changes an eight-second Yanaka source to frames 12–192 and loads/plays 7.5 seconds without refreshing the page. [Evidence](evidence/u06a-review-preview.json).
+
+**Behavior** Version selected-video, join and review-image URLs by their content hashes. Reject a stale requested hash while retaining authenticated unversioned links. Preserve original clips, selected ranges, review gates and episode files.
+
+**Verification** Extend the existing section API regression across two ranges, covering distinct URLs/current bytes/stale versions/source preservation/authentication. Run the relevant core and actual-media gates, then repeat the real Chrome section edit without a page refresh before committing U06a.
+
+## U06 — Test the independent plan with real TABI footage
+
+**Status** [ ] Real Flow trial in progress. All twelve real district/camera references are reviewed and imported. Three independent shots (22.5 seconds) are accepted through the app, including one corrected mouth take and one safe source-range adjustment; the fourth shot is generating. Displayed video cost so far: 500 / 1400 existing credits. No final creative or release approval.
+
+**Target files**
+- `.local/u06-real-independent/**` (ignored) — preparation/terms, task-owned worker, native references and clips, screenshots, read-only verification and output evidence; no MP4 enters Git.
+- `docs/evidence/u06-real-independent.json` (new), `docs/progress.md`, `docs/38-v1-acceptance.md`, `docs/tasks/INDEX.md` — actual attempt/credit/time results, full playback and remaining creative limits.
+
+**Inputs / dependencies**
+- U05 and Marco's explicit request on 7 October 2026 to test the workflow with a real TABI video.
+- Existing Google Flow Ultra allowance; observed 22849 credits. Recheck hosted commercial/output terms and the exact displayed models before generation. No new purchase, provider, subscription or music upload.
+
+**Trial rules**
+- Use the current twelve-shot 90-second independent preset. Prepare and compare each named starting image with the supplied TABI artwork, especially the Tokyo Bay ending, before motion.
+- Flow handles reference/video generation; normal video-story UI handles setup, references, saved prompts, imports, whole-clip/ending review, retries, trimming and export. No per-video API, JSON edits or custom assembly.
+- Observe costs before each request. Budget up to 1400 existing video credits (twelve 100-credit starts and at most two extra starts if still displayed), with one focused retry per failed shot. Record reference-generation costs separately and keep total use within the same ceiling.
+- Stop a repeated quality failure rather than conceal it; preserve attempts and any partial accepted run. Do not weaken visual reviews to claim a finished video.
+- Keep all original drafts and the 31 U05-preserved media hashes unchanged. New sources and outputs remain local and immutable.
+- Verify exact frames/PTS and source/output hashes, review full normal browser playback and record actual preparation, retries and operator effort. Software checks do not grant Marco's final aesthetic or publication approval.
+
+**Verification**
+Read-only independent full decode, timestamp/range/hash checks on the UI-produced export; actual Chrome playback and representative beginning/middle/ending evidence. Run focused software gates only if trial findings require implementation changes; otherwise retain U05's passing engineering gate. Commit the trial evidence with U06 while preserving staged IDE files.
+
 Marco reviewed U04 and explicitly selected independent cinematic shots with deliberate camera
 cuts. He does not want repeated attempts to find footage that matches the preceding clip.
 U04 improves scenery but still requires six native extensions. U05 removes that dependency
