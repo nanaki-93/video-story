@@ -5,11 +5,13 @@ Marco's final creative approval and the production gates below remain open.
 Marco permits Flow for generation; setup, trimming, review and export must use video-story.
 Implement and verify one step, then commit it. Preserve existing projects and source media.
 
-**Current step:** [U06](../tasks.md#u06--test-the-independent-plan-with-real-tabi-footage) continues
-the independent plan's real-footage trial. All twelve references and three motion shots are reviewed;
-the fourth shot is generating within the existing allowance. U06a fixes the stale Chrome preview found here.
+**Current trial:** [U06](../tasks.md#u06--test-the-independent-plan-with-real-tabi-footage) stopped
+at 45 accepted seconds after nine video requests and 900 credits. Two focused retries corrected mouths;
+a third quality rejection exceeded the predeclared extra-attempt allowance. The 90-second target
+remains unmet. All twelve references and all takes are preserved.
 
-**Latest implementation:** [U06a](../tasks.md#u06a--refresh-rebuilt-review-media-in-chrome) verifies
+**Latest implementation:** [U06b](../tasks.md#u06b--export-a-stopped-runs-accepted-footage-as-a-partial-preview)
+exports the accepted 45 seconds through the normal UI without altering the full plan. U06a verifies
 content-versioned section, join and image previews in real Chrome. U05 is engineering complete.
 Marco explicitly selected independent cinematic shots with deliberate
 camera cuts. New videos use twelve 7.5-second shots without native extensions or generated end-to-start
@@ -18,6 +20,7 @@ shot quality, preparation, credits and human effort still need measurement.
 
 | Task | Outcome | Status |
 | --- | --- | --- |
+| U06b | Labeled partial preview of a paused run's active accepted footage; original plan preserved | complete; core/media/frontend and real Chrome checks pass |
 | U06a | Content-versioned review previews refresh after selecting a different source section | complete; core/media/frontend and real Chrome checks pass |
 | U06 | Real TABI independent-shot trial, measured quality/credits/effort and full playback | in progress |
 | U05 | Independent short Tokyo shots and fixed editorial cuts; no Flow Extend | engineering complete; real quality/effort trial pending |

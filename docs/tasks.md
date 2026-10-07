@@ -1,5 +1,13 @@
 # Independent cinematic shots without generated joins
 
+## U06b — Export a stopped run's accepted footage as a partial preview
+
+**Status** [x] Verified. 386 core, 77 actual-media and eight frontend checks pass, with one optional private fixture skipped; schemas, formatting, TypeScript, build and package pass. Real Chrome exports, plays and downloads the 45-second accepted prefix, preserving the original 90-second plan and all nine takes. [Evidence](evidence/u06b-partial-preview.json).
+
+**Behavior** Add an explicit silent partial-preview export for a paused, incomplete run. Python freezes only the active accepted ranges and their actual duration, retaining the original recipe, source media, rejected takes and review gates. The normal UI labels playback/downloads as partial; full export remains strict. No per-video JSON edits, alternate assembly, provider generation or credit-limit changes.
+
+**Verification** Cover empty/running/complete runs, accepted-range and action validation, rejected/branched footage exclusion, immutable recipe/history, API authentication/revision checks, actual partial rendering and full-export rejection. Run the repository acceptance gates and export/play/download the real 45-second prefix through Chrome.
+
 ## U06a — Refresh rebuilt review media in Chrome
 
 **Status** [x] Verified. Six section/API checks, 383 core checks, 76 actual-media checks (one optional private fixture skipped), eight frontend checks, 68 contracts, Ruff, TypeScript, build and package pass. Real Chrome changes an eight-second Yanaka source to frames 12–192 and loads/plays 7.5 seconds without refreshing the page. [Evidence](evidence/u06a-review-preview.json).

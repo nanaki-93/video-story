@@ -100,6 +100,12 @@ cup actions now use both existing hands around the body and explicitly preserve 
 If the hard retry, extension or credit limits still stop progress, retain the evidence and
 review the plan. Do not label a short accepted run as a finished 90-second video.
 
+After **Stop and save progress**, **Export reviewed portion** creates a silent partial preview
+from the active accepted clips. It keeps the original target, remaining shots, attempts and
+reviews intact. Playback and downloads are labeled partial; rejected or pending takes are
+excluded. The complete-video export still requires every planned action and the full duration.
+CLI users can request the same service with `flow export --partial-preview` after pausing.
+
 The [U03 target-Mac trial](evidence/u03-tabi-app-trial.json) completed and downloaded a silent
 90-second draft through this path. It used 12 native clips, 24 app attempts and 1085 actual
 included credits, including 15 from earlier duplicate Flow submissions. All 2160 frames and

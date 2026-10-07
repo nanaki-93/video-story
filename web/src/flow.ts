@@ -459,14 +459,39 @@ export function flowPage(): Panel {
             void change("/prepare", { expected_revision: episode.revision }),
         ),
       );
-    else if (step.action === "paused")
+    else if (step.action === "paused") {
       body.append(
         button(
           "Resume video",
           () => void change("/resume", { expected_revision: episode.revision }),
         ),
       );
-    else if (step.action === "waiting_flow") {
+      if (
+        step.accepted_frames > 0 &&
+        step.accepted_frames < step.target_frames
+      ) {
+        const partial = section(
+          "Partial preview",
+          `Watch the ${seconds(step.accepted_frames)} seconds already reviewed. This silent preview keeps the full ${seconds(step.target_frames)}-second plan and saved progress.`,
+        );
+        partial.append(
+          button("Export reviewed portion", () => {
+            if (
+              (view.exports || []).some((e) =>
+                ["queued", "running"].includes(e.state),
+              )
+            ) {
+              status.textContent = "Wait for the current export to finish.";
+              return;
+            }
+            void change("/preview-exports", {
+              expected_revision: episode.revision,
+            });
+          }),
+        );
+        body.append(partial);
+      }
+    } else if (step.action === "waiting_flow") {
       const attempt = (episode.attempts || []).find(
         (a) => a.id === step.attempt_id,
       )!;
@@ -836,55 +861,64 @@ export function flowPage(): Panel {
         ),
       );
     for (const exportItem of view.exports || []) {
+      const partial = exportItem.inputs.duration_frames < step.target_frames;
       const box = section(
-        `Video export · ${exportItem.state}`,
+        `${partial ? "Partial preview" : "Video export"} · ${exportItem.state}`,
         exportItem.diagnostic || undefined,
       );
       if (exportItem.state === "verified") {
         const url = `/api/v1${path()}/exports/${exportItem.id}/video`;
-        box.append(video(url, "Full video · final review pending"));
+        box.append(
+          video(
+            url,
+            partial
+              ? "Partial preview · final review pending"
+              : "Full video · final review pending",
+          ),
+        );
         const download = element("a", {
           className: "button",
-          text: "Download draft MP4",
+          text: partial ? "Download partial preview MP4" : "Download draft MP4",
         });
         download.href = url;
-        download.download = `${episode.title}.mp4`;
-        box.append(
-          download,
-          button("Prepare YouTube delivery", () => {
-            if (requests.busy) return;
-            status.textContent = "Opening delivery review…";
-            void requests
-              .change(async () => {
-                const list = await api(
-                  `${prefix(project)}/releases`,
-                  "web_releases",
-                );
-                const id = `flow-release-${exportItem.id}`;
-                if (!list.preparations.some((p) => p.id === id))
-                  await api(
+        download.download = `${episode.title}${partial ? " · partial preview" : ""}.mp4`;
+        box.append(download);
+        if (!partial)
+          box.append(
+            button("Prepare YouTube delivery", () => {
+              if (requests.busy) return;
+              status.textContent = "Opening delivery review…";
+              void requests
+                .change(async () => {
+                  const list = await api(
                     `${prefix(project)}/releases`,
-                    "release_preparation",
-                    {
-                      preparation: {
-                        schema_version: "1.0",
-                        document_type: "release_preparation",
-                        id,
-                        revision: 0,
-                        source_kind: "flow",
-                        job_id: exportItem.id,
-                        title: episode.title,
-                      },
-                      expected_revision: null,
-                    },
+                    "web_releases",
                   );
-                sessionStorage.setItem("tabi-release", id);
-                location.hash = "release";
-                return view;
-              })
-              .catch(error);
-          }),
-        );
+                  const id = `flow-release-${exportItem.id}`;
+                  if (!list.preparations.some((p) => p.id === id))
+                    await api(
+                      `${prefix(project)}/releases`,
+                      "release_preparation",
+                      {
+                        preparation: {
+                          schema_version: "1.0",
+                          document_type: "release_preparation",
+                          id,
+                          revision: 0,
+                          source_kind: "flow",
+                          job_id: exportItem.id,
+                          title: episode.title,
+                        },
+                        expected_revision: null,
+                      },
+                    );
+                  sessionStorage.setItem("tabi-release", id);
+                  location.hash = "release";
+                  return view;
+                })
+                .catch(error);
+            }),
+          );
       } else if (["queued", "running"].includes(exportItem.state))
         box.append(
           button(

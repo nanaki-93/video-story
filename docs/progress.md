@@ -2,6 +2,21 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## U06b — Export the accepted portion of a stopped run
+
+The bounded U06 trial stopped at 45 accepted seconds. Paused incomplete videos now offer
+**Export reviewed portion**. Python freezes only active accepted source ranges into a silent
+partial preview; the original 90-second recipe, rejected takes, reviews and credit history stay
+unchanged. Playback and downloads are labeled partial. Full export still requires the complete
+plan, and the partial player does not offer the full-video delivery action.
+
+The core, media and browser gates pass: 386 core, 77 actual-media, eight frontend and 68 contracts,
+plus Ruff, TypeScript, build and package. One optional private fixture is skipped. Native Chrome
+exports, plays all 45 seconds and downloads the matching file. Independent checks confirm 1080
+frames at 24/1, exact timestamps, six correct source ranges, no audio and preserved hashes.
+All 31 original media hashes are unchanged. [Evidence](evidence/u06b-partial-preview.json).
+Safari and the full U06 creative/production target remain open.
+
 ## U06a — Refresh the selected review after trimming
 
 The real U06 trial found Chrome retaining an eight-second loaded preview after the app saved

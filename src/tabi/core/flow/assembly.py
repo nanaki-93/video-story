@@ -23,7 +23,7 @@ from ..render.assembly import concatenate_video
 from ..render.ffmpeg import verify_video
 from ..render.profiles import require_encoder, video_arguments
 from ..toolchain import doctor
-from .runner import export_ranges
+from .runner import export_ranges, preview_ranges
 from .service import FlowError, updated
 
 
@@ -42,11 +42,13 @@ class FlowAssembler:
     def __init__(self, service, settings):
         self.service, self.settings = service, settings
 
-    def freeze(self, episode_id, *, revision, profile=None, tracks=None):
+    def freeze(self, episode_id, *, revision, profile=None, tracks=None, preview=False):
         episode = self.service.get(episode_id)
         if episode.revision != revision:
             raise FlowError("Video changed; reload before exporting.")
-        ranges = export_ranges(episode)
+        if preview and tracks:
+            raise FlowError("Partial previews are silent; add music when finishing the video.")
+        ranges = preview_ranges(episode) if preview else export_ranges(episode)
         first = ranges[0][0]
         profile = profile or OutputProfile(
             id="flow-native-youtube",
@@ -100,7 +102,7 @@ class FlowAssembler:
                 for candidate, start, end in ranges
             ],
             profile=profile,
-            duration_frames=episode.recipe.target_frames,
+            duration_frames=sum(end - start for _, start, end in ranges),
             tracks=tracks,
             audio_locks=list(locked_audio.values()),
             pipeline_sha256=flow_fingerprint(),
@@ -258,6 +260,7 @@ class FlowAssembler:
             if doctor(self.settings, output.parent).fingerprint != inputs.toolchain_sha256:
                 raise FlowError("Media tools changed during export.")
             digest, size = digest_file(video)
+            frozen_episode = self.service.store.read(f"flow/exportepisodes/{export.id}.json")
             report = {
                 "schema_version": "1.0",
                 "export_id": export.id,
@@ -275,6 +278,8 @@ class FlowAssembler:
                 "scaling": inputs.profile.canvas.model_dump(mode="json"),
                 "synthetic": self._synthetic(export),
                 "creative_approval": "pending",
+                "partial_preview": inputs.duration_frames < frozen_episode.recipe.target_frames,
+                "planned_duration_frames": frozen_episode.recipe.target_frames,
                 "audio": audio,
             }
             with self.service.store.writer_lock():

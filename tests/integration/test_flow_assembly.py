@@ -151,3 +151,28 @@ def test_fractional_native_rate_is_preserved(tmp_path):
     export = assembler.run(assembler.freeze(episode.id, revision=episode.revision).id)
     video = verify_video(settings, service.verify_file(export.output), export.inputs.profile, 60)
     assert video.fps == fps and abs(video.duration_seconds - 2.002) < 0.0001
+
+
+def test_partial_preview_renders_only_accepted_prefix_without_shortening_plan(tmp_path):
+    settings, _, service, episode = ready_video(tmp_path, counts=(48, 24), target=120)
+    episode = service.save(updated(episode, paused=True), expected_revision=episode.revision)
+    snapshot = episode.model_dump_json()
+    assembler = FlowAssembler(service, settings)
+    with pytest.raises(FlowError, match="More accepted footage"):
+        assembler.freeze(episode.id, revision=episode.revision)
+    with pytest.raises(FlowError, match="changed"):
+        assembler.freeze(episode.id, revision=episode.revision - 1, preview=True)
+    export = assembler.freeze(episode.id, revision=episode.revision, preview=True)
+    assert export.inputs.duration_frames == 72 and len(export.inputs.segments) == 2
+    export = assembler.run(export.id)
+    output = service.verify_file(export.output)
+    assert verify_video(settings, output, export.inputs.profile, 72).duration_seconds == 3
+    assert export.inputs.profile.audio_codec is None
+    report = json.loads(service.store._read_bytes(export.report_path))
+    assert report["partial_preview"] and report["planned_duration_frames"] == 120
+    assert service.get(episode.id).model_dump_json() == snapshot
+    frozen = service.store.read(f"flow/exportepisodes/{export.id}.json")
+    assert frozen.recipe.target_frames == 120 and frozen.accepted_frames == 72
+    # Freezing/rendering the prefix never permits a full-length export.
+    with pytest.raises(FlowError, match="More accepted footage"):
+        assembler.freeze(episode.id, revision=episode.revision)

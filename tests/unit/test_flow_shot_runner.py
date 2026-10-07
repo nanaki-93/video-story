@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 from test_flow_service import new_service
 
-from tabi.core.flow.runner import FlowRunner, credited_units, export_ranges
+from tabi.core.flow.runner import FlowRunner, credited_units, export_ranges, preview_ranges
 from tabi.core.flow.service import FlowError, default_recipe, updated
 from tabi.core.flow.shots import current_shot, reference_for, reference_instruction
 from tabi.core.models.base import Canvas, FrameInterval, HashedFile, MediaPath
@@ -449,3 +449,52 @@ def test_a_short_clip_cannot_skip_unfinished_shot_actions(tmp_path):
     episode = receipt(service, runner.prepare(episode.id, episode.revision), frames=12)
     with pytest.raises(FlowError, match="remaining actions"):
         review(service, episode, observed_state=facts(cup_position="held", hands="holding_cup"))
+
+
+def test_partial_preview_preserves_plan_and_excludes_unaccepted_and_old_branch(tmp_path):
+    service, episode, runner = context(tmp_path)
+    with pytest.raises(FlowError, match="accepted footage"):
+        preview_ranges(updated(episode, paused=True))
+    episode = receipt(service, runner.prepare(episode.id, episode.revision), frames=16)
+    # Section review has already selected this interval before acceptance.
+    episode = service.save(
+        updated(
+            episode,
+            candidates=[
+                updated(episode.candidates[0], trim=FrameInterval(start_frame=4, end_frame=16))
+            ],
+        ),
+        expected_revision=episode.revision,
+    )
+    episode = review(service, episode)
+    first = episode.candidates[-1]
+    with pytest.raises(FlowError, match="Stop and save"):
+        preview_ranges(episode)
+    episode = receipt(service, runner.prepare(episode.id, episode.revision), frames=12)
+    # Pending and then rejected footage never becomes part of the prefix.
+    assert preview_ranges(updated(episode, paused=True)) == [(first, 4, 16)]
+    episode = review(service, episode, decision="rejected")
+    episode = runner.pause(episode.id, episode.revision)
+    before = episode.model_dump_json()
+    assert preview_ranges(episode) == [(first, 4, 16)]
+    with pytest.raises(FlowError, match="remaining actions"):
+        export_ranges(episode)
+    assert service.get(episode.id).model_dump_json() == before
+    empty = service.branch_from(episode.id, None, episode.revision)
+    with pytest.raises(FlowError, match="accepted footage"):
+        preview_ranges(updated(empty, paused=True))
+    assert len(empty.candidates) == 2
+
+
+def test_partial_preview_cannot_bypass_action_or_full_video_validation(tmp_path):
+    service, episode, runner = context(tmp_path)
+    episode = review(service, receipt(service, runner.prepare(episode.id, episode.revision), 12))
+    attempt = updated(episode.attempts[0], beat=FlowBeat(id="wide", kind="look", target_frame=0))
+    candidate = updated(episode.candidates[0], observed_state=facts(pose="resting"))
+    invalid_action = updated(episode, attempts=[attempt], candidates=[candidate], paused=True)
+    with pytest.raises(FlowError, match="action is incomplete"):
+        preview_ranges(invalid_action)
+    episode = review(service, receipt(service, runner.prepare(episode.id, episode.revision), 12))
+    with pytest.raises(FlowError, match="shorter than the full plan"):
+        preview_ranges(updated(episode, paused=True))
+    assert sum(end - start for _, start, end in export_ranges(episode)) == 24

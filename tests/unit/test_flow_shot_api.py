@@ -3,13 +3,14 @@
 import hashlib
 import json
 
-from test_flow_shot_runner import facts, receipt
+from test_flow_shot_runner import facts, receipt, review
 from test_web_flow_contracts import setup
 from test_web_service import workspace as workspace
 
+from tabi.core.flow.assembly import FlowAssembler
 from tabi.core.flow.media import FlowMedia
 from tabi.core.flow.review import FlowReview
-from tabi.core.flow.runner import FlowRunner
+from tabi.core.flow.runner import FlowRunner, preview_ranges
 from tabi.core.flow.service import FlowError, updated
 from tabi.core.models.base import HashedFile, MediaPath
 from tabi.core.models.flow import FlowBeat, FlowRecipe, FlowReference, FlowShot
@@ -384,3 +385,36 @@ def test_section_controls_keep_source_and_selected_playback_distinct(workspace, 
     assert view["candidate_source_url"] == previous["candidate_source_url"]
     client.cookies.clear()
     assert client.get(view["candidate_url"]).status_code == 401
+
+
+def test_partial_preview_api_keeps_plan_revision_and_authentication(workspace, monkeypatch):
+    recipe = FlowRecipe(opening_mode="text_reference", target_frames=24)
+    service, client, headers, path, view = create(workspace, monkeypatch, recipe)
+    episode = service.get(view["episode"]["id"])
+    runner = FlowRunner(service)
+    episode = review(service, receipt(service, runner.prepare(episode.id, episode.revision), 12))
+    episode = runner.pause(episode.id, episode.revision)
+    calls = []
+
+    def freeze(self, identity, *, revision, preview=False):
+        saved = self.service.get(identity)
+        if saved.revision != revision:
+            raise FlowError("Video changed")
+        assert preview
+        calls.append(preview_ranges(saved))
+
+    monkeypatch.setattr(FlowAssembler, "freeze", freeze)
+    route = path + "/preview-exports"
+    payload = {"expected_revision": episode.revision}
+    response = client.post(route, json=payload, headers=headers)
+    assert response.status_code == 200, response.text
+    assert response.json()["episode"] == episode.model_dump(mode="json")
+    assert [(start, end) for _, start, end in calls[0]] == [(0, 12)]
+    assert client.post(route, json={"expected_revision": 0}, headers=headers).status_code == 400
+    assert client.post(route, json=payload).status_code == 403
+    assert (
+        client.post(route, json={**payload, "target_frames": 12}, headers=headers).status_code
+        == 422
+    )
+    client.cookies.clear()
+    assert client.post(route, json=payload, headers=headers).status_code == 401

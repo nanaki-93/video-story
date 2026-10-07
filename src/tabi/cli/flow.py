@@ -59,6 +59,12 @@ def add_flow_commands(commands):
         if name in {"import", "reference"}:
             command.add_argument("--source", required=True, help="Registered ROOT:relative/path")
             command.add_argument("--synthetic", action="store_true")
+        if name == "export":
+            command.add_argument(
+                "--partial-preview",
+                action="store_true",
+                help="Export only the accepted footage of a stopped, incomplete video",
+            )
         if name in {"import", "transition"}:
             command.add_argument("--attempt", required=True)
         if name in {"review", "inspect"}:
@@ -184,6 +190,8 @@ def run_flow_command(args, settings):
         )
     else:
         assembler = FlowAssembler(service, settings)
-        result = assembler.run(assembler.freeze(args.identity, revision=args.revision).id)
+        result = assembler.run(
+            assembler.freeze(args.identity, revision=args.revision, preview=args.partial_preview).id
+        )
     print(result.model_dump_json(indent=2))
     return 0

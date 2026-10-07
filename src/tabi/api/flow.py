@@ -328,6 +328,16 @@ def routes(runtime):
         runtime.wake.set()
         return view(handle, identity)
 
+    @router.post("/{identity}/preview-exports", response_model=WebFlow)
+    def preview_export(handle: str, identity: str, body: FlowRevision):
+        item, service = services(handle)
+        with runtime.local_operation(item):
+            FlowAssembler(service, runtime.settings).freeze(
+                identity, revision=body.expected_revision, preview=True
+            )
+        runtime.wake.set()
+        return view(handle, identity)
+
     @router.post("/{identity}/exports/{export_id}/{operation}", response_model=WebFlow)
     def export_control(
         handle: str, identity: str, export_id: str, operation: str, body: FlowRevision

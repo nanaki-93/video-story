@@ -1,5 +1,15 @@
 # V1 implementation and acceptance
 
+## U06b stopped-run partial preview — 7 October 2026
+
+The normal app now exports a paused run's accepted portion as a labeled silent preview while
+retaining its complete plan and strict full-export gates. 386 core, 77 actual-media and eight
+frontend checks pass, with one optional private-media fixture skipped; schemas, formatting,
+TypeScript, build and package pass. Chrome plays and downloads the real 45-second prefix.
+Independent full decode, 1080 exact frame timestamps, 18 source/output comparisons and preserved
+episode/source hashes pass. [Evidence](evidence/u06b-partial-preview.json). This verifies partial
+export, not a completed 90-second video, Tokyo Bay motion, final creative approval or throughput.
+
 ## U06a review-preview correction — 7 October 2026
 
 The real trial reproduced stale Chrome playback after a source-section edit. Review videos,

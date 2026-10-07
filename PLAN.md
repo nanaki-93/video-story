@@ -45,6 +45,9 @@ outpoint determine the cut. Existing drink routines still finish pickup/sip/retu
 Finish assembles only accepted footage at its measured native cadence, trims to an explicitly
 reviewed exact ending, and can add one continuous local soundtrack. The verified export can
 enter the existing YouTube delivery review and public/private bundle workflow.
+When a run stops before its target, **Export reviewed portion** produces a clearly labeled,
+silent partial preview of accepted footage while preserving the full plan and all attempt
+history. It does not complete the video or relax its action and visual-review gates.
 
 [S01–S04](docs/tasks.md) add the planned-shot workflow. [F12 evidence](docs/evidence/f12-flow-workflow.json)
 records full-length engineering verification and target-Mac UI observations. A synthetic

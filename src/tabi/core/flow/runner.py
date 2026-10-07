@@ -74,6 +74,23 @@ def export_ranges(episode: FlowEpisode) -> list[tuple]:
     raise FlowError("More accepted footage is needed to reach the target.")
 
 
+def preview_ranges(episode: FlowEpisode) -> list[tuple]:
+    """Preserve an incomplete plan while previewing its reviewed active prefix."""
+    if not episode.paused:
+        raise FlowError("Stop and save progress before exporting a partial preview.")
+    if not 0 < episode.accepted_frames < episode.recipe.target_frames:
+        raise FlowError("A partial preview needs accepted footage shorter than the full plan.")
+    candidates = {item.id: item for item in episode.candidates}
+    attempts = {item.id: item for item in episode.attempts}
+    result = []
+    for identity in episode.accepted_ids:
+        candidate = candidates[identity]
+        if not action_complete(attempts[candidate.attempt_id].beat, candidate.observed_state):
+            raise FlowError("An accepted action is incomplete; review it before previewing.")
+        result.append((candidate, candidate.trim.start_frame, candidate.trim.end_frame))
+    return result
+
+
 class FlowRunner:
     def __init__(self, service):
         self.service = service
