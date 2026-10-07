@@ -2,6 +2,18 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## L03 — Normal scene-to-video interface
+
+Create video now saves reusable fixed artwork, masked scenery and independent loop overlays.
+Saved scenes collapse for daily reuse; ordered music and seconds/music-fit controls create the
+video through Python. Dirty forms, guarded saves and new scene versions protect work. Preview,
+Music and Export are primary navigation; useful advanced review/editor controls remain.
+
+Six frontend checks, 63 contracts, TypeScript, formatting and build pass. Normal Chrome controls
+saved a synthetic scene and created a 144-frame video with selected music, then opened the real
+Preview page. [Evidence](evidence/l03-lofi-ui.json). Playback/export, package and preservation are
+verified in L04; this synthetic test does not approve real artwork or music.
+
 ## L02 — Reusable scenes and independent loops
 
 The new scene service saves reusable master/mask/scenery/overlay configurations and creates

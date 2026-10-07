@@ -1,5 +1,9 @@
 // Navigation metadata. Every listed page is backed by the local worker.
 export const layouts = {
+  lofi: {
+    title: "Create video",
+    subtitle: "Reusable artwork. Gentle loops. Your music.",
+  },
   projects: {
     title: "Projects",
     subtitle: "Your local videos and working folders.",
@@ -24,13 +28,17 @@ export const layouts = {
   notebook: { title: "Notebook", subtitle: "Existing episode notes." },
   preview: {
     title: "Preview",
-    subtitle: "Existing compiled episode playback.",
+    subtitle:
+      "Render a short preview to check motion, loop boundaries and sound.",
   },
   audio: {
-    title: "Audio",
-    subtitle: "Local soundtrack tools for existing episodes.",
+    title: "Music",
+    subtitle: "Arrange tracks, fades and loudness for the current video.",
   },
-  renders: { title: "Renders", subtitle: "Existing layered render jobs." },
+  renders: {
+    title: "Export",
+    subtitle: "Render and download a saved video locally.",
+  },
   release: {
     title: "YouTube delivery",
     subtitle: "Review a verified export before manual upload.",

@@ -15,7 +15,8 @@ import type { Documents } from "./contracts";
 export function previewPage() {
   let cleanup = () => {};
   const page = projectPage(async (root, project, catalog, active) => {
-    if (!catalog.episodes.length) throw new Error("Create an episode first.");
+    if (!catalog.episodes.length)
+      throw new Error("Create a video from a saved scene first.");
     const base = prefix(project),
       route = `${base}/episodes/${episodeId()}/preview`;
     let view = await api(route, "web_preview"),
@@ -40,6 +41,7 @@ export function previewPage() {
     video.controls = true;
     video.playsInline = true;
     video.preload = "metadata";
+    video.loop = true;
     video.setAttribute("aria-label", "Renderer proxy video");
     const clock = element("p", { text: "Approximate proxy time: 0.000 s" });
     video.addEventListener("timeupdate", () => {
@@ -89,7 +91,23 @@ export function previewPage() {
         rms.textContent = `Decoded browser audio RMS: ${level.toFixed(5)} · listening review remains manual`;
       }, 250);
     });
-    proxy.append(video, clock, audioCheck, rms);
+    const loop = input("", "checkbox");
+    loop.checked = true;
+    loop.addEventListener("change", () => {
+      video.loop = loop.checked;
+    });
+    proxy.append(
+      video,
+      clock,
+      field("Repeat preview playback to inspect the join", loop),
+      audioCheck,
+      rms,
+    );
+    root.append(
+      button("Continue to export", () => {
+        location.hash = "renders";
+      }),
+    );
     const first = input("0", "number"),
       end = input(
         String(Math.min(view.episode.duration_frames, 900)),

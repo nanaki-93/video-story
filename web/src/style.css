@@ -452,93 +452,38 @@ pre {
   color: var(--muted);
   cursor: pointer;
 }
-.flow-workflow {
-  max-width: 1000px;
-}
-.flow-workflow details {
-  margin: 18px 0;
-}
-.flow-workflow summary {
-  cursor: pointer;
-  font-weight: 600;
-  padding: 10px 0;
-}
-.flow-workflow .button {
-  display: inline-block;
-  margin: 8px 10px 8px 0;
-}
-.flow-workflow video {
+.lofi-master {
   display: block;
   width: 100%;
-  max-height: 560px;
-  border-radius: 8px;
-  background: #0c0d12;
-}
-.flow-workflow progress {
-  width: 100%;
-  height: 12px;
-  accent-color: #b3a1d4;
-}
-.flow-reference {
-  max-width: min(100%, 360px);
-  max-height: 300px;
+  max-height: 360px;
   object-fit: contain;
+  margin: 16px 0;
+  border-radius: 8px;
+  background: #111219;
 }
-.flow-filmstrip {
-  display: flex;
-  overflow-x: auto;
-  gap: 12px;
+.lofi-master[hidden],
+.field[hidden] {
+  display: none;
+}
+.lofi-editor > summary {
   padding: 12px 0;
+  font-size: 14px;
 }
-.flow-filmstrip img {
-  width: 180px;
-  height: 120px;
-  object-fit: contain;
-  background: #0c0d12;
+.lofi-editor form > .panel {
+  margin: 18px 0;
 }
-.flow-steps {
-  display: flex;
-  gap: 24px;
-  padding: 0;
-  list-style-position: inside;
-  color: var(--muted);
+.lofi-editor .panel .panel {
+  background: var(--surface);
 }
-.flow-next {
-  font-size: 18px;
+.lofi-tracks {
+  padding-left: 24px;
 }
-.flow-shots {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-  padding: 0;
-  list-style: none;
+.lofi-tracks li {
+  margin: 8px 0;
 }
-.flow-shots li {
-  display: grid;
-  gap: 5px;
-  padding: 12px;
-  border: 1px solid #343640;
-  border-radius: 8px;
+.lofi-tracks .button {
+  margin-left: 12px;
 }
-.flow-shots small {
-  color: var(--muted);
-}
-.flow-shot-current {
-  outline: 2px solid #b3a1d4;
-}
-.flow-shot-complete {
-  border-left: 4px solid #70a982 !important;
-}
-.flow-workflow input[type="checkbox"] {
-  width: auto;
-}
-@media (max-width: 600px) {
-  .flow-steps {
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .flow-workflow .button {
-    width: 100%;
-    text-align: center;
-  }
+.state:empty {
+  display: none;
 }

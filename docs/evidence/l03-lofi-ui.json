@@ -1,0 +1,40 @@
+{
+  "task": "L03",
+  "date": "2026-10-07",
+  "status": "passed",
+  "checks": {
+    "frontend": "6 tests; 63 generated contracts, TypeScript, Prettier and production build pass",
+    "browser": "Chrome normal UI saved a scene from imported synthetic still/mask/strip/PNG sequence; created a six-second video with a music track and opened the real Preview page."
+  },
+  "scene": {
+    "id": "scene.1791388457322",
+    "version": "1.0",
+    "fps": {
+      "den": 1,
+      "num": 24
+    },
+    "overlay_timing": {
+      "first_frame": 3,
+      "repeat_frames": 24,
+      "source": {
+        "end_frame": 4,
+        "start_frame": 0
+      }
+    }
+  },
+  "episode": {
+    "id": "video.4a3534a2-de38-4bcd-bd5a-9793b415357e",
+    "duration_frames": 144
+  },
+  "local_project": ".local/l03-lofi-ui/projects/asset-demo",
+  "changes": [
+    "Asset workflow is the default; Flow navigation/styles removed.",
+    "Scene editing, new versions, loop seconds, ordered music and duration controls call Python services.",
+    "Dirty forms and late-response guard preserve edits; saved identity locked; busy saves disable controls.",
+    "Preview loop playback toggle and direct export link; useful advanced asset/review tools retained."
+  ],
+  "limits": [
+    "Synthetic geometry/silence only; no real artwork approved.",
+    "Playback/export/package/preservation acceptance continues in L04."
+  ]
+}

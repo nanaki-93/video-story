@@ -1,9 +1,8 @@
 # Operating Tabi Story Studio
 
-The normal app guides **Setup → References → Shots → Finish** from Create video.
-The app and CLI share Python services; generation happens in Google Flow. Assets and music
-stay on this Mac. [Acceptance](38-v1-acceptance.md) separates tested engineering from real
-TABI appearance, original music and publication reviews still pending.
+Use **Create video → Preview → Export** with a saved scene and your music. Import source
+assets in **Asset library**. Python renders the complete video locally. Real TABI appearance,
+music, rights and final creative review remain separate [acceptance gates](38-v1-acceptance.md).
 
 ## Install, check and launch
 
@@ -24,165 +23,84 @@ launcher after changing tools; do not bookmark or share the initial authenticati
 In development, prefix the examples below with `.venv/bin/` if `tabi` is not on PATH. Use
 `TABI_CONFIG=examples/settings.macos.toml` only when its exact tested Cellar paths exist.
 
-## Make a 90-second train video
+## Prepare a scene once
 
-1. Launch the app, choose **Projects**, and create/open a local working folder. Return to
-   **Create video**. Setup starts with the train/Tokyo/90-second preset; optional changes are
-   under Edit settings. Enter the actual remaining Flow allowance, displayed fresh-shot cost
-   and a spending ceiling. The app cannot read your account or buy credits.
-2. **References:** use your approved train image as the source for the copyable image prompts.
-   Prepare/import two named wide/medium views for each district: Sumida, Yanaka, Akihabara, Ueno,
-   Shinjuku and Odaiba. All twelve are reviewed before video begins. Optional window descriptions
-   are editable in Setup. Each image comes from the approved art; it does not need the preceding
-   generated clip's ending.
-   Keep TABI's full gills, connected neck, markings, outfit, train layout and cup design; check
-   the air is clear. Confirm the planned scenery, window perspective and visible starting facts.
-   The cup starts on the table with hands resting. Hidden facts stay unknown. These image reviews do
-   not establish commercial rights. Original artwork remains unchanged.
-3. **Start new shot in Flow:** download the exact image shown, choose Frames to Video, attach
-   it and select an 8-second landscape result. Copy the saved motion prompt. Download and import
-   the new native clip; record the actual model shown in Flow. A preceding-shot player is cut
-   context, not the input to this generation. The app saves the attempt before the handoff.
-4. **Review:** the app proposes the first 180 frames (7.5 seconds) of each eight-second source.
-   Watch the entire selected candidate and the join/camera-cut player. Confirm the actual
-   ending facts and compare TABI/props with the assigned reference. Check the expected district,
-   level horizon, fixed window/table occlusion, travel direction and foreground/background
-   parallax. Scenery must progress through the ending rather than repeat or reset within a shot.
-   Check the shot-ending frame when
-   offered; the app trims to that reviewed outpoint. A cup still held cannot jump to a table
-   across the cut. Reject visible dots, distorted gills/mouth, changing objects, freezes or an
-   incomplete action. Choose one correction for Retry; the full note remains in history.
-   A retry uses the same clean image. The app never approves appearance. An undersized independent
-   shot stops for attention or an explicit restart; it cannot continue with Extend.
-   **Keep a section of this clip** offers integer start/end frames (end exclusive). Choose
-   **Use this section**, then watch the rebuilt selected player and join before accepting.
-   The original remains available separately. A native continuation must retain its opening;
-   an early ending can be kept only when it completes the shot or video, so Extend cannot
-   silently continue from a different, discarded parent ending.
-5. **Finish:** keep silent or import/select a local WAV. A longer master needs the explicit
-   first-video-length trim confirmation; a short master is not automatically looped. Export
-   and watch the complete verified draft. Output preserves the measured picture resolution
-   and frame rate, using H.264 and optional stereo 48 kHz AAC. Music is never uploaded to Flow.
-6. **Prepare YouTube delivery:** record factual title, concept, rights, exact model/terms,
-   disclosure, thumbnail and listening/creative reviews. Inspect blockers and export the
-   existing public/private bundle. Publication remains manual. Keep private evidence private.
+1. Open/create a project in **Projects**. In **Asset library → Import media**, copy your master
+   illustration (`still`), optional grayscale window mask (`mask`), scrolling panorama (`still`),
+   transparent PNG frames (`sequence`) and music (`audio`). Record only known provenance and
+   rights. Each changed asset needs a new version. Sequence files must be in the intended order
+   and have the authored frame rate; the app displays their order before import.
+2. Open **Create video → New scene**. Name the scene, choose the fixed master and frame rate.
+   A still master by itself is a valid scene; motion is optional. The master determines the
+   scene canvas. Keep TABI, furniture, hands, cup and other contact points fixed for the first pack.
+3. For a moving view, choose a window mask and **Add scenery layer**. White reveals the view;
+   black protects the window frame and every overlapping character/prop edge. A mask must be
+   grayscale and match the visible master canvas exactly.
+4. Choose a prepared strip and its repeat width. It must have the master height and at least
+   **repeat width + master width** of pixels. The padding after the repeat width must copy the
+   opening master-width pixels exactly; saving rejects mismatches. Compose interesting Tokyo
+   districts along the strip with consistent perspective, horizon and lighting. This is prepared
+   scenery, not automatic geographic routing. Up to three depth layers can share the travel speed.
+5. For a blink or ambient movement, **Add animation loop**. Supply aligned full-canvas RGBA PNGs
+   at the scene frame rate. Choose repeat interval and first-play delay in seconds. Python saves
+   exact frame timings. The sequence must fit entirely inside its repeat interval; gaps reveal
+   the unchanged master. Source frame bounds, an optional mask and opacity are under Details.
+6. **Save reusable scene**. The scene is a draft configuration, not an approval. Editing it uses
+   revision checks. **Make a new scene version** copies the configuration for a variation; imported
+   media stays immutable. Previously created videos retain their original scene configuration.
 
-The default story is twelve independent 7.5-second shots, with two framings for each illustrated
-district: Sumida River/Skytree, Yanaka rooftops,
-Akihabara shopping streets, Ueno trees/pond, Shinjuku skyline and Tokyo Bay/Rainbow Bridge.
-TABI alternates quiet rest and watching with barely perceptible breathing; the cup stays on
-the table. District cuts compress travel time rather than claim a surveyed railway journey.
-Descriptions draw on the [official Tokyo district guide](https://www.gotokyo.org/en/destinations/index.html),
-not imported photographs. Each starting image must contain its own planned view; assigning
-different keys to identical image bytes is refused when the exterior descriptions differ.
-There are no native extensions or generated end-to-start matches in this preset. Existing
-six-shot scenery and drink/breathing projects retain their original plan, media and hashes.
-Where a saved recipe allows **Extend this shot in Flow**, use the exact accepted in-shot parent,
-its focused prompt and the currently supported model/cost. Import only the new clip. The cap
-remains one extension in U04 and two for saved pickup/sip/return actions. Review its opening
-and ending before accepting; a discarded native ending cannot become an Extend parent.
-The app counts actual reviewed frames; it never loops old footage or pads a freeze to fill a duration.
+Prepare blinks with clean underlying face coverage and authored eyelid states. A transparent
+closed-eye line drawn over an open eye does not remove the original eye. Inspect the opening,
+closing, edges and return to the base face. The app validates dimensions, alpha and timing but
+cannot establish character likeness or make damaged generated frames look correct.
 
-Stop saves progress; reopening resumes the same attempt. Reconcile an unknown Flow result
-before submitting again. During the real trial, Flow sometimes showed “Prompt must be provided”
-while its first Extend was actually generating. Wait for a definitive result and inspect the
-saved scene before submitting again; the app cannot see duplicate requests made in Flow.
+## Make a lo-fi video
 
-At a retry limit, **Raise retry limit** allows one more correction per action, up to three,
-if the next request fits the existing credit and attempt caps. It does not generate or change
-the credit ceiling. For persistent drift within an idle partial shot, expand **Start this shot
-again** and restart from its clean image. Earlier completed shots stay active; all old takes,
-reviews and credit reservations remain in history. The new opening still counts as a retry.
-Unknown results and pending reviews must be resolved first. A changed cup may require restarting
-pickup, rather than repeatedly extending a sip with hidden prop drift. Confirmed handle-free
-cup actions now use both existing hands around the body and explicitly preserve the absent handle.
+1. Choose the saved scene in **Create video**. Its settings stay collapsed for reuse.
+2. Enter a video title. Add finished music masters in playback order. Choose **Fit selected music**
+   to use their complete combined length, or specify whole seconds up to six hours. Overlong music
+   is rejected. A longer fixed video has silence after the tracks; music is never implicitly looped
+   or stretched. No music creates a silent draft.
+3. **Create video and open preview** saves an ordinary episode through Python. Choose a short
+   frame range and **Generate proxy**. Play it, repeat playback if useful, and inspect exact frames
+   for blinks, mask edges, panorama wraps and chunk joins. Browser seeking is approximate.
+4. Open **Music** if tracks need arrangement, fades or loudness adjustments. Changed videos need
+   a new preview. The soundtrack uses the shared sample-accurate mixer.
+5. **Continue to export**: choose draft or production purpose, **Freeze saved episode**, choose
+   output size/encoder/destination, **Estimate export**, then **Queue frozen export**. Jobs continue
+   while the browser is closed; verified output has a player and download link. A production export
+   requires real approved inputs, template and frozen snapshot review. Synthetic assets cannot be
+   production approved.
+6. For another video, return to **Create video**, keep the saved scene and change the music/title/
+   duration. There is no generated-clip matching or repeat generation step.
 
-If the hard retry, extension or credit limits still stop progress, retain the evidence and
-review the plan. Do not label a short accepted run as a finished 90-second video.
+A long panorama plus independent small loops avoids tying the scenery cycle to every blink.
+Do not assume the end of an arbitrary video duration matches its beginning: review the full
+scene's final-to-first join when a seamless whole-video loop is required. Frame/chunk continuity
+within the video is deterministic; artistic continuity depends on the prepared assets.
 
-After **Stop and save progress**, **Export reviewed portion** creates a silent partial preview
-from the active accepted clips. It keeps the original target, remaining shots, attempts and
-reviews intact. Playback and downloads are labeled partial; rejected or pending takes are
-excluded. The complete-video export still requires every planned action and the full duration.
-CLI users can request the same service with `flow export --partial-preview` after pausing.
+The `tabi lofi list`, `tabi lofi save` and `tabi lofi create-video` CLI commands call these same
+services. `save` takes a `SaveLofiScene` request (scene, expected revision, optional overlay
+seconds). `create-video` takes an ID, title, scene reference/revision, optional ordered music
+references and `duration_seconds` (`null` means fit music). Existing asset/author/render commands
+remain available for advanced projects.
 
-The [U03 target-Mac trial](evidence/u03-tabi-app-trial.json) completed and downloaded a silent
-90-second draft through this path. It used 12 native clips, 24 app attempts and 1085 actual
-included credits, including 15 from earlier duplicate Flow submissions. All 2160 frames and
-timestamps were independently checked; the complete video played in Chrome. The closing
-breath now keeps seated hips, resting hands and unchanged clothing coverage. Generated acting
-and cup prints can still vary, and clean camera starts reset the exterior. Review these
-visually; this run does not establish automatic quality or 30-video monthly capacity.
+## Earlier Flow projects
 
-Marco finds U03 interesting but rejects its final panorama and repetitive exterior, and
-requests different Tokyo districts with less trial and error. Eight of the ten rejected takes
-were cup handling or deep breathing. The new default avoids those actions; the reduction in
-real retries, image-preparation effort and total credits remains to be measured. Marco selected
-independent cinematic shots with deliberate cuts; U05 therefore removes all extensions from
-new videos. Twelve reference images need initial preparation and twelve fresh generations may
-cost more than six starts with cheaper continuations. Unchanged variations can reuse reviewed
-images. The U03 MP4 is preserved; new guidance does not repair its pixels.
-
-For another setting/outfit, use **New variation** and enter fresh allowance/cost observations.
-It copies stable settings and resets the review chain. Changing one shot's scenery or framing
-clears only that reference and retains unaffected images. Character/outfit/interior or shared
-outside-movement changes clear references so new matching views must be imported before generation.
-Café/walking and each new outfit need visual
-qualification. Almost entirely automatic Flow control has not been established; the handoff
-above is the supported assisted workflow. No additional paid provider is configured.
-
-On a saved extension-based video, **New Tokyo video without Flow extensions** creates the current
-twelve-shot plan as a separate variation. Review its settings and fresh-shot allowance before
-creating it. Matching U04 references retain their reviews; the six additional framings need
-their own starting images. Changed identity, outfit, carriage, framing or scenery invalidates
-affected reuse as usual. Ordinary **New variation** still copies the saved plan.
-
-Existing saved single-shot episodes retain Opening/Continue and their original hashes. For
-CLI automation, `flow status` returns shot progress and the next reference instructions;
-`flow reference --key sumida --state facts.json --note 'review findings'` imports a reviewed
-view (also supply project, source, title and revision). `flow review --correction particles`
-stores one focused retry selection with the full review note.
-
-Flow workflow checked 7 October 2026: [Flow model support](https://support.google.com/flow/answer/16352836?hl=en)
-documents eight-second Veo Frames to Video and model-specific Extend support;
-[Flow input guidance](https://support.google.com/flow/answer/16353334?hl=en) describes starting/ending
-frames. The [Flow Agent](https://support.google.com/flow/answer/17093911?hl=en) supports planning
-and batch variations inside Flow, with generation consuming credits. This does not establish
-an external consumer-account connector for the local app or remove visual review. Camera cuts and
-clean starts reduce dependence on an imperfect preceding clip; they cannot repair existing
-damaged pixels or guarantee a usable generation. Commercial terms and source rights are checked
-again at delivery; no provider change or new paid dependency is part of this update.
+Flow prompting, credits, generation retries, clip-chain review and its separate queue are retired.
+The application does not resume old Flow runs. Existing input/reference files, native clips,
+project records and MP4 exports remain in their original folders; no bulk migration is performed.
+Open an existing verified export directly when reviewing that history. The shared project,
+asset, audio, render, backup and release services remain in use.
 
 ## First scene from an existing image
 
-This Advanced walkthrough retains the earlier layered renderer. Open the named tools through
-**Advanced**; it is separate from the normal Flow sequence.
-
-This works in the current app. Use the supplied
-[train composition](assets/scenario/tabi-train-example.png) for a **static, silent draft**.
-The image already includes Tabi, the table and the window scenery. This exercise does not
-separate those parts or animate the character.
-
-1. In **Projects**, create/open a project. In **Assets → Import media**, choose that PNG.
-2. Set **Asset ID** to `train-reference` (or another unused ID), **New immutable version** to
-   `1.0`, and **Media type** to `still`. The sequence/video fps fields are ignored for stills.
-   Set **Origin** to `User supplied`, keep **Commercial rights** pending unless actually
-   confirmed, and leave unknown creator/history fields empty. The existing evidence default
-   `[]` and generation default `null` can stay as they are. Click **Copy and import selected files**.
-3. The inspector opens. Scroll to **Use as a still scene**, retain the proposed template ID
-   and version, and click **Create still scene template**. No proxy preparation, compatibility
-   JSON or approval is required for this draft.
-4. Open **New episode**, enter a title and choose the new scene template. Keep the generated
-   episode ID, 30 fps, 1920×1080 canvas, `idle` pose, seed `0` and **300 frames** (ten seconds).
-   Leave music empty for this visual check. Click **Create draft episode**.
-5. Open **Preview**, keep the saved episode selected and render its range from frame `0` to
-   `300`. Play the result and inspect the exact-frame image. The draft label is expected.
-
-For animation, importing the breath/drink PNGs is only the first step. Their original timing,
-loop/action behavior, matching foreground and scene compatibility still need preparation.
-Layered scenes currently require authored template/action-pack documents. The supplied train
-still cannot serve as a clean background for a second character without duplicating Tabi.
-See the [asset review](12-tabi-art-review.md) and [source audit](09-implementation-review.md).
+Import the supplied [train composition](assets/scenario/tabi-train-example.png) as a still, with
+factual provenance and rights pending until reviewed. Choose it as the master in **New scene**,
+leave scenery/loops empty, save, and create a short silent draft. This preserves all the pixels
+of the existing artwork; it does not separate the window or animate the character. Moving scenery
+and eye patches require prepared assets as described above. The supplied 1664×936 reference is
+not a native 4K master or an approved production pack.
 
 ## Produce an Advanced layered episode
 

@@ -398,9 +398,11 @@ Add strict versioned reusable scene recipes: master illustration, optional white
 
 ## L03 — Make the asset workflow the normal UI
 
-**Status** [ ]
+**Status** [x] Six frontend checks, 63 contracts, TypeScript, formatting and build pass. Normal Chrome scene save → video creation → Preview confirmed; see `docs/evidence/l03-lofi-ui.json`.
 
 **Target files**
+- `docs/05-webapp.md`
+- `web/src/session.ts`
 - `web/src/lofi.ts`
 - `web/src/lofi-state.ts`
 - `web/tests/lofi-state.test.mjs`

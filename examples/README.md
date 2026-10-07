@@ -1,5 +1,9 @@
 # Example contracts
 
+The normal lo-fi workflow uses the UI to save reusable scenes and create videos; these JSON
+examples support advanced development, not required per-video editing. See the
+[asset workflow](../docs/37-operations.md#make-a-lo-fi-video).
+
 The top-level JSON documents pass the strict Python models and published JSON Schemas. `make check` validates them and checks schema drift. They remain illustrative drafts with unresolved media/approvals; successful structural validation does not make them renderable or production-approved.
 
 `workflows/` contains service requests rather than versioned documents. The [operations guide](../docs/37-operations.md)

@@ -10,6 +10,7 @@ import { previewPage } from "./preview";
 import { audioPage } from "./audio";
 import { rendersPage, settingsPage } from "./production";
 import { releasePage } from "./release";
+import { lofiPage } from "./lofi";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const shell = element("div", { className: "shell" });
@@ -26,7 +27,10 @@ for (const [id, layout] of Object.entries(layouts)) {
   const link = element("a", { text: layout.title });
   link.href = `#${id}`;
   links.set(id as PageId, link);
-  if (["setup", "projects"].includes(id)) navigation.append(link);
+  if (
+    ["lofi", "assets", "preview", "audio", "renders", "projects"].includes(id)
+  )
+    navigation.append(link);
   else advanced.append(link);
 }
 navigation.append(advanced);
@@ -48,6 +52,7 @@ document
     main.focus();
   });
 const pages = {
+  lofi: lofiPage,
   projects: projectsPage,
   setup: setupPage,
   assets: assetsPage,
@@ -62,14 +67,21 @@ const pages = {
   settings: settingsPage,
 };
 let cleanup: (() => void) | undefined;
+let canLeave: (() => boolean) | undefined;
+let previousPage = "lofi";
 let connected = false;
 function navigate() {
   if (!connected) return;
+  if (canLeave && !canLeave()) {
+    history.replaceState(null, "", `#${previousPage}`);
+    return;
+  }
   cleanup?.();
   const requested = location.hash.slice(1);
   const page: PageId = Object.hasOwn(layouts, requested)
     ? (requested as PageId)
-    : "projects";
+    : "lofi";
+  previousPage = page;
   for (const [id, link] of links) {
     if (id === page) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
@@ -83,8 +95,9 @@ function navigate() {
     element("p", { className: "muted", text: layout.subtitle }),
   );
   header.append(text);
-  const panel = pages[page]();
+  const panel: import("./workspace").Panel = pages[page]();
   cleanup = panel.dispose;
+  canLeave = panel.canLeave;
   main.replaceChildren(header, panel.root);
   document.title = `${layout.title} · Tabi Story Studio`;
 }

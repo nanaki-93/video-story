@@ -2,7 +2,11 @@ import { api } from "./session";
 import { button, element, field, section } from "./dom";
 import type { Documents } from "./contracts";
 
-export type Panel = { root: HTMLElement; dispose: () => void };
+export type Panel = {
+  root: HTMLElement;
+  dispose: () => void;
+  canLeave?: () => boolean;
+};
 type Recent = { root_id: string; path: string; id: string; title: string };
 export type Project = Documents["web_project"];
 export type Catalog = Documents["web_catalog"];
@@ -150,6 +154,7 @@ export function projectPage(
     catalog: Catalog,
     active: () => boolean,
   ) => Promise<void> | void,
+  options: { episodeSelector?: boolean } = {},
 ): Panel {
   const root = element("div", { className: "workspace-content" });
   let active = true;
@@ -166,7 +171,7 @@ export function projectPage(
       );
       if (!catalog.episodes.some((e) => e.id === chosenEpisode))
         selectEpisode(catalog.episodes[0]?.id || "");
-      if (catalog.episodes.length) {
+      if (catalog.episodes.length && options.episodeSelector !== false) {
         const select = choice(
           catalog.episodes.map((e) => [
             e.id,
@@ -179,7 +184,7 @@ export function projectPage(
           selectEpisode(select.value);
           refreshPage();
         });
-        root.append(field("Working episode", select));
+        root.append(field("Current video", select));
       }
       await build(root, project, catalog, () => active);
     })
@@ -187,6 +192,9 @@ export function projectPage(
       if (active)
         root.replaceChildren(
           element("p", { className: "notice", text: String(error) }),
+          button("Choose or create a project", () => {
+            location.hash = "projects";
+          }),
         );
     });
   return {
@@ -288,7 +296,7 @@ export function projectsPage(): Panel {
         })
           .then((p) => {
             remember(p);
-            if (active) location.hash = "setup";
+            if (active) location.hash = "lofi";
           })
           .catch((e: unknown) => {
             status.textContent = `Project unavailable. Reconnect the drive or choose Relink. ${String(e)}`;
@@ -309,7 +317,7 @@ export function projectsPage(): Panel {
     list.append(
       element("p", { text: `Current: ${selected.project.title}` }),
       button("Create video", () => {
-        location.hash = "setup";
+        location.hash = "lofi";
       }),
       button("Advanced scene setup", () => {
         location.hash = "setup";
@@ -320,9 +328,9 @@ export function projectsPage(): Panel {
         if (!active) return;
         for (const episode of catalog.episodes)
           list.append(
-            button(`Edit ${episode.title}`, () => {
+            button(`Preview ${episode.title}`, () => {
               selectEpisode(episode.id);
-              location.hash = "story";
+              location.hash = "preview";
             }),
           );
       })
@@ -339,8 +347,8 @@ export function projectsPage(): Panel {
   })
     .then((chooser) => {
       if (!active) return;
-      const name = input("My story");
-      const title = input("My story");
+      const name = input("My lo-fi videos");
+      const title = input("My lo-fi videos");
       chooser.append(
         actionForm("Open selected project", [], async () => {
           const project = await api("/projects/open", "web_project", {
@@ -350,7 +358,7 @@ export function projectsPage(): Panel {
           });
           remember(project);
           relink = undefined;
-          refreshPage();
+          if (active) location.hash = "lofi";
         }),
         actionForm(
           "Create project in this folder",
@@ -363,7 +371,7 @@ export function projectsPage(): Panel {
               title: title.value,
             });
             remember(project);
-            refreshPage();
+            if (active) location.hash = "lofi";
           },
         ),
       );

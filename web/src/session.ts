@@ -10,7 +10,7 @@ export async function connect() {
   if (fragment.startsWith("#bootstrap=")) {
     const secret = fragment.slice("#bootstrap=".length);
     // Remove the one-time ticket before any network request or UI rendering.
-    history.replaceState(null, "", `${location.pathname}#flow`);
+    history.replaceState(null, "", `${location.pathname}#lofi`);
     response = await fetch("/api/v1/bootstrap", {
       method: "POST",
       credentials: "same-origin",

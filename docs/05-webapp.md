@@ -6,30 +6,27 @@ The browser displays renderer-produced proxies/stills and sends guarded edits.
 
 ## Normal workflow
 
-Navigation contains **Create video** and **Projects**, with technical tools under Advanced.
-The Python-provided train/Tokyo/90-second preset and next action guide the work:
+Navigation exposes Create video, Asset library, Preview, Music, Export and Projects.
 
 | Step | Behavior |
 | --- | --- |
-| Setup | Title, preset, optional scene changes and a current observed allowance/cost |
-| Opening | Import stable reference, prepare/copy prompt, open Flow and import the native result |
-| Continue | Watch candidate/join, confirm actual ending facts, accept or retry one focused defect |
-| Finish | Exact verified export, optional continuous local WAV, full playback and YouTube delivery |
+| Import | Stream local stills, grayscale masks, ordered transparent PNG sequences and music into the asset registry |
+| Save a scene | Choose master, fps, optional scenery layers, optional loop intervals/delays and save with revision checks |
+| Make a video | Reuse a scene, order complete tracks, set seconds or fit music; Python creates the episode |
+| Preview | Render a real proxy or exact global frame; repeat playback to inspect movement and joins |
+| Export | Freeze, review as required, estimate and queue the shared local render job; play/download verified output |
 
-Saved progress resumes the same attempt after reload. Unknown external outcomes need
-reconciliation before another submission. Only accepted descendants advance progress. New
-variation reuses stable references/recipe while starting a fresh opening and review chain.
-
-Generation is assisted; the installed app does not automate Flow's website. The
-[operations guide](37-operations.md#make-a-90-second-train-video) describes actual controls;
-[F12 evidence](evidence/f12-flow-workflow.json) separates engineering from real creative acceptance.
+Scene settings collapse once saved. Dirty scene forms block video creation and warn before
+navigation; a late save cannot clear newer changes. IDs/versions and precise source bounds
+are secondary controls. Source approvals and production reviews are not inferred from saving.
+Seconds are a transport convenience only; persisted schedules remain integer frames/samples.
 
 ## Advanced tools
 
-Existing project/asset import, still templates, layered scene/action editing, audio auditions,
-preview, render jobs, cache, release and backup remain available for prior projects. See
-[Advanced operations](37-operations.md#produce-an-advanced-layered-episode). The old ComfyUI
-execution panel and standalone playback experiment are removed; their documents are historical.
+Asset details/review, still templates, layered story/action editing, notes, release and backup
+remain available. They serve existing projects and production review rather than duplicating
+the normal scene workflow. Flow prompting/retries and its separate jobs are removed. Saved
+Flow artifacts stay on disk and are never resumed by the worker.
 
 ## Interaction constraints to preserve
 

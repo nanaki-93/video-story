@@ -1,19 +1,19 @@
 # Documentation guide
 
-The current normal workflow is the guided assisted Flow path. Python prepares prompts,
-checks native imports and joins, saves reviews/progress, exports exact footage with local music,
-and prepares YouTube delivery. Real art/music and the almost-automatic production target still
-need acceptance. Existing layered tools remain under Advanced.
+The current workflow creates lo-fi music videos from saved illustrations, window scenery and
+prepared small loops. Python owns timing, composition and audio; the normal UI needs no per-video
+JSON. Flow execution is retired, and earlier media is preserved. Real art/music approval remains
+pending. [Operations](37-operations.md) describes the actual controls.
 
 ## Start here
 
 | Need | Document |
 | --- | --- |
 | Launch/install the app | [Installation](32-installation.md) |
-| Make the first 90-second train video | [Guided Flow workflow](37-operations.md#make-a-90-second-train-video) |
-| Understand the four steps | [Current UI](05-webapp.md) |
+| Make the first 90-second train video | [Reusable scene workflow](37-operations.md#make-a-lo-fi-video) |
+| Understand scene reuse and exports | [Current UI](05-webapp.md) |
 | Follow implementation and current checks | [Active tasks](tasks/INDEX.md), [progress](progress.md), [acceptance](38-v1-acceptance.md) |
-| Read the implementation contract | [Flow task plan](tasks.md) |
+| Read the implementation contract | [Lo-fi refactor tasks](tasks.md) |
 | Find artwork and preserved local variants | [Media guide](assets/README.md), [source audit](09-implementation-review.md) |
 | Use existing layered projects / troubleshoot | [Advanced operations](37-operations.md#produce-an-advanced-layered-episode), [recovery](37-operations.md#troubleshooting-and-recovery) |
 

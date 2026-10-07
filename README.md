@@ -1,22 +1,24 @@
 # Tabi Story Studio
 
-A local app for reviewed TABI videos with a simple **Setup → Opening → Continue → Finish**
-workflow. Start from the train/Tokyo/90-second preset, copy the next focused prompt to Google
-Flow, import and review each native result, then export with optional local music.
+A local app for lo-fi music videos made from **reusable artwork and small animation loops**.
+Save a scene once, choose music and duration, render a short preview, then export locally.
 
-Python owns timing, media, retries and delivery; the browser guides the work. Progress survives
-reopening, and rejected clips do not enter the final video. YouTube delivery uses the existing
-rights/creative/metadata reviews and public/private bundle; publishing stays manual.
+The master illustration keeps TABI, the cabin and props stable. Optional scenery scrolls behind
+a fixed window mask. Prepared transparent PNG loops add small movements such as blinks or rain;
+each uses its own timing without restarting the exterior. Python owns composition, timing,
+audio and rendering; the browser provides the controls. No per-video JSON editing is required.
 
-The assisted workflow is implemented and tested. Real train/outfit variation quality,
-production rights and unattended Flow control remain open. No new paid tools or top-ups are
-part of this route. Existing layered projects remain accessible under Advanced.
+The Flow generation, prompting, retries and separate export path have been removed. Earlier
+media and project files remain on disk. This route uses the existing local tools, with no new
+paid apps, models or credit top-ups. Real TABI artwork, masks, loops, Tokyo strips and music
+still need preparation and visual/rights approval before publication.
 
 | Start here | |
 | --- | --- |
-| Make a video | [Installation](docs/32-installation.md), [90-second Flow workflow](docs/37-operations.md#make-a-90-second-train-video) |
+| Make a video | [Installation](docs/32-installation.md), [asset workflow](docs/37-operations.md#make-a-lo-fi-video) |
+| Prepare a reusable scene | [Scene assets](docs/37-operations.md#prepare-a-scene-once), [UI reference](docs/05-webapp.md) |
 | Continue development | [Product plan](PLAN.md), [agent rules](AGENTS.md), [active tasks](docs/tasks/INDEX.md) |
-| Review status and evidence | [Progress](docs/progress.md), [acceptance](docs/38-v1-acceptance.md), [documentation guide](docs/README.md) |
+| Review status | [Progress](docs/progress.md), [acceptance](docs/38-v1-acceptance.md), [documentation guide](docs/README.md) |
 
 ## Run from a development checkout
 
