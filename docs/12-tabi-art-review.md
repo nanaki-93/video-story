@@ -2,7 +2,7 @@
 
 Status: prepared for Marco's source selection; art approval and separated masters pending. This packet does not grant publication rights.
 
-The two supplied originals were reopened, decoded, hashed and compared visually. They are registered as linked draft assets in `.local/pilot-asset-review`, with root `references` pointing to `docs/assets/`. [Machine-readable evidence](evidence/t06-reference-review.json) includes their complete records and measured palette samples. No original was altered.
+The two supplied originals were reopened, decoded, hashed and compared visually. The original audit registered them as linked draft assets; that disposable review project is not a current app dependency. Their preserved sources remain under `docs/assets/`. [Machine-readable evidence](evidence/t06-reference-review.json) includes their complete records and measured palette samples. No original was altered.
 
 | Source | File identity | Observed size |
 | --- | --- | --- |
@@ -26,4 +26,4 @@ The editable source delivery needs these aligned groups on the chosen scene canv
 
 The supplied files are flattened RGB sources, and the transparent action frames remain flattened character composites. No PSD/ORA/KRA/SVG/XCF or equivalent editable rig was found. Wrapping a bitmap in a vector file would not supply the missing editable pieces. Separated masters, hidden-region repair and motion approval therefore remain outstanding; no new character design or invented layer geometry is substituted.
 
-Source selection asks Marco to confirm these specific original hashes as the character style and seated-scene references, or identify a replacement. That selection alone does not approve later cutouts, animation, rights, or publication. Once source selection and prepared layers exist, review alignment, alpha on light/dark backgrounds, pivots, face attachment and transition endpoints against these originals. Production approval applies to the final pack hash only.
+The current plan starts from these supplied references and the existing outfit/action/scenery library. Verify the exact selected source hashes when preparing each new pack. That selection alone does not approve later cutouts, animation, rights, or publication. Once source selection and prepared layers exist, review alignment, alpha on light/dark backgrounds, pivots, face attachment and transition endpoints against these originals. Production approval applies to the final pack hash only.

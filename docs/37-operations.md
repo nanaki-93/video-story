@@ -85,13 +85,17 @@ seconds). `create-video` takes an ID, title, scene reference/revision, optional 
 references and `duration_seconds` (`null` means fit music). Existing asset/author/render commands
 remain available for advanced projects.
 
-## Earlier Flow projects
+## Planned reference generation
 
-Flow prompting, credits, generation retries, clip-chain review and its separate queue are retired.
-The application does not resume old Flow runs. Existing input/reference files, native clips,
-project records and MP4 exports remain in their original folders; no bulk migration is performed.
-Open an existing verified export directly when reviewing that history. The shared project,
-asset, audio, render, backup and release services remain in use.
+The next phase adds reference selection, local asset generation, comparison and reusable
+outfit/cabin/journey packs. See the [final plan](../PLAN.md) and
+[generation contract](39-reference-assets.md). Those controls are not available yet; the
+instructions here describe the implemented fixed-scene workflow.
+
+Retired generation queues are never resumed. The R01 cleanup removes inspected obsolete local
+experiments while preserving supplied source folders and the successful L05 pilot. Existing
+external project files are not migrated or deleted by the app. Shared project, asset, audio,
+render, backup and release services remain in use.
 
 ## First scene from an existing image
 
@@ -243,8 +247,8 @@ previous bytes are backed up. Environment overrides still take precedence after 
 
 Existing [compile/frame/preview/snapshot](15-preview-workflow.md), [audio](16-audio.md),
 [jobs](19-jobs.md), [cache](21-cache-storage.md) and [release](23-release-preparation.md)
-commands complete the Advanced headless workflow. Use `tabi flow --help` for the guided route.
-The optional ComfyUI commands have been retired. Production
+commands complete the Advanced headless workflow. Use `tabi lofi --help` for the guided route.
+Production
 `snapshot review` returns a **new** snapshot SHA; submit that reviewed SHA, not the earlier draft.
 
 ## Troubleshooting and recovery
@@ -264,7 +268,6 @@ The optional ComfyUI commands have been retired. Production
 | Audio over full scale or duration conflict | Lower gain or explicitly edit trims/placements; preview/listen again. Extend the story explicitly if needed. |
 | Output destination already exists | Choose a new output name. Final files are published only after verification and are never silently clobbered. |
 | Backup cannot restore | Preserve the original backup, inspect its manifest/hash error and create a fresh complete copy. Restore always targets a new folder. |
-| Flow handoff unavailable | Save progress. Reopen the exact accepted parent in Flow; reconcile any pending result before another request. There is no automatic paid API fallback. |
 
 After an interrupted CLI render:
 

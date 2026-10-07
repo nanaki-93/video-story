@@ -12,7 +12,7 @@ After encoding, verification checks the actual stream codec, canvas, pixel/color
 
 Current bounds are 7,200 frames and 128 inputs per graph. Static/character slots, grayscale masks, opacity, cut concatenation, letterbox and crop are implemented. Unsupported slots fail rather than disappearing. T12 adds verified moving strips and scheduled landmarks; T16 adds [continuous audio](16-audio.md), and T17 adds [masked effects](17-effects.md). Scene overlap semantics are documented in [story continuity](18-story-continuity.md). Prepared PNG sequences are the alpha-media interchange fallback; importable video is not automatically a renderable character pack. No long-form memory/performance claim follows from the small fixture test.
 
-Reproduce technical checks with `make test-media`. [T11 evidence](archive/v1-tasks.md#t11) includes a full ten-second local clip and an inspected PNG. Its exterior is explicitly stationary/cropped for this task; it is not a completed visual pilot or approved Tabi artwork. CLI frame/preview adapters are documented in the [preview workflow](15-preview-workflow.md).
+Reproduce technical checks with `make test-media`. [T11 evidence](evidence/t11-clip-report.json) includes a full ten-second local clip and an inspected PNG. Its exterior is explicitly stationary/cropped for this task; it is not a completed visual pilot or approved Tabi artwork. CLI frame/preview adapters are documented in the [preview workflow](15-preview-workflow.md).
 
 ## Parallax and landmarks (T12)
 
@@ -22,4 +22,4 @@ A landmark's x origin is `world_x + slot_anchor.x - source_anchor.x - depth × D
 
 On the tested FFmpeg 9.0.2 build, overlay positional expressions use a one-based `n` while crop and generic enable expressions use zero-based `n`. The adapter compensates explicitly; actual still/video boundary comparisons protect this behavior. A 1e-7 pixel epsilon prevents binary-expression roundoff at exact integer positions before flooring. This does not alter authored timing or add a per-frame distance sum.
 
-[T12 evidence](archive/v1-tasks.md#t12) verifies the moving fixture, including a one-time landmark pass and a preview starting at the stop/restart boundary. Real artwork still needs seam, reveal-region, geography and visual approval.
+[T12 evidence](evidence/t12-clip-report.json) verifies the moving fixture, including a one-time landmark pass and a preview starting at the stop/restart boundary. Real artwork still needs seam, reveal-region, geography and visual approval.

@@ -100,7 +100,7 @@ T33 installed the built wheel into `/private/tmp/tabi-t33-install-wcc5wlhg/Tabi 
 outside this checkout. Runtime PATH contained only that environment and `/usr/bin:/bin`;
 Node was unavailable and imports resolved to installed site-packages. `setup-check` returned
 ready with verified bundled hashes. A 90-second synthetic pilot, tab-close survival,
-restart/resume and native-browser playback checks are recorded in [T33](archive/v1-tasks.md#t33).
+restart/resume and native-browser playback checks are recorded in [installed-runtime acceptance](evidence/t38-installed-runtime.json).
 Temporary verification paths are evidence, not the recommended permanent installation.
 
 T38 repeated fresh installation for the completed application with all 17 locked runtime

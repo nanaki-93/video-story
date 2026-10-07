@@ -1,5 +1,10 @@
 # Supplied asset audit — 3 October 2026
 
+Retained historical source measurements. R01 (8 October) preserves this library and adds a
+[reference-generation plan](39-reference-assets.md). New comparison clips have since been added;
+the planned live catalog scans disk rather than assuming these original totals are current.
+Bulk source variants now stay locally ignored; [local manifest](local-source-manifest.json).
+
 Retained source inspection and preparation limits. The obsolete initial implementation order
 and web-client proposal have been removed; use [current progress](progress.md),
 [V1 acceptance](38-v1-acceptance.md) and the [active tasks](tasks/INDEX.md).
@@ -21,7 +26,7 @@ All 322 media files were read and SHA-256 hashed. All 317 stills decoded with Pi
 | Drink sequence | 129 | Consecutive frames 0001–0129, 1920×1080 RGBA, alpha spans 0–255 |
 | Local clip experiments | 5 | 1920×1080 H.264, full video decode passed, no audio tracks |
 
-Total media size is 966,442,926 bytes (about 922 MiB). MP4s account for 112,082,657 bytes; the tracked PNG/JPG collection still accounts for roughly 815 MiB. MP4 removal alone therefore does not make this a small repository. Preserve existing artwork; decide any later external-media migration separately.
+Total media size is 966,442,926 bytes (about 922 MiB). MP4s account for 112,082,657 bytes; the PNG/JPG source collection accounted for roughly 815 MiB at this audit. Most bulk variants were subsequently removed from the Git index while preserving local originals.
 
 See [asset-inventory.json](asset-inventory.json) for each file's hash and image properties, and [video audit](asset-video-audit.json) for measured clip metadata. The still audit is reproducible with `scripts/audit_assets.py`; video measurements used a local read-only AVFoundation script because FFmpeg/ffprobe were not on PATH. This source audit is separate from the later [renderer acceptance evidence](38-v1-acceptance.md).
 
@@ -46,4 +51,6 @@ Every still/frame was reviewed in contact sheets, with the character profile als
 - **Resolution labels are not quality evidence.** The banner files called `master` are 1672×941, while their JPEG upload files are 2560×1440. The larger dimensions do not establish more source detail. No source here is automatically certified for final 4K placement.
 - **Music and production records are absent.** No WAV masters, editable layered sources, source/generation manifests, licences or approval records were found in `docs/assets/`. Filenames containing `comfy` do not establish a model, workflow, generation history or permission. Keep those fields pending.
 
-Local, ignored review sheets are in `.local/asset-audit/contact-sheets/`: `stills-01` through `stills-04`, `breath-01` through `breath-04`, `drink-01` through `drink-05`, and `videos-01` (JPEG). They are derived review artifacts; originals were not changed. Regenerating them needs the local source files.
+The original review sheets were disposable derived artifacts. Recreate current sheets with
+`scripts/audit_assets.py` using the preserved originals and a separate output directory; the
+historical review-sheet path is not a required input to the current app.

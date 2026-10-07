@@ -20,7 +20,6 @@ def routes(runtime):
         return WebLofi(
             schema_version="1.0",
             scenes=current.scenes(),
-            archived_flow_present=(current.store.root / "flow").is_dir(),
         )
 
     @router.post("/scenes")

@@ -38,7 +38,6 @@ from tabi.core.models.settings import AppPreferences
 class WebLofi(Document):
     document_type: Literal["web_lofi"] = "web_lofi"
     scenes: list[LofiScene]
-    archived_flow_present: bool = False
 
 
 class AudioSource(Model):

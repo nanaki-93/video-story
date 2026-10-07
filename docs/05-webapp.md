@@ -25,8 +25,8 @@ Seconds are a transport convenience only; persisted schedules remain integer fra
 
 Asset details/review, still templates, layered story/action editing, notes, release and backup
 remain available. They serve existing projects and production review rather than duplicating
-the normal scene workflow. Flow prompting/retries and its separate jobs are removed. Saved
-Flow artifacts stay on disk and are never resumed by the worker.
+the normal scene workflow. The old whole-scene generation queue is removed and never resumed.
+The app does not migrate or delete records in older external projects.
 
 ## Interaction constraints to preserve
 
@@ -43,5 +43,5 @@ Flow artifacts stay on disk and are never resumed by the worker.
 - Changes to approved content create new versions. Snapshot review, rights and release readiness
   remain factual; no UI interaction silently grants approval.
 
-The [original T25 playback spike](24-browser-foundation.md) is historical test evidence.
+The planned reference-generation and modular-pack controls are specified in [the final plan](../PLAN.md) and [reference asset contract](39-reference-assets.md).
 Current product acceptance is recorded in [V1 acceptance](38-v1-acceptance.md).

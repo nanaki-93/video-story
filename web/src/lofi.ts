@@ -111,13 +111,6 @@ export function lofiPage() {
       const tools = element("div", { className: "toolbar" });
       tools.append(newButton, versionButton, imports);
       top.append(tools, summary, preview, editor);
-      if (data.archived_flow_present)
-        root.append(
-          element("p", {
-            className: "notice",
-            text: "Earlier Flow inputs and exports are preserved in this project. This workspace now creates videos from reusable artwork and loops.",
-          }),
-        );
       root.append(top);
 
       const soundtrack = section(

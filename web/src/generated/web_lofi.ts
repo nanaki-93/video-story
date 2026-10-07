@@ -1,6 +1,5 @@
 /* Generated from schemas/ by scripts/contracts.mjs. Do not edit. */
 
-export type ArchivedFlowPresent = boolean;
 export type DocumentType = "web_lofi";
 export type ContentSha256 = string | null;
 export type Note = string | null;
@@ -49,7 +48,6 @@ export type Scenes = LofiScene[];
 export type SchemaVersion1 = "1.0";
 
 export interface WebLofi {
-  archived_flow_present?: ArchivedFlowPresent;
   document_type?: DocumentType;
   scenes: Scenes;
   schema_version: SchemaVersion1;

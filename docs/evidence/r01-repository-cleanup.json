@@ -1,0 +1,649 @@
+{
+  "task_id": "R01",
+  "review_date": "2026-10-08",
+  "timezone": "Asia/Manila",
+  "status": "complete",
+  "request": "Finalize reference-conditioned asset generation and delete obsolete code and previous experiments while preserving supplied assets.",
+  "baseline_commit": "0d67febb10bc673079db79743d0e1abd1628d7ad",
+  "plan": {
+    "product": "PLAN.md",
+    "technical": "docs/39-reference-assets.md",
+    "queue": "docs/tasks/INDEX.md",
+    "details": "docs/tasks.md",
+    "first_next_task": "L07",
+    "generator_implemented": false,
+    "candidate": "FLUX.2 klein 4B via MFLUX/MLX",
+    "model_installed": false,
+    "qualification": "pending exact model/dependency terms and real Tabi quality/performance"
+  },
+  "changed_behavior": [
+    "Removed obsolete Flow presence field/banner from catalog/UI.",
+    "Removed the retired P01 character-pipeline verifier and nine dedicated tests.",
+    "Replaced superseded plan/task history with one final reference-assets queue.",
+    "Removed inspected obsolete local creative trials and superseded pilot preparations."
+  ],
+  "removed": {
+    "files": 3110,
+    "bytes": 2187528245,
+    "scope_count": 105,
+    "scopes": [
+      {
+        "scope": "docs/archive",
+        "files": 7,
+        "bytes": 461899
+      },
+      {
+        "scope": "assets-source/tabi/turnaround-v2-draft",
+        "files": 13,
+        "bytes": 10077669
+      },
+      {
+        "scope": "scripts/verify_character_pipeline.py",
+        "files": 1,
+        "bytes": 6808
+      },
+      {
+        "scope": "tests/unit/test_character_pipeline_evidence.py",
+        "files": 1,
+        "bytes": 3714
+      },
+      {
+        "scope": "docs/24-browser-foundation.md",
+        "files": 1,
+        "bytes": 5736
+      },
+      {
+        "scope": "docs/35-local-generation.md",
+        "files": 1,
+        "bytes": 525
+      },
+      {
+        "scope": "docs/evidence/f00-flow-execution.json",
+        "files": 1,
+        "bytes": 3731
+      },
+      {
+        "scope": "docs/evidence/f10-flow-finish.jpg",
+        "files": 1,
+        "bytes": 43087
+      },
+      {
+        "scope": "docs/evidence/f10-flow-playback.jpg",
+        "files": 1,
+        "bytes": 46322
+      },
+      {
+        "scope": "docs/evidence/f10-flow-ui.json",
+        "files": 1,
+        "bytes": 1280
+      },
+      {
+        "scope": "docs/evidence/f11-flow-delivery.json",
+        "files": 1,
+        "bytes": 1478
+      },
+      {
+        "scope": "docs/evidence/f12-flow-finish.jpg",
+        "files": 1,
+        "bytes": 126235
+      },
+      {
+        "scope": "docs/evidence/f12-flow-mobile.jpg",
+        "files": 1,
+        "bytes": 74564
+      },
+      {
+        "scope": "docs/evidence/f12-flow-workflow.json",
+        "files": 1,
+        "bytes": 5375
+      },
+      {
+        "scope": "docs/evidence/f12-tokyo-preview-finish.jpg",
+        "files": 1,
+        "bytes": 106014
+      },
+      {
+        "scope": "docs/evidence/f12-tokyo-real-trial.json",
+        "files": 1,
+        "bytes": 11168
+      },
+      {
+        "scope": "docs/evidence/f12-tokyo-retry-limit.jpg",
+        "files": 1,
+        "bytes": 38902
+      },
+      {
+        "scope": "docs/evidence/f13-repository-cleanup.json",
+        "files": 1,
+        "bytes": 2552
+      },
+      {
+        "scope": "docs/evidence/f14-local-artifact-cleanup.json",
+        "files": 1,
+        "bytes": 37187
+      },
+      {
+        "scope": "docs/evidence/p01-blender-native-comparison.jpg",
+        "files": 1,
+        "bytes": 263112
+      },
+      {
+        "scope": "docs/evidence/p01-blender-native-trial.json",
+        "files": 1,
+        "bytes": 25859
+      },
+      {
+        "scope": "docs/evidence/p01-character-comparison.jpg",
+        "files": 1,
+        "bytes": 162138
+      },
+      {
+        "scope": "docs/evidence/p01-character-pipeline.json",
+        "files": 1,
+        "bytes": 26339
+      },
+      {
+        "scope": "docs/evidence/p01-colab-capacity.json",
+        "files": 1,
+        "bytes": 5770
+      },
+      {
+        "scope": "docs/evidence/p01-colab-runtime-stopped.jpg",
+        "files": 1,
+        "bytes": 59222
+      },
+      {
+        "scope": "docs/evidence/p01-flow-continuity-review.json",
+        "files": 1,
+        "bytes": 15453
+      },
+      {
+        "scope": "docs/evidence/p01-flow-tokyo-001-props.jpg",
+        "files": 1,
+        "bytes": 299699
+      },
+      {
+        "scope": "docs/evidence/p01-flow-tokyo-001-review.json",
+        "files": 1,
+        "bytes": 16156
+      },
+      {
+        "scope": "docs/evidence/p01-flow-train-overview.jpg",
+        "files": 1,
+        "bytes": 695858
+      },
+      {
+        "scope": "docs/evidence/p01-flow-train-trial.json",
+        "files": 1,
+        "bytes": 41958
+      },
+      {
+        "scope": "docs/evidence/p01-flow-workflow-feedback.json",
+        "files": 1,
+        "bytes": 16778
+      },
+      {
+        "scope": "docs/evidence/p01-next-route-review.json",
+        "files": 1,
+        "bytes": 17091
+      },
+      {
+        "scope": "docs/evidence/p01-spar3d-comparison.jpg",
+        "files": 1,
+        "bytes": 171052
+      },
+      {
+        "scope": "docs/evidence/p01-spar3d-preflight.json",
+        "files": 1,
+        "bytes": 7300
+      },
+      {
+        "scope": "docs/evidence/p01-spar3d-trial.json",
+        "files": 1,
+        "bytes": 28858
+      },
+      {
+        "scope": "docs/evidence/p01-turnaround-comparison.jpg",
+        "files": 1,
+        "bytes": 282546
+      },
+      {
+        "scope": "docs/evidence/p01-turnaround-reference-pack.json",
+        "files": 1,
+        "bytes": 34327
+      },
+      {
+        "scope": "docs/evidence/p01-turnaround-reference-sheet.jpg",
+        "files": 1,
+        "bytes": 222423
+      },
+      {
+        "scope": "docs/evidence/p01-turnaround-trial.json",
+        "files": 1,
+        "bytes": 41278
+      },
+      {
+        "scope": "docs/evidence/s04-planned-shots.json",
+        "files": 1,
+        "bytes": 8381
+      },
+      {
+        "scope": "docs/evidence/s04-shot-workflow.jpg",
+        "files": 1,
+        "bytes": 173527
+      },
+      {
+        "scope": "docs/evidence/s04-tabi-camera-trial.jpg",
+        "files": 1,
+        "bytes": 186543
+      },
+      {
+        "scope": "docs/evidence/s04-tabi-camera-trial.json",
+        "files": 1,
+        "bytes": 24079
+      },
+      {
+        "scope": "docs/evidence/t14-anatomy-method-review.json",
+        "files": 1,
+        "bytes": 11570
+      },
+      {
+        "scope": "docs/evidence/t14-breathing-actions-draft.json",
+        "files": 1,
+        "bytes": 18239
+      },
+      {
+        "scope": "docs/evidence/t14-calm-baseline-selection.json",
+        "files": 1,
+        "bytes": 6623
+      },
+      {
+        "scope": "docs/evidence/t14-calm-upper-ear-app.jpg",
+        "files": 1,
+        "bytes": 99111
+      },
+      {
+        "scope": "docs/evidence/t14-calm-upper-ear-comparison.jpg",
+        "files": 1,
+        "bytes": 611107
+      },
+      {
+        "scope": "docs/evidence/t14-calm-upper-ear-comparison.json",
+        "files": 1,
+        "bytes": 10857
+      },
+      {
+        "scope": "docs/evidence/t14-calm-window-ride-draft.json",
+        "files": 1,
+        "bytes": 13675
+      },
+      {
+        "scope": "docs/evidence/t14-continuous-train-draft.json",
+        "files": 1,
+        "bytes": 9383
+      },
+      {
+        "scope": "docs/evidence/t14-ear-stability-draft.json",
+        "files": 1,
+        "bytes": 11424
+      },
+      {
+        "scope": "docs/evidence/t14-train-actions-draft.json",
+        "files": 1,
+        "bytes": 21469
+      },
+      {
+        "scope": "docs/evidence/t14-train-actions-review-2026-10-04.json",
+        "files": 1,
+        "bytes": 2989
+      },
+      {
+        "scope": "docs/evidence/t14-window-rig-polish-draft.json",
+        "files": 1,
+        "bytes": 22435
+      },
+      {
+        "scope": "docs/evidence/t25-browser-proxy.json",
+        "files": 1,
+        "bytes": 1550
+      },
+      {
+        "scope": "docs/evidence/t25-chrome-compact.jpg",
+        "files": 1,
+        "bytes": 89943
+      },
+      {
+        "scope": "docs/evidence/t25-chrome-playback.json",
+        "files": 1,
+        "bytes": 1086
+      },
+      {
+        "scope": "docs/evidence/t25-chrome-preview.jpg",
+        "files": 1,
+        "bytes": 97275
+      },
+      {
+        "scope": "docs/evidence/t25-http-checks.json",
+        "files": 1,
+        "bytes": 1019
+      },
+      {
+        "scope": "docs/evidence/t25-safari-playback.txt",
+        "files": 1,
+        "bytes": 5743
+      },
+      {
+        "scope": "docs/evidence/t25-safari-preview.png",
+        "files": 1,
+        "bytes": 359755
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-assets.jpg",
+        "files": 1,
+        "bytes": 81734
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-audio.jpg",
+        "files": 1,
+        "bytes": 81953
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-inspector.jpg",
+        "files": 1,
+        "bytes": 85688
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-notebook.jpg",
+        "files": 1,
+        "bytes": 83807
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-projects.jpg",
+        "files": 1,
+        "bytes": 80686
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-release.jpg",
+        "files": 1,
+        "bytes": 83776
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-renders.jpg",
+        "files": 1,
+        "bytes": 83352
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-settings.jpg",
+        "files": 1,
+        "bytes": 82558
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-setup.jpg",
+        "files": 1,
+        "bytes": 81498
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-story.jpg",
+        "files": 1,
+        "bytes": 81626
+      },
+      {
+        "scope": "docs/evidence/t25-wireframe-timeline.jpg",
+        "files": 1,
+        "bytes": 79437
+      },
+      {
+        "scope": "docs/evidence/t36-generation.jpg",
+        "files": 1,
+        "bytes": 234719
+      },
+      {
+        "scope": "docs/evidence/u03-tabi-app-trial.jpg",
+        "files": 1,
+        "bytes": 246369
+      },
+      {
+        "scope": "docs/evidence/u03-tabi-app-trial.json",
+        "files": 1,
+        "bytes": 124855
+      },
+      {
+        "scope": "docs/evidence/u04-tokyo-scenery.json",
+        "files": 1,
+        "bytes": 25623
+      },
+      {
+        "scope": "docs/evidence/u05-independent-flow.json",
+        "files": 1,
+        "bytes": 40913
+      },
+      {
+        "scope": "docs/evidence/u06-real-independent.json",
+        "files": 1,
+        "bytes": 42041
+      },
+      {
+        "scope": "docs/evidence/u06-user-review.json",
+        "files": 1,
+        "bytes": 5008
+      },
+      {
+        "scope": "docs/evidence/u06a-review-preview.json",
+        "files": 1,
+        "bytes": 3195
+      },
+      {
+        "scope": "docs/evidence/u06b-partial-preview.json",
+        "files": 1,
+        "bytes": 7554
+      },
+      {
+        "scope": ".local/cleanup-2026-10-07",
+        "files": 5,
+        "bytes": 1606470
+      },
+      {
+        "scope": ".local/config.yaml",
+        "files": 1,
+        "bytes": 3996
+      },
+      {
+        "scope": ".local/l01-lofi-refactor",
+        "files": 5,
+        "bytes": 185197
+      },
+      {
+        "scope": ".local/p01-blender-native-v1",
+        "files": 79,
+        "bytes": 30130993
+      },
+      {
+        "scope": ".local/p01-character-pipeline",
+        "files": 50,
+        "bytes": 15488167
+      },
+      {
+        "scope": ".local/p01-flow-extension-check",
+        "files": 1,
+        "bytes": 168823
+      },
+      {
+        "scope": ".local/p01-flow-feedback-v1",
+        "files": 31,
+        "bytes": 32627524
+      },
+      {
+        "scope": ".local/p01-flow-tokyo-001-review",
+        "files": 36,
+        "bytes": 48016345
+      },
+      {
+        "scope": ".local/p01-flow-train-v1",
+        "files": 431,
+        "bytes": 373616270
+      },
+      {
+        "scope": ".local/p01-next-route-review",
+        "files": 46,
+        "bytes": 794080
+      },
+      {
+        "scope": ".local/p01-spar3d",
+        "files": 184,
+        "bytes": 13615041
+      },
+      {
+        "scope": ".local/p01-tabi-turnaround-v2",
+        "files": 121,
+        "bytes": 46825300
+      },
+      {
+        "scope": ".local/tabi-camera-trial",
+        "files": 975,
+        "bytes": 746563425
+      },
+      {
+        "scope": ".local/tabi-p01-spar3d-executed.ipynb",
+        "files": 1,
+        "bytes": 48347
+      },
+      {
+        "scope": ".local/tabi-p01-spar3d-result.zip",
+        "files": 1,
+        "bytes": 3834172
+      },
+      {
+        "scope": ".local/tabi-p01-turnaround-v2-executed.ipynb",
+        "files": 1,
+        "bytes": 50478
+      },
+      {
+        "scope": ".local/tabi-p01-turnaround-v2-result.zip",
+        "files": 1,
+        "bytes": 14770274
+      },
+      {
+        "scope": ".local/tokyo-flow-example",
+        "files": 387,
+        "bytes": 165348920
+      },
+      {
+        "scope": ".local/u04-tokyo-scenery",
+        "files": 14,
+        "bytes": 3352150
+      },
+      {
+        "scope": ".local/u05-independent-flow",
+        "files": 24,
+        "bytes": 9953922
+      },
+      {
+        "scope": ".local/u06-real-independent",
+        "files": 513,
+        "bytes": 450612934
+      },
+      {
+        "scope": ".local/tokyo-lofi-pilot-v1/prepared-v1",
+        "files": 33,
+        "bytes": 68488823
+      },
+      {
+        "scope": ".local/tokyo-lofi-pilot-v1/prepared-v2",
+        "files": 70,
+        "bytes": 144514956
+      }
+    ]
+  },
+  "preservation": {
+    "files": 486,
+    "bytes": 1920944845,
+    "changed": [],
+    "ide_index_unchanged": true,
+    "tracked_mp4s": [],
+    "missing_markdown_targets": [],
+    "source_media_files": 327,
+    "source_media_bytes": 1161421338,
+    "all_source_media_hashes_unchanged": true,
+    "excluded_metadata": [
+      "docs/assets/README.md (documentation updated)",
+      ".DS_Store"
+    ],
+    "source_inventory_renamed_to": "docs/local-source-manifest.json",
+    "pilot_retained": [
+      ".local/tokyo-lofi-pilot-v1/generated/",
+      ".local/tokyo-lofi-pilot-v1/prepared-v3/",
+      ".local/tokyo-lofi-pilot-v1/deliverables/",
+      ".local/tokyo-lofi-pilot-v1/preparation.json",
+      ".local/tokyo-lofi-pilot-v1/launch.py"
+    ],
+    "synthetic_regression_project_retained": ".local/l03-lofi-ui/",
+    "git_history_rewritten": false,
+    "running_workers_stopped": false
+  },
+  "manifests": {
+    "protected-before.json": {
+      "path": ".local/r01-final-plan-cleanup/protected-before.json",
+      "sha256": "13bc7304add250be797be772761a61cfe53644db0ff1563e5b28ce597690af4d"
+    },
+    "removed-files.json": {
+      "path": ".local/r01-final-plan-cleanup/removed-files.json",
+      "sha256": "1cf268d230303591641a7d9175a1941cc36bb068f046493a55d229ac64d439e2"
+    },
+    "ide-index-before.txt": {
+      "path": ".local/r01-final-plan-cleanup/ide-index-before.txt",
+      "sha256": "27b9e2eb16a01c9e2f4e7135208a6cf25e00c3395fddf366ed1a7f68b9ef38ca"
+    }
+  },
+  "verification": {
+    "sandbox_run": {
+      "result": "286 passed; three loopback/worker tests blocked by sandbox socket permission; 62 media checks deferred to test-media",
+      "log": ".local/r01-final-plan-cleanup/checks.log"
+    },
+    "full_gate": {
+      "status": "passed",
+      "command": "UV_CACHE_DIR=.local/uv-cache UV_OFFLINE=1 TABI_CONFIG=examples/settings.macos.toml make check web-check web-build package test-media",
+      "log": ".local/r01-final-plan-cleanup/checks-local-network.log",
+      "local_loopback_permission": true,
+      "exit_code": 0,
+      "core_tests_passed": 289,
+      "media_tests_passed": 62,
+      "frontend_tests_passed": 6,
+      "core_seconds": 36.4,
+      "media_seconds": 259.2,
+      "checked_schemas": 63,
+      "ruff": "passed",
+      "formatting": "passed",
+      "typescript": "passed",
+      "web_build": "passed",
+      "wheel_and_sdist": "passed",
+      "log_sha256": "851dfc901f7d3104a4e7202f8528b30db32fa404db35e6a48dd6c5884be3d7e1",
+      "advisories": [
+        "Existing FastAPI/Starlette test-client deprecation warning",
+        "Generated-validator bundle exceeds Vite size advisory"
+      ]
+    },
+    "package_inspection": {
+      "wheel": ".local/packages/tabi_story_studio-0.1.0-py3-none-any.whl",
+      "wheel_sha256": "8c75cc9ceada813650dbdb4fde7a019c1d8777f7a4d17947c339f030daa54204",
+      "entries": 113,
+      "shared_lofi_and_renderer_present": true,
+      "obsolete_banner_absent_in_python_and_built_ui": true,
+      "mp4_or_retired_verifier_entries": []
+    },
+    "generated_schema": {
+      "schema": "schemas/web_lofi.schema.json",
+      "only_removed_property": "archived_flow_present",
+      "all_other_fields_unchanged": true
+    },
+    "markdown_targets": "all retained relative file targets resolve",
+    "whitespace": "git diff --check passed"
+  },
+  "known_limits": [
+    "Generator and modular packs are planned, not implemented.",
+    "Book correction remains L06; preserved pilot is unchanged.",
+    "Source/art/music approval and final Safari/native-4K/long-form gates remain pending.",
+    "Original media and trial comparisons intentionally kept inside the supplied docs/assets library.",
+    "Existing read-only legacy preference/release compatibility and retirement safety tests remain.",
+    "Tracked file removals do not erase Git history."
+  ]
+}

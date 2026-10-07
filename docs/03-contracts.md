@@ -114,5 +114,5 @@ It validates and compiles before the episode is first persisted. The resulting c
 template leaves already-created episodes unchanged when the scene draft changes.
 
 The authenticated `/api/v1/projects/{handle}/lofi` catalog, `/lofi/scenes` save and `/lofi/videos`
-create endpoints use `LofiService`, as do the CLI adapters. Old Flow documents remain on disk
-but no longer belong to the executable schema registry; no worker resumes their queues.
+create endpoints use `LofiService`, as do the CLI adapters. Retired generation documents in
+older external projects are not in the executable schema registry; no worker resumes them.

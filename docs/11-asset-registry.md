@@ -45,4 +45,4 @@ Image/font checks use Pillow. PCM WAV import counts actual decoded samples and r
 
 Publication order is verified copies, then atomic registry metadata under the project lock. Failure removes only the new operation's staging directory. A hard crash can leave an unreferenced owned copy for later storage review. Originals and registered media are never generic cache-cleanup targets. This is local application coordination, not an OS sandbox against another process editing the same files.
 
-Evidence: [T05 record](archive/v1-tasks.md#t05), [observed fixture health](evidence/t05-asset-health.json). No actual art approval is implied.
+Evidence: [observed fixture health](evidence/t05-asset-health.json). No actual art approval is implied.

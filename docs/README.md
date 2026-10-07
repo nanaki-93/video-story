@@ -1,9 +1,10 @@
 # Documentation guide
 
-The current workflow creates lo-fi music videos from saved illustrations, window scenery and
-prepared small loops. Python owns timing, composition and audio; the normal UI needs no per-video
-JSON. Flow execution is retired, and earlier media is preserved. Real art/music approval remains
-pending. [Operations](37-operations.md) describes the actual controls.
+The implemented app makes lo-fi videos from saved illustrations, window scenery and prepared
+small loops. The next phase adds reference-based generation and reusable outfit/cabin/journey
+packs. The [final plan](../PLAN.md) and [generation contract](39-reference-assets.md) define that
+work; [operations](37-operations.md) describes controls available today. Real art/music approval
+remains separate from engineering checks.
 
 ## Start here
 
@@ -13,7 +14,7 @@ pending. [Operations](37-operations.md) describes the actual controls.
 | Make the first 90-second train video | [Reusable scene workflow](37-operations.md#make-a-lo-fi-video) |
 | Understand scene reuse and exports | [Current UI](05-webapp.md) |
 | Follow implementation and current checks | [Active tasks](tasks/INDEX.md), [progress](progress.md), [acceptance](38-v1-acceptance.md) |
-| Read the implementation contract | [Lo-fi refactor tasks](tasks.md) |
+| Read the implementation contract | [Reference asset tasks](tasks.md) |
 | Find artwork and preserved local variants | [Media guide](assets/README.md), [source audit](09-implementation-review.md) |
 | Use existing layered projects / troubleshoot | [Advanced operations](37-operations.md#produce-an-advanced-layered-episode), [recovery](37-operations.md#troubleshooting-and-recovery) |
 
@@ -34,16 +35,14 @@ implemented services. Start with the relevant subject rather than reading every 
 | Release and recovery | [Publishing boundaries](06-publishing.md), [release exporter](23-release-preparation.md), [release/backup UI](31-release-and-backups.md) |
 | Scene extensions | [Café](33-cafe-template.md), [activities/outfits](34-activity-packs.md) |
 | Verification | [QA requirements](07-qa.md), [toolchain](10-toolchain.md), [long-form measurements](36-longform.md) |
-| Interface reference and history | [Current UI map](05-webapp.md), [original browser spike evidence](24-browser-foundation.md) |
+| Interface and planned generation | [Current UI map](05-webapp.md), [reference generator contract](39-reference-assets.md) |
 | External reference record | [Sources and verification dates](08-sources.md) |
 
-## Historical records
+## Source and verification records
 
-The 38 individual V1 task files have been consolidated into [V1 task records](archive/v1-tasks.md).
-The detailed chronological log is in [V1 implementation history](archive/v1-progress.md).
-Historical test totals and “next task” statements describe those earlier checkpoints.
-Superseded proposals are in [the preparation archive](archive/pre-flow-plan.md); character trials,
-licences, hashes and creative feedback are in [production history](archive/production-progress.md).
-The unused [ComfyUI bridge](35-local-generation.md) and playback prototype have been retired.
-Bulk source variants remain locally with recorded hashes rather than in the tracked tree; keep
-those files backed up separately. No source artwork or Git history was erased.
+The source [media guide](assets/README.md), [read-only audit](09-implementation-review.md) and
+[local source manifest](local-source-manifest.json) preserve supplied-art findings. Ignored
+variants stay on disk and need separate backup. [Progress](progress.md) and
+[acceptance](38-v1-acceptance.md) link retained evidence for active services and the successful
+Tokyo pilot. Superseded plans and rejected experiment files were removed during R01; Git history
+was not rewritten. There is one active implementation queue.

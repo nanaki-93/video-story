@@ -8,14 +8,17 @@ a fixed window mask. Prepared transparent PNG loops add small movements such as 
 each uses its own timing without restarting the exterior. Python owns composition, timing,
 audio and rendering; the browser provides the controls. No per-video JSON editing is required.
 
-The Flow generation, prompting, retries and separate export path have been removed. Earlier
-media and project files remain on disk. This route uses the existing local tools, with no new
-paid apps, models or credit top-ups. Real TABI artwork, masks, loops, Tokyo strips and music
-still need preparation and visual/rights approval before publication.
+The next phase adds **Generate from references** inside the app: choose existing Tabi, outfit,
+pose, cabin and Tokyo images, generate and compare a candidate, then prepare reusable looks,
+cabins and journeys. Each video can select a different combination with breathing, blinks and
+small gill motion. This generator/modular workflow is planned, not implemented yet. See the
+[final plan](PLAN.md) and [ordered tasks](docs/tasks/INDEX.md).
 
-The refactor passes 298 core checks, 62 actual-media integrations and six frontend checks.
-Normal Chrome scene creation, playback, 1080p export/download and reuse are verified with
-synthetic assets. See [acceptance evidence](docs/evidence/l04-lofi-refactor.json).
+The existing fixed-scene workflow and a complete real 90-second silent Tokyo draft are verified.
+The book correction, new reference generator and production art/rights gates remain open.
+[Current acceptance](docs/38-v1-acceptance.md) separates software checks from creative approval.
+The proposed generator uses a qualified local backend with no new paid app or subscription;
+model installation, exact dependency terms and real Tabi quality/performance are still pending.
 
 | Start here | |
 | --- | --- |
@@ -93,8 +96,8 @@ Rendering caches use each project's `.cache/tabi-v1`; global `cache_root` stores
 
 The [source audit](docs/09-implementation-review.md) and [hash inventory](docs/asset-inventory.json)
 record the supplied media and missing preparation. No import or technical test grants artistic
-or publication approval. Local MP4 sources and bulk preparation variants are deliberately absent from a fresh checkout.
-The [media guide](docs/assets/README.md) and [hash inventory](docs/evidence/f13-local-media-inventory.json)
+or publication approval. Local MP4 sources and bulk reference variants are deliberately absent from a fresh checkout.
+The [media guide](docs/assets/README.md) and [hash inventory](docs/local-source-manifest.json)
 record preserved local files. Selected static references stay tracked; production media belongs
 in backed-up local project storage. Existing Git history has not been rewritten.
 

@@ -1,8 +1,13 @@
 # Asset production and approval specification
 
+The active scope is the [final reference-assets plan](../PLAN.md) and
+[generation contract](39-reference-assets.md). The first reusable train family needs independent
+looks, cabins and journeys with breathing, blinks and small gill movement. Advanced actions are
+optional later packs, not prerequisites for this milestone.
+
 ## Reference and style foundation
 
-The supplied collection has now been inventoried: see [supplied asset audit](09-implementation-review.md) and the per-file [hash inventory](asset-inventory.json). `assets/tabi-character-profile.png` is an actual reference candidate with turnaround, palette and proportions; `assets/scenario/tabi-train-example.png` supplies the seated scene. Their presence does not establish approval. Reuse these originals for comparison and record the selected approved hash in T06. No replacement Tabi design is needed for technical development.
+The supplied collection has now been inventoried: see [supplied asset audit](09-implementation-review.md) and the per-file [hash inventory](asset-inventory.json). `assets/tabi-character-profile.png` is an actual reference candidate with turnaround, palette and proportions; `assets/scenario/tabi-train-example.png` supplies the seated scene. Their presence does not establish approval. Reuse these originals for comparison and record the exact selected source hash and its review state in each preparation manifest. No replacement Tabi design is needed for technical development.
 
 Obtain the actual approved Tabi reference and channel artwork from Marco or the existing asset collection. Do not assume the channel banner is a layered character master. Preserve an original copy and document its source. Create a contact sheet containing front/side/three-quarter views, approved seated silhouette, head-to-body proportions, frill shapes, headphone design, face states, outline treatment, and palette swatches sampled from the approved art.
 
@@ -12,21 +17,19 @@ Create a style guide with approved and rejected examples. Lock camera, light dir
 
 ## Asset inventory
 
-| Pack | Required V1 assets | Source and export |
+| Pack | Assets for the active train milestone | Source and export |
 | --- | --- | --- |
 | Character reference | Contact sheet, palette, measurements, neutral expression | Editable source plus PNG contact sheet |
 | Seated character | Body, head, eyes, eyelids, frills, arms, headphones; back/front pieces where needed | Layered source; aligned RGBA PNG pieces |
-| Core actions | Idle loop, blink overlay, look entry, observing hold/loop, look exit | Authored animation source; RGBA frame sequence or tested alpha video |
+| Gentle motions | Slow breathing cycle, aligned blink states, small gill cycle, compatible rest states | Authored states/settings; aligned RGBA frame sequences in an existing ActionPack |
 | Train interior | Cabin background, seat, table foreground, window frame, optional glass highlights, separate interior light mask | Aligned RGBA PNGs plus mask PNGs |
 | Window geometry | Exterior visibility mask and optional reflection/light masks | Grayscale PNG, explicit white-is-visible semantics |
-| Tokyo exterior | Sky, far silhouette, mid buildings, near passers, one distinct scheduled landmark | Separate normalized layers; seamless strips only where needed |
-| Weather | Gentle rain animation and glass droplets; approved strength range | Parameterized effect or prepared alpha loop |
-| Lighting | Day/dusk/night values and separate cabin/Tabi masks | Named profiles and reference stills |
-| Sound | Finished original music, optional owned/licensed ambience | WAV masters; separate ambience stems |
-| Release artwork | Thumbnail composition, cover artwork source and exports | Editable source plus export presets |
-| Café proof | Interior, window mask, exterior, appropriate seated placement | Independent template using shared engine |
+| Tokyo journey | Several distinct district views with consistent perspective/light and reviewed joins | Normalized strips with exact wrap padding; optional depth layers |
 
-Optional action pack: drink, book/page turn, headphone adjustment, sleep entry, sleeping loop, wake exit. Each requires new approved interaction drawings and transitions. A sleep loop must not repeatedly replay the act of falling asleep.
+Cleared music, release artwork, weather/light effects and additional scene families are separate
+production or optional extension work. The current acceptance is silent.
+
+Optional action pack: looking/observing, drink, book/page turn, headphone adjustment, sleep entry, sleeping loop, wake exit. Each requires new approved interaction drawings and transitions. A sleep loop must not repeatedly replay the act of falling asleep.
 
 ## Production steps for the character
 
@@ -35,13 +38,15 @@ Optional action pack: drink, book/page turn, headphone adjustment, sleep entry, 
 3. Put all pieces on one agreed canvas with fixed pivots and a seat anchor. Record pivot locations rather than guessing them during compositing.
 4. Author slow breathing through local torso/shoulder movement; avoid scaling the entire character. Keep facial parts attached.
 5. Author blink shapes and timing; blink is a facial channel and does not restart the body loop.
-6. Author idle-to-observing and observing-to-idle clips, with matching endpoint poses.
+6. Author a restrained gill motion with matching rest/return states; keep the head fixed for the first pack.
 7. Export at the project's frame rate, inspect every frame of transitions, and compare the first/last loop boundary.
 8. Inspect alpha edges against black, white, lavender and peach. Correct matte halos and premultiplication errors.
 9. Register actions with pose IDs, channels, entry/exit conditions, prop states and their compatible template/camera.
 10. User approves the pack; record version, hash and approval note.
 
-Suggested starting durations, adjustable after review: idle 8–12 seconds, look transition 1–2 seconds, observing loop 8–15 seconds, blink 4–8 frames at 30 fps. These are animation design proposals, not generative prompts guaranteeing those durations.
+Initial motion timing is chosen from reviewed source states and the selected rational fps.
+Separate slow breathing from sparse blinks and occasional gill accents. Do not generate each
+frame independently or scale the entire character to substitute for local breathing.
 
 ## Environment preparation
 
@@ -49,7 +54,11 @@ Prepare layers individually where possible. A depth mask extracted from a single
 
 Start at the resolution needed for the shot. A 1920×1080 scene canvas and exterior strips around 3840×1080 are reasonable pilot proposals; preserve higher-resolution source if available. A strip's displayed height depends on the window crop, not on the whole frame. For final 4K, approve sufficient source detail at the actual displayed scale rather than automatically stretching small PNGs.
 
-Seamless strips contain generic buildings, vegetation and distant geography. Landmarks are one-time scheduled sprites with entry/exit times; do not bake a famous tower into a repeating 10-second strip. Record tile period, overlap, transparent edge padding, horizon line, depth coefficient, allowed lighting profiles and safe cropping region.
+Generic depth strips can repeat buildings, vegetation and distant geography. A journey can
+include distinct landmarks across a longer reviewed cycle; avoid repeating the same landmark
+every few seconds. Review the full route wrap as well as each district join. The existing
+advanced renderer also supports one-time landmark sprites. Record period, padding, horizon,
+depth, lighting and safe cropping; a stylized journey need not follow a real railway.
 
 Text signage should be authored and checked separately; generated pseudo-Japanese is not accepted signage. Artwork may be Tokyo-inspired without being a precise map. Label geography accordingly.
 

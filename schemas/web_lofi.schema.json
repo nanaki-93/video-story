@@ -330,11 +330,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
-    "archived_flow_present": {
-      "default": false,
-      "title": "Archived Flow Present",
-      "type": "boolean"
-    },
     "document_type": {
       "const": "web_lofi",
       "default": "web_lofi",

@@ -2,7 +2,13 @@
 
 ## Module ownership
 
-The Python core owns schemas, asset registry, timeline compiler, state evaluation, rendering, audio scheduling, job persistence and release preparation. CLI and API are adapters. TypeScript owns browser UI state, forms, timeline interaction and proxy playback. A Python launcher owns the local server and worker lifecycle. Resolve/Fusion is an optional source-authoring tool; it is not required by the runtime.
+The Python core owns schemas, asset registry, timeline compiler, state evaluation, rendering, audio scheduling, job persistence and release preparation. CLI and API are adapters. TypeScript owns browser UI state, forms, timeline interaction and proxy playback. A Python launcher owns the local server and worker lifecycle.
+
+The planned [reference generator](39-reference-assets.md) adds a read-only source catalog,
+optional qualified image backend, owned generation jobs and bounded preparation services in
+Python. New pack/recipe documents compile to the existing scene/action/episode types. These
+services are not implemented yet; the [task queue](tasks/INDEX.md) defines their order. The
+basic renderer continues to work without model files or a generation dependency installed.
 
 Logical flow: approved assets + music + episode document → validation → compiled immutable snapshot → render plan → chunk jobs → assembled video and continuous audio → export verification → release preparation.
 
