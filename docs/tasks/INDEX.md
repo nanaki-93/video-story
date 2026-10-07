@@ -22,7 +22,7 @@ shot quality, preparation, credits and human effort still need measurement.
 | --- | --- | --- |
 | U06b | Labeled partial preview of a paused run's active accepted footage; original plan preserved | complete; core/media/frontend and real Chrome checks pass |
 | U06a | Content-versioned review previews refresh after selecting a different source section | complete; core/media/frontend and real Chrome checks pass |
-| U06 | Real TABI independent-shot trial, measured quality/credits/effort and full playback | in progress |
+| U06 | Real TABI independent-shot trial, measured quality/credits/effort and partial playback | bounded trial concluded; 45-second preview verified, full target unmet |
 | U05 | Independent short Tokyo shots and fixed editorial cuts; no Flow Extend | engineering complete; real quality/effort trial pending |
 | [U04](../tasks.md#u04--bind-each-tokyo-shot-to-its-own-window-view) | Distinct Tokyo window views and a calmer default routine | engineering complete; real quality/effort trial pending |
 | U01 | Frame-exact pending clip sections and matching review playback | complete; seven focused checks pass |
@@ -58,6 +58,15 @@ S01–S04 planned-shot engineering is complete. Its actual creative limits remai
 | [F14](../tasks.md#f14--clean-obsolete-local-test-and-video-artifacts) | Remove obsolete local test runs, preparation copies and video comparisons | complete; 18.50 GB removed, protected hashes and core checks pass |
 
 ## Remaining acceptance
+
+The [U06 independent-shot trial](../evidence/u06-real-independent.json) stopped at 45 accepted
+seconds after nine takes / 900 confirmed credits. Two mouth retries succeeded; Ueno's ending
+action failed after the two extra attempts had already been used. All twelve references and
+nine takes are saved. The partial export plays fully and keeps the 90-second plan unchanged.
+Three districts are represented; Tokyo Bay motion is untested. The observed 1200-credit
+no-retry baseline per video also exceeds the included allowance for 30 new videos per month.
+The next recommended creative test is a short fixed-pose/ambient-motion pilot including the
+closing Bay view, before another full generation run. No additional request has started.
 
 The [U03 real app trial](../evidence/u03-tabi-app-trial.json) completed a 90-second silent
 train draft through Setup, References, Shots, Finish and Download. Twelve native clips are

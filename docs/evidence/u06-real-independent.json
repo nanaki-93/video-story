@@ -1,0 +1,803 @@
+{
+  "task_id": "U06",
+  "review_date": "2026-10-07",
+  "timezone": "Asia/Manila",
+  "status": "bounded real trial concluded; 90-second acceptance target not met",
+  "user_choices": [
+    "Stylized Tokyo journey with distinct districts",
+    "Independent cinematic shots with deliberate camera cuts",
+    "Existing entitlement only; no new subscriptions or credit purchases"
+  ],
+  "method": {
+    "plan": "12 independent 7.5-second shots / 2160 frames at 24/1",
+    "generation": "Google Flow normal UI; existing cloud-held TABI images used for reference preparation, then each assigned reference used in Frames to Video",
+    "local_workflow": "Normal video-story UI for setup, references, saved prompts, native imports, source ranges, review, rejection, pause, partial export, playback and download",
+    "not_used": [
+      "Flow Extend",
+      "generated end-to-start matching",
+      "per-video API calls",
+      "per-video project JSON edits",
+      "custom video assembly",
+      "unapproved music upload",
+      "publication"
+    ],
+    "episode_id": "8578e51613224b2a8ccf704e3d219f20",
+    "project": ".local/u06-real-independent/studio/TABI Tokyo independent trial",
+    "flow_project_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543"
+  },
+  "commercial_preparation": {
+    "date": "2026-10-07",
+    "provider": "Google Flow under existing Google AI Ultra entitlement",
+    "sources": [
+      "https://support.google.com/flow/answer/16353333?hl=en",
+      "https://support.google.com/flow/answer/16352836?hl=en",
+      "https://policies.google.com/terms?hl=en",
+      "https://one.google.com/terms-of-service",
+      "https://policies.google.com/terms/generative-ai/use-policy"
+    ],
+    "google_terms_effective": "2026-07-30 (retrieved country version Sweden; applicable account jurisdiction remains as configured)",
+    "google_one_terms_modified": "2025-11-11",
+    "findings": [
+      "Flow commercial-use FAQ refers to Google terms; Google does not claim ownership of original generated content. No noncommercial-only restriction or mandatory separate text attribution identified for this hosted draft route.",
+      "Use lawful supplied TABI inputs, keep SynthID/provider watermark, do not publish. Source-art rights and final commercial/publication review remain pending.",
+      "No new installed weights, fonts, dependency, paid service or purchase. Exact hosted immutable revisions are not exposed; retain UI model labels and review date."
+    ],
+    "reviewed_model_labels": [
+      "Nano Banana 2.1",
+      "Veo 3.1 - Quality"
+    ],
+    "model_version_note": "Flow currently displays Nano Banana 2.1, documented by current model-support page; earlier trial displayed Nano Banana 2. Hosted route/terms rechecked for this version."
+  },
+  "supplied_sources": [
+    {
+      "path": "docs/assets/scenario/tabi-train-example.png",
+      "sha256": "01e4db852ceed7bc4d17708c3d181103d0699e5caed54bbc44eda1d83932473e"
+    },
+    {
+      "path": ".local/tabi-camera-trial/TABI-Tokyo-wide-v1.jpeg",
+      "sha256": "90e5789708dd7e0dfaf5860266b05b8c577173d739ba25c88cd781da4f50d335"
+    },
+    {
+      "path": ".local/tabi-camera-trial/TABI-Tokyo-close-v1.jpg",
+      "sha256": "2d7ccf29a7231806745e8bcb5ec3b1ff4e08301876d82e5f1d1397720a323214"
+    }
+  ],
+  "references": {
+    "requests": 13,
+    "accepted": 12,
+    "rejected_framing_attempts": 1,
+    "displayed_credits": 0,
+    "all_reviewed_and_imported": true,
+    "records": [
+      {
+        "index": 1,
+        "view": "Sumida wide",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "provider_asset_id": "921d6ce7-ed85-4694-bd19-803e2e9b2530",
+        "path": ".local/u06-real-independent/references/01-sumida-wide.jpg",
+        "sha256": "56fabd060b26ae699ad59ff2cd2b8140bbad73ed26ea6cbef4290c4fe16254ae",
+        "review": "Compared full-size with supplied train artwork and prior wide source. Attached pink gills, closed green leopard-trim coat, red headphones, forehead/tail stars, two resting hands and connected neck preserved. Tan takeaway cup with black lid, open book/pen, brown bag. Clear carriage air. Broad water, bridge and Skytree visible behind fixed window with level horizon. Skytree larger than the requested distant landmark; acceptable stylized draft. Final aesthetic approval pending.",
+        "status": "Full-size reviewed and imported through normal local app UI"
+      },
+      {
+        "index": 2,
+        "view": "Sumida medium",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "rejected framing",
+        "path": ".local/u06-real-independent/references/02-sumida-medium-attempt1-wide.jpg",
+        "review": "Image edit retained the wide camera composition. Preserved and not imported. No video credit used.",
+        "sha256": "389f5cdc7cbb5e3416d1fb0bb3347d4ca8ac975fda10f548a4dcc253cb14ebc5"
+      },
+      {
+        "index": 2,
+        "attempt": 2,
+        "view": "Sumida medium",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "provider_asset_id": "e6d766ce-de7a-4b56-9b23-4b077efd53d2",
+        "path": ".local/u06-real-independent/references/02-sumida-medium.jpg",
+        "status": "imported through app",
+        "review": "Full-size comparison to supplied artwork and actual prior close source. Complete attached gills/head, connected neck, closed coat and two resting hands. Table cup/lid, book, pen and bag edge preserved. Broad river/bridge/Skytree visible behind fixed window; clear air. True medium composition. Extra explicit camera-framing clarification recorded in submitted prompt.",
+        "sha256": "74ddc7e13d89409e7443d0d2ea143cab84ad512ed0a2fc1552ebf98a68c9375d"
+      },
+      {
+        "index": 3,
+        "view": "Yanaka medium",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "imported through app",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/06c9a383-10f5-4be9-8077-b48e5bf7fd5d",
+        "path": ".local/u06-real-independent/references/03-yanaka-medium.jpg",
+        "result_observed_at": "2026-10-06T19:23:45.465Z",
+        "review": "Full-size review: same complete gills/head, coat, hands/cup/book/pen; clear air. Varied tiled roofs, wooden storefronts, lane and trees behind fixed window. Medium framing distinct from wide; draft fit.",
+        "sha256": "6c23df839f0bc6e90c8a1b3c21c7d9eb1932cc9824f1517ea270dc688f5d0b92"
+      },
+      {
+        "index": 4,
+        "view": "04-yanaka-wide",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "imported through app",
+        "submitted_at": "2026-10-06T19:24:15.846Z",
+        "source_title": "TABI Tokyo camera trial - wide v1",
+        "extra_framing_clarification": false,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/3df8ab15-858c-4f81-916c-da6b182909ed",
+        "path": ".local/u06-real-independent/references/04-yanaka-wide.jpg",
+        "result_observed_at": "2026-10-06T19:25:25.457Z",
+        "review": "Full-size review: same TABI markings/outfit/props, attached gills and two resting hands. Eyes peacefully closed in this starting image. Quiet wooden storefronts and lane behind level window; correct wide framing. Draft fit.",
+        "sha256": "7ad429bdb6f4528d98030c3d345a743e5d43c0cbccdadd6e28c65637a5926947"
+      },
+      {
+        "index": 5,
+        "view": "05-akihabara-wide",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "imported through app with native picker",
+        "submitted_at": "2026-10-06T19:51:45.117Z",
+        "source_title": "TABI Tokyo camera trial - wide v1",
+        "extra_framing_clarification": false,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/ced0a102-7f97-4f12-bfcb-07222d8ad6d9",
+        "path": ".local/u06-real-independent/references/05-akihabara-wide.jpg",
+        "result_observed_at": "2026-10-06T19:52:25.722Z",
+        "review": "Full-size review: same TABI markings, connected neck/gills, closed coat and two resting hands; unchanged cup/lid/book/pen/bag. Clear carriage. Colorful shopping streets, signs and elevated rail bridge behind the window; level perspective and distinct Akihabara-inspired scene.",
+        "sha256": "75c1eb66203d8e8d61e488eac78fe7cc895e4f6e53541644d2797f5584720fc3"
+      },
+      {
+        "index": 6,
+        "view": "06-akihabara-medium",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "full-size reviewed and imported through local app UI",
+        "submitted_at": "2026-10-06T19:54:49.532Z",
+        "source_title": "TABI Tokyo camera trial - close v1",
+        "extra_framing_clarification": true,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/6542ec7d-8759-456c-bc6f-c301946c935f",
+        "path": ".local/u06-real-independent/references/06-akihabara-medium.jpg",
+        "result_observed_at": "2026-10-06T19:55:58.943Z",
+        "review": "Full-size comparison: consistent original close TABI design/gills/neck/closed coat and resting hands; cup/lid, book/pen and bag edge intact. Clear air, colorful signs/shopping street and elevated bridge behind fixed window. Final generated-signage/art review remains pending.",
+        "local_path": ".local/u06-real-independent/references/06-akihabara-medium.jpg",
+        "sha256": "681a118856b311639cdefc35d5bc4e3e0cdd52083d2c875dc54fe9699af8303d"
+      },
+      {
+        "index": 7,
+        "view": "07-ueno-medium",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "full-size reviewed and imported through local app UI",
+        "submitted_at": "2026-10-06T19:56:27.034Z",
+        "source_title": "TABI Tokyo camera trial - close v1",
+        "extra_framing_clarification": true,
+        "local_path": ".local/u06-real-independent/references/07-ueno-medium.jpg",
+        "sha256": "36f373f6bf7ed638bf66fb543b0ada5be4af152b601a55453368de500bf15052",
+        "provider_asset": "0fd47c26-a6cf-4b38-8aac-8cbac6adf6d3",
+        "review": "Complete attached gills, connected neck, closed coat, resting hands, takeaway flower cup on table without handle/saucer, open book and pen, bag edge. Distinct Ueno pond and pavilion behind fixed window, level horizon. Human downloaded; three title-named downloads and one media-ID-named copy have identical hash."
+      },
+      {
+        "index": 8,
+        "view": "08-ueno-wide",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "full-size reviewed and imported through local app UI",
+        "submitted_at": "2026-10-06T20:46:42.416Z",
+        "source_title": "TABI Tokyo camera trial - wide v1",
+        "extra_framing_clarification": false,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/51d4fcd9-6854-4ef3-8504-fe44def3f5af",
+        "review": "Compared downloaded full-size image: wide train composition and TABI markings/gills/closed coat/neck match supplied source; resting hands, handle-free cup, book, pen and bag intact. Ueno pond, trees and pavilion remain behind fixed window with consistent horizon.",
+        "local_path": ".local/u06-real-independent/references/08-ueno-wide.jpg",
+        "sha256": "af6fef5699facd8f72fd0b747087a367cc109a7c8aa1abb578839b2b34feb948"
+      },
+      {
+        "index": 9,
+        "view": "09-shinjuku-wide",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "full-size reviewed and imported through local app UI",
+        "submitted_at": "2026-10-07T03:54:11.330Z",
+        "source_title": "TABI Tokyo camera trial - wide v1",
+        "extra_framing_clarification": false,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/7a9b9152-91b8-4e64-b72c-4b8386beee73",
+        "path": ".local/u06-real-independent/references/09-shinjuku-wide.jpg",
+        "result_observed_at": "2026-10-07T03:55:30.655Z",
+        "local_path": ".local/u06-real-independent/references/09-shinjuku-wide.jpg",
+        "sha256": "df004305eaf4d0f16710c253ba3afff92e3af05b19b635c4c45ee12f15335cca",
+        "review": "TABI and carriage match the corresponding supplied wide/medium source: attached gills, connected neck, closed coat, resting hands, takeaway cup on table, visible book/pen/bag. Distinct tall-tower skyline behind fixed window, continuous horizon. Illustrated Shinjuku-inspired skyline, not verified geographic landmarks; medium includes a stylized needle tower."
+      },
+      {
+        "index": 10,
+        "view": "10-shinjuku-medium",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "full-size reviewed and imported through local app UI",
+        "submitted_at": "2026-10-07T03:55:53.426Z",
+        "source_title": "TABI Tokyo camera trial - close v1",
+        "extra_framing_clarification": true,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/2b7ef113-cfe3-4519-8fad-9d65795fc535",
+        "path": ".local/u06-real-independent/references/10-shinjuku-medium.jpg",
+        "result_observed_at": "2026-10-07T03:56:53.471Z",
+        "local_path": ".local/u06-real-independent/references/10-shinjuku-medium.jpg",
+        "sha256": "1a1f31bec90bce267f134f7c230dbe944330852b4dd613a838880c7ffd4034ce",
+        "review": "TABI and carriage match the corresponding supplied wide/medium source: attached gills, connected neck, closed coat, resting hands, takeaway cup on table, visible book/pen/bag. Distinct tall-tower skyline behind fixed window, continuous horizon. Illustrated Shinjuku-inspired skyline, not verified geographic landmarks; medium includes a stylized needle tower."
+      },
+      {
+        "index": 11,
+        "view": "11-tokyo-bay-wide",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "full-size reviewed and imported through local app UI",
+        "submitted_at": "2026-10-07T03:57:15.776Z",
+        "source_title": "TABI Tokyo camera trial - wide v1",
+        "extra_framing_clarification": false,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/feb86e82-07e4-4612-9216-86216d560308",
+        "path": ".local/u06-real-independent/references/11-tokyo-bay-wide.jpg",
+        "result_observed_at": "2026-10-07T03:58:12.830Z",
+        "local_path": ".local/u06-real-independent/references/11-tokyo-bay-wide.jpg",
+        "sha256": "3775818e31d25ac97b65227cad9c02f89dcc97e5325322c437cfba3860546dce",
+        "review": "Full-size reviewed against the supplied camera source: same TABI/gills/neck/closed coat, resting hands and table props. Broad bay water, a two-pylon suspension bridge and low waterfront skyline remain outside the fixed window with level horizon and proper table/window occlusion. Independent wide/medium camera cut accepted for trial; final user aesthetic approval pending."
+      },
+      {
+        "index": 12,
+        "view": "12-tokyo-bay-medium",
+        "model": "Nano Banana 2.1",
+        "observed_cost": 0,
+        "status": "full-size reviewed and imported through local app UI",
+        "submitted_at": "2026-10-07T03:58:39.750Z",
+        "source_title": "TABI Tokyo camera trial - close v1",
+        "extra_framing_clarification": true,
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/a9d617ae-d58e-48b9-9695-61854154a49f",
+        "path": ".local/u06-real-independent/references/12-tokyo-bay-medium.jpg",
+        "result_observed_at": "2026-10-07T03:59:34.545Z",
+        "local_path": ".local/u06-real-independent/references/12-tokyo-bay-medium.jpg",
+        "sha256": "7a3ff43a76d5817de03141e3348abaa77e0a9ed5fa813f5fe9e854d21599d2cb",
+        "review": "Full-size reviewed against the supplied camera source: same TABI/gills/neck/closed coat, resting hands and table props. Broad bay water, a two-pylon suspension bridge and low waterfront skyline remain outside the fixed window with level horizon and proper table/window occlusion. Independent wide/medium camera cut accepted for trial; final user aesthetic approval pending."
+      }
+    ]
+  },
+  "motion": {
+    "requests": 9,
+    "accepted_shots": 6,
+    "accepted_frames": 1080,
+    "accepted_seconds": 45,
+    "first_take_accepted_shots": 4,
+    "distinct_shots_attempted": 7,
+    "rejected_takes": 3,
+    "extra_starts_used": 2,
+    "max_extra_starts": 2,
+    "max_focused_retries_per_shot": 1,
+    "records": [
+      {
+        "shot": 1,
+        "attempt": 1,
+        "name": "01-sumida-wide-attempt1",
+        "submitted_at": "2026-10-07T04:01:22.196Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "accepted for draft through local app UI",
+        "reference_title": "U06 01 Sumida wide reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/58baaa0d-f4c3-4261-9dd6-21e3c4865881",
+        "result_observed_at": "2026-10-07T04:03:51.991Z",
+        "local_path": ".local/u06-real-independent/native-clips/01-sumida-wide-attempt1.mp4",
+        "sha256": "d081681645d344184b47d92e66774b2d95aad58c2b1d1ef00b50f5fd33ddad70",
+        "native_frames": 192,
+        "selected_frames": [
+          0,
+          180
+        ],
+        "browser_playback": {
+          "whole_source_ended_at": 8,
+          "selected_section_ended_at": 7.5
+        },
+        "review": "TABI/neck/gills/closed coat and resting hands/table props intact, closed mouth, eyes settle closed. Right-to-left exterior movement and parallax continue through ending; level horizon and fixed window occlusion. Calm-rest interpretation accepted for draft; no predecessor join.",
+        "request_to_result_observation_seconds": 149.79
+      },
+      {
+        "shot": 2,
+        "attempt": 1,
+        "name": "02-sumida-medium-attempt1",
+        "submitted_at": "2026-10-07T04:07:03.057Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "rejected through local app UI",
+        "reference_title": "U06 02 Sumida medium reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/b8897307-b855-4e31-8791-20603986e604",
+        "result_observed_at": "2026-10-07T04:08:47.407Z",
+        "local_path": ".local/u06-real-independent/native-clips/02-sumida-medium-attempt1.mp4",
+        "sha256": "5bf3df7048fad2b2914d0b8680b6a8f9576d917de85d3ceb5f26eef629a602f3",
+        "native_frames": 192,
+        "browser_playback": {
+          "whole_source_ended_at": 8
+        },
+        "review": "Mouth opens into a grin with visible pink interior approximately 0.5\u20131.8 seconds, despite the saved closed-smile instruction. Other character/prop/exterior checks usable. Rejected with mouth correction; first accepted wide clip preserved.",
+        "retry_focus": "mouth",
+        "request_to_result_observation_seconds": 104.35
+      },
+      {
+        "shot": 2,
+        "attempt": 2,
+        "name": "02-sumida-medium-attempt2",
+        "submitted_at": "2026-10-07T04:09:58.981Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "accepted for draft through local app UI",
+        "reference_title": "U06 02 Sumida medium reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/fef39491-f322-48a3-a640-3a3bd6ad9af9",
+        "result_observed_at": "2026-10-07T04:11:58.641Z",
+        "local_path": ".local/u06-real-independent/native-clips/02-sumida-medium-attempt2.mp4",
+        "sha256": "ccda81fc75969956c690f10c88fae0e57c7c655040376173f1e44ed55302b1ff",
+        "native_frames": 192,
+        "selected_frames": [
+          0,
+          180
+        ],
+        "browser_playback": {
+          "whole_source_ended_at": 8,
+          "selected_section_ended_at": 7.5,
+          "camera_cut_ended_at": 2
+        },
+        "review": "Mouth correction succeeds. Whole source, selected 180-frame section and 2-second camera cut played to end. Closed smile, intact character/props, continuous natural exterior parallax. Chrome initially retained 8-second metadata after trim; reloading correctly loaded 7.5s. U06a fixes review URL content identity.",
+        "request_to_result_observation_seconds": 119.66
+      },
+      {
+        "shot": 3,
+        "attempt": 1,
+        "name": "03-yanaka-medium-attempt1",
+        "submitted_at": "2026-10-07T04:16:52.197Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "accepted for draft through local app UI",
+        "reference_title": "U06 03 Yanaka medium reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/90ec331b-df1f-42ff-bd83-e493e7ccecb6",
+        "result_observed_at": "2026-10-07T04:20:25.404Z",
+        "local_path": ".local/u06-real-independent/native-clips/03-yanaka-medium-attempt1.mp4",
+        "sha256": "7aacb9f06ee341bc111c615129ba98acb457e98343744355b00dfc353e1d600b",
+        "native_frames": 192,
+        "selected_frames": [
+          12,
+          192
+        ],
+        "review": "Full source, 12\u2013192 selected section and 2-second camera cut played to end. Calm head turn toward the window; neck, attached gills, closed coat, closed mouth and resting hands/table props preserved. Wooden rooftops/shops move right to left with coherent parallax. Shifted source cut by 12 frames to finish after the last eyelid closure instead of cutting mid-blink at frame 179. Updated preview duration 7.5s loaded without page refresh. Deliberate district/time cut accepted for draft.",
+        "browser_playback": {
+          "whole_source_ended_at": 8,
+          "selected_section": {
+            "currentTime": 7.5,
+            "duration": 7.5,
+            "ended": true
+          },
+          "camera_cut": {
+            "currentTime": 2,
+            "duration": 2,
+            "ended": true
+          }
+        },
+        "request_to_result_observation_seconds": 213.21
+      },
+      {
+        "shot": 4,
+        "attempt": 1,
+        "name": "04-yanaka-wide-attempt1",
+        "submitted_at": "2026-10-07T04:25:05.547Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "accepted for draft through local app UI",
+        "reference_title": "U06 04 Yanaka wide reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/102edb27-7657-4e71-93a7-7ca961d04c30",
+        "result_observed_at": "2026-10-07T04:30:47.921Z",
+        "local_path": ".local/u06-real-independent/native-clips/04-yanaka-wide-attempt1.mp4",
+        "sha256": "e05fc2e01e7040f893126f267d1531c2fb6b2fd3d4452c4a8aa341d60aeb9a91",
+        "native_frames": 192,
+        "selected_frames": [
+          0,
+          180
+        ],
+        "review": "Full native 8s, selected 7.5s and two-second cut reviewed. Wide Yanaka shot keeps TABI markings, attached gills, neck, closed coat, hands, cup, book, pen and bag stable. Closed smile throughout. Eyes open gently toward the window and are settled at frame179; later source blink lies outside selected range. Varied tiled wooden houses, poles and trees move left continuously behind fixed window with level perspective. Deliberate medium-to-wide cut is coherent; no generated endpoint match.",
+        "browser_playback": {
+          "whole_source_ended_at": 8,
+          "selected_section": {
+            "currentTime": 7.5,
+            "duration": 7.5,
+            "ended": true
+          },
+          "camera_cut": {
+            "currentTime": 2,
+            "duration": 2,
+            "ended": true
+          }
+        },
+        "request_to_result_observation_seconds": 342.37
+      },
+      {
+        "shot": 5,
+        "attempt": 1,
+        "name": "05-akihabara-wide-attempt1",
+        "submitted_at": "2026-10-07T04:32:06.280Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "accepted for draft through local app UI",
+        "reference_title": "U06 05 Akihabara wide reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/ebcca416-c487-4aa7-a0a1-f5d043101e90",
+        "result_observed_at": "2026-10-07T04:34:01.403Z",
+        "local_path": ".local/u06-real-independent/native-clips/05-akihabara-wide-attempt1.mp4",
+        "sha256": "af95d34a0b264e2a7e53672bb6d2f56c62698d5641e58eb86551426ad42389eb",
+        "native_frames": 192,
+        "selected_frames": [
+          0,
+          180
+        ],
+        "review": "Whole source, selected 7.5s and two-second district cut played to end. TABI markings, gills/neck/closed coat, two resting hands and all table/bag props stay consistent. Closed smile, eyes settle peacefully closed. Colorful shopping facades and rail structures move left with near-pole parallax and natural exterior blur behind fixed window. No freeze or floating particles observed. Generated signage remains a final publication-review item. Deliberate district cut requires no endpoint matching.",
+        "browser_playback": {
+          "whole_source_ended_at": 8,
+          "selected_section": {
+            "currentTime": 7.5,
+            "duration": 7.5,
+            "ended": true
+          },
+          "camera_cut": {
+            "currentTime": 2,
+            "duration": 2,
+            "ended": true
+          }
+        },
+        "request_to_result_observation_seconds": 115.12
+      },
+      {
+        "shot": 6,
+        "attempt": 1,
+        "name": "06-akihabara-medium-attempt1",
+        "submitted_at": "2026-10-07T04:35:37.705Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "rejected through local app UI",
+        "reference_title": "U06 06 Akihabara medium reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/f7184b4e-2125-4ece-a635-d5b09a55358c",
+        "result_observed_at": "2026-10-07T04:37:06.284Z",
+        "local_path": ".local/u06-real-independent/native-clips/06-akihabara-medium-attempt1.mp4",
+        "sha256": "8903b9a4162d58cb5f0e5614a9df3aae914f4176e9873760fa8b6fe86475101b",
+        "native_frames": 192,
+        "browser_playback": {
+          "whole_source_ended_at": 8
+        },
+        "review": "Mouth opens into pink-interior grin at approximately 0.5\u20132.1s, contrary to saved closed-smile instruction. Character/props and exterior motion otherwise usable. Rejected with the one allowed mouth correction.",
+        "retry_focus": "mouth",
+        "request_to_result_observation_seconds": 88.58
+      },
+      {
+        "shot": 6,
+        "attempt": 2,
+        "name": "06-akihabara-medium-attempt2",
+        "submitted_at": "2026-10-07T04:37:57.837Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "accepted for draft through local app UI",
+        "reference_title": "U06 06 Akihabara medium reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/ca22ca7d-e672-4e66-9cae-f0958dcbb4c8",
+        "result_observed_at": "2026-10-07T04:39:36.152Z",
+        "local_path": ".local/u06-real-independent/native-clips/06-akihabara-medium-attempt2.mp4",
+        "sha256": "88866e6342fce11c402b6c6f0a24b6ead53abfd66b77c7d3b0c959be5a655822",
+        "native_frames": 192,
+        "selected_frames": [
+          0,
+          180
+        ],
+        "review": "Focused mouth correction succeeds: small closed smile throughout sampled motion and playback. Whole native 8s, selected 7.5s and two-second camera cut played to end. Attached gills/neck, markings, closed coat, resting hands, cup/lid, book/pen and bag edge preserved. Eyes settle and remain closed, a calm-rest interpretation rather than a brief blink; final aesthetic approval pending. Continuous leftward colorful storefront/rail scenery and level fixed-window perspective. Generated illustrated advertisements/signage require release review. No endpoint matching.",
+        "browser_playback": {
+          "whole_source_ended_at": 8,
+          "selected_section": {
+            "currentTime": 7.5,
+            "duration": 7.5,
+            "ended": true
+          },
+          "camera_cut": {
+            "currentTime": 2,
+            "duration": 2,
+            "ended": true
+          }
+        },
+        "request_to_result_observation_seconds": 98.31
+      },
+      {
+        "shot": 7,
+        "attempt": 1,
+        "name": "07-ueno-medium-attempt1",
+        "submitted_at": "2026-10-07T04:41:05.521Z",
+        "model": "Veo 3.1 - Quality",
+        "mode": "Frames",
+        "duration_seconds": 8,
+        "dimensions": "720p 16:9",
+        "observed_cost": 100,
+        "status": "rejected through local app UI; no retry submitted",
+        "reference_title": "U06 07 Ueno medium reference",
+        "provider_asset_url": "https://flow.google.com/u/1/project/5db5a605-6269-4336-88e8-7bc2f1484543/edit/7c8c86c1-6649-4570-a1a2-eecc24879aee",
+        "result_observed_at": "2026-10-07T04:42:55.974Z",
+        "local_path": ".local/u06-real-independent/native-clips/07-ueno-medium-attempt1.mp4",
+        "sha256": "f127e441616dc59bc75ecba98e42084c6bb09847066f4323fb6739e0a221b169",
+        "native_frames": 192,
+        "selected_frames": [
+          12,
+          192
+        ],
+        "review": "TABI turns toward the window but returns to facing forward by frame191; required watching ending not met. Frame179 lies during blink/return turn. App correctly rejects actual resting ending as incomplete watch action. No 180-frame selection reviewed here resolves that action mismatch.",
+        "browser_playback": {
+          "whole_source_ended_at": 8,
+          "selected_section": {
+            "currentTime": 7.5,
+            "duration": 7.5,
+            "ended": true
+          },
+          "camera_cut": {
+            "currentTime": 2,
+            "duration": 2,
+            "ended": true
+          }
+        },
+        "acceptance_attempt": "Rejected by app validation; helper initially logged acceptance before checking successful saved state. Corrected against visible 45/90s progress and saved rejection. Review not bypassed.",
+        "retry_focus": "action",
+        "request_to_result_observation_seconds": 110.45
+      }
+    ]
+  },
+  "stop_reason": "Sumida medium and Akihabara medium each required one closed-mouth correction. Ueno medium turned toward the window then returned forward, failing its required watching ending. The app rejected an attempted resting-state acceptance. No bypass or third extra request followed; all takes were preserved and the run was paused.",
+  "budget": {
+    "ceiling": 1400,
+    "displayed_motion_credits": 900,
+    "official_history_motion_debits": 900,
+    "remaining_account_balance": 21999,
+    "account_audit": {
+      "observed_at": "2026-10-07T04:53:06.174Z",
+      "source_url": "https://one.google.com/u/1/ai/activity",
+      "trial_transactions": [
+        "7 Oct 2026, 12:41:07Google Flow credits-100",
+        "7 Oct 2026, 12:37:59Google Flow credits-100",
+        "7 Oct 2026, 12:35:39Google Flow credits-100",
+        "7 Oct 2026, 12:32:08Google Flow credits-100",
+        "7 Oct 2026, 12:25:07Google Flow credits-100",
+        "7 Oct 2026, 12:16:54Google Flow credits-100",
+        "7 Oct 2026, 12:10:01Google Flow credits-100",
+        "7 Oct 2026, 12:07:05Google Flow credits-100",
+        "7 Oct 2026, 12:01:24Google Flow credits-100"
+      ],
+      "trial_debits": 900,
+      "remaining_flow_credits": 21999,
+      "daily_flow_credits_remaining": 0,
+      "displayed_monthly_entitlement": 25000,
+      "displayed_daily_addition": 50,
+      "initial_balance": 22849,
+      "balance_delta": 850,
+      "note": "Nine matching 100-credit transactions confirm the trial debit. Initial-to-final balance delta differs by 50; the account page displays an additional 50 daily credits. No refund assumed."
+    },
+    "new_purchases": 0,
+    "monthly_capacity": {
+      "displayed_monthly_entitlement": 25000,
+      "displayed_daily_addition": 50,
+      "baseline_per90_second_video": 1200,
+      "baseline30_videos": 36000,
+      "maximum_included30_day_total_if_every_daily_allowance_used": 26500,
+      "baseline_shortfall": 9500,
+      "qualification": "At the observed 100-credit Quality price, 30 new 12-shot videos per 30 days exceed the displayed included allowance before retries or other use. This is allowance arithmetic, not a measured production-throughput result."
+    }
+  },
+  "visual_findings": {
+    "accepted": "Distinct Sumida water/bridge/Skytree, Yanaka rooftops and Akihabara shopping streets. Deliberate camera/district cuts work without endpoint matching. Character, closed coat, gills, cup, hands and tabletop objects remain usable in the accepted draft shots.",
+    "limits": [
+      "Several rest takes keep the eyes closed instead of performing the requested brief blink; calm-rest interpretation recorded, final aesthetic review pending.",
+      "Yanaka medium needed source frames 12\u2013192 to end after eyelid closure; other accepted shots use 0\u2013180.",
+      "Generated Akihabara signage and illustrated advertising need review or replacement before commercial release.",
+      "Ueno motion has a failed ending action and is excluded. Ueno wide, Shinjuku and Tokyo Bay motion were not generated.",
+      "Tokyo Bay stills have a level horizon, bridge and water behind the fixed window; the closing panorama has not been motion-qualified."
+    ]
+  },
+  "partial_delivery": {
+    "verification": {
+      "episode_id": "8578e51613224b2a8ccf704e3d219f20",
+      "export_id": "f4948791a7494246937c5683ba0dc174",
+      "output": "/Users/marcoandreose/DEV/lab/video-story/.local/u06-real-independent/studio/TABI Tokyo independent trial/exports/f4948791a7494246937c5683ba0dc174.mp4",
+      "sha256": "3878bc87997eb2a8fc092b5b5ea7a6c15ce775fbf962ba16996f980a27381bc6",
+      "frames": 1080,
+      "duration_seconds": 45,
+      "planned_duration_seconds": 90,
+      "target_met": false,
+      "fps": "24/1",
+      "canvas": [
+        1280,
+        720
+      ],
+      "audio_streams": 0,
+      "independent_full_decode": "pass",
+      "all_frame_timestamps": "exact n/24",
+      "source_and_reference_hashes": "verified",
+      "segment_count": 6,
+      "source_range_comparisons": [
+        {
+          "output_frame": 0,
+          "source_frame": 0,
+          "candidate_id": "b6c9d9fbb9b84e59b6f77c0b9360d7cc",
+          "mean_rgb_difference": 1.648933738425926
+        },
+        {
+          "output_frame": 90,
+          "source_frame": 90,
+          "candidate_id": "b6c9d9fbb9b84e59b6f77c0b9360d7cc",
+          "mean_rgb_difference": 1.7589500144675927
+        },
+        {
+          "output_frame": 179,
+          "source_frame": 179,
+          "candidate_id": "b6c9d9fbb9b84e59b6f77c0b9360d7cc",
+          "mean_rgb_difference": 1.9245359519675926
+        },
+        {
+          "output_frame": 180,
+          "source_frame": 0,
+          "candidate_id": "14d1ae615b2e4ecda2c551097559738f",
+          "mean_rgb_difference": 1.663771339699074
+        },
+        {
+          "output_frame": 270,
+          "source_frame": 90,
+          "candidate_id": "14d1ae615b2e4ecda2c551097559738f",
+          "mean_rgb_difference": 1.870621744791667
+        },
+        {
+          "output_frame": 359,
+          "source_frame": 179,
+          "candidate_id": "14d1ae615b2e4ecda2c551097559738f",
+          "mean_rgb_difference": 2.0104466869212962
+        },
+        {
+          "output_frame": 360,
+          "source_frame": 12,
+          "candidate_id": "a49dc3ee98d94d75bcc59471877b9c48",
+          "mean_rgb_difference": 1.907648654513889
+        },
+        {
+          "output_frame": 450,
+          "source_frame": 102,
+          "candidate_id": "a49dc3ee98d94d75bcc59471877b9c48",
+          "mean_rgb_difference": 1.9001240596064815
+        },
+        {
+          "output_frame": 539,
+          "source_frame": 191,
+          "candidate_id": "a49dc3ee98d94d75bcc59471877b9c48",
+          "mean_rgb_difference": 2.0380812355324074
+        },
+        {
+          "output_frame": 540,
+          "source_frame": 0,
+          "candidate_id": "09d13f4c5d334cc5a889592dd2fc429c",
+          "mean_rgb_difference": 1.7000365306712961
+        },
+        {
+          "output_frame": 630,
+          "source_frame": 90,
+          "candidate_id": "09d13f4c5d334cc5a889592dd2fc429c",
+          "mean_rgb_difference": 1.8746014178240742
+        },
+        {
+          "output_frame": 719,
+          "source_frame": 179,
+          "candidate_id": "09d13f4c5d334cc5a889592dd2fc429c",
+          "mean_rgb_difference": 1.9544332320601852
+        },
+        {
+          "output_frame": 720,
+          "source_frame": 0,
+          "candidate_id": "c524ca52d99748d8ae63040a45c7acb5",
+          "mean_rgb_difference": 1.782263816550926
+        },
+        {
+          "output_frame": 810,
+          "source_frame": 90,
+          "candidate_id": "c524ca52d99748d8ae63040a45c7acb5",
+          "mean_rgb_difference": 1.9783821614583335
+        },
+        {
+          "output_frame": 899,
+          "source_frame": 179,
+          "candidate_id": "c524ca52d99748d8ae63040a45c7acb5",
+          "mean_rgb_difference": 2.217669994212963
+        },
+        {
+          "output_frame": 900,
+          "source_frame": 0,
+          "candidate_id": "fe7cb707a8404c6492e3e416c20c2823",
+          "mean_rgb_difference": 1.7791156684027776
+        },
+        {
+          "output_frame": 990,
+          "source_frame": 90,
+          "candidate_id": "fe7cb707a8404c6492e3e416c20c2823",
+          "mean_rgb_difference": 2.015968967013889
+        },
+        {
+          "output_frame": 1079,
+          "source_frame": 179,
+          "candidate_id": "fe7cb707a8404c6492e3e416c20c2823",
+          "mean_rgb_difference": 2.271614583333333
+        }
+      ],
+      "maximum_mean_rgb_difference": 2.271614583333333,
+      "download_path": "/Users/marcoandreose/DEV/lab/video-story/.local/u06-real-independent/deliverables/TABI-Tokyo-independent-PARTIAL-45s.mp4",
+      "download_sha256_matches": true,
+      "paused_episode_unchanged_after_export": true,
+      "accepted_candidates": 6,
+      "all_candidates_retained": 9,
+      "recipe_target_frames_unchanged": 2160
+    },
+    "native_chrome_full_playback": {
+      "currentTime": 45,
+      "duration": 45,
+      "ended": true,
+      "paused": true,
+      "videoHeight": 720,
+      "videoWidth": 1280
+    },
+    "screenshots": [
+      ".local/u06-real-independent/screenshots/partial-playback-start.png",
+      ".local/u06-real-independent/screenshots/partial-playback-middle.png",
+      ".local/u06-real-independent/screenshots/partial-playback-ended.png"
+    ],
+    "scope": "Silent 45-second review sample; not a completed 90-second video or release approval"
+  },
+  "workflow_findings": [
+    "Independent shots remove generated endpoint matching but do not remove per-take character/action errors.",
+    "Thirteen image preparations and nine native video downloads/imports still required assisted handoffs and visual review.",
+    "Two mouth retries succeeded; a further action error exhausted the deliberately small extra-attempt allowance before completing the plan.",
+    "UI preview caching was corrected in U06a; stopped-run partial export was added in U06b.",
+    "Active human operator time was not instrumented. Request-to-result-observation intervals include other work, polling and UI handoffs. Browser automation stalls, overnight waits and app repairs are not representative human production time.",
+    "Do not qualify unattended production, lower overall effort, or 30 videos per month from this run."
+  ],
+  "next_recommended_trial": "Keep independent cuts and the prepared references. Before another full run, test a short ambient-motion brief with a fixed character pose, including the Tokyo Bay closing view. Recheck model/cost allowances and keep a small explicit retry cap; no new request is authorized or submitted by this recommendation.",
+  "implementation_fixes": [
+    {
+      "task": "U06a",
+      "commit": "eda9dc6",
+      "evidence": "docs/evidence/u06a-review-preview.json"
+    },
+    {
+      "task": "U06b",
+      "commit": "aa88a58",
+      "evidence": "docs/evidence/u06b-partial-preview.json"
+    }
+  ],
+  "verification_gate": "U06b: 386 core, 77 actual-media, 8 frontend, 68 contracts, formatting, TypeScript, build and package pass; one optional private fixture skipped.",
+  "preservation": {
+    "original_media": 31,
+    "hashes": "unchanged",
+    "new_native_clips": 9,
+    "wheel_python_modules_match": 111,
+    "wheel_sha256": "244801a301d1a0ac84aa9cb207903aac4cdc258d5cbf62bb3e514778adb094f5"
+  },
+  "pending": [
+    "Complete 90-second real video",
+    "Tokyo Bay motion/perspective ending",
+    "Marco final creative approval",
+    "Artwork/signage/music and final release review",
+    "Representative operator effort, new setting/outfit and monthly production capacity",
+    "Safari observation"
+  ]
+}

@@ -18,7 +18,7 @@
 
 ## U06 — Test the independent plan with real TABI footage
 
-**Status** [ ] Real Flow trial in progress. All twelve real district/camera references are reviewed and imported. Three independent shots (22.5 seconds) are accepted through the app, including one corrected mouth take and one safe source-range adjustment; the fourth shot is generating. Displayed video cost so far: 500 / 1400 existing credits. No final creative or release approval.
+**Status** [ ] Bounded trial concluded; the 90-second target is unmet. Twelve references were reviewed from thirteen image requests (zero displayed credits). Nine video requests cost 900 credits, confirmed in Google history; six accepted shots form a verified 45-second silent partial preview. Two mouth corrections succeeded. Ueno's return to a forward pose failed the required watching ending, so the run stopped after its two allowed extra attempts. All takes and the original plan remain saved. [Evidence](evidence/u06-real-independent.json). Tokyo Bay motion and final creative/release approval remain open.
 
 **Target files**
 - `.local/u06-real-independent/**` (ignored) — preparation/terms, task-owned worker, native references and clips, screenshots, read-only verification and output evidence; no MP4 enters Git.

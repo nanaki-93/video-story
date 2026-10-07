@@ -72,6 +72,15 @@ lower total time or real retry costs before a new trial.
 
 ## Remaining production gates
 
+The [U06 real independent-shot trial](docs/evidence/u06-real-independent.json) stopped at
+45 accepted seconds after nine video requests and 900 confirmed credits. Two mouth corrections
+worked; Ueno's required watching ending failed after the two extra attempts were already used.
+The app exports a verified partial preview while retaining the 90-second plan. Distinct district
+cuts work without endpoint matching, but Tokyo Bay motion and the full target are unqualified.
+At the observed Quality price, the no-retry baseline for 30 videos is 36000 credits, above the
+displayed 25000 monthly plus 50 daily allowance. A short ambient-motion/fixed-pose test using
+the prepared references, especially the Bay ending, is recommended before another full run.
+
 Marco wants almost entirely automatic preparation for 30 × 90-second videos per month, with
 new combinations and some new assets each time. That full target remains unqualified:
 

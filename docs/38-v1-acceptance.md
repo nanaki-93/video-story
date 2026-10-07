@@ -1,5 +1,19 @@
 # V1 implementation and acceptance
 
+## U06 real independent-shot trial — target unmet, 7 October 2026
+
+Nine real video requests produced six accepted shots / 45 seconds at 900 credits. Two mouth
+retries succeeded; a third rejected take failed its required watching ending. The run stopped
+at its predeclared two-extra-attempt allowance. The normal UI saved and exported a labeled
+45-second partial preview, independently verified and played completely in Chrome. All twelve
+references and nine takes remain preserved. [Evidence](evidence/u06-real-independent.json).
+
+Independent cuts work without generated endpoint matching. Complete 90-second acceptance,
+Tokyo Bay motion/perspective, lower human effort and monthly production capacity are still open.
+At the observed Quality price, 30 no-retry videos require 36000 credits versus the displayed
+25000 monthly plus up to 1500 daily credits over 30 days. Source art, generated signage, music
+and final creative/release approval remain pending.
+
 ## U06b stopped-run partial preview — 7 October 2026
 
 The normal app now exports a paused run's accepted portion as a labeled silent preview while

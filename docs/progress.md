@@ -2,6 +2,36 @@
 
 Updated 7 October 2026 (Asia/Manila).
 
+## U06 — Real independent-shot trial stopped at 45 seconds
+
+The bounded trial confirms that separate cinematic shots avoid generated endpoint matching,
+but it does not qualify the full workflow. Thirteen image requests produced twelve reviewed
+district/framing references at zero displayed credits. Nine Veo 3.1 Quality requests cost 900
+credits, confirmed in Google's transaction history. Six accepted shots form a 45-second silent
+sample spanning Sumida, Yanaka and Akihabara. Four shots passed on the first take; two mouth
+corrections succeeded on their single retry. Yanaka medium uses a half-second source offset to
+complete its ending blink.
+
+Ueno medium turned toward the window then returned forward. The app rejected that ending as
+an incomplete watching action. The run stopped after consuming the two permitted extra starts;
+it did not weaken the review or submit a third correction. Ueno wide, Shinjuku and Tokyo Bay
+motion were not generated. The twelve still references, all nine takes and original 90-second
+plan are preserved. U06b exports only the accepted prefix through the normal UI. The downloaded
+preview has 1080 exact frames at 24/1, passes full decode and 18 source-range comparisons, and
+plays to 45 seconds in Chrome. [Full evidence](evidence/u06-real-independent.json).
+
+This remains an assisted workflow with image preparation, downloads/imports and visual review.
+Active human effort was not timed; browser stalls, handoffs and app repairs prevent a fair
+total-time comparison. At the observed 100 credits per fresh Quality take, the no-retry baseline
+for 30 twelve-shot videos is 36000 credits. The account shows 25000 monthly plus 50 daily;
+even using every daily addition over 30 days gives 26500. The no-top-up monthly target is
+therefore unqualified at this price before retries or other use.
+
+Keep the independent cuts and prepared references. A short fixed-pose/ambient-motion pilot,
+including the Bay ending, is the recommended next creative test before another full run.
+No such generation has started. Final artwork/signage, music and creative/publication approval
+remain open; generated advertising and held eye closures need Marco's review.
+
 ## U06b — Export the accepted portion of a stopped run
 
 The bounded U06 trial stopped at 45 accepted seconds. Paused incomplete videos now offer
